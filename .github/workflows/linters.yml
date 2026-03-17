@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: 24
 
-      - run: npm ci
+      - run: npm install
 
       - name: Check formatting
         run: npx prettier --check "**/*.{js,css,html,json}"
