@@ -189,20 +189,8 @@
 					<div id="signupAlert" class="alert"></div>
 
 					<form id="signupForm">
-						<!-- Plan Category Tabs -->
-						<div class="pricing__tabs" style="margin-bottom: var(--space-lg)">
-							<button type="button" class="pricing__tab active" data-category="clinic">
-								Clinics &amp; Hospitals
-							</button>
-							<button type="button" class="pricing__tab" data-category="pathology">
-								Diagnostics
-							</button>
-							<button type="button" class="pricing__tab" data-category="pharmacy">Pharmacy</button>
-						</div>
-
 						<!-- Plan Selector -->
 						<div class="plan-selector">
-							<!-- Clinic Plans -->
 							<label class="plan-option" data-plan="Solo" data-category="clinic">
 								<input type="radio" name="plan" value="Solo" checked />
 								<span class="plan-option__name">Solo</span>
@@ -228,61 +216,19 @@
 								<span class="plan-option__name">Hospital Pro</span>
 								<span class="plan-option__price">&#x20B9;29,999/$499/mo</span>
 							</label>
-
-							<!-- Pathology Plans -->
-							<label
-								class="plan-option"
-								data-plan="Pathology"
-								data-category="pathology"
-								style="display: none"
-							>
-								<input type="radio" name="plan" value="Pathology" />
-								<span class="plan-option__name">Pathology</span>
-								<span class="plan-option__price">&#x20B9;2,999/$49/mo</span>
-							</label>
-							<label
-								class="plan-option"
-								data-plan="Pathology Plus"
-								data-category="pathology"
-								style="display: none"
-							>
-								<input type="radio" name="plan" value="Pathology Plus" />
-								<span class="plan-option__name">Pathology Plus</span>
-								<span class="plan-option__price">&#x20B9;4,999/$79/mo</span>
-							</label>
-							<label
-								class="plan-option"
-								data-plan="Pathology Network"
-								data-category="pathology"
-								style="display: none"
-							>
-								<input type="radio" name="plan" value="Pathology Network" />
-								<span class="plan-option__name">Pathology Network</span>
-								<span class="plan-option__price">&#x20B9;9,999/$169/mo</span>
-							</label>
-
-							<!-- Pharmacy Plans -->
-							<label
-								class="plan-option"
-								data-plan="Pharmacy"
-								data-category="pharmacy"
-								style="display: none"
-							>
-								<input type="radio" name="plan" value="Pharmacy" />
-								<span class="plan-option__name">Pharmacy</span>
-								<span class="plan-option__price">&#x20B9;1,999/$39/mo</span>
-							</label>
-							<label
-								class="plan-option"
-								data-plan="Pharmacy Chain"
-								data-category="pharmacy"
-								style="display: none"
-							>
-								<input type="radio" name="plan" value="Pharmacy Chain" />
-								<span class="plan-option__name">Pharmacy Chain</span>
-								<span class="plan-option__price">&#x20B9;7,999/$129/mo</span>
-							</label>
 						</div>
+
+						<p
+							style="
+								font-size: var(--font-size-xs);
+								color: var(--color-text-muted);
+								margin-bottom: var(--space-md);
+							"
+						>
+							Looking for Diagnostics or Pharmacy plans?
+							<a href="contact.html" style="color: var(--color-primary)">Contact our team</a> for a
+							personalised setup.
+						</p>
 
 						<!-- Facility Name -->
 						<div class="form-group">

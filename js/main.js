@@ -434,6 +434,33 @@
 		var form = document.getElementById("contactForm");
 		if (!form) return;
 
+		// Pre-fill subject from URL param (e.g. contact.html?subject=Pathology)
+		var urlParams = new URLSearchParams(window.location.search);
+		var subjectParam = urlParams.get("subject");
+		if (subjectParam) {
+			var subjectSelect = form.querySelector('[name="subject"]');
+			if (subjectSelect) {
+				// Map plan names to contact subjects
+				var subjectMap = {
+					Pathology: "Diagnostics & Lab Plans",
+					"Pathology Plus": "Diagnostics & Lab Plans",
+					"Pathology+Plus": "Diagnostics & Lab Plans",
+					"Pathology Network": "Diagnostics & Lab Plans",
+					"Pathology+Network": "Diagnostics & Lab Plans",
+					Pharmacy: "Pharmacy Plans",
+					"Pharmacy Chain": "Pharmacy Plans",
+					"Pharmacy+Chain": "Pharmacy Plans",
+				};
+				var mapped = subjectMap[subjectParam] || subjectParam;
+				for (var i = 0; i < subjectSelect.options.length; i++) {
+					if (subjectSelect.options[i].value === mapped) {
+						subjectSelect.selectedIndex = i;
+						break;
+					}
+				}
+			}
+		}
+
 		form.addEventListener("submit", function (e) {
 			e.preventDefault();
 
