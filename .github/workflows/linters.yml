@@ -1,0 +1,41 @@
+name: Linters
+
+on:
+  push:
+    branches: [main, develop, uat]
+  pull_request:
+
+jobs:
+  commitlint:
+    name: Semantic Commits
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install commitlint
+        run: npm install @commitlint/cli @commitlint/config-conventional conventional-changelog-conventionalcommits
+
+      - name: Lint commits
+        run: npx commitlint --verbose --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm install
+
+      - name: Check formatting
+        run: npx prettier --check "**/*.{js,css,html,json}"
