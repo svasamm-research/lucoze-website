@@ -18,7 +18,12 @@ html {
 }
 
 body {
-	font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+	font-family:
+		"Inter",
+		"Segoe UI",
+		system-ui,
+		-apple-system,
+		sans-serif;
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -153,7 +158,9 @@ button {
 body {
 	background: var(--color-bg);
 	color: var(--color-text);
-	transition: background var(--transition-base), color var(--transition-base);
+	transition:
+		background var(--transition-base),
+		color var(--transition-base);
 }
 
 .container {
@@ -200,7 +207,9 @@ body {
 	background: var(--color-bg);
 	border-bottom: 1px solid var(--color-border-light);
 	z-index: 1000;
-	transition: background var(--transition-base), box-shadow var(--transition-base);
+	transition:
+		background var(--transition-base),
+		box-shadow var(--transition-base);
 }
 
 .nav.scrolled {
@@ -288,7 +297,9 @@ body {
 	align-items: center;
 	justify-content: center;
 	color: var(--color-text-muted);
-	transition: background var(--transition-fast), color var(--transition-fast);
+	transition:
+		background var(--transition-fast),
+		color var(--transition-fast);
 }
 
 .nav__theme-toggle:hover {
@@ -878,7 +889,9 @@ body {
 
 .pricing-card--featured {
 	border-color: var(--color-primary);
-	box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-lg);
+	box-shadow:
+		0 0 0 1px var(--color-primary),
+		var(--shadow-lg);
 	transform: scale(1.02);
 }
 
@@ -1451,7 +1464,9 @@ body {
 	border-radius: var(--radius-md);
 	background: var(--color-bg);
 	color: var(--color-text);
-	transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+	transition:
+		border-color var(--transition-fast),
+		box-shadow var(--transition-fast);
 	font-family: inherit;
 }
 
@@ -1738,7 +1753,9 @@ select.form-control {
 	.fade-in {
 		opacity: 0;
 		transform: translateY(20px);
-		transition: opacity 0.6s ease, transform 0.6s ease;
+		transition:
+			opacity 0.6s ease,
+			transform 0.6s ease;
 	}
 
 	.fade-in.visible {
@@ -1803,7 +1820,9 @@ select.form-control {
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-lg);
 	padding: var(--space-lg);
-	transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+	transition:
+		box-shadow var(--transition-fast),
+		transform var(--transition-fast);
 }
 
 .feature-list__item:hover {
@@ -1837,7 +1856,9 @@ select.form-control {
 	border-radius: var(--radius-lg);
 	padding: var(--space-xl);
 	text-align: center;
-	transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+	transition:
+		box-shadow var(--transition-fast),
+		transform var(--transition-fast);
 }
 
 .solution-plan:hover {

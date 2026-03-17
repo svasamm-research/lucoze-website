@@ -20,10 +20,11 @@ const MAIN_JS = fs.readFileSync(path.resolve(__dirname, "../js/main.js"), "utf8"
  * Returns { window, document } with matchMedia and IntersectionObserver polyfilled.
  */
 function createEnv(bodyHTML = "") {
-	const dom = new JSDOM(
-		`<!DOCTYPE html><html><head></head><body>${bodyHTML}</body></html>`,
-		{ url: "http://localhost", runScripts: "dangerously", pretendToBeVisual: true }
-	);
+	const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>${bodyHTML}</body></html>`, {
+		url: "http://localhost",
+		runScripts: "dangerously",
+		pretendToBeVisual: true,
+	});
 	const { window } = dom;
 
 	// Polyfill matchMedia (jsdom doesn't support it)
@@ -527,7 +528,7 @@ describe("initSignup form validation", () => {
 			Promise.resolve({
 				ok: true,
 				json: () => Promise.resolve({ message: "ok" }),
-			})
+			}),
 		);
 
 		initApp(doc);
@@ -562,7 +563,7 @@ describe("initSignup form validation", () => {
 			Promise.resolve({
 				ok: false,
 				json: () => Promise.resolve({ message: "Email already registered" }),
-			})
+			}),
 		);
 
 		initApp(doc);
@@ -707,7 +708,7 @@ describe("initContact form validation", () => {
 			Promise.resolve({
 				ok: true,
 				json: () => Promise.resolve({ message: "ok" }),
-			})
+			}),
 		);
 
 		initApp(doc);

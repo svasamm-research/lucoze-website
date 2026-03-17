@@ -1,175 +1,395 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Lucoze</title>
-  <meta name="description" content="Lucoze Privacy Policy — how we collect, use, store, and protect your information.">
-  <link rel="canonical" href="https://lucoze.com/privacy">
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Privacy Policy — Lucoze</title>
+		<meta
+			name="description"
+			content="Lucoze Privacy Policy — how we collect, use, store, and protect your information."
+		/>
+		<link rel="canonical" href="https://lucoze.com/privacy" />
+		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+		<link rel="icon" type="image/png" href="images/favicon.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<nav class="nav">
+			<div class="container nav__inner">
+				<a href="/" class="nav__logo" aria-label="Lucoze Home"
+					><img src="images/logo.svg" alt="Lucoze" height="32" />
+				</a>
+				<div class="nav__links">
+					<a href="index.html#features" class="nav__link">Features</a>
+					<a href="index.html#who-its-for" class="nav__link">Solutions</a>
+					<a href="index.html#pricing" class="nav__link">Pricing</a>
+					<a href="about.html" class="nav__link">About</a>
+					<a href="contact.html" class="nav__link">Contact</a>
+				</div>
+				<div class="nav__actions">
+					<button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+						<svg
+							class="icon-sun"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<circle cx="12" cy="12" r="5" />
+							<path
+								d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+							/>
+						</svg>
+						<svg
+							class="icon-moon"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							style="display: none"
+						>
+							<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+						</svg>
+					</button>
+					<a href="signup.html" class="btn btn--primary btn--sm">Start Free Trial</a>
+					<button class="nav__mobile-toggle" id="mobileMenuToggle" aria-label="Open menu">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M3 12h18M3 6h18M3 18h18" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</nav>
+		<div class="mobile-menu" id="mobileMenu">
+			<a href="index.html#features">Features</a>
+			<a href="index.html#who-its-for">Solutions</a>
+			<a href="index.html#pricing">Pricing</a>
+			<a href="about.html">About</a>
+			<a href="contact.html">Contact</a>
+			<a href="signup.html" class="btn btn--primary btn--full" style="margin-top: 1rem"
+				>Start Free Trial</a
+			>
+		</div>
 
-<nav class="nav">
-  <div class="container nav__inner">
-    <a href="/" class="nav__logo" aria-label="Lucoze Home"><img src="images/logo.svg" alt="Lucoze" height="32"> </a>
-    <div class="nav__links">
-      <a href="index.html#features" class="nav__link">Features</a>
-      <a href="index.html#who-its-for" class="nav__link">Solutions</a>
-      <a href="index.html#pricing" class="nav__link">Pricing</a>
-      <a href="about.html" class="nav__link">About</a>
-      <a href="contact.html" class="nav__link">Contact</a>
-    </div>
-    <div class="nav__actions">
-      <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-      <a href="signup.html" class="btn btn--primary btn--sm">Start Free Trial</a>
-      <button class="nav__mobile-toggle" id="mobileMenuToggle" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
-    </div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#features">Features</a>
-  <a href="index.html#who-its-for">Solutions</a>
-  <a href="index.html#pricing">Pricing</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="signup.html" class="btn btn--primary btn--full" style="margin-top:1rem">Start Free Trial</a>
-</div>
+		<section class="page-header">
+			<div class="container">
+				<h1>Privacy Policy</h1>
+				<p>Last updated: March 2026</p>
+			</div>
+		</section>
 
-<section class="page-header">
-  <div class="container">
-    <h1>Privacy Policy</h1>
-    <p>Last updated: March 2026</p>
-  </div>
-</section>
+		<section class="content-page">
+			<div class="container" style="max-width: 800px">
+				<h2>1. Introduction</h2>
+				<p>
+					Svasamm Research Pvt. Ltd. ("we", "us", "our") operates the Lucoze healthcare management
+					platform ("Service"). This Privacy Policy explains how we collect, use, disclose, and
+					safeguard your information when you use our Service. By accessing or using Lucoze, you
+					agree to the terms of this Privacy Policy.
+				</p>
+				<p>
+					This policy applies to all users of the Lucoze platform, including facility
+					administrators, healthcare practitioners, staff members, and any other individuals who
+					interact with the Service.
+				</p>
 
-<section class="content-page">
-  <div class="container" style="max-width:800px">
+				<h2>2. Information We Collect</h2>
+				<p>We collect the following categories of information:</p>
+				<ul>
+					<li>
+						<strong>Account Information:</strong> When you register for Lucoze, we collect your
+						name, email address, phone number, facility name, and billing information. For facility
+						administrators, we may also collect business registration details and tax identification
+						numbers.
+					</li>
+					<li>
+						<strong>Usage Data:</strong> We automatically collect information about how you interact
+						with the Service, including pages visited, features used, session duration, browser
+						type, device information, and IP address. This data helps us improve the platform and
+						troubleshoot issues.
+					</li>
+					<li>
+						<strong>Health Data:</strong> Lucoze processes health data (patient records, clinical
+						notes, lab results, prescriptions) on behalf of our customers. We act strictly as a
+						<strong>data processor</strong> for this information — our customers (healthcare
+						facilities) are the data controllers who determine how and why patient data is
+						processed.
+					</li>
+				</ul>
 
-    <h2>1. Introduction</h2>
-    <p>Svasamm Research Pvt. Ltd. ("we", "us", "our") operates the Lucoze healthcare management platform ("Service"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service. By accessing or using Lucoze, you agree to the terms of this Privacy Policy.</p>
-    <p>This policy applies to all users of the Lucoze platform, including facility administrators, healthcare practitioners, staff members, and any other individuals who interact with the Service.</p>
+				<h2>3. How We Use Your Information</h2>
+				<p>We use the information we collect for the following purposes:</p>
+				<ul>
+					<li>
+						<strong>Provide and maintain the Service:</strong> To operate your account, process
+						transactions, deliver the features you request, and provide customer support.
+					</li>
+					<li>
+						<strong>Improve the platform:</strong> To analyse usage patterns, identify bugs,
+						optimise performance, and develop new features. All analytics are performed on
+						aggregated, anonymised data.
+					</li>
+					<li>
+						<strong>Communicate with you:</strong> To send service-related notifications, respond to
+						your enquiries, and provide important updates about your account or changes to our
+						terms.
+					</li>
+					<li>
+						<strong>Comply with legal obligations:</strong> To meet regulatory requirements, respond
+						to lawful requests from authorities, and enforce our terms of service.
+					</li>
+				</ul>
 
-    <h2>2. Information We Collect</h2>
-    <p>We collect the following categories of information:</p>
-    <ul>
-      <li><strong>Account Information:</strong> When you register for Lucoze, we collect your name, email address, phone number, facility name, and billing information. For facility administrators, we may also collect business registration details and tax identification numbers.</li>
-      <li><strong>Usage Data:</strong> We automatically collect information about how you interact with the Service, including pages visited, features used, session duration, browser type, device information, and IP address. This data helps us improve the platform and troubleshoot issues.</li>
-      <li><strong>Health Data:</strong> Lucoze processes health data (patient records, clinical notes, lab results, prescriptions) on behalf of our customers. We act strictly as a <strong>data processor</strong> for this information — our customers (healthcare facilities) are the data controllers who determine how and why patient data is processed.</li>
-    </ul>
+				<h2>4. Data Storage &amp; Security</h2>
+				<p>We take the security of your data extremely seriously. Our security measures include:</p>
+				<ul>
+					<li>
+						<strong>Encryption at rest:</strong> All data stored on our servers is encrypted using
+						AES-256 encryption.
+					</li>
+					<li>
+						<strong>Encryption in transit:</strong> All data transmitted between your browser and
+						our servers is protected with TLS 1.3.
+					</li>
+					<li>
+						<strong>Regional data centres:</strong> Your data is stored in the geographic region
+						closest to your facility. We offer data residency in India, Europe, and North America to
+						help you comply with local data protection regulations.
+					</li>
+					<li>
+						<strong>SOC 2 practices:</strong> We follow SOC 2 Type II security practices, including
+						regular security audits, vulnerability assessments, access logging, and incident
+						response procedures.
+					</li>
+					<li>
+						<strong>Access controls:</strong> Role-based access controls ensure that only authorised
+						personnel can access specific data. All access to production systems is logged and
+						monitored.
+					</li>
+				</ul>
 
-    <h2>3. How We Use Your Information</h2>
-    <p>We use the information we collect for the following purposes:</p>
-    <ul>
-      <li><strong>Provide and maintain the Service:</strong> To operate your account, process transactions, deliver the features you request, and provide customer support.</li>
-      <li><strong>Improve the platform:</strong> To analyse usage patterns, identify bugs, optimise performance, and develop new features. All analytics are performed on aggregated, anonymised data.</li>
-      <li><strong>Communicate with you:</strong> To send service-related notifications, respond to your enquiries, and provide important updates about your account or changes to our terms.</li>
-      <li><strong>Comply with legal obligations:</strong> To meet regulatory requirements, respond to lawful requests from authorities, and enforce our terms of service.</li>
-    </ul>
+				<h2>5. Data Sharing</h2>
+				<p>
+					<strong>We do not sell your data.</strong> We will never sell, rent, or trade your
+					personal information or your patients' health data to third parties for marketing or any
+					other purpose.
+				</p>
+				<p>We may share information only in the following limited circumstances:</p>
+				<ul>
+					<li>
+						<strong>Service providers:</strong> We work with carefully vetted third-party providers
+						for hosting, payment processing, email delivery, and customer support. These providers
+						are contractually bound to protect your data and may only use it to perform services on
+						our behalf.
+					</li>
+					<li>
+						<strong>Legal requirements:</strong> We may disclose information if required by law,
+						regulation, legal process, or governmental request.
+					</li>
+					<li>
+						<strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of
+						assets, your information may be transferred as part of the transaction. We will notify
+						you before your data becomes subject to a different privacy policy.
+					</li>
+				</ul>
 
-    <h2>4. Data Storage &amp; Security</h2>
-    <p>We take the security of your data extremely seriously. Our security measures include:</p>
-    <ul>
-      <li><strong>Encryption at rest:</strong> All data stored on our servers is encrypted using AES-256 encryption.</li>
-      <li><strong>Encryption in transit:</strong> All data transmitted between your browser and our servers is protected with TLS 1.3.</li>
-      <li><strong>Regional data centres:</strong> Your data is stored in the geographic region closest to your facility. We offer data residency in India, Europe, and North America to help you comply with local data protection regulations.</li>
-      <li><strong>SOC 2 practices:</strong> We follow SOC 2 Type II security practices, including regular security audits, vulnerability assessments, access logging, and incident response procedures.</li>
-      <li><strong>Access controls:</strong> Role-based access controls ensure that only authorised personnel can access specific data. All access to production systems is logged and monitored.</li>
-    </ul>
+				<h2>6. Your Rights</h2>
+				<p>
+					Depending on your location, you may have the following rights regarding your personal
+					data:
+				</p>
+				<ul>
+					<li>
+						<strong>Access:</strong> You can request a copy of the personal data we hold about you.
+					</li>
+					<li>
+						<strong>Correction:</strong> You can ask us to correct any inaccurate or incomplete
+						personal data.
+					</li>
+					<li>
+						<strong>Deletion:</strong> You can request that we delete your personal data, subject to
+						legal retention requirements.
+					</li>
+					<li>
+						<strong>Export:</strong> You can request a machine-readable export of your data at any
+						time from your account settings.
+					</li>
+					<li>
+						<strong>Restriction:</strong> You can ask us to restrict the processing of your personal
+						data in certain circumstances.
+					</li>
+					<li>
+						<strong>Objection:</strong> You can object to the processing of your personal data for
+						specific purposes.
+					</li>
+				</ul>
+				<p>
+					These rights apply under GDPR (for EU/EEA residents), CCPA (for California residents), and
+					similar data protection laws worldwide. To exercise any of these rights, contact us at
+					<a href="mailto:privacy@lucoze.com">privacy@lucoze.com</a>.
+				</p>
 
-    <h2>5. Data Sharing</h2>
-    <p><strong>We do not sell your data.</strong> We will never sell, rent, or trade your personal information or your patients' health data to third parties for marketing or any other purpose.</p>
-    <p>We may share information only in the following limited circumstances:</p>
-    <ul>
-      <li><strong>Service providers:</strong> We work with carefully vetted third-party providers for hosting, payment processing, email delivery, and customer support. These providers are contractually bound to protect your data and may only use it to perform services on our behalf.</li>
-      <li><strong>Legal requirements:</strong> We may disclose information if required by law, regulation, legal process, or governmental request.</li>
-      <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of the transaction. We will notify you before your data becomes subject to a different privacy policy.</li>
-    </ul>
+				<h2>7. Health Data</h2>
+				<p>
+					Lucoze processes health and medical data exclusively on behalf of our customers. In this
+					relationship:
+				</p>
+				<ul>
+					<li>
+						The <strong>healthcare facility</strong> (our customer) is the
+						<strong>data controller</strong> — they determine the purposes and means of processing
+						patient data.
+					</li>
+					<li>
+						<strong>Lucoze</strong> acts as the <strong>data processor</strong> — we process patient
+						data only as instructed by the data controller and in accordance with our data
+						processing agreement.
+					</li>
+					<li>
+						We do <strong>not</strong> independently access, analyse, or use patient health data for
+						any purpose beyond providing the Service as contracted.
+					</li>
+					<li>
+						All health data processing complies with applicable healthcare data protection
+						regulations, including but not limited to India's Digital Personal Data Protection Act
+						and GDPR.
+					</li>
+				</ul>
 
-    <h2>6. Your Rights</h2>
-    <p>Depending on your location, you may have the following rights regarding your personal data:</p>
-    <ul>
-      <li><strong>Access:</strong> You can request a copy of the personal data we hold about you.</li>
-      <li><strong>Correction:</strong> You can ask us to correct any inaccurate or incomplete personal data.</li>
-      <li><strong>Deletion:</strong> You can request that we delete your personal data, subject to legal retention requirements.</li>
-      <li><strong>Export:</strong> You can request a machine-readable export of your data at any time from your account settings.</li>
-      <li><strong>Restriction:</strong> You can ask us to restrict the processing of your personal data in certain circumstances.</li>
-      <li><strong>Objection:</strong> You can object to the processing of your personal data for specific purposes.</li>
-    </ul>
-    <p>These rights apply under GDPR (for EU/EEA residents), CCPA (for California residents), and similar data protection laws worldwide. To exercise any of these rights, contact us at <a href="mailto:privacy@lucoze.com">privacy@lucoze.com</a>.</p>
+				<h2>8. Cookies</h2>
+				<p>
+					Lucoze uses only <strong>essential cookies</strong> that are strictly necessary for the
+					operation of the platform. These include:
+				</p>
+				<ul>
+					<li>
+						<strong>Session cookies:</strong> To keep you logged in and maintain your session state.
+					</li>
+					<li>
+						<strong>Security cookies:</strong> To prevent cross-site request forgery and other
+						security threats.
+					</li>
+					<li>
+						<strong>Preference cookies:</strong> To remember your settings such as language and
+						theme preference.
+					</li>
+				</ul>
+				<p>
+					We do <strong>not</strong> use tracking cookies, advertising cookies, or any third-party
+					analytics cookies. We do not participate in ad networks or cross-site tracking.
+				</p>
 
-    <h2>7. Health Data</h2>
-    <p>Lucoze processes health and medical data exclusively on behalf of our customers. In this relationship:</p>
-    <ul>
-      <li>The <strong>healthcare facility</strong> (our customer) is the <strong>data controller</strong> — they determine the purposes and means of processing patient data.</li>
-      <li><strong>Lucoze</strong> acts as the <strong>data processor</strong> — we process patient data only as instructed by the data controller and in accordance with our data processing agreement.</li>
-      <li>We do <strong>not</strong> independently access, analyse, or use patient health data for any purpose beyond providing the Service as contracted.</li>
-      <li>All health data processing complies with applicable healthcare data protection regulations, including but not limited to India's Digital Personal Data Protection Act and GDPR.</li>
-    </ul>
+				<h2>9. Data Retention</h2>
+				<ul>
+					<li>
+						<strong>Active accounts:</strong> Your data is retained for as long as your account
+						remains active and you continue to use the Service.
+					</li>
+					<li>
+						<strong>Cancelled accounts:</strong> Upon cancellation, your data is retained for 90
+						days to allow for reactivation or data export. After 90 days, all data is permanently
+						and irreversibly deleted from our servers, including backups.
+					</li>
+					<li>
+						<strong>Legal holds:</strong> We may retain certain data for longer periods if required
+						by law or to resolve disputes.
+					</li>
+				</ul>
 
-    <h2>8. Cookies</h2>
-    <p>Lucoze uses only <strong>essential cookies</strong> that are strictly necessary for the operation of the platform. These include:</p>
-    <ul>
-      <li><strong>Session cookies:</strong> To keep you logged in and maintain your session state.</li>
-      <li><strong>Security cookies:</strong> To prevent cross-site request forgery and other security threats.</li>
-      <li><strong>Preference cookies:</strong> To remember your settings such as language and theme preference.</li>
-    </ul>
-    <p>We do <strong>not</strong> use tracking cookies, advertising cookies, or any third-party analytics cookies. We do not participate in ad networks or cross-site tracking.</p>
+				<h2>10. Children's Privacy</h2>
+				<p>
+					Lucoze is a professional healthcare management platform and is not intended for use by
+					individuals under the age of 18. We do not knowingly collect personal information from
+					children. If you believe a child has provided us with personal information, please contact
+					us at <a href="mailto:privacy@lucoze.com">privacy@lucoze.com</a> and we will promptly
+					delete it.
+				</p>
+				<p>
+					Note: Patient records for minors are managed by authorised healthcare professionals
+					through the platform and are governed by the data processing agreement with the healthcare
+					facility.
+				</p>
 
-    <h2>9. Data Retention</h2>
-    <ul>
-      <li><strong>Active accounts:</strong> Your data is retained for as long as your account remains active and you continue to use the Service.</li>
-      <li><strong>Cancelled accounts:</strong> Upon cancellation, your data is retained for 90 days to allow for reactivation or data export. After 90 days, all data is permanently and irreversibly deleted from our servers, including backups.</li>
-      <li><strong>Legal holds:</strong> We may retain certain data for longer periods if required by law or to resolve disputes.</li>
-    </ul>
+				<h2>11. Changes to This Policy</h2>
+				<p>
+					We may update this Privacy Policy from time to time to reflect changes in our practices,
+					technology, legal requirements, or other factors. When we make material changes:
+				</p>
+				<ul>
+					<li>We will notify you by email at the address associated with your account.</li>
+					<li>We will update the "Last updated" date at the top of this page.</li>
+					<li>
+						For significant changes, we will provide a prominent notice within the platform at least
+						30 days before the changes take effect.
+					</li>
+				</ul>
+				<p>
+					Your continued use of the Service after the effective date of any changes constitutes your
+					acceptance of the updated policy.
+				</p>
 
-    <h2>10. Children's Privacy</h2>
-    <p>Lucoze is a professional healthcare management platform and is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us at <a href="mailto:privacy@lucoze.com">privacy@lucoze.com</a> and we will promptly delete it.</p>
-    <p>Note: Patient records for minors are managed by authorised healthcare professionals through the platform and are governed by the data processing agreement with the healthcare facility.</p>
+				<h2>12. Contact</h2>
+				<p>
+					If you have any questions, concerns, or requests regarding this Privacy Policy or our data
+					practices, please contact us:
+				</p>
+				<ul>
+					<li>
+						<strong>Email:</strong> <a href="mailto:privacy@lucoze.com">privacy@lucoze.com</a>
+					</li>
+					<li><strong>Company:</strong> Svasamm Research Pvt. Ltd.</li>
+				</ul>
+				<p>We aim to respond to all privacy-related enquiries within 5 business days.</p>
+			</div>
+		</section>
 
-    <h2>11. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes:</p>
-    <ul>
-      <li>We will notify you by email at the address associated with your account.</li>
-      <li>We will update the "Last updated" date at the top of this page.</li>
-      <li>For significant changes, we will provide a prominent notice within the platform at least 30 days before the changes take effect.</li>
-    </ul>
-    <p>Your continued use of the Service after the effective date of any changes constitutes your acceptance of the updated policy.</p>
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__grid">
+					<div class="footer__brand">
+						<div class="footer__logo">
+							<svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+								<rect width="32" height="32" rx="8" fill="#c15f3c" />
+								<path d="M8 22V10h3v9h6v3H8z" fill="#fff" />
+							</svg>
+							Lucoze
+						</div>
+						<p class="footer__desc">
+							Complete healthcare management platform for clinics, hospitals, diagnostic centres,
+							and pharmacies.
+						</p>
+					</div>
+					<div class="footer__col">
+						<h4>Product</h4>
+						<a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a
+						><a href="signup.html">Free Trial</a>
+					</div>
+					<div class="footer__col">
+						<h4>Company</h4>
+						<a href="about.html">About Us</a><a href="privacy.html">Privacy Policy</a
+						><a href="terms.html">Terms of Service</a
+						><a href="mailto:support@lucoze.com">Contact</a>
+					</div>
+					<div class="footer__col">
+						<h4>Solutions</h4>
+						<a href="signup.html?plan=solo">For Clinics</a
+						><a href="signup.html?plan=hospital">For Hospitals</a
+						><a href="signup.html?plan=pathology">For Diagnostics</a
+						><a href="signup.html?plan=pharmacy">For Pharmacies</a>
+					</div>
+				</div>
+				<div class="footer__bottom">
+					<span>&copy; 2026 Svasamm Research Pvt. Ltd. All rights reserved.</span>
+				</div>
+			</div>
+		</footer>
 
-    <h2>12. Contact</h2>
-    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
-    <ul>
-      <li><strong>Email:</strong> <a href="mailto:privacy@lucoze.com">privacy@lucoze.com</a></li>
-      <li><strong>Company:</strong> Svasamm Research Pvt. Ltd.</li>
-    </ul>
-    <p>We aim to respond to all privacy-related enquiries within 5 business days.</p>
-
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <div class="footer__logo"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#c15f3c"/><path d="M8 22V10h3v9h6v3H8z" fill="#fff"/></svg> Lucoze</div>
-        <p class="footer__desc">Complete healthcare management platform for clinics, hospitals, diagnostic centres, and pharmacies.</p>
-      </div>
-      <div class="footer__col"><h4>Product</h4><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="signup.html">Free Trial</a></div>
-      <div class="footer__col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="mailto:support@lucoze.com">Contact</a></div>
-      <div class="footer__col"><h4>Solutions</h4><a href="signup.html?plan=solo">For Clinics</a><a href="signup.html?plan=hospital">For Hospitals</a><a href="signup.html?plan=pathology">For Diagnostics</a><a href="signup.html?plan=pharmacy">For Pharmacies</a></div>
-    </div>
-    <div class="footer__bottom"><span>&copy; 2026 Svasamm Research Pvt. Ltd. All rights reserved.</span></div>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
-</body>
+		<script src="js/main.js"></script>
+	</body>
 </html>
