@@ -8,7 +8,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy static files
 COPY css /usr/share/nginx/html/css
-COPY icons /usr/share/nginx/html/icons
 COPY images /usr/share/nginx/html/images
 COPY js /usr/share/nginx/html/js
 COPY *.html /usr/share/nginx/html/
