@@ -1,0 +1,16 @@
+services:
+  website:
+    image: svasamm/lucoze-website:latest
+    pull_policy: always
+    ports:
+      - mode: ingress
+        host_ip: 10.0.0.3
+        target: 80
+        published: "8084"
+        protocol: tcp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
