@@ -1,1 +1,18 @@
+#!/usr/bin/env sh
+
 npx jest
+
+# Verify the Docker image builds successfully before pushing.
+# Catches issues (e.g. missing files in COPY) that only surface at build time.
+if command -v docker >/dev/null 2>&1; then
+	echo "Running Docker build check..."
+	if ! docker build -t lucoze-website:pre-push-check . --quiet; then
+		echo "✗  Docker build failed. Fix the Dockerfile before pushing."
+		docker rmi lucoze-website:pre-push-check >/dev/null 2>&1 || true
+		exit 1
+	fi
+	docker rmi lucoze-website:pre-push-check >/dev/null 2>&1 || true
+	echo "✓  Docker build passed."
+else
+	echo "⚠  Docker not found — skipping build check."
+fi
