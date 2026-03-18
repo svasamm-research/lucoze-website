@@ -1,12 +1,12 @@
 services:
   website:
-    image: svasamm/lucoze-website:latest
-    pull_policy: always
+    image: ${CUSTOM_IMAGE:-svasamm/lucoze-website}:${CUSTOM_TAG:-latest}
+    pull_policy: ${PULL_POLICY:-always}
     ports:
       - mode: ingress
-        host_ip: 10.0.0.3
+        host_ip: ${AGENT_PRIVATE_IP}
         target: 80
-        published: "8084"
+        published: "${BENCH_PORT}"
         protocol: tcp
     restart: unless-stopped
     healthcheck:
