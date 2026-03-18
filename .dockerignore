@@ -1,0 +1,12 @@
+node_modules
+tests
+.github
+.husky
+*.md
+package.json
+package-lock.json
+commitlint.config.js
+jest.config.js
+.prettierignore
+.prettierrc*
+coverage

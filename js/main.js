@@ -357,7 +357,9 @@
 
 			var API_BASE = window.location.hostname.includes("localhost")
 				? "http://lucoze.admin.localhost:8000"
-				: "https://admin.lucoze.com";
+				: window.location.hostname.includes("uat-website.lucoze.com")
+					? "https://admin-uat.lucoze.com"
+					: "https://admin.lucoze.com";
 
 			fetch(API_BASE + "/api/method/lucoze_admin.api.provisioning.create_tenant", {
 				method: "POST",
@@ -497,7 +499,9 @@
 
 			var API_BASE = window.location.hostname.includes("localhost")
 				? "http://lucoze.admin.localhost:8000"
-				: "https://admin.lucoze.com";
+				: window.location.hostname.includes("uat-website.lucoze.com")
+					? "https://admin-uat.lucoze.com"
+					: "https://admin.lucoze.com";
 
 			fetch(API_BASE + "/api/method/lucoze_admin.api.contact.submit_contact", {
 				method: "POST",
