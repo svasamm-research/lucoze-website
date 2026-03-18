@@ -444,6 +444,7 @@
 			if (subjectSelect) {
 				// Map plan names to contact subjects
 				var subjectMap = {
+					Solo: "Pricing & Plans",
 					Pathology: "Diagnostics & Lab Plans",
 					"Pathology Plus": "Diagnostics & Lab Plans",
 					"Pathology+Plus": "Diagnostics & Lab Plans",

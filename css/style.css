@@ -1314,12 +1314,12 @@ body {
 	line-height: 1.7;
 }
 
-.content-page a {
+.content-page a:not(.btn) {
 	color: var(--color-primary);
 	text-decoration: underline;
 }
 
-.content-page a:hover {
+.content-page a:not(.btn):hover {
 	color: var(--color-primary-hover);
 }
 
