@@ -1,108 +1,113 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 interface Props {
-  title: string;
-  description: string;
-  canonical?: string;
-  activeLink?: string;
-  ctaPlan?: string;
+	title: string;
+	description: string;
+	canonical?: string;
+	activeLink?: string;
+	ctaPlan?: string;
 }
 
 const {
-  title,
-  description,
-  canonical = Astro.url.href,
-  activeLink = '',
-  ctaPlan = '',
+	title,
+	description,
+	canonical = Astro.url.href,
+	activeLink = "",
+	ctaPlan = "",
 } = Astro.props;
 
-const siteUrl = 'https://lucoze.com';
+const siteUrl = "https://lucoze.com";
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta
-      name="keywords"
-      content="healthcare software, clinic management, hospital management, patient records, appointment scheduling, medical billing, EHR, EMR, healthcare ERP, NABIDH, NPHIES, HL7 FHIR, ICD-10, clinic software UAE, hospital software Saudi Arabia, healthcare SaaS"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta
+			name="keywords"
+			content="healthcare software, clinic management, hospital management, patient records, appointment scheduling, medical billing, EHR, EMR, healthcare ERP, NABIDH, NPHIES, HL7 FHIR, ICD-10, clinic software UAE, hospital software Saudi Arabia, healthcare SaaS"
+		/>
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content="Lucoze" />
-    <meta property="og:image" content={`${siteUrl}/images/og-image.png`} />
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content="Lucoze" />
+		<meta property="og:image" content={`${siteUrl}/images/og-image.png`} />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
 
-    <!-- Canonical -->
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={siteUrl} />
-    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+		<!-- Canonical -->
+		<link rel="canonical" href={canonical} />
+		<link rel="alternate" hreflang="en" href={siteUrl} />
+		<link rel="alternate" hreflang="x-default" href={siteUrl} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+		<link rel="icon" type="image/png" href="/images/favicon.png" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
 
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Lucoze",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Web",
-      "description": "Complete healthcare management platform for clinics, hospitals, diagnostic centres, and pharmacies. HL7 FHIR compatible, ICD-10 coding, multi-currency billing.",
-      "url": siteUrl,
-      "offers": {
-        "@type": "AggregateOffer",
-        "lowPrice": "49",
-        "highPrice": "999",
-        "priceCurrency": "USD",
-        "offerCount": "4"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Svasamm Research Pvt. Ltd.",
-        "url": "https://svasamm.com"
-      },
-      "featureList": "Patient Management, Appointments, Clinical Procedures, Lab & Diagnostics, Billing, Inpatient Management, HR & Payroll, HL7 FHIR, ICD-10",
-      "availableCountry": ["AE", "SA", "SG", "IN", "KE", "NG", "AU", "US", "GB"]
-    })} />
+		<!-- Structured Data -->
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				name: "Lucoze",
+				applicationCategory: "HealthApplication",
+				operatingSystem: "Web",
+				description:
+					"Complete healthcare management platform for clinics, hospitals, diagnostic centres, and pharmacies. HL7 FHIR compatible, ICD-10 coding, multi-currency billing.",
+				url: siteUrl,
+				offers: {
+					"@type": "AggregateOffer",
+					lowPrice: "49",
+					highPrice: "999",
+					priceCurrency: "USD",
+					offerCount: "4",
+				},
+				publisher: {
+					"@type": "Organization",
+					name: "Svasamm Research Pvt. Ltd.",
+					url: "https://svasamm.com",
+				},
+				featureList:
+					"Patient Management, Appointments, Clinical Procedures, Lab & Diagnostics, Billing, Inpatient Management, HR & Payroll, HL7 FHIR, ICD-10",
+				availableCountry: ["AE", "SA", "SG", "IN", "KE", "NG", "AU", "US", "GB"],
+			})}
+		/>
 
-    <slot name="head" />
-  </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
+		<slot name="head" />
+	</head>
+	<body>
+		<a href="#main" class="skip-link">Skip to main content</a>
 
-    <Nav activeLink={activeLink} ctaPlan={ctaPlan} />
+		<Nav activeLink={activeLink} ctaPlan={ctaPlan} />
 
-    <main id="main">
-      <slot />
-    </main>
+		<main id="main">
+			<slot />
+		</main>
 
-    <Footer />
+		<Footer />
 
-    <script src="../scripts/region.js" is:inline></script>
-    <script src="../scripts/main.js" is:inline></script>
-  </body>
+		<script src="../scripts/region.js" is:inline></script>
+		<script src="../scripts/main.js" is:inline></script>
+	</body>
 </html>
