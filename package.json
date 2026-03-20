@@ -1,21 +1,28 @@
 {
-	"name": "lucoze-website",
-	"version": "1.0.0",
-	"private": true,
-	"description": "Lucoze healthcare management platform marketing website",
-	"scripts": {
-		"test": "jest",
-		"test:coverage": "jest --coverage",
-		"lint": "prettier --check '**/*.{js,css,html}'",
-		"format": "prettier --write '**/*.{js,css,html}'",
-		"prepare": "husky"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^19.0.0",
-		"@commitlint/config-conventional": "^19.0.0",
-		"husky": "^9.0.0",
-		"jest": "^29.7.0",
-		"jest-environment-jsdom": "^29.7.0",
-		"prettier": "^3.0.0"
-	}
+  "name": "lucoze-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lucoze healthcare management platform marketing website",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "prettier --check '**/*.{js,css,html}'",
+    "format": "prettier --write '**/*.{js,css,html}'",
+    "prepare": "husky",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "husky": "^9.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "astro": "^6.0.7"
+  }
 }

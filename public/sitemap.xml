@@ -2,61 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://lucoze.com/</loc>
-		<lastmod>2026-03-20</lastmod>
+		<lastmod>2026-03-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://lucoze.com/signup.html</loc>
-		<lastmod>2026-03-20</lastmod>
+		<loc>https://lucoze.com/signup</loc>
+		<lastmod>2026-03-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>https://lucoze.com/solutions-clinics.html</loc>
-		<lastmod>2026-03-20</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://lucoze.com/solutions-hospitals.html</loc>
-		<lastmod>2026-03-20</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://lucoze.com/solutions-diagnostics.html</loc>
-		<lastmod>2026-03-20</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://lucoze.com/solutions-pharmacies.html</loc>
-		<lastmod>2026-03-20</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
-		<loc>https://lucoze.com/about.html</loc>
-		<lastmod>2026-03-20</lastmod>
+		<loc>https://lucoze.com/about</loc>
+		<lastmod>2026-03-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://lucoze.com/contact.html</loc>
-		<lastmod>2026-03-20</lastmod>
+		<loc>https://lucoze.com/solutions-clinics</loc>
+		<lastmod>2026-03-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://lucoze.com/solutions-hospitals</loc>
+		<lastmod>2026-03-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://lucoze.com/solutions-diagnostics</loc>
+		<lastmod>2026-03-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://lucoze.com/solutions-pharmacies</loc>
+		<lastmod>2026-03-16</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://lucoze.com/contact</loc>
+		<lastmod>2026-03-16</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
 	<url>
-		<loc>https://lucoze.com/privacy.html</loc>
-		<lastmod>2026-03-20</lastmod>
+		<loc>https://lucoze.com/privacy</loc>
+		<lastmod>2026-03-16</lastmod>
 		<changefreq>yearly</changefreq>
 		<priority>0.3</priority>
 	</url>
 	<url>
-		<loc>https://lucoze.com/terms.html</loc>
-		<lastmod>2026-03-20</lastmod>
+		<loc>https://lucoze.com/terms</loc>
+		<lastmod>2026-03-16</lastmod>
 		<changefreq>yearly</changefreq>
 		<priority>0.3</priority>
 	</url>

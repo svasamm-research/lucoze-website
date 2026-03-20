@@ -1,0 +1,76 @@
+---
+interface Props {
+  activeLink?: string;
+  ctaPlan?: string;
+}
+
+const { activeLink = '', ctaPlan = '' } = Astro.props;
+const ctaHref = ctaPlan ? `signup.html?plan=${ctaPlan}` : 'signup.html';
+---
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav__inner">
+    <a href="/" class="nav__logo" aria-label="Lucoze Home">
+      <img src="/images/logo.svg" alt="Lucoze" height="32" />
+    </a>
+
+    <div class="nav__links">
+      <a href="/#features" class:list={["nav__link", { "nav__link--active": activeLink === "features" }]}>Features</a>
+      <a href="/#who-its-for" class:list={["nav__link", { "nav__link--active": activeLink === "solutions" }]}>Solutions</a>
+      <a href="/#pricing" class:list={["nav__link", { "nav__link--active": activeLink === "pricing" }]}>Pricing</a>
+      <a href="/about" class:list={["nav__link", { "nav__link--active": activeLink === "about" }]}>About</a>
+      <a href="/contact" class:list={["nav__link", { "nav__link--active": activeLink === "contact" }]}>Contact</a>
+    </div>
+
+    <div class="nav__actions">
+      <select class="nav__country-select" id="countrySelector" aria-label="Select your country">
+        <option value="United Arab Emirates">UAE</option>
+        <option value="Saudi Arabia">Saudi Arabia</option>
+        <option value="Qatar">Qatar</option>
+        <option value="Bahrain">Bahrain</option>
+        <option value="Kuwait">Kuwait</option>
+        <option value="Oman">Oman</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Malaysia">Malaysia</option>
+        <option value="Indonesia">Indonesia</option>
+        <option value="Thailand">Thailand</option>
+        <option value="Philippines">Philippines</option>
+        <option value="India">India</option>
+        <option value="South Africa">South Africa</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Australia">Australia</option>
+        <option value="New Zealand">New Zealand</option>
+        <option value="United States">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="United Kingdom">United Kingdom</option>
+        <option value="Germany">Germany</option>
+        <option value="France">France</option>
+      </select>
+      <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5" />
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+      <a href={ctaHref} class="btn btn--primary btn--sm">Start Free Trial</a>
+      <button class="nav__mobile-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#features">Features</a>
+  <a href="/#who-its-for">Solutions</a>
+  <a href="/#pricing">Pricing</a>
+  <a href="/about">About</a>
+  <a href="/contact">Contact</a>
+  <a href={ctaHref} class="btn btn--primary btn--full" style="margin-top: 1rem">Start Free Trial</a>
+</div>

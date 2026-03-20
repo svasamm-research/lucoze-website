@@ -1,82 +1,14 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Sign Up — Lucoze Healthcare Management</title>
-		<meta
-			name="description"
-			content="Start your free 14-day trial of Lucoze healthcare management. No credit card required."
-		/>
-		<link rel="canonical" href="https://lucoze.com/signup" />
-		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-		<link rel="icon" type="image/png" href="images/favicon.png" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="css/style.css" />
-		<script src="js/region.js"></script>
-	</head>
-	<body>
-		<!-- Navigation -->
-		<nav class="nav">
-			<div class="container nav__inner">
-				<a href="/" class="nav__logo" aria-label="Lucoze Home">
-					<img src="images/logo.svg" alt="Lucoze" height="32" />
-				</a>
-				<div class="nav__links">
-					<a href="index.html#features" class="nav__link">Features</a>
-					<a href="index.html#who-its-for" class="nav__link">Solutions</a>
-					<a href="index.html#pricing" class="nav__link">Pricing</a>
-					<a href="about.html" class="nav__link">About</a>
-					<a href="contact.html" class="nav__link">Contact</a>
-				</div>
-				<div class="nav__actions">
-					<button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-						<svg
-							class="icon-sun"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<circle cx="12" cy="12" r="5" />
-							<path
-								d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-							/>
-						</svg>
-						<svg
-							class="icon-moon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							style="display: none"
-						>
-							<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-						</svg>
-					</button>
-					<button class="nav__mobile-toggle" id="mobileMenuToggle" aria-label="Open menu">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M3 12h18M3 6h18M3 18h18" />
-						</svg>
-					</button>
-				</div>
-			</div>
-		</nav>
-		<div class="mobile-menu" id="mobileMenu">
-			<a href="index.html#features">Features</a>
-			<a href="index.html#who-its-for">Solutions</a>
-			<a href="index.html#pricing">Pricing</a>
-			<a href="about.html">About</a>
-			<a href="contact.html">Contact</a>
-		</div>
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
 
-		<!-- Signup Section -->
-		<section class="signup">
+<BaseLayout
+  title="Sign Up — Lucoze Healthcare Management"
+  description="Start your free 14-day trial of Lucoze healthcare management. No credit card required."
+  activeLink=""
+>
+
+<section class="signup">
 			<div class="container signup__inner">
 				<!-- Left Column -->
 				<div class="signup__info">
@@ -334,26 +266,5 @@
 		</section>
 
 		<!-- Footer -->
-		<footer class="footer" style="padding: var(--space-2xl) 0">
-			<div class="container">
-				<div class="footer__bottom" style="border-top: none; padding-top: 0">
-					<span>&copy; 2026 Svasamm Research Pvt. Ltd. All rights reserved.</span>
-					<div style="display: flex; gap: var(--space-lg)">
-						<a
-							href="privacy.html"
-							style="color: var(--color-text-muted); font-size: var(--font-size-xs)"
-							>Privacy</a
-						>
-						<a
-							href="terms.html"
-							style="color: var(--color-text-muted); font-size: var(--font-size-xs)"
-							>Terms</a
-						>
-					</div>
-				</div>
-			</div>
-		</footer>
 
-		<script src="js/main.js"></script>
-	</body>
-</html>
+</BaseLayout>

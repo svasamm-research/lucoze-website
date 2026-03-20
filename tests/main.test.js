@@ -13,6 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 
+const REGION_JS = fs.readFileSync(path.resolve(__dirname, "../js/region.js"), "utf8");
 const MAIN_JS = fs.readFileSync(path.resolve(__dirname, "../js/main.js"), "utf8");
 
 /**
@@ -54,6 +55,12 @@ function createEnv(bodyHTML = "") {
  * Load main.js into the given document and fire DOMContentLoaded.
  */
 function initApp(doc) {
+	// Load region.js first (provides LucozeRegion global)
+	const regionScript = doc.createElement("script");
+	regionScript.textContent = REGION_JS;
+	doc.body.appendChild(regionScript);
+
+	// Then load main.js
 	const script = doc.createElement("script");
 	script.textContent = MAIN_JS;
 	doc.body.appendChild(script);
@@ -64,19 +71,19 @@ function initApp(doc) {
 
 // ── detectRegion ──
 
-describe("detectRegion (via pricing behavior)", () => {
+describe("region-based pricing", () => {
 	test("Indian timezone sets INR prices", () => {
 		const { window, document: doc } = createEnv(`
 			<div id="billingToggle"></div>
 			<div class="pricing-card__amount"
-				data-monthly-inr="999"
-				data-monthly-usd="29"
-				data-yearly-inr="799"
-				data-yearly-usd="24">
+				data-monthly-in="999"
+				data-monthly-me="49"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
 			</div>
 		`);
 
-		// Mock timezone to Asia/Kolkata
 		const Original = window.Intl.DateTimeFormat;
 		window.Intl.DateTimeFormat = function () {
 			return { resolvedOptions: () => ({ timeZone: "Asia/Kolkata" }) };
@@ -88,14 +95,36 @@ describe("detectRegion (via pricing behavior)", () => {
 		window.Intl.DateTimeFormat = Original;
 	});
 
-	test("non-Indian timezone sets USD prices", () => {
+	test("UAE timezone sets Middle East prices", () => {
 		const { window, document: doc } = createEnv(`
 			<div id="billingToggle"></div>
 			<div class="pricing-card__amount"
-				data-monthly-inr="999"
-				data-monthly-usd="29"
-				data-yearly-inr="799"
-				data-yearly-usd="24">
+				data-monthly-in="999"
+				data-monthly-me="49"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
+			</div>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Dubai" }) };
+		};
+
+		initApp(doc);
+
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("49");
+	});
+
+	test("US timezone sets international prices", () => {
+		const { window, document: doc } = createEnv(`
+			<div id="billingToggle"></div>
+			<div class="pricing-card__amount"
+				data-monthly-in="999"
+				data-monthly-me="49"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
 			</div>
 		`);
 
@@ -105,17 +134,17 @@ describe("detectRegion (via pricing behavior)", () => {
 
 		initApp(doc);
 
-		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("29");
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("79");
 	});
 
-	test("fallback to USD when Intl throws", () => {
+	test("fallback to international when Intl throws", () => {
 		const { window, document: doc } = createEnv(`
 			<div id="billingToggle"></div>
 			<div class="pricing-card__amount"
-				data-monthly-inr="999"
-				data-monthly-usd="29"
-				data-yearly-inr="799"
-				data-yearly-usd="24">
+				data-monthly-in="999"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
 			</div>
 		`);
 
@@ -125,7 +154,7 @@ describe("detectRegion (via pricing behavior)", () => {
 
 		initApp(doc);
 
-		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("29");
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("79");
 	});
 });
 
@@ -330,15 +359,12 @@ describe("initPricing", () => {
 			<span class="pricing__toggle-label">Monthly</span>
 			<span class="pricing__toggle-label">Yearly</span>
 			<div class="pricing-card__amount"
-				data-monthly-usd="29"
-				data-yearly-usd="24">
+				data-monthly-intl="149"
+				data-yearly-intl="127">
 			</div>
-			<div class="pricing-card__annual"
-				data-annual-usd="$288">
-			</div>
+			<div class="pricing-card__annual">Billed monthly</div>
 		`);
 
-		// Force USD
 		window.Intl.DateTimeFormat = function () {
 			return { resolvedOptions: () => ({ timeZone: "America/New_York" }) };
 		};
@@ -350,21 +376,21 @@ describe("initPricing", () => {
 		const labels = doc.querySelectorAll(".pricing__toggle-label");
 
 		// Default: monthly
-		expect(amount.textContent).toBe("29");
+		expect(amount.textContent).toBe("149");
 		expect(annual.textContent).toBe("Billed monthly");
 		expect(labels[0].classList.contains("active")).toBe(true);
 		expect(labels[1].classList.contains("active")).toBe(false);
 
 		// Toggle to yearly
 		doc.getElementById("billingToggle").click();
-		expect(amount.textContent).toBe("24");
-		expect(annual.textContent).toBe("Billed $288 per year");
+		expect(amount.textContent).toBe("127");
+		expect(annual.textContent).toBe("Billed annually");
 		expect(labels[0].classList.contains("active")).toBe(false);
 		expect(labels[1].classList.contains("active")).toBe(true);
 
 		// Toggle back to monthly
 		doc.getElementById("billingToggle").click();
-		expect(amount.textContent).toBe("29");
+		expect(amount.textContent).toBe("149");
 		expect(annual.textContent).toBe("Billed monthly");
 	});
 
@@ -759,7 +785,8 @@ describe("signup country select", () => {
 			<form id="signupForm">
 				<select name="country">
 					<option value="India">India</option>
-					<option value="USA">USA</option>
+					<option value="United Arab Emirates">UAE</option>
+					<option value="United States">US</option>
 				</select>
 				<span class="currency-label">USD</span>
 			</form>
@@ -775,7 +802,7 @@ describe("signup country select", () => {
 		countrySelect.dispatchEvent(changeEvent);
 		expect(currencyLabel.textContent).toBe("INR");
 
-		countrySelect.value = "USA";
+		countrySelect.value = "United States";
 		countrySelect.dispatchEvent(new doc.defaultView.Event("change", { bubbles: true }));
 		expect(currencyLabel.textContent).toBe("USD");
 	});
