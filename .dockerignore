@@ -1,12 +1,14 @@
 node_modules
+dist
 tests
 .github
 .husky
 *.md
-package.json
-package-lock.json
 commitlint.config.js
 jest.config.js
 .prettierignore
 .prettierrc*
 coverage
+env/
+yaml/
+deploy/

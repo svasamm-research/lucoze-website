@@ -1,0 +1,74 @@
+---
+interface Props {
+	name: string;
+	desc: string;
+	badge?: string;
+	featured?: boolean;
+	prices: {
+		in: { monthly: string; yearly: string };
+		me: { monthly: string; yearly: string };
+		sea: { monthly: string; yearly: string };
+		af: { monthly: string; yearly: string };
+		intl: { monthly: string; yearly: string };
+	};
+	features: string[];
+	ctaText?: string;
+	ctaLink?: string;
+	delay?: number;
+}
+
+const {
+	name,
+	desc,
+	badge = "",
+	featured = false,
+	prices,
+	features,
+	ctaText = "Start Free Trial",
+	ctaLink,
+	delay = 0,
+} = Astro.props;
+
+const planParam = encodeURIComponent(name);
+const href = ctaLink || `signup?plan=${planParam}`;
+const delayClass = delay > 0 ? `fade-in-delay-${delay}` : "";
+---
+
+<div class:list={["pricing-card", { "pricing-card--featured": featured }, "fade-in", delayClass]}>
+	<div class="pricing-card__badge">{badge}</div>
+	<div class="pricing-card__name">{name}</div>
+	<div class="pricing-card__desc">{desc}</div>
+	<div class="pricing-card__price">
+		<span class="pricing-card__currency">$</span>
+		<span
+			class="pricing-card__amount"
+			data-monthly-in={prices.in.monthly}
+			data-yearly-in={prices.in.yearly}
+			data-monthly-me={prices.me.monthly}
+			data-yearly-me={prices.me.yearly}
+			data-monthly-sea={prices.sea.monthly}
+			data-yearly-sea={prices.sea.yearly}
+			data-monthly-af={prices.af.monthly}
+			data-yearly-af={prices.af.yearly}
+			data-monthly-intl={prices.intl.monthly}
+			data-yearly-intl={prices.intl.yearly}>{prices.me.monthly}</span
+		>
+	</div>
+	<div class="pricing-card__period">/month</div>
+	<div class="pricing-card__annual">Billed monthly</div>
+	<a href={href} class="btn btn--primary btn--full">{ctaText}</a>
+	<div class="pricing-card__divider"></div>
+	<div class="pricing-card__features">
+		{
+			features.map((feature) => (
+				<div class="pricing-card__feature">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+						<path d="M22 4L12 14.01l-3-3" />
+					</svg>
+					{feature}
+				</div>
+			))
+		}
+	</div>
+</div>

@@ -1,19 +1,13 @@
-FROM nginx:alpine
+FROM node:lts AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
-# Remove default nginx config
+FROM nginx:alpine AS runtime
 RUN rm /etc/nginx/conf.d/default.conf
-
-# Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy static files
-COPY css /usr/share/nginx/html/css
-COPY images /usr/share/nginx/html/images
-COPY js /usr/share/nginx/html/js
-COPY *.html /usr/share/nginx/html/
-COPY robots.txt /usr/share/nginx/html/
-COPY sitemap.xml /usr/share/nginx/html/
-
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]

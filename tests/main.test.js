@@ -13,6 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 
+const REGION_JS = fs.readFileSync(path.resolve(__dirname, "../js/region.js"), "utf8");
 const MAIN_JS = fs.readFileSync(path.resolve(__dirname, "../js/main.js"), "utf8");
 
 /**
@@ -54,6 +55,12 @@ function createEnv(bodyHTML = "") {
  * Load main.js into the given document and fire DOMContentLoaded.
  */
 function initApp(doc) {
+	// Load region.js first (provides LucozeRegion global)
+	const regionScript = doc.createElement("script");
+	regionScript.textContent = REGION_JS;
+	doc.body.appendChild(regionScript);
+
+	// Then load main.js
 	const script = doc.createElement("script");
 	script.textContent = MAIN_JS;
 	doc.body.appendChild(script);
@@ -64,19 +71,19 @@ function initApp(doc) {
 
 // ── detectRegion ──
 
-describe("detectRegion (via pricing behavior)", () => {
+describe("region-based pricing", () => {
 	test("Indian timezone sets INR prices", () => {
 		const { window, document: doc } = createEnv(`
 			<div id="billingToggle"></div>
 			<div class="pricing-card__amount"
-				data-monthly-inr="999"
-				data-monthly-usd="29"
-				data-yearly-inr="799"
-				data-yearly-usd="24">
+				data-monthly-in="999"
+				data-monthly-me="49"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
 			</div>
 		`);
 
-		// Mock timezone to Asia/Kolkata
 		const Original = window.Intl.DateTimeFormat;
 		window.Intl.DateTimeFormat = function () {
 			return { resolvedOptions: () => ({ timeZone: "Asia/Kolkata" }) };
@@ -88,14 +95,36 @@ describe("detectRegion (via pricing behavior)", () => {
 		window.Intl.DateTimeFormat = Original;
 	});
 
-	test("non-Indian timezone sets USD prices", () => {
+	test("UAE timezone sets Middle East prices", () => {
 		const { window, document: doc } = createEnv(`
 			<div id="billingToggle"></div>
 			<div class="pricing-card__amount"
-				data-monthly-inr="999"
-				data-monthly-usd="29"
-				data-yearly-inr="799"
-				data-yearly-usd="24">
+				data-monthly-in="999"
+				data-monthly-me="49"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
+			</div>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Dubai" }) };
+		};
+
+		initApp(doc);
+
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("49");
+	});
+
+	test("US timezone sets international prices", () => {
+		const { window, document: doc } = createEnv(`
+			<div id="billingToggle"></div>
+			<div class="pricing-card__amount"
+				data-monthly-in="999"
+				data-monthly-me="49"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
 			</div>
 		`);
 
@@ -105,17 +134,17 @@ describe("detectRegion (via pricing behavior)", () => {
 
 		initApp(doc);
 
-		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("29");
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("79");
 	});
 
-	test("fallback to USD when Intl throws", () => {
+	test("fallback to international when Intl throws", () => {
 		const { window, document: doc } = createEnv(`
 			<div id="billingToggle"></div>
 			<div class="pricing-card__amount"
-				data-monthly-inr="999"
-				data-monthly-usd="29"
-				data-yearly-inr="799"
-				data-yearly-usd="24">
+				data-monthly-in="999"
+				data-monthly-intl="79"
+				data-yearly-in="799"
+				data-yearly-intl="67">
 			</div>
 		`);
 
@@ -125,7 +154,7 @@ describe("detectRegion (via pricing behavior)", () => {
 
 		initApp(doc);
 
-		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("29");
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("79");
 	});
 });
 
@@ -330,15 +359,12 @@ describe("initPricing", () => {
 			<span class="pricing__toggle-label">Monthly</span>
 			<span class="pricing__toggle-label">Yearly</span>
 			<div class="pricing-card__amount"
-				data-monthly-usd="29"
-				data-yearly-usd="24">
+				data-monthly-intl="149"
+				data-yearly-intl="127">
 			</div>
-			<div class="pricing-card__annual"
-				data-annual-usd="$288">
-			</div>
+			<div class="pricing-card__annual">Billed monthly</div>
 		`);
 
-		// Force USD
 		window.Intl.DateTimeFormat = function () {
 			return { resolvedOptions: () => ({ timeZone: "America/New_York" }) };
 		};
@@ -350,21 +376,21 @@ describe("initPricing", () => {
 		const labels = doc.querySelectorAll(".pricing__toggle-label");
 
 		// Default: monthly
-		expect(amount.textContent).toBe("29");
+		expect(amount.textContent).toBe("149");
 		expect(annual.textContent).toBe("Billed monthly");
 		expect(labels[0].classList.contains("active")).toBe(true);
 		expect(labels[1].classList.contains("active")).toBe(false);
 
 		// Toggle to yearly
 		doc.getElementById("billingToggle").click();
-		expect(amount.textContent).toBe("24");
-		expect(annual.textContent).toBe("Billed $288 per year");
+		expect(amount.textContent).toBe("127");
+		expect(annual.textContent).toBe("Billed annually");
 		expect(labels[0].classList.contains("active")).toBe(false);
 		expect(labels[1].classList.contains("active")).toBe(true);
 
 		// Toggle back to monthly
 		doc.getElementById("billingToggle").click();
-		expect(amount.textContent).toBe("29");
+		expect(amount.textContent).toBe("149");
 		expect(annual.textContent).toBe("Billed monthly");
 	});
 
@@ -759,7 +785,8 @@ describe("signup country select", () => {
 			<form id="signupForm">
 				<select name="country">
 					<option value="India">India</option>
-					<option value="USA">USA</option>
+					<option value="United Arab Emirates">UAE</option>
+					<option value="United States">US</option>
 				</select>
 				<span class="currency-label">USD</span>
 			</form>
@@ -775,8 +802,326 @@ describe("signup country select", () => {
 		countrySelect.dispatchEvent(changeEvent);
 		expect(currencyLabel.textContent).toBe("INR");
 
-		countrySelect.value = "USA";
+		countrySelect.value = "United States";
 		countrySelect.dispatchEvent(new doc.defaultView.Event("change", { bubbles: true }));
 		expect(currencyLabel.textContent).toBe("USD");
+	});
+});
+
+// ── LucozeRegion module ──
+
+describe("LucozeRegion", () => {
+	function loadRegion(window) {
+		const script = window.document.createElement("script");
+		script.textContent = REGION_JS;
+		window.document.body.appendChild(script);
+		return window.LucozeRegion;
+	}
+
+	test("detectCountry falls back to United States when no timezone match", () => {
+		const { window } = createEnv();
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Unknown/Zone" }) };
+		};
+		const region = loadRegion(window);
+		expect(region.detectCountry()).toBe("United States");
+	});
+
+	test("detectCountry returns India for Asia/Kolkata timezone", () => {
+		const { window } = createEnv();
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Kolkata" }) };
+		};
+		const region = loadRegion(window);
+		expect(region.detectCountry()).toBe("India");
+	});
+
+	test("detectCountry returns UAE for Asia/Dubai timezone", () => {
+		const { window } = createEnv();
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Dubai" }) };
+		};
+		const region = loadRegion(window);
+		expect(region.detectCountry()).toBe("United Arab Emirates");
+	});
+
+	test("detectCountry returns Singapore for Asia/Singapore timezone", () => {
+		const { window } = createEnv();
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Singapore" }) };
+		};
+		const region = loadRegion(window);
+		expect(region.detectCountry()).toBe("Singapore");
+	});
+
+	test("detectCountry returns Kenya for Africa/Nairobi timezone", () => {
+		const { window } = createEnv();
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Africa/Nairobi" }) };
+		};
+		const region = loadRegion(window);
+		expect(region.detectCountry()).toBe("Kenya");
+	});
+
+	test("getRegionForCountry maps India to 'in'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("India")).toBe("in");
+	});
+
+	test("getRegionForCountry maps UAE to 'me'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("United Arab Emirates")).toBe("me");
+	});
+
+	test("getRegionForCountry maps Saudi Arabia to 'me'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Saudi Arabia")).toBe("me");
+	});
+
+	test("getRegionForCountry maps Singapore to 'sea'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Singapore")).toBe("sea");
+	});
+
+	test("getRegionForCountry maps Nigeria to 'af'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Nigeria")).toBe("af");
+	});
+
+	test("getRegionForCountry returns 'intl' for unknown country", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("United States")).toBe("intl");
+		expect(region.getRegionForCountry("Antarctica")).toBe("intl");
+	});
+
+	test("getRegionInfo returns correct currency for each region", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionInfo("in").currency).toBe("inr");
+		expect(region.getRegionInfo("in").symbol).toBe("₹");
+		expect(region.getRegionInfo("me").currency).toBe("usd");
+		expect(region.getRegionInfo("me").symbol).toBe("$");
+		expect(region.getRegionInfo("intl").currency).toBe("usd");
+	});
+
+	test("setCountry persists to localStorage", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		region.setCountry("Saudi Arabia");
+		expect(window.localStorage.getItem("lucoze-country")).toBe("Saudi Arabia");
+	});
+
+	test("detectCountry reads from localStorage first", () => {
+		const { window } = createEnv();
+		window.localStorage.setItem("lucoze-country", "Nigeria");
+		const region = loadRegion(window);
+		expect(region.detectCountry()).toBe("Nigeria");
+	});
+
+	test("all GCC countries map to Middle East region", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		const gcc = ["United Arab Emirates", "Saudi Arabia", "Qatar", "Bahrain", "Kuwait", "Oman"];
+		gcc.forEach((country) => {
+			expect(region.getRegionForCountry(country)).toBe("me");
+		});
+	});
+
+	test("all ASEAN countries map to SEA region", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		const asean = ["Singapore", "Malaysia", "Indonesia", "Thailand", "Philippines", "Vietnam"];
+		asean.forEach((country) => {
+			expect(region.getRegionForCountry(country)).toBe("sea");
+		});
+	});
+});
+
+// ── Country Selector ──
+
+describe("country selector", () => {
+	test("country selector updates pricing on change", () => {
+		const { window, document: doc } = createEnv(`
+			<select id="countrySelector">
+				<option value="India">India</option>
+				<option value="United Arab Emirates">UAE</option>
+				<option value="United States">US</option>
+			</select>
+			<div id="billingToggle"></div>
+			<div class="pricing-card__currency">$</div>
+			<div class="pricing-card__amount"
+				data-monthly-in="3,999"
+				data-monthly-me="99"
+				data-monthly-intl="149">
+			</div>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Dubai" }) };
+		};
+
+		initApp(doc);
+
+		// Default: UAE detected → Middle East pricing
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("99");
+
+		// Change to India
+		const selector = doc.getElementById("countrySelector");
+		selector.value = "India";
+		selector.dispatchEvent(new doc.defaultView.Event("change", { bubbles: true }));
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("3,999");
+		expect(doc.querySelector(".pricing-card__currency").textContent).toBe("₹");
+
+		// Change to US
+		selector.value = "United States";
+		selector.dispatchEvent(new doc.defaultView.Event("change", { bubbles: true }));
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("149");
+		expect(doc.querySelector(".pricing-card__currency").textContent).toBe("$");
+	});
+});
+
+// ── Compliance Badges ──
+
+describe("compliance badges", () => {
+	test("Middle East region shows NABIDH badge", () => {
+		const { window, document: doc } = createEnv(`
+			<select id="countrySelector">
+				<option value="United Arab Emirates">UAE</option>
+				<option value="India">India</option>
+			</select>
+			<span class="compliance-badge" data-region-show="me">NABIDH Ready</span>
+			<span class="compliance-badge" data-region-show="in">ABDM Integrated</span>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Dubai" }) };
+		};
+
+		initApp(doc);
+
+		const badges = doc.querySelectorAll(".compliance-badge");
+		expect(badges[0].style.display).toBe(""); // NABIDH visible
+		expect(badges[1].style.display).toBe("none"); // ABDM hidden
+	});
+
+	test("India region shows ABDM badge", () => {
+		const { window, document: doc } = createEnv(`
+			<select id="countrySelector">
+				<option value="United Arab Emirates">UAE</option>
+				<option value="India">India</option>
+			</select>
+			<span class="compliance-badge" data-region-show="me">NABIDH Ready</span>
+			<span class="compliance-badge" data-region-show="in">ABDM Integrated</span>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Kolkata" }) };
+		};
+
+		initApp(doc);
+
+		const badges = doc.querySelectorAll(".compliance-badge");
+		expect(badges[0].style.display).toBe("none"); // NABIDH hidden
+		expect(badges[1].style.display).toBe(""); // ABDM visible
+	});
+
+	test("multi-region badge shows for multiple regions", () => {
+		const { window, document: doc } = createEnv(`
+			<select id="countrySelector">
+				<option value="United States">US</option>
+			</select>
+			<span class="compliance-badge" data-region-show="intl,me,sea,af">HL7 FHIR</span>
+			<span class="compliance-badge" data-region-show="in">ABDM</span>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "America/New_York" }) };
+		};
+
+		initApp(doc);
+
+		const badges = doc.querySelectorAll(".compliance-badge");
+		expect(badges[0].style.display).toBe(""); // HL7 FHIR visible for intl
+		expect(badges[1].style.display).toBe("none"); // ABDM hidden
+	});
+
+	test("country change updates compliance badges", () => {
+		const { window, document: doc } = createEnv(`
+			<select id="countrySelector">
+				<option value="United Arab Emirates">UAE</option>
+				<option value="India">India</option>
+			</select>
+			<span class="compliance-badge" data-region-show="me">NABIDH</span>
+			<span class="compliance-badge" data-region-show="in">ABDM</span>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Dubai" }) };
+		};
+
+		initApp(doc);
+
+		// Default UAE — NABIDH visible
+		const badges = doc.querySelectorAll(".compliance-badge");
+		expect(badges[0].style.display).toBe("");
+		expect(badges[1].style.display).toBe("none");
+
+		// Switch to India
+		const selector = doc.getElementById("countrySelector");
+		selector.value = "India";
+		selector.dispatchEvent(new doc.defaultView.Event("change", { bubbles: true }));
+
+		expect(badges[0].style.display).toBe("none"); // NABIDH now hidden
+		expect(badges[1].style.display).toBe(""); // ABDM now visible
+	});
+});
+
+// ── SEA and Africa pricing ──
+
+describe("SEA and Africa pricing tiers", () => {
+	test("Singapore timezone shows SEA prices", () => {
+		const { window, document: doc } = createEnv(`
+			<div id="billingToggle"></div>
+			<div class="pricing-card__amount"
+				data-monthly-in="3,999"
+				data-monthly-me="99"
+				data-monthly-sea="79"
+				data-monthly-af="49"
+				data-monthly-intl="149">
+			</div>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Asia/Singapore" }) };
+		};
+
+		initApp(doc);
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("79");
+	});
+
+	test("Lagos timezone shows Africa prices", () => {
+		const { window, document: doc } = createEnv(`
+			<div id="billingToggle"></div>
+			<div class="pricing-card__amount"
+				data-monthly-in="3,999"
+				data-monthly-me="99"
+				data-monthly-sea="79"
+				data-monthly-af="49"
+				data-monthly-intl="149">
+			</div>
+		`);
+
+		window.Intl.DateTimeFormat = function () {
+			return { resolvedOptions: () => ({ timeZone: "Africa/Lagos" }) };
+		};
+
+		initApp(doc);
+		expect(doc.querySelector(".pricing-card__amount").textContent).toBe("49");
 	});
 });

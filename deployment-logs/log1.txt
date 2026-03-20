@@ -1,0 +1,79 @@
+
+
+Show Extra Logs
+
+Initializing deployment
+File 'docker-compose.yml' created: ✅
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: uat-lucoze-website-jhehty                                          ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p uat-lucoze-website-jhehty -f docker-compose.yml   ║
+║ up -d --build --remove-orphans                                               ║
+║ Source Type: docker raw ✅                                                   ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image svasamm/lucoze-website:uat-latest Pulling
+3e3ab6392a76 Pulling fs layer
+c24026275c33 Pulling fs layer
+28d13565fe70 Pulling fs layer
+aef130088122 Pulling fs layer
+44c3468a77b0 Pulling fs layer
+d2a46166eee6 Pulling fs layer
+8a9d04aedb74 Pulling fs layer
+6d070f45dc17 Pulling fs layer
+593488f95c35 Pulling fs layer
+e19aff8f2cce Pulling fs layer
+1549d7aec962 Pulling fs layer
+387944adf9c0 Pulling fs layer
+c32126d2b96c Pulling fs layer
+1f25242adbdb Pulling fs layer
+238b56fb79c5 Pulling fs layer
+fa01093561be Download complete
+c32126d2b96c Download complete
+1549d7aec962 Download complete
+1f25242adbdb Download complete
+e19aff8f2cce Download complete
+8a9d04aedb74 Download complete
+593488f95c35 Download complete
+3e3ab6392a76 Download complete
+28d13565fe70 Download complete
+387944adf9c0 Download complete
+44c3468a77b0 Download complete
+c24026275c33 Downloading [==================>                                ]   7.34MB/20.25MB
+d2a46166eee6 Download complete
+d2a46166eee6 Extracting 1 s
+c24026275c33 Download complete
+aef130088122 Download complete
+6d070f45dc17 Download complete
+238b56fb79c5 Download complete
+e19aff8f2cce Extracting 1 s
+593488f95c35 Pull complete
+d2a46166eee6 Pull complete
+c32126d2b96c Pull complete
+1549d7aec962 Pull complete
+1f25242adbdb Pull complete
+e19aff8f2cce Pull complete
+c24026275c33 Extracting 1 s
+c24026275c33 Extracting 1 s
+c24026275c33 Extracting 1 s
+8a9d04aedb74 Pull complete
+28d13565fe70 Pull complete
+387944adf9c0 Pull complete
+44c3468a77b0 Pull complete
+c24026275c33 Pull complete
+aef130088122 Pull complete
+6d070f45dc17 Extracting 1 s
+238b56fb79c5 Pull complete
+3e3ab6392a76 Pull complete
+6d070f45dc17 Pull complete
+Image svasamm/lucoze-website:uat-latest Pulled
+Network deploy_default Creating
+Network deploy_default Created
+Container uat-lucoze-website-jhehty-website-1 Creating
+Container uat-lucoze-website-jhehty-website-1 Created
+Container uat-lucoze-website-jhehty-website-1 Starting
+Container uat-lucoze-website-jhehty-website-1 Started
+Docker Compose Deployed: ✅
