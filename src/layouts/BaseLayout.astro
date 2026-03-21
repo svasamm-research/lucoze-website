@@ -124,8 +124,6 @@ const siteUrl = "https://lucoze.com";
 	<body data-region={regionSlug} data-served={String(served)}>
 		<a href="#main" class="skip-link">Skip to main content</a>
 
-		{!served && <NotServedBanner />}
-
 		<Nav
 			activeLink={activeLink}
 			ctaPlan={ctaPlan}
@@ -133,6 +131,8 @@ const siteUrl = "https://lucoze.com";
 			signupEnabled={signupEnabled}
 			showPharmacy={showPharmacy}
 		/>
+
+		{!served && <NotServedBanner />}
 
 		<main id="main">
 			<slot />

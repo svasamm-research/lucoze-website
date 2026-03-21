@@ -23,10 +23,9 @@ const ctaHref = ctaPlan ? `${prefix}/signup?plan=${ctaPlan}` : `${prefix}/signup
 	<div class="container nav__inner">
 		<a href={`${prefix}/`} class="nav__logo" aria-label="Lucoze Home">
 			<span class="nav__logo-icon">
-				<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#c15f3c" opacity="0.15"/>
-					<path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c15f3c" stroke-width="1.5" fill="none"/>
-					<path d="M12 8v4l3.5 2" stroke="#c15f3c" stroke-width="2" stroke-linecap="round"/>
+				<svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect x="2" y="2" width="24" height="24" rx="6" fill="#c15f3c" opacity="0.12" stroke="#c15f3c" stroke-width="1.5"/>
+					<path d="M14 8v12M8 14h12" stroke="#c15f3c" stroke-width="2.5" stroke-linecap="round"/>
 				</svg>
 			</span>
 			<span class="nav__logo-text">Lucoze</span>
@@ -49,11 +48,7 @@ const ctaHref = ctaPlan ? `${prefix}/signup?plan=${ctaPlan}` : `${prefix}/signup
 				href={`${prefix}/about`}
 				class:list={["nav__link", { "nav__link--active": activeLink === "about" }]}>About</a
 			>
-			<a
-				href={`${prefix}/contact`}
-				class:list={["nav__link", { "nav__link--active": activeLink === "contact" }]}>Contact</a
-			>
-		</div>
+			</div>
 
 		<div class="nav__actions">
 			<button
@@ -118,7 +113,6 @@ const ctaHref = ctaPlan ? `${prefix}/signup?plan=${ctaPlan}` : `${prefix}/signup
 	<a href={`${prefix}/#who-its-for`}>Solutions</a>
 	<a href={`${prefix}/#pricing`}>Pricing</a>
 	<a href={`${prefix}/about`}>About</a>
-	<a href={`${prefix}/contact`}>Contact</a>
 	{
 		signupEnabled ? (
 			<a href={ctaHref} class="btn btn--primary btn--full" style="margin-top: 1rem">
