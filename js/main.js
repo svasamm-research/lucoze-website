@@ -4,13 +4,18 @@
 	// ── Region Detection (uses LucozeRegion from region.js) ──
 
 	function getRegion() {
-		if (typeof LucozeRegion === "undefined") {
-			return { region: "intl", currency: "usd" };
+		// Read region from URL path (set by Astro routing)
+		if (typeof LucozeRegion !== "undefined") {
+			var slug = LucozeRegion.getCurrentRegionSlug();
+			if (slug) {
+				var info = LucozeRegion.getRegionInfo
+					? LucozeRegion.getRegionInfo(slug)
+					: { currency: "usd" };
+				return { region: slug, currency: info ? info.currency : "usd" };
+			}
 		}
-		var country = LucozeRegion.detectCountry();
-		var regionCode = LucozeRegion.getRegionForCountry(country);
-		var info = LucozeRegion.getRegionInfo(regionCode);
-		return { region: regionCode, currency: info.currency, country: country };
+		// Default (unsupported region or no LucozeRegion)
+		return { region: "intl", currency: "usd" };
 	}
 
 	// ── Theme Toggle ──
@@ -153,61 +158,70 @@
 		});
 	}
 
-	// ── Country Selector ──
+	// ── Country Selector (Flag Icon + Modal) ──
 
 	function initCountrySelector() {
-		var selector = document.getElementById("countrySelector");
-		if (!selector) return;
+		var btn = document.getElementById("countryBtn");
+		var modal = document.getElementById("countryModal");
+		if (!btn || !modal) return;
 
-		var detected = getRegion();
+		// Set flag based on current region (from URL), not IP detection
+		if (typeof LucozeRegion !== "undefined") {
+			var currentRegion = LucozeRegion.getCurrentRegionSlug();
+			var flagEl = document.getElementById("countryFlag");
 
-		// Set the selector to detected country
-		if (selector.value !== detected.country) {
-			for (var i = 0; i < selector.options.length; i++) {
-				if (selector.options[i].value === detected.country) {
-					selector.selectedIndex = i;
-					break;
-				}
+			if (currentRegion) {
+				// On a region page — show the first country's flag for that region
+				var regionFlags = {
+					ae: "🇦🇪",
+					sg: "🇸🇬",
+					au: "🇦🇺",
+					in: "🇮🇳",
+				};
+				if (flagEl) flagEl.textContent = regionFlags[currentRegion] || "🌍";
+			} else {
+				// On default page — detect country and show its flag
+				LucozeRegion.detectCountry(function (countryCode) {
+					if (flagEl) flagEl.textContent = LucozeRegion.getFlag(countryCode);
+
+					// Auto-redirect on first visit to served region
+					var detectedRegion = LucozeRegion.getRegionForCountry(countryCode);
+					var hasVisited = localStorage.getItem(LucozeRegion.STORAGE_KEY);
+
+					if (!hasVisited && detectedRegion) {
+						LucozeRegion.navigateToRegion(detectedRegion);
+					}
+				});
 			}
 		}
 
-		// Apply region on load
-		applyRegion(detected.region, detected.country);
+		// Open modal on click
+		btn.addEventListener("click", function () {
+			modal.style.display = "";
+		});
 
-		// On change
-		selector.addEventListener("change", function () {
-			var country = selector.value;
-			if (typeof LucozeRegion !== "undefined") {
-				LucozeRegion.setCountry(country);
+		// Close modal on backdrop or close button click
+		modal.querySelectorAll("[data-close-modal]").forEach(function (el) {
+			el.addEventListener("click", function () {
+				modal.style.display = "none";
+			});
+		});
+
+		// Navigate on country selection
+		modal.querySelectorAll(".country-modal__country").forEach(function (el) {
+			el.addEventListener("click", function () {
+				var regionSlug = el.getAttribute("data-region");
+				if (typeof LucozeRegion !== "undefined") {
+					LucozeRegion.navigateToRegion(regionSlug);
+				}
+			});
+		});
+
+		// Close on Escape key
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && modal.style.display !== "none") {
+				modal.style.display = "none";
 			}
-			var regionCode =
-				typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionForCountry(country) : "intl";
-			applyRegion(regionCode, country);
-
-			// Re-render prices
-			initPricing();
-		});
-	}
-
-	function applyRegion(regionCode, country) {
-		// Show/hide compliance badges
-		document.querySelectorAll("[data-region-show]").forEach(function (el) {
-			var showFor = el.getAttribute("data-region-show").split(",");
-			el.style.display = showFor.indexOf(regionCode) >= 0 ? "" : "none";
-		});
-
-		// Show/hide India-specific content
-		document.querySelectorAll(".india-only").forEach(function (el) {
-			el.style.display = regionCode === "in" ? "" : "none";
-		});
-
-		// Update currency symbols
-		var info =
-			typeof LucozeRegion !== "undefined"
-				? LucozeRegion.getRegionInfo(regionCode)
-				: { symbol: "$" };
-		document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
-			el.textContent = info.symbol;
 		});
 	}
 
@@ -383,11 +397,7 @@
 			}
 
 			countrySelect.addEventListener("change", function () {
-				var regionCode =
-					typeof LucozeRegion !== "undefined"
-						? LucozeRegion.getRegionForCountry(countrySelect.value)
-						: "intl";
-				var cur = regionCode === "in" ? "INR" : "USD";
+				var cur = countrySelect.value === "India" ? "INR" : "USD";
 				form.querySelectorAll(".currency-label").forEach(function (el) {
 					el.textContent = cur;
 				});
@@ -496,6 +506,30 @@
 					}
 				});
 		});
+	}
+
+	function showRegionToast(country) {
+		// Remove existing toast
+		var existing = document.querySelector(".region-toast");
+		if (existing) existing.remove();
+
+		var toast = document.createElement("div");
+		toast.className = "region-toast";
+		toast.textContent = "Showing prices for " + country;
+		document.body.appendChild(toast);
+
+		// Trigger animation
+		requestAnimationFrame(function () {
+			toast.classList.add("show");
+		});
+
+		// Auto-remove after 3 seconds
+		setTimeout(function () {
+			toast.classList.remove("show");
+			setTimeout(function () {
+				toast.remove();
+			}, 300);
+		}, 3000);
 	}
 
 	function showAlert(alertEl, type, message) {

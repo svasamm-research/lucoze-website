@@ -1,164 +1,173 @@
 /**
- * Region detection and pricing — handles country auto-detection,
- * region-based pricing tiers, and country selector.
- *
- * Pricing tiers:
- *   in   → India (INR)
- *   me   → Middle East (USD, premium)
- *   sea  → Southeast Asia (USD, mid)
- *   af   → Africa (USD, entry)
- *   intl → US/UK/EU/AU and rest of world (USD, premium)
+ * Region detection (client-side) — detects country via IP geolocation,
+ * manages the country selector modal, and handles region navigation.
  */
 "use strict";
 
 var LucozeRegion = (function () {
-	// ── Country → Region mapping ──
-	var COUNTRY_REGION = {
-		// India
-		India: "in",
-		// Middle East
-		"United Arab Emirates": "me",
-		"Saudi Arabia": "me",
-		Qatar: "me",
-		Bahrain: "me",
-		Kuwait: "me",
-		Oman: "me",
-		// Southeast Asia
-		Singapore: "sea",
-		Malaysia: "sea",
-		Indonesia: "sea",
-		Thailand: "sea",
-		Philippines: "sea",
-		Vietnam: "sea",
-		// Africa
-		"South Africa": "af",
-		Nigeria: "af",
-		Kenya: "af",
-		Ghana: "af",
-		Tanzania: "af",
-		Ethiopia: "af",
-		// Rest → intl (US, UK, EU, AU, etc.)
+	var STORAGE_KEY = "lucoze-region";
+	var STORAGE_COUNTRY_KEY = "lucoze-country-code";
+
+	var COUNTRY_TO_REGION = {
+		AE: "ae",
+		SA: "ae",
+		QA: "ae",
+		BH: "ae",
+		KW: "ae",
+		OM: "ae",
+		SG: "sg",
+		MY: "sg",
+		ID: "sg",
+		TH: "sg",
+		PH: "sg",
+		AU: "au",
+		NZ: "au",
+		IN: "in",
 	};
 
-	// ── Timezone → Country (best-effort auto-detection) ──
-	var TZ_COUNTRY = {
-		"Asia/Kolkata": "India",
-		"Asia/Calcutta": "India",
-		"Asia/Dubai": "United Arab Emirates",
-		"Asia/Riyadh": "Saudi Arabia",
-		"Asia/Qatar": "Qatar",
-		"Asia/Bahrain": "Bahrain",
-		"Asia/Kuwait": "Kuwait",
-		"Asia/Muscat": "Oman",
-		"Asia/Singapore": "Singapore",
-		"Asia/Kuala_Lumpur": "Malaysia",
-		"Asia/Jakarta": "Indonesia",
-		"Asia/Bangkok": "Thailand",
-		"Asia/Manila": "Philippines",
-		"Asia/Ho_Chi_Minh": "Vietnam",
-		"Africa/Johannesburg": "South Africa",
-		"Africa/Lagos": "Nigeria",
-		"Africa/Nairobi": "Kenya",
-		"Australia/Sydney": "Australia",
-		"Australia/Melbourne": "Australia",
-		"Pacific/Auckland": "New Zealand",
-		"America/New_York": "United States",
-		"America/Chicago": "United States",
-		"America/Denver": "United States",
-		"America/Los_Angeles": "United States",
-		"America/Toronto": "Canada",
-		"Europe/London": "United Kingdom",
-		"Europe/Berlin": "Germany",
-		"Europe/Paris": "France",
-	};
+	var SERVED_REGIONS = [
+		{
+			slug: "ae",
+			name: "Middle East",
+			countries: [
+				{ code: "AE", name: "UAE", flag: "🇦🇪" },
+				{ code: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
+				{ code: "QA", name: "Qatar", flag: "🇶🇦" },
+				{ code: "BH", name: "Bahrain", flag: "🇧🇭" },
+				{ code: "KW", name: "Kuwait", flag: "🇰🇼" },
+				{ code: "OM", name: "Oman", flag: "🇴🇲" },
+			],
+		},
+		{
+			slug: "sg",
+			name: "Southeast Asia",
+			countries: [
+				{ code: "SG", name: "Singapore", flag: "🇸🇬" },
+				{ code: "MY", name: "Malaysia", flag: "🇲🇾" },
+				{ code: "ID", name: "Indonesia", flag: "🇮🇩" },
+				{ code: "TH", name: "Thailand", flag: "🇹🇭" },
+				{ code: "PH", name: "Philippines", flag: "🇵🇭" },
+			],
+		},
+		{
+			slug: "au",
+			name: "Australia & NZ",
+			countries: [
+				{ code: "AU", name: "Australia", flag: "🇦🇺" },
+				{ code: "NZ", name: "New Zealand", flag: "🇳🇿" },
+			],
+		},
+		{
+			slug: "in",
+			name: "India",
+			countries: [{ code: "IN", name: "India", flag: "🇮🇳" }],
+		},
+	];
 
-	// ── Region metadata ──
-	var REGIONS = {
-		in: { currency: "inr", symbol: "₹", label: "India", flag: "🇮🇳" },
-		me: { currency: "usd", symbol: "$", label: "Middle East", flag: "🇦🇪" },
-		sea: { currency: "usd", symbol: "$", label: "Asia Pacific", flag: "🇸🇬" },
-		af: { currency: "usd", symbol: "$", label: "Africa", flag: "🇰🇪" },
-		intl: { currency: "usd", symbol: "$", label: "International", flag: "🌍" },
-	};
+	var FLAGS = {};
+	SERVED_REGIONS.forEach(function (r) {
+		r.countries.forEach(function (c) {
+			FLAGS[c.code] = c.flag;
+		});
+	});
 
-	// ── Compliance badges per region ──
-	var COMPLIANCE = {
-		in: [
-			{ label: "ABDM Ready", desc: "Ayushman Bharat Digital Mission" },
-			{ label: "ABHA Compatible", desc: "Health ID integration" },
-		],
-		me: [
-			{ label: "NABIDH Ready", desc: "Dubai Health Authority compliant" },
-			{ label: "NPHIES Compatible", desc: "Saudi insurance exchange" },
-		],
-		sea: [{ label: "NEHR Ready", desc: "Singapore health records integration" }],
-		af: [],
-		intl: [
-			{ label: "HL7 FHIR", desc: "International health data standard" },
-			{ label: "ICD-10", desc: "Global diagnosis coding" },
-		],
-	};
-
-	var STORAGE_KEY = "lucoze-country";
-
-	// ── Public API ──
-
-	function detectCountry() {
-		// 1. Check localStorage (user previously selected)
-		var saved = localStorage.getItem(STORAGE_KEY);
-		if (saved && getRegionForCountry(saved)) return saved;
-
-		// 2. Auto-detect from timezone
-		try {
-			var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-			if (TZ_COUNTRY[tz]) return TZ_COUNTRY[tz];
-		} catch (e) {
-			// Fallback silently
+	function detectCountry(callback) {
+		var cached = localStorage.getItem(STORAGE_COUNTRY_KEY);
+		var cacheTime = localStorage.getItem(STORAGE_COUNTRY_KEY + "_ts");
+		if (cached && cacheTime && Date.now() - parseInt(cacheTime) < 86400000) {
+			callback(cached);
+			return;
 		}
 
-		// 3. Default
-		return "United States";
+		fetch("https://ipapi.co/json/")
+			.then(function (res) {
+				return res.json();
+			})
+			.then(function (data) {
+				var code = data.country_code || "";
+				localStorage.setItem(STORAGE_COUNTRY_KEY, code);
+				localStorage.setItem(STORAGE_COUNTRY_KEY + "_ts", String(Date.now()));
+				callback(code);
+			})
+			.catch(function () {
+				callback(detectFromTimezone());
+			});
 	}
 
-	function getRegionForCountry(country) {
-		return COUNTRY_REGION[country] || "intl";
+	function detectFromTimezone() {
+		try {
+			var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+			var TZ_MAP = {
+				"Asia/Dubai": "AE",
+				"Asia/Riyadh": "SA",
+				"Asia/Qatar": "QA",
+				"Asia/Bahrain": "BH",
+				"Asia/Kuwait": "KW",
+				"Asia/Muscat": "OM",
+				"Asia/Singapore": "SG",
+				"Asia/Kuala_Lumpur": "MY",
+				"Asia/Jakarta": "ID",
+				"Asia/Bangkok": "TH",
+				"Asia/Manila": "PH",
+				"Australia/Sydney": "AU",
+				"Australia/Melbourne": "AU",
+				"Pacific/Auckland": "NZ",
+				"Asia/Kolkata": "IN",
+				"Asia/Calcutta": "IN",
+			};
+			return TZ_MAP[tz] || "";
+		} catch (e) {
+			return "";
+		}
 	}
 
-	function getRegionInfo(region) {
-		return REGIONS[region] || REGIONS.intl;
+	// Region metadata for pricing display
+	var REGION_INFO = {
+		ae: { currency: "usd", symbol: "$" },
+		sg: { currency: "usd", symbol: "$" },
+		au: { currency: "usd", symbol: "$" },
+		in: { currency: "inr", symbol: "₹" },
+		intl: { currency: "usd", symbol: "$" },
+	};
+
+	function getRegionForCountry(countryCode) {
+		return COUNTRY_TO_REGION[countryCode] || null;
 	}
 
-	function getComplianceBadges(region) {
-		return COMPLIANCE[region] || [];
+	function getRegionInfo(slug) {
+		return REGION_INFO[slug] || REGION_INFO.intl;
 	}
 
-	function setCountry(country) {
-		localStorage.setItem(STORAGE_KEY, country);
+	function getFlag(countryCode) {
+		return FLAGS[countryCode] || "🌍";
 	}
 
-	function getAllCountries() {
-		return Object.keys(COUNTRY_REGION).concat([
-			"United States",
-			"Canada",
-			"United Kingdom",
-			"Germany",
-			"France",
-			"Italy",
-			"Spain",
-			"Netherlands",
-			"Australia",
-			"New Zealand",
-			"Mexico",
-		]);
+	function getCurrentRegionSlug() {
+		var path = window.location.pathname;
+		var match = path.match(/^\/(ae|sg|au|in)(\/|$)/);
+		return match ? match[1] : null;
+	}
+
+	function navigateToRegion(slug) {
+		var currentPath = window.location.pathname;
+		var cleanPath = currentPath.replace(/^\/(ae|sg|au|in)(\/|$)/, "/");
+		if (cleanPath === "") cleanPath = "/";
+
+		var newPath = slug ? "/" + slug + cleanPath : cleanPath;
+		newPath = newPath.replace(/\/\//g, "/");
+
+		localStorage.setItem(STORAGE_KEY, slug || "default");
+		window.location.href = newPath;
 	}
 
 	return {
 		detectCountry: detectCountry,
 		getRegionForCountry: getRegionForCountry,
 		getRegionInfo: getRegionInfo,
-		getComplianceBadges: getComplianceBadges,
-		setCountry: setCountry,
-		getAllCountries: getAllCountries,
-		REGIONS: REGIONS,
+		getFlag: getFlag,
+		getCurrentRegionSlug: getCurrentRegionSlug,
+		navigateToRegion: navigateToRegion,
+		SERVED_REGIONS: SERVED_REGIONS,
+		STORAGE_KEY: STORAGE_KEY,
 	};
 })();

@@ -4,13 +4,18 @@
 	// ── Region Detection (uses LucozeRegion from region.js) ──
 
 	function getRegion() {
-		if (typeof LucozeRegion === "undefined") {
-			return { region: "intl", currency: "usd" };
+		// Read region from URL path (set by Astro routing)
+		if (typeof LucozeRegion !== "undefined") {
+			var slug = LucozeRegion.getCurrentRegionSlug();
+			if (slug) {
+				var info = LucozeRegion.getRegionInfo
+					? LucozeRegion.getRegionInfo(slug)
+					: { currency: "usd" };
+				return { region: slug, currency: info ? info.currency : "usd" };
+			}
 		}
-		var country = LucozeRegion.detectCountry();
-		var regionCode = LucozeRegion.getRegionForCountry(country);
-		var info = LucozeRegion.getRegionInfo(regionCode);
-		return { region: regionCode, currency: info.currency, country: country };
+		// Default (unsupported region or no LucozeRegion)
+		return { region: "intl", currency: "usd" };
 	}
 
 	// ── Theme Toggle ──
@@ -160,23 +165,34 @@
 		var modal = document.getElementById("countryModal");
 		if (!btn || !modal) return;
 
-		// Detect country and set flag
+		// Set flag based on current region (from URL), not IP detection
 		if (typeof LucozeRegion !== "undefined") {
-			LucozeRegion.detectCountry(function (countryCode) {
-				var flag = LucozeRegion.getFlag(countryCode);
-				var flagEl = document.getElementById("countryFlag");
-				if (flagEl) flagEl.textContent = flag;
+			var currentRegion = LucozeRegion.getCurrentRegionSlug();
+			var flagEl = document.getElementById("countryFlag");
 
-				// Auto-redirect if not already on the correct region page
-				var currentRegion = LucozeRegion.getCurrentRegionSlug();
-				var detectedRegion = LucozeRegion.getRegionForCountry(countryCode);
-				var hasVisited = localStorage.getItem(LucozeRegion.STORAGE_KEY);
+			if (currentRegion) {
+				// On a region page — show the first country's flag for that region
+				var regionFlags = {
+					ae: "🇦🇪",
+					sg: "🇸🇬",
+					au: "🇦🇺",
+					in: "🇮🇳",
+				};
+				if (flagEl) flagEl.textContent = regionFlags[currentRegion] || "🌍";
+			} else {
+				// On default page — detect country and show its flag
+				LucozeRegion.detectCountry(function (countryCode) {
+					if (flagEl) flagEl.textContent = LucozeRegion.getFlag(countryCode);
 
-				// Only auto-redirect on first visit (no stored preference)
-				if (!hasVisited && detectedRegion && detectedRegion !== currentRegion) {
-					LucozeRegion.navigateToRegion(detectedRegion);
-				}
-			});
+					// Auto-redirect on first visit to served region
+					var detectedRegion = LucozeRegion.getRegionForCountry(countryCode);
+					var hasVisited = localStorage.getItem(LucozeRegion.STORAGE_KEY);
+
+					if (!hasVisited && detectedRegion) {
+						LucozeRegion.navigateToRegion(detectedRegion);
+					}
+				});
+			}
 		}
 
 		// Open modal on click
@@ -381,11 +397,7 @@
 			}
 
 			countrySelect.addEventListener("change", function () {
-				var regionCode =
-					typeof LucozeRegion !== "undefined"
-						? LucozeRegion.getRegionForCountry(countrySelect.value)
-						: "intl";
-				var cur = regionCode === "in" ? "INR" : "USD";
+				var cur = countrySelect.value === "India" ? "INR" : "USD";
 				form.querySelectorAll(".currency-label").forEach(function (el) {
 					el.textContent = cur;
 				});

@@ -400,13 +400,14 @@ body {
 	justify-content: center;
 	width: 36px;
 	height: 36px;
+	min-width: 36px;
 	border-radius: 50%;
 	border: 2px solid var(--color-border);
 	background: var(--color-bg-alt);
 	cursor: pointer;
 	transition: border-color var(--transition-fast);
 	padding: 0;
-	min-width: 80px;
+	overflow: hidden;
 }
 
 .nav__country-btn:hover {

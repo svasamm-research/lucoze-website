@@ -121,8 +121,21 @@ var LucozeRegion = (function () {
 		}
 	}
 
+	// Region metadata for pricing display
+	var REGION_INFO = {
+		ae: { currency: "usd", symbol: "$" },
+		sg: { currency: "usd", symbol: "$" },
+		au: { currency: "usd", symbol: "$" },
+		in: { currency: "inr", symbol: "₹" },
+		intl: { currency: "usd", symbol: "$" },
+	};
+
 	function getRegionForCountry(countryCode) {
 		return COUNTRY_TO_REGION[countryCode] || null;
+	}
+
+	function getRegionInfo(slug) {
+		return REGION_INFO[slug] || REGION_INFO.intl;
 	}
 
 	function getFlag(countryCode) {
@@ -150,6 +163,7 @@ var LucozeRegion = (function () {
 	return {
 		detectCountry: detectCountry,
 		getRegionForCountry: getRegionForCountry,
+		getRegionInfo: getRegionInfo,
 		getFlag: getFlag,
 		getCurrentRegionSlug: getCurrentRegionSlug,
 		navigateToRegion: navigateToRegion,
