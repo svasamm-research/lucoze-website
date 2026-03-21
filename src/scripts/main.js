@@ -169,24 +169,29 @@
 			var currentRegion = LucozeRegion.getCurrentRegionSlug();
 			var flagEl = document.getElementById("countryFlag");
 			var userSelected = localStorage.getItem("lucoze-country-selected");
+			var isServed = document.body.getAttribute("data-served") === "true";
 
-			if (userSelected && flagEl) {
-				// User previously selected a country — show that flag
-				flagEl.textContent = userSelected;
-			} else if (currentRegion && flagEl) {
-				// On a region page via direct URL — show region flag
+			if (currentRegion && flagEl) {
+				// On a served region page — show region flag
 				var regionFlags = { ae: "🇦🇪", sg: "🇸🇬", au: "🇦🇺", in: "🇮🇳" };
 				flagEl.textContent = regionFlags[currentRegion] || "🌍";
-			} else if (flagEl) {
-				// No country selected yet — show globe and open modal
+			} else if (!isServed && flagEl) {
+				// On unsupported/default page — always show globe
 				flagEl.textContent = "🌍";
+				// Clear stale selection since user is on unsupported page
+				localStorage.removeItem("lucoze-country-selected");
 
-				// Open modal on first visit so user picks their country
+				// Open modal on first visit
 				if (!localStorage.getItem(LucozeRegion.STORAGE_KEY)) {
 					setTimeout(function () {
 						if (modal) modal.style.display = "";
 					}, 500);
 				}
+			} else if (userSelected && flagEl) {
+				// User previously selected a country — show that flag
+				flagEl.textContent = userSelected;
+			} else if (flagEl) {
+				flagEl.textContent = "🌍";
 			}
 		}
 
