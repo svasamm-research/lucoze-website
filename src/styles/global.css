@@ -2085,9 +2085,23 @@ select.form-control {
 		flex-shrink: 0;
 	}
 
+	.nav__actions {
+		gap: var(--space-xs);
+	}
+
 	.nav__actions .btn {
 		font-size: var(--font-size-xs);
-		padding: 8px 14px;
+		padding: 6px 12px;
+	}
+
+	.nav__country-btn {
+		width: 36px;
+		height: 36px;
+		min-width: 36px;
+	}
+
+	.nav__country-flag {
+		font-size: 16px;
 	}
 
 	.features__grid {
