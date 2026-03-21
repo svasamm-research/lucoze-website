@@ -927,6 +927,7 @@ body {
 .trust-bar__inner {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: var(--space-xl);
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -934,6 +935,7 @@ body {
 	scroll-behavior: smooth;
 	scrollbar-width: none;
 	-ms-overflow-style: none;
+	flex: 1;
 }
 
 .trust-bar__inner::-webkit-scrollbar {
