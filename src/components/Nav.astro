@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { activeLink = "", ctaPlan = "" } = Astro.props;
-const ctaHref = ctaPlan ? `signup.html?plan=${ctaPlan}` : "signup.html";
+const ctaHref = ctaPlan ? `/signup?plan=${ctaPlan}` : "/signup";
 ---
 
 <nav class="nav" role="navigation" aria-label="Main navigation">

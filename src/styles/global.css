@@ -437,6 +437,31 @@ body {
 	border: 1px solid var(--color-primary);
 }
 
+/* ── Region Toast ──────────────────────────────────────────── */
+.region-toast {
+	position: fixed;
+	top: 80px;
+	left: 50%;
+	transform: translateX(-50%) translateY(-20px);
+	background: var(--color-primary);
+	color: #fff;
+	padding: 10px 24px;
+	border-radius: var(--radius-md);
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	z-index: 9999;
+	opacity: 0;
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.region-toast.show {
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}
+
 /* ── 4-column Pricing Grid ─────────────────────────────────── */
 .pricing__grid--4 {
 	grid-template-columns: repeat(4, 1fr);
