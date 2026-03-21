@@ -128,7 +128,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 						built-in dashboards and exportable reports.
 					</p>
 				</div>
-				<div class="feature-list__item">
+				<div class="feature-list__item" data-region-show="in">
 					<h3>ABDM / ABHA Ready</h3>
 					<p>
 						For Indian clinics — integrate with Ayushman Bharat Digital Mission, verify ABHA IDs,
@@ -136,24 +136,35 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					</p>
 				</div>
 			</div>
+				<div class="feature-list__item" data-region-show="ae">
+					<h3>NABIDH / NPHIES Ready</h3>
+					<p>
+						For GCC clinics — connect to NABIDH (Dubai) and NPHIES (Saudi) health
+						information exchanges for regulatory compliance.
+					</p>
+				</div>
 
 			<h2 class="fade-in">Plans for Clinics</h2>
 			<div class="solution-plans fade-in">
 				<div class="solution-plan">
 					<h3>Clinic</h3>
-					<p>Small clinic or polyclinic. Up to 5 doctors, 0-10 beds.</p>
-					<div class="solution-plan__price">&#x20B9;3,999 / $69 per month</div>
+					<p>Small clinic or polyclinic. Up to 5 doctors, basic billing.</p>
+					<div class="solution-plan__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="3,999" data-monthly-ae="99" data-monthly-sg="79" data-monthly-au="149" data-monthly-intl="149">99</span>/mo</div>
 					<a href="/signup?plan=clinic" class="btn btn--primary">Start Free Trial</a>
 				</div>
 				<div class="solution-plan solution-plan--featured">
 					<h3>Clinic Plus</h3>
-					<p>Mid-size clinic or nursing home. Up to 15 doctors, 10-30 beds, full lab &amp; IPD.</p>
-					<div class="solution-plan__price">&#x20B9;7,999 / $129 per month</div>
+					<p>Mid-size clinic or nursing home. Up to 15 doctors, 30 beds, full lab &amp; IPD.</p>
+					<div class="solution-plan__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="7,999" data-monthly-ae="199" data-monthly-sg="149" data-monthly-au="299" data-monthly-intl="299">199</span>/mo</div>
 					<a href="/signup?plan=Clinic Plus" class="btn btn--primary">Start Free Trial</a>
 				</div>
-			</div>
-		</div>
-	</section>
+				<div class="solution-plan">
+					<h3>Clinic Enterprise</h3>
+					<p>Multi-branch clinics. Unlimited doctors, branches, AI-powered automation &amp; analytics.</p>
+					<div class="solution-plan__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="14,999" data-monthly-ae="399" data-monthly-sg="299" data-monthly-au="499" data-monthly-intl="499">399</span>/mo</div>
+					<a href="/contact" class="btn btn--secondary">Contact Sales</a>
+				</div>
+			</div></section>
 
 	<section class="cta">
 		<div class="container">
