@@ -5,32 +5,43 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <BaseLayout
 	regionSlug="sg"
 	signupEnabled={true}
-	showPharmacy={true}
 	served={true}
+	served={false}
+	signupEnabled={false}
 	title="Lucoze — Healthcare Management Software for Clinics & Hospitals — Southeast Asia"
-	description="Complete healthcare management platform for clinics, hospitals, diagnostic centres, and pharmacies. Patient records, appointments, billing, inventory — all in one place. Start your free 14-day trial."
+	description="Complete healthcare management platform for clinics and hospitals. Patient records, appointments, billing, inventory — all in one place. Start your free 14-day trial."
 >
 	<section class="hero">
 		<div class="container hero__inner">
 			<div class="hero__content">
-				<div class="hero__badge">Now available worldwide</div>
+				
 				<h1>
 					Healthcare<br />
 					management,<br />
 					<span>simplified.</span>
 				</h1>
 				<p class="hero__subtitle">
-					The all-in-one platform for clinics, hospitals, diagnostic centres, and pharmacies.
+					The all-in-one platform for clinics and hospitals.
 					Patient records, appointments, billing, inventory, and compliance &mdash; everything your
 					healthcare facility needs, in one place.
 				</p>
-				<div class="hero__actions">
+				
+				<div class="hero__compliance fade-in">
+					<span class="compliance-badge" data-region-show="ae">NABIDH Ready</span>
+					<span class="compliance-badge" data-region-show="ae">NPHIES Compatible</span>
+					<span class="compliance-badge" data-region-show="in">ABDM Integrated</span>
+					<span class="compliance-badge" data-region-show="in">ABHA Compatible</span>
+					<span class="compliance-badge" data-region-show="sg">NEHR Ready</span>
+					<span class="compliance-badge" data-region-show="ae,sg,au,intl">HL7 FHIR</span>
+					<span class="compliance-badge" data-region-show="ae,sg,au,intl,in">ICD-10</span>
+				</div>
+<div class="hero__actions">
 					<a href="/signup" class="btn btn--primary btn--lg">Start Free 14-Day Trial</a>
 					<a href="#features" class="btn btn--secondary btn--lg">See Features</a>
 				</div>
 				<div class="hero__stats">
 					<div class="hero__stat">
-						<div class="hero__stat-value">10+</div>
+						<div class="hero__stat-value">4</div>
 						<div class="hero__stat-label">Tailored plans</div>
 					</div>
 					<div class="hero__stat">
@@ -270,33 +281,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 					</p>
 					<span class="audience-card__link">Learn more &rarr;</span>
 				</a>
-				<a
-					href="/solutions-diagnostics"
-					class="audience-card fade-in fade-in-delay-2"
-					style="text-decoration: none; color: inherit"
-				>
-					<div class="audience-card__icon">&#x1F52C;</div>
-					<h3>Diagnostic Centres</h3>
-					<p>
-						Lab test management, sample processing, result entry with templates, quality control,
-						and multi-branch support.
-					</p>
-					<span class="audience-card__link">Learn more &rarr;</span>
-				</a>
-				<a
-					href="/solutions-pharmacies"
-					class="audience-card fade-in fade-in-delay-3"
-					style="text-decoration: none; color: inherit"
-				>
-					<div class="audience-card__icon">&#x1F48A;</div>
-					<h3>Pharmacies</h3>
-					<p>
-						Dispensing, inventory management, expiry tracking, purchase orders, and multi-store
-						support for pharmacy chains.
-					</p>
-					<span class="audience-card__link">Learn more &rarr;</span>
-				</a>
-			</div>
+				</div>
 		</div>
 	</section>
 
@@ -367,21 +352,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 				<button class="pricing__tab active" data-category="clinic">
 					Clinics &amp; Hospitals
 				</button>
-				<button class="pricing__tab" data-category="pathology">Diagnostics</button>
-				<button class="pricing__tab" data-category="pharmacy">Pharmacy</button>
 			</div>
-
-			<!-- Compliance Badges (region-specific) -->
-			<div class="pricing__compliance fade-in">
-				<span class="compliance-badge" data-region-show="me">NABIDH Ready</span>
-				<span class="compliance-badge" data-region-show="me">NPHIES Compatible</span>
-				<span class="compliance-badge" data-region-show="in">ABDM Integrated</span>
-				<span class="compliance-badge" data-region-show="in">ABHA Compatible</span>
-				<span class="compliance-badge" data-region-show="sea">NEHR Ready</span>
-				<span class="compliance-badge" data-region-show="intl,me,sea,af">HL7 FHIR</span>
-				<span class="compliance-badge" data-region-show="intl,me,sea,af,in">ICD-10</span>
-			</div>
-
 			<!-- Clinic & Hospital Plans -->
 			<div class="pricing__grid pricing__grid--4" id="pricing-clinic">
 				<div class="pricing-card fade-in">
@@ -406,7 +377,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
-					<a href="/signup?plan=clinic" class="btn btn--primary btn--full">Start Free Trial</a>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
 						<div class="pricing-card__feature">
@@ -466,7 +436,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
-					<a href="/signup?plan=Clinic Plus" class="btn btn--primary btn--full">Start Free Trial</a>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
 						<div class="pricing-card__feature">
@@ -520,7 +489,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
-					<a href="/signup?plan=hospital" class="btn btn--primary btn--full">Start Free Trial</a>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
 						<div class="pricing-card__feature">
@@ -612,467 +580,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 				</div>
 			</div>
 
-			<!-- Pathology Plans (hidden by default) -->
-			<div class="pricing__grid" id="pricing-pathology" style="display: none">
-				<div class="pricing-card fade-in">
-					<div class="pricing-card__badge"></div>
-					<div class="pricing-card__name">Pathology</div>
-					<div class="pricing-card__desc">Single diagnostic centre</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency" data-inr="₹" data-usd="$">&#8377;</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-inr="2,999"
-							data-yearly-inr="2,549"
-							data-monthly-usd="49"
-							data-yearly-usd="42">2,999</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div
-						class="pricing-card__annual"
-						data-monthly="Billed monthly"
-						data-yearly="Billed annually"
-					>
-						Billed monthly
-					</div>
-					<a href="/contact?subject=Pathology" class="btn btn--secondary btn--full">Contact Us</a>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Lab test management
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Sample tracking
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Report generation
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Invoicing &amp; billing
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Inventory management
-						</div>
-					</div>
-				</div>
-				<div class="pricing-card pricing-card--featured fade-in fade-in-delay-1">
-					<div class="pricing-card__badge">Most Popular</div>
-					<div class="pricing-card__name">Pathology Plus</div>
-					<div class="pricing-card__desc">Diagnostic centre with patient management</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency" data-inr="₹" data-usd="$">&#8377;</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-inr="4,999"
-							data-yearly-inr="4,249"
-							data-monthly-usd="79"
-							data-yearly-usd="67">4,999</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div
-						class="pricing-card__annual"
-						data-monthly="Billed monthly"
-						data-yearly="Billed annually"
-					>
-						Billed monthly
-					</div>
-					<a href="/contact?subject=Pathology+Plus" class="btn btn--secondary btn--full"
-						>Contact Us</a
-					>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Everything in Pathology
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Patient management
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Appointments
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Radiology &amp; imaging
-						</div>
-					</div>
-				</div>
-				<div class="pricing-card fade-in fade-in-delay-2">
-					<div class="pricing-card__badge">Enterprise</div>
-					<div class="pricing-card__name">Pathology Network</div>
-					<div class="pricing-card__desc">Multi-branch diagnostics (up to 10)</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency" data-inr="₹" data-usd="$">&#8377;</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-inr="9,999"
-							data-yearly-inr="8,499"
-							data-monthly-usd="169"
-							data-yearly-usd="144">9,999</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div
-						class="pricing-card__annual"
-						data-monthly="Billed monthly"
-						data-yearly="Billed annually"
-					>
-						Billed monthly
-					</div>
-					<a href="/contact?subject=Pathology+Network" class="btn btn--secondary btn--full"
-						>Contact Us</a
-					>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Everything in Pathology Plus
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Multi-branch support
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							HR &amp; payroll
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Quality management
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Pharmacy Plans (hidden by default) -->
-			<div class="pricing__grid" id="pricing-pharmacy" style="display: none">
-				<div class="pricing-card fade-in" style="grid-column: 1">
-					<div class="pricing-card__badge"></div>
-					<div class="pricing-card__name">Pharmacy</div>
-					<div class="pricing-card__desc">Single medicine shop</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency" data-inr="₹" data-usd="$">&#8377;</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-inr="1,999"
-							data-yearly-inr="1,699"
-							data-monthly-usd="39"
-							data-yearly-usd="33">1,999</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div
-						class="pricing-card__annual"
-						data-monthly="Billed monthly"
-						data-yearly="Billed annually"
-					>
-						Billed monthly
-					</div>
-					<a href="/contact?subject=Pharmacy" class="btn btn--secondary btn--full">Contact Us</a>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Dispensing &amp; billing
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Inventory management
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Expiry tracking
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Purchase orders
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Accounting &amp; GST
-						</div>
-					</div>
-				</div>
-				<div
-					class="pricing-card pricing-card--featured fade-in fade-in-delay-1"
-					style="grid-column: 2"
-				>
-					<div class="pricing-card__badge">Best Value</div>
-					<div class="pricing-card__name">Pharmacy Chain</div>
-					<div class="pricing-card__desc">Multi-store pharmacy (up to 10 stores)</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency" data-inr="₹" data-usd="$">&#8377;</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-inr="7,999"
-							data-yearly-inr="6,799"
-							data-monthly-usd="129"
-							data-yearly-usd="110">7,999</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div
-						class="pricing-card__annual"
-						data-monthly="Billed monthly"
-						data-yearly="Billed annually"
-					>
-						Billed monthly
-					</div>
-					<a href="/contact?subject=Pharmacy+Chain" class="btn btn--secondary btn--full"
-						>Contact Us</a
-					>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Everything in Pharmacy
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Multi-store management
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							HR &amp; payroll
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Centralised procurement
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path>
-							</svg>
-							Selling &amp; wholesale
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<p
-				class="fade-in"
-				style="
-							text-align: center;
-							margin-top: 2rem;
-							color: var(--color-text-muted);
-							font-size: var(--font-size-sm);
-						"
-			>
-				Clinic &amp; Hospital plans include a <strong>14-day free trial</strong>. No credit card
-				required. Cancel anytime. <br />For Diagnostics &amp; Pharmacy plans,
-				<a href="/contact" style="color: var(--color-primary)">contact our team</a> for a personalised
-				demo.
-			</p>
+			
 		</div>
 	</section>
 
 	<!-- ═══ Testimonials ═════════════════════════════════════════ -->
-	<section class="section section--alt" id="testimonials">
-		<div class="container">
-			<div class="section-header fade-in">
-				<h2>Trusted by healthcare providers</h2>
-				<p>See what clinics and hospitals are saying about Lucoze.</p>
-			</div>
-			<div class="testimonials__grid">
-				<div class="testimonial-card fade-in">
-					<div class="testimonial-card__stars">
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-					</div>
-					<p class="testimonial-card__text">
-						"We switched from paper-based records and the difference is night and day. Our reception
-						staff now handles twice the patient load without errors."
-					</p>
-					<div class="testimonial-card__author">
-						<div class="testimonial-card__avatar">RA</div>
-						<div>
-							<div class="testimonial-card__name">Dr. Rajesh Agarwal</div>
-							<div class="testimonial-card__role">Apollo Clinic, Mumbai</div>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-card fade-in fade-in-delay-1">
-					<div class="testimonial-card__stars">
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-					</div>
-					<p class="testimonial-card__text">
-						"The lab module is incredibly well thought out. Sample tracking, auto-generated reports
-						— it saved us from hiring an additional technician."
-					</p>
-					<div class="testimonial-card__author">
-						<div class="testimonial-card__avatar">SP</div>
-						<div>
-							<div class="testimonial-card__name">Dr. Sunita Patel</div>
-							<div class="testimonial-card__role">City Diagnostics, Ahmedabad</div>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-card fade-in fade-in-delay-2">
-					<div class="testimonial-card__stars">
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-						<svg viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-							></path>
-						</svg>
-					</div>
-					<p class="testimonial-card__text">
-						"Setting up was surprisingly easy. We were managing patients within the hour. The
-						billing integration with GST saved our accountant weeks of work."
-					</p>
-					<div class="testimonial-card__author">
-						<div class="testimonial-card__avatar">AK</div>
-						<div>
-							<div class="testimonial-card__name">Dr. Amira Khan</div>
-							<div class="testimonial-card__role">MedCare Hospital, Dubai</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 
 	<!-- ═══ FAQ ══════════════════════════════════════════════════ -->
 	<section class="section" id="faq">

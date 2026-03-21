@@ -542,6 +542,15 @@ body {
 	pointer-events: none;
 }
 
+/* ── Hero Compliance Badges ─────────────────────────────────── */
+.hero__compliance {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-sm);
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-sm);
+}
+
 /* ── Compliance Badges ─────────────────────────────────────── */
 .pricing__compliance {
 	display: flex;

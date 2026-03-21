@@ -1,10 +1,9 @@
 ---
 interface Props {
 	regionSlug?: string;
-	showPharmacy?: boolean;
 }
 
-const { regionSlug = "", showPharmacy = true } = Astro.props;
+const { regionSlug = "" } = Astro.props;
 const prefix = regionSlug ? `/${regionSlug}` : "";
 ---
 
@@ -16,7 +15,7 @@ const prefix = regionSlug ? `/${regionSlug}` : "";
 					<img src="/images/logo.svg" alt="Lucoze" height="28" />
 				</div>
 				<p class="footer__desc">
-					Complete healthcare management platform for clinics, hospitals, and diagnostic centres.
+					Complete healthcare management platform for clinics and hospitals.
 				</p>
 			</div>
 			<div class="footer__col">
@@ -36,8 +35,6 @@ const prefix = regionSlug ? `/${regionSlug}` : "";
 				<h4>Solutions</h4>
 				<a href={`${prefix}/solutions-clinics`}>For Clinics</a>
 				<a href={`${prefix}/solutions-hospitals`}>For Hospitals</a>
-				<a href={`${prefix}/solutions-diagnostics`}>For Diagnostics</a>
-				{showPharmacy && <a href={`${prefix}/solutions-pharmacies`}>For Pharmacies</a>}
 			</div>
 		</div>
 		<div class="footer__bottom">
