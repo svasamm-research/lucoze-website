@@ -147,7 +147,7 @@ describe("region-based pricing", () => {
 // ── Theme Toggle ──
 
 describe("initTheme", () => {
-	test("defaults to light theme when no preference saved", () => {
+	test("defaults to dark theme when no preference saved", () => {
 		const { document: doc } = createEnv(`
 			<button id="themeToggle"></button>
 			<span class="icon-sun"></span>
@@ -156,43 +156,27 @@ describe("initTheme", () => {
 
 		initApp(doc);
 
-		expect(doc.documentElement.getAttribute("data-theme")).toBe("light");
-		expect(doc.querySelector(".icon-sun").style.display).toBe("block");
-		expect(doc.querySelector(".icon-moon").style.display).toBe("none");
-	});
-
-	test("restores saved dark theme from localStorage", () => {
-		const { window, document: doc } = createEnv(`
-			<button id="themeToggle"></button>
-			<span class="icon-sun"></span>
-			<span class="icon-moon"></span>
-		`);
-
-		window.localStorage.setItem("lucoze-theme", "dark");
-		initApp(doc);
-
 		expect(doc.documentElement.getAttribute("data-theme")).toBe("dark");
 		expect(doc.querySelector(".icon-sun").style.display).toBe("none");
 		expect(doc.querySelector(".icon-moon").style.display).toBe("block");
 	});
 
-	test("clicking toggle switches theme from light to dark", () => {
+	test("restores saved light theme from localStorage", () => {
 		const { window, document: doc } = createEnv(`
 			<button id="themeToggle"></button>
 			<span class="icon-sun"></span>
 			<span class="icon-moon"></span>
 		`);
 
+		window.localStorage.setItem("lucoze-theme", "light");
 		initApp(doc);
+
 		expect(doc.documentElement.getAttribute("data-theme")).toBe("light");
-
-		doc.getElementById("themeToggle").click();
-
-		expect(doc.documentElement.getAttribute("data-theme")).toBe("dark");
-		expect(window.localStorage.getItem("lucoze-theme")).toBe("dark");
+		expect(doc.querySelector(".icon-sun").style.display).toBe("block");
+		expect(doc.querySelector(".icon-moon").style.display).toBe("none");
 	});
 
-	test("clicking toggle twice returns to original theme", () => {
+	test("clicking toggle switches theme from dark to light", () => {
 		const { window, document: doc } = createEnv(`
 			<button id="themeToggle"></button>
 			<span class="icon-sun"></span>
@@ -200,12 +184,28 @@ describe("initTheme", () => {
 		`);
 
 		initApp(doc);
+		expect(doc.documentElement.getAttribute("data-theme")).toBe("dark");
 
-		doc.getElementById("themeToggle").click();
 		doc.getElementById("themeToggle").click();
 
 		expect(doc.documentElement.getAttribute("data-theme")).toBe("light");
 		expect(window.localStorage.getItem("lucoze-theme")).toBe("light");
+	});
+
+	test("clicking toggle twice returns to dark theme", () => {
+		const { window, document: doc } = createEnv(`
+			<button id="themeToggle"></button>
+			<span class="icon-sun"></span>
+			<span class="icon-moon"></span>
+		`);
+
+		initApp(doc);
+
+		doc.getElementById("themeToggle").click();
+		doc.getElementById("themeToggle").click();
+
+		expect(doc.documentElement.getAttribute("data-theme")).toBe("dark");
+		expect(window.localStorage.getItem("lucoze-theme")).toBe("dark");
 	});
 });
 
