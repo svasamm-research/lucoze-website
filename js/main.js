@@ -252,8 +252,7 @@
 		});
 
 		// Update currency symbols
-		var info =
-			typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionInfo(pricingKey) : null;
+		var info = typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionInfo(pricingKey) : null;
 		var symbol = info ? info.symbol : "$";
 		document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
 			el.textContent = symbol;
@@ -333,8 +332,6 @@
 				updatePrices();
 			});
 		}
-
-
 
 		// Set initial prices
 		updatePrices();
