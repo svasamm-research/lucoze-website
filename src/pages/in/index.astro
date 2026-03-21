@@ -90,7 +90,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 	<!-- ═══ Trust Bar (Compliance) ════════════════════════════════ -->
 	<section class="trust-bar">
-		<div class="container trust-bar__inner">
+		<div class="container trust-bar__wrapper">
+		<button class="trust-bar__arrow trust-bar__arrow--left" aria-label="Scroll left">&#8249;</button>
+		<div class="trust-bar__inner">
 			<div class="trust-bar__item" data-region-show="ae">
 				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -150,6 +152,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 				</svg>
 				ICD-10 Coding
 			</div>
+		</div>
+		<button class="trust-bar__arrow trust-bar__arrow--right" aria-label="Scroll right">&#8250;</button>
 		</div>
 	</section>
 

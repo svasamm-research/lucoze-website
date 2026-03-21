@@ -665,6 +665,38 @@
 		});
 	}
 
+	// ── Region Visibility ──
+
+	function initRegionVisibility() {
+		var currentRegion =
+			typeof LucozeRegion !== "undefined" ? LucozeRegion.getCurrentRegionSlug() : null;
+		var region = currentRegion || "intl";
+
+		document.querySelectorAll("[data-region-show]").forEach(function (el) {
+			var showFor = el.getAttribute("data-region-show").split(",");
+			el.style.display = showFor.indexOf(region) >= 0 ? "" : "none";
+		});
+	}
+
+	// ── Trust Bar Scroll ──
+
+	function initTrustBarScroll() {
+		var bar = document.querySelector(".trust-bar__inner");
+		var leftBtn = document.querySelector(".trust-bar__arrow--left");
+		var rightBtn = document.querySelector(".trust-bar__arrow--right");
+		if (!bar || !leftBtn || !rightBtn) return;
+
+		var scrollAmount = 200;
+
+		leftBtn.addEventListener("click", function () {
+			bar.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+		});
+
+		rightBtn.addEventListener("click", function () {
+			bar.scrollBy({ left: scrollAmount, behavior: "smooth" });
+		});
+	}
+
 	// ── Init ──
 
 	document.addEventListener("DOMContentLoaded", function () {
@@ -674,6 +706,8 @@
 		initScrollAnimations();
 		initFAQ();
 		initSmoothScroll();
+		initRegionVisibility();
+		initTrustBarScroll();
 		initCountrySelector();
 		initPricing();
 		initSignup();

@@ -650,8 +650,8 @@ body {
 
 /* ── Hero ───────────────────────────────────────────────────────── */
 .hero {
-	padding-top: calc(var(--nav-height) + var(--space-4xl));
-	padding-bottom: var(--space-4xl);
+	padding-top: calc(var(--nav-height) + var(--space-xl));
+	padding-bottom: var(--space-lg);
 	position: relative;
 	overflow: hidden;
 }
@@ -879,17 +879,55 @@ body {
 
 /* ── Trust Bar ──────────────────────────────────────────────────── */
 .trust-bar {
-	padding: var(--space-2xl) 0;
+	padding: var(--space-lg) 0;
 	border-top: 1px solid var(--color-border-light);
 	border-bottom: 1px solid var(--color-border-light);
+}
+
+.trust-bar__wrapper {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 0 var(--space-lg);
 }
 
 .trust-bar__inner {
 	display: flex;
 	align-items: center;
+	gap: var(--space-xl);
+	overflow-x: auto;
+	overflow-y: hidden;
+	flex-wrap: nowrap;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.trust-bar__inner::-webkit-scrollbar {
+	display: none;
+}
+
+.trust-bar__arrow {
+	flex-shrink: 0;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: 1px solid var(--color-border);
+	background: var(--color-bg);
+	color: var(--color-text-muted);
+	font-size: 20px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
 	justify-content: center;
-	gap: var(--space-3xl);
-	flex-wrap: wrap;
+	transition: all var(--transition-fast);
+}
+
+.trust-bar__arrow:hover {
+	border-color: var(--color-primary);
+	color: var(--color-primary);
 }
 
 .trust-bar__item {
@@ -899,12 +937,15 @@ body {
 	color: var(--color-text-muted);
 	font-size: var(--font-size-sm);
 	font-weight: 500;
+	white-space: nowrap;
+	flex-shrink: 0;
 }
 
 .trust-bar__icon {
 	width: 20px;
 	height: 20px;
 	color: var(--color-primary);
+	flex-shrink: 0;
 }
 
 /* ── Features ───────────────────────────────────────────────────── */
@@ -960,17 +1001,20 @@ body {
 /* ── Audience / Who It's For ────────────────────────────────────── */
 .audience__grid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	gap: var(--space-xl);
 }
 
 .audience-card {
-	text-align: center;
-	padding: var(--space-2xl) var(--space-lg);
+	text-align: left;
+	padding: var(--space-3xl) var(--space-2xl);
 	background: var(--color-bg-card);
 	border-radius: var(--radius-lg);
 	border: 1px solid var(--color-border-light);
 	transition: all var(--transition-base);
+	display: flex;
+	flex-direction: column;
+	min-height: 220px;
 }
 
 .audience-card:hover {
@@ -980,21 +1024,27 @@ body {
 }
 
 .audience-card__icon {
-	width: 64px;
-	height: 64px;
-	margin: 0 auto var(--space-lg);
+	width: 72px;
+	height: 72px;
+	margin-bottom: var(--space-lg);
 	background: var(--color-primary-light);
 	border-radius: var(--radius-lg);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 32px;
+	font-size: 36px;
 }
 
 .audience-card h3 {
-	font-size: var(--font-size-lg);
-	font-weight: 600;
+	font-size: var(--font-size-xl);
+	font-weight: 700;
 	margin-bottom: var(--space-sm);
+}
+
+@media (max-width: 640px) {
+	.audience__grid {
+		grid-template-columns: 1fr;
+	}
 }
 
 .audience-card p {
