@@ -26,13 +26,20 @@
 		var theme = saved || "dark";
 		applyTheme(theme);
 
-		var toggle = document.getElementById("themeToggle");
-		if (toggle) {
+		// Both desktop and mobile theme toggles
+		var toggles = document.querySelectorAll("#themeToggle, #mobileThemeToggle");
+		toggles.forEach(function (toggle) {
 			toggle.addEventListener("click", function () {
 				var current = document.documentElement.getAttribute("data-theme");
 				applyTheme(current === "dark" ? "light" : "dark");
 			});
-		}
+			// Samsung Internet fallback
+			toggle.addEventListener("touchend", function (e) {
+				e.preventDefault();
+				var current = document.documentElement.getAttribute("data-theme");
+				applyTheme(current === "dark" ? "light" : "dark");
+			});
+		});
 	}
 
 	function applyTheme(theme) {
@@ -184,7 +191,7 @@
 				// Open modal on first visit
 				if (!localStorage.getItem(LucozeRegion.STORAGE_KEY)) {
 					setTimeout(function () {
-						if (modal) modal.style.display = "";
+						if (modal) modal.style.display = "block";
 					}, 500);
 				}
 			} else if (userSelected && flagEl) {
@@ -196,8 +203,13 @@
 		}
 
 		// Open modal on click
-		btn.addEventListener("click", function () {
-			modal.style.display = "";
+		function openModal() {
+			modal.style.display = "block";
+		}
+		btn.addEventListener("click", openModal);
+		btn.addEventListener("touchend", function (e) {
+			e.preventDefault();
+			openModal();
 		});
 
 		// Close modal on backdrop or close button click
@@ -720,26 +732,59 @@
 		var rightBtn = document.querySelector(".trust-bar__arrow--right");
 		if (!bar || !leftBtn || !rightBtn) return;
 
-		var scrollAmount = 200;
-
-		function updateArrowVisibility() {
-			// Hide arrows if content fits without scrolling
-			var overflows = bar.scrollWidth > bar.clientWidth + 2;
-			leftBtn.style.display = overflows ? "" : "none";
-			rightBtn.style.display = overflows ? "" : "none";
+		function getVisibleItems() {
+			return Array.from(bar.querySelectorAll(".trust-bar__item")).filter(function (el) {
+				return el.style.display !== "none" && el.offsetWidth > 0;
+			});
 		}
 
-		leftBtn.addEventListener("click", function () {
-			bar.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+		function getScrollAmount() {
+			var items = getVisibleItems();
+			if (items.length === 0) return 150;
+			// Scroll by the width of one item + gap
+			return items[0].offsetWidth + 24;
+		}
+
+		function updateArrowVisibility() {
+			var overflows = bar.scrollWidth > bar.clientWidth + 2;
+			leftBtn.style.display = overflows ? "flex" : "none";
+			rightBtn.style.display = overflows ? "flex" : "none";
+		}
+
+		function addTouchAndClick(el, handler) {
+			el.addEventListener("click", handler);
+			el.addEventListener("touchend", function (e) {
+				e.preventDefault();
+				handler();
+			});
+		}
+
+		addTouchAndClick(leftBtn, function () {
+			var amount = getScrollAmount();
+			if (bar.scrollLeft <= 0) {
+				// Wrap to end
+				bar.scrollTo({ left: bar.scrollWidth, behavior: "smooth" });
+			} else {
+				bar.scrollBy({ left: -amount, behavior: "smooth" });
+			}
 		});
 
-		rightBtn.addEventListener("click", function () {
-			bar.scrollBy({ left: scrollAmount, behavior: "smooth" });
+		addTouchAndClick(rightBtn, function () {
+			var amount = getScrollAmount();
+			var maxScroll = bar.scrollWidth - bar.clientWidth;
+			if (bar.scrollLeft >= maxScroll - 2) {
+				// Wrap to start
+				bar.scrollTo({ left: 0, behavior: "smooth" });
+			} else {
+				bar.scrollBy({ left: amount, behavior: "smooth" });
+			}
 		});
 
-		// Check on load and resize
+		// Check on load, resize, and after region visibility changes
 		updateArrowVisibility();
 		window.addEventListener("resize", updateArrowVisibility);
+		// Re-check after a delay (region visibility runs async)
+		setTimeout(updateArrowVisibility, 500);
 	}
 
 	// ── Region Link Prefixer ──
