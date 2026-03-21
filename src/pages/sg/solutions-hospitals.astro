@@ -1,11 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-	served={false}
-	signupEnabled={false}
-	title="Hospital Management Software — Lucoze"
+	regionSlug="sg"
+	signupEnabled={true}
+	showPharmacy={true}
+	served={true}
+	title="Hospital Management Software — Lucoze — Southeast Asia"
 	description="Lucoze for hospitals — inpatient management, department isolation, OT scheduling, ward management, HR, payroll, and complete hospital ERP."
 	activeLink="solutions"
 	ctaPlan="hospital"

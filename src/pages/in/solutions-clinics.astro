@@ -1,11 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-	served={false}
-	signupEnabled={false}
-	title="Clinic & Polyclinic Management Software — Lucoze"
+	regionSlug="in"
+	signupEnabled={true}
+	showPharmacy={true}
+	served={true}
+	title="Clinic & Polyclinic Management Software — Lucoze — India"
 	description="Lucoze for clinics and polyclinics — appointments, patient encounters, prescriptions, billing, and practice management in one simple platform."
 	activeLink="solutions"
 	ctaPlan="clinic"

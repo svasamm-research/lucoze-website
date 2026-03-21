@@ -153,70 +153,59 @@
 		});
 	}
 
-	// ── Country Selector ──
+	// ── Country Selector (Flag Icon + Modal) ──
 
 	function initCountrySelector() {
-		var selector = document.getElementById("countrySelector");
-		if (!selector) return;
+		var btn = document.getElementById("countryBtn");
+		var modal = document.getElementById("countryModal");
+		if (!btn || !modal) return;
 
-		var detected = getRegion();
+		// Detect country and set flag
+		if (typeof LucozeRegion !== "undefined") {
+			LucozeRegion.detectCountry(function (countryCode) {
+				var flag = LucozeRegion.getFlag(countryCode);
+				var flagEl = document.getElementById("countryFlag");
+				if (flagEl) flagEl.textContent = flag;
 
-		// Set the selector to detected country
-		if (selector.value !== detected.country) {
-			for (var i = 0; i < selector.options.length; i++) {
-				if (selector.options[i].value === detected.country) {
-					selector.selectedIndex = i;
-					break;
+				// Auto-redirect if not already on the correct region page
+				var currentRegion = LucozeRegion.getCurrentRegionSlug();
+				var detectedRegion = LucozeRegion.getRegionForCountry(countryCode);
+				var hasVisited = localStorage.getItem(LucozeRegion.STORAGE_KEY);
+
+				// Only auto-redirect on first visit (no stored preference)
+				if (!hasVisited && detectedRegion && detectedRegion !== currentRegion) {
+					LucozeRegion.navigateToRegion(detectedRegion);
 				}
-			}
+			});
 		}
 
-		// Apply region on load
-		applyRegion(detected.region, detected.country);
+		// Open modal on click
+		btn.addEventListener("click", function () {
+			modal.style.display = "";
+		});
 
-		// On change
-		selector.addEventListener("change", function () {
-			var country = selector.value;
-			if (typeof LucozeRegion !== "undefined") {
-				LucozeRegion.setCountry(country);
+		// Close modal on backdrop or close button click
+		modal.querySelectorAll("[data-close-modal]").forEach(function (el) {
+			el.addEventListener("click", function () {
+				modal.style.display = "none";
+			});
+		});
+
+		// Navigate on country selection
+		modal.querySelectorAll(".country-modal__country").forEach(function (el) {
+			el.addEventListener("click", function () {
+				var regionSlug = el.getAttribute("data-region");
+				if (typeof LucozeRegion !== "undefined") {
+					LucozeRegion.navigateToRegion(regionSlug);
+				}
+			});
+		});
+
+		// Close on Escape key
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && modal.style.display !== "none") {
+				modal.style.display = "none";
 			}
-			var regionCode =
-				typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionForCountry(country) : "intl";
-			applyRegion(regionCode, country);
-
-			// Re-render prices
-			initPricing();
-
-			// Show toast notification
-			showRegionToast(country);
-
-			// Scroll to pricing section if it exists
-			var pricingSection = document.getElementById("pricing");
-			if (pricingSection) {
-				pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
-			}
-		});
-	}
-
-	function applyRegion(regionCode, country) {
-		// Show/hide compliance badges
-		document.querySelectorAll("[data-region-show]").forEach(function (el) {
-			var showFor = el.getAttribute("data-region-show").split(",");
-			el.style.display = showFor.indexOf(regionCode) >= 0 ? "" : "none";
-		});
-
-		// Show/hide India-specific content
-		document.querySelectorAll(".india-only").forEach(function (el) {
-			el.style.display = regionCode === "in" ? "" : "none";
-		});
-
-		// Update currency symbols
-		var info =
-			typeof LucozeRegion !== "undefined"
-				? LucozeRegion.getRegionInfo(regionCode)
-				: { symbol: "$" };
-		document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
-			el.textContent = info.symbol;
 		});
 	}
 

@@ -1,11 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-	served={false}
-	signupEnabled={false}
-	title="Lucoze — Healthcare Management Software for Clinics & Hospitals"
+	regionSlug="ae"
+	signupEnabled={true}
+	showPharmacy={false}
+	served={true}
+	title="Lucoze — Healthcare Management Software for Clinics & Hospitals — Middle East"
 	description="Complete healthcare management platform for clinics, hospitals, diagnostic centres, and pharmacies. Patient records, appointments, billing, inventory — all in one place. Start your free 14-day trial."
 >
 	<section class="hero">

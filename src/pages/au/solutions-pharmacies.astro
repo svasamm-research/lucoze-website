@@ -1,11 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-	served={false}
-	signupEnabled={false}
-	title="Pharmacy Management Software — Lucoze"
+	regionSlug="au"
+	signupEnabled={true}
+	showPharmacy={true}
+	served={true}
+	title="Pharmacy Management Software — Lucoze — Australia & New Zealand"
 	description="Lucoze for pharmacies — dispensing, inventory, billing, procurement, and multi-store management."
 	activeLink="solutions"
 >

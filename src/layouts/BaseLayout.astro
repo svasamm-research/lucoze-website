@@ -1,6 +1,8 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import CountrySelectorModal from "../components/CountrySelectorModal.astro";
+import NotServedBanner from "../components/NotServedBanner.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -9,6 +11,10 @@ interface Props {
 	canonical?: string;
 	activeLink?: string;
 	ctaPlan?: string;
+	regionSlug?: string;
+	signupEnabled?: boolean;
+	showPharmacy?: boolean;
+	served?: boolean;
 }
 
 const {
@@ -17,6 +23,10 @@ const {
 	canonical = Astro.url.href,
 	activeLink = "",
 	ctaPlan = "",
+	regionSlug = "",
+	signupEnabled = true,
+	showPharmacy = true,
+	served = true,
 } = Astro.props;
 
 const siteUrl = "https://lucoze.com";
@@ -74,7 +84,7 @@ const siteUrl = "https://lucoze.com";
 				applicationCategory: "HealthApplication",
 				operatingSystem: "Web",
 				description:
-					"Complete healthcare management platform for clinics, hospitals, diagnostic centres, and pharmacies. HL7 FHIR compatible, ICD-10 coding, multi-currency billing.",
+					"Complete healthcare management platform for clinics, hospitals, and diagnostic centres. HL7 FHIR compatible, ICD-10 coding, multi-currency billing.",
 				url: siteUrl,
 				offers: {
 					"@type": "AggregateOffer",
@@ -90,22 +100,47 @@ const siteUrl = "https://lucoze.com";
 				},
 				featureList:
 					"Patient Management, Appointments, Clinical Procedures, Lab & Diagnostics, Billing, Inpatient Management, HR & Payroll, HL7 FHIR, ICD-10",
-				availableCountry: ["AE", "SA", "SG", "IN", "KE", "NG", "AU", "US", "GB"],
+				availableCountry: [
+					"AE",
+					"SA",
+					"QA",
+					"BH",
+					"KW",
+					"OM",
+					"SG",
+					"MY",
+					"ID",
+					"TH",
+					"PH",
+					"AU",
+					"NZ",
+					"IN",
+				],
 			})}
 		/>
 
 		<slot name="head" />
 	</head>
-	<body>
+	<body data-region={regionSlug} data-served={String(served)}>
 		<a href="#main" class="skip-link">Skip to main content</a>
 
-		<Nav activeLink={activeLink} ctaPlan={ctaPlan} />
+		{!served && <NotServedBanner />}
+
+		<Nav
+			activeLink={activeLink}
+			ctaPlan={ctaPlan}
+			regionSlug={regionSlug}
+			signupEnabled={signupEnabled}
+			showPharmacy={showPharmacy}
+		/>
 
 		<main id="main">
 			<slot />
 		</main>
 
-		<Footer />
+		<Footer regionSlug={regionSlug} showPharmacy={showPharmacy} />
+
+		<CountrySelectorModal />
 
 		<script is:inline src="/js/region.js"></script>
 		<script is:inline src="/js/main.js"></script>

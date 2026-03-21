@@ -393,27 +393,152 @@ body {
 	background: var(--color-primary-light);
 }
 
-/* ── Country Selector ───────────────────────────────────────── */
-.nav__country-select {
-	appearance: none;
-	-webkit-appearance: none;
+/* ── Country Flag Button ────────────────────────────────────── */
+.nav__country-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: 2px solid var(--color-border);
 	background: var(--color-bg-alt);
-	color: var(--color-text);
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius-md);
-	padding: 6px 28px 6px 10px;
-	font-size: var(--font-size-xs);
-	font-family: inherit;
 	cursor: pointer;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M3 5l3 3 3-3'/%3E%3C/svg%3E");
-	background-repeat: no-repeat;
-	background-position: right 8px center;
+	transition: border-color var(--transition-fast);
+	padding: 0;
 	min-width: 80px;
 }
 
-.nav__country-select:focus {
-	outline: 2px solid var(--color-primary);
-	outline-offset: 1px;
+.nav__country-btn:hover {
+	border-color: var(--color-primary);
+}
+
+.nav__country-flag {
+	font-size: 18px;
+	line-height: 1;
+}
+
+/* ── Not Served Banner ─────────────────────────────────────── */
+.not-served-banner {
+	background: var(--color-primary-light);
+	border-bottom: 1px solid var(--color-primary);
+	padding: 10px 0;
+	text-align: center;
+	font-size: var(--font-size-sm);
+	color: var(--color-text);
+}
+
+.not-served-banner a {
+	color: var(--color-primary);
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+/* ── Country Selector Modal ────────────────────────────────── */
+.country-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+}
+
+.country-modal__backdrop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.country-modal__content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--color-bg);
+	border-radius: var(--radius-lg);
+	padding: var(--space-xl);
+	max-width: 600px;
+	width: 90%;
+	max-height: 80vh;
+	overflow-y: auto;
+	box-shadow: var(--shadow-xl);
+}
+
+.country-modal__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: var(--space-lg);
+}
+
+.country-modal__header h3 {
+	font-size: var(--font-size-lg);
+	font-weight: 700;
+}
+
+.country-modal__close {
+	background: none;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: var(--color-text-muted);
+	padding: 4px 8px;
+}
+
+.country-modal__regions {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+}
+
+.country-modal__region-name {
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	color: var(--color-text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-bottom: var(--space-sm);
+}
+
+.country-modal__countries {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-xs);
+}
+
+.country-modal__country {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	background: var(--color-bg-alt);
+	cursor: pointer;
+	font-size: var(--font-size-sm);
+	transition: all var(--transition-fast);
+	font-family: inherit;
+	color: var(--color-text);
+}
+
+.country-modal__country:hover {
+	border-color: var(--color-primary);
+	background: var(--color-primary-light);
+}
+
+.country-modal__flag {
+	font-size: 18px;
+}
+
+/* ── Greyed/Disabled CTA ───────────────────────────────────── */
+.btn--disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
 }
 
 /* ── Compliance Badges ─────────────────────────────────────── */
@@ -477,8 +602,9 @@ body {
 	.pricing__grid--4 {
 		grid-template-columns: 1fr;
 	}
-	.nav__country-select {
-		display: none;
+	.nav__country-btn {
+		width: 32px;
+		height: 32px;
 	}
 }
 
