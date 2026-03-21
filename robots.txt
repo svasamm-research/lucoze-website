@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://lucoze.com/sitemap.xml
-
-# Block admin and API paths
-Disallow: /api/
-Disallow: /admin/
