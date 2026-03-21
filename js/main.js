@@ -165,28 +165,34 @@
 		var modal = document.getElementById("countryModal");
 		if (!btn || !modal) return;
 
-		// Set flag based on current region (from URL), not IP detection
 		if (typeof LucozeRegion !== "undefined") {
 			var currentRegion = LucozeRegion.getCurrentRegionSlug();
 			var flagEl = document.getElementById("countryFlag");
+			var userSelected = localStorage.getItem("lucoze-country-selected");
 
-			// Always start with globe, then update after detection
-			if (flagEl) flagEl.textContent = "🌍";
+			// Set flag based on: user selection > current region > globe
+			if (userSelected && flagEl) {
+				// User manually selected a country — show that flag
+				flagEl.textContent = userSelected;
+			} else if (currentRegion && flagEl) {
+				// On a region page — show region flag
+				var regionFlags = { ae: "🇦🇪", sg: "🇸🇬", au: "🇦🇺", in: "🇮🇳" };
+				flagEl.textContent = regionFlags[currentRegion] || "🌍";
+			} else if (flagEl) {
+				// Default page, no selection — show globe
+				flagEl.textContent = "🌍";
 
-			// Detect country for auto-redirect (first visit only)
-			LucozeRegion.detectCountry(function (countryCode) {
-				// Update flag to detected country
-				if (flagEl) flagEl.textContent = LucozeRegion.getFlag(countryCode);
-
-				// Auto-redirect on first visit if on default page
-				if (!currentRegion) {
-					var detectedRegion = LucozeRegion.getRegionForCountry(countryCode);
-					var hasVisited = localStorage.getItem(LucozeRegion.STORAGE_KEY);
-					if (!hasVisited && detectedRegion) {
-						LucozeRegion.navigateToRegion(detectedRegion);
-					}
+				// Auto-redirect on first visit only
+				var hasVisited = localStorage.getItem(LucozeRegion.STORAGE_KEY);
+				if (!hasVisited) {
+					LucozeRegion.detectCountry(function (countryCode) {
+						var detectedRegion = LucozeRegion.getRegionForCountry(countryCode);
+						if (detectedRegion) {
+							LucozeRegion.navigateToRegion(detectedRegion);
+						}
+					});
 				}
-			});
+			}
 		}
 
 		// Open modal on click
@@ -205,11 +211,27 @@
 		modal.querySelectorAll(".country-modal__country").forEach(function (el) {
 			el.addEventListener("click", function () {
 				var regionSlug = el.getAttribute("data-region");
+				var flagEmoji = el.querySelector(".country-modal__flag");
+				// Save the selected flag so it persists and doesn't get overridden by IP
+				if (flagEmoji) {
+					localStorage.setItem("lucoze-country-selected", flagEmoji.textContent);
+				}
 				if (typeof LucozeRegion !== "undefined") {
 					LucozeRegion.navigateToRegion(regionSlug);
 				}
 			});
 		});
+
+		// "Others" button — shows globe and goes to default page
+		var othersBtn = modal.querySelector("[data-region='default']");
+		if (othersBtn) {
+			othersBtn.addEventListener("click", function () {
+				localStorage.setItem("lucoze-country-selected", "🌍");
+				if (typeof LucozeRegion !== "undefined") {
+					LucozeRegion.navigateToRegion(null);
+				}
+			});
+		}
 
 		// Close on Escape key
 		document.addEventListener("keydown", function (e) {
