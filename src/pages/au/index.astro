@@ -6,8 +6,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 	regionSlug="au"
 	signupEnabled={true}
 	served={true}
-	served={false}
-	signupEnabled={false}
 	title="Lucoze — Healthcare Management Software for Clinics & Hospitals — Australia & New Zealand"
 	description="Complete healthcare management platform for clinics and hospitals. Patient records, appointments, billing, inventory — all in one place. Start your free 14-day trial."
 >
@@ -25,20 +23,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 					Patient records, appointments, billing, inventory, and compliance &mdash; everything your
 					healthcare facility needs, in one place.
 				</p>
-				
-				<div class="hero__compliance fade-in">
-					<span class="compliance-badge" data-region-show="ae">NABIDH Ready</span>
-					<span class="compliance-badge" data-region-show="ae">NPHIES Compatible</span>
-					<span class="compliance-badge" data-region-show="in">ABDM Integrated</span>
-					<span class="compliance-badge" data-region-show="in">ABHA Compatible</span>
-					<span class="compliance-badge" data-region-show="sg">NEHR Ready</span>
-					<span class="compliance-badge" data-region-show="ae,sg,au,intl">HL7 FHIR</span>
-					<span class="compliance-badge" data-region-show="ae,sg,au,intl,in">ICD-10</span>
-				</div>
-<div class="hero__actions">
-					<a href="/signup" class="btn btn--primary btn--lg">Start Free 14-Day Trial</a>
-					<a href="#features" class="btn btn--secondary btn--lg">See Features</a>
-				</div>
 				<div class="hero__stats">
 					<div class="hero__stat">
 						<div class="hero__stat-value">4</div>
@@ -61,26 +45,41 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 						<span class="hero__dashboard-dot"></span>
 						<span class="hero__dashboard-dot"></span>
 						<span class="hero__dashboard-dot"></span>
+						<span class="hero__dashboard-title">Lucoze Dashboard</span>
 					</div>
 					<div class="hero__dashboard-body">
 						<div class="hero__dashboard-row">
 							<div class="hero__mini-card">
+								<div class="hero__mini-card-icon">📅</div>
 								<div class="hero__mini-card-label">Today's Appointments</div>
 								<div class="hero__mini-card-value hero__mini-card-value--primary">24</div>
 							</div>
 							<div class="hero__mini-card">
+								<div class="hero__mini-card-icon">👥</div>
 								<div class="hero__mini-card-label">Patients Seen</div>
 								<div class="hero__mini-card-value hero__mini-card-value--success">18</div>
 							</div>
 						</div>
 						<div class="hero__dashboard-row">
 							<div class="hero__mini-card">
-								<div class="hero__mini-card-label">Revenue Today</div>
-								<div class="hero__mini-card-value hero__mini-card-value--info">&#8377;42,500</div>
+								<div class="hero__mini-card-icon">🏥</div>
+								<div class="hero__mini-card-label">Beds Occupied</div>
+								<div class="hero__mini-card-value hero__mini-card-value--info">32/50</div>
 							</div>
 							<div class="hero__mini-card">
+								<div class="hero__mini-card-icon">🔬</div>
 								<div class="hero__mini-card-label">Lab Reports Ready</div>
 								<div class="hero__mini-card-value hero__mini-card-value--success">12</div>
+							</div>
+						</div>
+						<div class="hero__dashboard-row hero__dashboard-row--full">
+							<div class="hero__mini-card hero__mini-card--wide">
+								<div class="hero__mini-card-label">Quick Actions</div>
+								<div class="hero__quick-actions">
+									<span class="hero__quick-btn">+ New Patient</span>
+									<span class="hero__quick-btn">+ Appointment</span>
+									<span class="hero__quick-btn">+ Encounter</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -89,61 +88,67 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 		</div>
 	</section>
 
-	<!-- ═══ Trust Bar ════════════════════════════════════════════ -->
+	<!-- ═══ Trust Bar (Compliance) ════════════════════════════════ -->
 	<section class="trust-bar">
 		<div class="container trust-bar__inner">
-			<div class="trust-bar__item">
-				<svg
-					class="trust-bar__icon"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
+			<div class="trust-bar__item" data-region-show="ae">
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
 				</svg>
-				HIPAA-ready security
+				NABIDH Ready
+			</div>
+			<div class="trust-bar__item" data-region-show="ae">
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+				</svg>
+				NPHIES Compatible
+			</div>
+			<div class="trust-bar__item" data-region-show="in">
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+					<path d="M22 4L12 14.01l-3-3"></path>
+				</svg>
+				ABDM Integrated
+			</div>
+			<div class="trust-bar__item" data-region-show="in">
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+				</svg>
+				ABHA Compatible
+			</div>
+			<div class="trust-bar__item" data-region-show="sg">
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+				</svg>
+				NEHR Ready
 			</div>
 			<div class="trust-bar__item">
-				<svg
-					class="trust-bar__icon"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<rect x="3" y="11" width="18" height="11" rx="2"></rect>
 					<path d="M7 11V7a5 5 0 0110 0v4"></path>
 				</svg>
 				End-to-end encryption
 			</div>
 			<div class="trust-bar__item">
-				<svg
-					class="trust-bar__icon"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<circle cx="12" cy="12" r="10"></circle>
-					<path
-						d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
-					></path>
+					<path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path>
 				</svg>
 				Data residency in your region
 			</div>
+			<div class="trust-bar__item" data-region-show="ae,sg,au,intl">
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+					<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+				</svg>
+				HL7 FHIR
+			</div>
 			<div class="trust-bar__item">
-				<svg
-					class="trust-bar__icon"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-				>
+				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
 					<path d="M22 4L12 14.01l-3-3"></path>
 				</svg>
-				ABDM / ABHA compliant
+				ICD-10 Coding
 			</div>
 		</div>
 	</section>

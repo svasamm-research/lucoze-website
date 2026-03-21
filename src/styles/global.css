@@ -600,9 +600,13 @@ body {
 /* ── 4-column Pricing Grid ─────────────────────────────────── */
 .pricing__grid--4 {
 	grid-template-columns: repeat(4, 1fr);
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	gap: var(--space-md);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
 	.pricing__grid--4 {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -834,6 +838,43 @@ body {
 
 .hero__mini-card-value--info {
 	color: var(--color-info);
+}
+
+.hero__dashboard-title {
+	font-size: var(--font-size-xs);
+	color: var(--color-text-muted);
+	margin-left: auto;
+	font-weight: 500;
+}
+
+.hero__mini-card-icon {
+	font-size: 20px;
+	margin-bottom: 4px;
+}
+
+.hero__mini-card--wide {
+	flex: 1;
+}
+
+.hero__quick-actions {
+	display: flex;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.hero__quick-btn {
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: var(--font-size-xs);
+	font-weight: 500;
+	background: var(--color-primary-light);
+	color: var(--color-primary);
+	border-radius: var(--radius-sm);
+	cursor: pointer;
+}
+
+.hero__dashboard-row--full {
+	display: flex;
 }
 
 /* ── Trust Bar ──────────────────────────────────────────────────── */
