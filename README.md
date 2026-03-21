@@ -1,29 +1,79 @@
 # Lucoze Website
 
-Marketing website for the Lucoze healthcare platform at **lucoze.com**. Static HTML/CSS/JS site — no build step, no framework.
+Marketing website for the Lucoze healthcare platform at **lucoze.com**. Built with [Astro](https://astro.build/) for component reuse, static site generation, and optimal performance.
+
+## Architecture
+
+```
+src/
+├── layouts/
+│   └── BaseLayout.astro       # Shared head, SEO, nav, footer, scripts
+├── components/
+│   ├── Nav.astro               # Navigation with country selector
+│   ├── Footer.astro            # Site footer
+│   ├── PricingCard.astro       # Reusable pricing card (5-tier pricing)
+│   └── ComplianceBadges.astro  # Region-specific compliance badges
+├── pages/                      # One .astro file per page (10 total)
+├── styles/
+│   └── global.css              # All styles (light/dark theme)
+└── scripts/
+    ├── region.js               # Country/region detection & mapping
+    └── main.js                 # UI interactions (pricing, forms, theme)
+
+public/                          # Static assets (copied to dist/ as-is)
+├── images/
+├── js/                          # JS served as static files
+│   ├── region.js
+│   └── main.js
+├── robots.txt
+└── sitemap.xml
+```
 
 ## Pages
 
-| Page | File | Purpose |
+| Page | Path | Purpose |
 |------|------|---------|
-| Home | `index.html` | Hero, features, pricing plans |
-| Solutions — Clinics | `solutions-clinics.html` | Clinic-specific features |
-| Solutions — Hospitals | `solutions-hospitals.html` | Hospital-specific features |
-| Solutions — Diagnostics | `solutions-diagnostics.html` | Pathology/lab features |
-| Solutions — Pharmacies | `solutions-pharmacies.html` | Pharmacy features |
-| Signup | `signup.html` | Free trial signup (Clinic & Hospital plans only) |
-| Contact | `contact.html` | Contact form (Pathology, Pharmacy, and general enquiries) |
-| About | `about.html` | Company information |
-| Privacy | `privacy.html` | Privacy policy |
-| Terms | `terms.html` | Terms of service |
+| Home | `/` | Hero, features, pricing (4 plans), compliance badges |
+| Solutions — Clinics | `/solutions-clinics` | Clinic-specific features and plans |
+| Solutions — Hospitals | `/solutions-hospitals` | Hospital-specific features |
+| Solutions — Diagnostics | `/solutions-diagnostics` | Pathology/lab features (Contact Us) |
+| Solutions — Pharmacies | `/solutions-pharmacies` | Pharmacy features (Contact Us) |
+| Signup | `/signup` | Free trial signup (Clinic & Hospital plans only) |
+| Contact | `/contact` | Contact form |
+| About | `/about` | Company information |
+| Privacy | `/privacy` | Privacy policy |
+| Terms | `/terms` | Terms of service |
+
+## International Pricing
+
+5 regional pricing tiers, auto-detected by timezone:
+
+| Region | Currency | Detection | Example countries |
+|--------|----------|-----------|-------------------|
+| India | INR (₹) | Asia/Kolkata | India |
+| Middle East | USD ($) | Asia/Dubai, Asia/Riyadh | UAE, Saudi Arabia, Qatar |
+| Southeast Asia | USD ($) | Asia/Singapore, Asia/Jakarta | Singapore, Malaysia, Indonesia |
+| Africa | USD ($) | Africa/Lagos, Africa/Nairobi | Nigeria, Kenya, South Africa |
+| International | USD ($) | Default | US, UK, EU, Australia |
+
+Country selector in the nav allows manual override. Selection persists in localStorage.
+
+### Compliance Badges
+
+Shown per region:
+- **Middle East**: NABIDH Ready, NPHIES Compatible
+- **India**: ABDM Integrated, ABHA Compatible
+- **SEA**: NEHR Ready
+- **All**: HL7 FHIR, ICD-10
 
 ## Tech Stack
 
-- Plain HTML, CSS, JavaScript (no framework, no build step)
-- Nginx (Docker) for serving in production
-- Jest + jsdom for unit tests
-- Prettier for formatting
-- Husky + commitlint for git hooks
+- **Astro** — static site generator with component architecture
+- **Vanilla JS** — no frontend framework (region.js + main.js)
+- **Nginx** — Docker production serving (multi-stage build)
+- **Jest + jsdom** — 53 unit tests
+- **Prettier** — formatting (with Astro plugin)
+- **Husky + commitlint** — git hooks
 
 ---
 
@@ -40,29 +90,25 @@ Marketing website for the Lucoze healthcare platform at **lucoze.com**. Static H
 ```bash
 git clone git@github.com:svasamm-research/lucoze-website.git
 cd lucoze-website
-npm install        # installs dev dependencies and sets up Husky git hooks
+npm install
 ```
 
-### Running the site locally
-
-No build step needed — open any HTML file directly in your browser, or use a local server:
+### Running locally
 
 ```bash
-npx serve .        # serves on http://localhost:3000
-# or
-python3 -m http.server 8080
+npm run dev          # Astro dev server (http://localhost:4321)
+npm run build        # Build to dist/
+npm run preview      # Preview built site
 ```
 
-> **Note:** The signup and contact forms call the lucoze_admin API. On localhost they automatically point to `http://lucoze.admin.localhost:8000`. Set up the lucoze_admin bench locally to test the full flow.
+> **Note:** The signup and contact forms call the lucoze_admin API. On localhost they automatically point to `http://lucoze.admin.localhost:8000`.
 
 ### Running tests
 
 ```bash
-npm test                # run all Jest tests
-npm run test:coverage   # run with coverage report (50% threshold enforced)
+npm test                # 53 Jest tests
+npm run test:coverage   # with coverage report
 ```
-
-Tests live in `tests/main.test.js` and cover the JavaScript utility functions in `js/main.js`.
 
 ### Formatting
 
@@ -71,113 +117,40 @@ npm run lint     # check formatting (Prettier)
 npm run format   # auto-fix formatting
 ```
 
-Prettier checks `**/*.{js,css,html,json}`. Run `format` before committing if you get lint failures.
-
 ### Docker build (local)
 
 ```bash
-# Build
 docker build -t lucoze-website:local .
-
-# Run and verify
 docker run --rm -p 8080:80 lucoze-website:local
 # Open http://localhost:8080
 ```
 
 ---
 
-## Git Hooks (Husky)
-
-| Hook | Runs on | What it does |
-|------|---------|-------------|
-| `pre-commit` | Every commit | Blocks commits to `main`/`develop`; runs Prettier check |
-| `commit-msg` | Every commit | Validates Conventional Commits format |
-| `pre-push` | Every push | Runs Jest test suite + Docker build verification |
-
-The pre-push Docker build check catches issues (e.g. referencing files not tracked in git) before they reach CI.
-
----
-
 ## Branching Strategy
 
 ```
-main      ← production-ready. Only merged from uat.
+main      ← production (lucoze.com). Only merged from uat.
   ↑
-  │  merge + Release tagged vX.Y.Z        → Production deploy
-  │
-uat       ← staging. Cherry-picked or merged from develop.
+uat       ← staging (uat-website.lucoze.com). Merged from develop.
   ↑
-  │  Release tagged uat-vX.Y.Z            → UAT deploy
-  │
-develop   ← integration branch. All feature PRs merge here.
+develop   ← integration. All feature PRs merge here.
   ↑
 feature/my-change
 ```
 
-**Deployments are triggered by GitHub Releases — never by branch pushes.**
-
-### Day-to-day workflow
-
-```bash
-# 1. Branch from develop
-git checkout develop && git pull
-git checkout -b feat/my-change
-
-# 2. Make changes, commit (Conventional Commits format required)
-git commit -m "feat: add hospital pricing card"
-
-# 3. Push and open PR to develop
-git push origin feat/my-change
-# CI: Prettier + Jest run automatically
-
-# 4. After PR is merged to develop, promote to UAT
-git checkout uat && git merge origin/develop
-git push origin uat
-
-# 5. Create a GitHub Release on uat branch, tag uat-v1.2.0
-#    → CI builds Docker image → deploys to uat-website.lucoze.com
-
-# 6. After UAT testing, merge to main and release
-git checkout main && git merge origin/uat
-git push origin main
-# Create Release on main, tag v1.2.0
-# → CI builds Docker image → deploys to lucoze.com (requires approval)
-```
+Deployments are triggered by GitHub Releases — never by branch pushes.
 
 ---
 
 ## Deployment
 
-The website is containerised as a static Nginx image and deployed via Dokploy on the Lucoze infrastructure.
-
 ### CI/CD (GitHub Actions)
 
-Workflow: `.github/workflows/build-publish.yml`
-
-| Release tag | Docker tags pushed | Environment |
-|-------------|-------------------|-------------|
-| `uat-vX.Y.Z` | `uat-vX.Y.Z` + `uat-latest` | UAT (`uat-website.lucoze.com`) |
-| `vX.Y.Z` | `vX.Y.Z` + `latest` | Production (`lucoze.com`) — requires approval |
-
-### Generating the Dokploy compose YAML (one-time setup)
-
-```bash
-# Copy the env template and fill in your infrastructure values
-cp deploy/lucoze-website.env.example /tmp/lucoze-website.env
-# Edit /tmp/lucoze-website.env — set AGENT_PRIVATE_IP and BENCH_PORT
-
-# Generate the final compose YAML
-docker compose \
-  --env-file /tmp/lucoze-website.env \
-  -f deploy/lucoze-website.yaml \
-  config > /tmp/lucoze-website-final.yaml
-
-# Upload /tmp/lucoze-website-final.yaml to the Dokploy project via the UI
-```
-
-Use `deploy/lucoze-website-uat.yaml` + `deploy/lucoze-website-uat.env.example` for the UAT compose.
-
-> **Never commit the filled-in env files** — they contain infrastructure details. Only the `.env.example` templates are committed.
+| Release tag | Docker tags | Environment |
+|-------------|------------|-------------|
+| `uat-vX.Y.Z` | `uat-vX.Y.Z` + `uat-latest` | UAT |
+| `vX.Y.Z` | `vX.Y.Z` + `latest` | Production (approval gate) |
 
 ### Required GitHub secrets
 
@@ -185,10 +158,10 @@ Use `deploy/lucoze-website-uat.yaml` + `deploy/lucoze-website-uat.env.example` f
 |--------|---------|
 | `DOCKERHUB_USERNAME` | Docker Hub login |
 | `DOCKERHUB_TOKEN` | Docker Hub read+write token |
-| `DOKPLOY_LUCOZE_WEBSITE_WEBHOOK` | Dokploy redeploy webhook — production |
-| `DOKPLOY_LUCOZE_WEBSITE_UAT_WEBHOOK` | Dokploy redeploy webhook — UAT |
+| `DOKPLOY_LUCOZE_WEBSITE_WEBHOOK` | Dokploy webhook — production |
+| `DOKPLOY_LUCOZE_WEBSITE_UAT_WEBHOOK` | Dokploy webhook — UAT |
 
-GitHub Variable: `DOKPLOY_DEPLOY_ENABLED=true` to enable auto-deploy after build.
+Variable: `DOKPLOY_DEPLOY_ENABLED=true`
 
 ---
 
@@ -196,6 +169,7 @@ GitHub Variable: `DOKPLOY_DEPLOY_ENABLED=true` to enable auto-deploy after build
 
 | Repo | Purpose |
 |------|---------|
-| [lucoze](https://github.com/svasamm-research/lucoze) | Tenant app — Frappe healthcare customizations |
-| [lucoze_admin](https://github.com/svasamm-research/lucoze_admin) | SaaS admin portal — tenant management, billing, provisioning |
-| [frappe_docker](https://github.com/svasamm-research/frappe_docker) | Docker infrastructure for Frappe app deployments |
+| [lucoze](https://github.com/svasamm-research/lucoze) | Tenant app — healthcare management |
+| [lucoze-admin](https://github.com/svasamm-research/lucoze-admin) | SaaS admin portal — provisioning, billing |
+| [lucoze-agent](https://github.com/svasamm-research/lucoze-agent) | Provisioning agent and manager route API |
+| [frappe_docker](https://github.com/svasamm-research/frappe_docker) | Docker infrastructure for Frappe apps |
