@@ -13,8 +13,8 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 
-const REGION_JS = fs.readFileSync(path.resolve(__dirname, "../js/region.js"), "utf8");
-const MAIN_JS = fs.readFileSync(path.resolve(__dirname, "../js/main.js"), "utf8");
+const REGION_JS = fs.readFileSync(path.resolve(__dirname, "../public/js/region.js"), "utf8");
+const MAIN_JS = fs.readFileSync(path.resolve(__dirname, "../public/js/main.js"), "utf8");
 
 /**
  * Create a fresh JSDOM environment with the given body HTML.

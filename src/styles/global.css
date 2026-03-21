@@ -304,13 +304,18 @@ body {
 }
 
 .nav__theme-toggle {
-	width: 40px;
-	height: 40px;
+	width: 44px;
+	height: 44px;
+	border: none;
+	background: none;
 	border-radius: var(--radius-full);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: var(--color-text-muted);
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: manipulation;
 	transition:
 		background var(--transition-fast),
 		color var(--transition-fast);
@@ -412,13 +417,15 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 36px;
-	height: 36px;
-	min-width: 36px;
+	width: 44px;
+	height: 44px;
+	min-width: 44px;
 	border-radius: 50%;
 	border: 2px solid var(--color-border);
 	background: var(--color-bg-alt);
 	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: manipulation;
 	transition: border-color var(--transition-fast);
 	padding: 0;
 	overflow: hidden;
@@ -669,7 +676,7 @@ body {
 		gap: var(--space-md);
 	}
 	.nav__country-btn {
-		width: 32px;
+		width: 44px;
 		height: 32px;
 	}
 }
@@ -2069,8 +2076,32 @@ select.form-control {
 		display: none;
 	}
 
+	.nav__theme-toggle {
+		display: none;
+	}
+
 	.nav__mobile-toggle {
 		display: flex;
+		flex-shrink: 0;
+	}
+
+	.nav__actions {
+		gap: var(--space-xs);
+	}
+
+	.nav__actions .btn {
+		font-size: var(--font-size-xs);
+		padding: 6px 12px;
+	}
+
+	.nav__country-btn {
+		width: 36px;
+		height: 36px;
+		min-width: 36px;
+	}
+
+	.nav__country-flag {
+		font-size: 16px;
 	}
 
 	.features__grid {
