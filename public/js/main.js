@@ -4,13 +4,18 @@
 	// ── Region Detection (uses LucozeRegion from region.js) ──
 
 	function getRegion() {
-		if (typeof LucozeRegion === "undefined") {
-			return { region: "intl", currency: "usd" };
+		// Read region from URL path (set by Astro routing)
+		if (typeof LucozeRegion !== "undefined") {
+			var slug = LucozeRegion.getCurrentRegionSlug();
+			if (slug) {
+				var info = LucozeRegion.getRegionInfo
+					? LucozeRegion.getRegionInfo(slug)
+					: { currency: "usd" };
+				return { region: slug, currency: info ? info.currency : "usd" };
+			}
 		}
-		var country = LucozeRegion.detectCountry();
-		var regionCode = LucozeRegion.getRegionForCountry(country);
-		var info = LucozeRegion.getRegionInfo(regionCode);
-		return { region: regionCode, currency: info.currency, country: country };
+		// Default (unsupported region or no LucozeRegion)
+		return { region: "intl", currency: "usd" };
 	}
 
 	// ── Theme Toggle ──
@@ -153,70 +158,108 @@
 		});
 	}
 
-	// ── Country Selector ──
+	// ── Country Selector (Flag Icon + Modal) ──
 
 	function initCountrySelector() {
-		var selector = document.getElementById("countrySelector");
-		if (!selector) return;
+		var btn = document.getElementById("countryBtn");
+		var modal = document.getElementById("countryModal");
+		if (!btn || !modal) return;
 
-		var detected = getRegion();
+		if (typeof LucozeRegion !== "undefined") {
+			var currentRegion = LucozeRegion.getCurrentRegionSlug();
+			var flagEl = document.getElementById("countryFlag");
+			var userSelected = localStorage.getItem("lucoze-country-selected");
 
-		// Set the selector to detected country
-		if (selector.value !== detected.country) {
-			for (var i = 0; i < selector.options.length; i++) {
-				if (selector.options[i].value === detected.country) {
-					selector.selectedIndex = i;
-					break;
+			if (userSelected && flagEl) {
+				// User previously selected a country — show that flag
+				flagEl.textContent = userSelected;
+			} else if (currentRegion && flagEl) {
+				// On a region page via direct URL — show region flag
+				var regionFlags = { ae: "🇦🇪", sg: "🇸🇬", au: "🇦🇺", in: "🇮🇳" };
+				flagEl.textContent = regionFlags[currentRegion] || "🌍";
+			} else if (flagEl) {
+				// No country selected yet — show globe and open modal
+				flagEl.textContent = "🌍";
+
+				// Open modal on first visit so user picks their country
+				if (!localStorage.getItem(LucozeRegion.STORAGE_KEY)) {
+					setTimeout(function () {
+						if (modal) modal.style.display = "";
+					}, 500);
 				}
 			}
 		}
 
-		// Apply region on load
-		applyRegion(detected.region, detected.country);
+		// Open modal on click
+		btn.addEventListener("click", function () {
+			modal.style.display = "";
+		});
 
-		// On change
-		selector.addEventListener("change", function () {
-			var country = selector.value;
-			if (typeof LucozeRegion !== "undefined") {
-				LucozeRegion.setCountry(country);
-			}
-			var regionCode =
-				typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionForCountry(country) : "intl";
-			applyRegion(regionCode, country);
+		// Close modal on backdrop or close button click
+		modal.querySelectorAll("[data-close-modal]").forEach(function (el) {
+			el.addEventListener("click", function () {
+				modal.style.display = "none";
+			});
+		});
 
-			// Re-render prices
-			initPricing();
+		// Navigate on country selection
+		modal.querySelectorAll(".country-modal__country").forEach(function (el) {
+			el.addEventListener("click", function () {
+				var regionSlug = el.getAttribute("data-region");
+				var flagEmoji = el.querySelector(".country-modal__flag");
+				// Save the selected flag so it persists and doesn't get overridden by IP
+				if (flagEmoji) {
+					localStorage.setItem("lucoze-country-selected", flagEmoji.textContent);
+				}
+				if (typeof LucozeRegion !== "undefined") {
+					LucozeRegion.navigateToRegion(regionSlug);
+				}
+			});
+		});
 
-			// Show toast notification
-			showRegionToast(country);
+		// "Others" button — shows globe and goes to default page
+		var othersBtn = modal.querySelector("[data-region='default']");
+		if (othersBtn) {
+			othersBtn.addEventListener("click", function () {
+				localStorage.setItem("lucoze-country-selected", "🌍");
+				if (typeof LucozeRegion !== "undefined") {
+					LucozeRegion.navigateToRegion(null);
+				}
+			});
+		}
 
-			// Scroll to pricing section if it exists
-			var pricingSection = document.getElementById("pricing");
-			if (pricingSection) {
-				pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+		// Close on Escape key
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && modal.style.display !== "none") {
+				modal.style.display = "none";
 			}
 		});
 	}
 
-	function applyRegion(regionCode, country) {
-		// Show/hide compliance badges
-		document.querySelectorAll("[data-region-show]").forEach(function (el) {
-			var showFor = el.getAttribute("data-region-show").split(",");
-			el.style.display = showFor.indexOf(regionCode) >= 0 ? "" : "none";
-		});
+	// ── Price Update (works on any page with pricing elements) ──
 
-		// Show/hide India-specific content
-		document.querySelectorAll(".india-only").forEach(function (el) {
-			el.style.display = regionCode === "in" ? "" : "none";
+	function updatePricesForRegion(pricingKey, isYearly) {
+		var period = isYearly ? "yearly" : "monthly";
+
+		document.querySelectorAll(".pricing-card__amount").forEach(function (el) {
+			var price = el.getAttribute("data-" + period + "-" + pricingKey);
+			if (!price) {
+				price = el.getAttribute("data-" + period + "-intl");
+			}
+			if (price) {
+				el.textContent = price;
+			}
 		});
 
 		// Update currency symbols
-		var info =
-			typeof LucozeRegion !== "undefined"
-				? LucozeRegion.getRegionInfo(regionCode)
-				: { symbol: "$" };
+		var info = typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionInfo(pricingKey) : null;
+		var symbol = info ? info.symbol : "$";
 		document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
-			el.textContent = info.symbol;
+			el.textContent = symbol;
+		});
+
+		document.querySelectorAll(".pricing-card__annual").forEach(function (el) {
+			el.textContent = isYearly ? "Billed annually" : "Billed monthly";
 		});
 	}
 
@@ -224,48 +267,48 @@
 
 	function initPricing() {
 		var detected = getRegion();
-		var pricingKey = detected.region; // in, me, sea, af, intl
+		var pricingKey = detected.region; // in, ae, sg, au, intl
 		var isYearly = false;
 
-		var billingToggle = document.getElementById("billingToggle");
-		var categoryTabs = document.querySelectorAll(".pricing__tab");
-		var pricingPanels = document.querySelectorAll('[id^="pricing-"]');
+		// Always update prices on any page that has pricing elements
+		var hasPricing = document.querySelectorAll(".pricing-card__amount").length > 0;
+		if (hasPricing) {
+			updatePricesForRegion(pricingKey, false);
+		}
 
-		if (!billingToggle && !categoryTabs.length) return;
+		var billingToggle = document.getElementById("billingToggle");
+		var clinicBtn = document.getElementById("clinicPlanBtn");
+		var hospitalBtn = document.getElementById("hospitalPlanBtn");
+
+		if (!billingToggle) return;
+
+		// Category toggle (Clinic Plans / Hospital Plans)
+		if (clinicBtn && hospitalBtn) {
+			clinicBtn.addEventListener("click", function () {
+				clinicBtn.classList.add("active");
+				hospitalBtn.classList.remove("active");
+				var cp = document.getElementById("pricing-clinic");
+				var hp = document.getElementById("pricing-hospital");
+				if (cp) cp.style.display = "";
+				if (hp) hp.style.display = "none";
+			});
+			hospitalBtn.addEventListener("click", function () {
+				hospitalBtn.classList.add("active");
+				clinicBtn.classList.remove("active");
+				var cp = document.getElementById("pricing-clinic");
+				var hp = document.getElementById("pricing-hospital");
+				if (cp) cp.style.display = "none";
+				if (hp) hp.style.display = "";
+			});
+		}
 
 		// Check if toggle is already in yearly state
-		if (billingToggle && billingToggle.classList.contains("active")) {
+		if (billingToggle.classList.contains("active")) {
 			isYearly = true;
 		}
 
 		function updatePrices() {
-			var period = isYearly ? "yearly" : "monthly";
-
-			document.querySelectorAll(".pricing-card__amount").forEach(function (el) {
-				// Try region-specific price first, fallback to currency-based
-				var price = el.getAttribute("data-" + period + "-" + pricingKey);
-				if (!price) {
-					// Fallback for pages that still use old format
-					var fallbackCurrency = pricingKey === "in" ? "inr" : "usd";
-					price = el.getAttribute("data-" + period + "-" + fallbackCurrency);
-				}
-				if (price) {
-					el.textContent = price;
-				}
-			});
-
-			// Update currency symbols
-			var info =
-				typeof LucozeRegion !== "undefined"
-					? LucozeRegion.getRegionInfo(pricingKey)
-					: { symbol: "$" };
-			document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
-				el.textContent = info.symbol;
-			});
-
-			document.querySelectorAll(".pricing-card__annual").forEach(function (el) {
-				el.textContent = isYearly ? "Billed annually" : "Billed monthly";
-			});
+			updatePricesForRegion(pricingKey, isYearly);
 
 			// Update toggle label active states
 			document.querySelectorAll(".pricing__toggle-label").forEach(function (label) {
@@ -289,21 +332,6 @@
 				updatePrices();
 			});
 		}
-
-		// Category tabs
-		categoryTabs.forEach(function (tab) {
-			tab.addEventListener("click", function () {
-				categoryTabs.forEach(function (t) {
-					t.classList.remove("active");
-				});
-				tab.classList.add("active");
-
-				var category = tab.getAttribute("data-category");
-				pricingPanels.forEach(function (panel) {
-					panel.style.display = panel.id === "pricing-" + category ? "" : "none";
-				});
-			});
-		});
 
 		// Set initial prices
 		updatePrices();
@@ -392,11 +420,7 @@
 			}
 
 			countrySelect.addEventListener("change", function () {
-				var regionCode =
-					typeof LucozeRegion !== "undefined"
-						? LucozeRegion.getRegionForCountry(countrySelect.value)
-						: "intl";
-				var cur = regionCode === "in" ? "INR" : "USD";
+				var cur = countrySelect.value === "India" ? "INR" : "USD";
 				form.querySelectorAll(".currency-label").forEach(function (el) {
 					el.textContent = cur;
 				});
@@ -664,6 +688,66 @@
 		});
 	}
 
+	// ── Region Visibility ──
+
+	function initRegionVisibility() {
+		var currentRegion =
+			typeof LucozeRegion !== "undefined" ? LucozeRegion.getCurrentRegionSlug() : null;
+		var region = currentRegion || "intl";
+
+		document.querySelectorAll("[data-region-show]").forEach(function (el) {
+			var showFor = el.getAttribute("data-region-show").split(",");
+			el.style.display = showFor.indexOf(region) >= 0 ? "" : "none";
+		});
+	}
+
+	// ── Trust Bar Scroll ──
+
+	function initTrustBarScroll() {
+		var bar = document.querySelector(".trust-bar__inner");
+		var leftBtn = document.querySelector(".trust-bar__arrow--left");
+		var rightBtn = document.querySelector(".trust-bar__arrow--right");
+		if (!bar || !leftBtn || !rightBtn) return;
+
+		var scrollAmount = 200;
+
+		function updateArrowVisibility() {
+			// Hide arrows if content fits without scrolling
+			var overflows = bar.scrollWidth > bar.clientWidth + 2;
+			leftBtn.style.display = overflows ? "" : "none";
+			rightBtn.style.display = overflows ? "" : "none";
+		}
+
+		leftBtn.addEventListener("click", function () {
+			bar.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+		});
+
+		rightBtn.addEventListener("click", function () {
+			bar.scrollBy({ left: scrollAmount, behavior: "smooth" });
+		});
+
+		// Check on load and resize
+		updateArrowVisibility();
+		window.addEventListener("resize", updateArrowVisibility);
+	}
+
+	// ── Region Link Prefixer ──
+
+	function initRegionLinks() {
+		// Add region prefix to internal links that don't already have one
+		if (typeof LucozeRegion === "undefined") return;
+		var currentRegion = LucozeRegion.getCurrentRegionSlug();
+		if (!currentRegion) return;
+
+		var prefix = "/" + currentRegion;
+		document.querySelectorAll('a[href^="/"]').forEach(function (link) {
+			var href = link.getAttribute("href");
+			// Skip if already prefixed, external, or hash-only
+			if (href.startsWith(prefix) || href.startsWith("/js/") || href.startsWith("/images/")) return;
+			link.setAttribute("href", prefix + href);
+		});
+	}
+
 	// ── Init ──
 
 	document.addEventListener("DOMContentLoaded", function () {
@@ -673,6 +757,9 @@
 		initScrollAnimations();
 		initFAQ();
 		initSmoothScroll();
+		initRegionVisibility();
+		initRegionLinks();
+		initTrustBarScroll();
 		initCountrySelector();
 		initPricing();
 		initSignup();

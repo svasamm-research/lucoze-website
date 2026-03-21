@@ -1,0 +1,52 @@
+---
+// Country selector modal — triggered by clicking the flag icon in nav.
+// Renders all served regions with their country flags.
+// Client-side JS handles open/close and navigation.
+import { getServedRegions } from "../data/regions.js";
+
+const regions = getServedRegions();
+---
+
+<div class="country-modal" id="countryModal" style="display: none">
+	<div class="country-modal__backdrop" data-close-modal></div>
+	<div class="country-modal__content">
+		<div class="country-modal__header">
+			<h3>Select your region</h3>
+			<button class="country-modal__close" data-close-modal aria-label="Close">&times;</button>
+		</div>
+		<div class="country-modal__regions">
+			{
+				regions.map((region) => (
+					<div class="country-modal__region">
+						<h4 class="country-modal__region-name">{region.name}</h4>
+						<div class="country-modal__countries">
+							{region.countries.map((country) => (
+								<button
+									class="country-modal__country"
+									data-region={region.slug}
+									data-country={country.code}
+								>
+									<span class="country-modal__flag">{country.flag}</span>
+									<span class="country-modal__country-name">{country.name}</span>
+								</button>
+							))}
+						</div>
+					</div>
+				))
+			}
+			<!-- Others -->
+			<div class="country-modal__region">
+				<h4 class="country-modal__region-name">Other Regions</h4>
+				<div class="country-modal__countries">
+					<button
+						class="country-modal__country"
+						data-region="default"
+					>
+						<span class="country-modal__flag">🌍</span>
+						<span class="country-modal__country-name">Other Countries</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

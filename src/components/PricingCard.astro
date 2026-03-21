@@ -6,9 +6,9 @@ interface Props {
 	featured?: boolean;
 	prices: {
 		in: { monthly: string; yearly: string };
-		me: { monthly: string; yearly: string };
-		sea: { monthly: string; yearly: string };
-		af: { monthly: string; yearly: string };
+		ae: { monthly: string; yearly: string };
+		sg: { monthly: string; yearly: string };
+		au: { monthly: string; yearly: string };
 		intl: { monthly: string; yearly: string };
 	};
 	features: string[];
@@ -44,14 +44,14 @@ const delayClass = delay > 0 ? `fade-in-delay-${delay}` : "";
 			class="pricing-card__amount"
 			data-monthly-in={prices.in.monthly}
 			data-yearly-in={prices.in.yearly}
-			data-monthly-me={prices.me.monthly}
-			data-yearly-me={prices.me.yearly}
-			data-monthly-sea={prices.sea.monthly}
-			data-yearly-sea={prices.sea.yearly}
-			data-monthly-af={prices.af.monthly}
-			data-yearly-af={prices.af.yearly}
+			data-monthly-ae={prices.ae.monthly}
+			data-yearly-ae={prices.ae.yearly}
+			data-monthly-sg={prices.sg.monthly}
+			data-yearly-sg={prices.sg.yearly}
+			data-monthly-au={prices.au.monthly}
+			data-yearly-au={prices.au.yearly}
 			data-monthly-intl={prices.intl.monthly}
-			data-yearly-intl={prices.intl.yearly}>{prices.me.monthly}</span
+			data-yearly-intl={prices.intl.yearly}>{prices.ae.monthly}</span
 		>
 	</div>
 	<div class="pricing-card__period">/month</div>

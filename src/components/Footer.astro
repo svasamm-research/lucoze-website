@@ -1,36 +1,40 @@
 ---
-// Footer component — shared across all pages
+interface Props {
+	regionSlug?: string;
+}
+
+const { regionSlug = "" } = Astro.props;
+const prefix = regionSlug ? `/${regionSlug}` : "";
 ---
 
 <footer class="footer">
 	<div class="container">
 		<div class="footer__grid">
 			<div class="footer__brand">
-				<div class="footer__logo"><img src="/images/logo.svg" alt="Lucoze" height="28" /></div>
+				<div class="footer__logo">
+					<img src="/images/logo.svg" alt="Lucoze" height="28" />
+				</div>
 				<p class="footer__desc">
-					Complete healthcare management platform for clinics, hospitals, diagnostic centres, and
-					pharmacies.
+					Complete healthcare management platform for clinics and hospitals.
 				</p>
 			</div>
 			<div class="footer__col">
 				<h4>Product</h4>
-				<a href="/#features">Features</a>
-				<a href="/#pricing">Pricing</a>
-				<a href="/signup">Free Trial</a>
+				<a href={`${prefix}/#features`}>Features</a>
+				<a href={`${prefix}/#pricing`}>Pricing</a>
+				<a href={`${prefix}/signup`}>Free Trial</a>
 			</div>
 			<div class="footer__col">
 				<h4>Company</h4>
-				<a href="/about">About Us</a>
-				<a href="/contact">Contact</a>
-				<a href="/privacy">Privacy Policy</a>
-				<a href="/terms">Terms of Service</a>
+				<a href={`${prefix}/about`}>About Us</a>
+				<a href={`${prefix}/contact`}>Contact</a>
+				<a href={`${prefix}/privacy`}>Privacy Policy</a>
+				<a href={`${prefix}/terms`}>Terms of Service</a>
 			</div>
 			<div class="footer__col">
 				<h4>Solutions</h4>
-				<a href="/solutions-clinics">For Clinics</a>
-				<a href="/solutions-hospitals">For Hospitals</a>
-				<a href="/solutions-diagnostics">For Diagnostics</a>
-				<a href="/solutions-pharmacies">For Pharmacies</a>
+				<a href={`${prefix}/solutions-clinics`}>For Clinics</a>
+				<a href={`${prefix}/solutions-hospitals`}>For Hospitals</a>
 			</div>
 		</div>
 		<div class="footer__bottom">
