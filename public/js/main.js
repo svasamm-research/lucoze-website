@@ -23,7 +23,7 @@
 	function initTheme() {
 		var saved = localStorage.getItem("lucoze-theme");
 		var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		var theme = saved || (prefersDark ? "dark" : "light");
+		var theme = saved || "dark";
 		applyTheme(theme);
 
 		var toggle = document.getElementById("themeToggle");
@@ -425,6 +425,12 @@
 			}
 
 			countrySelect.addEventListener("change", function () {
+				// Show/hide "Other Country" text field
+				var otherGroup = document.getElementById("otherCountryGroup");
+				if (otherGroup) {
+					otherGroup.style.display = countrySelect.value === "Other" ? "" : "none";
+				}
+
 				var cur = countrySelect.value === "India" ? "INR" : "USD";
 				form.querySelectorAll(".currency-label").forEach(function (el) {
 					el.textContent = cur;
