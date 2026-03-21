@@ -147,8 +147,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 							class="form-control"
 							id="contactPhone"
 							name="phone"
-							placeholder="+91 98765 43210"
+							placeholder="+1 234 567 8900"
 						/>
+					</div>
+
+					<div class="form-group">
+						<label for="contactCountry">Country</label>
+						<select class="form-control" id="contactCountry" name="contact_country">
+							<option value="" disabled selected>Select your country</option>
+							<optgroup label="Middle East">
+								<option value="United Arab Emirates">🇦🇪 United Arab Emirates</option>
+								<option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
+								<option value="Qatar">🇶🇦 Qatar</option>
+								<option value="Bahrain">🇧🇭 Bahrain</option>
+								<option value="Kuwait">🇰🇼 Kuwait</option>
+								<option value="Oman">🇴🇲 Oman</option>
+							</optgroup>
+							<optgroup label="Southeast Asia">
+								<option value="Singapore">🇸🇬 Singapore</option>
+								<option value="Malaysia">🇲🇾 Malaysia</option>
+								<option value="Indonesia">🇮🇩 Indonesia</option>
+								<option value="Thailand">🇹🇭 Thailand</option>
+								<option value="Philippines">🇵🇭 Philippines</option>
+							</optgroup>
+							<optgroup label="India">
+								<option value="India">🇮🇳 India</option>
+							</optgroup>
+							<optgroup label="Australia & NZ">
+								<option value="Australia">🇦🇺 Australia</option>
+								<option value="New Zealand">🇳🇿 New Zealand</option>
+							</optgroup>
+							<optgroup label="Other">
+								<option value="Other">🌍 Other Country</option>
+							</optgroup>
+						</select>
 					</div>
 
 					<div class="form-group">
