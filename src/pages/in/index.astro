@@ -347,251 +347,123 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 				<p>No hidden fees, no per-user charges. Choose the plan that fits your facility.</p>
 			</div>
 
-			<!-- Billing Toggle -->
-			<div class="pricing__toggle fade-in">
-				<span class="pricing__toggle-label active" data-billing="monthly">Monthly</span>
-				<button class="pricing__toggle-switch" id="billingToggle" aria-label="Toggle annual billing"
-				></button>
-				<span class="pricing__toggle-label" data-billing="yearly">Yearly</span>
-				<span class="pricing__save-badge">Save 15%</span>
+			<!-- Pricing Controls -->
+			<div class="pricing__controls fade-in">
+				<button class="pricing__category-btn active" data-show="pricing-clinic" id="clinicPlanBtn">Clinic Plans</button>
+				<div class="pricing__toggle">
+					<span class="pricing__toggle-label active" data-billing="monthly">Monthly</span>
+					<button class="pricing__toggle-switch" id="billingToggle" aria-label="Toggle annual billing"></button>
+					<span class="pricing__toggle-label" data-billing="yearly">Yearly</span>
+					<span class="pricing__save-badge">Save 15%</span>
+				</div>
+				<button class="pricing__category-btn" data-show="pricing-hospital" id="hospitalPlanBtn">Hospital Plans</button>
 			</div>
 
-			<!-- Category Tabs -->
-			<div class="pricing__tabs fade-in">
-				<button class="pricing__tab active" data-category="clinic">
-					Clinics &amp; Hospitals
-				</button>
-			</div>
-			<!-- Clinic & Hospital Plans -->
-			<div class="pricing__grid pricing__grid--4" id="pricing-clinic">
+			<!-- Clinic Plans (default visible) -->
+			<div class="pricing__grid pricing__grid--2" id="pricing-clinic">
 				<div class="pricing-card fade-in">
 					<div class="pricing-card__badge"></div>
 					<div class="pricing-card__name">Clinic</div>
-					<div class="pricing-card__desc">Small clinic or polyclinic. Up to 5 doctors.</div>
+					<div class="pricing-card__desc">Small clinic or polyclinic. Up to 5 doctors, basic billing.</div>
 					<div class="pricing-card__price">
 						<span class="pricing-card__currency">$</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-in="3,999"
-							data-yearly-in="3,399"
-							data-monthly-ae="99"
-							data-yearly-ae="84"
-							data-monthly-sg="79"
-							data-yearly-sg="67"
-							data-monthly-intl="49"
-							data-yearly-intl="42"
-							data-monthly-intl="149"
-							data-yearly-intl="127">99</span
-						>
+						<span class="pricing-card__amount"
+							data-monthly-in="3,999" data-yearly-in="3,399"
+							data-monthly-ae="99" data-yearly-ae="84"
+							data-monthly-sg="79" data-yearly-sg="67"
+							data-monthly-au="149" data-yearly-au="127"
+							data-monthly-intl="149" data-yearly-intl="127">99</span>
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Patient management
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Appointments &amp; scheduling
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Encounters &amp; prescriptions
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Lab tests &amp; diagnostics
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Billing &amp; accounting
-						</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Patient management</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Appointments &amp; scheduling</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Encounters &amp; prescriptions</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Lab tests &amp; diagnostics</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Billing &amp; accounting</div>
 					</div>
 				</div>
 
 				<div class="pricing-card pricing-card--featured fade-in fade-in-delay-1">
 					<div class="pricing-card__badge">Most Popular</div>
 					<div class="pricing-card__name">Clinic Plus</div>
-					<div class="pricing-card__desc">
-						Mid-size clinic or nursing home. Up to 15 doctors, 30 beds.
-					</div>
+					<div class="pricing-card__desc">Mid-size clinic or nursing home. Up to 15 doctors, 30 beds.</div>
 					<div class="pricing-card__price">
 						<span class="pricing-card__currency">$</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-in="7,999"
-							data-yearly-in="6,799"
-							data-monthly-ae="199"
-							data-yearly-ae="169"
-							data-monthly-sg="149"
-							data-yearly-sg="127"
-							data-monthly-intl="99"
-							data-yearly-intl="84"
-							data-monthly-intl="299"
-							data-yearly-intl="254">199</span
-						>
+						<span class="pricing-card__amount"
+							data-monthly-in="7,999" data-yearly-in="6,799"
+							data-monthly-ae="199" data-yearly-ae="169"
+							data-monthly-sg="149" data-yearly-sg="127"
+							data-monthly-au="299" data-yearly-au="254"
+							data-monthly-intl="299" data-yearly-intl="254">199</span>
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Everything in Clinic
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Inventory &amp; pharmacy
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>HR &amp; payroll
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Support desk
-						</div>
-					</div>
-				</div>
-
-				<div class="pricing-card fade-in fade-in-delay-2">
-					<div class="pricing-card__badge"></div>
-					<div class="pricing-card__name">Hospital</div>
-					<div class="pricing-card__desc">
-						Hospitals with departments. Up to 50 doctors, 100 beds.
-					</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency">$</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-in="14,999"
-							data-yearly-in="12,749"
-							data-monthly-ae="399"
-							data-yearly-ae="339"
-							data-monthly-sg="299"
-							data-yearly-sg="254"
-							data-monthly-intl="199"
-							data-yearly-intl="169"
-							data-monthly-intl="599"
-							data-yearly-intl="509">399</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div class="pricing-card__annual">Billed monthly</div>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Everything in Clinic Plus
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Inpatient &amp; ward management
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Insurance billing
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Procurement &amp; assets
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Quality management
-						</div>
-					</div>
-				</div>
-
-				<div class="pricing-card fade-in fade-in-delay-3">
-					<div class="pricing-card__badge">Enterprise</div>
-					<div class="pricing-card__name">Hospital Pro</div>
-					<div class="pricing-card__desc">
-						Large hospitals &amp; networks. Unlimited doctors, beds, users.
-					</div>
-					<div class="pricing-card__price">
-						<span class="pricing-card__currency">$</span>
-						<span
-							class="pricing-card__amount"
-							data-monthly-in="29,999"
-							data-yearly-in="25,499"
-							data-monthly-ae="799"
-							data-yearly-ae="679"
-							data-monthly-sg="499"
-							data-yearly-sg="424"
-							data-monthly-intl="399"
-							data-yearly-intl="339"
-							data-monthly-intl="999"
-							data-yearly-intl="849">799</span
-						>
-					</div>
-					<div class="pricing-card__period">/month</div>
-					<div class="pricing-card__annual">Billed monthly</div>
-					<a href="/signup?plan=Hospital Pro" class="btn btn--primary btn--full">Start Free Trial</a
-					>
-					<div class="pricing-card__divider"></div>
-					<div class="pricing-card__features">
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Everything in Hospital
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Unlimited users &amp; branches
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Multi-department isolation
-						</div>
-						<div class="pricing-card__feature">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-								<path d="M22 4L12 14.01l-3-3"></path></svg
-							>Dedicated support
-						</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Clinic</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Inventory &amp; pharmacy</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>HR &amp; payroll</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Support desk</div>
 					</div>
 				</div>
 			</div>
 
-			
-		</div>
-	</section>
+			<!-- Hospital Plans (hidden by default) -->
+			<div class="pricing__grid pricing__grid--2" id="pricing-hospital" style="display: none">
+				<div class="pricing-card fade-in">
+					<div class="pricing-card__badge"></div>
+					<div class="pricing-card__name">Hospital</div>
+					<div class="pricing-card__desc">Hospitals with departments. Up to 50 doctors, 100 beds.</div>
+					<div class="pricing-card__price">
+						<span class="pricing-card__currency">$</span>
+						<span class="pricing-card__amount"
+							data-monthly-in="14,999" data-yearly-in="12,749"
+							data-monthly-ae="399" data-yearly-ae="339"
+							data-monthly-sg="299" data-yearly-sg="254"
+							data-monthly-au="599" data-yearly-au="509"
+							data-monthly-intl="599" data-yearly-intl="509">399</span>
+					</div>
+					<div class="pricing-card__period">/month</div>
+					<div class="pricing-card__annual">Billed monthly</div>
+					<div class="pricing-card__divider"></div>
+					<div class="pricing-card__features">
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Clinic Plus</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Inpatient &amp; ward management</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Insurance billing</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Procurement &amp; assets</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Quality management</div>
+					</div>
+				</div>
+
+				<div class="pricing-card pricing-card--featured fade-in fade-in-delay-1">
+					<div class="pricing-card__badge">Enterprise</div>
+					<div class="pricing-card__name">Hospital Pro</div>
+					<div class="pricing-card__desc">Large hospitals &amp; networks. Unlimited doctors, beds, users.</div>
+					<div class="pricing-card__price">
+						<span class="pricing-card__currency">$</span>
+						<span class="pricing-card__amount"
+							data-monthly-in="29,999" data-yearly-in="25,499"
+							data-monthly-ae="799" data-yearly-ae="679"
+							data-monthly-sg="499" data-yearly-sg="424"
+							data-monthly-au="999" data-yearly-au="849"
+							data-monthly-intl="999" data-yearly-intl="849">799</span>
+					</div>
+					<div class="pricing-card__period">/month</div>
+					<div class="pricing-card__annual">Billed monthly</div>
+					<div class="pricing-card__divider"></div>
+					<div class="pricing-card__features">
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Hospital</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Unlimited users &amp; branches</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Multi-department isolation</div>
+						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Dedicated support</div>
+					</div>
+				</div>
+			</div>
+
+				</section>
 
 	<!-- ═══ Testimonials ═════════════════════════════════════════ -->
 	

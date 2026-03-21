@@ -597,24 +597,55 @@ body {
 	transform: translateX(-50%) translateY(0);
 }
 
-/* ── 4-column Pricing Grid ─────────────────────────────────── */
-.pricing__grid--4 {
-	grid-template-columns: repeat(4, 1fr);
-	max-width: 1200px;
-	margin-left: auto;
-	margin-right: auto;
-	gap: var(--space-md);
+/* ── Pricing Controls (Category + Billing Toggle) ──────────── */
+.pricing__controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-xl);
+	margin-bottom: var(--space-xl);
+	flex-wrap: wrap;
 }
 
-@media (max-width: 1100px) {
-	.pricing__grid--4 {
-		grid-template-columns: repeat(2, 1fr);
-	}
+.pricing__category-btn {
+	padding: 10px 24px;
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	border-radius: 24px;
+	border: 2px solid var(--color-border);
+	background: transparent;
+	color: var(--color-text-muted);
+	cursor: pointer;
+	transition: all var(--transition-fast);
+	font-family: inherit;
+}
+
+.pricing__category-btn.active {
+	background: var(--color-primary);
+	color: #fff;
+	border-color: var(--color-primary);
+}
+
+.pricing__category-btn:hover:not(.active) {
+	border-color: var(--color-primary);
+	color: var(--color-primary);
+}
+
+/* ── 2-column Pricing Grid ─────────────────────────────────── */
+.pricing__grid--2 {
+	grid-template-columns: repeat(2, 1fr);
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	gap: var(--space-xl);
 }
 
 @media (max-width: 640px) {
-	.pricing__grid--4 {
+	.pricing__grid--2 {
 		grid-template-columns: 1fr;
+	}
+	.pricing__controls {
+		gap: var(--space-md);
 	}
 	.nav__country-btn {
 		width: 32px;

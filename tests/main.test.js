@@ -380,26 +380,36 @@ describe("initPricing", () => {
 		expect(annual.textContent).toBe("Billed monthly");
 	});
 
-	test("category tabs switch pricing panels", () => {
+	test("category buttons switch between clinic and hospital plans", () => {
 		const { document: doc } = createEnv(`
 			<div id="billingToggle"></div>
-			<button class="pricing__tab active" data-category="clinics">Clinics</button>
-			<button class="pricing__tab" data-category="hospitals">Hospitals</button>
-			<div id="pricing-clinics">Clinic plans</div>
-			<div id="pricing-hospitals" style="display:none">Hospital plans</div>
+			<button class="pricing__category-btn active" id="clinicPlanBtn">Clinic Plans</button>
+			<button class="pricing__category-btn" id="hospitalPlanBtn">Hospital Plans</button>
+			<div id="pricing-clinic">Clinic plans</div>
+			<div id="pricing-hospital" style="display:none">Hospital plans</div>
+			<div class="pricing-card__amount" data-monthly-intl="149">149</div>
 		`);
 
 		initApp(doc);
 
-		const tabs = doc.querySelectorAll(".pricing__tab");
-		const clinicsPanel = doc.getElementById("pricing-clinics");
-		const hospitalsPanel = doc.getElementById("pricing-hospitals");
+		const clinicBtn = doc.getElementById("clinicPlanBtn");
+		const hospitalBtn = doc.getElementById("hospitalPlanBtn");
+		const clinicPanel = doc.getElementById("pricing-clinic");
+		const hospitalPanel = doc.getElementById("pricing-hospital");
 
-		tabs[1].click();
-		expect(tabs[0].classList.contains("active")).toBe(false);
-		expect(tabs[1].classList.contains("active")).toBe(true);
-		expect(clinicsPanel.style.display).toBe("none");
-		expect(hospitalsPanel.style.display).toBe("");
+		// Click Hospital Plans
+		hospitalBtn.click();
+		expect(hospitalBtn.classList.contains("active")).toBe(true);
+		expect(clinicBtn.classList.contains("active")).toBe(false);
+		expect(hospitalPanel.style.display).toBe("");
+		expect(clinicPanel.style.display).toBe("none");
+
+		// Click Clinic Plans back
+		clinicBtn.click();
+		expect(clinicBtn.classList.contains("active")).toBe(true);
+		expect(hospitalBtn.classList.contains("active")).toBe(false);
+		expect(clinicPanel.style.display).toBe("");
+		expect(hospitalPanel.style.display).toBe("none");
 	});
 });
 
