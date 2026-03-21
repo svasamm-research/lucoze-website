@@ -22,7 +22,14 @@ const ctaHref = ctaPlan ? `${prefix}/signup?plan=${ctaPlan}` : `${prefix}/signup
 <nav class="nav" role="navigation" aria-label="Main navigation">
 	<div class="container nav__inner">
 		<a href={`${prefix}/`} class="nav__logo" aria-label="Lucoze Home">
-			<img src="/images/logo.svg" alt="Lucoze" height="32" />
+			<span class="nav__logo-icon">
+				<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#c15f3c" opacity="0.15"/>
+					<path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#c15f3c" stroke-width="1.5" fill="none"/>
+					<path d="M12 8v4l3.5 2" stroke="#c15f3c" stroke-width="2" stroke-linecap="round"/>
+				</svg>
+			</span>
+			<span class="nav__logo-text">Lucoze</span>
 		</a>
 
 		<div class="nav__links">

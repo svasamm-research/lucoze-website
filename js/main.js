@@ -236,12 +236,46 @@
 		});
 	}
 
+	// ── Price Update (works on any page with pricing elements) ──
+
+	function updatePricesForRegion(pricingKey, isYearly) {
+		var period = isYearly ? "yearly" : "monthly";
+
+		document.querySelectorAll(".pricing-card__amount").forEach(function (el) {
+			var price = el.getAttribute("data-" + period + "-" + pricingKey);
+			if (!price) {
+				price = el.getAttribute("data-" + period + "-intl");
+			}
+			if (price) {
+				el.textContent = price;
+			}
+		});
+
+		// Update currency symbols
+		var info =
+			typeof LucozeRegion !== "undefined" ? LucozeRegion.getRegionInfo(pricingKey) : null;
+		var symbol = info ? info.symbol : "$";
+		document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
+			el.textContent = symbol;
+		});
+
+		document.querySelectorAll(".pricing-card__annual").forEach(function (el) {
+			el.textContent = isYearly ? "Billed annually" : "Billed monthly";
+		});
+	}
+
 	// ── Pricing Interactions ──
 
 	function initPricing() {
 		var detected = getRegion();
-		var pricingKey = detected.region; // in, me, sea, af, intl
+		var pricingKey = detected.region; // in, ae, sg, au, intl
 		var isYearly = false;
+
+		// Always update prices on any page that has pricing elements
+		var hasPricing = document.querySelectorAll(".pricing-card__amount").length > 0;
+		if (hasPricing) {
+			updatePricesForRegion(pricingKey, false);
+		}
 
 		var billingToggle = document.getElementById("billingToggle");
 		var clinicBtn = document.getElementById("clinicPlanBtn");
@@ -275,33 +309,7 @@
 		}
 
 		function updatePrices() {
-			var period = isYearly ? "yearly" : "monthly";
-
-			document.querySelectorAll(".pricing-card__amount").forEach(function (el) {
-				// Try region-specific price first, fallback to currency-based
-				var price = el.getAttribute("data-" + period + "-" + pricingKey);
-				if (!price) {
-					// Fallback for pages that still use old format
-					var fallbackCurrency = pricingKey === "in" ? "inr" : "usd";
-					price = el.getAttribute("data-" + period + "-" + fallbackCurrency);
-				}
-				if (price) {
-					el.textContent = price;
-				}
-			});
-
-			// Update currency symbols
-			var info =
-				typeof LucozeRegion !== "undefined"
-					? LucozeRegion.getRegionInfo(pricingKey)
-					: { symbol: "$" };
-			document.querySelectorAll(".pricing-card__currency").forEach(function (el) {
-				el.textContent = info.symbol;
-			});
-
-			document.querySelectorAll(".pricing-card__annual").forEach(function (el) {
-				el.textContent = isYearly ? "Billed annually" : "Billed monthly";
-			});
+			updatePricesForRegion(pricingKey, isYearly);
 
 			// Update toggle label active states
 			document.querySelectorAll(".pricing__toggle-label").forEach(function (label) {
