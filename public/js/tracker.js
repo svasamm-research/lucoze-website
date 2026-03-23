@@ -245,3 +245,8 @@ var LucozeTracker = (function () {
     _getMetadata: _getMetadata,
   };
 })();
+
+// Export for Node.js/Jest testing
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = LucozeTracker;
+}
