@@ -450,6 +450,51 @@
 			});
 		}
 
+		// ── Tracker Integration ──
+		if (typeof LucozeTracker !== "undefined") {
+			// Track form field blur events
+			["facility_name", "customer_name", "email", "phone"].forEach(function (fieldName) {
+				var field = form.querySelector('[name="' + fieldName + '"]');
+				if (field) {
+					field.addEventListener("blur", function () {
+						if (this.value.trim()) {
+							LucozeTracker.trackFormField(fieldName, this.value.trim());
+						}
+					});
+				}
+			});
+
+			// Track country selection
+			if (countrySelect) {
+				countrySelect.addEventListener("change", function () {
+					if (this.value) {
+						LucozeTracker.trackFormField("country", this.value);
+					}
+				});
+			}
+
+			// Track plan selection
+			form.querySelectorAll(".plan-option").forEach(function (option) {
+				option.addEventListener("click", function () {
+					var plan = option.getAttribute("data-plan") || "";
+					if (plan) {
+						LucozeTracker.trackFormField("plan", plan);
+					}
+				});
+			});
+
+			// Track form abandon (started filling but left without submitting)
+			var formInteracted = false;
+			form.addEventListener("input", function () {
+				formInteracted = true;
+			});
+			window.addEventListener("beforeunload", function () {
+				if (formInteracted && !form.dataset.submitted) {
+					LucozeTracker.trackFormAbandon();
+				}
+			});
+		}
+
 		// Form submission
 		form.addEventListener("submit", function (e) {
 			e.preventDefault();
@@ -522,6 +567,7 @@
 				})
 				.then(function (result) {
 					if (result.ok) {
+						form.dataset.submitted = "true";
 						showAlert(
 							alert,
 							"success",
@@ -820,5 +866,19 @@
 		initPricing();
 		initSignup();
 		initContact();
+		initCTATracking();
 	});
+
+	// ── CTA Click Tracking ──
+	function initCTATracking() {
+		if (typeof LucozeTracker === "undefined") return;
+		document.querySelectorAll('a[href*="/signup"]').forEach(function (btn) {
+			btn.addEventListener("click", function () {
+				var plan = this.getAttribute("data-plan") || "";
+				var regionMatch = window.location.pathname.match(/^\/(ae|sg|au|in)\//);
+				var region = regionMatch ? regionMatch[1] : "default";
+				LucozeTracker.trackCTAClick(plan, region);
+			});
+		});
+	}
 })();
