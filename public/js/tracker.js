@@ -135,19 +135,21 @@ var LucozeTracker = (function () {
 
     var apiBase = _getApiBase();
 
+    // Frappe RPC expects form-encoded or multipart data for form_dict parsing
+    var formData = new FormData();
+    formData.append("visitor_id", payload.visitor_id);
+    formData.append("events", payload.events);
+    formData.append("metadata", payload.metadata);
+
     if (useBeacon && navigator.sendBeacon) {
-      var blob = new Blob([JSON.stringify(payload)], {
-        type: "application/json",
-      });
-      navigator.sendBeacon(apiBase + API_PATH, blob);
+      navigator.sendBeacon(apiBase + API_PATH, formData);
     } else {
       fetch(apiBase + API_PATH, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           "X-Frappe-CSRF-Token": "",
         },
-        body: JSON.stringify(payload),
+        body: formData,
         keepalive: true,
       }).catch(function () {
         // Silent fail — tracking should never break the site
