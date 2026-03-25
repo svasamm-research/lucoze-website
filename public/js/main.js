@@ -495,7 +495,17 @@
 			});
 		}
 
-		// Form submission
+		// ── API Base URL ──
+		var API_BASE = window.location.hostname.includes("localhost")
+			? "http://lucoze.admin.localhost:8000"
+			: window.location.hostname.includes("uat-website.lucoze.com")
+				? "https://admin-uat.lucoze.com"
+				: "https://admin.lucoze.com";
+
+		// Track email for OTP verification step
+		var pendingEmail = "";
+
+		// ── Step 1: Form Submit → Send OTP ──
 		form.addEventListener("submit", function (e) {
 			e.preventDefault();
 
@@ -525,8 +535,8 @@
 				selectedOption.querySelector('input[type="radio"]').value;
 			var countryValue = country ? country.value : "";
 			var emailValue = email.value.trim();
+			pendingEmail = emailValue;
 
-			// Determine currency from country
 			var regionCode =
 				typeof LucozeRegion !== "undefined"
 					? LucozeRegion.getRegionForCountry(countryValue)
@@ -536,16 +546,10 @@
 			if (submitBtn) {
 				submitBtn.classList.add("btn--loading");
 				submitBtn.setAttribute("disabled", "disabled");
-				submitBtn.textContent = "Creating your workspace...";
+				submitBtn.textContent = "Sending verification code...";
 			}
 
-			var API_BASE = window.location.hostname.includes("localhost")
-				? "http://lucoze.admin.localhost:8000"
-				: window.location.hostname.includes("uat-website.lucoze.com")
-					? "https://admin-uat.lucoze.com"
-					: "https://admin.lucoze.com";
-
-			fetch(API_BASE + "/api/method/lucoze_admin.api.provisioning.create_tenant", {
+			fetch(API_BASE + "/api/method/lucoze_admin.api.provisioning.initiate_signup", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -566,24 +570,10 @@
 					});
 				})
 				.then(function (result) {
-					if (result.ok) {
-						form.dataset.submitted = "true";
-						showAlert(
-							alert,
-							"success",
-							"Your workspace is being set up! You'll receive login details at " +
-								emailValue +
-								" shortly.",
-						);
-						form.reset();
-						form.querySelectorAll(".plan-option").forEach(function (o) {
-							o.classList.remove("selected");
-						});
+					if (result.ok && result.data.message && result.data.message.status === "otp_sent") {
+						showOTPStep(result.data.message.email);
 					} else {
-						var msg =
-							(result.data && result.data._server_messages) ||
-							(result.data && result.data.message) ||
-							"Something went wrong. Please try again.";
+						var msg = _extractError(result);
 						showAlert(alert, "error", msg);
 					}
 				})
@@ -598,6 +588,207 @@
 					}
 				});
 		});
+
+		// ── Step 2: Show OTP Input ──
+		function showOTPStep(maskedEmail) {
+			var formInner = form.querySelector(".form-fields") || form;
+			var submitBtn = form.querySelector('[type="submit"]');
+			var alert = document.getElementById("signupAlert");
+
+			// Hide form fields, show OTP step
+			var otpHTML =
+				'<div id="otpStep" class="otp-step">' +
+				'<div class="otp-step__header">' +
+				"<h3>Verify your email</h3>" +
+				"<p>We've sent a 6-digit code to <strong>" +
+				maskedEmail +
+				"</strong></p>" +
+				"</div>" +
+				'<div class="otp-step__input">' +
+				'<input type="text" id="otpCode" maxlength="6" pattern="[0-9]{6}" ' +
+				'placeholder="Enter 6-digit code" autocomplete="one-time-code" ' +
+				'inputmode="numeric" style="font-size:28px;font-weight:700;text-align:center;' +
+				"letter-spacing:4px;padding:14px 20px;border:2px solid var(--border);border-radius:8px;" +
+				'width:100%;background:var(--bg-alt);color:var(--text-primary);">' +
+				"</div>" +
+				'<div class="otp-step__actions" style="display:flex;gap:12px;margin-top:16px;">' +
+				'<button type="button" id="otpSubmitBtn" class="btn btn--primary" ' +
+				'style="flex:1;padding:12px 24px;">Verify & Create Workspace</button>' +
+				"</div>" +
+				'<div class="otp-step__footer" style="text-align:center;margin-top:16px;">' +
+				'<span style="color:var(--text-muted);font-size:13px;">Didn\'t receive it? </span>' +
+				'<button type="button" id="resendOtpBtn" style="background:none;border:none;' +
+				"color:var(--primary);cursor:pointer;font-size:13px;font-weight:600;padding:0;" +
+				'text-decoration:underline;">Resend Code</button>' +
+				'<span id="resendTimer" style="color:var(--text-muted);font-size:13px;display:none;"></span>' +
+				"</div>" +
+				"</div>";
+
+			// Hide all form children except alert and OTP
+			Array.from(form.children).forEach(function (child) {
+				if (child.id !== "signupAlert" && child.id !== "otpStep") {
+					child.style.display = "none";
+				}
+			});
+			if (submitBtn) submitBtn.style.display = "none";
+
+			// Remove existing OTP step if any
+			var existing = document.getElementById("otpStep");
+			if (existing) existing.remove();
+
+			form.insertAdjacentHTML("beforeend", otpHTML);
+			showAlert(alert, "success", "Verification code sent! Check your email.");
+
+			// Focus OTP input
+			var otpInput = document.getElementById("otpCode");
+			if (otpInput) otpInput.focus();
+
+			// Verify button
+			document.getElementById("otpSubmitBtn").addEventListener("click", function () {
+				verifyOTP();
+			});
+
+			// Enter key on OTP input
+			otpInput.addEventListener("keydown", function (e) {
+				if (e.key === "Enter") {
+					e.preventDefault();
+					verifyOTP();
+				}
+			});
+
+			// Resend button with cooldown
+			var resendBtn = document.getElementById("resendOtpBtn");
+			var resendTimer = document.getElementById("resendTimer");
+			startResendCooldown(resendBtn, resendTimer);
+
+			resendBtn.addEventListener("click", function () {
+				resendOTP(resendBtn, resendTimer);
+			});
+		}
+
+		// ── Step 3: Verify OTP ──
+		function verifyOTP() {
+			var otpInput = document.getElementById("otpCode");
+			var otpBtn = document.getElementById("otpSubmitBtn");
+			var alert = document.getElementById("signupAlert");
+
+			if (!otpInput || !otpInput.value.trim() || otpInput.value.trim().length !== 6) {
+				showAlert(alert, "error", "Please enter the 6-digit verification code.");
+				return;
+			}
+
+			otpBtn.setAttribute("disabled", "disabled");
+			otpBtn.textContent = "Verifying...";
+
+			fetch(API_BASE + "/api/method/lucoze_admin.api.provisioning.verify_signup", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-Frappe-CSRF-Token": "",
+				},
+				body: JSON.stringify({
+					customer_email: pendingEmail,
+					otp_code: otpInput.value.trim(),
+				}),
+			})
+				.then(function (res) {
+					return res.json().then(function (data) {
+						return { ok: res.ok, data: data };
+					});
+				})
+				.then(function (result) {
+					if (result.ok) {
+						form.dataset.submitted = "true";
+						var otpStep = document.getElementById("otpStep");
+						if (otpStep) otpStep.remove();
+						showAlert(
+							alert,
+							"success",
+							"Email verified! Your workspace is being set up. " +
+								"You'll receive login credentials at " +
+								pendingEmail +
+								" once it's ready.",
+						);
+					} else {
+						var msg = _extractError(result);
+						showAlert(alert, "error", msg);
+						otpBtn.removeAttribute("disabled");
+						otpBtn.textContent = "Verify & Create Workspace";
+					}
+				})
+				.catch(function () {
+					showAlert(alert, "error", "Network error. Please try again.");
+					otpBtn.removeAttribute("disabled");
+					otpBtn.textContent = "Verify & Create Workspace";
+				});
+		}
+
+		// ── Resend OTP ──
+		function resendOTP(btn, timer) {
+			btn.style.display = "none";
+			timer.style.display = "inline";
+			timer.textContent = "Sending...";
+
+			fetch(API_BASE + "/api/method/lucoze_admin.api.provisioning.resend_otp", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-Frappe-CSRF-Token": "",
+				},
+				body: JSON.stringify({ customer_email: pendingEmail }),
+			})
+				.then(function (res) {
+					return res.json().then(function (data) {
+						return { ok: res.ok, data: data };
+					});
+				})
+				.then(function (result) {
+					var alert = document.getElementById("signupAlert");
+					if (result.ok) {
+						showAlert(alert, "success", "New verification code sent!");
+					} else {
+						showAlert(alert, "error", _extractError(result));
+					}
+					startResendCooldown(btn, timer);
+				})
+				.catch(function () {
+					startResendCooldown(btn, timer);
+				});
+		}
+
+		function startResendCooldown(btn, timer) {
+			var seconds = 30;
+			btn.style.display = "none";
+			timer.style.display = "inline";
+			timer.textContent = "Resend in " + seconds + "s";
+
+			var interval = setInterval(function () {
+				seconds--;
+				if (seconds <= 0) {
+					clearInterval(interval);
+					btn.style.display = "inline";
+					timer.style.display = "none";
+				} else {
+					timer.textContent = "Resend in " + seconds + "s";
+				}
+			}, 1000);
+		}
+
+		function _extractError(result) {
+			if (result.data && result.data._server_messages) {
+				try {
+					var msgs = JSON.parse(result.data._server_messages);
+					if (Array.isArray(msgs) && msgs.length > 0) {
+						var parsed = JSON.parse(msgs[0]);
+						return parsed.message || msgs[0];
+					}
+					return msgs;
+				} catch (e) {
+					return result.data._server_messages;
+				}
+			}
+			return (result.data && result.data.message) || "Something went wrong. Please try again.";
+		}
 	}
 
 	function showRegionToast(country) {
