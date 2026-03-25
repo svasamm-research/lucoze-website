@@ -11,15 +11,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<section class="hero">
 		<div class="container hero__inner">
 			<div class="hero__content">
-				
 				<h1>
 					Healthcare<br />
 					management,<br />
 					<span>simplified.</span>
 				</h1>
 				<p class="hero__subtitle">
-					The complete platform for clinics and hospitals — trusted across 4 regions.
-					Patient records, appointments, billing, inventory, and compliance &mdash; everything your
+					The complete platform for clinics and hospitals — trusted across 4 regions. Patient
+					records, appointments, billing, inventory, and compliance &mdash; everything your
 					healthcare facility needs, in one place.
 				</p>
 				<div class="hero__stats">
@@ -90,69 +89,133 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<!-- ═══ Trust Bar (Compliance) ════════════════════════════════ -->
 	<section class="trust-bar">
 		<div class="container trust-bar__wrapper">
-		<button class="trust-bar__arrow trust-bar__arrow--left" aria-label="Scroll left">&#8249;</button>
-		<div class="trust-bar__inner">
-			<div class="trust-bar__item" data-region-show="ae">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-				</svg>
-				NABIDH Ready
+			<button class="trust-bar__arrow trust-bar__arrow--left" aria-label="Scroll left"
+				>&#8249;</button
+			>
+			<div class="trust-bar__inner">
+				<div class="trust-bar__item" data-region-show="ae">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+					</svg>
+					NABIDH Ready
+				</div>
+				<div class="trust-bar__item" data-region-show="ae">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path
+							d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+						></path>
+					</svg>
+					NPHIES Compatible
+				</div>
+				<div class="trust-bar__item" data-region-show="in">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+						<path d="M22 4L12 14.01l-3-3"></path>
+					</svg>
+					ABDM Integrated
+				</div>
+				<div class="trust-bar__item" data-region-show="in">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path
+							d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+						></path>
+					</svg>
+					ABHA Compatible
+				</div>
+				<div class="trust-bar__item" data-region-show="sg">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+					</svg>
+					NEHR Ready
+				</div>
+				<div class="trust-bar__item">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<rect x="3" y="11" width="18" height="11" rx="2"></rect>
+						<path d="M7 11V7a5 5 0 0110 0v4"></path>
+					</svg>
+					End-to-end encryption
+				</div>
+				<div class="trust-bar__item">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<circle cx="12" cy="12" r="10"></circle>
+						<path
+							d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
+						></path>
+					</svg>
+					Data residency in your region
+				</div>
+				<div class="trust-bar__item" data-region-show="ae,sg,au,intl">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+						<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+					</svg>
+					HL7 FHIR
+				</div>
+				<div class="trust-bar__item">
+					<svg
+						class="trust-bar__icon"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+						<path d="M22 4L12 14.01l-3-3"></path>
+					</svg>
+					ICD-10 Coding
+				</div>
 			</div>
-			<div class="trust-bar__item" data-region-show="ae">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-				</svg>
-				NPHIES Compatible
-			</div>
-			<div class="trust-bar__item" data-region-show="in">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-					<path d="M22 4L12 14.01l-3-3"></path>
-				</svg>
-				ABDM Integrated
-			</div>
-			<div class="trust-bar__item" data-region-show="in">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-				</svg>
-				ABHA Compatible
-			</div>
-			<div class="trust-bar__item" data-region-show="sg">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-				</svg>
-				NEHR Ready
-			</div>
-			<div class="trust-bar__item">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<rect x="3" y="11" width="18" height="11" rx="2"></rect>
-					<path d="M7 11V7a5 5 0 0110 0v4"></path>
-				</svg>
-				End-to-end encryption
-			</div>
-			<div class="trust-bar__item">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<circle cx="12" cy="12" r="10"></circle>
-					<path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path>
-				</svg>
-				Data residency in your region
-			</div>
-			<div class="trust-bar__item" data-region-show="ae,sg,au,intl">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
-					<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
-				</svg>
-				HL7 FHIR
-			</div>
-			<div class="trust-bar__item">
-				<svg class="trust-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-					<path d="M22 4L12 14.01l-3-3"></path>
-				</svg>
-				ICD-10 Coding
-			</div>
-		</div>
-		<button class="trust-bar__arrow trust-bar__arrow--right" aria-label="Scroll right">&#8250;</button>
+			<button class="trust-bar__arrow trust-bar__arrow--right" aria-label="Scroll right"
+				>&#8250;</button
+			>
 		</div>
 	</section>
 
@@ -178,7 +241,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					<h3>Patient Management</h3>
 					<p>
 						Complete digital health records with demographics, medical history, vitals, and
-						encounter notes. <span data-region-show="in">ABHA ID integration for Indian facilities.</span><span data-region-show="ae">NABIDH-compliant clinical documentation.</span><span data-region-show="sg,au,intl">HL7 FHIR-compliant record keeping.</span>
+						encounter notes. <span data-region-show="in"
+							>ABHA ID integration for Indian facilities.</span
+						><span data-region-show="ae">NABIDH-compliant clinical documentation.</span><span
+							data-region-show="sg,au,intl">HL7 FHIR-compliant record keeping.</span
+						>
 					</p>
 				</div>
 				<div class="feature-card fade-in fade-in-delay-1">
@@ -268,7 +335,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					class="audience-card fade-in"
 					style="text-decoration: none; color: inherit"
 				>
-					<div class="audience-card__icon"><svg viewBox="0 0 48 48" fill="none" stroke="#c15f3c" stroke-width="2" width="36" height="36"><rect x="8" y="12" width="32" height="28" rx="3"/><rect x="18" y="4" width="12" height="12" rx="2"/><path d="M24 8v4M22 10h4"/><path d="M16 24h6M26 24h6M16 32h6M26 32h6"/></svg></div>
+					<div class="audience-card__icon">
+						<svg
+							viewBox="0 0 48 48"
+							fill="none"
+							stroke="#c15f3c"
+							stroke-width="2"
+							width="36"
+							height="36"
+							><rect x="8" y="12" width="32" height="28" rx="3"></rect><rect
+								x="18"
+								y="4"
+								width="12"
+								height="12"
+								rx="2"></rect><path d="M24 8v4M22 10h4"></path><path
+								d="M16 24h6M26 24h6M16 32h6M26 32h6"></path></svg
+						>
+					</div>
 					<h3>Clinics &amp; Polyclinics</h3>
 					<p>
 						Small to multi-doctor clinics. Appointments, encounters, prescriptions, and billing in
@@ -281,7 +364,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					class="audience-card fade-in fade-in-delay-1"
 					style="text-decoration: none; color: inherit"
 				>
-					<div class="audience-card__icon"><svg viewBox="0 0 48 48" fill="none" stroke="#c15f3c" stroke-width="2" width="36" height="36"><rect x="6" y="8" width="36" height="34" rx="3"/><path d="M6 16h36M14 8V4M24 8V4M34 8V4"/><rect x="14" y="22" width="8" height="8" rx="1"/><rect x="26" y="22" width="8" height="8" rx="1"/><rect x="18" y="34" width="12" height="8" rx="1"/><path d="M24 22v-4M22 20h4"/></svg></div>
+					<div class="audience-card__icon">
+						<svg
+							viewBox="0 0 48 48"
+							fill="none"
+							stroke="#c15f3c"
+							stroke-width="2"
+							width="36"
+							height="36"
+							><rect x="6" y="8" width="36" height="34" rx="3"></rect><path
+								d="M6 16h36M14 8V4M24 8V4M34 8V4"></path><rect
+								x="14"
+								y="22"
+								width="8"
+								height="8"
+								rx="1"></rect><rect x="26" y="22" width="8" height="8" rx="1"></rect><rect
+								x="18"
+								y="34"
+								width="12"
+								height="8"
+								rx="1"></rect><path d="M24 22v-4M22 20h4"></path></svg
+						>
+					</div>
 					<h3>Hospitals</h3>
 					<p>
 						Inpatient management, department isolation, ward management, OT scheduling, and full ERP
@@ -289,7 +393,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					</p>
 					<span class="audience-card__link">Learn more &rarr;</span>
 				</a>
-				</div>
+			</div>
 		</div>
 	</section>
 
@@ -348,14 +452,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 			<!-- Pricing Controls -->
 			<div class="pricing__controls fade-in">
-				<button class="pricing__category-btn active" data-show="pricing-clinic" id="clinicPlanBtn">Clinic Plans</button>
+				<button class="pricing__category-btn active" data-show="pricing-clinic" id="clinicPlanBtn"
+					>Clinic Plans</button
+				>
 				<div class="pricing__toggle">
 					<span class="pricing__toggle-label active" data-billing="monthly">Monthly</span>
-					<button class="pricing__toggle-switch" id="billingToggle" aria-label="Toggle annual billing"></button>
+					<button
+						class="pricing__toggle-switch"
+						id="billingToggle"
+						aria-label="Toggle annual billing"></button>
 					<span class="pricing__toggle-label" data-billing="yearly">Yearly</span>
 					<span class="pricing__save-badge">Save 15%</span>
 				</div>
-				<button class="pricing__category-btn" data-show="pricing-hospital" id="hospitalPlanBtn">Hospital Plans</button>
+				<button class="pricing__category-btn" data-show="pricing-hospital" id="hospitalPlanBtn"
+					>Hospital Plans</button
+				>
 			</div>
 
 			<!-- Clinic Plans (default visible) -->
@@ -363,51 +474,150 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				<div class="pricing-card fade-in">
 					<div class="pricing-card__badge"></div>
 					<div class="pricing-card__name">Clinic</div>
-					<div class="pricing-card__desc">Small clinic or polyclinic. Up to 5 doctors, basic billing.</div>
+					<div class="pricing-card__desc">
+						Small clinic or polyclinic. Up to 5 doctors, basic billing.
+					</div>
 					<div class="pricing-card__price">
 						<span class="pricing-card__currency">$</span>
-						<span class="pricing-card__amount" data-monthly-in="3,999" data-yearly-in="3,399" data-monthly-ae="99" data-yearly-ae="84" data-monthly-sg="79" data-yearly-sg="67" data-monthly-au="149" data-yearly-au="127" data-monthly-intl="149" data-yearly-intl="127">99</span>
+						<span
+							class="pricing-card__amount"
+							data-monthly-in="3,999"
+							data-yearly-in="3,399"
+							data-monthly-ae="99"
+							data-yearly-ae="84"
+							data-monthly-sg="79"
+							data-yearly-sg="67"
+							data-monthly-au="149"
+							data-yearly-au="127"
+							data-monthly-intl="149"
+							data-yearly-intl="127">99</span
+						>
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Patient management</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Appointments &amp; scheduling</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Encounters &amp; prescriptions</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Lab tests &amp; diagnostics</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Billing &amp; accounting</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Patient management
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Appointments &amp; scheduling
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Encounters &amp; prescriptions
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Lab tests &amp; diagnostics
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Billing &amp; accounting
+						</div>
 					</div>
 				</div>
 				<div class="pricing-card pricing-card--featured fade-in fade-in-delay-1">
 					<div class="pricing-card__badge">Most Popular</div>
 					<div class="pricing-card__name">Clinic Plus</div>
-					<div class="pricing-card__desc">Mid-size clinic or nursing home. Up to 15 doctors, 30 beds.</div>
+					<div class="pricing-card__desc">
+						Mid-size clinic or nursing home. Up to 15 doctors, 30 beds.
+					</div>
 					<div class="pricing-card__price">
 						<span class="pricing-card__currency">$</span>
-						<span class="pricing-card__amount" data-monthly-in="7,999" data-yearly-in="6,799" data-monthly-ae="199" data-yearly-ae="169" data-monthly-sg="149" data-yearly-sg="127" data-monthly-au="299" data-yearly-au="254" data-monthly-intl="299" data-yearly-intl="254">199</span>
+						<span
+							class="pricing-card__amount"
+							data-monthly-in="7,999"
+							data-yearly-in="6,799"
+							data-monthly-ae="199"
+							data-yearly-ae="169"
+							data-monthly-sg="149"
+							data-yearly-sg="127"
+							data-monthly-au="299"
+							data-yearly-au="254"
+							data-monthly-intl="299"
+							data-yearly-intl="254">199</span
+						>
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Clinic</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Inventory &amp; pharmacy</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>HR &amp; payroll</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Support desk</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Everything in Clinic
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Inventory &amp; pharmacy
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>HR &amp; payroll
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Support desk
+						</div>
 					</div>
 				</div>
 				<div class="pricing-card fade-in fade-in-delay-2">
 					<div class="pricing-card__badge">Enterprise</div>
 					<div class="pricing-card__name">Clinic Enterprise</div>
-					<div class="pricing-card__desc">Multi-branch clinics. Unlimited doctors, AI automation &amp; analytics.</div>
-					<a href="/contact" class="btn btn--secondary btn--full" style="margin-top: var(--space-lg)">Contact Sales</a>
+					<div class="pricing-card__desc">
+						Multi-branch clinics. Unlimited doctors, AI automation &amp; analytics.
+					</div>
+					<a
+						href="/contact"
+						class="btn btn--secondary btn--full"
+						style="margin-top: var(--space-lg)">Contact Sales</a
+					>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Clinic Plus</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Multiple branch support</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>AI-powered analytics</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Workflow automation</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Everything in Clinic Plus
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Multiple branch support
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>AI-powered analytics
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Workflow automation
+						</div>
 					</div>
 				</div>
 			</div>
@@ -417,228 +627,331 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				<div class="pricing-card fade-in">
 					<div class="pricing-card__badge"></div>
 					<div class="pricing-card__name">Hospital</div>
-					<div class="pricing-card__desc">Hospitals with departments. Up to 50 doctors, 100 beds.</div>
+					<div class="pricing-card__desc">
+						Hospitals with departments. Up to 50 doctors, 100 beds.
+					</div>
 					<div class="pricing-card__price">
 						<span class="pricing-card__currency">$</span>
-						<span class="pricing-card__amount" data-monthly-in="14,999" data-yearly-in="12,749" data-monthly-ae="399" data-yearly-ae="339" data-monthly-sg="299" data-yearly-sg="254" data-monthly-au="599" data-yearly-au="509" data-monthly-intl="599" data-yearly-intl="509">399</span>
+						<span
+							class="pricing-card__amount"
+							data-monthly-in="14,999"
+							data-yearly-in="12,749"
+							data-monthly-ae="399"
+							data-yearly-ae="339"
+							data-monthly-sg="299"
+							data-yearly-sg="254"
+							data-monthly-au="599"
+							data-yearly-au="509"
+							data-monthly-intl="599"
+							data-yearly-intl="509">399</span
+						>
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Clinic Plus</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Inpatient &amp; ward management</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Insurance billing</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Procurement &amp; assets</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Quality management</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Everything in Clinic Plus
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Inpatient &amp; ward management
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Insurance billing
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Procurement &amp; assets
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Quality management
+						</div>
 					</div>
 				</div>
 				<div class="pricing-card pricing-card--featured fade-in fade-in-delay-1">
 					<div class="pricing-card__badge">Best Value</div>
 					<div class="pricing-card__name">Hospital Pro</div>
-					<div class="pricing-card__desc">Large hospitals &amp; networks. Unlimited doctors, beds, users.</div>
+					<div class="pricing-card__desc">
+						Large hospitals &amp; networks. Unlimited doctors, beds, users.
+					</div>
 					<div class="pricing-card__price">
 						<span class="pricing-card__currency">$</span>
-						<span class="pricing-card__amount" data-monthly-in="29,999" data-yearly-in="25,499" data-monthly-ae="799" data-yearly-ae="679" data-monthly-sg="499" data-yearly-sg="424" data-monthly-au="999" data-yearly-au="849" data-monthly-intl="999" data-yearly-intl="849">799</span>
+						<span
+							class="pricing-card__amount"
+							data-monthly-in="29,999"
+							data-yearly-in="25,499"
+							data-monthly-ae="799"
+							data-yearly-ae="679"
+							data-monthly-sg="499"
+							data-yearly-sg="424"
+							data-monthly-au="999"
+							data-yearly-au="849"
+							data-monthly-intl="999"
+							data-yearly-intl="849">799</span
+						>
 					</div>
 					<div class="pricing-card__period">/month</div>
 					<div class="pricing-card__annual">Billed monthly</div>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Hospital</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Unlimited users &amp; branches</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Multi-department isolation</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Dedicated support</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Everything in Hospital
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Unlimited users &amp; branches
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Multi-department isolation
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Dedicated support
+						</div>
 					</div>
 				</div>
 				<div class="pricing-card fade-in fade-in-delay-2">
 					<div class="pricing-card__badge">Enterprise</div>
 					<div class="pricing-card__name">Hospital Enterprise</div>
-					<div class="pricing-card__desc">Hospital chains. AI diagnostics, automation, white-glove support.</div>
-					<a href="/contact" class="btn btn--secondary btn--full" style="margin-top: var(--space-lg)">Contact Sales</a>
+					<div class="pricing-card__desc">
+						Hospital chains. AI diagnostics, automation, white-glove support.
+					</div>
+					<a
+						href="/contact"
+						class="btn btn--secondary btn--full"
+						style="margin-top: var(--space-lg)">Contact Sales</a
+					>
 					<div class="pricing-card__divider"></div>
 					<div class="pricing-card__features">
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Everything in Hospital Pro</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Multi-hospital network</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>AI diagnostics &amp; imaging</div>
-						<div class="pricing-card__feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>White-glove onboarding</div>
-					</div>
-				</div>
-			</div>
-
-			</section>
-
-	<!-- ═══ Testimonials ═════════════════════════════════════════ -->
-	
-
-	<!-- ═══ FAQ ══════════════════════════════════════════════════ -->
-	<section class="section" id="faq">
-		<div class="container">
-			<div class="section-header fade-in">
-				<h2>Frequently asked questions</h2>
-				<p>Quick answers to help you get started.</p>
-			</div>
-			<div class="faq__list">
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						How long is the free trial?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							Every plan includes a full-featured 14-day free trial. No credit card required to
-							start. You get access to all features in your chosen plan during the trial period.
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						Can I switch plans later?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get
-							immediate access to the new features. Downgrades take effect at the end of your
-							current billing cycle.
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						Where is my data stored?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							Your data is stored in the region closest to you. We have data centres in Mumbai
-							(India), Bahrain (Middle East), Singapore (Southeast Asia), Frankfurt (Europe), New
-							York (Americas), Sydney (Australia), and Cape Town (Africa). All data is encrypted at
-							rest and in transit.
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						Is my data secure and compliant?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							Absolutely. Lucoze is built with healthcare-grade security including end-to-end
-							encryption, role-based access control, audit logging, and automated backups. We are
-							HIPAA-ready with regional compliance. <span data-region-show="in">ABDM/ABHA integration for Indian facilities.</span><span data-region-show="ae">NABIDH and NPHIES compliant for GCC operations.</span><span data-region-show="sg">NEHR-ready for Singapore health records.</span><span data-region-show="au,intl">HL7 FHIR and ICD-10 standards compliant.</span>
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						Do I need to install anything?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							No. Lucoze is a fully cloud-based platform. All you need is a web browser. It works on
-							desktop, tablet, and mobile devices. No downloads, no IT team required.
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						What payment methods do you accept?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							For India, we accept all major payment methods via Razorpay — credit/debit cards, UPI,
-							net banking, and wallets. For international customers, we accept credit/debit cards
-							via Stripe.
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-in">
-					<button class="faq-item__question">
-						Can I get a custom domain?
-						<svg
-							class="faq-item__icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path d="M12 5v14M5 12h14"></path>
-						</svg>
-					</button>
-					<div class="faq-item__answer">
-						<p>
-							Yes! Every workspace gets a free subdomain (yourname.lucoze.com). You can also add
-							your own custom domain as an add-on for a small monthly fee.
-						</p>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Everything in Hospital Pro
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>Multi-hospital network
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>AI diagnostics &amp; imaging
+						</div>
+						<div class="pricing-card__feature">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+								><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"
+								></path></svg
+							>White-glove onboarding
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- ═══ Testimonials ═════════════════════════════════════════ -->
+
+		<!-- ═══ FAQ ══════════════════════════════════════════════════ -->
+		<section class="section" id="faq">
+			<div class="container">
+				<div class="section-header fade-in">
+					<h2>Frequently asked questions</h2>
+					<p>Quick answers to help you get started.</p>
+				</div>
+				<div class="faq__list">
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							How long is the free trial?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								Every plan includes a full-featured 14-day free trial. No credit card required to
+								start. You get access to all features in your chosen plan during the trial period.
+							</p>
+						</div>
+					</div>
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							Can I switch plans later?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get
+								immediate access to the new features. Downgrades take effect at the end of your
+								current billing cycle.
+							</p>
+						</div>
+					</div>
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							Where is my data stored?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								Your data is stored in the region closest to you. We have data centres in Mumbai
+								(India), Bahrain (Middle East), Singapore (Southeast Asia), Frankfurt (Europe), New
+								York (Americas), Sydney (Australia), and Cape Town (Africa). All data is encrypted
+								at rest and in transit.
+							</p>
+						</div>
+					</div>
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							Is my data secure and compliant?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								Absolutely. Lucoze is built with healthcare-grade security including end-to-end
+								encryption, role-based access control, audit logging, and automated backups. We are
+								HIPAA-ready with regional compliance. <span data-region-show="in"
+									>ABDM/ABHA integration for Indian facilities.</span
+								><span data-region-show="ae">NABIDH and NPHIES compliant for GCC operations.</span
+								><span data-region-show="sg">NEHR-ready for Singapore health records.</span><span
+									data-region-show="au,intl">HL7 FHIR and ICD-10 standards compliant.</span
+								>
+							</p>
+						</div>
+					</div>
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							Do I need to install anything?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								No. Lucoze is a fully cloud-based platform. All you need is a web browser. It works
+								on desktop, tablet, and mobile devices. No downloads, no IT team required.
+							</p>
+						</div>
+					</div>
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							What payment methods do you accept?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								For India, we accept all major payment methods via Razorpay — credit/debit cards,
+								UPI, net banking, and wallets. For international customers, we accept credit/debit
+								cards via Stripe.
+							</p>
+						</div>
+					</div>
+					<div class="faq-item fade-in">
+						<button class="faq-item__question">
+							Can I get a custom domain?
+							<svg
+								class="faq-item__icon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path d="M12 5v14M5 12h14"></path>
+							</svg>
+						</button>
+						<div class="faq-item__answer">
+							<p>
+								Yes! Every workspace gets a free subdomain (yourname.lucoze.com). You can also add
+								your own custom domain as an add-on for a small monthly fee.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══ CTA ══════════════════════════════════════════════════ -->
+		<section class="cta">
+			<div class="container">
+				<h2>Ready to modernise your practice?</h2>
+				<p>
+					Join healthcare providers across the world who trust Lucoze to manage their facilities.
+					Start your free trial today.
+				</p>
+				<a href="/signup" class="btn btn--primary btn--lg">Start Your Free Trial</a>
+			</div>
+		</section>
 	</section>
 
-	<!-- ═══ CTA ══════════════════════════════════════════════════ -->
-	<section class="cta">
-		<div class="container">
-			<h2>Ready to modernise your practice?</h2>
-			<p>
-				Join healthcare providers across the world who trust Lucoze to manage their facilities.
-				Start your free trial today.
-			</p>
-			<a href="/signup" class="btn btn--primary btn--lg">Start Your Free Trial</a>
-		</div>
-	</section>
+	<!-- ═══ Footer ═══════════════════════════════════════════════════ -->
 </BaseLayout>
-
-<!-- ═══ Footer ═══════════════════════════════════════════════════ -->
