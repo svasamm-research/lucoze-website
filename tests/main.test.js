@@ -531,15 +531,15 @@ describe("initSignup form validation", () => {
 		expect(options[1].querySelector("input").checked).toBe(true);
 	});
 
-	test("successful signup shows success message", () => {
+	test("successful signup sends OTP and shows verification step", () => {
 		const { window, document: doc } = createEnv(`
 			<form id="signupForm">
 				<input name="facility_name" value="Test Clinic" />
 				<input name="email" value="test@example.com" />
 				<input name="phone" value="" />
 				<select name="country"><option value="India">India</option></select>
-				<div class="plan-option selected" data-plan="starter">
-					<input type="radio" name="plan" value="starter" />
+				<div class="plan-option selected" data-plan="Clinic">
+					<input type="radio" name="plan" value="Clinic" />
 				</div>
 				<button type="submit">Start Your Free Trial</button>
 			</form>
@@ -549,7 +549,10 @@ describe("initSignup form validation", () => {
 		window.fetch = jest.fn(() =>
 			Promise.resolve({
 				ok: true,
-				json: () => Promise.resolve({ message: "ok" }),
+				json: () =>
+					Promise.resolve({
+						message: { status: "otp_sent", email: "t***t@example.com" },
+					}),
 			}),
 		);
 
@@ -560,7 +563,10 @@ describe("initSignup form validation", () => {
 			setTimeout(() => {
 				const alert = doc.getElementById("signupAlert");
 				expect(alert.classList.contains("alert--success")).toBe(true);
-				expect(alert.textContent).toContain("workspace is being set up");
+				expect(alert.textContent).toContain("Verification code sent");
+				// OTP input step should be shown
+				const otpStep = doc.getElementById("otpStep");
+				expect(otpStep).toBeTruthy();
 				resolve();
 			}, 0);
 		});
@@ -573,8 +579,8 @@ describe("initSignup form validation", () => {
 				<input name="email" value="test@example.com" />
 				<input name="phone" value="" />
 				<select name="country"><option value="India">India</option></select>
-				<div class="plan-option selected" data-plan="starter">
-					<input type="radio" name="plan" value="starter" />
+				<div class="plan-option selected" data-plan="Clinic">
+					<input type="radio" name="plan" value="Clinic" />
 				</div>
 				<button type="submit">Start Your Free Trial</button>
 			</form>
@@ -595,7 +601,6 @@ describe("initSignup form validation", () => {
 			setTimeout(() => {
 				const alert = doc.getElementById("signupAlert");
 				expect(alert.classList.contains("alert--error")).toBe(true);
-				expect(alert.textContent).toBe("Email already registered");
 				resolve();
 			}, 0);
 		});

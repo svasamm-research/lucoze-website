@@ -128,22 +128,58 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 						<label class="plan-option" data-plan="Clinic" data-category="clinic">
 							<input type="radio" name="plan" value="Clinic" checked />
 							<span class="plan-option__name">Clinic</span>
-							<span class="plan-option__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="3,999" data-monthly-ae="99" data-monthly-sg="79" data-monthly-au="149" data-monthly-intl="149">99</span>/mo</span>
+							<span class="plan-option__price"
+								><span class="pricing-card__currency">$</span><span
+									class="pricing-card__amount"
+									data-monthly-in="3,999"
+									data-monthly-ae="99"
+									data-monthly-sg="79"
+									data-monthly-au="149"
+									data-monthly-intl="149">99</span
+								>/mo</span
+							>
 						</label>
-						<label class="plan-option" data-plan="Clinic Plus" data-category="clinic">
-							<input type="radio" name="plan" value="Clinic Plus" />
-							<span class="plan-option__name">Clinic Plus</span>
-							<span class="plan-option__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="7,999" data-monthly-ae="199" data-monthly-sg="149" data-monthly-au="299" data-monthly-intl="299">199</span>/mo</span>
+						<label class="plan-option" data-plan="Clinic Pro" data-category="clinic">
+							<input type="radio" name="plan" value="Clinic Pro" />
+							<span class="plan-option__name">Clinic Pro</span>
+							<span class="plan-option__price"
+								><span class="pricing-card__currency">$</span><span
+									class="pricing-card__amount"
+									data-monthly-in="7,999"
+									data-monthly-ae="199"
+									data-monthly-sg="149"
+									data-monthly-au="299"
+									data-monthly-intl="299">199</span
+								>/mo</span
+							>
 						</label>
 						<label class="plan-option" data-plan="Hospital" data-category="clinic">
 							<input type="radio" name="plan" value="Hospital" />
 							<span class="plan-option__name">Hospital</span>
-							<span class="plan-option__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="14,999" data-monthly-ae="399" data-monthly-sg="299" data-monthly-au="599" data-monthly-intl="599">399</span>/mo</span>
+							<span class="plan-option__price"
+								><span class="pricing-card__currency">$</span><span
+									class="pricing-card__amount"
+									data-monthly-in="14,999"
+									data-monthly-ae="399"
+									data-monthly-sg="299"
+									data-monthly-au="599"
+									data-monthly-intl="599">399</span
+								>/mo</span
+							>
 						</label>
 						<label class="plan-option" data-plan="Hospital Pro" data-category="clinic">
 							<input type="radio" name="plan" value="Hospital Pro" />
 							<span class="plan-option__name">Hospital Pro</span>
-							<span class="plan-option__price"><span class="pricing-card__currency">$</span><span class="pricing-card__amount" data-monthly-in="29,999" data-monthly-ae="799" data-monthly-sg="499" data-monthly-au="999" data-monthly-intl="999">799</span>/mo</span>
+							<span class="plan-option__price"
+								><span class="pricing-card__currency">$</span><span
+									class="pricing-card__amount"
+									data-monthly-in="29,999"
+									data-monthly-ae="799"
+									data-monthly-sg="499"
+									data-monthly-au="999"
+									data-monthly-intl="999">799</span
+								>/mo</span
+							>
 						</label>
 					</div>
 
@@ -248,7 +284,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					</div>
 					<div class="form-group" id="otherCountryGroup" style="display: none">
 						<label for="otherCountryName">Your Country Name</label>
-						<input type="text" class="form-control" id="otherCountryName" name="other_country" placeholder="Enter your country name" />
+						<input
+							type="text"
+							class="form-control"
+							id="otherCountryName"
+							name="other_country"
+							placeholder="Enter your country name"
+						/>
 					</div>
 
 					<!-- Submit -->
