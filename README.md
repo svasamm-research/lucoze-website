@@ -31,36 +31,37 @@ public/                          # Static assets (copied to dist/ as-is)
 
 ## Pages
 
-| Page | Path | Purpose |
-|------|------|---------|
-| Home | `/` | Hero, features, pricing (4 plans), compliance badges |
-| Solutions — Clinics | `/solutions-clinics` | Clinic-specific features and plans |
-| Solutions — Hospitals | `/solutions-hospitals` | Hospital-specific features |
-| Solutions — Diagnostics | `/solutions-diagnostics` | Pathology/lab features (Contact Us) |
-| Solutions — Pharmacies | `/solutions-pharmacies` | Pharmacy features (Contact Us) |
-| Signup | `/signup` | Free trial signup (Clinic & Hospital plans only) |
-| Contact | `/contact` | Contact form |
-| About | `/about` | Company information |
-| Privacy | `/privacy` | Privacy policy |
-| Terms | `/terms` | Terms of service |
+| Page                    | Path                     | Purpose                                              |
+| ----------------------- | ------------------------ | ---------------------------------------------------- |
+| Home                    | `/`                      | Hero, features, pricing (4 plans), compliance badges |
+| Solutions — Clinics     | `/solutions-clinics`     | Clinic-specific features and plans                   |
+| Solutions — Hospitals   | `/solutions-hospitals`   | Hospital-specific features                           |
+| Solutions — Diagnostics | `/solutions-diagnostics` | Pathology/lab features (Contact Us)                  |
+| Solutions — Pharmacies  | `/solutions-pharmacies`  | Pharmacy features (Contact Us)                       |
+| Signup                  | `/signup`                | Free trial signup (Clinic & Hospital plans only)     |
+| Contact                 | `/contact`               | Contact form                                         |
+| About                   | `/about`                 | Company information                                  |
+| Privacy                 | `/privacy`               | Privacy policy                                       |
+| Terms                   | `/terms`                 | Terms of service                                     |
 
 ## International Pricing
 
 5 regional pricing tiers, auto-detected by timezone:
 
-| Region | Currency | Detection | Example countries |
-|--------|----------|-----------|-------------------|
-| India | INR (₹) | Asia/Kolkata | India |
-| Middle East | USD ($) | Asia/Dubai, Asia/Riyadh | UAE, Saudi Arabia, Qatar |
-| Southeast Asia | USD ($) | Asia/Singapore, Asia/Jakarta | Singapore, Malaysia, Indonesia |
-| Africa | USD ($) | Africa/Lagos, Africa/Nairobi | Nigeria, Kenya, South Africa |
-| International | USD ($) | Default | US, UK, EU, Australia |
+| Region         | Currency | Detection                    | Example countries              |
+| -------------- | -------- | ---------------------------- | ------------------------------ |
+| India          | INR (₹)  | Asia/Kolkata                 | India                          |
+| Middle East    | USD ($)  | Asia/Dubai, Asia/Riyadh      | UAE, Saudi Arabia, Qatar       |
+| Southeast Asia | USD ($)  | Asia/Singapore, Asia/Jakarta | Singapore, Malaysia, Indonesia |
+| Africa         | USD ($)  | Africa/Lagos, Africa/Nairobi | Nigeria, Kenya, South Africa   |
+| International  | USD ($)  | Default                      | US, UK, EU, Australia          |
 
 Country selector in the nav allows manual override. Selection persists in localStorage.
 
 ### Compliance Badges
 
 Shown per region:
+
 - **Middle East**: NABIDH Ready, NPHIES Compatible
 - **India**: ABDM Integrated, ABHA Compatible
 - **SEA**: NEHR Ready
@@ -147,19 +148,19 @@ Deployments are triggered by GitHub Releases — never by branch pushes.
 
 ### CI/CD (GitHub Actions)
 
-| Release tag | Docker tags | Environment |
-|-------------|------------|-------------|
-| `uat-vX.Y.Z` | `uat-vX.Y.Z` + `uat-latest` | UAT |
-| `vX.Y.Z` | `vX.Y.Z` + `latest` | Production (approval gate) |
+| Release tag  | Docker tags                 | Environment                |
+| ------------ | --------------------------- | -------------------------- |
+| `uat-vX.Y.Z` | `uat-vX.Y.Z` + `uat-latest` | UAT                        |
+| `vX.Y.Z`     | `vX.Y.Z` + `latest`         | Production (approval gate) |
 
 ### Required GitHub secrets
 
-| Secret | Purpose |
-|--------|---------|
-| `DOCKERHUB_USERNAME` | Docker Hub login |
-| `DOCKERHUB_TOKEN` | Docker Hub read+write token |
-| `DOKPLOY_LUCOZE_WEBSITE_WEBHOOK` | Dokploy webhook — production |
-| `DOKPLOY_LUCOZE_WEBSITE_UAT_WEBHOOK` | Dokploy webhook — UAT |
+| Secret                               | Purpose                      |
+| ------------------------------------ | ---------------------------- |
+| `DOCKERHUB_USERNAME`                 | Docker Hub login             |
+| `DOCKERHUB_TOKEN`                    | Docker Hub read+write token  |
+| `DOKPLOY_LUCOZE_WEBSITE_WEBHOOK`     | Dokploy webhook — production |
+| `DOKPLOY_LUCOZE_WEBSITE_UAT_WEBHOOK` | Dokploy webhook — UAT        |
 
 Variable: `DOKPLOY_DEPLOY_ENABLED=true`
 
@@ -167,9 +168,9 @@ Variable: `DOKPLOY_DEPLOY_ENABLED=true`
 
 ## Related Repositories
 
-| Repo | Purpose |
-|------|---------|
-| [lucoze](https://github.com/svasamm-research/lucoze) | Tenant app — healthcare management |
-| [lucoze-admin](https://github.com/svasamm-research/lucoze-admin) | SaaS admin portal — provisioning, billing |
-| [lucoze-agent](https://github.com/svasamm-research/lucoze-agent) | Provisioning agent and manager route API |
-| [frappe_docker](https://github.com/svasamm-research/frappe_docker) | Docker infrastructure for Frappe apps |
+| Repo                                                               | Purpose                                   |
+| ------------------------------------------------------------------ | ----------------------------------------- |
+| [lucoze](https://github.com/svasamm-research/lucoze)               | Tenant app — healthcare management        |
+| [lucoze-admin](https://github.com/svasamm-research/lucoze-admin)   | SaaS admin portal — provisioning, billing |
+| [lucoze-agent](https://github.com/svasamm-research/lucoze-agent)   | Provisioning agent and manager route API  |
+| [frappe_docker](https://github.com/svasamm-research/frappe_docker) | Docker infrastructure for Frappe apps     |

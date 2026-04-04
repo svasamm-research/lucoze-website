@@ -3,7 +3,10 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import CountrySelectorModal from "../components/CountrySelectorModal.astro";
 import NotServedBanner from "../components/NotServedBanner.astro";
+import { PRICING_VERSION, BILLING_API_URL } from "../data/regions.js";
 import "../styles/global.css";
+
+const billingApiUrl = BILLING_API_URL;
 
 interface Props {
 	title: string;
@@ -121,7 +124,12 @@ const siteUrl = "https://lucoze.com";
 
 		<slot name="head" />
 	</head>
-	<body data-region={regionSlug} data-served={String(served)}>
+	<body
+		data-region={regionSlug}
+		data-served={String(served)}
+		data-pricing-version={String(PRICING_VERSION)}
+		data-billing-api={billingApiUrl}
+	>
 		<a href="#main" class="skip-link">Skip to main content</a>
 
 		<Nav
@@ -142,7 +150,16 @@ const siteUrl = "https://lucoze.com";
 
 		<CountrySelectorModal />
 
+		<!-- Plausible Analytics (self-hosted, cookieless) — only load in production -->
+		{
+			!import.meta.env.DEV && (
+				<script defer data-domain="lucoze.com" src="https://analytics.lucoze.com/js/script.js" />
+			)
+		}
+
 		<script is:inline src="/js/region.js"></script>
 		<script is:inline src="/js/main.js"></script>
+		<script is:inline src="/js/tracker.js"></script>
+		<script is:inline src="/js/pricing-check.js"></script>
 	</body>
 </html>
