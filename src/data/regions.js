@@ -3,6 +3,19 @@
  * Used by Astro pages at build time and by client JS at runtime.
  */
 
+/**
+ * Pricing version — incremented when billing app updates prices.
+ * Website JS checks this against the billing API on page load.
+ * If they differ, fresh prices are fetched.
+ */
+export const PRICING_VERSION = 1;
+
+/**
+ * Billing API URL — used for runtime pricing version check.
+ * Set via environment variable at build time, falls back to production URL.
+ */
+export const BILLING_API_URL = import.meta.env.PUBLIC_BILLING_API_URL || "https://admin.lucoze.com";
+
 export const REGIONS = {
 	ae: {
 		slug: "ae",
@@ -26,7 +39,7 @@ export const REGIONS = {
 		],
 		pricing: {
 			Clinic: { monthly: "99", yearly: "84" },
-			"Clinic Plus": { monthly: "199", yearly: "169" },
+			"Clinic Pro": { monthly: "199", yearly: "169" },
 			Hospital: { monthly: "399", yearly: "339" },
 			"Hospital Pro": { monthly: "799", yearly: "679" },
 		},
@@ -55,7 +68,7 @@ export const REGIONS = {
 		],
 		pricing: {
 			Clinic: { monthly: "79", yearly: "67" },
-			"Clinic Plus": { monthly: "149", yearly: "127" },
+			"Clinic Pro": { monthly: "149", yearly: "127" },
 			Hospital: { monthly: "299", yearly: "254" },
 			"Hospital Pro": { monthly: "499", yearly: "424" },
 		},
@@ -81,7 +94,7 @@ export const REGIONS = {
 		],
 		pricing: {
 			Clinic: { monthly: "149", yearly: "127" },
-			"Clinic Plus": { monthly: "299", yearly: "254" },
+			"Clinic Pro": { monthly: "299", yearly: "254" },
 			Hospital: { monthly: "599", yearly: "509" },
 			"Hospital Pro": { monthly: "999", yearly: "849" },
 		},
@@ -104,7 +117,7 @@ export const REGIONS = {
 		],
 		pricing: {
 			Clinic: { monthly: "3,999", yearly: "3,399" },
-			"Clinic Plus": { monthly: "7,999", yearly: "6,799" },
+			"Clinic Pro": { monthly: "7,999", yearly: "6,799" },
 			Hospital: { monthly: "14,999", yearly: "12,749" },
 			"Hospital Pro": { monthly: "29,999", yearly: "25,499" },
 		},
@@ -126,7 +139,7 @@ export const REGIONS = {
 		],
 		pricing: {
 			Clinic: { monthly: "149", yearly: "127" },
-			"Clinic Plus": { monthly: "299", yearly: "254" },
+			"Clinic Pro": { monthly: "299", yearly: "254" },
 			Hospital: { monthly: "599", yearly: "509" },
 			"Hospital Pro": { monthly: "999", yearly: "849" },
 		},
