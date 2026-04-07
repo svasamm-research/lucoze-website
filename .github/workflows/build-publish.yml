@@ -75,11 +75,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Resolve environment URLs
+        id: urls
+        env:
+          IS_UAT: ${{ steps.meta.outputs.is_uat }}
+        run: |
+          if [ "$IS_UAT" = "true" ]; then
+            echo "billing_api_url=https://admin-uat.lucoze.com" >> "$GITHUB_OUTPUT"
+          else
+            echo "billing_api_url=https://admin.lucoze.com" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
+          build-args: |
+            PUBLIC_BILLING_API_URL=${{ steps.urls.outputs.billing_api_url }}
           tags: |
             svasamm/lucoze-website:${{ steps.meta.outputs.version }}
             svasamm/lucoze-website:${{ steps.meta.outputs.floating_tag }}

@@ -1,4 +1,11 @@
 FROM node:22-slim AS build
+
+# Environment-specific URLs — set via --build-arg per environment
+# UAT:  PUBLIC_BILLING_API_URL=https://admin-uat.lucoze.com
+# Prod: PUBLIC_BILLING_API_URL=https://admin.lucoze.com
+ARG PUBLIC_BILLING_API_URL=""
+ENV PUBLIC_BILLING_API_URL=${PUBLIC_BILLING_API_URL}
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
