@@ -12,9 +12,10 @@ export const PRICING_VERSION = 1;
 
 /**
  * Billing API URL — used for runtime pricing version check.
- * Set via environment variable at build time, falls back to production URL.
+ * Set via PUBLIC_BILLING_API_URL env var at build time.
+ * Empty string disables runtime pricing check (uses baked static prices).
  */
-export const BILLING_API_URL = import.meta.env.PUBLIC_BILLING_API_URL || "https://admin.lucoze.com";
+export const BILLING_API_URL = import.meta.env.PUBLIC_BILLING_API_URL || "";
 
 export const REGIONS = {
 	ae: {

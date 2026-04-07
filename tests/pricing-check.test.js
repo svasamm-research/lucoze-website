@@ -25,9 +25,11 @@ describe("regions.js pricing exports", () => {
 		expect(parseInt(match[1], 10)).toBeGreaterThan(0);
 	});
 
-	test("exports BILLING_API_URL with fallback to production", () => {
+	test("exports BILLING_API_URL from env var (no hardcoded production URL)", () => {
 		expect(regionsSource).toMatch(/export\s+const\s+BILLING_API_URL/);
-		expect(regionsSource).toContain("https://admin.lucoze.com");
+		expect(regionsSource).toContain("PUBLIC_BILLING_API_URL");
+		// Should NOT hardcode production URL — set via build-arg per environment
+		expect(regionsSource).not.toContain("https://admin.lucoze.com");
 	});
 
 	test("uses Clinic Pro not Clinic Plus in plan names", () => {
