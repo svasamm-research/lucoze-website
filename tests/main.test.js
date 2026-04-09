@@ -630,7 +630,7 @@ describe("initSignup form validation", () => {
 			setTimeout(() => {
 				const alert = doc.getElementById("signupAlert");
 				expect(alert.classList.contains("alert--error")).toBe(true);
-				expect(alert.textContent).toContain("Network error");
+				expect(alert.textContent).toContain("Unable to connect to the server");
 				resolve();
 			}, 0);
 		});

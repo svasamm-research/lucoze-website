@@ -578,7 +578,11 @@
 					}
 				})
 				.catch(function () {
-					showAlert(alert, "error", "Network error. Please check your connection and try again.");
+					showAlert(
+						alert,
+						"error",
+						"Unable to connect to the server. Please check your internet connection or try again later. If the issue persists, contact support@lucoze.com.",
+					);
 				})
 				.finally(function () {
 					if (submitBtn) {
@@ -717,7 +721,11 @@
 					}
 				})
 				.catch(function () {
-					showAlert(alert, "error", "Network error. Please try again.");
+					showAlert(
+						alert,
+						"error",
+						"Unable to connect to the server. Please try again or contact support@lucoze.com.",
+					);
 					otpBtn.removeAttribute("disabled");
 					otpBtn.textContent = "Verify & Create Workspace";
 				});
@@ -936,7 +944,11 @@
 					}
 				})
 				.catch(function () {
-					showAlert(alert, "error", "Network error. Please check your connection and try again.");
+					showAlert(
+						alert,
+						"error",
+						"Unable to connect to the server. Please check your internet connection or try again later. If the issue persists, contact support@lucoze.com.",
+					);
 				})
 				.finally(function () {
 					if (submitBtn) {
