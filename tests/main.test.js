@@ -630,7 +630,7 @@ describe("initSignup form validation", () => {
 			setTimeout(() => {
 				const alert = doc.getElementById("signupAlert");
 				expect(alert.classList.contains("alert--error")).toBe(true);
-				expect(alert.textContent).toContain("Network error");
+				expect(alert.textContent).toContain("Unable to connect to the server");
 				resolve();
 			}, 0);
 		});
@@ -847,6 +847,31 @@ describe("LucozeRegion", () => {
 		const { window } = createEnv();
 		const region = loadRegion(window);
 		expect(region.getRegionForCountry("XX")).toBeNull();
+	});
+
+	test("getRegionForCountry accepts full country name 'India'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("India")).toBe("in");
+	});
+
+	test("getRegionForCountry accepts full country name 'Australia'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Australia")).toBe("au");
+	});
+
+	test("getRegionForCountry accepts full country name 'Singapore'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Singapore")).toBe("sg");
+	});
+
+	test("getRegionForCountry returns null for empty input", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("")).toBeNull();
+		expect(region.getRegionForCountry(null)).toBeNull();
 	});
 
 	test("getRegionInfo returns correct currency", () => {
