@@ -130,8 +130,20 @@ var LucozeRegion = (function () {
 		intl: { currency: "usd", symbol: "$" },
 	};
 
-	function getRegionForCountry(countryCode) {
-		return COUNTRY_TO_REGION[countryCode] || null;
+	// Build a name-to-code map from SERVED_REGIONS so we can resolve
+	// both ISO codes ("IN") and full country names ("India") the same way.
+	var COUNTRY_NAME_TO_CODE = {};
+	SERVED_REGIONS.forEach(function (r) {
+		r.countries.forEach(function (c) {
+			COUNTRY_NAME_TO_CODE[c.name] = c.code;
+		});
+	});
+
+	function getRegionForCountry(country) {
+		if (!country) return null;
+		// Accept both ISO code (e.g., "IN") and full name (e.g., "India")
+		var code = COUNTRY_TO_REGION[country] ? country : COUNTRY_NAME_TO_CODE[country];
+		return code ? COUNTRY_TO_REGION[code] : null;
 	}
 
 	function getRegionInfo(slug) {

@@ -849,6 +849,31 @@ describe("LucozeRegion", () => {
 		expect(region.getRegionForCountry("XX")).toBeNull();
 	});
 
+	test("getRegionForCountry accepts full country name 'India'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("India")).toBe("in");
+	});
+
+	test("getRegionForCountry accepts full country name 'Australia'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Australia")).toBe("au");
+	});
+
+	test("getRegionForCountry accepts full country name 'Singapore'", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("Singapore")).toBe("sg");
+	});
+
+	test("getRegionForCountry returns null for empty input", () => {
+		const { window } = createEnv();
+		const region = loadRegion(window);
+		expect(region.getRegionForCountry("")).toBeNull();
+		expect(region.getRegionForCountry(null)).toBeNull();
+	});
+
 	test("getRegionInfo returns correct currency", () => {
 		const { window } = createEnv();
 		const region = loadRegion(window);
