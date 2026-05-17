@@ -1,0 +1,64 @@
+name: plausible
+
+services:
+  plausible_db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  plausible_events_db:
+    image: clickhouse/clickhouse-server:24.12-alpine
+    restart: unless-stopped
+    volumes:
+      - event-data:/var/lib/clickhouse
+      - event-logs:/var/log/clickhouse-server
+      - ./clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro
+      - ./clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  plausible:
+    image: ghcr.io/plausible/community-edition:v3.0.1
+    restart: unless-stopped
+    command: sh -c "/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
+    depends_on:
+      plausible_db:
+        condition: service_healthy
+      plausible_events_db:
+        condition: service_started
+    environment:
+      BASE_URL: ${BASE_URL}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      TOTP_VAULT_KEY: ${TOTP_VAULT_KEY}
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@plausible_db:5432/plausible_db
+      CLICKHOUSE_DATABASE_URL: http://plausible_events_db:8123/plausible_events_db
+      DISABLE_REGISTRATION: ${DISABLE_REGISTRATION:-invite_only}
+      # MAILER_* / SMTP_* intentionally unset — Plausible falls back to the local mail adapter
+      # (emails are logged, not delivered). Wire SES here when the team grows past CLI-managed users.
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.plausible.rule=Host(`${PLAUSIBLE_HOST}`)
+      - traefik.http.routers.plausible.entrypoints=websecure
+      - traefik.http.routers.plausible.tls=true
+      - traefik.http.routers.plausible.tls.certresolver=letsencrypt
+      - traefik.http.services.plausible.loadbalancer.server.port=8000
+
+volumes:
+  db-data:
+  event-data:
+  event-logs:
+
+networks:
+  default:
+    name: dokploy-network
+    external: true
