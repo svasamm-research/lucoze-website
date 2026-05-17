@@ -82,8 +82,12 @@ jobs:
         run: |
           if [ "$IS_UAT" = "true" ]; then
             echo "billing_api_url=https://admin-uat.lucoze.com" >> "$GITHUB_OUTPUT"
+            # UAT: leave Plausible domain empty so the script tag is not rendered;
+            # UAT visits will not be reported to Plausible.
+            echo "plausible_domain=" >> "$GITHUB_OUTPUT"
           else
             echo "billing_api_url=https://admin.lucoze.com" >> "$GITHUB_OUTPUT"
+            echo "plausible_domain=lucoze.com" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build and push Docker image
@@ -93,6 +97,7 @@ jobs:
           push: true
           build-args: |
             PUBLIC_BILLING_API_URL=${{ steps.urls.outputs.billing_api_url }}
+            PUBLIC_PLAUSIBLE_DOMAIN=${{ steps.urls.outputs.plausible_domain }}
           tags: |
             svasamm/lucoze-website:${{ steps.meta.outputs.version }}
             svasamm/lucoze-website:${{ steps.meta.outputs.floating_tag }}
