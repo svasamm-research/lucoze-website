@@ -7,6 +7,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: plausible_db
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -17,6 +18,11 @@ services:
   plausible_events_db:
     image: clickhouse/clickhouse-server:24.12-alpine
     restart: unless-stopped
+    environment:
+      CLICKHOUSE_DB: plausible_events_db
+      CLICKHOUSE_USER: plausible
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
     volumes:
       - event-data:/var/lib/clickhouse
       - event-logs:/var/log/clickhouse-server
@@ -41,10 +47,16 @@ services:
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
       TOTP_VAULT_KEY: ${TOTP_VAULT_KEY}
       DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@plausible_db:5432/plausible_db
-      CLICKHOUSE_DATABASE_URL: http://plausible_events_db:8123/plausible_events_db
+      CLICKHOUSE_DATABASE_URL: http://plausible:${CLICKHOUSE_PASSWORD}@plausible_events_db:8123/plausible_events_db
       DISABLE_REGISTRATION: ${DISABLE_REGISTRATION:-invite_only}
-      # MAILER_* / SMTP_* intentionally unset — Plausible falls back to the local mail adapter
-      # (emails are logged, not delivered). Wire SES here when the team grows past CLI-managed users.
+      MAILER_EMAIL: ${MAILER_EMAIL}
+      MAILER_ADAPTER: Bamboo.SMTPAdapter
+      SMTP_HOST_ADDR: ${SMTP_HOST_ADDR}
+      SMTP_HOST_PORT: ${SMTP_HOST_PORT:-587}
+      SMTP_USER_NAME: ${SMTP_USER_NAME}
+      SMTP_USER_PWD: ${SMTP_USER_PWD}
+      SMTP_HOST_SSL_ENABLED: ${SMTP_HOST_SSL_ENABLED:-false}
+      SMTP_RETRIES: 2
     labels:
       - traefik.enable=true
       - traefik.http.routers.plausible.rule=Host(`${PLAUSIBLE_HOST}`)
