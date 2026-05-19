@@ -6,6 +6,11 @@ FROM node:22-slim AS build
 ARG PUBLIC_BILLING_API_URL=""
 ENV PUBLIC_BILLING_API_URL=${PUBLIC_BILLING_API_URL}
 
+# Plausible domain. Empty on UAT (skips Plausible loading entirely) so UAT traffic
+# does not pollute production analytics. Set to "lucoze.com" for production builds.
+ARG PUBLIC_PLAUSIBLE_DOMAIN=""
+ENV PUBLIC_PLAUSIBLE_DOMAIN=${PUBLIC_PLAUSIBLE_DOMAIN}
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install

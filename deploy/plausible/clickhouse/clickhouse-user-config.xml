@@ -1,0 +1,11 @@
+<clickhouse>
+    <profiles>
+        <default>
+            <log_queries>0</log_queries>
+            <log_query_threads>0</log_query_threads>
+            <!-- Cap memory for safety on shared Manager VPS; raise after 8GB upgrade if needed -->
+            <max_memory_usage>2000000000</max_memory_usage>
+            <max_bytes_before_external_group_by>1000000000</max_bytes_before_external_group_by>
+        </default>
+    </profiles>
+</clickhouse>

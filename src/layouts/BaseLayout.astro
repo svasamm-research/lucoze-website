@@ -150,10 +150,14 @@ const siteUrl = "https://lucoze.com";
 
 		<CountrySelectorModal />
 
-		<!-- Plausible Analytics (self-hosted, cookieless) — only load in production -->
+		<!-- Plausible Analytics (self-hosted, cookieless) — only when domain is configured at build time -->
 		{
-			!import.meta.env.DEV && (
-				<script defer data-domain="lucoze.com" src="https://analytics.lucoze.com/js/script.js" />
+			import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
+				<script
+					defer
+					data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN}
+					src="https://analytics.lucoze.com/js/script.js"
+				/>
 			)
 		}
 
