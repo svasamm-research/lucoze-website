@@ -22,9 +22,13 @@ Self-hosted Plausible CE for `analytics.lucoze.com`. Tracks anonymous, aggregate
 cp deploy/plausible/plausible.env.example /tmp/plausible.env
 
 # 2. Generate secrets
+# SECRET_KEY_BASE and TOTP_VAULT_KEY are Phoenix/Erlang secrets — base64 is fine.
+# POSTGRES_PASSWORD and CLICKHOUSE_PASSWORD are embedded into URLs — use hex to
+# avoid '/' '+' '=' that would break URL parsing.
 echo "SECRET_KEY_BASE=$(openssl rand -base64 64 | tr -d '\n')"
 echo "TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')"
-echo "POSTGRES_PASSWORD=$(openssl rand -base64 24 | tr -d '\n')"
+echo "POSTGRES_PASSWORD=$(openssl rand -hex 24)"
+echo "CLICKHOUSE_PASSWORD=$(openssl rand -hex 24)"
 # Paste into /tmp/plausible.env; fill SMTP creds from AWS SES console.
 
 # 3. Materialise final compose
