@@ -41,6 +41,10 @@
 	display: flex;
 	gap: var(--s-1);
 	align-items: center;
+	/* Stretch to fill nav__inner's 72px height. Required so that
+	   .nav__li-mega children can themselves stretch to a definite size
+	   — fixing the mega-menu hover gap. */
+	align-self: stretch;
 }
 .nav__link {
 	padding: 8px 14px;

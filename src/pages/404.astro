@@ -1,0 +1,73 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<Base
+	title="Page not found — Lucoze"
+	description="That page hasn't been built yet. We're shipping pages over the next few weeks. Head home or browse the blog."
+>
+	<section class="section-404">
+		<div class="container">
+			<span class="section-404__eyebrow">404</span>
+			<h1 class="section-404__title">That page hasn't been built yet.</h1>
+			<p class="section-404__lead">
+				We're shipping pages over the next few weeks. Head home, browse the blog, or talk to us
+				about what you were looking for.
+			</p>
+			<div class="section-404__actions">
+				<a href="/in/" class="btn btn--accent btn--lg">Go home</a>
+				<a href="/in/blog/" class="btn btn--ghost btn--lg">
+					Read the blog
+					<Icon name="arrow" size={16} class="btn__arrow" />
+				</a>
+			</div>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.section-404 {
+		padding: var(--s-24) 0;
+		text-align: center;
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.section-404 .container {
+		max-width: 720px;
+	}
+	.section-404__eyebrow {
+		font-family: var(--font-mono);
+		font-size: var(--t-sm);
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--primary);
+		display: inline-block;
+		margin-bottom: var(--s-5);
+	}
+	.section-404__title {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: clamp(36px, 5vw, var(--t-5xl));
+		letter-spacing: -0.035em;
+		line-height: 1.05;
+		color: var(--ink);
+		margin-bottom: var(--s-5);
+	}
+	.section-404__lead {
+		font-size: clamp(16px, 1.8vw, var(--t-md));
+		color: var(--muted);
+		line-height: 1.6;
+		margin: 0 auto var(--s-8);
+		max-width: 560px;
+	}
+	.section-404__actions {
+		display: flex;
+		gap: var(--s-3);
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+</style>
