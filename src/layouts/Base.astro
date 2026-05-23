@@ -1,0 +1,130 @@
+---
+/**
+ * Base.astro — Vault redesign layout (2026).
+ *
+ * Parallel to legacy `BaseLayout.astro` during the port.
+ * Old pages keep using BaseLayout; new pages adopt this one.
+ * Once the redesign is complete, BaseLayout.astro can be removed.
+ */
+import "../styles/tokens.css";
+
+interface Props {
+	title: string;
+	description: string;
+	canonical?: string;
+	activeLink?: string;
+	ogImage?: string;
+}
+
+const { title, description, canonical = Astro.url.href, ogImage = "/og-default.png" } = Astro.props;
+
+const siteUrl = "https://lucoze.com";
+const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | Lucoze`;
+---
+
+<!doctype html>
+<html lang="en-IN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+
+		<!-- Open Graph -->
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta
+			property="og:image"
+			content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
+		/>
+		<meta property="og:locale" content="en_IN" />
+		<meta property="og:site_name" content="Lucoze" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta
+			name="twitter:image"
+			content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
+		/>
+
+		<meta name="theme-color" content="#c15f3c" />
+		<link rel="icon" type="image/svg+xml" href="/favicon-vault.svg" />
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap"
+		/>
+
+		<slot name="head" />
+	</head>
+	<body>
+		<a href="#main" class="skip-link">Skip to main content</a>
+
+		<!-- TODO(redesign): Nav and Footer islands land in Phase B -->
+		<header class="v-nav-placeholder">
+			<div class="container v-nav-placeholder__inner">
+				<a href="/in/" class="v-nav-placeholder__brand">Lucoze</a>
+				<span class="v-nav-placeholder__note">Phase A · Vault redesign</span>
+			</div>
+		</header>
+
+		<main id="main">
+			<slot />
+		</main>
+
+		<footer class="v-footer-placeholder">
+			<div class="container">
+				<p class="t-small">© Lucoze. Vault redesign in progress.</p>
+			</div>
+		</footer>
+
+		<!-- Plausible Analytics — only when domain is configured at build time -->
+		{
+			import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
+				<script
+					defer
+					data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN}
+					src="https://analytics.lucoze.com/js/script.js"
+				/>
+			)
+		}
+
+		<style is:global>
+			.v-nav-placeholder {
+				border-bottom: 1px solid var(--border);
+				background: var(--paper);
+				padding: var(--s-4) 0;
+			}
+			.v-nav-placeholder__inner {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.v-nav-placeholder__brand {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: var(--t-xl);
+				color: var(--ink);
+			}
+			.v-nav-placeholder__note {
+				font-family: var(--font-mono);
+				font-size: var(--t-xs);
+				color: var(--muted);
+			}
+			.v-footer-placeholder {
+				border-top: 1px solid var(--border);
+				padding: var(--s-8) 0;
+				margin-top: var(--s-16);
+			}
+		</style>
+	</body>
+</html>
