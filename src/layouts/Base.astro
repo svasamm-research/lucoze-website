@@ -7,6 +7,10 @@
  * Once the redesign is complete, BaseLayout.astro can be removed.
  */
 import "../styles/tokens.css";
+import "../styles/sections.css";
+import "../styles/subpages.css";
+import Nav from "../components/redesign/Nav.astro";
+import Footer from "../components/redesign/Footer.astro";
 
 interface Props {
 	title: string;
@@ -16,7 +20,13 @@ interface Props {
 	ogImage?: string;
 }
 
-const { title, description, canonical = Astro.url.href, ogImage = "/og-default.png" } = Astro.props;
+const {
+	title,
+	description,
+	canonical = Astro.url.href,
+	ogImage = "/og-default.png",
+	activeLink = "",
+} = Astro.props;
 
 const siteUrl = "https://lucoze.com";
 const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | Lucoze`;
@@ -32,7 +42,6 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 
-		<!-- Open Graph -->
 		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
@@ -44,7 +53,6 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 		<meta property="og:locale" content="en_IN" />
 		<meta property="og:site_name" content="Lucoze" />
 
-		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
@@ -56,7 +64,6 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 		<meta name="theme-color" content="#c15f3c" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-vault.svg" />
 
-		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -69,25 +76,14 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 	<body>
 		<a href="#main" class="skip-link">Skip to main content</a>
 
-		<!-- TODO(redesign): Nav and Footer islands land in Phase B -->
-		<header class="v-nav-placeholder">
-			<div class="container v-nav-placeholder__inner">
-				<a href="/in/" class="v-nav-placeholder__brand">Lucoze</a>
-				<span class="v-nav-placeholder__note">Phase A · Vault redesign</span>
-			</div>
-		</header>
+		<Nav activeLink={activeLink} />
 
 		<main id="main">
 			<slot />
 		</main>
 
-		<footer class="v-footer-placeholder">
-			<div class="container">
-				<p class="t-small">© Lucoze. Vault redesign in progress.</p>
-			</div>
-		</footer>
+		<Footer />
 
-		<!-- Plausible Analytics — only when domain is configured at build time -->
 		{
 			import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
 				<script
@@ -97,34 +93,5 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 				/>
 			)
 		}
-
-		<style is:global>
-			.v-nav-placeholder {
-				border-bottom: 1px solid var(--border);
-				background: var(--paper);
-				padding: var(--s-4) 0;
-			}
-			.v-nav-placeholder__inner {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-			}
-			.v-nav-placeholder__brand {
-				font-family: var(--font-display);
-				font-weight: 800;
-				font-size: var(--t-xl);
-				color: var(--ink);
-			}
-			.v-nav-placeholder__note {
-				font-family: var(--font-mono);
-				font-size: var(--t-xs);
-				color: var(--muted);
-			}
-			.v-footer-placeholder {
-				border-top: 1px solid var(--border);
-				padding: var(--s-8) 0;
-				margin-top: var(--s-16);
-			}
-		</style>
 	</body>
 </html>

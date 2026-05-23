@@ -1,0 +1,88 @@
+---
+import Icon from "./Icon.astro";
+import Crumbs from "./Crumbs.astro";
+
+interface Crumb {
+	href?: string;
+	label: string;
+}
+interface Cta {
+	href: string;
+	label: string;
+}
+interface Stat {
+	value: string;
+	label: string;
+}
+
+interface Props {
+	crumbs?: Crumb[];
+	eyebrow?: string;
+	h1: string;
+	highlightParts?: string[]; // optional array form e.g. ["Predictable monthly pricing. ", "No per-user gotchas", "."]
+	lead: string;
+	primaryCta?: Cta;
+	secondaryCta?: Cta;
+	statsRow?: Stat[];
+}
+
+const { crumbs, eyebrow, h1, highlightParts, lead, primaryCta, secondaryCta, statsRow } =
+	Astro.props;
+---
+
+<section class="subhero">
+	<div class="container">
+		{crumbs && crumbs.length > 0 && <Crumbs items={crumbs} />}
+
+		<div class="subhero__inner">
+			<div>
+				{eyebrow && <span class="t-eyebrow">{eyebrow}</span>}
+				<h1>
+					{
+						highlightParts ? (
+							highlightParts.map((part, i) =>
+								i === 1 ? <em>{part}</em> : <Fragment>{part}</Fragment>,
+							)
+						) : (
+							<Fragment>{h1}</Fragment>
+						)
+					}
+				</h1>
+				<p class="lead">{lead}</p>
+				{
+					(primaryCta || secondaryCta) && (
+						<div class="subhero__actions">
+							{primaryCta && (
+								<a href={primaryCta.href} class="btn btn--accent btn--lg">
+									{primaryCta.label}
+									<Icon name="arrow" size={16} class="btn__arrow" />
+								</a>
+							)}
+							{secondaryCta && (
+								<a href={secondaryCta.href} class="btn btn--ghost btn--lg">
+									{secondaryCta.label}
+								</a>
+							)}
+						</div>
+					)
+				}
+			</div>
+			<div class="subhero__visual">
+				<slot name="visual" />
+			</div>
+		</div>
+
+		{
+			statsRow && statsRow.length > 0 && (
+				<div class="stats-row" style="margin-top: var(--s-10);">
+					{statsRow.map((s) => (
+						<div class="stat">
+							<div class="stat__value">{s.value}</div>
+							<div class="stat__label">{s.label}</div>
+						</div>
+					))}
+				</div>
+			)
+		}
+	</div>
+</section>

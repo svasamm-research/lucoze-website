@@ -1,0 +1,295 @@
+---
+import Base from "../../layouts/Base.astro";
+import SubHero from "../../components/SubHero.astro";
+import Icon from "../../components/Icon.astro";
+import Faq from "../../components/Faq.astro";
+import CtaStrip from "../../components/CtaStrip.astro";
+
+const PLANS = [
+	{
+		name: "Clinic",
+		for: "1-2 doctors · solo or duo practice",
+		price: "1,499",
+		period: "/ month",
+		cta: "Start free trial",
+		href: "/in/signup/",
+		featured: false,
+		features: [
+			"Patient records + appointments",
+			"Single-doctor billing & invoicing",
+			"WhatsApp + SMS reminders",
+			"Hindi UI (Bengali, Odia coming)",
+			"ABHA linking for patients",
+			"Email support, 24h SLA",
+		],
+	},
+	{
+		name: "Clinic Pro",
+		for: "3-15 doctors · multi-specialty / polyclinic",
+		price: "2,999",
+		period: "/ month",
+		cta: "Start free trial",
+		href: "/in/signup/",
+		featured: true,
+		features: [
+			"Everything in Clinic, plus",
+			"Multi-doctor scheduling + rooms",
+			"Lab module + external lab integration",
+			"Pharmacy module + inventory",
+			"GST-compliant multi-doctor billing",
+			"Phone + WhatsApp support, 4h SLA",
+		],
+	},
+	{
+		name: "Hospital",
+		for: "20-100 beds · small hospital",
+		price: "7,999",
+		period: "/ month",
+		cta: "Book a hospital demo",
+		href: "/in/contact/",
+		featured: false,
+		features: [
+			"Everything in Clinic Pro, plus",
+			"Inpatient (IPD) module + ward management",
+			"Operation theatre scheduling",
+			"HR, payroll, attendance",
+			"NABH-ready dashboards",
+			"Dedicated implementation manager",
+		],
+	},
+];
+
+const PRICING_FAQS = [
+	{
+		q: "Is there a free plan?",
+		a: "No, and we've written about why. The closest thing is our 14-day free trial — full feature access, no credit card. Design-partner clinics get 6 months free instead.",
+	},
+	{
+		q: "Can I switch plans later?",
+		a: "Yes, both ways. Upgrade kicks in immediately. Downgrade applies at the next billing cycle so you don't lose anything you've paid for.",
+	},
+	{
+		q: "Is GST included in the price?",
+		a: "No — GST is added on top. The prices above are before tax.",
+	},
+	{
+		q: "Do you offer annual pricing?",
+		a: "Yes, 2 months free on annual. Email hello@lucoze.com if you'd like an annual quote.",
+	},
+	{
+		q: "What payment methods?",
+		a: "Card, UPI, bank transfer, and corporate cheque for hospital plans. We don't auto-charge — you renew explicitly each month.",
+	},
+	{
+		q: "What about migration costs?",
+		a: "Included. We import your patient master, appointment history, and active bookings from Practo Ray, Halemind, Cliniq360, or Excel during the trial. No migration fee.",
+	},
+];
+
+const comparisonRows: { label: string; clinic: string; pro: string; hospital: string }[] = [
+	{ label: "Patient records + ABHA", clinic: "check", pro: "check", hospital: "check" },
+	{ label: "Appointments + WhatsApp reminders", clinic: "check", pro: "check", hospital: "check" },
+	{ label: "GST-compliant billing", clinic: "check", pro: "check", hospital: "check" },
+	{ label: "Multi-doctor scheduling", clinic: "cross", pro: "check", hospital: "check" },
+	{ label: "Lab module", clinic: "cross", pro: "check", hospital: "check" },
+	{ label: "Pharmacy module", clinic: "cross", pro: "check", hospital: "check" },
+	{ label: "HR + payroll", clinic: "cross", pro: "cross", hospital: "check" },
+	{ label: "Inpatient (IPD)", clinic: "cross", pro: "cross", hospital: "check" },
+	{ label: "OT scheduling", clinic: "cross", pro: "cross", hospital: "check" },
+	{ label: "NABH dashboards", clinic: "cross", pro: "cross", hospital: "check" },
+	{ label: "Implementation manager", clinic: "cross", pro: "cross", hospital: "check" },
+];
+---
+
+<Base
+	title="Pricing — Healthcare Management Software | Lucoze"
+	description="Three plans for Indian clinics and hospitals. From ₹1,499/month. 14-day free trial. GST-compliant invoicing. No per-user gotchas."
+	activeLink="pricing"
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Pricing" }]}
+		eyebrow="Pricing"
+		h1="Predictable monthly pricing."
+		highlightParts={["Predictable monthly pricing. ", "No per-user gotchas", "."]}
+		lead="Three plans. Every module included in each plan. 14-day free trial — no credit card, full feature access. Design-partner slots get 6 months free."
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/design-partner/", label: "Apply for design partner" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<div class="pricing-grid">
+				{
+					PLANS.map((p) => (
+						<article class:list={["plan", p.featured && "plan--featured"]}>
+							{p.featured && <div class="plan__badge">Most popular</div>}
+							<h3 class="plan__name">{p.name}</h3>
+							<div class="plan__for">{p.for}</div>
+							<div class="plan__price">
+								<span class="plan__currency">₹</span>
+								<span class="plan__amount">{p.price}</span>
+								<span class="plan__period">{p.period}</span>
+							</div>
+							<div class="plan__features" role="list">
+								{p.features.map((f) => (
+									<div class="plan__feature" role="listitem">
+										<Icon name="check" size={16} />
+										<span>{f}</span>
+									</div>
+								))}
+							</div>
+							<a
+								href={p.href}
+								class:list={["btn", "plan__cta", p.featured ? "btn--accent" : "btn--ghost"]}
+							>
+								{p.cta}
+								<Icon name="arrow" size={14} class="btn__arrow" />
+							</a>
+						</article>
+					))
+				}
+			</div>
+
+			<div class="design-partner-strip">
+				<Icon name="spark" size={22} class="design-partner-strip__icon" />
+				<div class="design-partner-strip__body">
+					<div class="design-partner-strip__title">Design-partner program · 4 of 10 slots open</div>
+					<div class="t-small">
+						Six months free, weekly 30-min calls with our founder, lifetime founding-customer
+						pricing. East-India clinics prioritised.
+					</div>
+				</div>
+				<a href="/in/design-partner/" class="btn btn--primary">
+					Apply
+					<Icon name="arrow" size={14} class="btn__arrow" />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">What's in each plan</span>
+				<h2 class="t-h2" style="margin-top: 8px;">The detailed comparison.</h2>
+			</header>
+			<div class="diff" role="region" aria-label="Plan comparison">
+				<table class="diff__table">
+					<thead>
+						<tr>
+							<th scope="col" style="min-width: 240px;">Capability</th>
+							<th scope="col" style="text-align: center;">Clinic</th>
+							<th scope="col" style="text-align: center;">Clinic Pro</th>
+							<th scope="col" style="text-align: center;">Hospital</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							comparisonRows.map((row) => (
+								<tr>
+									<th
+										scope="row"
+										class="diff__row-label"
+										style="text-align: left; background: var(--paper);"
+									>
+										{row.label}
+									</th>
+									{[row.clinic, row.pro, row.hospital].map((v, j) => (
+										<td class:list={["diff__cell", j === 1 && "diff__cell--lucoze"]}>
+											{v === "check" && (
+												<span class="diff__check">
+													<Icon name="check" size={13} />
+												</span>
+											)}
+											{v === "cross" && (
+												<span class="diff__cross">
+													<Icon name="x" size={13} />
+												</span>
+											)}
+										</td>
+									))}
+								</tr>
+							))
+						}
+						<tr>
+							<th
+								scope="row"
+								class="diff__row-label"
+								style="text-align: left; background: var(--paper);">Support SLA</th
+							>
+							<td class="diff__cell" style="font-size: 12px;">24h email</td>
+							<td class="diff__cell diff__cell--lucoze" style="font-size: 12px;"
+								>4h WhatsApp + phone</td
+							>
+							<td class="diff__cell" style="font-size: 12px;">1h, named CSM</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Pricing FAQs</span>
+				<h2 class="t-h2" style="margin-top: 8px;">What everyone asks before signing up.</h2>
+			</header>
+			<Faq items={PRICING_FAQS} />
+		</div>
+	</section>
+
+	<CtaStrip
+		title="Try Lucoze for 14 days. Free."
+		sub="No credit card. Migration help included. Cancel anytime."
+		ctaLabel="Start free trial"
+		ctaHref="/in/signup/"
+		secondaryLabel="Apply as design partner"
+		secondaryHref="/in/design-partner/"
+	/>
+
+	<script
+		type="application/ld+json"
+		set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "SoftwareApplication",
+			name: "Lucoze Healthcare Management Software",
+			applicationCategory: "HealthApplication",
+			operatingSystem: "Web",
+			offers: [
+				{ "@type": "Offer", name: "Clinic", price: "1499", priceCurrency: "INR" },
+				{ "@type": "Offer", name: "Clinic Pro", price: "2999", priceCurrency: "INR" },
+				{ "@type": "Offer", name: "Hospital", price: "7999", priceCurrency: "INR" },
+			],
+		})}
+		slot="head"
+	/>
+</Base>
+
+<style>
+	.design-partner-strip {
+		margin-top: var(--s-10);
+		padding: var(--s-5) var(--s-6);
+		background: var(--paper);
+		border: 1px solid var(--border);
+		border-radius: var(--r-lg);
+		display: flex;
+		gap: var(--s-4);
+		align-items: center;
+		flex-wrap: wrap;
+		box-shadow: var(--shadow-sm);
+	}
+	.design-partner-strip__icon {
+		color: var(--primary);
+		flex-shrink: 0;
+	}
+	.design-partner-strip__body {
+		flex: 1;
+		min-width: 240px;
+	}
+	.design-partner-strip__title {
+		font-weight: 700;
+		color: var(--ink);
+		margin-bottom: 2px;
+	}
+</style>
