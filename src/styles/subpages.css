@@ -125,10 +125,18 @@
 	position: relative;
 	z-index: 1;
 }
+/* When the SubHero has no visual slot (pricing, blog index, etc.) collapse
+   to a single full-width column so we don't reserve dead space. */
+.subhero__inner--solo {
+	grid-template-columns: minmax(0, 720px);
+}
 @media (max-width: 880px) {
 	.subhero__inner {
 		grid-template-columns: 1fr;
 		gap: var(--s-8);
+	}
+	.subhero__inner--solo {
+		grid-template-columns: 1fr;
 	}
 }
 .subhero h1 {

@@ -28,13 +28,15 @@ interface Props {
 
 const { crumbs, eyebrow, h1, highlightParts, lead, primaryCta, secondaryCta, statsRow } =
 	Astro.props;
+
+const hasVisual = Astro.slots.has("visual");
 ---
 
 <section class="subhero">
 	<div class="container">
 		{crumbs && crumbs.length > 0 && <Crumbs items={crumbs} />}
 
-		<div class="subhero__inner">
+		<div class:list={["subhero__inner", !hasVisual && "subhero__inner--solo"]}>
 			<div>
 				{eyebrow && <span class="t-eyebrow">{eyebrow}</span>}
 				<h1>
@@ -67,9 +69,13 @@ const { crumbs, eyebrow, h1, highlightParts, lead, primaryCta, secondaryCta, sta
 					)
 				}
 			</div>
-			<div class="subhero__visual">
-				<slot name="visual" />
-			</div>
+			{
+				hasVisual && (
+					<div class="subhero__visual">
+						<slot name="visual" />
+					</div>
+				)
+			}
 		</div>
 
 		{
