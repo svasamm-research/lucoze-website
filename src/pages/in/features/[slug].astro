@@ -3,7 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import SubHero from "../../../components/SubHero.astro";
 import FRow from "../../../components/FRow.astro";
-import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
+import FeatureVisual from "../../../components/visuals/FeatureVisual.astro";
 import Icon from "../../../components/Icon.astro";
 import Faq from "../../../components/Faq.astro";
 
@@ -49,12 +49,7 @@ const feature = entry.data;
 						bullets={row.bullets}
 						flip={i % 2 === 1}
 					>
-						<VisualPlaceholder slot="visual">
-							<Icon name={feature.icon} size={56} style="color: var(--primary); opacity: 0.5;" />
-							<strong style="color: var(--ink); font-size: 14px; margin-top: 12px;">
-								{row.title.split(".")[0]}
-							</strong>
-						</VisualPlaceholder>
+						<FeatureVisual slot="visual" kind={row.visual} />
 					</FRow>
 				))
 			}

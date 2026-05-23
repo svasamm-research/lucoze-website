@@ -1,0 +1,40 @@
+---
+/** Dispatcher that picks the right bespoke visual for an FRow on a
+ *  feature page, keyed by the `visual` string in the feature's JSON. */
+import SummaryCard from "./SummaryCard.astro";
+import Search from "./Search.astro";
+import Family from "./Family.astro";
+import Stock from "./Stock.astro";
+import LabStages from "./LabStages.astro";
+import LabReport from "./LabReport.astro";
+import RxDispense from "./RxDispense.astro";
+import Attendance from "./Attendance.astro";
+import Payroll from "./Payroll.astro";
+import Reminders from "./Reminders.astro";
+import DoctorDay from "./DoctorDay.astro";
+import Finance from "./Finance.astro";
+import BookingFlow from "./BookingFlow.astro";
+import GstInvoice from "./GstInvoice.astro";
+
+interface Props {
+	kind: string;
+}
+
+const { kind } = Astro.props;
+---
+
+{kind === "booking" && <BookingFlow />}
+{kind === "stage" && <Reminders />}
+{kind === "doctor" && <DoctorDay />}
+{kind === "summary" && <SummaryCard />}
+{kind === "search" && <Search />}
+{kind === "family" && <Family />}
+{kind === "invoice" && <GstInvoice />}
+{kind === "stock" && <Stock />}
+{kind === "finance" && <Finance />}
+{kind === "lab-stages" && <LabStages />}
+{kind === "lab-report" && <LabReport />}
+{kind === "rx-dispense" && <RxDispense />}
+{kind === "stock-grid" && <Stock />}
+{kind === "attendance" && <Attendance />}
+{kind === "payroll" && <Payroll />}

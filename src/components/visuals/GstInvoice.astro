@@ -1,0 +1,71 @@
+---
+/** Static GST invoice mock. Phase C will replace the quantity steppers
+ *  with a React island that recomputes CGST/SGST/total on the fly. */
+import VaultMark from "../VaultMark.astro";
+
+const LINES: { label: string; price: number; qty: number }[] = [
+	{ label: "OPD consultation (Dr Sen)", price: 800, qty: 1 },
+	{ label: "Derma procedure", price: 1500, qty: 1 },
+	{ label: "Multivitamin · 30 tabs", price: 320, qty: 2 },
+];
+
+const fmt = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+const subtotal = LINES.reduce((s, l) => s + l.price * l.qty, 0);
+const cgst = Math.round((subtotal * 0.18) / 2);
+const sgst = cgst;
+const total = subtotal + cgst + sgst;
+---
+
+<div class="invoice">
+	<div class="invoice__head">
+		<div class="invoice__brand">
+			<VaultMark size={22} />
+			<span class="invoice__brand-name">Lucoze Clinic</span>
+		</div>
+		<div class="invoice__meta">
+			INV-2026-1812<br />
+			18 May 2026 · GSTIN: 19AABCL····1Z5
+		</div>
+	</div>
+
+	{
+		LINES.map((l) => (
+			<div class="invoice__row">
+				<div style="display: flex; flex-direction: column; gap: 2px;">
+					<span style="font-weight: 600; color: var(--ink);">{l.label}</span>
+					<span style="font-size: 11px; color: var(--muted); font-family: var(--font-mono);">
+						{fmt(l.price)} × {l.qty}
+					</span>
+				</div>
+				<div style="display: flex; align-items: center; gap: 12px;">
+					<div class="invoice__qty">
+						<button type="button" aria-label="Decrease">
+							−
+						</button>
+						<input value={l.qty} readonly aria-label="Quantity" />
+						<button type="button" aria-label="Increase">
+							+
+						</button>
+					</div>
+					<span style="font-family: var(--font-mono); font-weight: 600; min-width: 70px; text-align: right;">
+						{fmt(l.price * l.qty)}
+					</span>
+				</div>
+			</div>
+		))
+	}
+
+	<div class="invoice__row" style="border-bottom: none;">
+		<span>Subtotal</span>
+		<span style="font-family: var(--font-mono);">{fmt(subtotal)}</span>
+	</div>
+	<div class="invoice__tax-block">
+		<div>CGST (9%)<strong>{fmt(cgst)}</strong></div>
+		<div>SGST (9%)<strong>{fmt(sgst)}</strong></div>
+		<div>IGST<strong>—</strong></div>
+	</div>
+	<div class="invoice__total">
+		<span>Total payable</span>
+		<span style="font-family: var(--font-mono);">{fmt(total)}</span>
+	</div>
+</div>

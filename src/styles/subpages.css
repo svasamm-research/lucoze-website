@@ -338,6 +338,225 @@
 	position: relative;
 }
 
+/* ─── Booking flow walkthrough (Appointments feature page) ─── */
+.booking {
+	background: var(--paper);
+	border: 1px solid var(--border);
+	border-radius: var(--r-xl);
+	padding: var(--s-8);
+	box-shadow: var(--shadow-md);
+}
+.booking__steps {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--s-3);
+	margin-bottom: var(--s-8);
+}
+@media (max-width: 720px) {
+	.booking__steps {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+.booking__step {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding: var(--s-4) var(--s-5);
+	background: var(--cream);
+	border: 1.5px solid var(--border);
+	border-radius: var(--r-md);
+	transition: all var(--tr-fast);
+	cursor: pointer;
+	text-align: left;
+	width: 100%;
+	font-family: inherit;
+}
+.booking__step:hover {
+	border-color: var(--ink);
+}
+.booking__step--active {
+	background: var(--ink);
+	color: var(--cream);
+	border-color: var(--ink);
+	box-shadow: var(--shadow-md);
+}
+.booking__step-num {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	color: var(--primary);
+	text-transform: uppercase;
+}
+.booking__step--active .booking__step-num {
+	color: #f0a07e;
+}
+.booking__step-title {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: var(--t-md);
+	letter-spacing: -0.015em;
+}
+.booking__step-blurb {
+	font-size: 12px;
+	color: var(--muted);
+	line-height: 1.45;
+}
+.booking__step--active .booking__step-blurb {
+	color: rgba(244, 243, 238, 0.75);
+}
+.booking__stage {
+	background: var(--cream);
+	border-radius: var(--r-lg);
+	padding: var(--s-6) var(--s-8);
+	min-height: 340px;
+	border: 1px solid var(--border-light);
+}
+.booking__stage h3 {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: var(--t-xl);
+	letter-spacing: -0.02em;
+	margin-bottom: var(--s-2);
+}
+.booking__stage > p {
+	color: var(--muted);
+	font-size: var(--t-sm);
+	margin-bottom: var(--s-6);
+	max-width: 520px;
+}
+.booking__cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: var(--s-3);
+	max-width: 720px;
+}
+.booking__chip {
+	padding: var(--s-4);
+	background: var(--paper);
+	border: 1.5px solid var(--border);
+	border-radius: var(--r-md);
+	transition: all var(--tr-fast);
+	text-align: left;
+	font-family: inherit;
+	font-size: var(--t-sm);
+}
+.booking__chip:hover {
+	border-color: var(--primary);
+}
+.booking__chip-head {
+	font-weight: 700;
+	color: var(--ink);
+	font-family: var(--font-display);
+	margin-bottom: 4px;
+	letter-spacing: -0.01em;
+}
+.booking__chip-sub {
+	font-size: 12px;
+	color: var(--muted);
+}
+
+/* ─── GST invoice preview (Billing feature page) ──── */
+.invoice {
+	background: var(--paper);
+	border: 1px solid var(--border);
+	border-radius: var(--r-lg);
+	padding: var(--s-6);
+	font-family: var(--font-body);
+	font-size: 13px;
+	color: var(--ink-soft);
+	position: relative;
+}
+.invoice__head {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	padding-bottom: var(--s-4);
+	border-bottom: 1px solid var(--border);
+	margin-bottom: var(--s-4);
+}
+.invoice__brand {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.invoice__brand-name {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: var(--t-md);
+	color: var(--ink);
+}
+.invoice__meta {
+	text-align: right;
+	font-size: 11px;
+	color: var(--muted);
+}
+.invoice__row {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 0;
+	border-bottom: 1px dashed var(--border-light);
+}
+.invoice__total {
+	display: flex;
+	justify-content: space-between;
+	margin-top: var(--s-3);
+	padding-top: var(--s-3);
+	border-top: 2px solid var(--ink);
+	font-weight: 700;
+	font-size: var(--t-md);
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+.invoice__tax-block {
+	background: var(--cream);
+	margin: var(--s-3) calc(var(--s-6) * -1) 0;
+	padding: var(--s-3) var(--s-6);
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: var(--s-3);
+}
+.invoice__tax-block > div {
+	font-size: 11px;
+	color: var(--muted);
+}
+.invoice__tax-block strong {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: var(--ink);
+	margin-top: 2px;
+}
+.invoice__qty {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid var(--border);
+	border-radius: var(--r-sm);
+	background: var(--cream);
+}
+.invoice__qty button {
+	width: 24px;
+	height: 24px;
+	font-size: 14px;
+	color: var(--ink);
+	font-weight: 700;
+}
+.invoice__qty input {
+	width: 32px;
+	text-align: center;
+	border: none;
+	background: transparent;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	-moz-appearance: textfield;
+}
+.invoice__qty input::-webkit-outer-spin-button,
+.invoice__qty input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 /* ─── Stats row (used in SubHero) ──────────────── */
 .stats-row {
 	display: grid;

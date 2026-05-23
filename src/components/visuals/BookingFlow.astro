@@ -1,0 +1,54 @@
+---
+/** Static booking-flow walkthrough — shows all 4 step cards (Step 1
+ *  active) plus the Step 1 stage content. Phase C will replace this with
+ *  a React island that lets the visitor click between steps. */
+const STEPS = [
+	{ n: "01", title: "Department", blurb: "Patient picks where they need to go." },
+	{ n: "02", title: "Doctor", blurb: "Filter by availability + slot fit." },
+	{ n: "03", title: "Slot", blurb: "Real availability, no overbooking." },
+	{ n: "04", title: "Patient", blurb: "Name + phone, last — once committed." },
+];
+
+const STAGE_CARDS: [string, string][] = [
+	["General Medicine", "18 slots today"],
+	["Cardiology", "6 slots today"],
+	["Dermatology", "11 slots today"],
+	["Dental", "4 chairs free"],
+];
+---
+
+<div class="booking">
+	<div class="booking__steps" role="tablist">
+		{
+			STEPS.map((s, i) => (
+				<button
+					type="button"
+					role="tab"
+					aria-selected={i === 0}
+					class:list={["booking__step", i === 0 && "booking__step--active"]}
+				>
+					<span class="booking__step-num">Step {s.n}</span>
+					<span class="booking__step-title">{s.title}</span>
+					<span class="booking__step-blurb">{s.blurb}</span>
+				</button>
+			))
+		}
+	</div>
+	<div class="booking__stage" role="tabpanel">
+		<h3>1. Pick a department</h3>
+		<p>
+			Patient knows what they need before they know who they need to see. Department is the first
+			question — not name.
+		</p>
+		<div class="booking__cards">
+			{
+				STAGE_CARDS.map((c) => (
+					<div class="booking__chip">
+						<div class="booking__chip-head">{c[0]}</div>
+						<div class="booking__chip-sub">{c[1]}</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
