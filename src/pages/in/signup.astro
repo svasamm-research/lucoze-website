@@ -1,319 +1,250 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Base from "../../layouts/Base.astro";
+import Crumbs from "../../components/Crumbs.astro";
+import Icon from "../../components/Icon.astro";
+
+const PLANS = [
+	{ id: "clinic", name: "Clinic", price: "₹1,499/mo" },
+	{ id: "clinicpro", name: "Clinic Pro", price: "₹2,999/mo" },
+	{ id: "hospital", name: "Hospital", price: "₹7,999/mo" },
+];
+
+const BENEFITS: { title: string; sub: string }[] = [
+	{ title: "Full feature access from day one", sub: "Every module. No upsell." },
+	{
+		title: "Help importing your patient list",
+		sub: "From Practo Ray, Halemind, or even Excel.",
+	},
+	{
+		title: "Hindi UI ships Q3 2026",
+		sub: "Bengali and Odia next. Already accommodating early Devanagari testing.",
+	},
+	{
+		title: "Founder line, not call centre",
+		sub: "WhatsApp Mithun directly during trial.",
+	},
+];
 ---
 
-<BaseLayout
-	regionSlug="in"
-	signupEnabled={true}
-	served={true}
-	title="Sign Up — Lucoze Healthcare Management — India"
-	description="Start your free 14-day trial of Lucoze healthcare management. No credit card required."
-	activeLink=""
+<Base
+	title="Start your 14-day free trial of Lucoze HMS"
+	description="Free trial of Lucoze Healthcare Management Software. No credit card. Full features. Migration help included. Data hosted in Mumbai."
 >
-	<section class="signup">
-		<div class="container signup__inner">
-			<!-- Left Column -->
-			<div class="signup__info">
-				<h1>Start your free trial</h1>
-				<p>Get your healthcare workspace ready in 60 seconds. No credit card required.</p>
-
-				<ul class="signup__benefits">
-					<li>
-						<span class="signup__benefit-icon">
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="#c15f3c"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="12" r="10"></circle>
-								<path d="M9 12l2 2 4-4"></path>
-							</svg>
-						</span>
-						<span>14-day full-featured trial</span>
-					</li>
-					<li>
-						<span class="signup__benefit-icon">
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="#c15f3c"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<rect x="1" y="4" width="22" height="16" rx="2"></rect>
-								<line x1="1" y1="10" x2="23" y2="10"></line>
-								<line x1="6" y1="15" x2="8" y2="15"></line>
-								<line x1="15" y1="12" x2="19" y2="18"></line>
-								<line x1="19" y1="12" x2="15" y2="18"></line>
-							</svg>
-						</span>
-						<span>No credit card required</span>
-					</li>
-					<li>
-						<span class="signup__benefit-icon">
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="#c15f3c"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-							</svg>
-						</span>
-						<span>Setup in under 60 seconds</span>
-					</li>
-					<li>
-						<span class="signup__benefit-icon">
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="#c15f3c"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="12" r="10"></circle>
-								<line x1="2" y1="12" x2="22" y2="12"></line>
-								<path
-									d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-								></path>
-							</svg>
-						</span>
-						<span>Data stored in your region</span>
-					</li>
-					<li>
-						<span class="signup__benefit-icon">
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="#c15f3c"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="12" r="10"></circle>
-								<line x1="15" y1="9" x2="9" y2="15"></line>
-								<line x1="9" y1="9" x2="15" y2="15"></line>
-							</svg>
-						</span>
-						<span>Cancel anytime</span>
-					</li>
-				</ul>
-			</div>
-
-			<!-- Right Column -->
-			<div class="signup__form-card">
-				<h2>Create your workspace</h2>
-
-				<div id="signupAlert" class="alert"></div>
-
-				<form id="signupForm">
-					<!-- Plan Selector -->
-					<div class="plan-selector">
-						<label class="plan-option" data-plan="Clinic" data-category="clinic">
-							<input type="radio" name="plan" value="Clinic" checked />
-							<span class="plan-option__name">Clinic</span>
-							<span class="plan-option__price"
-								><span class="pricing-card__currency">$</span><span
-									class="pricing-card__amount"
-									data-monthly-in="3,999"
-									data-monthly-ae="99"
-									data-monthly-sg="79"
-									data-monthly-au="149"
-									data-monthly-intl="149">99</span
-								>/mo</span
-							>
-						</label>
-						<label class="plan-option" data-plan="Clinic Pro" data-category="clinic">
-							<input type="radio" name="plan" value="Clinic Pro" />
-							<span class="plan-option__name">Clinic Pro</span>
-							<span class="plan-option__price"
-								><span class="pricing-card__currency">$</span><span
-									class="pricing-card__amount"
-									data-monthly-in="7,999"
-									data-monthly-ae="199"
-									data-monthly-sg="149"
-									data-monthly-au="299"
-									data-monthly-intl="299">199</span
-								>/mo</span
-							>
-						</label>
-						<label class="plan-option" data-plan="Hospital" data-category="clinic">
-							<input type="radio" name="plan" value="Hospital" />
-							<span class="plan-option__name">Hospital</span>
-							<span class="plan-option__price"
-								><span class="pricing-card__currency">$</span><span
-									class="pricing-card__amount"
-									data-monthly-in="14,999"
-									data-monthly-ae="399"
-									data-monthly-sg="299"
-									data-monthly-au="599"
-									data-monthly-intl="599">399</span
-								>/mo</span
-							>
-						</label>
-						<label class="plan-option" data-plan="Hospital Pro" data-category="clinic">
-							<input type="radio" name="plan" value="Hospital Pro" />
-							<span class="plan-option__name">Hospital Pro</span>
-							<span class="plan-option__price"
-								><span class="pricing-card__currency">$</span><span
-									class="pricing-card__amount"
-									data-monthly-in="29,999"
-									data-monthly-ae="799"
-									data-monthly-sg="499"
-									data-monthly-au="999"
-									data-monthly-intl="999">799</span
-								>/mo</span
-							>
-						</label>
-					</div>
-
-					<p
-						style="
-								font-size: var(--font-size-xs);
-								color: var(--color-text-muted);
-								margin-bottom: var(--space-md);
-							"
-					>
-						Need a custom solution for your facility?
-						<a href="/contact" style="color: var(--color-primary)">Contact our team</a> for a personalised
-						setup.
+	<main class="signup-page">
+		<div class="container">
+			<Crumbs items={[{ href: "/in/", label: "Home" }, { label: "Start free trial" }]} />
+			<div class="signup-page__grid">
+				<div>
+					<span class="t-eyebrow">14-day free trial · no credit card</span>
+					<h1 class="t-h1" style="margin: var(--s-4) 0 var(--s-5);">
+						Start running your clinic on Lucoze. In 60 seconds.
+					</h1>
+					<p class="t-lead">
+						Tell us about your clinic. We set up a trial tenant in Mumbai, walk your front desk
+						through it on a 30-minute call, and you start booking patients within an hour. No credit
+						card. No commitment.
 					</p>
 
-					<!-- Facility Name -->
-					<div class="form-group">
-						<label for="facilityName">Facility Name</label>
-						<input
-							type="text"
-							class="form-control"
-							id="facilityName"
-							name="facility_name"
-							placeholder="e.g. City Health Clinic"
-							required
-						/>
+					<div
+						style="display: flex; flex-direction: column; gap: var(--s-4); margin: var(--s-8) 0;"
+					>
+						{
+							BENEFITS.map((b) => (
+								<div style="display: flex; gap: var(--s-3);">
+									<Icon
+										name="check-circle"
+										size={20}
+										style="color: var(--success); flex-shrink: 0; margin-top: 2px;"
+									/>
+									<div>
+										<div style="font-weight: 700; color: var(--ink);">{b.title}</div>
+										<div style="font-size: 13px; color: var(--muted);">{b.sub}</div>
+									</div>
+								</div>
+							))
+						}
 					</div>
 
-					<!-- Your Name -->
-					<div class="form-group">
-						<label for="customerName">Your Name</label>
-						<input
-							type="text"
-							class="form-control"
-							id="customerName"
-							name="customer_name"
-							placeholder="Full name"
-							required
+					<div
+						style="padding: var(--s-4) var(--s-5); background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-md); font-size: 13px; color: var(--ink-soft); display: flex; gap: 12px; align-items: flex-start;"
+					>
+						<Icon
+							name="cloud"
+							size={20}
+							style="color: var(--primary); flex-shrink: 0; margin-top: 2px;"
 						/>
+						<div>
+							<strong style="color: var(--ink);">Data hosted in Mumbai.</strong> Your patient records
+							sit in AWS ap-south-1. Nothing crosses the border.
+							<a href="/in/blog/security-data/" style="color: var(--primary); font-weight: 600;"
+								>Read more</a
+							>
+						</div>
 					</div>
+				</div>
 
-					<!-- Email & Phone -->
-					<div class="form-row">
-						<div class="form-group">
-							<label for="customerEmail">Email</label>
+				<div data-signup-wrapper>
+					<form class="signup-form" id="signup-form" data-signup-form>
+						<h2 class="t-h3" style="margin-bottom: var(--s-2);">Tell us about your clinic</h2>
+						<p style="font-size: 13px; color: var(--muted); margin-bottom: var(--s-6);">
+							We'll set up a trial tenant within 4 working hours.
+						</p>
+
+						<div class="field">
+							<label>Which plan? <span class="req">*</span></label>
+							<div class="plan-pick" role="radiogroup" aria-label="Plan">
+								{
+									PLANS.map((p) => (
+										<div class="plan-pick__option">
+											<input
+												type="radio"
+												id={`plan-${p.id}`}
+												name="plan"
+												value={p.id}
+												checked={p.id === "clinicpro"}
+											/>
+											<label for={`plan-${p.id}`}>
+												<span class="plan-pick__name">{p.name}</span>
+												<span class="plan-pick__price">{p.price}</span>
+											</label>
+										</div>
+									))
+								}
+							</div>
+						</div>
+
+						<div class="field-row">
+							<div class="field">
+								<label for="su-name">Your name <span class="req">*</span></label>
+								<input id="su-name" name="name" required placeholder="Dr. Soumya Sen" />
+							</div>
+							<div class="field">
+								<label for="su-phone">Phone <span class="req">*</span></label>
+								<input id="su-phone" name="phone" type="tel" required placeholder="+91 ·····" />
+							</div>
+						</div>
+
+						<div class="field">
+							<label for="su-email">Email <span class="req">*</span></label>
 							<input
-								type="email"
-								class="form-control"
-								id="customerEmail"
+								id="su-email"
 								name="email"
-								placeholder="you@example.com"
+								type="email"
 								required
+								placeholder="you@clinic.com"
 							/>
 						</div>
-						<div class="form-group">
-							<label for="customerPhone"
-								>Phone
-								<span style="color: var(--color-text-muted); font-weight: 400">(optional)</span
-								></label
-							>
-							<input
-								type="tel"
-								class="form-control"
-								id="customerPhone"
-								name="phone"
-								placeholder="+91 98765 43210"
-							/>
+
+						<div class="field-row">
+							<div class="field">
+								<label for="su-clinic">
+									Clinic / hospital name <span class="req">*</span>
+								</label>
+								<input
+									id="su-clinic"
+									name="clinic"
+									required
+									placeholder="e.g. Sen Multispeciality"
+								/>
+							</div>
+							<div class="field">
+								<label for="su-city">City <span class="req">*</span></label>
+								<input id="su-city" name="city" required placeholder="Kolkata / Lucknow / Patna…" />
+							</div>
 						</div>
-					</div>
 
-					<!-- Country -->
-					<div class="form-group">
-						<label for="customerCountry">Country</label>
-						<select class="form-control" id="customerCountry" name="country" required>
-							<option value="" disabled selected>Select your country</option>
-							<optgroup label="Middle East">
-								<option value="United Arab Emirates">🇦🇪 United Arab Emirates</option>
-								<option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
-								<option value="Qatar">🇶🇦 Qatar</option>
-								<option value="Bahrain">🇧🇭 Bahrain</option>
-								<option value="Kuwait">🇰🇼 Kuwait</option>
-								<option value="Oman">🇴🇲 Oman</option>
-							</optgroup>
-							<optgroup label="Southeast Asia">
-								<option value="Singapore">🇸🇬 Singapore</option>
-								<option value="Malaysia">🇲🇾 Malaysia</option>
-								<option value="Indonesia">🇮🇩 Indonesia</option>
-								<option value="Thailand">🇹🇭 Thailand</option>
-								<option value="Philippines">🇵🇭 Philippines</option>
-							</optgroup>
-							<optgroup label="India">
-								<option value="India">🇮🇳 India</option>
-							</optgroup>
-							<optgroup label="Australia & NZ">
-								<option value="Australia">🇦🇺 Australia</option>
-								<option value="New Zealand">🇳🇿 New Zealand</option>
-							</optgroup>
-							<optgroup label="Other">
-								<option value="Other">🌍 Other Country</option>
-							</optgroup>
-						</select>
-					</div>
-					<div class="form-group" id="otherCountryGroup" style="display: none">
-						<label for="otherCountryName">Your Country Name</label>
-						<input
-							type="text"
-							class="form-control"
-							id="otherCountryName"
-							name="other_country"
-							placeholder="Enter your country name"
-						/>
-					</div>
+						<div class="field-row">
+							<div class="field">
+								<label for="su-doctors">Doctors</label>
+								<input
+									id="su-doctors"
+									name="doctors"
+									type="number"
+									min="1"
+									max="200"
+									placeholder="6"
+								/>
+							</div>
+							<div class="field">
+								<label for="su-specialty">Specialty</label>
+								<select id="su-specialty" name="specialty">
+									<option value="multispec">Multi-specialty</option>
+									<option value="poly">Polyclinic</option>
+									<option value="dental">Dental</option>
+									<option value="ivf">IVF</option>
+									<option value="derm">Dermatology</option>
+									<option value="diag">Diagnostic centre</option>
+									<option value="other">Other</option>
+								</select>
+							</div>
+						</div>
 
-					<!-- Submit -->
-					<button type="submit" class="btn btn--primary btn--full btn--lg" id="signupBtn">
-						Start Your Free Trial
-					</button>
+						<button type="submit" class="btn btn--accent btn--lg signup-form__submit">
+							Start free trial
+							<Icon name="arrow" size={16} class="btn__arrow" />
+						</button>
 
-					<p
-						style="
-								text-align: center;
-								font-size: var(--font-size-xs);
-								color: var(--color-text-muted);
-								margin-top: var(--space-md);
-							"
+						<p
+							style="font-size: 11px; color: var(--light); margin-top: var(--s-3); text-align: center;"
+						>
+							By signing up, you agree to our
+							<a href="/in/terms/" style="color: var(--primary);">Terms</a> and
+							<a href="/in/privacy/" style="color: var(--primary);">Privacy Policy</a>.
+							DPDP-compliant from day one.
+						</p>
+					</form>
+
+					<div
+						class="signup-form"
+						id="signup-thanks"
+						data-signup-thanks
+						hidden
+						style="text-align: center;"
 					>
-						By signing up, you agree to our <a href="/terms">Terms of Service</a> and
-						<a href="/privacy">Privacy Policy</a>.
-					</p>
-				</form>
+						<div
+							style="width: 64px; height: 64px; margin: 0 auto var(--s-5); border-radius: 50%; background: var(--success-bg); color: var(--success); display: grid; place-items: center;"
+						>
+							<Icon name="check" size={28} />
+						</div>
+						<span class="t-eyebrow">You're in</span>
+						<h2 class="t-h3" style="margin: var(--s-3) 0 var(--s-3);">
+							Thanks, <span data-signup-thanks-name>doctor</span>. We'll reach out within 4 hours.
+						</h2>
+						<p style="font-size: 14px; color: var(--muted); line-height: 1.6;">
+							Your trial is being provisioned in Mumbai. You'll get an email with login details and
+							a WhatsApp from our onboarding lead. If you're East-India and fit the design-partner
+							profile, we'll mention that too.
+						</p>
+						<div
+							style="display: flex; gap: 10px; justify-content: center; margin-top: var(--s-5); flex-wrap: wrap;"
+						>
+							<a href="/in/blog/" class="btn btn--ghost">Read the blog</a>
+							<a href="/in/" class="btn btn--accent">Back to home</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</section>
+	</main>
+</Base>
 
-	<!-- Footer -->
-</BaseLayout>
+<script>
+	// Inline thank-you toggle. Phase C will wire this to a real submit
+	// (lucoze_admin /api/signup). For now: prevent default, swap views,
+	// personalise with the entered name.
+	const form = document.querySelector<HTMLFormElement>("[data-signup-form]");
+	const thanks = document.querySelector<HTMLElement>("[data-signup-thanks]");
+	const thanksName = document.querySelector<HTMLElement>("[data-signup-thanks-name]");
+
+	if (form && thanks) {
+		form.addEventListener("submit", (e) => {
+			e.preventDefault();
+			const nameInput = form.querySelector<HTMLInputElement>("#su-name");
+			const firstName = (nameInput?.value || "").trim().split(/\s+/)[0] || "doctor";
+			if (thanksName) thanksName.textContent = firstName;
+			form.hidden = true;
+			thanks.hidden = false;
+			thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+		});
+	}
+</script>
