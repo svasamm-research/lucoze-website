@@ -126,9 +126,17 @@
 }
 
 /* CSS-driven mega-menu reveal (replaces React openKey state).
- * Each <li.nav__li-mega> opens its sibling .mega on hover or keyboard focus. */
+ * Each <li.nav__li-mega> opens its sibling .mega on hover or keyboard focus.
+ *
+ * align-self: stretch makes the <li> fill the full 72px nav height so the
+ * hover hit area extends from the top of the nav all the way down to where
+ * the .mega dropdown begins — eliminating the gap that would otherwise
+ * cause the cursor to drop out of hover while travelling button → menu. */
 .nav__li-mega {
 	position: static;
+	align-self: stretch;
+	display: flex;
+	align-items: center;
 }
 .nav__li-mega .mega {
 	display: none;
