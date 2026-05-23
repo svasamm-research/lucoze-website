@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import DashboardMock from "./DashboardMock.astro";
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-heading">
@@ -35,76 +36,8 @@ import Icon from "./Icon.astro";
 			</div>
 
 			<div class="hero__visual" aria-label="Live product preview">
-				<!-- Placeholder until DashboardMock React island ships in Phase C -->
-				<div class="dash dash-placeholder">
-					<div class="dash__chrome">
-						<span class="dash__dot"></span>
-						<span class="dash__dot"></span>
-						<span class="dash__dot"></span>
-						<span class="dash__chrome-title">lucoze.com/dashboard</span>
-					</div>
-					<div class="dash-placeholder__body">
-						<div class="dash-placeholder__row dash-placeholder__row--head">
-							Today's appointments
-						</div>
-						<div class="dash-placeholder__row">
-							<span class="dash__avatar">PS</span> Priya S. · Dr. Mehta · 10:00
-							<span class="dash__pill dash__pill--ok">Checked in</span>
-						</div>
-						<div class="dash-placeholder__row">
-							<span class="dash__avatar">AK</span> Aniket K. · Dr. Reddy · 10:30
-							<span class="dash__pill dash__pill--warn">Late</span>
-						</div>
-						<div class="dash-placeholder__row">
-							<span class="dash__avatar">RG</span> Riya G. · Dr. Sen · 11:00
-							<span class="dash__pill dash__pill--info">Confirmed</span>
-						</div>
-						<div class="dash-placeholder__row">
-							<span class="dash__avatar">VP</span> Vinod P. · Dr. Mehta · 11:30
-							<span class="dash__pill dash__pill--info">Confirmed</span>
-						</div>
-					</div>
-				</div>
+				<DashboardMock />
 			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-	/* Placeholder dashboard styling — covers chrome + a simple appointments
-	   list. Replaced by the full DashboardMock React island in Phase C. */
-	.dash-placeholder {
-		min-height: 460px;
-		display: flex;
-		flex-direction: column;
-	}
-	.dash-placeholder__body {
-		padding: var(--s-5) var(--s-6);
-		display: flex;
-		flex-direction: column;
-		gap: var(--s-3);
-	}
-	.dash-placeholder__row {
-		display: flex;
-		align-items: center;
-		gap: var(--s-3);
-		padding: var(--s-3) 0;
-		border-bottom: 1px solid var(--border-light);
-		font-size: var(--t-sm);
-		color: var(--ink-soft);
-	}
-	.dash-placeholder__row:last-child {
-		border-bottom: none;
-	}
-	.dash-placeholder__row .dash__pill {
-		margin-left: auto;
-	}
-	.dash-placeholder__row--head {
-		font-family: var(--font-display);
-		font-weight: 700;
-		font-size: var(--t-md);
-		color: var(--ink);
-		border-bottom: 1px solid var(--border);
-		padding-bottom: var(--s-4);
-	}
-</style>

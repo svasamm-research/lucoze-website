@@ -4,7 +4,9 @@ import HeroDemo from "../../components/HeroDemo.astro";
 import TrustStrip from "../../components/TrustStrip.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
+import DashboardMock from "../../components/DashboardMock.astro";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
+import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 ---
 
 <Base
@@ -16,456 +18,490 @@ import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
 
 	<TrustStrip />
 
-	<!-- Product preview — placeholder for ProductPreview React island (Phase C) -->
+	<!-- Pick your specialty — specialty pills are visual-only for Phase B.
+	     Phase C will swap to a React island that changes the DashboardMock
+	     and caption per specialty. -->
 	<section class="section" id="product" aria-labelledby="product-heading">
 		<div class="container">
 			<header class="section-header">
-				<span class="t-eyebrow">Live product preview</span>
-				<h2 id="product-heading" class="t-h1" style="margin-top: 8px;">
-					One dashboard. Every department. Pick your specialty.
-				</h2>
+				<h2 id="product-heading" class="t-h1">Pick your specialty. See it working.</h2>
 				<p class="t-lead">
-					Interactive specialty selector + dashboard mock ships in the next release. For now, the
-					screenshot below shows the default multi-specialty view.
-				</p>
-			</header>
-			<div class="product-preview-placeholder">
-				<div class="dash">
-					<div class="dash__chrome">
-						<span class="dash__dot"></span>
-						<span class="dash__dot"></span>
-						<span class="dash__dot"></span>
-						<span class="dash__chrome-title">lucoze.com/dashboard · multi-specialty</span>
-					</div>
-					<div class="dash__layout">
-						<div class="dash__sidebar">
-							<div class="dash__sidebar-brand">
-								<span class="dash__sidebar-brand-name">Lucoze</span>
-							</div>
-							<button class="dash__nav-item dash__nav-item--active">
-								<Icon name="calendar" class="dash__nav-icon" />
-								Appointments
-								<span class="dash__nav-badge">12</span>
-							</button>
-							<button class="dash__nav-item">
-								<Icon name="users" class="dash__nav-icon" />
-								Patients
-							</button>
-							<button class="dash__nav-item">
-								<Icon name="receipt" class="dash__nav-icon" />
-								Billing
-							</button>
-							<button class="dash__nav-item">
-								<Icon name="flask" class="dash__nav-icon" />
-								Lab
-							</button>
-							<button class="dash__nav-item">
-								<Icon name="pill" class="dash__nav-icon" />
-								Pharmacy
-							</button>
-						</div>
-						<div class="dash__main">
-							<div class="dash__main-head">
-								<span class="dash__main-title">Today · 4 doctors on duty</span>
-								<span class="dash__main-sub">Last sync 14s ago</span>
-							</div>
-							<div class="dash__metrics">
-								<div class="dash__metric">
-									<div class="dash__metric-label">Scheduled</div>
-									<div class="dash__metric-value">42</div>
-									<div class="dash__metric-trend">+6 vs Tue</div>
-								</div>
-								<div class="dash__metric">
-									<div class="dash__metric-label">Checked in</div>
-									<div class="dash__metric-value">18</div>
-									<div class="dash__metric-trend">on track</div>
-								</div>
-								<div class="dash__metric">
-									<div class="dash__metric-label">Revenue today</div>
-									<div class="dash__metric-value">₹42.6K</div>
-									<div class="dash__metric-trend">+12%</div>
-								</div>
-							</div>
-							<table class="dash__table">
-								<thead>
-									<tr>
-										<th>Patient</th>
-										<th>Doctor</th>
-										<th>Time</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr
-										><td><span class="dash__avatar">PS</span>Priya S.</td><td>Dr. Mehta</td><td
-											>10:00</td
-										><td><span class="dash__pill dash__pill--ok">Checked in</span></td></tr
-									>
-									<tr
-										><td><span class="dash__avatar">AK</span>Aniket K.</td><td>Dr. Reddy</td><td
-											>10:30</td
-										><td><span class="dash__pill dash__pill--warn">Late</span></td></tr
-									>
-									<tr
-										><td><span class="dash__avatar">RG</span>Riya G.</td><td>Dr. Sen</td><td
-											>11:00</td
-										><td><span class="dash__pill dash__pill--info">Confirmed</span></td></tr
-									>
-									<tr
-										><td><span class="dash__avatar">VP</span>Vinod P.</td><td>Dr. Mehta</td><td
-											>11:30</td
-										><td><span class="dash__pill dash__pill--info">Confirmed</span></td></tr
-									>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Differentiation matrix — fully static -->
-	<section class="section section--tight" id="compliance" aria-labelledby="diff-heading">
-		<div class="container">
-			<header class="section-header">
-				<span class="t-eyebrow">How Lucoze is different</span>
-				<h2 id="diff-heading" class="t-h1" style="margin-top: 8px; margin-bottom: 12px;">
-					Compared to what you're using today.
-				</h2>
-				<p class="t-lead">
-					We didn't build the same product as everyone else. The differences are intentional and
-					they're built around how Indian healthcare actually buys, switches, and runs.
+					Lucoze isn't a generic platform with specialty add-ons. Every workflow below is built
+					around how that specific kind of clinic actually operates — front desk, doctor's room, and
+					back office.
 				</p>
 			</header>
 
-			<div class="diff" role="region" aria-label="Feature comparison table">
-				<table class="diff__table">
-					<thead>
-						<tr>
-							<th scope="col" style="min-width: 280px;">Capability</th>
-							<th scope="col" style="text-align: center; min-width: 110px;">Lucoze</th>
-							<th scope="col" style="text-align: center; min-width: 110px;">Practo Ray</th>
-							<th scope="col" style="text-align: center; min-width: 110px;">Legacy HIS</th>
-							<th scope="col" style="text-align: center; min-width: 110px;">Excel + paper</th>
-						</tr>
-					</thead>
-					<tbody>
-						{
-							DIFF_ROWS.map((row) => (
-								<tr>
-									<th
-										scope="row"
-										class="diff__row-label"
-										style="text-align: left; background: var(--paper);"
-									>
-										{row.label}
-										<span class="diff__row-sub">{row.sub}</span>
-									</th>
-									{row.cells.map((c, j) => (
-										<td class:list={["diff__cell", j === 0 && "diff__cell--lucoze"]}>
-											{c === "check" && (
-												<span class="diff__check" aria-label="Yes">
-													<Icon name="check" size={13} />
-												</span>
-											)}
-											{c === "cross" && (
-												<span class="diff__cross" aria-label="No">
-													<Icon name="x" size={13} />
-												</span>
-											)}
-											{c === "partial" && (
-												<span class="diff__partial" aria-label="Partial">
-													Partial
-												</span>
-											)}
-											{c === "na" && (
-												<span
-													class="diff__partial"
-													style="color: var(--light);"
-													aria-label="Not applicable"
-												>
-													—
-												</span>
-											)}
-										</td>
-									))}
-								</tr>
-							))
-						}
-					</tbody>
-				</table>
-			</div>
-
-			<p
-				class="t-small"
-				style="text-align: center; margin-top: var(--s-5); color: var(--light); font-style: italic;"
-			>
-				Comparison based on public documentation as of May 2026. "Partial" = capability exists but
-				requires configuration / paid add-on / external integration.
-			</p>
-		</div>
-	</section>
-
-	<!-- ROI section — placeholder for RoiCalculator React island (Phase C) -->
-	<section class="section" id="roi" aria-labelledby="roi-heading">
-		<div class="container">
-			<header class="section-header">
-				<span class="t-eyebrow">ROI calculator</span>
-				<h2 id="roi-heading" class="t-h1" style="margin-top: 8px; margin-bottom: 12px;">
-					See what your clinic actually saves per month.
-				</h2>
-				<p class="t-lead">
-					Interactive calculator ships in the next release. Numbers below are conservative — derived
-					from 30+ interviews with East-India clinic owners.
-				</p>
-			</header>
-			<div class="roi roi-placeholder">
-				<div class="roi__inputs">
-					<div class="roi__field">
-						<label
-							>Specialty<strong
-								style="color: var(--primary); font-family: var(--font-display); font-size: 16px;"
-								>Multi-specialty clinic</strong
-							></label
+			<div class="specialty" role="tablist" aria-label="Specialty selector">
+				{
+					SPECIALTY_PILLS.map((s, i) => (
+						<button
+							type="button"
+							role="tab"
+							aria-selected={i === 0}
+							class:list={["specialty__btn", i === 0 && "specialty__btn--active"]}
 						>
-						<div class="roi__select" style="opacity: 0.7;">Multi-specialty clinic</div>
-					</div>
-					<div class="roi__field">
-						<label>Doctors <strong>6</strong></label>
-						<div class="range" style="background: var(--bg-code); height: 6px; border-radius: 3px;">
-						</div>
-					</div>
-					<div class="roi__field">
-						<label>Patients per day <strong>45</strong></label>
-						<div class="range" style="background: var(--bg-code); height: 6px; border-radius: 3px;">
-						</div>
-					</div>
-					<div class="roi__field">
-						<label>Average bill per patient <strong>₹800</strong></label>
-						<div class="range" style="background: var(--bg-code); height: 6px; border-radius: 3px;">
-						</div>
-					</div>
-				</div>
-				<div class="roi__outputs">
-					<div class="roi__metric">
-						<div class="roi__metric-label">Estimated total monthly value</div>
-						<div class="roi__metric-value roi__metric-value--accent">₹1.3L</div>
-						<div class="roi__metric-sub">
-							Combined: staff hours + billing recovered + no-show prevention
-						</div>
-					</div>
-					<div class="roi__metric">
-						<div class="roi__metric-label">Staff hours saved</div>
-						<div class="roi__metric-value">
-							228<span style="font-size: 18px; margin-left: 6px; opacity: 0.7;">hr/mo</span>
-						</div>
-						<div class="roi__metric-sub">
-							Auto-reminders, one-click billing, no double-entry between modules
-						</div>
-					</div>
-					<div class="roi__metric">
-						<div class="roi__metric-label">Billing leakage recovered</div>
-						<div class="roi__metric-value">₹25,740</div>
-						<div class="roi__metric-sub">
-							Discounts not logged, items missed at billing, partial payments untracked
-						</div>
-					</div>
-					<div class="roi__metric">
-						<div class="roi__metric-label">No-show prevention</div>
-						<div class="roi__metric-value">₹16,380</div>
-						<div class="roi__metric-sub">WhatsApp + SMS reminders reduce no-shows by ~5-7%</div>
-					</div>
-				</div>
+							<Icon name={s.icon} class="specialty__btn-icon" />
+							{s.label}
+						</button>
+					))
+				}
 			</div>
-			<div style="text-align: center; margin-top: var(--s-8);">
-				<a href="/in/signup/" class="btn btn--primary btn--lg">
-					Apply these savings to my clinic — start trial
-					<Icon name="arrow" size={16} class="btn__arrow" />
-				</a>
+
+			<p class="product-caption">{SPECIALTY_PILLS[0].caption}</p>
+
+			<div class="product-preview-placeholder">
+				<DashboardMock
+					chromeTitle="app.lucoze.com · Multi-specialty clinic"
+					mainSub="Today · Multi-specialty clinic"
+				/>
+				<div style="display: none">
+					<div class="dash">
+						<div class="dash__chrome">
+							<span class="dash__dot"></span>
+							<span class="dash__dot"></span>
+							<span class="dash__dot"></span>
+							<span class="dash__chrome-title">lucoze.com/dashboard · multi-specialty</span>
+						</div>
+						<div class="dash__layout">
+							<div class="dash__sidebar">
+								<div class="dash__sidebar-brand">
+									<span class="dash__sidebar-brand-name">Lucoze</span>
+								</div>
+								<button class="dash__nav-item dash__nav-item--active">
+									<Icon name="calendar" class="dash__nav-icon" />
+									Appointments
+									<span class="dash__nav-badge">12</span>
+								</button>
+								<button class="dash__nav-item">
+									<Icon name="users" class="dash__nav-icon" />
+									Patients
+								</button>
+								<button class="dash__nav-item">
+									<Icon name="receipt" class="dash__nav-icon" />
+									Billing
+								</button>
+								<button class="dash__nav-item">
+									<Icon name="flask" class="dash__nav-icon" />
+									Lab
+								</button>
+								<button class="dash__nav-item">
+									<Icon name="pill" class="dash__nav-icon" />
+									Pharmacy
+								</button>
+							</div>
+							<div class="dash__main">
+								<div class="dash__main-head">
+									<span class="dash__main-title">Today · 4 doctors on duty</span>
+									<span class="dash__main-sub">Last sync 14s ago</span>
+								</div>
+								<div class="dash__metrics">
+									<div class="dash__metric">
+										<div class="dash__metric-label">Scheduled</div>
+										<div class="dash__metric-value">42</div>
+										<div class="dash__metric-trend">+6 vs Tue</div>
+									</div>
+									<div class="dash__metric">
+										<div class="dash__metric-label">Checked in</div>
+										<div class="dash__metric-value">18</div>
+										<div class="dash__metric-trend">on track</div>
+									</div>
+									<div class="dash__metric">
+										<div class="dash__metric-label">Revenue today</div>
+										<div class="dash__metric-value">₹42.6K</div>
+										<div class="dash__metric-trend">+12%</div>
+									</div>
+								</div>
+								<table class="dash__table">
+									<thead>
+										<tr>
+											<th>Patient</th>
+											<th>Doctor</th>
+											<th>Time</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr
+											><td><span class="dash__avatar">PS</span>Priya S.</td><td>Dr. Mehta</td><td
+												>10:00</td
+											><td><span class="dash__pill dash__pill--ok">Checked in</span></td></tr
+										>
+										<tr
+											><td><span class="dash__avatar">AK</span>Aniket K.</td><td>Dr. Reddy</td><td
+												>10:30</td
+											><td><span class="dash__pill dash__pill--warn">Late</span></td></tr
+										>
+										<tr
+											><td><span class="dash__avatar">RG</span>Riya G.</td><td>Dr. Sen</td><td
+												>11:00</td
+											><td><span class="dash__pill dash__pill--info">Confirmed</span></td></tr
+										>
+										<tr
+											><td><span class="dash__avatar">VP</span>Vinod P.</td><td>Dr. Mehta</td><td
+												>11:30</td
+											><td><span class="dash__pill dash__pill--info">Confirmed</span></td></tr
+										>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</section>
 
-	<!-- Founder section — fully static -->
-	<section
-		class="section"
-		id="story"
-		aria-labelledby="founder-heading"
-		style="background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
-	>
-		<div class="container">
-			<div class="founder">
-				<div class="founder__photo" aria-label="Photo of Mithun K. Singh">
-					<div class="founder__photo-placeholder">
-						<Icon name="users" size={48} />
-						<span>Mithun K. Singh<br />(portrait pending)</span>
-					</div>
+		<!-- Differentiation matrix — fully static -->
+		<section class="section section--tight" id="compliance" aria-labelledby="diff-heading">
+			<div class="container">
+				<header class="section-header">
+					<span class="t-eyebrow">How Lucoze is different</span>
+					<h2 id="diff-heading" class="t-h1" style="margin-top: 8px; margin-bottom: 12px;">
+						Compared to what you're using today.
+					</h2>
+					<p class="t-lead">
+						We didn't build the same product as everyone else. The differences are intentional and
+						they're built around how Indian healthcare actually buys, switches, and runs.
+					</p>
+				</header>
+
+				<div class="diff" role="region" aria-label="Feature comparison table">
+					<table class="diff__table">
+						<thead>
+							<tr>
+								<th scope="col" style="min-width: 280px;">Capability</th>
+								<th scope="col" style="text-align: center; min-width: 110px;">Lucoze</th>
+								<th scope="col" style="text-align: center; min-width: 110px;">Practo Ray</th>
+								<th scope="col" style="text-align: center; min-width: 110px;">Legacy HIS</th>
+								<th scope="col" style="text-align: center; min-width: 110px;">Excel + paper</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								DIFF_ROWS.map((row) => (
+									<tr>
+										<th
+											scope="row"
+											class="diff__row-label"
+											style="text-align: left; background: var(--paper);"
+										>
+											{row.label}
+											<span class="diff__row-sub">{row.sub}</span>
+										</th>
+										{row.cells.map((c, j) => (
+											<td class:list={["diff__cell", j === 0 && "diff__cell--lucoze"]}>
+												{c === "check" && (
+													<span class="diff__check" aria-label="Yes">
+														<Icon name="check" size={13} />
+													</span>
+												)}
+												{c === "cross" && (
+													<span class="diff__cross" aria-label="No">
+														<Icon name="x" size={13} />
+													</span>
+												)}
+												{c === "partial" && (
+													<span class="diff__partial" aria-label="Partial">
+														Partial
+													</span>
+												)}
+												{c === "na" && (
+													<span
+														class="diff__partial"
+														style="color: var(--light);"
+														aria-label="Not applicable"
+													>
+														—
+													</span>
+												)}
+											</td>
+										))}
+									</tr>
+								))
+							}
+						</tbody>
+					</table>
 				</div>
 
-				<div>
-					<span class="t-eyebrow">Why Lucoze exists</span>
-					<h2 id="founder-heading" class="t-h1" style="margin: 8px 0 var(--s-6);">
-						We built Lucoze because someone we love runs a clinic too.
+				<p
+					class="t-small"
+					style="text-align: center; margin-top: var(--s-5); color: var(--light); font-style: italic;"
+				>
+					Comparison based on public documentation as of May 2026. "Partial" = capability exists but
+					requires configuration / paid add-on / external integration.
+				</p>
+			</div>
+		</section>
+
+		<!-- ROI section — placeholder for RoiCalculator React island (Phase C) -->
+		<section class="section" id="roi" aria-labelledby="roi-heading">
+			<div class="container">
+				<header class="section-header">
+					<span class="t-eyebrow">ROI calculator</span>
+					<h2 id="roi-heading" class="t-h1" style="margin-top: 8px; margin-bottom: 12px;">
+						See what your clinic actually saves per month.
 					</h2>
-
-					<blockquote class="founder__quote">
-						Where does your patient data live? If the answer is anywhere outside India, we have a
-						problem before we have a customer.
-					</blockquote>
-
-					<div class="founder__bullets" role="list" aria-label="Founder commitments">
-						<div class="founder__bullet">
-							<Icon name="check" size={16} />
-							<div>
-								<strong style="color: var(--ink);">All data sits in Mumbai.</strong>
-								Not the US, not Singapore. We pay 38% more for hosting to keep it that way.
+					<p class="t-lead">
+						Interactive calculator ships in the next release. Numbers below are conservative —
+						derived from 30+ interviews with East-India clinic owners.
+					</p>
+				</header>
+				<div class="roi roi-placeholder">
+					<div class="roi__inputs">
+						<div class="roi__field">
+							<label
+								>Specialty<strong
+									style="color: var(--primary); font-family: var(--font-display); font-size: 16px;"
+									>Multi-specialty clinic</strong
+								></label
+							>
+							<div class="roi__select" style="opacity: 0.7;">Multi-specialty clinic</div>
+						</div>
+						<div class="roi__field">
+							<label>Doctors <strong>6</strong></label>
+							<div
+								class="range"
+								style="background: var(--bg-code); height: 6px; border-radius: 3px;"
+							>
 							</div>
 						</div>
-						<div class="founder__bullet">
-							<Icon name="check" size={16} />
-							<div>
-								<strong style="color: var(--ink);"
-									>Six months free for design-partner clinics.</strong
-								>
-								First ten East-India clinics get six months on the house and a weekly call with me.
+						<div class="roi__field">
+							<label>Patients per day <strong>45</strong></label>
+							<div
+								class="range"
+								style="background: var(--bg-code); height: 6px; border-radius: 3px;"
+							>
 							</div>
 						</div>
-						<div class="founder__bullet">
-							<Icon name="check" size={16} />
-							<div>
-								<strong style="color: var(--ink);">No lock-in.</strong>
-								If you ever leave, your full data exports as CSV + PDF within 24 hours. We'd rather lose
-								you than trap you.
-							</div>
-						</div>
-						<div class="founder__bullet">
-							<Icon name="check" size={16} />
-							<div>
-								<strong style="color: var(--ink);">Direct line to me.</strong>
-								First-name basis. WhatsApp during business hours. Until we have 100 clinics, this is non-negotiable.
+						<div class="roi__field">
+							<label>Average bill per patient <strong>₹800</strong></label>
+							<div
+								class="range"
+								style="background: var(--bg-code); height: 6px; border-radius: 3px;"
+							>
 							</div>
 						</div>
 					</div>
-
-					<div class="founder__sig">
-						<div>
-							<div class="founder__sig-name">Mithun K. Singh</div>
-							<div class="founder__sig-role">Founder & CEO, Lucoze</div>
+					<div class="roi__outputs">
+						<div class="roi__metric">
+							<div class="roi__metric-label">Estimated total monthly value</div>
+							<div class="roi__metric-value roi__metric-value--accent">₹1.3L</div>
+							<div class="roi__metric-sub">
+								Combined: staff hours + billing recovered + no-show prevention
+							</div>
 						</div>
-						<a href="/in/design-partner/" class="btn btn--accent" style="margin-left: auto;">
-							Apply for design-partner slot
-							<Icon name="arrow" size={14} class="btn__arrow" />
+						<div class="roi__metric">
+							<div class="roi__metric-label">Staff hours saved</div>
+							<div class="roi__metric-value">
+								228<span style="font-size: 18px; margin-left: 6px; opacity: 0.7;">hr/mo</span>
+							</div>
+							<div class="roi__metric-sub">
+								Auto-reminders, one-click billing, no double-entry between modules
+							</div>
+						</div>
+						<div class="roi__metric">
+							<div class="roi__metric-label">Billing leakage recovered</div>
+							<div class="roi__metric-value">₹25,740</div>
+							<div class="roi__metric-sub">
+								Discounts not logged, items missed at billing, partial payments untracked
+							</div>
+						</div>
+						<div class="roi__metric">
+							<div class="roi__metric-label">No-show prevention</div>
+							<div class="roi__metric-value">₹16,380</div>
+							<div class="roi__metric-sub">WhatsApp + SMS reminders reduce no-shows by ~5-7%</div>
+						</div>
+					</div>
+				</div>
+				<div style="text-align: center; margin-top: var(--s-8);">
+					<a href="/in/signup/" class="btn btn--primary btn--lg">
+						Apply these savings to my clinic — start trial
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Founder section — fully static -->
+		<section
+			class="section"
+			id="story"
+			aria-labelledby="founder-heading"
+			style="background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
+		>
+			<div class="container">
+				<div class="founder">
+					<div class="founder__photo" aria-label="Photo of Mithun K. Singh">
+						<div class="founder__photo-placeholder">
+							<Icon name="users" size={48} />
+							<span>Mithun K. Singh<br />(portrait pending)</span>
+						</div>
+					</div>
+
+					<div>
+						<span class="t-eyebrow">Why Lucoze exists</span>
+						<h2 id="founder-heading" class="t-h1" style="margin: 8px 0 var(--s-6);">
+							We built Lucoze because someone we love runs a clinic too.
+						</h2>
+
+						<blockquote class="founder__quote">
+							Where does your patient data live? If the answer is anywhere outside India, we have a
+							problem before we have a customer.
+						</blockquote>
+
+						<div class="founder__bullets" role="list" aria-label="Founder commitments">
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);">All data sits in Mumbai.</strong>
+									Not the US, not Singapore. We pay 38% more for hosting to keep it that way.
+								</div>
+							</div>
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);"
+										>Six months free for design-partner clinics.</strong
+									>
+									First ten East-India clinics get six months on the house and a weekly call with me.
+								</div>
+							</div>
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);">No lock-in.</strong>
+									If you ever leave, your full data exports as CSV + PDF within 24 hours. We'd rather
+									lose you than trap you.
+								</div>
+							</div>
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);">Direct line to me.</strong>
+									First-name basis. WhatsApp during business hours. Until we have 100 clinics, this is
+									non-negotiable.
+								</div>
+							</div>
+						</div>
+
+						<div class="founder__sig">
+							<div>
+								<div class="founder__sig-name">Mithun K. Singh</div>
+								<div class="founder__sig-role">Founder & CEO, Lucoze</div>
+							</div>
+							<a href="/in/design-partner/" class="btn btn--accent" style="margin-left: auto;">
+								Apply for design-partner slot
+								<Icon name="arrow" size={14} class="btn__arrow" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ — <details>/<summary>, no JS -->
+		<section class="section" id="faq" aria-labelledby="faq-heading">
+			<div class="container">
+				<header class="section-header">
+					<span class="t-eyebrow">Frequently asked</span>
+					<h2 id="faq-heading" class="t-h1" style="margin-top: 8px;">
+						The questions every clinic owner asks us.
+					</h2>
+				</header>
+				<Faq items={HOME_FAQS} />
+			</div>
+		</section>
+
+		<!-- Final CTA -->
+		<section class="section" aria-labelledby="cta-heading">
+			<div class="container">
+				<div class="cta-final">
+					<span
+						class="t-eyebrow"
+						style="color: rgba(244,243,238,0.7); display: inline-block; margin-bottom: var(--s-3);"
+					>
+						Ready when you are
+					</span>
+					<h2 id="cta-heading">Try Lucoze with your team for 14 days. Free.</h2>
+					<p>
+						No credit card. Full feature access. We'll help you import patients from your current
+						system in the first week. If it doesn't fit, you owe us nothing.
+					</p>
+					<div class="cta-final__actions">
+						<a href="/in/signup/" class="btn btn--primary btn--lg">
+							Start free trial
+							<Icon name="arrow" size={16} class="btn__arrow" />
+						</a>
+						<a href="/in/design-partner/" class="btn btn--ghost btn--lg">
+							Talk to Mithun directly
 						</a>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
+
+		<script
+			type="application/ld+json"
+			slot="head"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				name: "Lucoze",
+				url: "https://lucoze.com",
+				logo: "https://lucoze.com/favicon-vault.svg",
+				sameAs: [],
+				contactPoint: {
+					"@type": "ContactPoint",
+					email: "hello@lucoze.com",
+					contactType: "sales",
+					areaServed: "IN",
+					availableLanguage: ["en", "hi", "bn"],
+				},
+			})}
+		/>
 	</section>
 
-	<!-- FAQ — <details>/<summary>, no JS -->
-	<section class="section" id="faq" aria-labelledby="faq-heading">
-		<div class="container">
-			<header class="section-header">
-				<span class="t-eyebrow">Frequently asked</span>
-				<h2 id="faq-heading" class="t-h1" style="margin-top: 8px;">
-					The questions every clinic owner asks us.
-				</h2>
-			</header>
-			<Faq items={HOME_FAQS} />
-		</div>
-	</section>
-
-	<!-- Final CTA -->
-	<section class="section" aria-labelledby="cta-heading">
-		<div class="container">
-			<div class="cta-final">
-				<span
-					class="t-eyebrow"
-					style="color: rgba(244,243,238,0.7); display: inline-block; margin-bottom: var(--s-3);"
-				>
-					Ready when you are
-				</span>
-				<h2 id="cta-heading">Try Lucoze with your team for 14 days. Free.</h2>
-				<p>
-					No credit card. Full feature access. We'll help you import patients from your current
-					system in the first week. If it doesn't fit, you owe us nothing.
-				</p>
-				<div class="cta-final__actions">
-					<a href="/in/signup/" class="btn btn--primary btn--lg">
-						Start free trial
-						<Icon name="arrow" size={16} class="btn__arrow" />
-					</a>
-					<a href="/in/design-partner/" class="btn btn--ghost btn--lg"> Talk to Mithun directly </a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<script
-		type="application/ld+json"
-		slot="head"
-		set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "Organization",
-			name: "Lucoze",
-			url: "https://lucoze.com",
-			logo: "https://lucoze.com/favicon-vault.svg",
-			sameAs: [],
-			contactPoint: {
-				"@type": "ContactPoint",
-				email: "hello@lucoze.com",
-				contactType: "sales",
-				areaServed: "IN",
-				availableLanguage: ["en", "hi", "bn"],
-			},
-		})}
-	/>
+	<style>
+		.product-preview-placeholder {
+			position: relative;
+		}
+		.product-caption {
+			text-align: center;
+			font-family: var(--font-serif);
+			font-style: italic;
+			font-size: clamp(16px, 1.6vw, 19px);
+			color: var(--ink);
+			max-width: 720px;
+			margin: 0 auto var(--s-8);
+			line-height: 1.5;
+		}
+		.roi-placeholder {
+			opacity: 0.92;
+			position: relative;
+		}
+		.roi-placeholder::after {
+			content: "Live calculator coming in Phase C";
+			position: absolute;
+			top: -16px;
+			right: 16px;
+			font-family: var(--font-mono);
+			font-size: 10px;
+			color: var(--muted);
+			background: var(--cream);
+			padding: 4px 8px;
+			border-radius: var(--r-sm);
+		}
+		.founder__photo-placeholder {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: var(--s-3);
+			color: var(--muted);
+			font-size: var(--t-sm);
+			text-align: center;
+		}
+	</style>
 </Base>
-
-<style>
-	.product-preview-placeholder {
-		position: relative;
-	}
-	.product-preview-placeholder::after {
-		content: "Interactive specialty selector coming in Phase C";
-		position: absolute;
-		bottom: 12px;
-		right: 16px;
-		font-family: var(--font-mono);
-		font-size: 10px;
-		color: var(--muted);
-		background: var(--cream);
-		padding: 4px 8px;
-		border-radius: var(--r-sm);
-		opacity: 0.7;
-	}
-	.roi-placeholder {
-		opacity: 0.92;
-		position: relative;
-	}
-	.roi-placeholder::after {
-		content: "Live calculator coming in Phase C";
-		position: absolute;
-		top: -16px;
-		right: 16px;
-		font-family: var(--font-mono);
-		font-size: 10px;
-		color: var(--muted);
-		background: var(--cream);
-		padding: 4px 8px;
-		border-radius: var(--r-sm);
-	}
-	.founder__photo-placeholder {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: var(--s-3);
-		color: var(--muted);
-		font-size: var(--t-sm);
-		text-align: center;
-	}
-</style>
