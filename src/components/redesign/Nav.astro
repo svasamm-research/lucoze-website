@@ -64,30 +64,32 @@ const { activeLink = "" } = Astro.props;
 			<Icon name="menu" size={24} />
 		</button>
 	</nav>
-
-	<div id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" data-nav-mobile>
-		{
-			MEGA.map((group) => (
-				<div style="margin-bottom: 16px;">
-					<div style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; padding: 0 12px;">
-						{group.label}
-					</div>
-					{group.cols
-						.flatMap((c) => c.items)
-						.map((it) => (
-							<a href={it.href} class="nav__link">
-								{it.label}
-							</a>
-						))}
-				</div>
-			))
-		}
-		<a href="/in/pricing/" class="nav__link">Pricing</a>
-		<a href="/in/signup/" class="btn btn--accent" style="margin-top: 12px; width: 100%;">
-			Start free trial
-		</a>
-	</div>
 </header>
+
+<!-- Mobile menu lives OUTSIDE <header> so sticky-parent stacking quirks
+     don't put position:fixed children behind page content. -->
+<div id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" data-nav-mobile>
+	{
+		MEGA.map((group) => (
+			<div style="margin-bottom: 16px;">
+				<div style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; padding: 0 12px;">
+					{group.label}
+				</div>
+				{group.cols
+					.flatMap((c) => c.items)
+					.map((it) => (
+						<a href={it.href} class="nav__link">
+							{it.label}
+						</a>
+					))}
+			</div>
+		))
+	}
+	<a href="/in/pricing/" class="nav__link">Pricing</a>
+	<a href="/in/signup/" class="btn btn--accent" style="margin-top: 12px; width: 100%;">
+		Start free trial
+	</a>
+</div>
 
 <script>
 	// Sticky-nav scroll detection + mobile toggle + ESC close.

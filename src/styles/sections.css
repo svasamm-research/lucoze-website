@@ -76,12 +76,16 @@
 }
 .nav__mobile {
 	position: fixed;
-	inset: var(--nav-h) 0 0 0;
+	top: var(--nav-h);
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
 	background: var(--cream);
 	border-top: 1px solid var(--border);
 	padding: var(--s-6);
 	display: none;
-	z-index: 99;
+	z-index: 200;
 	overflow-y: auto;
 }
 .nav__mobile--open {
