@@ -1,0 +1,29 @@
+{
+	"slug": "ivf",
+	"label": "IVF clinics",
+	"icon": "spark",
+	"eyebrow": "For IVF clinics · cycle-based workflow",
+	"h1Parts": ["A cycle is not a visit. ", "Your software shouldn't treat it like one", "."],
+	"lead": "IVF runs in cycles — stimulation, OPU, fertilisation, transfer, beta. Each cycle is 14-21 days, with multiple visits, hormone tracking, embryo grading, and EMI billing that spans the whole journey. Most clinic SaaS forces you to fake this. Lucoze models it natively.",
+	"why": [
+		[
+			"Cycle as the unit of work",
+			"Open a cycle, see the protocol, the day count, the upcoming tests. Patient summary shows cycle progress on top."
+		],
+		[
+			"Embryo lab integration",
+			"Day-3, day-5 grades attached to the cycle. Cryopreservation tracked over years. Audit-ready for ICMR norms."
+		],
+		[
+			"EMI plans + counseling",
+			"12-month EMI plans with the counsellor’s notes on cost discussions. No invoice surprises mid-cycle."
+		],
+		[
+			"Regulatory compliance",
+			"Surrogacy and Assisted Reproductive Technology (Regulation) Act records — ready for the registrar."
+		]
+	],
+	"plan": "Clinic Pro",
+	"price": "₹2,999 / mo",
+	"dashSpecialty": "ivf"
+}

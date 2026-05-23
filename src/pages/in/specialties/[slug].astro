@@ -1,0 +1,113 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+import DashboardMock from "../../../components/DashboardMock.astro";
+
+export async function getStaticPaths() {
+	const specialties = await getCollection("specialties");
+	return specialties.map((entry) => ({
+		params: { slug: entry.data.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("specialties", slug!);
+if (!entry) {
+	return Astro.redirect("/404");
+}
+const sp = entry.data;
+
+const WHY_ICONS = ["check", "spark", "shield", "cloud", "users", "chart"];
+---
+
+<Base
+	title={`${sp.label} clinic management software | Lucoze HMS`}
+	description={sp.lead.slice(0, 160)}
+>
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/", label: "Solutions" },
+			{ label: sp.label },
+		]}
+		eyebrow={sp.eyebrow}
+		h1={sp.h1Parts.join("")}
+		highlightParts={sp.h1Parts}
+		lead={sp.lead}
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/contact/", label: "Book a walkthrough" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">Why Lucoze fits {sp.label.toLowerCase()}</span>
+				<h2 class="t-h2" style="margin-top: 8px;">The four things we got right for you.</h2>
+			</header>
+
+			<div class="module-grid">
+				{
+					sp.why.map(([title, blurb], i) => (
+						<article class="module-card">
+							<div class="module-card__icon">
+								<Icon name={WHY_ICONS[i % WHY_ICONS.length]} size={20} />
+							</div>
+							<div class="module-card__title">{title}</div>
+							<div class="module-card__blurb">{blurb}</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Live preview</span>
+				<h2 class="t-h2" style="margin-top: 8px;">
+					This is what {sp.label.toLowerCase()} looks like in Lucoze.
+				</h2>
+			</header>
+			<DashboardMock chromeTitle={`app.lucoze.com · ${sp.label}`} mainSub={`Today · ${sp.label}`} />
+		</div>
+	</section>
+
+	<section
+		class="section section--tight"
+		style="background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
+	>
+		<div class="container" style="text-align: center;">
+			<span class="t-eyebrow">Plan that fits</span>
+			<h2 class="t-h2" style="margin: 8px 0 var(--s-4);">{sp.plan}</h2>
+			<p class="t-lead" style="margin: 0 auto var(--s-6); max-width: 540px;">
+				Includes all features above plus migration support and 14-day free trial.
+				<a href="/in/pricing/" style="color: var(--primary); font-weight: 600;">See pricing →</a>
+			</p>
+			<a href="/in/signup/" class="btn btn--accent btn--lg">
+				Start free trial — {sp.label}
+				<Icon name="arrow" size={16} class="btn__arrow" />
+			</a>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					Talk to us about {sp.label.toLowerCase()}.
+				</h2>
+				<p>We'll skip the demo if you'd rather just ask questions. 30 minutes, founder included.</p>
+				<div class="cta-final__actions">
+					<a href="/in/contact/" class="btn btn--primary btn--lg">
+						Book a call
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+					<a href="/in/design-partner/" class="btn btn--ghost btn--lg"> Apply as design partner </a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

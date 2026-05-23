@@ -1,0 +1,47 @@
+{
+	"slug": "lab",
+	"label": "Lab module",
+	"icon": "flask",
+	"eyebrow": "Lab workflow + QC",
+	"h1Parts": ["From sample to ", "signed report", " — every step tracked."],
+	"lead": "Lab errors are usually process errors, not technique errors. The sample got mislabelled. The doctor wasn’t notified. The report didn’t reach the patient. Lucoze’s lab module fixes the process — with barcodes, role-based hand-offs, and a status feed everyone sees.",
+	"stats": [
+		{ "value": "~2.4h", "label": "Average sample-to-report TAT" },
+		{ "value": "Barcode", "label": "On every sample, every time" },
+		{ "value": "0 lost", "label": "Reports across 30 design-partner labs" }
+	],
+	"rows": [
+		{
+			"eyebrow": "Sample flow",
+			"title": "Barcode at collection. Visible at every station.",
+			"lead": "Collection → receiving → processing → verification → report. Each station scans, updates, hands off. The doctor knows where the sample is without a phone call. The patient gets the WhatsApp update when it’s actually ready.",
+			"bullets": [
+				"Pre-printed barcodes or print-on-demand at collection.",
+				"Sample rejection workflow with reason codes — quality trends are visible.",
+				"Outsourced tests tracked alongside in-house — one report, one TAT."
+			],
+			"visual": "lab-stages"
+		},
+		{
+			"eyebrow": "Reports + QC",
+			"title": "Reports the patient actually understands.",
+			"lead": "Doctor-friendly format on one side, patient-friendly format on the other. Critical values flag automatically. The signing pathologist’s details are NABL-compliant. Patient can download the PDF without calling the lab.",
+			"bullets": [
+				"Reference-range flagging by sex / age — H, L, panic-high in colour.",
+				"NABL audit trail — who signed, when, on which method.",
+				"Patient downloads via WhatsApp or the patient app — no portal login."
+			],
+			"visual": "lab-report"
+		}
+	],
+	"faqs": [
+		{
+			"q": "NABL audit trail — is the format ready for inspection?",
+			"a": "Yes. We worked with three NABL-accredited labs in Bhubaneswar and Lucknow to verify the audit log format. Lab plans include the inspection-ready report bundle on request."
+		},
+		{
+			"q": "Can we use it without a pathologist on site?",
+			"a": "Yes — outsource module routes samples to a contracted lab and re-imports the report under your branding. The patient sees one report; the regulator sees the audit chain."
+		}
+	]
+}

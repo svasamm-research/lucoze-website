@@ -1,0 +1,29 @@
+{
+	"slug": "polyclinic",
+	"label": "Polyclinic",
+	"icon": "users",
+	"eyebrow": "For polyclinics · high-volume OPD",
+	"h1Parts": ["Walk-ins, OPD, follow-ups. ", "All at 9:30am", "."],
+	"lead": "Tier-2 polyclinics in Patna, Lucknow, Ranchi run on volume — 60+ patients before noon, half of them walk-ins, half on a queue token. The front desk holds it together. Lucoze gives them the tool that matches.",
+	"why": [
+		[
+			"Token queue with priorities",
+			"Walk-ins get inserted by triage code — emergency before fever before follow-up. Doctor knows what’s next."
+		],
+		[
+			"WhatsApp-first reminders",
+			"Confirmation lands in Hindi. Reschedule is one tap. No-shows drop 6-8%."
+		],
+		[
+			"Multi-doctor instant rota",
+			"When Dr. Sharma is late, the queue rebalances to Dr. Reddy without a fight at the desk."
+		],
+		[
+			"Cash-first billing",
+			"Cash, UPI, partial — one screen. End-of-day cash reconciliation in 5 minutes."
+		]
+	],
+	"plan": "Clinic Pro",
+	"price": "₹2,999 / mo",
+	"dashSpecialty": "poly"
+}

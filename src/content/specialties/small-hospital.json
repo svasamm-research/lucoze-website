@@ -1,0 +1,29 @@
+{
+	"slug": "small-hospital",
+	"label": "Small hospital",
+	"icon": "home",
+	"eyebrow": "For 20-100 bed hospitals",
+	"h1Parts": ["Your small hospital ", "is not a small clinic", "."],
+	"lead": "You have an ICU. You have wards. You have a pharmacy with Schedule-X drugs, an OT, an HR head, and a Medical Director who signs everything. The software you bought for the clinic next door breaks at 30 beds.",
+	"why": [
+		[
+			"Inpatient + ward management",
+			"Bed map. Admission → discharge → summary, all one record. Pharmacy + lab + OPD billing roll up to the IPD bill."
+		],
+		[
+			"OT scheduling + materials",
+			"Surgery slot reserves OT staff, consumables, post-op room. Cancellations release the chain."
+		],
+		[
+			"NABH-ready dashboards",
+			"The metrics NABH wants — ALOS, infection rate, medication errors — surface without 4 admins building Excel models."
+		],
+		[
+			"HR + payroll",
+			"30 staff. Statutory PF / ESI / TDS auto-computed. Doctor incentive structures by department."
+		]
+	],
+	"plan": "Hospital",
+	"price": "₹7,999 / mo",
+	"dashSpecialty": "multispec"
+}

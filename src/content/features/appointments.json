@@ -1,0 +1,62 @@
+{
+	"slug": "appointments",
+	"label": "Appointments",
+	"icon": "calendar",
+	"eyebrow": "Booking engine",
+	"h1Parts": ["Booking that starts with ", "the question", " — not the form."],
+	"lead": "Most clinic software opens a booking with “name and phone number.” That’s the wrong question. The patient already knows what they need: a department, a doctor, a slot that fits their day. We ask in that order.",
+	"stats": [
+		{ "value": "92%", "label": "Of bookings finish in under 60 sec" },
+		{ "value": "5-7%", "label": "Drop in no-shows with WhatsApp reminders" },
+		{ "value": "200+", "label": "Front-desk searches per shift, indexed" }
+	],
+	"rows": [
+		{
+			"eyebrow": "The order is everything",
+			"title": "Department first. Doctor next. Patient last.",
+			"lead": "Patient details are the last step — not the first. By then, the patient is committed to a slot they’ve chosen, not abandoning a form because the front desk asked for their PAN.",
+			"bullets": [
+				"Patient self-serve booking on WhatsApp, web, or the front desk — same flow.",
+				"Returning patients are recognised by phone after the slot is chosen, not before.",
+				"First-time patients enter just name and phone. The rest fills in over the next visit."
+			],
+			"visual": "booking"
+		},
+		{
+			"eyebrow": "No-show prevention",
+			"title": "Three reminders, in the channel that actually works.",
+			"lead": "WhatsApp confirmation goes out 24 hours before. SMS at 2 hours. A reschedule link is one tap — no app install, no login. The doctor sees a confirmed list at 9am, not a hopeful one.",
+			"bullets": [
+				"Patient-driven reschedule via one-tap link — desk staff don’t intercept.",
+				"Specialty-aware reminder copy (IVF gets different wording than dental).",
+				"Cancel-with-reason feedback loop — you learn which slot patterns leak."
+			],
+			"visual": "stage"
+		},
+		{
+			"eyebrow": "Doctor’s view",
+			"title": "What's actually on the day. Not what was scheduled last week.",
+			"lead": "The doctor sees today live — confirmed patients, walk-ins inserted in priority, follow-ups that need 5 minutes vs new patients that need 15. Time blocks are theirs to control.",
+			"bullets": [
+				"Drag a slot to a new time — the patient gets notified instantly.",
+				"Block 30 mins for a procedure. The desk can’t book over it.",
+				"Daily summary at 7pm: hours billed, items missed, who came back."
+			],
+			"visual": "doctor"
+		}
+	],
+	"faqs": [
+		{
+			"q": "Does it work without internet?",
+			"a": "Yes — the front desk can take walk-ins offline. The day reconciles when the connection comes back. Tested in 6 East-India clinics with intermittent 4G."
+		},
+		{
+			"q": "What about WhatsApp Business compatibility?",
+			"a": "We use the official Cloud API — not unofficial bridges. Your number stays clean and never gets restricted."
+		},
+		{
+			"q": "Can patients book on Sunday?",
+			"a": "Self-serve booking is 24/7. You set the slot inventory; the patient picks within it."
+		}
+	]
+}
