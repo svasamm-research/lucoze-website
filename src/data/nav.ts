@@ -78,7 +78,7 @@ export const MEGA: MegaGroup[] = [
 					},
 					{
 						href: "/in/blog/security-data/",
-						label: "Mumbai cloud",
+						label: "India cloud",
 						blurb: "Data hosted in India",
 					},
 				],

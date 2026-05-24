@@ -129,7 +129,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				bullets: [
 					"Registered: Hyderabad, India",
 					"Operating: distributed team across India",
-					"Patient data: AWS Mumbai (ap-south-1)",
+					"Patient data: Indian data centres",
 				],
 			},
 		],

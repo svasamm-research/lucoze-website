@@ -14,7 +14,7 @@ export interface DiffRow {
 export const DIFF_ROWS: DiffRow[] = [
 	{
 		label: "Patient data hosted in India",
-		sub: "Mumbai ap-south-1 — never crosses border",
+		sub: "Indian data centres — never crosses border",
 		cells: ["check", "cross", "cross", "cross"],
 	},
 	{
@@ -57,7 +57,7 @@ export const DIFF_ROWS: DiffRow[] = [
 export const HOME_FAQS = [
 	{
 		q: "Where exactly does our patient data live?",
-		a: "Every byte of patient data sits on AWS Mumbai (ap-south-1). Backups stay in India. Nothing crosses the border — not to Virginia, not to Singapore. We made this call before our first customer, and it adds ~38% to our monthly hosting bill. We pay it anyway because DPDP 2023 isn't optional in 2027 and trust takes years to rebuild.",
+		a: "Every byte of patient data sits in Indian data centres. Backups stay in India. Nothing crosses the border — not to Virginia, not to Singapore. We made this call before our first customer, and we accept the higher hosting cost because DPDP 2023 isn't optional in 2027 and trust takes years to rebuild.",
 	},
 	{
 		q: "What happens to our data if Lucoze shuts down?",

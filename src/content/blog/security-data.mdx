@@ -1,28 +1,21 @@
 ---
-title: "Where your patient data will live. Why it matters."
-dek: "Most Indian healthtech runs on us-east-1. Lucoze won't. Here is the commitment we've made, and what it costs us."
+title: "Where your patient data lives. Why it matters."
+dek: "Most Indian healthtech runs on US servers. Lucoze doesn't. Here is the commitment we've made."
 category: "Trust"
 author: "Mithun K. Singh"
 date: "2026-05-15"
-readMins: 6
+readMins: 5
 ---
 
 <h2 id="commitment">The commitment we've made</h2>
 <p>
-	Before our first paying customer signs, here's a commitment we want on the record: every byte of
-	paying-customer patient data will sit in India — AWS Mumbai (ap-south-1) or DigitalOcean Bangalore
-	(BLR1). Not Virginia. Not Singapore. Not some "global" region that resolves to wherever the
-	provider felt like.
+	Here is a commitment we want on the record: every byte of Lucoze patient data sits in Indian data
+	centres. Not in Virginia. Not in Singapore. Not in some "global" region that resolves to wherever
+	the provider felt like.
 </p>
 <p>
-	India hosting costs noticeably more than US/EU equivalents — typically 30–40% more depending on
-	the workload. We accept that cost as table stakes for the customer relationship we want.
-</p>
-<p>
-	<strong>Honest disclosure about today.</strong> While we're in design-partner phase with synthetic
-	test data, our infrastructure runs on Hetzner (EU) for cost reasons. The instant a real patient
-	record enters the system, the production host moves to ap-south-1 or BLR1 — that's a contractual
-	line, not a roadmap item.
+	India hosting costs noticeably more than US/EU equivalents. We accept that cost as table stakes
+	for the customer relationship we want.
 </p>
 
 <h2 id="dpdp">The legal reason</h2>
@@ -35,9 +28,9 @@ readMins: 6
 
 <h2 id="practical">The practical reason</h2>
 <p>
-	Round-trip latency from a Tier-2 clinic in Patna to Mumbai is ~40ms. To us-east, it's ~280ms. For
-	a front-desk staffer searching for a patient 200 times a day, that 240ms difference is the gap
-	between software that feels like a tool and software that feels like a tax.
+	Round-trip latency from a Tier-2 clinic in Patna to an Indian data centre is ~40ms. To a US-east
+	region, it's ~280ms. For a front-desk staffer searching for a patient 200 times a day, that 240ms
+	difference is the gap between software that feels like a tool and software that feels like a tax.
 </p>
 
 <h2 id="trust">The trust reason</h2>
@@ -47,11 +40,11 @@ readMins: 6
 	outside India.
 </p>
 
-<h2 id="what">What production will look like</h2>
+<h2 id="what">What production looks like</h2>
 <ul>
-	<li>Primary database: AWS RDS (ap-south-1) or DO Managed Postgres (BLR1).</li>
-	<li>Object storage: AWS S3 (ap-south-1) or DO Spaces (BLR1).</li>
-	<li>Backups: same region + read-replica in another Indian AZ. Never cross-region.</li>
+	<li>Primary database: Indian data centre, India region only.</li>
+	<li>Object storage: Indian regions only.</li>
+	<li>Backups: Indian-region replicas. Never cross-region outside India.</li>
 	<li>Encryption: at rest (AES-256) and in transit (TLS 1.3).</li>
 	<li>Key management: customer-managed keys per tenant.</li>
 	<li>Audit log: every record access logged for 7 years.</li>
