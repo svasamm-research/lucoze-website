@@ -330,14 +330,7 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			style="background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
 		>
 			<div class="container">
-				<div class="founder">
-					<div class="founder__photo" aria-label="Photo of Mithun K. Singh">
-						<div class="founder__photo-placeholder">
-							<Icon name="users" size={48} />
-							<span>Mithun K. Singh<br />(portrait pending)</span>
-						</div>
-					</div>
-
+				<div class="founder founder--solo">
 					<div>
 						<span class="t-eyebrow">Why Lucoze exists</span>
 						<h2 id="founder-heading" class="t-h1" style="margin: 8px 0 var(--s-6);">
@@ -385,6 +378,14 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 						</div>
 
 						<div class="founder__sig">
+							<img
+								src="/images/founder-mithun-avatar.png"
+								alt="Mithun K. Singh, founder of Lucoze"
+								width="64"
+								height="64"
+								loading="lazy"
+								class="founder__sig-avatar"
+							/>
 							<div>
 								<div class="founder__sig-name">Mithun K. Singh</div>
 								<div class="founder__sig-role">Founder & CEO, Lucoze</div>
@@ -491,17 +492,24 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			padding: 4px 8px;
 			border-radius: var(--r-sm);
 		}
-		.founder__photo-placeholder {
-			width: 100%;
-			height: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
+		/* Founder section: solo layout (no photo column). Quote, bullets
+		   and signature span full width but cap at 720px and centre, so
+		   the section reads as 'words first', not 'founder hero shot'. */
+		.founder--solo {
+			grid-template-columns: minmax(0, 720px);
 			justify-content: center;
-			gap: var(--s-3);
-			color: var(--muted);
-			font-size: var(--t-sm);
-			text-align: center;
+			max-width: 720px;
+			margin: 0 auto;
+		}
+		.founder__sig-avatar {
+			width: 64px;
+			height: 64px;
+			border-radius: 50%;
+			object-fit: cover;
+			flex-shrink: 0;
+			box-shadow: 0 2px 8px rgba(31, 29, 26, 0.1);
+			border: 2px solid var(--paper);
+			margin-right: 6px;
 		}
 	</style>
 </Base>
