@@ -1,0 +1,154 @@
+---
+const QUEUE: {
+	token: string;
+	patient: string;
+	with: string;
+	wait: string;
+	pill?: "priority";
+}[] = [
+	{ token: "A-014", patient: "Manoj Yadav", with: "Dr Tiwari · Diabetic follow-up", wait: "now" },
+	{ token: "A-015", patient: "Sushma Pandey", with: "Dr Shukla · Routine", wait: "5 min" },
+	{
+		token: "P-008",
+		patient: "WALK-IN · chest pain",
+		with: "Dr Tiwari · Triage code A",
+		wait: "",
+		pill: "priority",
+	},
+	{ token: "A-016", patient: "Rakesh Singh", with: "Dr Tiwari · Asthma review", wait: "12 min" },
+	{ token: "A-017", patient: "Asha Devi", with: "Dr Shukla · First visit", wait: "18 min" },
+	{ token: "A-018", patient: "Vikas Sharma", with: "Dr Tiwari · Routine", wait: "25 min" },
+];
+---
+
+<div class="viz polyclinic">
+	<div class="viz__chrome">
+		<span class="viz__chrome-title">Lucknow polyclinic · OPD live</span>
+		<span class="viz__chrome-meta">Today · 47 served · 12 in queue</span>
+	</div>
+	<div class="polyclinic__body">
+		<div class="polyclinic__now">
+			<div class="polyclinic__now-label">Now serving</div>
+			<div class="polyclinic__now-token">A-013</div>
+			<div class="polyclinic__now-sub">Sushil Verma · Dr Tiwari · Room 2</div>
+		</div>
+		<div class="polyclinic__queue">
+			{
+				QUEUE.map((q) => (
+					<div
+						class:list={["polyclinic__row", q.pill === "priority" && "polyclinic__row--priority"]}
+					>
+						<span class="polyclinic__row-token">{q.token}</span>
+						<div class="polyclinic__row-body">
+							<div class="polyclinic__row-patient">{q.patient}</div>
+							<div class="polyclinic__row-with">{q.with}</div>
+						</div>
+						{q.pill === "priority" ? (
+							<span class="polyclinic__pill">Priority</span>
+						) : (
+							<span class="polyclinic__row-wait">{q.wait}</span>
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.polyclinic__body {
+		display: grid;
+		grid-template-columns: 220px 1fr;
+		min-height: 340px;
+	}
+	.polyclinic__now {
+		background: var(--ink);
+		color: var(--cream);
+		padding: var(--s-8) var(--s-6);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 8px;
+	}
+	.polyclinic__now-label {
+		font-family: var(--font-mono);
+		font-size: 10px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: rgba(244, 243, 238, 0.6);
+		font-weight: 700;
+	}
+	.polyclinic__now-token {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 56px;
+		color: #f0a07e;
+		letter-spacing: -0.03em;
+		line-height: 1;
+	}
+	.polyclinic__now-sub {
+		font-size: 12px;
+		color: rgba(244, 243, 238, 0.72);
+	}
+	.polyclinic__queue {
+		background: var(--paper);
+		display: flex;
+		flex-direction: column;
+	}
+	.polyclinic__row {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		padding: 14px 18px;
+		border-bottom: 1px solid var(--border-light);
+	}
+	.polyclinic__row:last-child {
+		border-bottom: none;
+	}
+	.polyclinic__row--priority {
+		background: var(--primary-light);
+	}
+	.polyclinic__row-token {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--ink);
+		min-width: 50px;
+	}
+	.polyclinic__row-body {
+		flex: 1;
+		min-width: 0;
+	}
+	.polyclinic__row-patient {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--ink);
+	}
+	.polyclinic__row-with {
+		font-size: 11px;
+		color: var(--muted);
+	}
+	.polyclinic__row-wait {
+		font-size: 11px;
+		color: var(--muted);
+		font-family: var(--font-mono);
+	}
+	.polyclinic__pill {
+		padding: 3px 10px;
+		background: var(--primary);
+		color: var(--white);
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		border-radius: var(--r-full);
+	}
+	@media (max-width: 720px) {
+		.polyclinic__body {
+			grid-template-columns: 1fr;
+		}
+		.polyclinic__now-token {
+			font-size: 40px;
+		}
+	}
+</style>

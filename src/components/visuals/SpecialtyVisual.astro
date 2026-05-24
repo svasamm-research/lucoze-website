@@ -1,0 +1,25 @@
+---
+/** Dispatcher for specialty 'Live preview' visuals. Keyed by dashSpecialty
+ *  from the content collection so the spec page renders the right mock. */
+import MultispecGrid from "./specialty/MultispecGrid.astro";
+import PolyclinicQueue from "./specialty/PolyclinicQueue.astro";
+import HospitalBedMap from "./specialty/HospitalBedMap.astro";
+import DentalChairs from "./specialty/DentalChairs.astro";
+import IvfTimeline from "./specialty/IvfTimeline.astro";
+import DermPackages from "./specialty/DermPackages.astro";
+import DiagnosticsKanban from "./specialty/DiagnosticsKanban.astro";
+
+interface Props {
+	kind: string;
+}
+
+const { kind } = Astro.props;
+---
+
+{kind === "multispec" && <MultispecGrid />}
+{kind === "poly" && <PolyclinicQueue />}
+{kind === "hospital" && <HospitalBedMap />}
+{kind === "dental" && <DentalChairs />}
+{kind === "ivf" && <IvfTimeline />}
+{kind === "derm" && <DermPackages />}
+{kind === "diag" && <DiagnosticsKanban />}

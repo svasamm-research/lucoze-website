@@ -1,0 +1,210 @@
+---
+const CHAIRS: {
+	name: string;
+	doc: string;
+	util: number;
+	procedure?: { name: string; patient: string; time: string; progress: number };
+	next?: { who: string; time: string; what: string };
+}[] = [
+	{
+		name: "Chair 1",
+		doc: "Dr Verma",
+		util: 84,
+		procedure: {
+			name: "Implant placement",
+			patient: "Rohit Mishra",
+			time: "10:00–11:30",
+			progress: 50,
+		},
+		next: { who: "K. Mukherjee", time: "11:45", what: "Crown fitting" },
+	},
+	{
+		name: "Chair 2",
+		doc: "Dr Khan",
+		util: 72,
+		procedure: {
+			name: "Scaling + polish",
+			patient: "Anjali Sinha",
+			time: "10:30–11:00",
+			progress: 80,
+		},
+		next: { who: "Vinay Tiwari", time: "11:15", what: "X-ray review" },
+	},
+	{
+		name: "Chair 3",
+		doc: "Dr Bose",
+		util: 56,
+		next: { who: "K. Mukherjee", time: "12:00", what: "RCT day 2" },
+	},
+	{
+		name: "Chair 4",
+		doc: "Dr Khan",
+		util: 91,
+		procedure: {
+			name: "Bleach + whitening",
+			patient: "Devi Prasad",
+			time: "10:15–11:00",
+			progress: 70,
+		},
+	},
+];
+---
+
+<div class="viz dental">
+	<div class="viz__chrome">
+		<span class="viz__chrome-title">Patna · 4 chairs · 3 dentists</span>
+		<span class="viz__chrome-meta">Chair utilisation today · 76% avg</span>
+	</div>
+	<div class="dental__grid">
+		{
+			CHAIRS.map((c) => (
+				<div class="dental__card">
+					<div class="dental__card-head">
+						<span class="dental__card-name">{c.name}</span>
+						<span class="dental__card-doc">{c.doc}</span>
+						<span class="dental__card-util">{c.util}%</span>
+					</div>
+					{c.procedure ? (
+						<div class="dental__proc">
+							<div class="dental__proc-label">In progress</div>
+							<div class="dental__proc-name">{c.procedure.name}</div>
+							<div class="dental__proc-patient">
+								{c.procedure.patient} · {c.procedure.time}
+							</div>
+							<div class="dental__bar">
+								<div class="dental__bar-fill" style={`width: ${c.procedure.progress}%;`} />
+							</div>
+						</div>
+					) : (
+						<div class="dental__available">Available</div>
+					)}
+					{c.next && (
+						<div class="dental__next">
+							<span class="dental__next-label">Next</span>
+							<span class="dental__next-who">{c.next.who}</span>
+							<span class="dental__next-time">· {c.next.time}</span>
+							<span class="dental__next-what">{c.next.what}</span>
+						</div>
+					)}
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.dental__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--s-4);
+		padding: var(--s-5) var(--s-6);
+		background: var(--paper);
+	}
+	@media (max-width: 720px) {
+		.dental__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	.dental__card {
+		background: var(--cream);
+		border: 1px solid var(--border-light);
+		border-radius: var(--r-md);
+		padding: var(--s-4) var(--s-5);
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-3);
+	}
+	.dental__card-head {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+	}
+	.dental__card-name {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: var(--t-md);
+		color: var(--ink);
+	}
+	.dental__card-doc {
+		font-size: 12px;
+		color: var(--muted);
+	}
+	.dental__card-util {
+		margin-left: auto;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--primary);
+	}
+	.dental__proc {
+		background: var(--ink);
+		color: var(--cream);
+		border-radius: var(--r-sm);
+		padding: 10px 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+	.dental__proc-label {
+		font-family: var(--font-mono);
+		font-size: 9px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #f0a07e;
+		font-weight: 700;
+	}
+	.dental__proc-name {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 14px;
+	}
+	.dental__proc-patient {
+		font-size: 11px;
+		color: rgba(244, 243, 238, 0.72);
+	}
+	.dental__bar {
+		background: rgba(244, 243, 238, 0.15);
+		border-radius: 4px;
+		height: 5px;
+		overflow: hidden;
+		margin-top: 4px;
+	}
+	.dental__bar-fill {
+		background: #f0a07e;
+		height: 100%;
+	}
+	.dental__available {
+		background: var(--paper);
+		border: 1.5px dashed var(--border);
+		border-radius: var(--r-sm);
+		padding: 18px;
+		text-align: center;
+		color: var(--muted);
+		font-size: 13px;
+		font-style: italic;
+	}
+	.dental__next {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px;
+		font-size: 12px;
+		color: var(--ink-soft);
+	}
+	.dental__next-label {
+		font-family: var(--font-mono);
+		font-size: 9px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--muted);
+		font-weight: 700;
+	}
+	.dental__next-who {
+		font-weight: 700;
+		color: var(--ink);
+	}
+	.dental__next-time {
+		color: var(--muted);
+		font-family: var(--font-mono);
+	}
+</style>

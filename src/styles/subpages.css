@@ -764,6 +764,33 @@
 	margin-top: var(--s-4);
 }
 
+/* ─── Shared 'viz' chrome for specialty live-preview mocks ─── */
+.viz {
+	background: var(--paper);
+	border: 1px solid var(--border);
+	border-radius: var(--r-xl);
+	box-shadow: var(--shadow-lg);
+	overflow: hidden;
+}
+.viz__chrome {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 18px;
+	background: var(--ink);
+	color: var(--cream);
+}
+.viz__chrome-title {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.04em;
+}
+.viz__chrome-meta {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: rgba(244, 243, 238, 0.6);
+}
+
 /* ─── Standard content shell ─────────────────────── */
 .content-section {
 	padding: var(--s-12) 0;

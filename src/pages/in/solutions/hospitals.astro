@@ -4,6 +4,7 @@ import SubHero from "../../../components/SubHero.astro";
 import FRow from "../../../components/FRow.astro";
 import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
+import HospitalBedMap from "../../../components/visuals/specialty/HospitalBedMap.astro";
 
 const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 	{
@@ -67,7 +68,9 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 			{ value: "₹7,999", label: "Per month (Hospital plan)" },
 			{ value: "Mumbai", label: "Data hosted in India" },
 		]}
-	/>
+	>
+		<HospitalBedMap slot="visual" />
+	</SubHero>
 
 	<section class="section section--tight">
 		<div class="container">

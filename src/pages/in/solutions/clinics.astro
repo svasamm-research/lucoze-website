@@ -4,6 +4,7 @@ import SubHero from "../../../components/SubHero.astro";
 import FRow from "../../../components/FRow.astro";
 import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
+import MultispecGrid from "../../../components/visuals/specialty/MultispecGrid.astro";
 import { SPECIALTIES } from "../../../data/specialties-list.ts";
 
 const MODULES: { icon: string; title: string; blurb: string; href: string }[] = [
@@ -68,7 +69,9 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 			{ value: "Mumbai", label: "Data hosted in India" },
 			{ value: "0%", label: "Per-user pricing tricks" },
 		]}
-	/>
+	>
+		<MultispecGrid slot="visual" />
+	</SubHero>
 
 	<section class="section section--tight">
 		<div class="container">

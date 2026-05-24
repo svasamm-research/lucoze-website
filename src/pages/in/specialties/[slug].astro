@@ -3,7 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import SubHero from "../../../components/SubHero.astro";
 import Icon from "../../../components/Icon.astro";
-import DashboardMock from "../../../components/DashboardMock.astro";
+import SpecialtyVisual from "../../../components/visuals/SpecialtyVisual.astro";
 
 export async function getStaticPaths() {
 	const specialties = await getCollection("specialties");
@@ -71,7 +71,7 @@ const WHY_ICONS = ["check", "spark", "shield", "cloud", "users", "chart"];
 					This is what {sp.label.toLowerCase()} looks like in Lucoze.
 				</h2>
 			</header>
-			<DashboardMock chromeTitle={`app.lucoze.com · ${sp.label}`} mainSub={`Today · ${sp.label}`} />
+			<SpecialtyVisual kind={sp.dashSpecialty} />
 		</div>
 	</section>
 
