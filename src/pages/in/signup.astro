@@ -179,10 +179,22 @@ const BENEFITS: { title: string; sub: string }[] = [
 							</div>
 						</div>
 
-						<button type="submit" class="btn btn--accent btn--lg signup-form__submit">
-							Start free trial
+						<button
+							type="submit"
+							class="btn btn--accent btn--lg signup-form__submit"
+							data-signup-submit
+						>
+							<span data-signup-submit-label>Start free trial</span>
 							<Icon name="arrow" size={16} class="btn__arrow" />
 						</button>
+
+						<p
+							data-signup-error
+							hidden
+							role="alert"
+							style="margin-top: var(--s-3); padding: 10px 12px; background: var(--error-bg, rgba(177,52,42,0.08)); border: 1px solid var(--error); color: var(--error); border-radius: var(--r-sm); font-size: 13px; text-align: center;"
+						>
+						</p>
 
 						<p
 							style="font-size: 11px; color: var(--light); margin-top: var(--s-3); text-align: center;"
@@ -229,15 +241,28 @@ const BENEFITS: { title: string; sub: string }[] = [
 </Base>
 
 <script>
-	// Inline thank-you toggle. Phase C will wire this to a real submit
-	// (lucoze_admin /api/signup). For now: prevent default, swap views,
-	// personalise with the entered name.
+	// SignupForm — production-ready submit path with backend wiring.
+	//
+	// 1. Preselects the plan radio from ?plan=clinic|clinicpro|hospital
+	//    (the pricing page's CTAs pass this).
+	// 2. On submit:
+	//    - Native HTML5 validation runs first (required, type=email, etc).
+	//    - If PUBLIC_SIGNUP_ENDPOINT is set at build time, POST form data
+	//      there as JSON. Show loading/error states inline.
+	//    - If the env var is empty (today's pre-launch state), show the
+	//      thanks panel directly without a network call.
+	// 3. Wire to lucoze_admin /api/signup by setting PUBLIC_SIGNUP_ENDPOINT
+	//    in the deploy env.
+	const ENDPOINT = import.meta.env.PUBLIC_SIGNUP_ENDPOINT as string | undefined;
+
 	const form = document.querySelector<HTMLFormElement>("[data-signup-form]");
 	const thanks = document.querySelector<HTMLElement>("[data-signup-thanks]");
 	const thanksName = document.querySelector<HTMLElement>("[data-signup-thanks-name]");
+	const submitBtn = document.querySelector<HTMLButtonElement>("[data-signup-submit]");
+	const submitLabel = document.querySelector<HTMLElement>("[data-signup-submit-label]");
+	const errorEl = document.querySelector<HTMLElement>("[data-signup-error]");
 
-	// Preselect the plan radio from ?plan=clinic|clinicpro|hospital query param
-	// (the pricing page's "Start free trial" buttons pass this).
+	// Preselect the plan radio from ?plan=clinic|clinicpro|hospital query param.
 	const planParam = new URLSearchParams(window.location.search).get("plan");
 	if (planParam && ["clinic", "clinicpro", "hospital"].includes(planParam)) {
 		const radio = document.querySelector<HTMLInputElement>(
@@ -246,15 +271,76 @@ const BENEFITS: { title: string; sub: string }[] = [
 		if (radio) radio.checked = true;
 	}
 
-	if (form && thanks) {
-		form.addEventListener("submit", (e) => {
-			e.preventDefault();
-			const nameInput = form.querySelector<HTMLInputElement>("#su-name");
-			const firstName = (nameInput?.value || "").trim().split(/\s+/)[0] || "doctor";
-			if (thanksName) thanksName.textContent = firstName;
-			form.hidden = true;
+	const showError = (msg: string) => {
+		if (!errorEl) return;
+		errorEl.textContent = msg;
+		errorEl.hidden = false;
+	};
+	const clearError = () => {
+		if (errorEl) errorEl.hidden = true;
+	};
+	const setLoading = (loading: boolean) => {
+		if (submitBtn) submitBtn.disabled = loading;
+		if (submitLabel)
+			submitLabel.textContent = loading ? "Setting up your trial…" : "Start free trial";
+	};
+	const showThanks = (firstName: string) => {
+		if (thanksName) thanksName.textContent = firstName;
+		if (form) form.hidden = true;
+		if (thanks) {
 			thanks.hidden = false;
 			thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+		}
+	};
+
+	if (form && thanks) {
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			clearError();
+
+			// Browser handles native validation (required, type=email, etc).
+			if (!form.reportValidity()) return;
+
+			const formData = new FormData(form);
+			const nameValue = (formData.get("name") as string | null) || "";
+			const firstName = nameValue.trim().split(/\s+/)[0] || "doctor";
+
+			// No endpoint configured (pre-launch): just show thanks.
+			if (!ENDPOINT) {
+				showThanks(firstName);
+				return;
+			}
+
+			// Real submit path: POST JSON to lucoze_admin /api/signup.
+			setLoading(true);
+			try {
+				const payload = Object.fromEntries(formData.entries());
+				const res = await fetch(ENDPOINT, {
+					method: "POST",
+					headers: { "Content-Type": "application/json", Accept: "application/json" },
+					body: JSON.stringify(payload),
+				});
+				if (!res.ok) {
+					// Try to extract a server message; fall back to generic.
+					let detail = `Signup failed (${res.status}).`;
+					try {
+						const body = (await res.json()) as { message?: string; error?: string };
+						detail = body.message || body.error || detail;
+					} catch {
+						/* response wasn't JSON — keep the generic message */
+					}
+					throw new Error(detail);
+				}
+				showThanks(firstName);
+			} catch (err) {
+				const msg =
+					err instanceof Error
+						? err.message
+						: "Couldn't reach the signup server. Try again, or email hello@lucoze.com.";
+				showError(msg);
+			} finally {
+				setLoading(false);
+			}
 		});
 	}
 </script>
