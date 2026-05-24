@@ -4,9 +4,12 @@ import HeroDemo from "../../components/HeroDemo.astro";
 import TrustStrip from "../../components/TrustStrip.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
-import DashboardMock from "../../components/DashboardMock.astro";
+import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
+import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
 import { SPECIALTY_PILLS } from "../../data/specialties.ts";
+
+const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.caption]));
 ---
 
 <Base
@@ -18,9 +21,9 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 
 	<TrustStrip />
 
-	<!-- Pick your specialty — specialty pills are visual-only for Phase B.
-	     Phase C will swap to a React island that changes the DashboardMock
-	     and caption per specialty. -->
+	<!-- Pick your specialty — vanilla-JS switcher swaps the visible
+	     SpecialtyVisual block + caption on pill click. All 6 visuals are
+	     rendered at build time; toggle is hidden-attr. -->
 	<section class="section" id="product" aria-labelledby="product-heading">
 		<div class="container">
 			<header class="section-header">
@@ -39,6 +42,9 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 							type="button"
 							role="tab"
 							aria-selected={i === 0}
+							aria-controls={`specialty-panel-${s.id}`}
+							id={`specialty-tab-${s.id}`}
+							data-specialty-pill={s.id}
 							class:list={["specialty__btn", i === 0 && "specialty__btn--active"]}
 						>
 							<Icon name={s.icon} class="specialty__btn-icon" />
@@ -48,106 +54,22 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 				}
 			</div>
 
-			<p class="product-caption">{SPECIALTY_PILLS[0].caption}</p>
+			<p class="product-caption" data-specialty-caption>{SPECIALTY_PILLS[0].caption}</p>
 
 			<div class="product-preview-placeholder">
-				<DashboardMock
-					chromeTitle="app.lucoze.com · Multi-specialty clinic"
-					mainSub="Today · Multi-specialty clinic"
-				/>
-				<div style="display: none">
-					<div class="dash">
-						<div class="dash__chrome">
-							<span class="dash__dot"></span>
-							<span class="dash__dot"></span>
-							<span class="dash__dot"></span>
-							<span class="dash__chrome-title">lucoze.com/dashboard · multi-specialty</span>
+				{
+					SPECIALTY_PILLS.map((s, i) => (
+						<div
+							data-specialty-visual={s.id}
+							role="tabpanel"
+							id={`specialty-panel-${s.id}`}
+							aria-labelledby={`specialty-tab-${s.id}`}
+							hidden={i !== 0}
+						>
+							<SpecialtyVisual kind={s.visualKind} />
 						</div>
-						<div class="dash__layout">
-							<div class="dash__sidebar">
-								<div class="dash__sidebar-brand">
-									<span class="dash__sidebar-brand-name">Lucoze</span>
-								</div>
-								<button class="dash__nav-item dash__nav-item--active">
-									<Icon name="calendar" class="dash__nav-icon" />
-									Appointments
-									<span class="dash__nav-badge">12</span>
-								</button>
-								<button class="dash__nav-item">
-									<Icon name="users" class="dash__nav-icon" />
-									Patients
-								</button>
-								<button class="dash__nav-item">
-									<Icon name="receipt" class="dash__nav-icon" />
-									Billing
-								</button>
-								<button class="dash__nav-item">
-									<Icon name="flask" class="dash__nav-icon" />
-									Lab
-								</button>
-								<button class="dash__nav-item">
-									<Icon name="pill" class="dash__nav-icon" />
-									Pharmacy
-								</button>
-							</div>
-							<div class="dash__main">
-								<div class="dash__main-head">
-									<span class="dash__main-title">Today · 4 doctors on duty</span>
-									<span class="dash__main-sub">Last sync 14s ago</span>
-								</div>
-								<div class="dash__metrics">
-									<div class="dash__metric">
-										<div class="dash__metric-label">Scheduled</div>
-										<div class="dash__metric-value">42</div>
-										<div class="dash__metric-trend">+6 vs Tue</div>
-									</div>
-									<div class="dash__metric">
-										<div class="dash__metric-label">Checked in</div>
-										<div class="dash__metric-value">18</div>
-										<div class="dash__metric-trend">on track</div>
-									</div>
-									<div class="dash__metric">
-										<div class="dash__metric-label">Revenue today</div>
-										<div class="dash__metric-value">₹42.6K</div>
-										<div class="dash__metric-trend">+12%</div>
-									</div>
-								</div>
-								<table class="dash__table">
-									<thead>
-										<tr>
-											<th>Patient</th>
-											<th>Doctor</th>
-											<th>Time</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr
-											><td><span class="dash__avatar">PS</span>Priya S.</td><td>Dr. Mehta</td><td
-												>10:00</td
-											><td><span class="dash__pill dash__pill--ok">Checked in</span></td></tr
-										>
-										<tr
-											><td><span class="dash__avatar">AK</span>Aniket K.</td><td>Dr. Reddy</td><td
-												>10:30</td
-											><td><span class="dash__pill dash__pill--warn">Late</span></td></tr
-										>
-										<tr
-											><td><span class="dash__avatar">RG</span>Riya G.</td><td>Dr. Sen</td><td
-												>11:00</td
-											><td><span class="dash__pill dash__pill--info">Confirmed</span></td></tr
-										>
-										<tr
-											><td><span class="dash__avatar">VP</span>Vinod P.</td><td>Dr. Mehta</td><td
-												>11:30</td
-											><td><span class="dash__pill dash__pill--info">Confirmed</span></td></tr
-										>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
+					))
+				}
 			</div>
 		</div>
 
@@ -233,7 +155,7 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			</div>
 		</section>
 
-		<!-- ROI section — placeholder for RoiCalculator React island (Phase C) -->
+		<!-- ROI section — RoiCalculator is a React island mounted on visibility. -->
 		<section class="section" id="roi" aria-labelledby="roi-heading">
 			<div class="container">
 				<header class="section-header">
@@ -242,77 +164,11 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 						See what your clinic actually saves per month.
 					</h2>
 					<p class="t-lead">
-						Interactive calculator ships in the next release. Numbers below are conservative —
-						derived from 30+ interviews with East-India clinic owners.
+						Slide the inputs to your clinic's shape. Numbers are conservative — derived from
+						conversations with East-India clinic owners.
 					</p>
 				</header>
-				<div class="roi roi-placeholder">
-					<div class="roi__inputs">
-						<div class="roi__field">
-							<label
-								>Specialty<strong
-									style="color: var(--primary); font-family: var(--font-display); font-size: 16px;"
-									>Multi-specialty clinic</strong
-								></label
-							>
-							<div class="roi__select" style="opacity: 0.7;">Multi-specialty clinic</div>
-						</div>
-						<div class="roi__field">
-							<label>Doctors <strong>6</strong></label>
-							<div
-								class="range"
-								style="background: var(--bg-code); height: 6px; border-radius: 3px;"
-							>
-							</div>
-						</div>
-						<div class="roi__field">
-							<label>Patients per day <strong>45</strong></label>
-							<div
-								class="range"
-								style="background: var(--bg-code); height: 6px; border-radius: 3px;"
-							>
-							</div>
-						</div>
-						<div class="roi__field">
-							<label>Average bill per patient <strong>₹800</strong></label>
-							<div
-								class="range"
-								style="background: var(--bg-code); height: 6px; border-radius: 3px;"
-							>
-							</div>
-						</div>
-					</div>
-					<div class="roi__outputs">
-						<div class="roi__metric">
-							<div class="roi__metric-label">Estimated total monthly value</div>
-							<div class="roi__metric-value roi__metric-value--accent">₹1.3L</div>
-							<div class="roi__metric-sub">
-								Combined: staff hours + billing recovered + no-show prevention
-							</div>
-						</div>
-						<div class="roi__metric">
-							<div class="roi__metric-label">Staff hours saved</div>
-							<div class="roi__metric-value">
-								228<span style="font-size: 18px; margin-left: 6px; opacity: 0.7;">hr/mo</span>
-							</div>
-							<div class="roi__metric-sub">
-								Auto-reminders, one-click billing, no double-entry between modules
-							</div>
-						</div>
-						<div class="roi__metric">
-							<div class="roi__metric-label">Billing leakage recovered</div>
-							<div class="roi__metric-value">₹25,740</div>
-							<div class="roi__metric-sub">
-								Discounts not logged, items missed at billing, partial payments untracked
-							</div>
-						</div>
-						<div class="roi__metric">
-							<div class="roi__metric-label">No-show prevention</div>
-							<div class="roi__metric-value">₹16,380</div>
-							<div class="roi__metric-sub">WhatsApp + SMS reminders reduce no-shows by ~5-7%</div>
-						</div>
-					</div>
-				</div>
+				<RoiCalculator client:visible />
 				<div style="text-align: center; margin-top: var(--s-8);">
 					<a href="/in/signup/" class="btn btn--primary btn--lg">
 						Apply these savings to my clinic — start trial
@@ -533,25 +389,7 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			margin: 0 auto var(--s-8);
 			line-height: 1.5;
 		}
-		.roi-placeholder {
-			opacity: 0.92;
-			position: relative;
-		}
-		.roi-placeholder::after {
-			content: "Live calculator coming in Phase C";
-			position: absolute;
-			top: -16px;
-			right: 16px;
-			font-family: var(--font-mono);
-			font-size: 10px;
-			color: var(--muted);
-			background: var(--cream);
-			padding: 4px 8px;
-			border-radius: var(--r-sm);
-		}
-		/* Founder section: solo layout (no photo column). Quote, bullets
-		   and signature span full width but cap at 720px and centre, so
-		   the section reads as 'words first', not 'founder hero shot'. */
+		/* Founder section: two-column 'paired voices' layout. */
 		/* Founder section: two-column 'paired voices' layout.
 		   LEFT = founder voice (commitments, signed by Mithun).
 		   RIGHT = team voice (mission + values, signed by the Lucoze team).
@@ -591,4 +429,25 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			margin-right: 6px;
 		}
 	</style>
+
+	<script define:vars={{ captionMap }}>
+		// SpecialtySwitcher — vanilla JS toggle for the home page Product Preview.
+		// All 6 SpecialtyVisual blocks are pre-rendered with hidden attribute;
+		// clicking a pill swaps which one is visible and updates the caption.
+		document.querySelectorAll("[data-specialty-pill]").forEach((pill) => {
+			pill.addEventListener("click", () => {
+				const id = pill.getAttribute("data-specialty-pill");
+				document.querySelectorAll("[data-specialty-pill]").forEach((p) => {
+					const active = p === pill;
+					p.classList.toggle("specialty__btn--active", active);
+					p.setAttribute("aria-selected", active ? "true" : "false");
+				});
+				document.querySelectorAll("[data-specialty-visual]").forEach((v) => {
+					v.hidden = v.getAttribute("data-specialty-visual") !== id;
+				});
+				const cap = document.querySelector("[data-specialty-caption]");
+				if (cap && captionMap[id]) cap.textContent = captionMap[id];
+			});
+		});
+	</script>
 </Base>
