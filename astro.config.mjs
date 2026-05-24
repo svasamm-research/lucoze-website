@@ -6,7 +6,19 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
 	site: "https://lucoze.com",
 	output: "static",
-	integrations: [react(), mdx(), sitemap()],
+	integrations: [
+		react(),
+		mdx(),
+		sitemap({
+			// Exclude internal preview + legacy hyphenated solution URLs that
+			// only exist as 301 redirect targets. Crawlers should index the
+			// canonical /in/solutions/clinics/ and /in/solutions/hospitals/.
+			filter: (page) =>
+				!page.includes("/in/redesign-preview/") &&
+				!page.includes("/in/solutions-clinics/") &&
+				!page.includes("/in/solutions-hospitals/"),
+		}),
+	],
 	// Legacy regions /ae /au /sg and root paths now redirect to /in/. India is
 	// the only served region for v1.0.0 launch; specific redirects preserve
 	// existing inbound links, with a catch-all for anything else under those

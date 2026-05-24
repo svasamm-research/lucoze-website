@@ -1,86 +1,104 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Base from "../../layouts/Base.astro";
+import SubHero from "../../components/SubHero.astro";
+import Icon from "../../components/Icon.astro";
 ---
 
-<BaseLayout
-	regionSlug="in"
-	signupEnabled={true}
-	served={true}
-	title="About Lucoze — Healthcare Technology Company — India"
-	description="Learn about Lucoze and our mission to simplify healthcare management worldwide."
-	activeLink="about"
+<Base
+	title="About Lucoze — Healthcare technology built in India"
+	description="Lucoze is built by Svasamm Research Pvt. Ltd. We're a small team building clinic software that respects the front desk and keeps patient data in India."
 >
-	<section class="page-header">
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/", label: "Company" },
+			{ label: "About" },
+		]}
+		eyebrow="About Lucoze"
+		h1="Making world-class healthcare software accessible to every Indian clinic."
+		highlightParts={[
+			"Making world-class healthcare software accessible to ",
+			"every Indian clinic",
+			".",
+		]}
+		lead="A small team of healthcare technologists building the clinic software we'd want our own families to use. Hosted in Mumbai. Founder-led. No private equity."
+		primaryCta={{ href: "/in/contact/", label: "Get in touch" }}
+	/>
+
+	<section class="section section--tight">
 		<div class="container">
-			<h1>About Lucoze</h1>
-			<p>Making world-class healthcare management accessible to every facility.</p>
-		</div>
-	</section>
+			<article class="post" style="margin: 0 auto;">
+				<h2 id="story">Our story</h2>
+				<p>
+					Lucoze was founded by healthcare professionals and technologists who watched the painful
+					gap between expensive enterprise systems and the spreadsheets most Indian clinics were
+					forced to rely on. Doctors were spending more time wrestling with software than caring for
+					patients. Lab technicians were printing results and manually filing them. Pharmacists were
+					tracking inventory on paper.
+				</p>
+				<p>
+					We set out to change that. Our mission is to give every clinic, hospital, diagnostic
+					centre, and pharmacy in India access to the same powerful tools that were once reserved
+					for large hospital chains with crore-rupee IT budgets.
+				</p>
 
-	<section class="content-page">
-		<div class="container" style="max-width: 800px">
-			<h2>Our Story</h2>
-			<p>
-				Lucoze was founded by healthcare professionals and technologists who witnessed first-hand
-				the painful gap between expensive, bloated enterprise systems and the inadequate
-				spreadsheets that most clinics were forced to rely on. Doctors were spending more time
-				wrestling with software than caring for patients. Lab technicians were printing results and
-				manually filing them. Pharmacists were tracking inventory on paper.
-			</p>
-			<p>
-				We set out to change that. Our mission is to democratize healthcare management technology —
-				to give every clinic, hospital, diagnostic centre, and pharmacy access to the same powerful
-				tools that were once reserved for large hospital chains with million-dollar IT budgets.
-			</p>
+				<h2 id="mission">Our mission</h2>
+				<p>
+					Every healthcare facility, regardless of size or location, deserves software that
+					understands its workflow. From a solo clinic in Patna to a sprawling 80-bed hospital in
+					Kolkata, Lucoze adapts to the way Indian healthcare is actually delivered — across every
+					specialty, every scale, every language. Our goal is simple: let healthcare professionals
+					focus on patients, not paperwork.
+				</p>
 
-			<h2>Our Mission</h2>
-			<p>
-				We believe that every healthcare facility, regardless of size or location, deserves software
-				that truly understands their workflows. From solo practitioners running a single
-				consultation room to sprawling hospital networks with hundreds of departments, Lucoze adapts
-				to the way healthcare is actually delivered — across every country, every specialty, and
-				every scale. Our goal is simple: let healthcare professionals focus on patients, not
-				paperwork.
-			</p>
+				<h2 id="values">What we believe</h2>
+			</article>
 
-			<div class="about-values">
-				<div class="about-value">
-					<div class="about-value__icon">&#x1F6E1;&#xFE0F;</div>
-					<h3>Healthcare First</h3>
-					<p>
-						Every feature is designed with healthcare workflows in mind. We build for doctors,
-						nurses, lab technicians, and pharmacists.
-					</p>
-				</div>
-				<div class="about-value">
-					<div class="about-value__icon">&#x1F512;</div>
-					<h3>Privacy by Design</h3>
-					<p>
-						Patient data security is non-negotiable. End-to-end encryption, regional data residency,
-						and strict access controls are built into every layer.
-					</p>
-				</div>
-				<div class="about-value">
-					<div class="about-value__icon">&#x1F310;</div>
-					<h3>Global, Local</h3>
-					<p>
-						One platform that works worldwide. Automatic compliance configuration, local tax
-						templates, and multi-currency billing for every market.
-					</p>
-				</div>
+			<div class="module-grid" style="max-width: 720px; margin: var(--s-6) auto var(--s-10);">
+				<article class="module-card">
+					<div class="module-card__icon">
+						<Icon name="shield" size={20} />
+					</div>
+					<div class="module-card__title">Healthcare first</div>
+					<div class="module-card__blurb">
+						Every feature is designed with healthcare workflows in mind — for doctors, front desk
+						staff, lab technicians, and pharmacists.
+					</div>
+				</article>
+				<article class="module-card">
+					<div class="module-card__icon">
+						<Icon name="lock" size={20} />
+					</div>
+					<div class="module-card__title">Privacy by design</div>
+					<div class="module-card__blurb">
+						Patient data security is non-negotiable. End-to-end encryption, Mumbai data residency,
+						strict access controls — built into every layer.
+					</div>
+				</article>
+				<article class="module-card">
+					<div class="module-card__icon">
+						<Icon name="cloud" size={20} />
+					</div>
+					<div class="module-card__title">India first, then the region</div>
+					<div class="module-card__blurb">
+						We start with what Indian clinics need (Hindi UI, ABDM, GST) and expand. No half-baked
+						"international features" tacked on later.
+					</div>
+				</article>
 			</div>
 
-			<h2>The Company</h2>
-			<p>
-				Lucoze is built by <strong>Svasamm Research Pvt. Ltd.</strong>, headquartered in India. We
-				are a technology company dedicated to building solutions that solve real problems in
-				healthcare delivery, operations, and administration. Our team combines deep healthcare
-				domain expertise with modern software engineering to create products that healthcare
-				professionals actually enjoy using.
-			</p>
-			<p>
-				Want to get in touch? Reach us at <a href="mailto:info@lucoze.com">info@lucoze.com</a>.
-			</p>
+			<article class="post" style="margin: 0 auto;">
+				<h2 id="company">The company</h2>
+				<p>
+					Lucoze is built by <strong>Svasamm Research Pvt. Ltd.</strong>, a technology company based
+					in India. Our team combines deep healthcare domain expertise with modern software
+					engineering to create products that healthcare professionals actually enjoy using.
+				</p>
+				<p>
+					Want to get in touch? Reach us at <a href="mailto:info@lucoze.com">info@lucoze.com</a>, or
+					book a 30-minute call via the <a href="/in/contact/">contact page</a>.
+				</p>
+			</article>
 		</div>
 	</section>
-</BaseLayout>
+</Base>
