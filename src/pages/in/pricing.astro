@@ -129,8 +129,8 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 								<span class="plan__currency">₹</span>
 								<span class="plan__amount">{p.price}</span>
 								<span class="plan__period">{p.period}</span>
+								<span class="plan__gst-note">+ GST (18%)</span>
 							</div>
-							<div class="plan__gst-note">+ GST (18%)</div>
 							<div class="plan__features" role="list">
 								{p.features.map((f) => (
 									<div class="plan__feature" role="listitem">
@@ -293,15 +293,16 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 		color: var(--ink);
 		margin-bottom: 2px;
 	}
-	/* GST line under each price block — visible but unobtrusive. */
+	/* GST chip sits on the same baseline as the price — visible but unobtrusive. */
 	.plan__gst-note {
 		font-family: var(--font-mono);
 		font-size: 11px;
 		letter-spacing: 0.04em;
 		color: var(--muted);
-		margin-top: -10px;
-		margin-bottom: var(--s-5);
+		margin-left: 8px;
 		opacity: 0.85;
+		white-space: nowrap;
+		align-self: baseline;
 	}
 	.plan--featured .plan__gst-note {
 		color: rgba(244, 243, 238, 0.7);
