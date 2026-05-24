@@ -764,6 +764,203 @@
 	margin-top: var(--s-4);
 }
 
+/* ─── Blog index cards ───────────────────────── */
+.blog-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: var(--s-5);
+}
+.blog-card {
+	display: flex;
+	flex-direction: column;
+	background: var(--paper);
+	border: 1px solid var(--border);
+	border-radius: var(--r-lg);
+	padding: var(--s-6);
+	transition: all var(--tr-fast);
+	height: 100%;
+}
+.blog-card:hover {
+	border-color: var(--ink);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
+}
+.blog-card__category {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--primary);
+	margin-bottom: var(--s-3);
+}
+.blog-card__title {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: var(--t-lg);
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+	margin-bottom: var(--s-3);
+	color: var(--ink);
+}
+.blog-card__excerpt {
+	font-size: var(--t-sm);
+	color: var(--muted);
+	line-height: 1.55;
+	margin-bottom: var(--s-5);
+	flex: 1;
+}
+.blog-card__meta {
+	display: flex;
+	justify-content: space-between;
+	font-size: 11px;
+	color: var(--light);
+	font-family: var(--font-mono);
+	padding-top: var(--s-3);
+	border-top: 1px solid var(--border-light);
+}
+
+/* ─── Blog post layout + body ──────────────────── */
+.post-layout {
+	display: grid;
+	grid-template-columns: 240px minmax(0, 1fr);
+	gap: var(--s-12);
+}
+@media (max-width: 880px) {
+	.post-layout {
+		grid-template-columns: 1fr;
+		gap: var(--s-6);
+	}
+	.post-toc {
+		position: static !important;
+	}
+}
+.post-toc {
+	position: sticky;
+	top: calc(var(--nav-h) + var(--s-6));
+	align-self: start;
+	font-size: 13px;
+}
+.post-toc__head {
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin-bottom: var(--s-3);
+}
+.post-toc__list {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.post-toc a {
+	display: block;
+	padding: 6px 12px;
+	border-left: 2px solid var(--border);
+	color: var(--muted);
+	font-size: 13px;
+	transition: all var(--tr-fast);
+}
+.post-toc a:hover,
+.post-toc a.is-active {
+	border-color: var(--primary);
+	color: var(--ink);
+}
+.post {
+	max-width: 720px;
+}
+.post h1 {
+	font-size: clamp(28px, 4vw, 42px);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 1.1;
+	margin-bottom: var(--s-4);
+}
+.post__meta {
+	display: flex;
+	gap: var(--s-3);
+	font-size: 12px;
+	color: var(--muted);
+	margin-bottom: var(--s-8);
+	font-family: var(--font-mono);
+}
+.post__lead {
+	font-size: clamp(17px, 1.8vw, 20px);
+	color: var(--muted);
+	line-height: 1.55;
+	margin-bottom: var(--s-10);
+	border-left: 3px solid var(--primary);
+	padding-left: var(--s-5);
+	font-family: var(--font-serif);
+	font-style: italic;
+}
+.post h2 {
+	font-size: var(--t-2xl);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	margin: var(--s-10) 0 var(--s-3);
+	scroll-margin-top: calc(var(--nav-h) + var(--s-4));
+}
+.post h3 {
+	font-size: var(--t-lg);
+	font-weight: 700;
+	margin: var(--s-6) 0 var(--s-2);
+}
+.post p {
+	font-size: 17px;
+	line-height: 1.7;
+	color: var(--ink-soft);
+	margin-bottom: var(--s-4);
+	font-family: var(--font-body);
+}
+.post ul,
+.post ol {
+	margin: var(--s-3) 0 var(--s-5) var(--s-5);
+	list-style: initial;
+	color: var(--ink-soft);
+}
+.post ol {
+	list-style: decimal;
+}
+.post li {
+	font-size: 17px;
+	line-height: 1.7;
+	margin-bottom: 6px;
+}
+.post strong {
+	color: var(--ink);
+	font-weight: 700;
+}
+.post blockquote {
+	background: var(--cream);
+	border-left: 3px solid var(--primary);
+	padding: var(--s-5) var(--s-6);
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-size: 18px;
+	line-height: 1.55;
+	color: var(--ink);
+	margin: var(--s-6) 0;
+	border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.post a {
+	color: var(--primary);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+.post a:hover {
+	color: var(--primary-deep);
+}
+.post code {
+	background: var(--bg-code);
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-family: var(--font-mono);
+	font-size: 14px;
+}
+
 /* ─── Shared 'viz' chrome for specialty live-preview mocks ─── */
 .viz {
 	background: var(--paper);
