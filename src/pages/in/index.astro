@@ -330,8 +330,8 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			style="background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
 		>
 			<div class="container">
-				<div class="founder founder--solo">
-					<div>
+				<div class="founder founder--cards">
+					<div class="founder__col">
 						<span class="t-eyebrow">Why Lucoze exists</span>
 						<h2 id="founder-heading" class="t-h1" style="margin: 8px 0 var(--s-6);">
 							We built Lucoze because someone we love runs a clinic too.
@@ -391,7 +391,64 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 								<div class="founder__sig-role">Founder & CEO, Lucoze</div>
 							</div>
 							<a href="/in/design-partner/" class="btn btn--accent" style="margin-left: auto;">
-								Apply for design-partner slot
+								Apply
+								<Icon name="arrow" size={14} class="btn__arrow" />
+							</a>
+						</div>
+					</div>
+
+					<div class="founder__col">
+						<span class="t-eyebrow">Our mission</span>
+						<h2 class="t-h1" style="margin: 8px 0 var(--s-6);">
+							Build the clinic software we'd want our own family to use.
+						</h2>
+
+						<blockquote class="founder__quote">
+							Indian clinics aren't broken because doctors don't care. They're broken because the
+							tools they're sold were designed by people who never sat next to a front desk in Patna
+							on a Tuesday afternoon.
+						</blockquote>
+
+						<div class="founder__bullets" role="list" aria-label="What we believe">
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);">The front desk runs the clinic.</strong>
+									Software should respect that — not test the receptionist's patience with the manual.
+								</div>
+							</div>
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);">Indian context, not Indian feature.</strong>
+									Hindi UI, Mumbai hosting, ABDM, GST e-invoicing — first-class, not bolted on.
+								</div>
+							</div>
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);">Honesty over polish.</strong>
+									If something is broken we name it. If a competitor does it better, we'll tell you.
+								</div>
+							</div>
+							<div class="founder__bullet">
+								<Icon name="check" size={16} />
+								<div>
+									<strong style="color: var(--ink);"
+										>Built behind front desks, not behind Figma.</strong
+									>
+									We rebuild a module after sitting with the staff who use it — not before.
+								</div>
+							</div>
+						</div>
+
+						<div class="founder__sig">
+							<div>
+								<div class="founder__sig-name">The Lucoze team</div>
+								<div class="founder__sig-role">Kolkata · Hyderabad · Mumbai</div>
+							</div>
+							<a href="/in/about/" class="btn btn--ghost" style="margin-left: auto;">
+								About us
 								<Icon name="arrow" size={14} class="btn__arrow" />
 							</a>
 						</div>
@@ -495,11 +552,33 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 		/* Founder section: solo layout (no photo column). Quote, bullets
 		   and signature span full width but cap at 720px and centre, so
 		   the section reads as 'words first', not 'founder hero shot'. */
-		.founder--solo {
-			grid-template-columns: minmax(0, 720px);
-			justify-content: center;
-			max-width: 720px;
-			margin: 0 auto;
+		/* Founder section: two-column 'paired voices' layout.
+		   LEFT = founder voice (commitments, signed by Mithun).
+		   RIGHT = team voice (mission + values, signed by the Lucoze team).
+		   align-items: start so each column flows from the top — no awkward
+		   vertical centring when the columns are different heights. */
+		.founder--cards {
+			grid-template-columns: 1fr 1fr;
+			align-items: start;
+		}
+		@media (max-width: 880px) {
+			.founder--cards {
+				grid-template-columns: 1fr;
+				gap: var(--s-10);
+			}
+		}
+		.founder__col {
+			min-width: 0;
+		}
+		.founder__sig-avatar {
+			width: 64px;
+			height: 64px;
+			border-radius: 50%;
+			object-fit: cover;
+			flex-shrink: 0;
+			box-shadow: 0 2px 8px rgba(31, 29, 26, 0.1);
+			border: 2px solid var(--paper);
+			margin-right: 6px;
 		}
 		.founder__sig-avatar {
 			width: 64px;
