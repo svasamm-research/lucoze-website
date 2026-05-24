@@ -125,9 +125,9 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 			},
 			{
 				kicker: "Office",
-				title: "Lucoze Healthcare Pvt Ltd.",
+				title: "Svasamm Research Pvt. Ltd.",
 				bullets: [
-					"Registered: Hyderabad, India",
+					"Registered: Hooghly, West Bengal, India",
 					"Operating: distributed team across India",
 					"Patient data: Indian data centres",
 				],

@@ -236,6 +236,16 @@ const BENEFITS: { title: string; sub: string }[] = [
 	const thanks = document.querySelector<HTMLElement>("[data-signup-thanks]");
 	const thanksName = document.querySelector<HTMLElement>("[data-signup-thanks-name]");
 
+	// Preselect the plan radio from ?plan=clinic|clinicpro|hospital query param
+	// (the pricing page's "Start free trial" buttons pass this).
+	const planParam = new URLSearchParams(window.location.search).get("plan");
+	if (planParam && ["clinic", "clinicpro", "hospital"].includes(planParam)) {
+		const radio = document.querySelector<HTMLInputElement>(
+			`input[name="plan"][value="${planParam}"]`,
+		);
+		if (radio) radio.checked = true;
+	}
+
 	if (form && thanks) {
 		form.addEventListener("submit", (e) => {
 			e.preventDefault();

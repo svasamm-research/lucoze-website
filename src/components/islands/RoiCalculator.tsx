@@ -9,7 +9,8 @@ import { useMemo, useState } from "react";
  * to the static placeholder it replaces.
  *
  * Formulas are illustrative; tuned to land at roughly the prototype's
- * numbers at the default inputs (6 doctors, 45 patients/day, ₹800/bill).
+ * numbers at the default inputs (6 doctors, 45 patients/day, ₹800/bill,
+ * 5 beds).
  */
 
 interface SpecialtyOption {
@@ -20,6 +21,7 @@ interface SpecialtyOption {
 const SPECIALTIES: SpecialtyOption[] = [
 	{ id: "multispec", label: "Multi-specialty clinic" },
 	{ id: "poly", label: "Polyclinic" },
+	{ id: "hospital", label: "Hospital" },
 	{ id: "dental", label: "Dental group" },
 	{ id: "ivf", label: "IVF clinic" },
 	{ id: "derm", label: "Dermatology" },
@@ -30,6 +32,10 @@ const WORKING_DAYS = 25;
 const STAFF_HOUR_VALUE_INR = 400;
 const LEAKAGE_PCT = 0.03;
 const NOSHOW_PCT = 0.0182;
+const BED_OCCUPANCY = 0.7;
+const BED_DAY_BILL_INR = 5000;
+const BED_DAYS_PER_MONTH = 30;
+const STAFF_HOURS_PER_BED = 5;
 
 const fmtINR = (n: number): string => {
 	const rounded = Math.round(n);
@@ -44,15 +50,19 @@ export default function RoiCalculator() {
 	const [doctors, setDoctors] = useState<number>(6);
 	const [perDay, setPerDay] = useState<number>(45);
 	const [avgBill, setAvgBill] = useState<number>(800);
+	const [beds, setBeds] = useState<number>(5);
 
 	const calc = useMemo(() => {
-		const monthlyRevenue = perDay * WORKING_DAYS * avgBill;
-		const staffHoursSaved = 50 + doctors * 30;
+		const monthlyOpdRevenue = perDay * WORKING_DAYS * avgBill;
+		const monthlyIpdRevenue = beds * BED_OCCUPANCY * BED_DAYS_PER_MONTH * BED_DAY_BILL_INR;
+		const monthlyRevenue = monthlyOpdRevenue + monthlyIpdRevenue;
+
+		const staffHoursSaved = 50 + doctors * 30 + beds * STAFF_HOURS_PER_BED;
 		const billingLeakage = monthlyRevenue * LEAKAGE_PCT;
-		const noShowPrevention = monthlyRevenue * NOSHOW_PCT;
+		const noShowPrevention = monthlyOpdRevenue * NOSHOW_PCT;
 		const total = staffHoursSaved * STAFF_HOUR_VALUE_INR + billingLeakage + noShowPrevention;
 		return { staffHoursSaved, billingLeakage, noShowPrevention, total };
-	}, [doctors, perDay, avgBill]);
+	}, [doctors, perDay, avgBill, beds]);
 
 	const activeSpecialty = SPECIALTIES.find((s) => s.id === specialty) ?? SPECIALTIES[0];
 
@@ -94,7 +104,7 @@ export default function RoiCalculator() {
 						id="roi-doctors"
 						type="range"
 						min={1}
-						max={20}
+						max={50}
 						step={1}
 						value={doctors}
 						onChange={(e) => setDoctors(Number(e.target.value))}
@@ -110,7 +120,7 @@ export default function RoiCalculator() {
 						id="roi-perday"
 						type="range"
 						min={5}
-						max={150}
+						max={200}
 						step={1}
 						value={perDay}
 						onChange={(e) => setPerDay(Number(e.target.value))}
@@ -130,6 +140,22 @@ export default function RoiCalculator() {
 						step={50}
 						value={avgBill}
 						onChange={(e) => setAvgBill(Number(e.target.value))}
+						className="range"
+					/>
+				</div>
+
+				<div className="roi__field">
+					<label htmlFor="roi-beds">
+						Number of beds <strong>{beds}</strong>
+					</label>
+					<input
+						id="roi-beds"
+						type="range"
+						min={0}
+						max={300}
+						step={1}
+						value={beds}
+						onChange={(e) => setBeds(Number(e.target.value))}
 						className="range"
 					/>
 				</div>

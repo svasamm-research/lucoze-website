@@ -12,11 +12,12 @@ const PLANS = [
 		price: "1,499",
 		period: "/ month",
 		cta: "Start free trial",
-		href: "/in/signup/",
+		href: "/in/signup/?plan=clinic",
 		featured: false,
 		features: [
 			"Patient records + appointments",
-			"Single-doctor billing & invoicing",
+			"Multi-doctor scheduling",
+			"GST-compliant billing & invoicing",
 			"WhatsApp + SMS reminders",
 			"Hindi UI (Bengali, Odia coming)",
 			"ABHA linking for patients",
@@ -29,14 +30,14 @@ const PLANS = [
 		price: "2,999",
 		period: "/ month",
 		cta: "Start free trial",
-		href: "/in/signup/",
+		href: "/in/signup/?plan=clinicpro",
 		featured: true,
 		features: [
 			"Everything in Clinic, plus",
-			"Multi-doctor scheduling + rooms",
 			"Lab module + external lab integration",
 			"Pharmacy module + inventory",
-			"GST-compliant multi-doctor billing",
+			"Inpatient (IPD) module",
+			"HR, payroll, attendance",
 			"Phone + WhatsApp support, 4h SLA",
 		],
 	},
@@ -50,9 +51,8 @@ const PLANS = [
 		featured: false,
 		features: [
 			"Everything in Clinic Pro, plus",
-			"Inpatient (IPD) module + ward management",
+			"Ward management at scale",
 			"Operation theatre scheduling",
-			"HR, payroll, attendance",
 			"NABH-ready dashboards",
 			"Dedicated implementation manager",
 		],
@@ -90,11 +90,11 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 	{ label: "Patient records + ABHA", clinic: "check", pro: "check", hospital: "check" },
 	{ label: "Appointments + WhatsApp reminders", clinic: "check", pro: "check", hospital: "check" },
 	{ label: "GST-compliant billing", clinic: "check", pro: "check", hospital: "check" },
-	{ label: "Multi-doctor scheduling", clinic: "cross", pro: "check", hospital: "check" },
+	{ label: "Multi-doctor scheduling", clinic: "check", pro: "check", hospital: "check" },
 	{ label: "Lab module", clinic: "cross", pro: "check", hospital: "check" },
 	{ label: "Pharmacy module", clinic: "cross", pro: "check", hospital: "check" },
-	{ label: "HR + payroll", clinic: "cross", pro: "cross", hospital: "check" },
-	{ label: "Inpatient (IPD)", clinic: "cross", pro: "cross", hospital: "check" },
+	{ label: "HR + payroll", clinic: "cross", pro: "check", hospital: "check" },
+	{ label: "Inpatient (IPD)", clinic: "cross", pro: "check", hospital: "check" },
 	{ label: "OT scheduling", clinic: "cross", pro: "cross", hospital: "check" },
 	{ label: "NABH dashboards", clinic: "cross", pro: "cross", hospital: "check" },
 	{ label: "Implementation manager", clinic: "cross", pro: "cross", hospital: "check" },
@@ -130,6 +130,7 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 								<span class="plan__amount">{p.price}</span>
 								<span class="plan__period">{p.period}</span>
 							</div>
+							<div class="plan__gst-note">+ GST (18%)</div>
 							<div class="plan__features" role="list">
 								{p.features.map((f) => (
 									<div class="plan__feature" role="listitem">
@@ -291,5 +292,18 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 		font-weight: 700;
 		color: var(--ink);
 		margin-bottom: 2px;
+	}
+	/* GST line under each price block — visible but unobtrusive. */
+	.plan__gst-note {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.04em;
+		color: var(--muted);
+		margin-top: -10px;
+		margin-bottom: var(--s-5);
+		opacity: 0.85;
+	}
+	.plan--featured .plan__gst-note {
+		color: rgba(244, 243, 238, 0.7);
 	}
 </style>
