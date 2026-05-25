@@ -1,0 +1,47 @@
+{
+	"slug": "pharmacy",
+	"label": "Pharmacy module",
+	"icon": "pill",
+	"eyebrow": "Dispensing + inventory + procurement",
+	"h1Parts": ["Pharmacy that ", "talks to the clinic", " — not a separate world."],
+	"lead": "Most clinics run their attached pharmacy on a stand-alone billing software that doesn’t know what the doctor prescribed. Stock-outs surprise everyone. Dispensing errors compound. Lucoze’s pharmacy is part of the same record — prescription, dispense, stock, batch, all in one chain.",
+	"stats": [
+		{ "value": "1 click", "label": "Dispense from a doctor's prescription" },
+		{ "value": "Real-time", "label": "Stock levels across all stores" },
+		{ "value": "FIFO/FEFO", "label": "Expiry-first dispensing built-in" }
+	],
+	"rows": [
+		{
+			"eyebrow": "From prescription to dispense",
+			"title": "Doctor prescribes. Pharmacy sees it instantly.",
+			"lead": "Prescription opens automatically at the pharmacy counter when the patient arrives. Out-of-stock substitutes are suggested with the doctor’s pre-approval. The patient counsel sheet prints in the local language.",
+			"bullets": [
+				"Substitution rules at the prescription level — not the pharmacist’s discretion.",
+				"Patient counsel sheets in Hindi / Bengali / Odia with dosing instructions.",
+				"Refill reminders at 80% consumption — chronic-care patients don’t run out."
+			],
+			"visual": "rx-dispense"
+		},
+		{
+			"eyebrow": "Stock + procurement",
+			"title": "Batches, expiry, reorder — all in one place.",
+			"lead": "Stock movements are atomic. Receive a batch, expiry and supplier are captured. Dispense, the system picks the closest-expiring batch. End of month, you have a Schedule-H register that’s ready for inspection.",
+			"bullets": [
+				"FEFO dispensing prevents expired stock reaching the patient.",
+				"Schedule-H + Schedule-X compliance with regulator-ready register exports.",
+				"Multi-store transfers tracked end-to-end — no paper challan needed."
+			],
+			"visual": "stock-grid"
+		}
+	],
+	"faqs": [
+		{
+			"q": "What about narcotics / Schedule X?",
+			"a": "Schedule-X drugs have a separate dispensing path with prescriber verification and a printable register that matches the State drug authority’s format."
+		},
+		{
+			"q": "Can pharmacy run as a standalone for a separately-owned shop?",
+			"a": "Yes — the pharmacy module can be enabled standalone for an attached but separately-billed pharmacy. The data flow stays clean across both ledgers."
+		}
+	]
+}

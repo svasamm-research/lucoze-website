@@ -1,0 +1,33 @@
+---
+const MSGS: { time: string; via: string; text: string }[] = [
+	{
+		time: "T-24h",
+		via: "WhatsApp",
+		text: "Hi Rajivji, you have an appt with Dr Sen tomorrow at 10:00. Tap to reschedule.",
+	},
+	{
+		time: "T-2h",
+		via: "SMS",
+		text: "Reminder: Dr Sen, 10:00 today. Reply Y to confirm.",
+	},
+	{ time: "T-0", via: "Desk", text: "Patient checked in. Doctor notified." },
+];
+---
+
+<div
+	style="display: flex; flex-direction: column; gap: 8px; background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--r-md); padding: var(--s-4); min-height: 260px;"
+>
+	{
+		MSGS.map((r) => (
+			<div style="padding: 10px 12px; background: var(--paper); border-radius: 8px; border: 1px solid var(--border);">
+				<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+					<span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--primary);">
+						{r.time}
+					</span>
+					<span style="font-size: 11px; color: var(--muted);">{r.via}</span>
+				</div>
+				<div style="font-size: 12px; color: var(--ink-soft); line-height: 1.45;">{r.text}</div>
+			</div>
+		))
+	}
+</div>

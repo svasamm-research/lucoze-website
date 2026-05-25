@@ -1,0 +1,62 @@
+{
+	"slug": "billing",
+	"label": "Billing, accounting + inventory",
+	"icon": "receipt",
+	"eyebrow": "GST + accounting + inventory",
+	"h1Parts": ["Billing, accounting and inventory — ", "one ledger", ", across departments."],
+	"lead": "Most clinics run billing in one tool, GST returns in another, and pharmacy inventory in a third spreadsheet. Lucoze’s ledger is shared across all of them. Bill a tube of ointment in OPD; pharmacy stock drops by one. Issue a GST-compliant invoice; the accounting line is posted automatically.",
+	"stats": [
+		{ "value": "0 hrs", "label": "Spent reconciling pharmacy vs OPD" },
+		{ "value": "2 clicks", "label": "Generate GSTR-1 for the month" },
+		{ "value": "All branches", "label": "P&L consolidated in real-time" }
+	],
+	"rows": [
+		{
+			"eyebrow": "Live GST invoice",
+			"title": "Edit a quantity. Watch CGST, SGST, and the total update.",
+			"lead": "Invoices are GST-compliant from day one. CGST/SGST split, IGST for out-of-state, e-invoicing for the businesses that need it. No separate Tally; no double-entry; no end-of-month panic.",
+			"bullets": [
+				"Multi-doctor split-billing on one invoice — each line item maps to the right doctor.",
+				"Discounts logged with reason — audit trail when the regulator asks.",
+				"e-Invoicing JSON generated automatically for hospital plans above the threshold."
+			],
+			"visual": "invoice"
+		},
+		{
+			"eyebrow": "Inventory + pharmacy",
+			"title": "Stock is a database, not a notebook.",
+			"lead": "When the front desk bills a tablet, pharmacy stock decrements. When pharmacy receives a delivery, the central ledger updates. Reorder thresholds notify the right person — not a generic alert spammed to everyone.",
+			"bullets": [
+				"Batch + expiry tracking — expired stock never gets dispensed.",
+				"Reorder forecasts based on last 90 days’ consumption + season.",
+				"Multi-location stock visibility — borrow inventory from your other branch without paper."
+			],
+			"visual": "stock"
+		},
+		{
+			"eyebrow": "Consolidated finance",
+			"title": "P&L across branches. Open the dashboard, see today.",
+			"lead": "Branch-level revenue, expenses, and pending receivables on one screen. Drill down to the doctor, the department, the day. Export to Tally or any CA-friendly format.",
+			"bullets": [
+				"Day-end report at 7pm — cash position, UPI / card / cash split, pending invoices.",
+				"Monthly P&L by branch + by department — spot a leaking dental chair in 30 seconds.",
+				"GSTR-1 and GSTR-3B export in 2 clicks — your CA still does the filing, faster."
+			],
+			"visual": "finance"
+		}
+	],
+	"faqs": [
+		{
+			"q": "Is it Tally-compatible?",
+			"a": "Yes — exports to Tally XML, Zoho Books, and standard CSV. Your CA doesn’t need to learn a new tool."
+		},
+		{
+			"q": "What about e-invoicing for hospital plans?",
+			"a": "Hospitals above the ₹5 crore threshold get auto-generated IRN and QR codes on invoices, posted to the GSTN portal. You see the IRN on the invoice; no separate workflow."
+		},
+		{
+			"q": "Multi-branch P&L — what's the catch?",
+			"a": "No catch. If you’re on the Hospital plan, multi-branch is included. Clinic Pro covers up to 2 locations on one license."
+		}
+	]
+}

@@ -1,0 +1,31 @@
+---
+const ROWS: { t: string; who: string; note: string; st: "ok" | "info" | "warn" }[] = [
+	{ t: "09:30", who: "Aparna Roy", note: "Routine BP review", st: "ok" },
+	{ t: "10:00", who: "Rajiv Banerjee", note: "Cardiology follow-up", st: "info" },
+	{ t: "10:30", who: "Walk-in (priority)", note: "Triage code A", st: "warn" },
+	{ t: "11:00", who: "Sutapa Das", note: "Derm referral", st: "ok" },
+];
+---
+
+<div
+	style="display: flex; flex-direction: column; gap: 8px; background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--r-md); padding: var(--s-4); min-height: 260px;"
+>
+	{
+		ROWS.map((r) => (
+			<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--paper); border-radius: 8px; border: 1px solid var(--border);">
+				<div style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--ink);">
+					{r.t}
+				</div>
+				<div style="flex: 1;">
+					<div style="font-size: 13px; font-weight: 600;">{r.who}</div>
+					<div style="font-size: 11px; color: var(--muted);">{r.note}</div>
+				</div>
+				<span
+					style={`padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; background: ${r.st === "ok" ? "var(--success-bg)" : r.st === "info" ? "var(--primary-light)" : "var(--warning-bg)"}; color: ${r.st === "ok" ? "var(--success)" : r.st === "info" ? "var(--primary-deep)" : "var(--warning)"};`}
+				>
+					{r.st === "ok" ? "Confirmed" : r.st === "info" ? "Awaited" : "Priority"}
+				</span>
+			</div>
+		))
+	}
+</div>

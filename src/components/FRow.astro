@@ -1,0 +1,34 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+	eyebrow: string;
+	title: string;
+	lead: string;
+	bullets: string[];
+	flip?: boolean;
+}
+
+const { eyebrow, title, lead, bullets, flip = false } = Astro.props;
+---
+
+<div class:list={["frow", flip && "frow--flip"]}>
+	<div>
+		<div class="frow__eyebrow">{eyebrow}</div>
+		<h2 class="frow__title">{title}</h2>
+		<p class="frow__lead">{lead}</p>
+		<ul class="frow__list" role="list">
+			{
+				bullets.map((b) => (
+					<li class="frow__list-item" role="listitem">
+						<Icon name="check" />
+						<span>{b}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+	<div class="frow__visual">
+		<slot name="visual" />
+	</div>
+</div>

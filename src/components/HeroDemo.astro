@@ -1,0 +1,43 @@
+---
+import Icon from "./Icon.astro";
+import DashboardMock from "./DashboardMock.astro";
+---
+
+<section class="hero" id="top" aria-labelledby="hero-heading">
+	<div class="container">
+		<h2 id="hero-heading" class="sr-only">Lucoze — Healthcare Management Software</h2>
+		<div class="hero__grid">
+			<div class="hero__copy">
+				<span class="eyebrow-row">
+					<span class="eyebrow-row__dot eyebrow-row__dot--pulse" aria-hidden="true"></span>
+					Built for Indian clinics · Data hosted in India
+				</span>
+				<h1>
+					Run your <em>entire clinic</em> on one platform.
+				</h1>
+				<p class="hero__lead">
+					Patient records, appointments, billing, lab, and pharmacy — together. Built for the way
+					Indian clinics actually work. Live in 14 days, not six months.
+				</p>
+				<div class="hero__actions">
+					<a href="/in/signup/" class="btn btn--accent btn--lg">
+						Start 14-day free trial
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+					<a href="/in/contact/" class="btn btn--ghost btn--lg">
+						<Icon name="play" size={14} />
+						Watch 90-sec demo
+					</a>
+				</div>
+				<div class="hero__sub-trust">
+					<Icon name="check-circle" />
+					No credit card · Cancel anytime · 6 months free for the first 10 design-partner clinics
+				</div>
+			</div>
+
+			<div class="hero__visual" aria-label="Live product preview">
+				<DashboardMock />
+			</div>
+		</div>
+	</div>
+</section>

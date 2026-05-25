@@ -1,0 +1,62 @@
+{
+	"slug": "patient-records",
+	"label": "Patient records",
+	"icon": "users",
+	"eyebrow": "EMR + family timeline",
+	"h1Parts": ["One timeline. ", "One family", ". Searchable across every visit."],
+	"lead": "Most EMRs make you click through visits one at a time. We don’t. A patient’s entire history — prescriptions, labs, vitals, allergies, family links — is on a single page the doctor scrolls. Search works across them all.",
+	"stats": [
+		{ "value": "0.3s", "label": "Search across 10,000 patients" },
+		{ "value": "1 tap", "label": "Family link a spouse or child" },
+		{ "value": "100%", "label": "ABHA-ready records on day one" }
+	],
+	"rows": [
+		{
+			"eyebrow": "The summary card",
+			"title": "The doctor opens the record. The whole patient is on screen.",
+			"lead": "Allergies and chronic conditions are pinned at the top. Last 3 visits are inline. Active prescriptions are visible without a click. The patient walks in; the doctor is already up to speed.",
+			"bullets": [
+				"Allergies + chronic conditions live in a permanent panel — not buried in notes.",
+				"Last 3 visit notes inline. Older visits collapse but are one keypress away.",
+				"Lab trends graphed at the visit level — HbA1c over 2 years, no chart-hunting."
+			],
+			"visual": "summary"
+		},
+		{
+			"eyebrow": "Search that works",
+			"title": "Find a patient by anything. Phone, partial name, last visit, doctor.",
+			"lead": "If your front desk can describe the patient, they can find the patient. Phone digits, half a name, the doctor they saw last time, the condition they came in for — the search index covers all of it.",
+			"bullets": [
+				"Phonetic + Devanagari + Latin index — “Banerjee” or “बनर्जी” find the same patient.",
+				"Search across notes — “diabetic patient seen by Dr. Sen last March” returns 3 results.",
+				"Recent-patients list reorders by who you saw most recently — 90% of returning lookups are top-of-list."
+			],
+			"visual": "search"
+		},
+		{
+			"eyebrow": "Family linking",
+			"title": "Husband, wife, kids — one shared family card.",
+			"lead": "Indian healthcare is family-driven. A husband’s appointment often reveals a wife’s prescription that needs renewal. Family linking surfaces this — across patients you’ve already seen, without sharing private records by default.",
+			"bullets": [
+				"Link patients to a family. Each member keeps a private record.",
+				"Family-level billing — one invoice covering multiple members’ visits.",
+				"Recall calendar at the family level — “dental cleanings for all 4 due this month.”"
+			],
+			"visual": "family"
+		}
+	],
+	"faqs": [
+		{
+			"q": "Is the data ABHA-linked?",
+			"a": "Yes — every patient can have an ABHA created or linked in under 90 seconds at first visit. Records stay yours; the patient controls cross-provider sharing via the consent manager."
+		},
+		{
+			"q": "What about old paper records?",
+			"a": "We help import a starter set during onboarding — PDF scans get OCRed and the metadata extracted into the patient timeline. Older records remain searchable but uneditable."
+		},
+		{
+			"q": "Can the patient see their own records?",
+			"a": "Yes — a patient app + ABHA-linked access lets them download prescriptions, lab reports, and visit summaries on demand. You control which fields are visible."
+		}
+	]
+}

@@ -1,0 +1,36 @@
+---
+/**
+ * VisualPlaceholder.astro — dashed-border placeholder for FRow visuals.
+ * Real screenshots/illustrations replace these in a later pass.
+ */
+
+interface Props {
+	minHeight?: number;
+}
+
+const { minHeight = 260 } = Astro.props;
+---
+
+<div class="visual-placeholder" style={`min-height: ${minHeight}px;`}>
+	<slot />
+</div>
+
+<style>
+	.visual-placeholder {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, var(--cream) 0%, var(--paper) 100%);
+		border: 1px dashed var(--border);
+		border-radius: var(--r-md);
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--light);
+		flex-direction: column;
+		gap: 6px;
+		padding: var(--s-4);
+		text-align: center;
+	}
+</style>

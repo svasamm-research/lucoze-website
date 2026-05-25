@@ -1,0 +1,32 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+	idx: number;
+}
+
+const { idx } = Astro.props;
+const ICONS = ["spark", "users", "cloud", "shield"];
+const iconName = ICONS[idx % ICONS.length];
+---
+
+<div class="company-visual">
+	<Icon name={iconName} size={68} class="company-visual__icon" />
+</div>
+
+<style>
+	.company-visual {
+		height: 100%;
+		min-height: 220px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--cream);
+		border-radius: var(--r-md);
+		padding: var(--s-6);
+	}
+	.company-visual__icon {
+		color: var(--primary);
+		opacity: 0.6;
+	}
+</style>

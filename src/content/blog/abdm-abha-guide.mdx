@@ -1,0 +1,97 @@
+---
+title: "ABDM and ABHA, explained in 5 minutes."
+dek: "Every clinic owner has heard the acronyms. Most have no idea what they mean operationally. Here is the version we'd give over chai."
+category: "Compliance"
+author: "Lucoze team"
+date: "2026-05-12"
+readMins: 5
+---
+
+<h2 id="what">What ABDM actually is</h2>
+<p>
+	<strong>ABDM</strong> stands for the Ayushman Bharat Digital Mission — the National Health
+	Authority's framework for letting Indian health records flow between providers, with the patient's
+	consent, on standard rails. It is not a database. It is a set of agreements about how databases
+	talk to each other.
+</p>
+<p>Three things make it real:</p>
+<ul>
+	<li>
+		An ID for the patient — <strong>ABHA</strong> (Ayushman Bharat Health Account), a 14-digit
+		number.
+	</li>
+	<li>
+		An ID for the provider — the Healthcare Professional Registry (HPR) and Health Facility Registry
+		(HFR).
+	</li>
+	<li>A consent layer — the patient grants and revokes access per provider, per visit.</li>
+</ul>
+
+<h2 id="abha">ABHA in plain language</h2>
+<p>
+	ABHA is the patient's lifelong health ID. It is created by the patient — not the hospital — in
+	under 90 seconds via the ABHA app or the ABDM portal, with mobile + Aadhaar (optional).
+</p>
+<p>
+	Behind the ID is consent-based access to past records. The patient grants permission per provider,
+	per visit. Hospital A can read what Hospital B wrote, but only if the patient said yes.
+</p>
+<blockquote>
+	The records stay where they were created. ABHA is the index. Nothing moves until the patient moves
+	it.
+</blockquote>
+
+<h2 id="hpr-hfr">HPR and HFR</h2>
+<p>
+	HPR is the registry of healthcare professionals — doctors with verified medical council
+	registration numbers. HFR is the registry of health facilities — hospitals, clinics, diagnostic
+	centres with verified addresses. Both are public, both are queryable.
+</p>
+<p>
+	The moment a provider is HPR-registered and the facility is HFR-registered, your clinic can issue
+	ABHA-linked records and verify other providers. Setup takes about an hour per doctor.
+</p>
+
+<h2 id="why-now">Why this matters in 2026 (and not in 2024)</h2>
+<p>Three things changed:</p>
+<ol>
+	<li>
+		Several state insurance schemes have moved to ABHA-linked claims processing. Without it, you are
+		filing on paper.
+	</li>
+	<li>
+		PMJAY claims at NABH-empanelled hospitals are increasingly ABHA-linked. The threshold of
+		“optional” is being pulled back.
+	</li>
+	<li>
+		The Unified Health Interface (UHI) lets cross-clinic referrals work — a derm clinic in Lucknow
+		can refer to a tertiary centre in Kolkata, with consent, without a fax.
+	</li>
+</ol>
+
+<h2 id="what-you-do">What a clinic should do now</h2>
+<p>Two things, in order:</p>
+<ol>
+	<li>Get the facility HFR-registered. The doctors HPR-registered. ~60 minutes total.</li>
+	<li>
+		At first visit, offer to create or link ABHA for the patient. Most patients say yes; the few who
+		don't, you skip without friction.
+	</li>
+</ol>
+<p>
+	If your software vendor can't do both of these natively, ask when. If they can't answer — that's
+	your answer.
+</p>
+
+<h2 id="what-its-not">What ABDM is not</h2>
+<p>
+	It's not a national medical record system. It's not a government database of your patient's data.
+	It's not a mandate that you upload anything — records stay with the provider that created them.
+	It's not a substitute for your EMR — your EMR has to <em>support</em> ABDM. The two work together.
+</p>
+
+<h2 id="next">Next steps</h2>
+<p>
+	If you want to walk through ABHA setup for your specific clinic, we are happy to help — no pitch
+	attached. <a href="/in/contact/">Reach out</a>.
+</p>

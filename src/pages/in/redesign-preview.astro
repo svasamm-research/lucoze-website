@@ -1,0 +1,101 @@
+---
+import Base from "../../layouts/Base.astro";
+import VaultMark from "../../components/VaultMark.astro";
+import Logo from "../../components/Logo.astro";
+---
+
+<Base
+	title="Vault redesign — preview"
+	description="Phase A preview of the Lucoze Vault redesign. Internal only."
+>
+	<section class="section">
+		<div class="container">
+			<span class="t-eyebrow">Phase A · redesign foundations</span>
+			<h1 class="t-display" style="margin-top: var(--s-4);">Vault redesign — preview</h1>
+			<p class="t-lead" style="max-width: 56ch; margin-top: var(--s-4);">
+				This is a sanity-check page for the new brand tokens, typography, logo, and base layout.
+				Phase B will replace this with the real homepage and the other P0 marketing pages.
+			</p>
+
+			<div class="v-preview-grid">
+				<div class="card">
+					<h2 class="t-h3">Logo (Vault mark + wordmark)</h2>
+					<div class="v-preview-logos">
+						<VaultMark size={48} />
+						<Logo size={32} />
+					</div>
+					<p class="t-small">SVG at <code>src/components/VaultMark.astro</code></p>
+				</div>
+
+				<div class="card">
+					<h2 class="t-h3">Type stack</h2>
+					<p style="font-family: var(--font-display); font-weight: 800;">Manrope display</p>
+					<p style="font-family: var(--font-body);">Inter Tight body</p>
+					<p style="font-family: var(--font-mono);">JetBrains Mono</p>
+					<p style="font-family: var(--font-serif); font-style: italic;">Fraunces italic</p>
+				</div>
+
+				<div class="card">
+					<h2 class="t-h3">Buttons</h2>
+					<div class="v-preview-btns">
+						<a href="#" class="btn btn--primary">Primary</a>
+						<a href="#" class="btn btn--accent">Accent</a>
+						<a href="#" class="btn btn--ghost">Ghost</a>
+					</div>
+				</div>
+
+				<div class="card">
+					<h2 class="t-h3">Palette</h2>
+					<div class="v-preview-swatches">
+						<span class="v-swatch" style="background: var(--primary);" title="primary"></span>
+						<span class="v-swatch" style="background: var(--ink);" title="ink"></span>
+						<span
+							class="v-swatch"
+							style="background: var(--cream); border: 1px solid var(--border);"
+							title="cream"></span>
+						<span
+							class="v-swatch"
+							style="background: var(--paper); border: 1px solid var(--border);"
+							title="paper"></span>
+						<span class="v-swatch" style="background: var(--success);" title="success"></span>
+						<span class="v-swatch" style="background: var(--warning);" title="warning"></span>
+						<span class="v-swatch" style="background: var(--error);" title="error"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.v-preview-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: var(--s-6);
+		margin-top: var(--s-10);
+	}
+	.v-preview-logos {
+		display: flex;
+		gap: var(--s-6);
+		align-items: center;
+		margin: var(--s-4) 0;
+	}
+	.v-preview-btns {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-3);
+		margin-top: var(--s-3);
+	}
+	.v-preview-swatches {
+		display: flex;
+		gap: var(--s-3);
+		flex-wrap: wrap;
+		margin-top: var(--s-3);
+	}
+	.v-swatch {
+		width: 40px;
+		height: 40px;
+		border-radius: var(--r-md);
+		display: inline-block;
+	}
+</style>
