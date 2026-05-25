@@ -23,9 +23,30 @@ const fmtDate = post.date.toLocaleDateString("en-IN", {
 	month: "short",
 	year: "numeric",
 });
+
+const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
+const postUrl = `${siteUrl}${Astro.url.pathname}`;
+const blogPostingLd = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: post.title,
+	description: post.dek,
+	datePublished: post.date.toISOString(),
+	dateModified: post.date.toISOString(),
+	author: { "@type": "Person", name: post.author },
+	publisher: {
+		"@type": "Organization",
+		name: "Lucoze",
+		logo: { "@type": "ImageObject", url: `${siteUrl}/favicon-vault-32.png` },
+	},
+	mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+	image: `${siteUrl}/og-default.png`,
+	articleSection: post.category,
+};
 ---
 
 <Base title={`${post.title} — Lucoze blog`} description={post.dek}>
+	<script type="application/ld+json" set:html={JSON.stringify(blogPostingLd)} />
 	<section class="section section--tight" style="padding-top: var(--s-12);">
 		<div class="container">
 			<Crumbs

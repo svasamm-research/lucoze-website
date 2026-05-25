@@ -1,4 +1,10 @@
 ---
+/**
+ * Crumbs.astro — visual breadcrumb trail + BreadcrumbList JSON-LD.
+ * The JSON-LD is only emitted when at least one item has a href (i.e.,
+ * the trail has navigation depth — a single-item label isn't a
+ * meaningful crumb structure).
+ */
 interface Crumb {
 	href?: string;
 	label: string;
@@ -9,6 +15,23 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
+const currentUrl = `${siteUrl}${Astro.url.pathname}`;
+
+const navigableCrumbs = items.filter((c) => c.href);
+
+const breadcrumbLd = navigableCrumbs.length
+	? {
+			"@context": "https://schema.org",
+			"@type": "BreadcrumbList",
+			itemListElement: items.map((c, i) => ({
+				"@type": "ListItem",
+				position: i + 1,
+				name: c.label,
+				item: c.href ? `${siteUrl}${c.href}` : currentUrl,
+			})),
+		}
+	: null;
 ---
 
 <nav class="crumbs" aria-label="Breadcrumb">
@@ -21,3 +44,5 @@ const { items } = Astro.props;
 		))
 	}
 </nav>
+
+{breadcrumbLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />}

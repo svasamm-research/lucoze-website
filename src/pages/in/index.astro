@@ -362,7 +362,7 @@ const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.captio
 				"@type": "Organization",
 				name: "Lucoze",
 				url: "https://lucoze.com",
-				logo: "https://lucoze.com/favicon-vault.svg",
+				logo: "https://lucoze.com/favicon-vault-32.png",
 				sameAs: [],
 				contactPoint: {
 					"@type": "ContactPoint",
@@ -371,6 +371,20 @@ const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.captio
 					areaServed: "IN",
 					availableLanguage: ["en", "hi", "bn"],
 				},
+			})}
+		/>
+
+		<script
+			type="application/ld+json"
+			slot="head"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "FAQPage",
+				mainEntity: HOME_FAQS.map((f) => ({
+					"@type": "Question",
+					name: f.q,
+					acceptedAnswer: { "@type": "Answer", text: f.a },
+				})),
 			})}
 		/>
 	</section>
