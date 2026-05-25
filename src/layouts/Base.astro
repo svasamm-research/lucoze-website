@@ -1,10 +1,8 @@
 ---
 /**
- * Base.astro — Vault redesign layout (2026).
- *
- * Parallel to legacy `BaseLayout.astro` during the port.
- * Old pages keep using BaseLayout; new pages adopt this one.
- * Once the redesign is complete, BaseLayout.astro can be removed.
+ * Base.astro — site-wide layout for the Vault redesign (2026).
+ * Wraps every page with chrome (Nav + Footer), <head> meta, fonts,
+ * favicon, OG/Twitter cards, and optional Plausible analytics.
  */
 import "../styles/tokens.css";
 import "../styles/sections.css";
@@ -63,6 +61,8 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 
 		<meta name="theme-color" content="#c15f3c" />
 		<link rel="icon" type="image/svg+xml" href="/favicon-vault.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-vault-32.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
