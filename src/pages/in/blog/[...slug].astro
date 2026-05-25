@@ -48,11 +48,18 @@ const blogPostingLd = {
 <Base title={`${post.title} — Lucoze blog`} description={post.dek}>
 	<script type="application/ld+json" set:html={JSON.stringify(blogPostingLd)} />
 
-	<script define:vars={{ slug: entry.id }}>
+	<article data-blog-slug={entry.id} hidden></article>
+
+	<script>
 		// Blog read-depth events. Fires once per session at 50% scroll and
 		// once when the bottom of the article enters the viewport.
+		// Slug is read from a hidden DOM marker rather than via define:vars,
+		// because define:vars forces inline non-module emit which breaks
+		// ES `import` statements.
 		import { track } from "../../../lib/analytics";
-		const article = document.querySelector(".post");
+		const marker = document.querySelector<HTMLElement>("[data-blog-slug]");
+		const slug = marker?.getAttribute("data-blog-slug") || "unknown";
+		const article = document.querySelector<HTMLElement>(".post");
 		if (article) {
 			let fired50 = false;
 			let firedDone = false;

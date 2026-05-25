@@ -8,8 +8,6 @@ import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
 import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
 import { SPECIALTY_PILLS } from "../../data/specialties.ts";
-
-const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.caption]));
 ---
 
 <Base
@@ -45,6 +43,7 @@ const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.captio
 							aria-controls={`specialty-panel-${s.id}`}
 							id={`specialty-tab-${s.id}`}
 							data-specialty-pill={s.id}
+							data-specialty-caption-for={s.caption}
 							class:list={["specialty__btn", i === 0 && "specialty__btn--active"]}
 						>
 							<Icon name={s.icon} class="specialty__btn-icon" />
@@ -444,29 +443,33 @@ const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.captio
 		}
 	</style>
 
-	<script define:vars={{ captionMap }}>
+	<script>
 		// SpecialtySwitcher — vanilla JS toggle for the home page Product Preview.
+		// Each pill carries its own caption in data-specialty-caption-for so we
+		// don't need define:vars (which forces inline non-module emit and breaks
+		// ES `import` statements).
 		import { track } from "../../lib/analytics";
-		document.querySelectorAll("[data-specialty-pill]").forEach((pill) => {
+		document.querySelectorAll<HTMLButtonElement>("[data-specialty-pill]").forEach((pill) => {
 			pill.addEventListener("click", () => {
 				const id = pill.getAttribute("data-specialty-pill");
+				const caption = pill.getAttribute("data-specialty-caption-for");
 				document.querySelectorAll("[data-specialty-pill]").forEach((p) => {
 					const active = p === pill;
 					p.classList.toggle("specialty__btn--active", active);
 					p.setAttribute("aria-selected", active ? "true" : "false");
 				});
-				document.querySelectorAll("[data-specialty-visual]").forEach((v) => {
+				document.querySelectorAll<HTMLElement>("[data-specialty-visual]").forEach((v) => {
 					v.hidden = v.getAttribute("data-specialty-visual") !== id;
 				});
 				const cap = document.querySelector("[data-specialty-caption]");
-				if (cap && captionMap[id]) cap.textContent = captionMap[id];
+				if (cap && caption) cap.textContent = caption;
 				if (id) track("Specialty Switch", { to: id });
 			});
 		});
 
 		// Design partner CTA — fires from any of the home page DP links.
 		document
-			.querySelectorAll('a[href="/in/design-partner/"]')
+			.querySelectorAll<HTMLAnchorElement>('a[href="/in/design-partner/"]')
 			.forEach((a) =>
 				a.addEventListener("click", () => track("Design Partner Apply", { source: "home" })),
 			);
