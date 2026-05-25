@@ -241,6 +241,8 @@ const BENEFITS: { title: string; sub: string }[] = [
 </Base>
 
 <script>
+	import { track } from "../../lib/analytics";
+
 	// SignupForm — production-ready submit path with backend wiring.
 	//
 	// 1. Preselects the plan radio from ?plan=clinic|clinicpro|hospital
@@ -293,20 +295,42 @@ const BENEFITS: { title: string; sub: string }[] = [
 		}
 	};
 
+	// Signup Form Started — first field focus on the form.
+	if (form) {
+		let startedFired = false;
+		form.addEventListener(
+			"focusin",
+			() => {
+				if (startedFired) return;
+				startedFired = true;
+				const plan =
+					form.querySelector<HTMLInputElement>('input[name="plan"]:checked')?.value || "unknown";
+				track("Signup Form Started", { plan });
+			},
+			{ once: false },
+		);
+	}
+
 	if (form && thanks) {
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 			clearError();
 
 			// Browser handles native validation (required, type=email, etc).
-			if (!form.reportValidity()) return;
+			if (!form.reportValidity()) {
+				track("Signup Error", { reason: "validation" });
+				return;
+			}
 
 			const formData = new FormData(form);
 			const nameValue = (formData.get("name") as string | null) || "";
 			const firstName = nameValue.trim().split(/\s+/)[0] || "doctor";
+			const plan = (formData.get("plan") as string | null) || "unknown";
+			const specialty = (formData.get("specialty") as string | null) || "unknown";
 
 			// No endpoint configured (pre-launch): just show thanks.
 			if (!ENDPOINT) {
+				track("Signup Submitted", { plan, specialty });
 				showThanks(firstName);
 				return;
 			}
@@ -331,12 +355,14 @@ const BENEFITS: { title: string; sub: string }[] = [
 					}
 					throw new Error(detail);
 				}
+				track("Signup Submitted", { plan, specialty });
 				showThanks(firstName);
 			} catch (err) {
 				const msg =
 					err instanceof Error
 						? err.message
 						: "Couldn't reach the signup server. Try again, or email hello@lucoze.com.";
+				track("Signup Error", { reason: err instanceof Error ? "server" : "network" });
 				showError(msg);
 			} finally {
 				setLoading(false);

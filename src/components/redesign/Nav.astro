@@ -20,7 +20,7 @@ const { activeLink = "" } = Astro.props;
 		<ul class="nav__links" role="list">
 			{
 				MEGA.map((group) => (
-					<li class="nav__li-mega">
+					<li class="nav__li-mega" data-mega-key={group.key}>
 						<button
 							class="nav__link nav__link--mega"
 							aria-haspopup="true"
@@ -122,4 +122,20 @@ const { activeLink = "" } = Astro.props;
 			}
 		});
 	}
+
+	// Mega-menu open tracking. CSS-only :hover opens the menu, so we fire
+	// once per hover-enter with debounce per-menu to avoid spamming.
+	import { track } from "../../lib/analytics";
+	const megaSeen = new Set<string>();
+	document.querySelectorAll<HTMLElement>("[data-mega-key]").forEach((li) => {
+		const key = li.dataset.megaKey;
+		if (!key) return;
+		li.addEventListener("mouseenter", () => {
+			// Reset every 5 seconds so we capture repeat opens after a pause.
+			if (megaSeen.has(key)) return;
+			megaSeen.add(key);
+			track("Mega Menu Open", { menu: key });
+			setTimeout(() => megaSeen.delete(key), 5000);
+		});
+	});
 </script>

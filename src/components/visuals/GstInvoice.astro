@@ -76,10 +76,12 @@ const total = subtotal + cgst + sgst;
 </div>
 
 <script>
+	import { track } from "../../lib/analytics";
 	// GstInvoice — quantity steppers + live recompute.
 	// Scope to the nearest [data-invoice] so multiple invoices on a page
 	// (none today, but future-proof) don't interfere with each other.
 	const fmt = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+	let invoiceFired = false;
 
 	document.querySelectorAll<HTMLElement>("[data-invoice]").forEach((invoice) => {
 		const recompute = () => {
@@ -117,6 +119,10 @@ const total = subtotal + cgst + sgst;
 				const next = Math.max(0, (Number(input.value) || 0) + step);
 				input.value = String(next);
 				recompute();
+				if (!invoiceFired) {
+					invoiceFired = true;
+					track("Invoice Qty Changed");
+				}
 			});
 		});
 	});

@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { track } from "../../lib/analytics";
 
 /**
  * RoiCalculator — interactive ROI estimator for the home page.
@@ -51,6 +52,15 @@ export default function RoiCalculator() {
 	const [perDay, setPerDay] = useState<number>(45);
 	const [avgBill, setAvgBill] = useState<number>(800);
 	const [beds, setBeds] = useState<number>(5);
+
+	// Fire 'ROI Calc Used' once per page-load on the first slider drag.
+	// Avoids spamming Plausible for every onChange tick.
+	const firedRef = useRef<boolean>(false);
+	const markUsed = (): void => {
+		if (firedRef.current) return;
+		firedRef.current = true;
+		track("ROI Calc Used", { specialty });
+	};
 
 	const calc = useMemo(() => {
 		const monthlyOpdRevenue = perDay * WORKING_DAYS * avgBill;
@@ -107,7 +117,10 @@ export default function RoiCalculator() {
 						max={50}
 						step={1}
 						value={doctors}
-						onChange={(e) => setDoctors(Number(e.target.value))}
+						onChange={(e) => {
+							setDoctors(Number(e.target.value));
+							markUsed();
+						}}
 						className="range"
 					/>
 				</div>
@@ -123,7 +136,10 @@ export default function RoiCalculator() {
 						max={200}
 						step={1}
 						value={perDay}
-						onChange={(e) => setPerDay(Number(e.target.value))}
+						onChange={(e) => {
+							setPerDay(Number(e.target.value));
+							markUsed();
+						}}
 						className="range"
 					/>
 				</div>
@@ -139,7 +155,10 @@ export default function RoiCalculator() {
 						max={5000}
 						step={50}
 						value={avgBill}
-						onChange={(e) => setAvgBill(Number(e.target.value))}
+						onChange={(e) => {
+							setAvgBill(Number(e.target.value));
+							markUsed();
+						}}
 						className="range"
 					/>
 				</div>
@@ -155,7 +174,10 @@ export default function RoiCalculator() {
 						max={300}
 						step={1}
 						value={beds}
-						onChange={(e) => setBeds(Number(e.target.value))}
+						onChange={(e) => {
+							setBeds(Number(e.target.value));
+							markUsed();
+						}}
 						className="range"
 					/>
 				</div>

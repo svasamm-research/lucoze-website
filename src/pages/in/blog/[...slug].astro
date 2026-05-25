@@ -47,6 +47,33 @@ const blogPostingLd = {
 
 <Base title={`${post.title} — Lucoze blog`} description={post.dek}>
 	<script type="application/ld+json" set:html={JSON.stringify(blogPostingLd)} />
+
+	<script define:vars={{ slug: entry.id }}>
+		// Blog read-depth events. Fires once per session at 50% scroll and
+		// once when the bottom of the article enters the viewport.
+		import { track } from "../../../lib/analytics";
+		const article = document.querySelector(".post");
+		if (article) {
+			let fired50 = false;
+			let firedDone = false;
+			const onScroll = () => {
+				const rect = article.getBoundingClientRect();
+				const articleHeight = rect.height;
+				const scrolled = Math.max(0, -rect.top);
+				const pct = articleHeight > 0 ? scrolled / articleHeight : 0;
+				if (!fired50 && pct >= 0.5) {
+					fired50 = true;
+					track("Blog Read 50%", { slug });
+				}
+				if (!firedDone && rect.bottom <= window.innerHeight + 100) {
+					firedDone = true;
+					track("Blog Read Complete", { slug });
+					window.removeEventListener("scroll", onScroll);
+				}
+			};
+			window.addEventListener("scroll", onScroll, { passive: true });
+		}
+	</script>
 	<section class="section section--tight" style="padding-top: var(--s-12);">
 		<div class="container">
 			<Crumbs

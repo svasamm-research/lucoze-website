@@ -142,6 +142,7 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 							<a
 								href={p.href}
 								class:list={["btn", "plan__cta", p.featured ? "btn--accent" : "btn--ghost"]}
+								data-plan-cta={p.name.toLowerCase().replace(/\s+/g, "")}
 							>
 								{p.cta}
 								<Icon name="arrow" size={14} class="btn__arrow" />
@@ -308,3 +309,22 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 		color: rgba(244, 243, 238, 0.7);
 	}
 </style>
+
+<script>
+	import { track } from "../../lib/analytics";
+
+	// Plan CTA clicks — fire with the plan id as a Plausible prop so
+	// pricing-page conversion can be sliced per plan.
+	document.querySelectorAll<HTMLAnchorElement>("[data-plan-cta]").forEach((a) => {
+		a.addEventListener("click", () => {
+			track("Plan CTA Click", { plan: a.dataset.planCta || "unknown", source: "pricing" });
+		});
+	});
+
+	// Design partner CTA (the strip below the plan grid).
+	document
+		.querySelectorAll<HTMLAnchorElement>('a[href="/in/design-partner/"]')
+		.forEach((a) =>
+			a.addEventListener("click", () => track("Design Partner Apply", { source: "pricing" })),
+		);
+</script>

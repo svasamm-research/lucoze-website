@@ -446,8 +446,7 @@ const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.captio
 
 	<script define:vars={{ captionMap }}>
 		// SpecialtySwitcher — vanilla JS toggle for the home page Product Preview.
-		// All 6 SpecialtyVisual blocks are pre-rendered with hidden attribute;
-		// clicking a pill swaps which one is visible and updates the caption.
+		import { track } from "../../lib/analytics";
 		document.querySelectorAll("[data-specialty-pill]").forEach((pill) => {
 			pill.addEventListener("click", () => {
 				const id = pill.getAttribute("data-specialty-pill");
@@ -461,7 +460,15 @@ const captionMap = Object.fromEntries(SPECIALTY_PILLS.map((s) => [s.id, s.captio
 				});
 				const cap = document.querySelector("[data-specialty-caption]");
 				if (cap && captionMap[id]) cap.textContent = captionMap[id];
+				if (id) track("Specialty Switch", { to: id });
 			});
 		});
+
+		// Design partner CTA — fires from any of the home page DP links.
+		document
+			.querySelectorAll('a[href="/in/design-partner/"]')
+			.forEach((a) =>
+				a.addEventListener("click", () => track("Design Partner Apply", { source: "home" })),
+			);
 	</script>
 </Base>

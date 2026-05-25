@@ -93,5 +93,36 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 				/>
 			)
 		}
+
+		<script>
+			// Visitor tracker (lucoze_admin /api/tracking/track_visit) — silently
+			// no-ops when PUBLIC_TRACKING_ENDPOINT isn't set at build time.
+			import { initVisitorTracker } from "../lib/visitor-tracker";
+			initVisitorTracker(import.meta.env.PUBLIC_TRACKING_ENDPOINT);
+		</script>
+
+		<script>
+			// Global event tracking for mailto: and outbound link clicks.
+			// Per-component events live in their own files; these two are
+			// site-wide and cheaper to handle centrally.
+			import { track } from "../lib/analytics";
+			document.addEventListener("click", (e) => {
+				const a = (e.target as HTMLElement | null)?.closest?.("a");
+				if (!a) return;
+				const href = a.getAttribute("href") || "";
+				if (href.startsWith("mailto:")) {
+					track("Contact Email Click", { address: href.slice("mailto:".length) });
+					return;
+				}
+				try {
+					const url = new URL(href, window.location.href);
+					if (url.host && url.host !== window.location.host) {
+						track("Outbound Click", { url: url.toString() });
+					}
+				} catch {
+					/* not a parseable URL — ignore */
+				}
+			});
+		</script>
 	</body>
 </html>
