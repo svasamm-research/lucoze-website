@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Lucoze — Healthcare Management Software for Indian clinics">
+  <!-- Background: cream paper -->
+  <rect width="1200" height="630" fill="#f4f3ee"/>
+
+  <!-- Subtle terracotta accent strip on the left -->
+  <rect x="0" y="0" width="14" height="630" fill="#c15f3c"/>
+
+  <!-- Vault mark: rounded square + 5 L-pattern dots -->
+  <g transform="translate(96 90)">
+    <rect x="0" y="0" width="120" height="120" rx="22" ry="22" fill="#c15f3c"/>
+    <!-- L-pattern dots: 4 vertical down left + 1 right at bottom -->
+    <circle cx="36" cy="36" r="9" fill="#f4f3ee"/>
+    <circle cx="36" cy="60" r="9" fill="#f4f3ee"/>
+    <circle cx="36" cy="84" r="9" fill="#f4f3ee"/>
+    <circle cx="60" cy="84" r="9" fill="#f4f3ee"/>
+    <circle cx="84" cy="84" r="9" fill="#f4f3ee"/>
+  </g>
+
+  <!-- Wordmark + eyebrow -->
+  <g transform="translate(96 280)" font-family="'Manrope', 'Inter Tight', system-ui, sans-serif">
+    <text x="0" y="0" font-size="22" font-weight="600" letter-spacing="3.6" fill="#c15f3c">
+      LUCOZE
+    </text>
+    <text x="0" y="98" font-size="84" font-weight="800" fill="#1f1d1a" letter-spacing="-2.5">
+      Run your entire clinic
+    </text>
+    <text x="0" y="186" font-size="84" font-weight="800" fill="#1f1d1a" letter-spacing="-2.5">
+      on <tspan fill="#c15f3c" font-style="italic" font-family="'Fraunces', 'Manrope', serif">one platform</tspan>.
+    </text>
+  </g>
+
+  <!-- Footer row: tagline + Mumbai pill -->
+  <g transform="translate(96 560)" font-family="'Inter Tight', 'Manrope', system-ui, sans-serif">
+    <text x="0" y="0" font-size="22" fill="#5b5a55">
+      Healthcare Management Software · Built for Indian clinics
+    </text>
+  </g>
+
+  <g transform="translate(960 540)" font-family="'JetBrains Mono', 'Menlo', monospace">
+    <rect x="0" y="0" width="148" height="38" rx="19" ry="19" fill="#1f1d1a"/>
+    <text x="74" y="24" font-size="13" font-weight="700" fill="#f4f3ee" text-anchor="middle" letter-spacing="1.2">
+      HOSTED IN INDIA
+    </text>
+  </g>
+</svg>

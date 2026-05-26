@@ -1,0 +1,29 @@
+{
+	"slug": "dental",
+	"label": "Dental groups",
+	"icon": "tooth",
+	"eyebrow": "For dental groups · chair-led practices",
+	"h1Parts": ["Chair utilisation. Treatment plans. ", "Imaging tied to the patient", "."],
+	"lead": "Dental is chair-led, not doctor-led. The same chair runs 3-4 procedures a day across two practitioners. Treatment plans run 6 months, with EMIs that customers pay in chunks. Lucoze treats the chair as a first-class object — not a calendar block.",
+	"why": [
+		[
+			"Chair-level scheduling",
+			"Each chair has its own queue. Utilisation visible at 4pm — you spot the dead Tuesday afternoon before it costs you a month."
+		],
+		[
+			"Treatment plans + EMIs",
+			"Crown + RCT + bleach is one plan, 4 visits, 6 EMI instalments. Patient sees one bill, you see the open balance."
+		],
+		[
+			"Imaging on the timeline",
+			"OPG, IOPA, CBCT — attached to the visit, viewable from the doctor’s chair. No flipping to the imaging laptop."
+		],
+		[
+			"Recall calendar",
+			"Cleaning at 6 months, post-op review at 7 days — automated, opt-out per patient."
+		]
+	],
+	"plan": "Clinic Pro",
+	"price": "₹2,999 / mo",
+	"dashSpecialty": "dental"
+}

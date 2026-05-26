@@ -1,0 +1,88 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import FRow from "../../../components/FRow.astro";
+import FeatureVisual from "../../../components/visuals/FeatureVisual.astro";
+import Icon from "../../../components/Icon.astro";
+import Faq from "../../../components/Faq.astro";
+
+export async function getStaticPaths() {
+	const features = await getCollection("features");
+	return features.map((entry) => ({
+		params: { slug: entry.data.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("features", slug!);
+if (!entry) {
+	return Astro.redirect("/404");
+}
+const feature = entry.data;
+---
+
+<Base title={`${feature.label} — Lucoze`} description={feature.lead.slice(0, 160)}>
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/", label: "Product" },
+			{ label: feature.label },
+		]}
+		eyebrow={feature.eyebrow}
+		h1={feature.h1Parts.join("")}
+		highlightParts={feature.h1Parts}
+		lead={feature.lead}
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/contact/", label: "Talk to us" }}
+		statsRow={feature.stats}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			{
+				feature.rows.map((row, i) => (
+					<FRow
+						eyebrow={row.eyebrow}
+						title={row.title}
+						lead={row.lead}
+						bullets={row.bullets}
+						flip={i % 2 === 1}
+					>
+						<FeatureVisual slot="visual" kind={row.visual} />
+					</FRow>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Common questions</span>
+				<h2 class="t-h2" style="margin-top: 8px;">
+					{feature.label}, the doubts our customers raised first.
+				</h2>
+			</header>
+			<Faq items={feature.faqs} />
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					See {feature.label} working in your clinic.
+				</h2>
+				<p>14-day free trial. No credit card. Migration help included.</p>
+				<div class="cta-final__actions">
+					<a href="/in/signup/" class="btn btn--primary btn--lg">
+						Start free trial
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+					<a href="/in/pricing/" class="btn btn--ghost btn--lg">Compare plans</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,29 @@
+{
+	"slug": "multispecialty",
+	"label": "Multi-specialty",
+	"icon": "stethoscope",
+	"eyebrow": "For multi-specialty clinics · 3-15 doctors",
+	"h1Parts": ["The clinic that grew. ", "Then drowned in tools", "."],
+	"lead": "You added a second doctor. Then a third. Then a dermatologist on weekends. Each one brought their own software, their own forms, their own way of billing. Lucoze undoes all of that.",
+	"why": [
+		[
+			"One patient timeline",
+			"Across cardiology, derm, OPD — the doctor reading next sees the same record. No re-asking, no re-explaining."
+		],
+		[
+			"Department-aware billing",
+			"One invoice spans 3 doctors and 2 procedures — still GST-compliant, still itemised."
+		],
+		[
+			"Front desk that scales",
+			"Add a new doctor in 10 minutes — her schedule, her billing rates, her referral chain are inherited from the template."
+		],
+		[
+			"Hindi UI for staff",
+			"Front desk in 3 Bihar / UP clinics retrained on Lucoze in 2 hours. Without yelling."
+		]
+	],
+	"plan": "Clinic Pro",
+	"price": "₹2,999 / mo",
+	"dashSpecialty": "multispec"
+}

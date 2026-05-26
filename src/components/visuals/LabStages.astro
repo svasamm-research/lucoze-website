@@ -1,0 +1,29 @@
+---
+const STAGES: [string, string, string, "ok" | "info" | "warn"][] = [
+	["Collected", "08:14", "Phlebotomist", "ok"],
+	["Received", "08:42", "Lab desk", "ok"],
+	["Processing", "09:18", "Tech 2", "info"],
+	["Verification", "—", "Pending", "warn"],
+	["Signed report", "—", "Pending", "warn"],
+];
+---
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+	{
+		STAGES.map(([stage, t, who, st], i) => (
+			<div style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: var(--paper); border-radius: 8px; border: 1px solid var(--border);">
+				<div
+					style={`width: 26px; height: 26px; border-radius: 50%; background: ${st === "ok" ? "var(--success-bg)" : st === "info" ? "var(--primary-light)" : "var(--bg-code)"}; color: ${st === "ok" ? "var(--success)" : st === "info" ? "var(--primary-deep)" : "var(--muted)"}; display: grid; place-items: center; font-size: 11px; font-weight: 700;`}
+				>
+					{i + 1}
+				</div>
+				<div>
+					<div style="font-size: 13px; font-weight: 600;">{stage}</div>
+					<div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono);">
+						{t} · {who}
+					</div>
+				</div>
+			</div>
+		))
+	}
+</div>

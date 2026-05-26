@@ -1,0 +1,67 @@
+---
+/**
+ * CompanyPage.astro — shared layout for /in/design-partner/, /in/careers/,
+ * /in/contact/. Renders SubHero + a stack of alternating FRows + bottom CTA.
+ */
+import Base from "./Base.astro";
+import SubHero from "../components/SubHero.astro";
+import FRow from "../components/FRow.astro";
+import CompanyVisual from "../components/CompanyVisual.astro";
+import Icon from "../components/Icon.astro";
+import type { CompanyPage } from "../data/company.ts";
+
+interface Props {
+	page: CompanyPage;
+	slug: "design-partner" | "careers" | "contact";
+	title: string;
+	description: string;
+}
+
+const { page, slug, title, description } = Astro.props;
+
+const primaryCta = slug === "contact" ? undefined : { href: "/in/contact/", label: "Get in touch" };
+---
+
+<Base title={title} description={description}>
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/", label: "Company" },
+			{ label: page.eyebrow },
+		]}
+		eyebrow={page.eyebrow}
+		h1={page.h1}
+		highlightParts={page.highlightParts}
+		lead={page.lead}
+		primaryCta={primaryCta}
+	/>
+
+	<section class="section section--tight">
+		<div class="container" style="max-width: 920px;">
+			{
+				page.blocks.map((b, i) => (
+					<FRow eyebrow={b.kicker} title={b.title} lead="" bullets={b.bullets} flip={i % 2 === 1}>
+						<CompanyVisual slot="visual" idx={i} />
+					</FRow>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					Ready to talk?
+				</h2>
+				<p>hello@lucoze.com or DM @mithunksingh on LinkedIn.</p>
+				<div class="cta-final__actions">
+					<a href="/in/contact/" class="btn btn--primary btn--lg">
+						Contact
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

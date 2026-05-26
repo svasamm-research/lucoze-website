@@ -1,0 +1,28 @@
+---
+/**
+ * Faq.astro — accessible FAQ using <details>/<summary>.
+ * No JS needed — browser handles the open/close state.
+ */
+
+interface Item {
+	q: string;
+	a: string;
+}
+
+interface Props {
+	items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-compact">
+	{
+		items.map((item) => (
+			<details>
+				<summary>{item.q}</summary>
+				<p>{item.a}</p>
+			</details>
+		))
+	}
+</div>

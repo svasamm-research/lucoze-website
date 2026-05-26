@@ -1,0 +1,134 @@
+---
+/**
+ * Base.astro — site-wide layout for the Vault redesign (2026).
+ * Wraps every page with chrome (Nav + Footer), <head> meta, fonts,
+ * favicon, OG/Twitter cards, and optional Plausible analytics.
+ */
+import "../styles/tokens.css";
+import "../styles/sections.css";
+import "../styles/subpages.css";
+import Nav from "../components/redesign/Nav.astro";
+import Footer from "../components/redesign/Footer.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	canonical?: string;
+	activeLink?: string;
+	ogImage?: string;
+}
+
+const {
+	title,
+	description,
+	canonical = Astro.url.href,
+	ogImage = "/og-default.png",
+	activeLink = "",
+} = Astro.props;
+
+const siteUrl = "https://lucoze.com";
+const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | Lucoze`;
+---
+
+<!doctype html>
+<html lang="en-IN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta
+			property="og:image"
+			content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
+		/>
+		<meta property="og:locale" content="en_IN" />
+		<meta property="og:site_name" content="Lucoze" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta
+			name="twitter:image"
+			content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
+		/>
+
+		<meta name="theme-color" content="#c15f3c" />
+		{
+			/* Single rel=icon (ICO) so browsers can't prefer a stale SVG variant
+		    that an intermediate cache layer was holding. apple-touch-icon for
+		    iOS Home Screen, mask-icon for Safari pinned tabs. ?v=N is the
+		    cache-bust knob — bump it whenever the design changes. */
+		}
+		<link rel="icon" href="/icon-vault.ico" sizes="any" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-vault.png" />
+		<link rel="mask-icon" href="/favicon-vault.svg" color="#c15f3c" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap"
+		/>
+
+		<slot name="head" />
+	</head>
+	<body>
+		<a href="#main" class="skip-link">Skip to main content</a>
+
+		<Nav activeLink={activeLink} />
+
+		<main id="main">
+			<slot />
+		</main>
+
+		<Footer />
+
+		{
+			import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
+				<script
+					defer
+					data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN}
+					src="https://analytics.lucoze.com/js/script.js"
+				/>
+			)
+		}
+
+		<script>
+			// Visitor tracker (lucoze_admin /api/tracking/track_visit) — silently
+			// no-ops when PUBLIC_TRACKING_ENDPOINT isn't set at build time.
+			import { initVisitorTracker } from "../lib/visitor-tracker";
+			initVisitorTracker(import.meta.env.PUBLIC_TRACKING_ENDPOINT);
+		</script>
+
+		<script>
+			// Global event tracking for mailto: and outbound link clicks.
+			// Per-component events live in their own files; these two are
+			// site-wide and cheaper to handle centrally.
+			import { track } from "../lib/analytics";
+			document.addEventListener("click", (e) => {
+				const a = (e.target as HTMLElement | null)?.closest?.("a");
+				if (!a) return;
+				const href = a.getAttribute("href") || "";
+				if (href.startsWith("mailto:")) {
+					track("Contact Email Click", { address: href.slice("mailto:".length) });
+					return;
+				}
+				try {
+					const url = new URL(href, window.location.href);
+					if (url.host && url.host !== window.location.host) {
+						track("Outbound Click", { url: url.toString() });
+					}
+				} catch {
+					/* not a parseable URL — ignore */
+				}
+			});
+		</script>
+	</body>
+</html>

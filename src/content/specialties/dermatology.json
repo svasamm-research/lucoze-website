@@ -1,0 +1,33 @@
+{
+	"slug": "dermatology",
+	"label": "Dermatology",
+	"icon": "sun",
+	"eyebrow": "For dermatology + cosmetic practices",
+	"h1Parts": [
+		"Procedure packages. Recall calendars. ",
+		"Cosmetic billing separated",
+		" — with one tool."
+	],
+	"lead": "Derm practices have two businesses: medical (eczema, acne, biopsy) and cosmetic (laser, botox, fillers). They need separate billing, separate counseling, and identical patient timelines. Lucoze handles both without making you run two systems.",
+	"why": [
+		[
+			"Package-based billing",
+			"6-session laser at ₹45k — one package, six visits, automatic balance tracking, no “did she pay session 4?” arguments."
+		],
+		[
+			"Photo-anchored notes",
+			"Before / after images attached to the visit. Comparison view side-by-side. NABH-compliant consent flow."
+		],
+		[
+			"Recall calendar by category",
+			"Botox at 4 months, laser at 6 weeks, biopsy review at 2 weeks — automated WhatsApp."
+		],
+		[
+			"Cosmetic vs medical separation",
+			"Two ledgers, one patient. Cosmetic revenue stays out of medical reporting where the regulator splits the two."
+		]
+	],
+	"plan": "Clinic Pro",
+	"price": "₹2,999 / mo",
+	"dashSpecialty": "derm"
+}

@@ -1,0 +1,129 @@
+---
+/** Live GST invoice — quantity steppers recompute subtotal + CGST/SGST +
+ *  total via the small vanilla-JS script at the bottom. Each line carries
+ *  its own data-line-price on the row, and the per-line total + invoice
+ *  totals are updated in place on every +/- click. */
+import VaultMark from "../VaultMark.astro";
+
+const LINES: { id: string; label: string; price: number; qty: number }[] = [
+	{ id: "consult", label: "OPD consultation (Dr Sen)", price: 800, qty: 1 },
+	{ id: "derma", label: "Derma procedure", price: 1500, qty: 1 },
+	{ id: "med", label: "Multivitamin · 30 tabs", price: 320, qty: 2 },
+];
+
+const fmt = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+const subtotal = LINES.reduce((s, l) => s + l.price * l.qty, 0);
+const cgst = Math.round((subtotal * 0.18) / 2);
+const sgst = cgst;
+const total = subtotal + cgst + sgst;
+---
+
+<div class="invoice" data-invoice>
+	<div class="invoice__head">
+		<div class="invoice__brand">
+			<VaultMark size={22} />
+			<span class="invoice__brand-name">Lucoze Clinic</span>
+		</div>
+		<div class="invoice__meta">
+			INV-2026-1812<br />
+			18 May 2026 · GSTIN: 19AABCL····1Z5
+		</div>
+	</div>
+
+	{
+		LINES.map((l) => (
+			<div class="invoice__row" data-line={l.id} data-line-price={l.price}>
+				<div style="display: flex; flex-direction: column; gap: 2px;">
+					<span style="font-weight: 600; color: var(--ink);">{l.label}</span>
+					<span style="font-size: 11px; color: var(--muted); font-family: var(--font-mono);">
+						{fmt(l.price)} × <span data-line-qty-label>{l.qty}</span>
+					</span>
+				</div>
+				<div style="display: flex; align-items: center; gap: 12px;">
+					<div class="invoice__qty">
+						<button type="button" aria-label="Decrease" data-qty-step="-1">
+							−
+						</button>
+						<input value={l.qty} readonly aria-label="Quantity" data-line-qty inputmode="numeric" />
+						<button type="button" aria-label="Increase" data-qty-step="1">
+							+
+						</button>
+					</div>
+					<span
+						style="font-family: var(--font-mono); font-weight: 600; min-width: 70px; text-align: right;"
+						data-line-total
+					>
+						{fmt(l.price * l.qty)}
+					</span>
+				</div>
+			</div>
+		))
+	}
+
+	<div class="invoice__row" style="border-bottom: none;">
+		<span>Subtotal</span>
+		<span style="font-family: var(--font-mono);" data-invoice-subtotal>{fmt(subtotal)}</span>
+	</div>
+	<div class="invoice__tax-block">
+		<div>CGST (9%)<strong data-invoice-cgst>{fmt(cgst)}</strong></div>
+		<div>SGST (9%)<strong data-invoice-sgst>{fmt(sgst)}</strong></div>
+		<div>IGST<strong>—</strong></div>
+	</div>
+	<div class="invoice__total">
+		<span>Total payable</span>
+		<span style="font-family: var(--font-mono);" data-invoice-total>{fmt(total)}</span>
+	</div>
+</div>
+
+<script>
+	import { track } from "../../lib/analytics";
+	// GstInvoice — quantity steppers + live recompute.
+	// Scope to the nearest [data-invoice] so multiple invoices on a page
+	// (none today, but future-proof) don't interfere with each other.
+	const fmt = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+	let invoiceFired = false;
+
+	document.querySelectorAll<HTMLElement>("[data-invoice]").forEach((invoice) => {
+		const recompute = () => {
+			let subtotal = 0;
+			invoice.querySelectorAll<HTMLElement>("[data-line]").forEach((row) => {
+				const price = Number(row.getAttribute("data-line-price")) || 0;
+				const qtyInput = row.querySelector<HTMLInputElement>("[data-line-qty]");
+				const qty = Math.max(0, Number(qtyInput?.value) || 0);
+				const lineTotal = price * qty;
+				subtotal += lineTotal;
+				const totalEl = row.querySelector<HTMLElement>("[data-line-total]");
+				if (totalEl) totalEl.textContent = fmt(lineTotal);
+				const qtyLabel = row.querySelector<HTMLElement>("[data-line-qty-label]");
+				if (qtyLabel) qtyLabel.textContent = String(qty);
+			});
+			const cgst = Math.round((subtotal * 0.18) / 2);
+			const sgst = cgst;
+			const total = subtotal + cgst + sgst;
+			const sub = invoice.querySelector<HTMLElement>("[data-invoice-subtotal]");
+			const c = invoice.querySelector<HTMLElement>("[data-invoice-cgst]");
+			const s = invoice.querySelector<HTMLElement>("[data-invoice-sgst]");
+			const t = invoice.querySelector<HTMLElement>("[data-invoice-total]");
+			if (sub) sub.textContent = fmt(subtotal);
+			if (c) c.textContent = fmt(cgst);
+			if (s) s.textContent = fmt(sgst);
+			if (t) t.textContent = fmt(total);
+		};
+
+		invoice.querySelectorAll<HTMLButtonElement>("[data-qty-step]").forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const step = Number(btn.getAttribute("data-qty-step")) || 0;
+				const row = btn.closest<HTMLElement>("[data-line]");
+				const input = row?.querySelector<HTMLInputElement>("[data-line-qty]");
+				if (!input) return;
+				const next = Math.max(0, (Number(input.value) || 0) + step);
+				input.value = String(next);
+				recompute();
+				if (!invoiceFired) {
+					invoiceFired = true;
+					track("Invoice Qty Changed");
+				}
+			});
+		});
+	});
+</script>
