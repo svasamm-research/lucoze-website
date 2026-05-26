@@ -1,0 +1,184 @@
+---
+/**
+ * Demo video modal — plays the 90-second pitch (/demo/pitch.html) in an
+ * iframe overlay. Triggered by buttons with data-open-demo-modal.
+ *
+ * Singleton: only render once per page (typically in Base.astro or HeroDemo).
+ * Closing methods: close button, backdrop click, Esc key.
+ * Tracks "Demo Video Opened" and "Demo Video Closed" Plausible events.
+ */
+---
+
+<dialog class="demo-modal" id="demoModal" aria-labelledby="demoModalTitle">
+	<div class="demo-modal__frame">
+		<div class="demo-modal__head">
+			<h2 id="demoModalTitle" class="demo-modal__title">Lucoze — 90-second tour</h2>
+			<button class="demo-modal__close" data-close-demo aria-label="Close demo">&times;</button>
+		</div>
+		<div class="demo-modal__player">
+			<!-- iframe src is set on first open, then kept so subsequent opens
+			     don't re-download the 2 MB asset. data-src holds the URL until
+			     the user actually clicks. -->
+			<iframe
+				class="demo-modal__iframe"
+				title="Lucoze 90-second product demo"
+				data-src="/demo/pitch.html"
+				allow="autoplay; encrypted-media"
+				loading="lazy"></iframe>
+		</div>
+	</div>
+</dialog>
+
+<style>
+	.demo-modal {
+		border: none;
+		padding: 0;
+		background: transparent;
+		max-width: 100vw;
+		max-height: 100vh;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.demo-modal::backdrop {
+		background: rgba(15, 15, 15, 0.78);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+	}
+
+	.demo-modal__frame {
+		position: fixed;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: clamp(16px, 4vw, 48px);
+		gap: 12px;
+	}
+
+	.demo-modal__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: min(1100px, 100%);
+		color: #f4f3ee;
+	}
+
+	.demo-modal__title {
+		font-family: var(--font-display, "Manrope"), system-ui, sans-serif;
+		font-size: clamp(16px, 2vw, 20px);
+		font-weight: 600;
+		margin: 0;
+		letter-spacing: -0.01em;
+	}
+
+	.demo-modal__close {
+		appearance: none;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		color: #f4f3ee;
+		width: 36px;
+		height: 36px;
+		border-radius: 999px;
+		font-size: 24px;
+		line-height: 1;
+		cursor: pointer;
+		display: grid;
+		place-items: center;
+		transition: background 120ms ease;
+	}
+
+	.demo-modal__close:hover,
+	.demo-modal__close:focus-visible {
+		background: rgba(255, 255, 255, 0.16);
+		outline: none;
+	}
+
+	.demo-modal__player {
+		position: relative;
+		width: min(1100px, 100%);
+		aspect-ratio: 16 / 9;
+		border-radius: 12px;
+		overflow: hidden;
+		background: #000;
+		box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+	}
+
+	.demo-modal__iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+		display: block;
+	}
+
+	@media (max-width: 640px) {
+		.demo-modal__head {
+			padding: 0 4px;
+		}
+		.demo-modal__player {
+			aspect-ratio: auto;
+			height: 70vh;
+		}
+	}
+</style>
+
+<script>
+	import { track } from "../lib/analytics";
+
+	const modal = document.getElementById("demoModal") as HTMLDialogElement | null;
+	const iframe = modal?.querySelector<HTMLIFrameElement>(".demo-modal__iframe");
+	const openers = document.querySelectorAll<HTMLElement>("[data-open-demo-modal]");
+
+	function openModal(source: string) {
+		if (!modal || !iframe) return;
+		// Lazy-load iframe src on first open; keeps initial page payload light.
+		if (!iframe.src && iframe.dataset.src) {
+			iframe.src = iframe.dataset.src;
+		}
+		modal.showModal();
+		track("Demo Video Opened", { source });
+	}
+
+	function closeModal() {
+		if (!modal) return;
+		modal.close();
+		// Stop playback by unloading the iframe doc. Re-opens are still fast
+		// because the HTML is cached by the browser.
+		if (iframe?.src) {
+			const url = iframe.src;
+			iframe.src = "";
+			// Keep data-src so a subsequent open re-attaches the cached HTML.
+			iframe.dataset.src = url;
+		}
+		track("Demo Video Closed");
+	}
+
+	openers.forEach((btn) => {
+		btn.addEventListener("click", (e) => {
+			e.preventDefault();
+			openModal(btn.dataset.source || "unknown");
+		});
+	});
+
+	// Native <dialog> emits "close" on Esc; treat as a close so we stop audio too.
+	modal?.addEventListener("close", () => {
+		// Already closed by browser; just clean up iframe.
+		if (iframe?.src) {
+			const url = iframe.src;
+			iframe.src = "";
+			iframe.dataset.src = url;
+		}
+		track("Demo Video Closed");
+	});
+
+	// Close button + backdrop click.
+	modal?.addEventListener("click", (e) => {
+		const target = e.target as HTMLElement;
+		if (target.matches("[data-close-demo]") || target === modal) {
+			closeModal();
+		}
+	});
+</script>
