@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const fmtDate = (d: Date) =>
+	d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+---
+
+<Base
+	title="Lucoze blog — Indian healthcare compliance, EMR, and clinic operations"
+	description="Field notes, ABDM and DPDP guides, and the questions Indian clinic owners ask us. From the team building Lucoze."
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Blog" }]}
+		eyebrow="Blog"
+		h1="Field notes, compliance guides, and the questions clinic owners ask us."
+		highlightParts={[
+			"Field notes, compliance guides, and ",
+			"the questions clinic owners ask us",
+			".",
+		]}
+		lead="No content marketing. Just things we've learned, and things we want every clinic in India to know about the systems they're being asked to comply with."
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<div class="blog-grid">
+				{
+					posts.map((p) => (
+						<a href={`/in/blog/${p.id}/`} class="blog-card">
+							<span class="blog-card__category">{p.data.category}</span>
+							<h2 class="blog-card__title">{p.data.title}</h2>
+							<p class="blog-card__excerpt">{p.data.dek}</p>
+							<div class="blog-card__meta">
+								<span>{p.data.author}</span>
+								<span>{p.data.readMins} min read</span>
+							</div>
+						</a>
+					))
+				}
+			</div>
+
+			{
+				posts.length === 0 && (
+					<p style="text-align: center; color: var(--muted);">No posts yet. Check back soon.</p>
+				)
+			}
+		</div>
+	</section>
+</Base>

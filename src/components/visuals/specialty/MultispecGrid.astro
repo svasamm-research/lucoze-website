@@ -1,0 +1,187 @@
+---
+/** Multi-specialty week grid — used as the Live preview on the
+ *  multi-specialty specialty page AND as the SubHero visual on the
+ *  /in/solutions/clinics page. */
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
+
+const DOCTORS: {
+	initials: string;
+	name: string;
+	sub: string;
+	color: string;
+	row: (number | null)[];
+}[] = [
+	{
+		initials: "DS",
+		name: "Dr S. Sen",
+		sub: "General Med",
+		color: "#c15f3c",
+		row: [5, 5, 4, 6, 5, 2],
+	},
+	{
+		initials: "DP",
+		name: "Dr P. Chatterjee",
+		sub: "Cardiology",
+		color: "#3f6a8e",
+		row: [0, 4, 0, 5, 0, 3],
+	},
+	{
+		initials: "DR",
+		name: "Dr R. Mukherjee",
+		sub: "Derm",
+		color: "#8a4f2f",
+		row: [4, 0, 5, 0, 4, 6],
+	},
+	{
+		initials: "DA",
+		name: "Dr A. Banerjee",
+		sub: "Paediatrics",
+		color: "#3d7e54",
+		row: [5, 5, 5, 5, 5, 5],
+	},
+	{ initials: "DS", name: "Dr S. Roy", sub: "Gynae", color: "#6b4488", row: [2, 5, 5, 4, 5, 4] },
+];
+
+const MAX = 6;
+---
+
+<div class="viz multispec">
+	<div class="viz__chrome">
+		<span class="viz__chrome-title">Salt Lake clinic · 5 doctors · 3 specialties</span>
+		<span class="viz__chrome-meta">This week · 18-23 May</span>
+	</div>
+	<div class="multispec__body">
+		<div class="multispec__grid" role="table">
+			<div></div>
+			{DAYS.map((d) => <div class="multispec__day-head">{d}</div>)}
+			{
+				DOCTORS.map((doc) => (
+					<>
+						<div class="multispec__doc">
+							<div class="multispec__avatar">{doc.initials}</div>
+							<div>
+								<div class="multispec__doc-name">{doc.name}</div>
+								<div class="multispec__doc-sub">{doc.sub}</div>
+							</div>
+						</div>
+						{doc.row.map((n) => (
+							<div class="multispec__cell">
+								{n === 0 ? (
+									<div class="multispec__bar multispec__bar--empty" />
+								) : (
+									<div
+										class="multispec__bar"
+										style={`width: ${Math.min(95, 28 + ((n ?? 0) / MAX) * 65)}%; background: ${doc.color};`}
+									>
+										{n}
+									</div>
+								)}
+							</div>
+						))}
+					</>
+				))
+			}
+		</div>
+		<div class="multispec__legend">
+			<span class="multispec__legend-dot" style="background: #c15f3c;"></span>
+			Patient count per half-day · drag to rebalance
+		</div>
+	</div>
+</div>
+
+<style>
+	.multispec__body {
+		padding: var(--s-5) var(--s-6);
+		background: var(--paper);
+	}
+	.multispec__grid {
+		display: grid;
+		grid-template-columns: 200px repeat(6, 1fr);
+		gap: 6px 12px;
+		align-items: center;
+	}
+	.multispec__day-head {
+		font-family: var(--font-mono);
+		font-size: 10px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--muted);
+		font-weight: 700;
+		text-align: center;
+		padding-bottom: 8px;
+		border-bottom: 1px solid var(--border-light);
+	}
+	.multispec__doc {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 0;
+	}
+	.multispec__avatar {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: var(--primary-light);
+		color: var(--primary-deep);
+		display: grid;
+		place-items: center;
+		font-weight: 700;
+		font-size: 11px;
+	}
+	.multispec__doc-name {
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--ink);
+	}
+	.multispec__doc-sub {
+		font-size: 11px;
+		color: var(--muted);
+	}
+	.multispec__cell {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	.multispec__bar {
+		min-width: 32px;
+		height: 22px;
+		border-radius: 4px;
+		color: rgba(255, 255, 255, 0.95);
+		font-family: var(--font-mono);
+		font-size: 11px;
+		font-weight: 700;
+		display: grid;
+		place-items: center;
+	}
+	.multispec__bar--empty {
+		width: 18px;
+		height: 22px;
+		background: var(--bg-code);
+		color: var(--muted);
+		border-radius: 4px;
+	}
+	.multispec__legend {
+		margin-top: var(--s-4);
+		padding-top: var(--s-3);
+		border-top: 1px solid var(--border-light);
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 11px;
+		color: var(--muted);
+		font-family: var(--font-mono);
+	}
+	.multispec__legend-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 2px;
+	}
+	@media (max-width: 720px) {
+		.multispec__grid {
+			font-size: 11px;
+		}
+		.multispec__doc-sub {
+			display: none;
+		}
+	}
+</style>

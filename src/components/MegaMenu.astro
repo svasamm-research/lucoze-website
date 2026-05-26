@@ -1,0 +1,31 @@
+---
+import type { MegaGroup } from "../data/nav.ts";
+
+interface Props {
+	group: MegaGroup;
+}
+
+const { group } = Astro.props;
+---
+
+<div class="mega" role="menu" aria-label={group.label}>
+	<div class="mega__inner">
+		{
+			group.cols.map((col) => (
+				<div class="mega__col">
+					<div class="mega__col-head">{col.head}</div>
+					<ul class="mega__list" role="list">
+						{col.items.map((item) => (
+							<li>
+								<a class="mega__item" href={item.href} role="menuitem">
+									<span class="mega__item-label">{item.label}</span>
+									{item.blurb && <span class="mega__item-blurb">{item.blurb}</span>}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			))
+		}
+	</div>
+</div>

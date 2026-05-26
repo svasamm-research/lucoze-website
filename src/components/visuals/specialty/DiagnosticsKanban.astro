@@ -1,0 +1,159 @@
+---
+const COLUMNS: {
+	name: string;
+	tone: string;
+	count: number;
+	cards: { id: string; patient: string; test: string; time: string }[];
+}[] = [
+	{
+		name: "Collected",
+		tone: "Home + Walk-in",
+		count: 3,
+		cards: [
+			{ id: "S-1102", patient: "R. Bhowmick", test: "CBC + LFT", time: "08:12" },
+			{ id: "S-1103", patient: "M. Das", test: "TSH", time: "08:45" },
+			{ id: "S-1104", patient: "Home · S. Pal", test: "Lipid", time: "09:02" },
+		],
+	},
+	{
+		name: "In process",
+		tone: "Lab",
+		count: 2,
+		cards: [
+			{ id: "S-1098", patient: "T. Mishra", test: "Cardiac panel", time: "07:45" },
+			{ id: "S-1099", patient: "K. Sahoo", test: "HbA1c", time: "08:05" },
+		],
+	},
+	{
+		name: "Awaiting sign",
+		tone: "Pathologist",
+		count: 1,
+		cards: [{ id: "S-1094", patient: "G. Behera", test: "Cytology", time: "06:38" }],
+	},
+	{
+		name: "Reported",
+		tone: "Dispatched",
+		count: 3,
+		cards: [
+			{ id: "S-1091", patient: "B. Patnaik", test: "USG", time: "yesterday" },
+			{ id: "S-1092", patient: "L. Mahanta", test: "FBS+PP", time: "yesterday" },
+			{ id: "S-1093", patient: "V. Sahu", test: "Lipid", time: "yesterday" },
+		],
+	},
+];
+---
+
+<div class="viz diag">
+	<div class="viz__chrome">
+		<span class="viz__chrome-title">Bhopal diagnostics · 184 tests today</span>
+		<span class="viz__chrome-meta">Avg TAT 2.4h · Pending 12 reports</span>
+	</div>
+	<div class="diag__board">
+		{
+			COLUMNS.map((col) => (
+				<div class="diag__col">
+					<div class="diag__col-head">
+						<span class="diag__col-name">{col.name}</span>
+						<span class="diag__col-count">{col.count}</span>
+					</div>
+					<div class="diag__col-tone">{col.tone}</div>
+					{col.cards.map((c) => (
+						<div class="diag__card">
+							<div class="diag__id">{c.id}</div>
+							<div class="diag__patient">{c.patient}</div>
+							<div class="diag__meta">
+								<span>{c.test}</span>
+								<span>{c.time}</span>
+							</div>
+						</div>
+					))}
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.diag__board {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--s-3);
+		padding: var(--s-5);
+		background: var(--paper);
+	}
+	@media (max-width: 880px) {
+		.diag__board {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (max-width: 540px) {
+		.diag__board {
+			grid-template-columns: 1fr;
+		}
+	}
+	.diag__col {
+		background: var(--cream);
+		border-radius: var(--r-md);
+		padding: var(--s-3);
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.diag__col-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.diag__col-name {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 13px;
+		color: var(--ink);
+	}
+	.diag__col-count {
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		background: var(--ink);
+		color: var(--cream);
+		display: grid;
+		place-items: center;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		font-weight: 700;
+	}
+	.diag__col-tone {
+		font-family: var(--font-mono);
+		font-size: 9px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--muted);
+		font-weight: 700;
+		margin-bottom: 2px;
+	}
+	.diag__card {
+		background: var(--paper);
+		border: 1px solid var(--border-light);
+		border-radius: var(--r-sm);
+		padding: 8px 10px;
+	}
+	.diag__id {
+		font-family: var(--font-mono);
+		font-size: 10px;
+		color: var(--primary);
+		font-weight: 700;
+	}
+	.diag__patient {
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--ink);
+		margin: 3px 0;
+	}
+	.diag__meta {
+		display: flex;
+		justify-content: space-between;
+		font-size: 11px;
+		color: var(--muted);
+		font-family: var(--font-mono);
+	}
+</style>

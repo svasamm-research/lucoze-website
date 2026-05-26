@@ -1,8 +1,20 @@
+# Lucoze (lucoze.com) — robots.txt
+# Public marketing site. The product lives on admin.lucoze.com and
+# <tenant>.lucoze.com — those domains have their own crawl rules.
+
 User-agent: *
 Allow: /
 
-Sitemap: https://lucoze.com/sitemap.xml
+# Internal preview page, not for index
+Disallow: /in/redesign-preview/
 
-# Block admin and API paths
+# Legacy hyphenated solution URLs are 301-redirected to /in/solutions/clinics/
+# and /in/solutions/hospitals/. Crawlers should index the new paths only.
+Disallow: /in/solutions-clinics/
+Disallow: /in/solutions-hospitals/
+
+# Defensive blocks (no such paths today, but reserve them)
 Disallow: /api/
 Disallow: /admin/
+
+Sitemap: https://lucoze.com/sitemap-index.xml

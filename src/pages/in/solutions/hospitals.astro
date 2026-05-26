@@ -1,0 +1,208 @@
+---
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import FRow from "../../../components/FRow.astro";
+import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
+import Icon from "../../../components/Icon.astro";
+import HospitalBedMap from "../../../components/visuals/specialty/HospitalBedMap.astro";
+
+const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
+	{
+		icon: "home",
+		title: "Inpatient + wards",
+		blurb: "Bed map, admission to discharge, IPD billing",
+	},
+	{
+		icon: "calendar",
+		title: "OT scheduling",
+		blurb: "Surgery slots reserve staff + consumables + post-op",
+	},
+	{
+		icon: "receipt",
+		title: "Hospital billing",
+		blurb: "Department-level, consolidated, e-invoiced",
+	},
+	{
+		icon: "flask",
+		title: "Lab + radiology",
+		blurb: "Sample to report, NABL-ready, outsource handling",
+	},
+	{ icon: "pill", title: "Hospital pharmacy", blurb: "Schedule-H/X, multi-store, batch tracking" },
+	{
+		icon: "users",
+		title: "HR + payroll",
+		blurb: "30+ staff, doctor incentives, statutory deductions",
+	},
+	{
+		icon: "chart",
+		title: "NABH dashboards",
+		blurb: "ALOS, infection rates, medication errors, audit-ready",
+	},
+	{
+		icon: "shield",
+		title: "ABDM integration",
+		blurb: "HFR registered facility, ABHA-linked records",
+	},
+];
+---
+
+<Base
+	title="Hospital Management Software for 20-100 bed hospitals in India"
+	description="Lucoze for small hospitals. IPD, OT scheduling, lab, pharmacy, HR, NABH dashboards. ABDM-ready. Data hosted in India."
+>
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/", label: "Solutions" },
+			{ label: "Hospitals" },
+		]}
+		eyebrow="For 20-100 bed hospitals"
+		h1="The hospital stack that doesn't take 6 months to deploy."
+		highlightParts={["The hospital stack that doesn't ", "take 6 months", " to deploy."]}
+		lead="IPD, OPD, OT, lab, pharmacy, HR, NABH-ready dashboards. A small-hospital implementation that runs in 60 days, not 12 months. Built around the way East-India hospitals procure, deploy, and report."
+		primaryCta={{ href: "/in/contact/", label: "Book a hospital demo" }}
+		secondaryCta={{ href: "/in/blog/abdm-abha-guide/", label: "ABDM readiness guide" }}
+		statsRow={[
+			{ value: "60 days", label: "Implementation timeline" },
+			{ value: "NABH", label: "Audit-ready dashboards" },
+			{ value: "₹7,999", label: "Per month (Hospital plan)" },
+			{ value: "India", label: "Data residency" },
+		]}
+	>
+		<HospitalBedMap slot="visual" />
+	</SubHero>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">What you get</span>
+				<h2 class="t-h2" style="margin-top: 8px;">
+					Everything a 20-100 bed hospital actually runs on.
+				</h2>
+			</header>
+			<div class="module-grid">
+				{
+					HOSP_MODULES.map((m) => (
+						<article class="module-card">
+							<div class="module-card__icon">
+								<Icon name={m.icon} size={20} />
+							</div>
+							<div class="module-card__title">{m.title}</div>
+							<div class="module-card__blurb">{m.blurb}</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<FRow
+				eyebrow="Implementation"
+				title="60 days. Phased. With a named implementation manager."
+				lead="Hospital implementations are not clinic implementations. There are more stakeholders, more workflows, and more legacy data. We don't pretend otherwise. Here's the phased plan."
+				bullets={[
+					"Days 1-14: configuration + master data setup. Departments, doctors, rate cards, formulary.",
+					"Days 15-30: parallel run. OPD goes live. IPD shadows for 2 weeks.",
+					"Days 31-45: IPD + OT live. Pharmacy + lab integrated. Old system read-only.",
+					"Days 46-60: HR + payroll + NABH reports. Cutover complete. Implementation manager hands off to CSM.",
+				]}
+			>
+				<VisualPlaceholder slot="visual">
+					<Icon name="calendar" size={56} style="color: var(--primary); opacity: 0.5;" />
+					<strong style="color: var(--ink); font-size: 14px; margin-top: 12px;">
+						60-day phased rollout
+					</strong>
+				</VisualPlaceholder>
+			</FRow>
+
+			<FRow
+				eyebrow="What you replace"
+				title="From a fragmented stack to one ledger."
+				lead="Most small hospitals run on 3-7 separate tools. Lucoze replaces the lot with one. Migration includes consolidating those tools — your administrator stops being the integration layer between them."
+				bullets={[
+					"Replaces: legacy HIS (Birlamedisoft, eHospital, custom), Tally / Marg for pharmacy, Excel for HR, separate billing software.",
+					"Keeps: Tally / Zoho Books for accounting (export integration), your bank, your insurance partners.",
+					"Migrates: 5 years of patient master, last 18 months of appointments + billing, current inventory and HR.",
+					"Doesn't migrate: 10-year-old physical case sheets (those stay archived; we index them).",
+				]}
+				flip
+			>
+				<VisualPlaceholder slot="visual">
+					<Icon name="chart" size={56} style="color: var(--primary); opacity: 0.5;" />
+					<strong style="color: var(--ink); font-size: 14px; margin-top: 12px;">
+						One ledger
+					</strong>
+				</VisualPlaceholder>
+			</FRow>
+
+			<FRow
+				eyebrow="Compliance"
+				title="ABDM, NABH, DPDP — built in, not bolted on."
+				lead="Your medical director and your administrator will both ask. The answer is: yes, ready on day one. Documentation available for inspection."
+				bullets={[
+					"ABDM — HFR-registered facility, HPR-onboarded doctors, ABHA-linked records, consent-managed sharing.",
+					"NABH — dashboards for the metrics that matter (ALOS, infection rate, medication errors).",
+					"DPDP — consent flows, audit log retention, 72-hour breach notification process.",
+					"All data hosted in Indian data centres. Nothing crosses borders.",
+				]}
+			>
+				<VisualPlaceholder slot="visual">
+					<Icon name="shield" size={56} style="color: var(--primary); opacity: 0.5;" />
+					<strong style="color: var(--ink); font-size: 14px; margin-top: 12px;">
+						Compliance day one
+					</strong>
+					<a
+						href="/in/blog/dpdp-for-clinics/"
+						style="font-size: 12px; color: var(--primary); font-weight: 600;"
+					>
+						Read the guides →
+					</a>
+				</VisualPlaceholder>
+			</FRow>
+		</div>
+	</section>
+
+	<section
+		class="section section--tight"
+		style="background: var(--paper); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);"
+	>
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Plan that fits</span>
+				<h2 class="t-h2" style="margin-top: 8px;">Hospital plan.</h2>
+				<p class="t-lead" style="margin-top: var(--s-3);">
+					All modules included. Implementation manager for 60 days. Dedicated CSM thereafter.
+					<a href="/in/pricing/" style="color: var(--primary); font-weight: 600;">See pricing →</a>
+				</p>
+			</header>
+			<div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+				<a href="/in/contact/" class="btn btn--accent btn--lg">
+					Book hospital demo
+					<Icon name="arrow" size={16} class="btn__arrow" />
+				</a>
+				<a href="/in/design-partner/" class="btn btn--ghost btn--lg">
+					Design-partner application
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					Walk us through your hospital. We'll show you ours.
+				</h2>
+				<p>30-minute call. We bring our medical director, you bring yours. No pitch deck.</p>
+				<div class="cta-final__actions">
+					<a href="/in/contact/" class="btn btn--primary btn--lg">
+						Book a call
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,75 @@
+---
+import Logo from "../Logo.astro";
+import Icon from "../Icon.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" id="site-footer">
+	<div class="container">
+		<div class="footer__grid">
+			<div class="footer__brand">
+				<div class="footer__brand-line">
+					<Logo size={28} />
+				</div>
+				<p class="footer__desc">
+					Healthcare management software for Indian clinics and hospitals. Patient records, billing,
+					appointments, lab and pharmacy on one platform. Data hosted in India.
+				</p>
+				<div class="footer__compliance" aria-label="Compliance">
+					<span class="footer__compliance-chip">
+						<Icon name="shield" size={11} /> DPDP 2023
+					</span>
+					<span class="footer__compliance-chip">
+						<Icon name="check" size={11} /> ABDM-ready
+					</span>
+					<span class="footer__compliance-chip">
+						<Icon name="check" size={11} /> NABH-supportive
+					</span>
+					<span class="footer__compliance-chip">
+						<Icon name="cloud" size={11} /> India cloud
+					</span>
+				</div>
+			</div>
+			<div class="footer__col">
+				<h3>Product</h3>
+				<a href="/in/features/appointments/">Appointments</a>
+				<a href="/in/features/patient-records/">Patient records</a>
+				<a href="/in/features/billing/">Billing</a>
+				<a href="/in/features/lab/">Lab module</a>
+				<a href="/in/features/pharmacy/">Pharmacy</a>
+				<a href="/in/features/hr/">HR management</a>
+			</div>
+			<div class="footer__col">
+				<h3>Solutions</h3>
+				<a href="/in/solutions/clinics/">For clinics</a>
+				<a href="/in/solutions/hospitals/">For hospitals</a>
+				<a href="/in/specialties/multispecialty/">Multi-specialty</a>
+				<a href="/in/specialties/dental/">Dental groups</a>
+				<a href="/in/specialties/ivf/">IVF clinics</a>
+				<a href="/in/specialties/diagnostics/">Diagnostic centres</a>
+			</div>
+			<div class="footer__col">
+				<h3>Company</h3>
+				<a href="/in/design-partner/">Design partner program</a>
+				<a href="/in/blog/">Blog</a>
+				<a href="/in/careers/">Careers</a>
+				<a href="/in/contact/">Contact</a>
+			</div>
+			<div class="footer__col">
+				<h3>Resources</h3>
+				<a href="/in/blog/abdm-abha-guide/">ABDM & ABHA guide</a>
+				<a href="/in/blog/dpdp-for-clinics/">DPDP for clinics</a>
+				<a href="/in/blog/security-data/">Security & data</a>
+				<a href="/in/pricing/">Pricing</a>
+			</div>
+		</div>
+		<div class="footer__bottom">
+			<span>© {year} Lucoze Healthcare Pvt Ltd. Built in India for India.</span>
+			<span style="display: flex; gap: 18px;">
+				<a href="/in/privacy/">Privacy</a>
+				<a href="/in/terms/">Terms</a>
+			</span>
+		</div>
+	</div>
+</footer>

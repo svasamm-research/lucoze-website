@@ -1,0 +1,141 @@
+---
+import Logo from "../Logo.astro";
+import Icon from "../Icon.astro";
+import MegaMenu from "../MegaMenu.astro";
+import { MEGA } from "../../data/nav.ts";
+
+interface Props {
+	activeLink?: string;
+}
+
+const { activeLink = "" } = Astro.props;
+---
+
+<header class="nav" data-nav>
+	<nav class="nav__inner" aria-label="Primary">
+		<a href="/in/" class="nav__brand" aria-label="Lucoze home">
+			<Logo size={28} />
+		</a>
+
+		<ul class="nav__links" role="list">
+			{
+				MEGA.map((group) => (
+					<li class="nav__li-mega" data-mega-key={group.key}>
+						<button
+							class="nav__link nav__link--mega"
+							aria-haspopup="true"
+							aria-expanded="false"
+							type="button"
+						>
+							{group.label}
+							<Icon name="chevron_down" size={12} class="nav__chevron" />
+						</button>
+						<MegaMenu group={group} />
+					</li>
+				))
+			}
+			<li>
+				<a
+					href="/in/pricing/"
+					class="nav__link"
+					aria-current={activeLink === "pricing" ? "page" : undefined}
+				>
+					Pricing
+				</a>
+			</li>
+		</ul>
+
+		<div class="nav__actions">
+			<!-- Sign in link hidden pre-launch; will return once admin.lucoze.com is live. -->
+			<a href="/in/signup/" class="btn btn--primary btn--sm">
+				Start free trial
+				<Icon name="arrow" size={14} class="btn__arrow" />
+			</a>
+		</div>
+
+		<button
+			class="nav__toggle"
+			aria-label="Open menu"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			data-nav-toggle
+			type="button"
+		>
+			<Icon name="menu" size={24} />
+		</button>
+	</nav>
+</header>
+
+<!-- Mobile menu lives OUTSIDE <header> so sticky-parent stacking quirks
+     don't put position:fixed children behind page content. -->
+<div id="mobile-menu" class="nav__mobile" aria-label="Mobile navigation" data-nav-mobile>
+	{
+		MEGA.map((group) => (
+			<div style="margin-bottom: 16px;">
+				<div style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; padding: 0 12px;">
+					{group.label}
+				</div>
+				{group.cols
+					.flatMap((c) => c.items)
+					.map((it) => (
+						<a href={it.href} class="nav__link">
+							{it.label}
+						</a>
+					))}
+			</div>
+		))
+	}
+	<a href="/in/pricing/" class="nav__link">Pricing</a>
+	<a href="/in/signup/" class="btn btn--accent" style="margin-top: 12px; width: 100%;">
+		Start free trial
+	</a>
+</div>
+
+<script>
+	// Sticky-nav scroll detection + mobile toggle + ESC close.
+	const nav = document.querySelector<HTMLElement>("[data-nav]");
+	const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+	const mobile = document.querySelector<HTMLElement>("[data-nav-mobile]");
+
+	if (nav) {
+		const onScroll = () => {
+			if (window.scrollY > 8) nav.classList.add("nav--scrolled");
+			else nav.classList.remove("nav--scrolled");
+		};
+		window.addEventListener("scroll", onScroll, { passive: true });
+		onScroll();
+	}
+
+	if (toggle && mobile) {
+		toggle.addEventListener("click", () => {
+			const isOpen = mobile.classList.toggle("nav__mobile--open");
+			toggle.setAttribute("aria-expanded", String(isOpen));
+			toggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+		});
+
+		window.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && mobile.classList.contains("nav__mobile--open")) {
+				mobile.classList.remove("nav__mobile--open");
+				toggle.setAttribute("aria-expanded", "false");
+				toggle.setAttribute("aria-label", "Open menu");
+				toggle.focus();
+			}
+		});
+	}
+
+	// Mega-menu open tracking. CSS-only :hover opens the menu, so we fire
+	// once per hover-enter with debounce per-menu to avoid spamming.
+	import { track } from "../../lib/analytics";
+	const megaSeen = new Set<string>();
+	document.querySelectorAll<HTMLElement>("[data-mega-key]").forEach((li) => {
+		const key = li.dataset.megaKey;
+		if (!key) return;
+		li.addEventListener("mouseenter", () => {
+			// Reset every 5 seconds so we capture repeat opens after a pause.
+			if (megaSeen.has(key)) return;
+			megaSeen.add(key);
+			track("Mega Menu Open", { menu: key });
+			setTimeout(() => megaSeen.delete(key), 5000);
+		});
+	});
+</script>

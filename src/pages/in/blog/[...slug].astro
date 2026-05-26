@@ -1,0 +1,146 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import Crumbs from "../../../components/Crumbs.astro";
+import Icon from "../../../components/Icon.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog");
+	return posts.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const post = entry.data;
+
+const toc = headings.filter((h) => h.depth === 2);
+
+const fmtDate = post.date.toLocaleDateString("en-IN", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+});
+
+const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
+const postUrl = `${siteUrl}${Astro.url.pathname}`;
+const blogPostingLd = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: post.title,
+	description: post.dek,
+	datePublished: post.date.toISOString(),
+	dateModified: post.date.toISOString(),
+	author: { "@type": "Person", name: post.author },
+	publisher: {
+		"@type": "Organization",
+		name: "Lucoze",
+		logo: { "@type": "ImageObject", url: `${siteUrl}/favicon-vault-32.png` },
+	},
+	mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+	image: `${siteUrl}/og-default.png`,
+	articleSection: post.category,
+};
+---
+
+<Base title={`${post.title} — Lucoze blog`} description={post.dek}>
+	<script type="application/ld+json" set:html={JSON.stringify(blogPostingLd)} />
+
+	<article data-blog-slug={entry.id} hidden></article>
+
+	<script>
+		// Blog read-depth events. Fires once per session at 50% scroll and
+		// once when the bottom of the article enters the viewport.
+		// Slug is read from a hidden DOM marker rather than via define:vars,
+		// because define:vars forces inline non-module emit which breaks
+		// ES `import` statements.
+		import { track } from "../../../lib/analytics";
+		const marker = document.querySelector<HTMLElement>("[data-blog-slug]");
+		const slug = marker?.getAttribute("data-blog-slug") || "unknown";
+		const article = document.querySelector<HTMLElement>(".post");
+		if (article) {
+			let fired50 = false;
+			let firedDone = false;
+			const onScroll = () => {
+				const rect = article.getBoundingClientRect();
+				const articleHeight = rect.height;
+				const scrolled = Math.max(0, -rect.top);
+				const pct = articleHeight > 0 ? scrolled / articleHeight : 0;
+				if (!fired50 && pct >= 0.5) {
+					fired50 = true;
+					track("Blog Read 50%", { slug });
+				}
+				if (!firedDone && rect.bottom <= window.innerHeight + 100) {
+					firedDone = true;
+					track("Blog Read Complete", { slug });
+					window.removeEventListener("scroll", onScroll);
+				}
+			};
+			window.addEventListener("scroll", onScroll, { passive: true });
+		}
+	</script>
+	<section class="section section--tight" style="padding-top: var(--s-12);">
+		<div class="container">
+			<Crumbs
+				items={[
+					{ href: "/in/", label: "Home" },
+					{ href: "/in/blog/", label: "Blog" },
+					{ label: post.category },
+				]}
+			/>
+			<div class="post-layout">
+				<aside class="post-toc">
+					<div class="post-toc__head">In this post</div>
+					<div class="post-toc__list">
+						{toc.map((t) => <a href={`#${t.slug}`}>{t.text}</a>)}
+					</div>
+					<div
+						style="margin-top: var(--s-6); padding: var(--s-4); background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-md); font-size: 12px; line-height: 1.5; color: var(--muted);"
+					>
+						<div
+							style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px;"
+						>
+							Try Lucoze
+						</div>
+						14-day free trial. No credit card.<br />
+						<a href="/in/signup/" style="color: var(--primary); font-weight: 600;">Start now →</a>
+					</div>
+				</aside>
+				<article class="post">
+					<span class="t-eyebrow">{post.category}</span>
+					<h1 style="margin-top: var(--s-3);">{post.title}</h1>
+					<div class="post__meta">
+						<span>{post.author}</span>
+						<span>{fmtDate}</span>
+						<span>{post.readMins} min read</span>
+					</div>
+					<p class="post__lead">{post.dek}</p>
+					<Content />
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					Found this useful?
+				</h2>
+				<p>
+					More posts like this drop weekly. Or talk to us — if your clinic is dealing with something
+					we should write about, tell us.
+				</p>
+				<div class="cta-final__actions">
+					<a href="/in/blog/" class="btn btn--primary btn--lg">
+						Read more posts
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+					<a href="/in/contact/" class="btn btn--ghost btn--lg">Get in touch</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>
