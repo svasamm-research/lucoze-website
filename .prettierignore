@@ -4,3 +4,6 @@ package-lock.json
 .astro/
 dist/
 deploy/
+
+# Self-contained video player artifact (bundled HTML; never reformat)
+public/demo/
