@@ -1,6 +1,7 @@
 ---
 import Icon from "./Icon.astro";
 import DashboardMock from "./DashboardMock.astro";
+import DemoVideoModal from "./DemoVideoModal.astro";
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-heading">
@@ -24,10 +25,15 @@ import DashboardMock from "./DashboardMock.astro";
 						Start 14-day free trial
 						<Icon name="arrow" size={16} class="btn__arrow" />
 					</a>
-					<a href="/in/contact/" class="btn btn--ghost btn--lg">
+					<button
+						type="button"
+						class="btn btn--ghost btn--lg"
+						data-open-demo-modal
+						data-source="hero"
+					>
 						<Icon name="play" size={14} />
 						Watch 90-sec demo
-					</a>
+					</button>
 				</div>
 				<div class="hero__sub-trust">
 					<Icon name="check-circle" />
@@ -40,4 +46,6 @@ import DashboardMock from "./DashboardMock.astro";
 			</div>
 		</div>
 	</div>
+
+	<DemoVideoModal />
 </section>
