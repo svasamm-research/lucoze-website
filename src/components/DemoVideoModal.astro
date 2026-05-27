@@ -1,11 +1,15 @@
 ---
 /**
- * Demo video modal — plays the 90-second pitch (/demo/pitch.html) in an
- * iframe overlay. Triggered by buttons with data-open-demo-modal.
+ * Demo video modal — plays /demo/pitch.{mp4,webm} in a native <video>
+ * element inside a <dialog> overlay. Triggered by buttons with
+ * data-open-demo-modal (optionally data-source for analytics).
  *
- * Singleton: only render once per page (typically in Base.astro or HeroDemo).
+ * Native <video> brings: built-in controls, timer, fullscreen, accessibility.
+ * On close: pause + reset currentTime — no src manipulation, no black-screen
+ * on reopen.
+ *
  * Closing methods: close button, backdrop click, Esc key.
- * Tracks "Demo Video Opened" and "Demo Video Closed" Plausible events.
+ * Tracks "Demo Video Opened" + "Demo Video Closed" Plausible events.
  */
 ---
 
@@ -16,15 +20,24 @@
 			<button class="demo-modal__close" data-close-demo aria-label="Close demo">&times;</button>
 		</div>
 		<div class="demo-modal__player">
-			<!-- iframe src is set on first open, then kept so subsequent opens
-			     don't re-download the 2 MB asset. data-src holds the URL until
-			     the user actually clicks. -->
-			<iframe
-				class="demo-modal__iframe"
-				title="Lucoze 90-second product demo"
-				data-src="/demo/pitch.html"
-				allow="autoplay; encrypted-media"
-				loading="lazy"></iframe>
+			<!--
+			  preload="metadata" — fetches just enough to know duration + dimensions,
+			  doesn't pull the whole 4 MB until the user actually plays.
+			  controls — browser-native bar with timer, play/pause, fullscreen, volume.
+			  playsinline — keeps inline on iOS Safari (don't auto-go-fullscreen).
+			-->
+			<video
+				class="demo-modal__video"
+				preload="metadata"
+				controls
+				playsinline
+				poster="/demo/pitch-poster.jpg"
+			>
+				<source src="/demo/pitch.mp4" type="video/mp4" />
+				<source src="/demo/pitch.webm" type="video/webm" />
+				Your browser doesn't support HTML5 video.
+				<a href="/demo/pitch.mp4">Download the demo</a>.
+			</video>
 		</div>
 	</div>
 </dialog>
@@ -107,11 +120,11 @@
 		box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
 	}
 
-	.demo-modal__iframe {
+	.demo-modal__video {
 		width: 100%;
 		height: 100%;
-		border: 0;
 		display: block;
+		background: #000;
 	}
 
 	@media (max-width: 640px) {
@@ -129,30 +142,23 @@
 	import { track } from "../lib/analytics";
 
 	const modal = document.getElementById("demoModal") as HTMLDialogElement | null;
-	const iframe = modal?.querySelector<HTMLIFrameElement>(".demo-modal__iframe");
+	const video = modal?.querySelector<HTMLVideoElement>(".demo-modal__video");
 	const openers = document.querySelectorAll<HTMLElement>("[data-open-demo-modal]");
 
 	function openModal(source: string) {
-		if (!modal || !iframe) return;
-		// Lazy-load iframe src on first open; keeps initial page payload light.
-		if (!iframe.src && iframe.dataset.src) {
-			iframe.src = iframe.dataset.src;
-		}
+		if (!modal || !video) return;
 		modal.showModal();
+		// Always start from beginning when user re-opens
+		video.currentTime = 0;
+		// Play; ignore the promise rejection if browser blocks autoplay (user will hit play).
+		video.play().catch(() => {});
 		track("Demo Video Opened", { source });
 	}
 
 	function closeModal() {
-		if (!modal) return;
+		if (!modal || !video) return;
+		video.pause();
 		modal.close();
-		// Stop playback by unloading the iframe doc. Re-opens are still fast
-		// because the HTML is cached by the browser.
-		if (iframe?.src) {
-			const url = iframe.src;
-			iframe.src = "";
-			// Keep data-src so a subsequent open re-attaches the cached HTML.
-			iframe.dataset.src = url;
-		}
 		track("Demo Video Closed");
 	}
 
@@ -163,18 +169,12 @@
 		});
 	});
 
-	// Native <dialog> emits "close" on Esc; treat as a close so we stop audio too.
+	// Native <dialog> emits "close" on Esc — make sure video pauses too.
 	modal?.addEventListener("close", () => {
-		// Already closed by browser; just clean up iframe.
-		if (iframe?.src) {
-			const url = iframe.src;
-			iframe.src = "";
-			iframe.dataset.src = url;
-		}
-		track("Demo Video Closed");
+		video?.pause();
 	});
 
-	// Close button + backdrop click.
+	// Close button + backdrop click. Clicking the video itself should NOT close.
 	modal?.addEventListener("click", (e) => {
 		const target = e.target as HTMLElement;
 		if (target.matches("[data-close-demo]") || target === modal) {
