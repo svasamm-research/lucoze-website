@@ -206,6 +206,60 @@ const BENEFITS: { title: string; sub: string }[] = [
 						</p>
 					</form>
 
+					<form class="signup-form" id="signup-otp" data-signup-otp hidden>
+						<span class="t-eyebrow">Verify your email</span>
+						<h2 class="t-h3" style="margin: var(--s-3) 0 var(--s-3);">Enter the 6-digit code</h2>
+						<p style="font-size: 14px; color: var(--muted); line-height: 1.6;">
+							We emailed a code to <strong data-otp-email>your email</strong>. It expires in 10
+							minutes.
+						</p>
+
+						<div class="field" style="margin-top: var(--s-4);">
+							<label for="su-otp">Verification code <span class="req">*</span></label>
+							<input
+								id="su-otp"
+								name="otp"
+								inputmode="numeric"
+								pattern="[0-9]{6}"
+								maxlength="6"
+								required
+								autocomplete="one-time-code"
+								placeholder="······"
+								style="letter-spacing: 0.4em; text-align: center; font-size: 20px;"
+							/>
+						</div>
+
+						<button
+							type="submit"
+							class="btn btn--accent btn--lg signup-form__submit"
+							data-otp-submit
+						>
+							<span data-otp-submit-label>Verify &amp; create trial</span>
+							<Icon name="arrow" size={16} class="btn__arrow" />
+						</button>
+
+						<p
+							data-otp-error
+							hidden
+							role="alert"
+							style="margin-top: var(--s-3); padding: 10px 12px; background: var(--error-bg, rgba(177,52,42,0.08)); border: 1px solid var(--error); color: var(--error); border-radius: var(--r-sm); font-size: 13px; text-align: center;"
+						>
+						</p>
+
+						<p
+							style="font-size: 12px; color: var(--light); margin-top: var(--s-4); text-align: center;"
+						>
+							Didn't get it?
+							<button
+								type="button"
+								data-otp-resend
+								style="background: none; border: none; padding: 0; color: var(--primary); cursor: pointer; font: inherit; text-decoration: underline; text-underline-offset: 2px;"
+							>
+								Resend code
+							</button>
+						</p>
+					</form>
+
 					<div
 						class="signup-form"
 						id="signup-thanks"
@@ -243,26 +297,42 @@ const BENEFITS: { title: string; sub: string }[] = [
 <script>
 	import { track } from "../../lib/analytics";
 
-	// SignupForm — production-ready submit path with backend wiring.
+	// SignupForm — two-step OTP signup wired to lucoze_admin's provisioning API.
 	//
-	// 1. Preselects the plan radio from ?plan=clinic|clinicpro|hospital
-	//    (the pricing page's CTAs pass this).
-	// 2. On submit:
-	//    - Native HTML5 validation runs first (required, type=email, etc).
-	//    - If PUBLIC_SIGNUP_ENDPOINT is set at build time, POST form data
-	//      there as JSON. Show loading/error states inline.
-	//    - If the env var is empty (today's pre-launch state), show the
-	//      thanks panel directly without a network call.
-	// 3. Wire to lucoze_admin /api/signup by setting PUBLIC_SIGNUP_ENDPOINT
-	//    in the deploy env.
-	const ENDPOINT = import.meta.env.PUBLIC_SIGNUP_ENDPOINT as string | undefined;
+	// Flow:
+	//   1. User fills the form → POST initiate_signup → admin emails a 6-digit OTP.
+	//   2. OTP panel appears → POST verify_signup → admin creates the
+	//      Provisioning Request (Pending) → admin approves → agent provisions.
+	//
+	// Endpoint base comes from PUBLIC_ADMIN_API_URL at build time (the admin
+	// site for the target environment). If unset (pre-launch), the form skips
+	// the network and shows the thanks panel directly.
+	const ADMIN = import.meta.env.PUBLIC_ADMIN_API_URL as string | undefined;
+
+	// Form plan ids → admin plan names (admin VALID_PLANS).
+	const PLAN_MAP: Record<string, string> = {
+		clinic: "Clinic",
+		clinicpro: "Clinic Pro",
+		hospital: "Hospital",
+	};
 
 	const form = document.querySelector<HTMLFormElement>("[data-signup-form]");
+	const otpForm = document.querySelector<HTMLFormElement>("[data-signup-otp]");
 	const thanks = document.querySelector<HTMLElement>("[data-signup-thanks]");
 	const thanksName = document.querySelector<HTMLElement>("[data-signup-thanks-name]");
 	const submitBtn = document.querySelector<HTMLButtonElement>("[data-signup-submit]");
 	const submitLabel = document.querySelector<HTMLElement>("[data-signup-submit-label]");
 	const errorEl = document.querySelector<HTMLElement>("[data-signup-error]");
+	const otpEmailEl = document.querySelector<HTMLElement>("[data-otp-email]");
+	const otpInput = document.querySelector<HTMLInputElement>("#su-otp");
+	const otpBtn = document.querySelector<HTMLButtonElement>("[data-otp-submit]");
+	const otpLabel = document.querySelector<HTMLElement>("[data-otp-submit-label]");
+	const otpError = document.querySelector<HTMLElement>("[data-otp-error]");
+	const otpResend = document.querySelector<HTMLButtonElement>("[data-otp-resend]");
+
+	// Carried from step 1 to step 2.
+	let pendingEmail = "";
+	let pendingFirstName = "doctor";
 
 	// Preselect the plan radio from ?plan=clinic|clinicpro|hospital query param.
 	const planParam = new URLSearchParams(window.location.search).get("plan");
@@ -281,18 +351,73 @@ const BENEFITS: { title: string; sub: string }[] = [
 	const clearError = () => {
 		if (errorEl) errorEl.hidden = true;
 	};
+	const showOtpError = (msg: string) => {
+		if (!otpError) return;
+		otpError.textContent = msg;
+		otpError.hidden = false;
+	};
+	const clearOtpError = () => {
+		if (otpError) otpError.hidden = true;
+	};
 	const setLoading = (loading: boolean) => {
 		if (submitBtn) submitBtn.disabled = loading;
 		if (submitLabel)
-			submitLabel.textContent = loading ? "Setting up your trial…" : "Start free trial";
+			submitLabel.textContent = loading ? "Sending verification code…" : "Start free trial";
+	};
+	const setOtpLoading = (loading: boolean) => {
+		if (otpBtn) otpBtn.disabled = loading;
+		if (otpLabel) otpLabel.textContent = loading ? "Creating your trial…" : "Verify & create trial";
 	};
 	const showThanks = (firstName: string) => {
 		if (thanksName) thanksName.textContent = firstName;
 		if (form) form.hidden = true;
+		if (otpForm) otpForm.hidden = true;
 		if (thanks) {
 			thanks.hidden = false;
 			thanks.scrollIntoView({ behavior: "smooth", block: "center" });
 		}
+	};
+	const showOtpPanel = () => {
+		if (otpEmailEl) otpEmailEl.textContent = pendingEmail;
+		if (form) form.hidden = true;
+		if (otpForm) {
+			otpForm.hidden = false;
+			otpForm.scrollIntoView({ behavior: "smooth", block: "center" });
+		}
+		if (otpInput) otpInput.focus();
+	};
+
+	// Pulls a clean message out of a Frappe error response. Frappe puts
+	// frappe.throw() text in _server_messages (a JSON string of JSON strings).
+	const extractError = (data: any, status: number): string => {
+		try {
+			if (data && data._server_messages) {
+				const arr = JSON.parse(data._server_messages);
+				const first = JSON.parse(arr[0]);
+				return first.message || String(first);
+			}
+		} catch {
+			/* fall through to generic */
+		}
+		return (data && (data.message || data.exception)) || `Request failed (${status}).`;
+	};
+
+	// Calls a whitelisted Frappe method on the admin site. allow_guest endpoints,
+	// so no auth/CSRF; CORS for this origin is configured on the admin side.
+	const callMethod = async (method: string, payload: Record<string, unknown>) => {
+		const res = await fetch(`${ADMIN}/api/method/${method}`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json", Accept: "application/json" },
+			body: JSON.stringify(payload),
+		});
+		let data: any = {};
+		try {
+			data = await res.json();
+		} catch {
+			/* non-JSON response */
+		}
+		if (!res.ok) throw new Error(extractError(data, res.status));
+		return data.message;
 	};
 
 	// Signup Form Started — first field focus on the form.
@@ -311,61 +436,97 @@ const BENEFITS: { title: string; sub: string }[] = [
 		);
 	}
 
-	if (form && thanks) {
+	// Step 1 — collect details, request OTP.
+	if (form) {
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 			clearError();
-
-			// Browser handles native validation (required, type=email, etc).
 			if (!form.reportValidity()) {
 				track("Signup Error", { reason: "validation" });
 				return;
 			}
 
-			const formData = new FormData(form);
-			const nameValue = (formData.get("name") as string | null) || "";
-			const firstName = nameValue.trim().split(/\s+/)[0] || "doctor";
-			const plan = (formData.get("plan") as string | null) || "unknown";
-			const specialty = (formData.get("specialty") as string | null) || "unknown";
+			const fd = new FormData(form);
+			const planId = (fd.get("plan") as string | null) || "clinicpro";
+			pendingEmail = ((fd.get("email") as string | null) || "").trim();
+			pendingFirstName =
+				((fd.get("name") as string | null) || "").trim().split(/\s+/)[0] || "doctor";
+			const specialty = (fd.get("specialty") as string | null) || "unknown";
 
-			// No endpoint configured (pre-launch): just show thanks.
-			if (!ENDPOINT) {
-				track("Signup Submitted", { plan, specialty });
-				showThanks(firstName);
+			// customer_name becomes the tenant site slug, so it's the FACILITY
+			// (clinic) name, not the contact person's name.
+			const payload = {
+				customer_name: ((fd.get("clinic") as string | null) || "").trim(),
+				customer_email: pendingEmail,
+				plan: PLAN_MAP[planId] || "Clinic Pro",
+				country: "India",
+				currency: "INR",
+				customer_phone: ((fd.get("phone") as string | null) || "").trim() || null,
+			};
+
+			// Pre-launch (no admin URL configured): skip network, show thanks.
+			if (!ADMIN) {
+				track("Signup Submitted", { plan: planId, specialty });
+				showThanks(pendingFirstName);
 				return;
 			}
 
-			// Real submit path: POST JSON to lucoze_admin /api/signup.
 			setLoading(true);
 			try {
-				const payload = Object.fromEntries(formData.entries());
-				const res = await fetch(ENDPOINT, {
-					method: "POST",
-					headers: { "Content-Type": "application/json", Accept: "application/json" },
-					body: JSON.stringify(payload),
-				});
-				if (!res.ok) {
-					// Try to extract a server message; fall back to generic.
-					let detail = `Signup failed (${res.status}).`;
-					try {
-						const body = (await res.json()) as { message?: string; error?: string };
-						detail = body.message || body.error || detail;
-					} catch {
-						/* response wasn't JSON — keep the generic message */
-					}
-					throw new Error(detail);
-				}
-				track("Signup Submitted", { plan, specialty });
-				showThanks(firstName);
+				await callMethod("lucoze_admin.api.provisioning.initiate_signup", payload);
+				track("Signup OTP Sent", { plan: planId, specialty });
+				showOtpPanel();
 			} catch (err) {
-				const msg =
+				showError(
 					err instanceof Error
 						? err.message
-						: "Couldn't reach the signup server. Try again, or email hello@lucoze.com.";
+						: "Couldn't reach the signup server. Try again, or email hello@lucoze.com.",
+				);
 				track("Signup Error", { reason: err instanceof Error ? "server" : "network" });
-				showError(msg);
 			} finally {
 				setLoading(false);
+			}
+		});
+	}
+
+	// Step 2 — verify OTP, which creates the provisioning request.
+	if (otpForm) {
+		otpForm.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			clearOtpError();
+			if (!otpForm.reportValidity()) return;
+			const code = (otpInput?.value || "").trim();
+
+			setOtpLoading(true);
+			try {
+				await callMethod("lucoze_admin.api.provisioning.verify_signup", {
+					customer_email: pendingEmail,
+					otp_code: code,
+				});
+				track("Signup Verified", {});
+				showThanks(pendingFirstName);
+			} catch (err) {
+				showOtpError(
+					err instanceof Error ? err.message : "Couldn't verify the code. Please try again.",
+				);
+			} finally {
+				setOtpLoading(false);
+			}
+		});
+	}
+
+	// Resend OTP.
+	if (otpResend) {
+		otpResend.addEventListener("click", async () => {
+			clearOtpError();
+			if (!ADMIN || !pendingEmail) return;
+			try {
+				await callMethod("lucoze_admin.api.provisioning.resend_otp", {
+					customer_email: pendingEmail,
+				});
+				showOtpError("A new code has been sent to your email.");
+			} catch (err) {
+				showOtpError(err instanceof Error ? err.message : "Couldn't resend. Please try again.");
 			}
 		});
 	}
