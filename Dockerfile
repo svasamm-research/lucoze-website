@@ -6,6 +6,14 @@ FROM node:22-slim AS build
 ARG PUBLIC_BILLING_API_URL=""
 ENV PUBLIC_BILLING_API_URL=${PUBLIC_BILLING_API_URL}
 
+# Admin API base for the signup → provisioning flow. MUST be set at build
+# time (Astro inlines PUBLIC_* into the static bundle); unset = the signup
+# form stays in pre-launch mode and never submits.
+# UAT:  PUBLIC_ADMIN_API_URL=https://admin-uat.lucoze.com
+# Prod: PUBLIC_ADMIN_API_URL=https://admin.lucoze.com
+ARG PUBLIC_ADMIN_API_URL=""
+ENV PUBLIC_ADMIN_API_URL=${PUBLIC_ADMIN_API_URL}
+
 # Plausible domain. Empty on UAT (skips Plausible loading entirely) so UAT traffic
 # does not pollute production analytics. Set to "lucoze.com" for production builds.
 ARG PUBLIC_PLAUSIBLE_DOMAIN=""
