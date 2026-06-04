@@ -100,26 +100,45 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 			)
 		}
 
-		<script>
-			// Visitor tracker (lucoze_admin /api/tracking/track_visit) — silently
-			// no-ops when PUBLIC_TRACKING_ENDPOINT isn't set at build time.
-			import { initVisitorTracker } from "../lib/visitor-tracker";
-			initVisitorTracker(import.meta.env.PUBLIC_TRACKING_ENDPOINT);
-		</script>
+		<script is:inline defer src="/js/tracker.js"></script>
 
 		<script>
-			// Global event tracking for mailto: and outbound link clicks.
-			// Per-component events live in their own files; these two are
-			// site-wide and cheaper to handle centrally.
+			// Global click tracking. Two parallel streams:
+			//   - track() → Plausible custom events (Outbound, Mailto)
+			//   - LucozeTracker.trackCTAClick → admin.lucoze.com visitor pipeline
+			//     (loaded as a classic deferred script above; runs before this
+			//     module script, so the global is available by the time the
+			//     listener fires).
 			import { track } from "../lib/analytics";
+
+			type LucozeTrackerGlobal = {
+				trackCTAClick?: (plan: string, region: string) => void;
+			};
+
+			const regionFromPath = (path: string): string => {
+				const m = path.match(/^\/(ae|sg|au|in)\//);
+				return m ? m[1] : "default";
+			};
+
 			document.addEventListener("click", (e) => {
 				const a = (e.target as HTMLElement | null)?.closest?.("a");
 				if (!a) return;
 				const href = a.getAttribute("href") || "";
+
 				if (href.startsWith("mailto:")) {
 					track("Contact Email Click", { address: href.slice("mailto:".length) });
 					return;
 				}
+
+				// Signup CTA click → fire LucozeTracker.trackCTAClick so the
+				// admin pipeline flips the visitor's `clicked_free_trial` flag.
+				if (href.includes("/signup")) {
+					const tracker = (window as unknown as { LucozeTracker?: LucozeTrackerGlobal })
+						.LucozeTracker;
+					const plan = a.getAttribute("data-plan") || "";
+					tracker?.trackCTAClick?.(plan, regionFromPath(window.location.pathname));
+				}
+
 				try {
 					const url = new URL(href, window.location.href);
 					if (url.host && url.host !== window.location.host) {
