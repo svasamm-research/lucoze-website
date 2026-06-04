@@ -297,6 +297,16 @@ const BENEFITS: { title: string; sub: string }[] = [
 <script>
 	import { track } from "../../lib/analytics";
 
+	// LucozeTracker is loaded as a classic deferred script in Base.astro
+	// (/public/js/tracker.js). Module scripts run after classic deferred
+	// scripts, so the global is available by the time this code executes.
+	type LucozeTrackerGlobal = {
+		trackFormField?: (field: string, value: string) => void;
+		trackFormAbandon?: () => void;
+	};
+	const getTracker = (): LucozeTrackerGlobal | undefined =>
+		(window as unknown as { LucozeTracker?: LucozeTrackerGlobal }).LucozeTracker;
+
 	// SignupForm — two-step OTP signup wired to lucoze_admin's provisioning API.
 	//
 	// Flow:
@@ -370,7 +380,13 @@ const BENEFITS: { title: string; sub: string }[] = [
 	};
 	const showThanks = (firstName: string) => {
 		if (thanksName) thanksName.textContent = firstName;
-		if (form) form.hidden = true;
+		if (form) {
+			form.hidden = true;
+			// Mark form as completed so the beforeunload handler below
+			// doesn't fire trackFormAbandon when the user closes the tab
+			// after a successful signup.
+			form.dataset.submitted = "true";
+		}
 		if (otpForm) otpForm.hidden = true;
 		if (thanks) {
 			thanks.hidden = false;
@@ -434,6 +450,48 @@ const BENEFITS: { title: string; sub: string }[] = [
 			},
 			{ once: false },
 		);
+	}
+
+	// LucozeTracker integration — feeds partial form values into the
+	// admin.lucoze.com visitor pipeline. Form-field name mapping converts
+	// this page's input names to the keys lucoze_admin.api.tracking.FORM_FIELD_MAP
+	// already understands (rest are silently dropped server-side).
+	if (form) {
+		const FIELD_MAP: Record<string, string> = {
+			name: "customer_name",
+			phone: "phone",
+			email: "email",
+			clinic: "facility_name",
+		};
+
+		for (const [inputName, mappedName] of Object.entries(FIELD_MAP)) {
+			const input = form.querySelector<HTMLInputElement>(`[name="${inputName}"]`);
+			if (!input) continue;
+			input.addEventListener("blur", () => {
+				const v = input.value.trim();
+				if (v) getTracker()?.trackFormField?.(mappedName, v);
+			});
+		}
+
+		// Plan radio change — fires trackFormField("plan", <plan-id>).
+		form.querySelectorAll<HTMLInputElement>('input[name="plan"]').forEach((radio) => {
+			radio.addEventListener("change", () => {
+				if (radio.checked && radio.value) getTracker()?.trackFormField?.("plan", radio.value);
+			});
+		});
+
+		// Form abandon — if user touched the form but never reached the
+		// thanks panel, send trackFormAbandon on tab close. The dataset.submitted
+		// flag is set in showThanks() to suppress this on success.
+		let formInteracted = false;
+		form.addEventListener("input", () => {
+			formInteracted = true;
+		});
+		window.addEventListener("beforeunload", () => {
+			if (formInteracted && form.dataset.submitted !== "true") {
+				getTracker()?.trackFormAbandon?.();
+			}
+		});
 	}
 
 	// Step 1 — collect details, request OTP.
