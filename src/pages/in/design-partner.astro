@@ -94,8 +94,20 @@ const TRUST: [string, string, string][] = [
 
 						<div class="reach-fields reach-fields--mini">
 							<div class="reach-field reach-field--full">
-								<label for="d-name">Your name <em>*</em></label>
-								<input id="d-name" name="name" placeholder="Dr. …" required />
+								<label for="d-name">Name <em>*</em></label>
+								<div class="reach-name" data-name-wrap>
+									<select
+										class="reach-name__title"
+										name="title"
+										aria-label="Title"
+									>
+										<option value="Dr." selected>Dr.</option>
+										<option value="Mr.">Mr.</option>
+										<option value="Mrs.">Mrs.</option>
+										<option value="Ms.">Ms.</option>
+									</select>
+									<input id="d-name" name="name" placeholder="Soumya Sen" required />
+								</div>
 							</div>
 
 							<div class="reach-field reach-field--full">

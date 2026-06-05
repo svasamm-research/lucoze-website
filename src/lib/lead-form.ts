@@ -178,6 +178,12 @@ export function initLeadForm({ source }: InitOptions): void {
 		const { name, phone, email, phoneOk, emailOk, valid } = updateValidity();
 		if (!valid) return;
 
+		// Prepend the title chip selection (Dr. / Mr. / Mrs. / Ms.) so the
+		// admin stores the full salutation with the lead.
+		const titleSel = form.querySelector<HTMLSelectElement>('select[name="title"]');
+		const title = (titleSel?.value || "").trim();
+		const fullName = title ? `${title} ${name}` : name;
+
 		// Pre-launch (no admin URL): skip network, fall straight through.
 		if (!ADMIN) {
 			showSuccess();
@@ -187,7 +193,7 @@ export function initLeadForm({ source }: InitOptions): void {
 		setLoading(true);
 		try {
 			const body = {
-				name,
+				name: fullName,
 				source,
 				phone: phoneOk ? phone : null,
 				email: emailOk ? email : null,
