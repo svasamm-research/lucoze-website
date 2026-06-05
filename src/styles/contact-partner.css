@@ -2,10 +2,62 @@
  * Uses brand tokens from styles.css (--primary, --cream, --paper, --ink, --r-*, --s-*).
  */
 
+/* Honour the `hidden` attribute even when a rule below sets `display:`.
+ * Without this, e.g. `.reach-err { display: block }` and
+ * `.dp-form--hero { display: block }` win over the UA default and the
+ * success card / inline error spans render permanently. */
+.reach-hero [hidden],
+.dp-hero [hidden],
+.reach-bottom [hidden],
+.dp-apply [hidden] {
+	display: none !important;
+}
+
 /* ── shared: WhatsApp accent on ghost buttons in these pages ── */
 .reach-hero .btn--accent svg,
 .dp-hero .btn--accent svg {
 	flex-shrink: 0;
+}
+
+/* ════════ NAME field with title picker prefix ════════ */
+.reach-name {
+	display: flex;
+	align-items: stretch;
+}
+.reach-name__title {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 10px 0 12px;
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--ink);
+	background: var(--bg-code, #ede9df);
+	border: 1.5px solid var(--line, #e2e0d8);
+	border-right: none;
+	border-radius: var(--r-md, 10px) 0 0 var(--r-md, 10px);
+	appearance: none;
+	-webkit-appearance: none;
+	outline: none;
+	cursor: pointer;
+	background-image:
+		linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+		linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+	background-position:
+		calc(100% - 12px) 50%,
+		calc(100% - 7px) 50%;
+	background-size:
+		5px 5px,
+		5px 5px;
+	background-repeat: no-repeat;
+	padding-right: 24px;
+}
+.reach-name input {
+	border-radius: 0 var(--r-md, 10px) var(--r-md, 10px) 0 !important;
+	flex: 1;
+	min-width: 0;
+}
+.reach-name:focus-within .reach-name__title {
+	border-color: var(--primary);
 }
 
 /* ════════ CONTACT HERO ════════ */
