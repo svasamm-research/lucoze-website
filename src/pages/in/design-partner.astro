@@ -1,11 +1,291 @@
 ---
-import CompanyPage from "../../layouts/CompanyPage.astro";
-import { COMPANY } from "../../data/company.ts";
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import "../../styles/contact-partner.css";
+
+const SLOTS_TOTAL = 10;
+const SLOTS_OPEN = 4;
+
+const PARTNER_PERKS: { icon: string; t: string; s: string }[] = [
+	{
+		icon: "rupee",
+		t: "6 months free",
+		s: "On Clinic Pro or Hospital — every module included. No card, no trial clock.",
+	},
+	{
+		icon: "star",
+		t: "Lifetime founding pricing",
+		s: "Lock today's rate forever. As we add modules and raise prices, yours never moves.",
+	},
+	{
+		icon: "spark",
+		t: "Shape the roadmap",
+		s: "Weekly 30-min call with Mithun. Features you ask for ship before features we'd planned.",
+	},
+	{
+		icon: "map",
+		t: "East-India priority",
+		s: "We're building for Bengal, Odisha, Bihar, Jharkhand first. Local clinics go to the front.",
+	},
+];
+
+const PARTNER_STEPS: [string, string][] = [
+	["Apply", "30 seconds. Just your name and clinic line below."],
+	["Founder call", "A 30-min call with Mithun within 48 hours. No pitch deck."],
+	[
+		"Go live in 14 days",
+		"We migrate your data and train your staff. You keep working throughout.",
+	],
+	["Build together", "Weekly calls. Your feedback steers what we ship next."],
+];
+
+const PARTNER_FIT: [string, boolean][] = [
+	["A clinic or small hospital in East India", true],
+	["Ready to switch in the next 1–2 months", true],
+	["Will give us 30 minutes a week, honestly", true],
+	["Just price-shopping with no intent to move", false],
+	["Need 50 custom features before you'll commit", false],
+];
+
+const TRUST: [string, string, string][] = [
+	["clock", "Team replies in a day", "Founder line — not a call centre"],
+	["shield", "Patient data hosted in Mumbai", "ABDM-ready · DPDP-aligned"],
+	["lock", "No spam, no sales sequence", "One human, one honest reply"],
+];
 ---
 
-<CompanyPage
-	page={COMPANY["design-partner"]}
-	slug="design-partner"
+<Base
 	title="Design partner program — 6 months free | Lucoze"
-	description="10 East-India clinics shape Lucoze's roadmap. 6 months free, weekly founder calls, lifetime founding-customer pricing. 4 slots open."
-/>
+	description="Be one of ten East-India clinics that shape Lucoze. 6 months free, lifetime founding pricing, weekly founder calls. 4 slots open."
+>
+	{/* Hero */}
+	<section class="dp-hero">
+		<div class="container">
+			<div class="dp-hero__grid">
+				<div>
+					<div class="dp-scarce">
+						<span class="dp-scarce__dots">
+							{
+								Array.from({ length: SLOTS_TOTAL }).map((_, i) => (
+									<span
+										class={`dp-scarce__dot${i < SLOTS_TOTAL - SLOTS_OPEN ? " dp-scarce__dot--filled" : ""}`}
+									/>
+								))
+							}
+						</span>
+						<strong>{SLOTS_OPEN} of {SLOTS_TOTAL} slots open</strong>
+					</div>
+					<h1 class="dp-hero__h1">
+						Be one of the ten clinics that<br />shape Lucoze — and never pay full price.
+					</h1>
+					<p class="dp-hero__lead">
+						Our first ten design-partner clinics get <strong>six months free</strong>,{" "}
+						<strong>lifetime founding pricing</strong>, and a direct line to me. In return:
+						your honest feedback, weekly. That's the whole deal.
+					</p>
+				</div>
+
+				<aside class="dp-form dp-form--hero" data-contact-card>
+					<form class="contact-form" data-contact-form novalidate>
+						<div class="dp-form__head">
+							<h3>Apply to be a design partner</h3>
+							<span class="dp-form__open">{SLOTS_OPEN} slots open</span>
+						</div>
+
+						<div class="reach-fields reach-fields--mini">
+							<div class="reach-field reach-field--full">
+								<label for="d-name">Name <em>*</em></label>
+								<div class="reach-name" data-name-wrap>
+									<select
+										class="reach-name__title"
+										name="title"
+										aria-label="Title"
+									>
+										<option value="Dr." selected>Dr.</option>
+										<option value="Mr.">Mr.</option>
+										<option value="Mrs.">Mrs.</option>
+										<option value="Ms.">Ms.</option>
+									</select>
+									<input id="d-name" name="name" placeholder="Soumya Sen" required />
+								</div>
+							</div>
+
+							<div class="reach-field reach-field--full">
+								<label for="d-phone">Desk phone number</label>
+								<div class="reach-phone" data-phone-wrap>
+									<span class="reach-phone__cc">+91</span>
+									<input
+										id="d-phone"
+										name="phone"
+										inputmode="numeric"
+										maxlength="10"
+										placeholder="10-digit desk line"
+									/>
+								</div>
+								<span class="reach-err" data-phone-err hidden>
+									Enter a valid 10-digit Indian number.
+								</span>
+							</div>
+
+							<div class="reach-or reach-field--full"><span>or</span></div>
+
+							<div class="reach-field reach-field--full">
+								<label for="d-email">Official email</label>
+								<input
+									id="d-email"
+									name="email"
+									inputmode="email"
+									placeholder="clinic@hospital.in"
+								/>
+								<span class="reach-err" data-email-err hidden>
+									Enter a valid email address.
+								</span>
+							</div>
+
+							<button
+								type="submit"
+								class="btn btn--accent btn--lg reach-field--full"
+								data-contact-submit
+								style="justify-content: center; opacity: 0.5;"
+								disabled
+							>
+								<span data-contact-submit-label>Apply</span>
+								<Icon name="arrow" size={16} class="btn__arrow" />
+							</button>
+
+							<p class="reach-promise reach-field--full">
+								<Icon name="lock" size={15} /> Whatever you share stays with us — we reach out
+								once, and never sell it to agencies.
+							</p>
+
+							<p
+								class="reach-err reach-field--full"
+								data-contact-error
+								hidden
+								role="alert"
+								style="text-align: center;"
+							>
+							</p>
+						</div>
+					</form>
+				</aside>
+
+				<aside class="dp-form dp-form--hero" data-contact-success hidden>
+					<div class="reach-success reach-success--inline">
+						<span class="reach-success__badge"><Icon name="check" size={24} /></span>
+						<h3>Application received.</h3>
+						<p>
+							Mithun got your application. Expect a reply within a day to set up your founder
+							call.
+						</p>
+						<div class="reach-success__row">
+							<a
+								class="btn btn--ghost"
+								href="https://wa.me/918217820249"
+								target="_blank"
+								rel="noopener"
+							>
+								Nudge on WhatsApp
+							</a>
+							<button type="button" class="reach-success__again" data-contact-reset
+								>Edit →</button
+							>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
+
+	{/* How the program works */}
+	<section class="section section--tight">
+		<div class="container">
+			<h2 class="dp-h2">How the program works</h2>
+			<div class="dp-steps">
+				{
+					PARTNER_STEPS.map(([t, s], i) => (
+						<div class="dp-step">
+							<span class="dp-step__n">{i + 1}</span>
+							<div class="dp-step__t">{t}</div>
+							<div class="dp-step__s">{s}</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	{/* Fit + value stack */}
+	<section class="section section--tight" id="dp-apply">
+		<div class="container">
+			<div class="dp-apply">
+				<aside class="dp-fit">
+					<h3>Is this you?</h3>
+					<ul class="dp-fit__list">
+						{
+							PARTNER_FIT.map(([t, yes]) => (
+								<li class={yes ? "dp-fit--yes" : "dp-fit--no"}>
+									<span class="dp-fit__mark">
+										<Icon name={yes ? "check" : "x"} size={13} />
+									</span>
+									{t}
+								</li>
+							))
+						}
+					</ul>
+					<div class="dp-fit__note">
+						<Icon name="spark" size={15} />
+						<span>
+							Not in East India? Still apply — we read every one, we just prioritise the
+							region we're building for first.
+						</span>
+					</div>
+				</aside>
+
+				<div class="dp-form-wrap">
+					<aside class="dp-stack">
+						<div class="dp-stack__head">What you get</div>
+						{
+							PARTNER_PERKS.map((p) => (
+								<div class="dp-perk">
+									<span class="dp-perk__ic">
+										<Icon name={p.icon} size={20} />
+									</span>
+									<div>
+										<div class="dp-perk__t">{p.t}</div>
+										<div class="dp-perk__s">{p.s}</div>
+									</div>
+								</div>
+							))
+						}
+						<div class="dp-stack__foot">
+							<Icon name="check-circle" size={15} /> No catch. Cancel anytime — you keep your
+							data.
+						</div>
+					</aside>
+				</div>
+			</div>
+
+			<div class="reach-trust">
+				{
+					TRUST.map(([ic, t, s]) => (
+						<div class="reach-trust__item">
+							<span class="reach-trust__ic">
+								<Icon name={ic} size={18} />
+							</span>
+							<div>
+								<div class="reach-trust__t">{t}</div>
+								<div class="reach-trust__s">{s}</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Base>
+
+<script>
+	import { initLeadForm } from "../../lib/lead-form";
+	initLeadForm({ source: "design-partner", successHref: "/in/" });
+</script>
