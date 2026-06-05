@@ -178,11 +178,12 @@ export function initLeadForm({ source }: InitOptions): void {
 		const { name, phone, email, phoneOk, emailOk, valid } = updateValidity();
 		if (!valid) return;
 
-		// Prepend the title chip selection (Dr. / Mr. / Mrs. / Ms.) so the
-		// admin stores the full salutation with the lead.
+		// Pass the salutation as a separate field so the admin can split
+		// first/last name cleanly. Prepending it into `name` ends up filling
+		// first_name with the title and leaves the CRM list view's Full
+		// Name column showing just "Dr.".
 		const titleSel = form.querySelector<HTMLSelectElement>('select[name="title"]');
 		const title = (titleSel?.value || "").trim();
-		const fullName = title ? `${title} ${name}` : name;
 
 		// Pre-launch (no admin URL): skip network, fall straight through.
 		if (!ADMIN) {
@@ -193,7 +194,8 @@ export function initLeadForm({ source }: InitOptions): void {
 		setLoading(true);
 		try {
 			const body = {
-				name: fullName,
+				name,
+				title,
 				source,
 				phone: phoneOk ? phone : null,
 				email: emailOk ? email : null,
