@@ -24,39 +24,40 @@
 	display: flex;
 	align-items: stretch;
 }
-.reach-name__title {
+/* Specificity note: the generic `.reach-field input/textarea/select` rule
+   defined further down sets `background`, `border`, `border-radius`, and
+   `padding` — overriding any single-class rule for the picker. We pair
+   the .reach-field class with .reach-name__title so this rule wins. */
+.reach-field .reach-name__title {
 	display: inline-flex;
 	align-items: center;
-	padding: 0 10px 0 12px;
+	padding: 0 28px 0 12px;
 	font-size: 15px;
 	font-weight: 600;
 	color: var(--ink);
-	background: var(--bg-code, #ede9df);
+	background-color: var(--bg-code, #ede9df);
 	border: 1.5px solid var(--line, #e2e0d8);
 	border-right: none;
 	border-radius: var(--r-md, 10px) 0 0 var(--r-md, 10px);
 	appearance: none;
 	-webkit-appearance: none;
+	-moz-appearance: none;
 	outline: none;
 	cursor: pointer;
-	background-image:
-		linear-gradient(45deg, transparent 50%, var(--ink) 50%),
-		linear-gradient(135deg, var(--ink) 50%, transparent 50%);
-	background-position:
-		calc(100% - 12px) 50%,
-		calc(100% - 7px) 50%;
-	background-size:
-		5px 5px,
-		5px 5px;
+	/* Chevron-down indicator so users see this is a picker. SVG inlined so
+	   it stays crisp at any size and survives the appearance:none reset
+	   that hides the native dropdown arrow. */
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%231f1d1a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><polyline points='2 2 6 6 10 2'/></svg>");
 	background-repeat: no-repeat;
-	padding-right: 24px;
+	background-position: right 10px center;
+	background-size: 10px 7px;
 }
-.reach-name input {
-	border-radius: 0 var(--r-md, 10px) var(--r-md, 10px) 0 !important;
+.reach-field .reach-name input {
+	border-radius: 0 var(--r-md, 10px) var(--r-md, 10px) 0;
 	flex: 1;
 	min-width: 0;
 }
-.reach-name:focus-within .reach-name__title {
+.reach-field .reach-name:focus-within .reach-name__title {
 	border-color: var(--primary);
 }
 
