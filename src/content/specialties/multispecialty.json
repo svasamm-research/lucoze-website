@@ -25,5 +25,29 @@
 	],
 	"plan": "Clinic Pro",
 	"price": "₹2,999 / mo",
-	"dashSpecialty": "multispec"
+	"dashSpecialty": "multispec",
+	"detail": [
+		{
+			"title": "One record across every department",
+			"body": "A multi-specialty clinic's core problem is fragmentation: each doctor arrived with their own tool and their own forms. Lucoze puts every department — OPD, cardiology, dermatology and the rest — on one patient timeline, so the next doctor to see a patient reads the same record instead of re-asking. Billing spans multiple doctors and procedures on a single GST-compliant, itemised invoice."
+		},
+		{
+			"title": "Grows without re-training the whole desk",
+			"body": "Adding a doctor is a template, not a project: her schedule, billing rates and referral chain are inherited, so the front desk isn't re-learning the system every time the clinic expands. The interface is available in Hindi, which is what lets a Tier-2 front desk pick it up in an afternoon rather than over weeks."
+		}
+	],
+	"faqs": [
+		{
+			"q": "Can one invoice cover several doctors and procedures?",
+			"a": "Yes — a single itemised, GST-compliant invoice can span multiple doctors and procedures from the same visit, with each line mapped to the right doctor."
+		},
+		{
+			"q": "How hard is it to add a new doctor or department?",
+			"a": "Adding a doctor is template-driven — schedule, billing rates and referral chain are inherited — so it takes minutes and doesn't require re-training the front desk."
+		},
+		{
+			"q": "Is a Hindi interface available for front-desk staff?",
+			"a": "Yes. The front-desk interface is available in Hindi, which is what lets Tier-2 clinic staff get productive quickly. Bengali and Odia are on the roadmap."
+		}
+	]
 }

@@ -25,5 +25,29 @@
 	],
 	"plan": "Hospital",
 	"price": "₹7,999 / mo",
-	"dashSpecialty": "multispec"
+	"dashSpecialty": "hospital",
+	"detail": [
+		{
+			"title": "A clinic tool breaks at 30 beds",
+			"body": "A small hospital has an ICU, wards, an OT, a Schedule-X pharmacy and a Medical Director who signs off on outcomes — none of which clinic software was built for. Lucoze runs inpatient care on a bed map where admission, discharge and the discharge summary are one record, and pharmacy, lab and OPD charges roll up into a single IPD bill instead of being chased across departments."
+		},
+		{
+			"title": "Theatre, materials and the metrics NABH asks for",
+			"body": "Booking a surgery reserves the OT slot, the staff, the consumables and the post-op room together, and a cancellation releases the whole chain. The operational metrics an accreditation review expects — average length of stay, infection rate, medication errors — are produced from the same data rather than rebuilt in spreadsheets by the admin team."
+		}
+	],
+	"faqs": [
+		{
+			"q": "Does Lucoze handle inpatient (IPD) and bed management?",
+			"a": "Yes. A bed map tracks admission through discharge as one record, and pharmacy, lab and OPD charges roll up into a single IPD bill."
+		},
+		{
+			"q": "Can it schedule the OT with staff and consumables?",
+			"a": "Yes. A surgery booking reserves the OT slot, staff, consumables and post-op room together, and a cancellation releases the chain."
+		},
+		{
+			"q": "Does it produce NABH-oriented dashboards?",
+			"a": "Metrics such as average length of stay, infection rate and medication errors are generated from operational data. These support an accreditation review; accreditation itself remains the hospital's responsibility."
+		}
+	]
 }

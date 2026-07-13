@@ -14,6 +14,19 @@ export default defineConfig({
 			// URLs are /in/solutions/clinics/ and /in/solutions/hospitals/;
 			// the legacy hyphenated paths now only exist as 301 redirects.
 			filter: (page) => !page.includes("/in/redesign-preview/"),
+			// lastmod = build/publish time (whole static site ships together on
+			// each deploy). priority nudges the homepage above deep pages.
+			// ponytail: uniform lastmod is a weak signal — swap to per-page git
+			// mtime if crawl budget ever becomes a real constraint.
+			lastmod: new Date(),
+			serialize(item) {
+				if (item.url === "https://lucoze.com/in/") item.priority = 1.0;
+				else if (/\/in\/(pricing|signup)\/$/.test(item.url)) item.priority = 0.9;
+				else if (/\/in\/(features|solutions|specialties)\//.test(item.url))
+					item.priority = 0.8;
+				else if (item.url.includes("/in/blog/")) item.changefreq = "weekly";
+				return item;
+			},
 		}),
 	],
 	// Legacy regions /ae /au /sg and root paths now redirect to /in/. India is

@@ -52,6 +52,11 @@ const specialties = defineCollection({
 		plan: z.string(),
 		price: z.string(),
 		dashSpecialty: z.string(),
+		// Longer-form, specialty-specific prose sections (added to de-thin the
+		// template family). Each renders as a titled paragraph below the visual.
+		detail: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
+		// Specialty-specific Q&A → renders on-page + as FAQPage schema.
+		faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
 	}),
 });
 

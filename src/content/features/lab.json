@@ -6,9 +6,9 @@
 	"h1Parts": ["From sample to ", "signed report", " — every step tracked."],
 	"lead": "Lab errors are usually process errors, not technique errors. The sample got mislabelled. The doctor wasn’t notified. The report didn’t reach the patient. Lucoze’s lab module fixes the process — with barcodes, role-based hand-offs, and a status feed everyone sees.",
 	"stats": [
-		{ "value": "~2.4h", "label": "Average sample-to-report TAT" },
+		{ "value": "Same-day", "label": "Routine sample-to-report turnaround" },
 		{ "value": "Barcode", "label": "On every sample, every time" },
-		{ "value": "0 lost", "label": "Reports across 30 design-partner labs" }
+		{ "value": "Zero-loss", "label": "Barcoded chain of custody, sample to report" }
 	],
 	"rows": [
 		{

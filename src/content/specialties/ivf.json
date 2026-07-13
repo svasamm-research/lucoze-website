@@ -20,10 +20,34 @@
 		],
 		[
 			"Regulatory compliance",
-			"Surrogacy and Assisted Reproductive Technology (Regulation) Act records — ready for the registrar."
+			"Records aligned to the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — the two separate statutes an ART clinic reports under. Ready for the registrar."
 		]
 	],
 	"plan": "Clinic Pro",
 	"price": "₹2,999 / mo",
-	"dashSpecialty": "ivf"
+	"dashSpecialty": "ivf",
+	"detail": [
+		{
+			"title": "The cycle is the unit of work, not the visit",
+			"body": "An IVF journey is a cycle — stimulation, OPU, fertilisation, transfer, beta — running over roughly two to three weeks with many visits, hormone readings and embryo grades along the way. Most clinic software forces this into a series of disconnected appointments. Lucoze opens a cycle as a single object: the protocol, the day count and the upcoming tests sit on one view, and the patient summary shows cycle progress on top."
+		},
+		{
+			"title": "Billing and records that fit a regulated, high-cost journey",
+			"body": "IVF is expensive and usually paid over an instalment plan, with the counsellor's cost discussions on record. Lucoze keeps the plan and the running balance attached to the cycle, so there are no mid-cycle billing surprises. Cycle, donor and consent records are organised to line up with the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — the two separate statutes an ART clinic reports under."
+		}
+	],
+	"faqs": [
+		{
+			"q": "Does Lucoze model an IVF cycle rather than single appointments?",
+			"a": "Yes. A cycle is one record spanning stimulation through beta, with the protocol, day count, tests and embryo grades tracked together and progress shown on the patient summary."
+		},
+		{
+			"q": "How does it handle the ART and Surrogacy Acts?",
+			"a": "Cycle, donor and consent records are structured to support reporting under the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — two distinct laws — so records are ready for the registrar. Legal compliance itself remains the clinic's responsibility."
+		},
+		{
+			"q": "Can it track embryology and cryopreservation?",
+			"a": "Day-3 and day-5 grades attach to the cycle, and cryopreserved embryos are tracked over time against the patient and cycle."
+		}
+	]
 }
