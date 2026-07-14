@@ -32,8 +32,6 @@ const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | L
 // Site-wide entity graph. Emitted on every page so Google/LLMs can resolve
 // "Lucoze" (brand) → Svasamm Research Pvt. Ltd. (legal entity) with a founder
 // node for corroboration. The homepage adds a page-specific FAQPage on top.
-// ponytail: sameAs currently carries only the verifiable founder LinkedIn —
-// add the Lucoze company LinkedIn / X / Crunchbase URLs here as they go live.
 const orgLd = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
@@ -42,7 +40,19 @@ const orgLd = {
 	legalName: "Svasamm Research Pvt. Ltd.",
 	url: siteUrl,
 	logo: `${siteUrl}/favicon-vault-32.png`,
-	sameAs: ["https://www.linkedin.com/in/mithunksingh"],
+	sameAs: [
+		"https://www.linkedin.com/company/113023331/",
+		"https://www.crunchbase.com/organization/lucoze",
+		"https://x.com/lucozehq",
+	],
+	telephone: "+91 9147144638",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Konnagar",
+		addressRegion: "West Bengal",
+		postalCode: "712246",
+		addressCountry: "IN",
+	},
 	founder: {
 		"@type": "Person",
 		name: "Mithun K. Singh",
@@ -51,6 +61,7 @@ const orgLd = {
 	},
 	contactPoint: {
 		"@type": "ContactPoint",
+		telephone: "+91 9147144638",
 		email: "hello@lucoze.com",
 		contactType: "sales",
 		areaServed: "IN",
