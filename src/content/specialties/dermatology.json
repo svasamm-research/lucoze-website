@@ -16,7 +16,7 @@
 		],
 		[
 			"Photo-anchored notes",
-			"Before / after images attached to the visit. Comparison view side-by-side. NABH-compliant consent flow."
+			"Before / after images attached to the visit. Comparison view side-by-side. Documented consent flow before every procedure."
 		],
 		[
 			"Recall calendar by category",
@@ -29,5 +29,29 @@
 	],
 	"plan": "Clinic Pro",
 	"price": "₹2,999 / mo",
-	"dashSpecialty": "derm"
+	"dashSpecialty": "derm",
+	"detail": [
+		{
+			"title": "Two businesses, one patient record",
+			"body": "A derm practice runs medical dermatology and aesthetics side by side, and in India the two are often reported and taxed differently. Lucoze keeps a single patient timeline but separate ledgers, so cosmetic revenue can be reported apart from medical work — without maintaining two systems or double-entering a patient who does both."
+		},
+		{
+			"title": "Packages and recalls that match how derm sells",
+			"body": "Aesthetic work is sold in courses — a laser package over several sessions, maintenance botox on a cycle. Lucoze models the package as one purchase with visits drawn against it, tracks the outstanding balance, and drives category-specific recalls (a biopsy review, a botox top-up, a laser follow-up) over WhatsApp so the calendar fills itself."
+		}
+	],
+	"faqs": [
+		{
+			"q": "Can cosmetic and medical billing be kept separate?",
+			"a": "Yes — two ledgers under one patient. Cosmetic revenue can be reported independently of medical work, which matters where the two are taxed or regulated differently."
+		},
+		{
+			"q": "How are before/after photos handled?",
+			"a": "Clinical photos attach to the visit on the timeline with a side-by-side comparison view, captured under a documented consent step before the procedure."
+		},
+		{
+			"q": "Does it support multi-session packages like laser courses?",
+			"a": "Yes. A course is one package with a set number of sessions; each visit draws down the package and the remaining balance is always visible to the front desk."
+		}
+	]
 }

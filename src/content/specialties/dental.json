@@ -25,5 +25,29 @@
 	],
 	"plan": "Clinic Pro",
 	"price": "₹2,999 / mo",
-	"dashSpecialty": "dental"
+	"dashSpecialty": "dental",
+	"detail": [
+		{
+			"title": "Built around the chair, not the doctor",
+			"body": "In most clinic software the calendar is keyed to a doctor. In a dental group the real constraint is the chair: two practitioners share one operatory, and procedures overrun. Lucoze schedules against the chair, so a delayed RCT reshuffles that chair's queue without touching the other operatory. Utilisation per chair is visible through the day — which is exactly where a dental group's margin quietly leaks."
+		},
+		{
+			"title": "Treatment plans that span months, billed the way patients pay",
+			"body": "A crown, an RCT and a whitening are one clinical plan across several visits, usually paid in instalments. Lucoze keeps the plan, its visits and the running balance on a single record, so the front desk always knows what has been paid and what is due — and the patient sees one coherent bill instead of a separate charge per appointment."
+		}
+	],
+	"faqs": [
+		{
+			"q": "Can Lucoze handle multiple chairs and practitioners in one clinic?",
+			"a": "Yes. Each chair has its own schedule and queue, and a procedure is assigned to whichever practitioner runs it. Utilisation is tracked per chair, so idle time is visible before it costs you a week."
+		},
+		{
+			"q": "How are dental imaging files (OPG, IOPA, CBCT) stored?",
+			"a": "Imaging attaches to the visit on the patient timeline and is viewable from the operatory, so there's no switching to a separate imaging machine mid-appointment. Files stay in Indian data centres like the rest of the record."
+		},
+		{
+			"q": "Does it support instalment (EMI) treatment plans?",
+			"a": "Yes. A multi-visit plan can carry an instalment schedule; each payment is tracked against the plan balance, and the patient receives one consolidated statement rather than per-visit invoices."
+		}
+	]
 }

@@ -1,0 +1,30 @@
+# Lucoze
+
+> Healthcare management software for Indian clinics and hospitals. Patient records, appointments, billing, lab, and pharmacy on one platform, with all patient data hosted in India. Built by Svasamm Research Pvt. Ltd.
+
+Lucoze is an India-first clinic and hospital management system (HMS/EMR). It is designed around Indian workflows and compliance: ABDM/ABHA integration, DPDP 2023, GST-compliant e-invoicing, and Hindi UI. Founder-led by Mithun K. Singh. Data residency is in Indian data centres; customers can export all records (CSV/PDF) with no lock-in.
+
+## Product
+- [Appointments](https://lucoze.com/in/features/appointments/): Department-first booking, family-linked patient timelines, reminders.
+- [Patient records](https://lucoze.com/in/features/patient-records/): Unified EMR, ABHA-linked records, multilingual patient search.
+- [Billing, accounting & inventory](https://lucoze.com/in/features/billing/): GST-compliant invoicing (CGST/SGST/IGST), e-invoicing, shared pharmacy/OPD ledger.
+- [Lab](https://lucoze.com/in/features/lab/): Sample-to-report tracking, reference-range flagging, NABL-oriented audit trail.
+- [Pharmacy](https://lucoze.com/in/features/pharmacy/): Inventory, batch/expiry, FEFO dispensing, Schedule-H/X handling.
+- [HR](https://lucoze.com/in/features/hr/): Attendance, statutory PF/ESI/TDS payroll, department incentives.
+
+## Solutions
+- [For clinics](https://lucoze.com/in/solutions/clinics/)
+- [For hospitals](https://lucoze.com/in/solutions/hospitals/)
+- [Pricing](https://lucoze.com/in/pricing/): Plans from ₹1,499/month, 14-day free trial.
+
+## Guides & compliance
+- [ABDM & ABHA guide](https://lucoze.com/in/blog/abdm-abha-guide/): What ABDM, ABHA, HPR, and HFR mean for a clinic.
+- [What "ABDM-ready" actually means](https://lucoze.com/in/blog/abdm-ready-meaning/)
+- [DPDP 2023 for clinics](https://lucoze.com/in/blog/dpdp-for-clinics/): Consent, breach notification, patient data rights.
+- [Security & data](https://lucoze.com/in/blog/security-data/): Encryption, India data residency, backups.
+- [Switching from Practo Ray](https://lucoze.com/in/blog/switch-from-practo-ray/)
+
+## Company
+- [About Lucoze](https://lucoze.com/in/about/)
+- [Contact](https://lucoze.com/in/contact/): hello@lucoze.com
+- [Blog](https://lucoze.com/in/blog/)

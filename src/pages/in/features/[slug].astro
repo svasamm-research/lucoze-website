@@ -20,9 +20,21 @@ if (!entry) {
 	return Astro.redirect("/404");
 }
 const feature = entry.data;
+
+// BreadcrumbList is already emitted by SubHero → Crumbs; only add the FAQPage.
+const faqLd = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: feature.faqs.map((f) => ({
+		"@type": "Question",
+		name: f.q,
+		acceptedAnswer: { "@type": "Answer", text: f.a },
+	})),
+};
 ---
 
 <Base title={`${feature.label} — Lucoze`} description={feature.lead.slice(0, 160)}>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />
 	<SubHero
 		crumbs={[
 			{ href: "/in/", label: "Home" },

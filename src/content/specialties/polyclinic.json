@@ -12,7 +12,7 @@
 		],
 		[
 			"WhatsApp-first reminders",
-			"Confirmation lands in Hindi. Reschedule is one tap. No-shows drop 6-8%."
+			"Confirmation lands in Hindi. Reschedule is one tap. Fewer no-shows, week over week."
 		],
 		[
 			"Multi-doctor instant rota",
@@ -25,5 +25,29 @@
 	],
 	"plan": "Clinic Pro",
 	"price": "₹2,999 / mo",
-	"dashSpecialty": "poly"
+	"dashSpecialty": "poly",
+	"detail": [
+		{
+			"title": "A queue that survives 60 patients before noon",
+			"body": "A high-volume polyclinic runs on the front desk holding a moving queue together: walk-ins and token-holders, several doctors, everyone arriving at once. Lucoze inserts walk-ins by triage code — emergency before fever before follow-up — so the doctor always knows who is next. When a doctor runs late, the queue rebalances to another without an argument at the desk."
+		},
+		{
+			"title": "Cash-first billing and same-day reconciliation",
+			"body": "Tier-2 OPD is a cash-and-UPI business with plenty of partial payments. Lucoze keeps cash, UPI and partial settlements on one screen and closes the day with a clean reconciliation, so the owner isn't rebuilding the day's takings from a drawer of receipts. Reminders and confirmations go out in Hindi over WhatsApp."
+		}
+	],
+	"faqs": [
+		{
+			"q": "How does Lucoze handle walk-ins mixed with booked tokens?",
+			"a": "Walk-ins are inserted into the live queue by triage priority alongside token-holders, so the doctor sees a single ordered list of who's next."
+		},
+		{
+			"q": "What happens when a doctor is delayed?",
+			"a": "The queue rebalances to another available doctor, so patients aren't stranded and the front desk isn't negotiating the change by hand."
+		},
+		{
+			"q": "Does it support cash and UPI with partial payments?",
+			"a": "Yes — cash, UPI and partial settlements are handled on one screen, with an end-of-day reconciliation that closes the books quickly."
+		}
+	]
 }
