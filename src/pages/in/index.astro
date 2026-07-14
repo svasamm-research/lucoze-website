@@ -353,26 +353,7 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			</div>
 		</section>
 
-		<script
-			type="application/ld+json"
-			slot="head"
-			set:html={JSON.stringify({
-				"@context": "https://schema.org",
-				"@type": "Organization",
-				name: "Lucoze",
-				url: "https://lucoze.com",
-				logo: "https://lucoze.com/favicon-vault-32.png",
-				sameAs: [],
-				contactPoint: {
-					"@type": "ContactPoint",
-					email: "hello@lucoze.com",
-					contactType: "sales",
-					areaServed: "IN",
-					availableLanguage: ["en", "hi", "bn"],
-				},
-			})}
-		/>
-
+		{/* Organization + WebSite schema now emitted site-wide from Base.astro. */}
 		<script
 			type="application/ld+json"
 			slot="head"
