@@ -101,7 +101,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				title: "Book a 30-minute walkthrough.",
 				bullets: [
 					"Email: hello@lucoze.com",
-					"WhatsApp: +91 ······ (Mon-Sat, 9am-7pm IST)",
+					"WhatsApp: +91 9147144638 (Mon-Sat, 9am-7pm IST)",
 					"Calendar: lucoze.com/demo",
 				],
 			},
@@ -127,8 +127,9 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				kicker: "Office",
 				title: "Svasamm Research Pvt. Ltd.",
 				bullets: [
-					"Registered: Hooghly, West Bengal, India",
-					"Operating: distributed team across India",
+					"Registered: Konnagar, Hooghly, West Bengal 712246, India",
+					"Phone: +91 9147144638",
+					"Serving: West Bengal, Bihar, Jharkhand, Odisha, UP & Northeast India",
 					"Patient data: Indian data centres",
 				],
 			},
