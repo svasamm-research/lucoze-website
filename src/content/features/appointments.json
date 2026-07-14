@@ -6,9 +6,9 @@
 	"h1Parts": ["Booking that starts with ", "the question", " — not the form."],
 	"lead": "Most clinic software opens a booking with “name and phone number.” That’s the wrong question. The patient already knows what they need: a department, a doctor, a slot that fits their day. We ask in that order.",
 	"stats": [
-		{ "value": "92%", "label": "Of bookings finish in under 60 sec" },
-		{ "value": "5-7%", "label": "Drop in no-shows with WhatsApp reminders" },
-		{ "value": "200+", "label": "Front-desk searches per shift, indexed" }
+		{ "value": "< 60s", "label": "To book and confirm a patient" },
+		{ "value": "WhatsApp", "label": "Reminders that cut no-shows" },
+		{ "value": "Instant", "label": "Indexed front-desk patient search" }
 	],
 	"rows": [
 		{
