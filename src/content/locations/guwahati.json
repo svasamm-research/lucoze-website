@@ -1,0 +1,34 @@
+{
+	"slug": "guwahati",
+	"kind": "city",
+	"name": "Guwahati",
+	"region": "Northeast India",
+	"metaTitle": "Clinic & Hospital Management Software in Guwahati | Lucoze",
+	"metaDescription": "Cloud HMS and EMR for Guwahati clinics and hospitals — GS Road, Bhangagarh, Six Mile and Zoo Road. ABHA at first visit, DPDP 2023 ready, data in Indian data centres.",
+	"eyebrow": "For clinics & hospitals in Guwahati",
+	"h1Parts": ["Clinic & hospital software for ", "Guwahati", " practices."],
+	"lead": "Clinic and hospital software for Guwahati's practices — one cloud platform for records, billing, lab and pharmacy. Free 14-day trial, and most clinics are live within 14 days.",
+	"intro": "Guwahati is the Northeast's medical hub — patients travel in from Assam, Manipur, Mizoram and beyond for care they can't get at home, which means your front desk handles heavy, mixed-language footfall every day. Lucoze puts records, appointments, GST billing, lab and pharmacy on one cloud platform, so a specialist on GS Road or a hospital in Bhangagarh isn't stitching together separate registers. It runs on ordinary broadband or mobile data and links ABHA at the first visit. Our team works from Konnagar, West Bengal, supporting you remotely-first, with on-site help for larger hospital setups.",
+	"points": [
+		["Made for referral-heavy footfall", "As the region's referral hub, Guwahati clinics see patients from every corner of the Northeast — multilingual patient search finds the right record fast."],
+		["One system for the hospital belt", "From Bhangagarh's hospitals to Zoo Road and Six Mile clinics, keep records, appointments, GST billing, lab and pharmacy in one place instead of five."],
+		["ABHA and scheme claims at registration", "Create and link ABHA numbers under Ayushman Bharat (PMJAY) and state schemes at the first visit, ready for the referrals arriving from across the region."],
+		["Data in India, no lock-in", "Every record stays in Indian data centres under DPDP 2023, with CSV and PDF export any time you want out."]
+	],
+	"localContext": "Guwahati's clinics cluster along GS Road, Zoo Road, Six Mile and the Bhangagarh hospital belt, with Paltan Bazaar busy in the centre. Because patients arrive from across the Northeast, your desk juggles Assamese, Bengali, Hindi and English in a single queue. Lucoze's UI rolls out in Hindi first (Q3 2026), then Bengali — relevant when Barak Valley patients come up from Silchar — then Odia; full Assamese screens aren't ready yet. What works today is multilingual patient search across Bengali, Devanagari and Latin, plus printable local-language cheat-sheets to pin at the front desk. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts.",
+	"citiesServed": [],
+	"faqs": [
+		{
+			"q": "Does Lucoze need a fast internet connection?",
+			"a": "Lucoze is cloud-based and kept lightweight, so it runs on ordinary broadband or mobile data. It isn't an offline system — a working connection is needed — but we keep the app efficient and stay reachable on WhatsApp if a busy OPD on GS Road hits a slow patch."
+		},
+		{
+			"q": "Where is our patient data stored?",
+			"a": "In Indian data centres under the DPDP Act 2023. Your data never leaves the country, and you can export everything to CSV or PDF whenever you like — no lock-in."
+		},
+		{
+			"q": "Can Lucoze handle patients who speak different languages?",
+			"a": "Multilingual patient search works today across Bengali, Devanagari and Latin scripts, and printable cheat-sheets help your staff. The UI itself rolls out in Hindi first (Q3 2026), then Bengali, then Odia; full Assamese screens aren't available yet."
+		}
+	]
+}

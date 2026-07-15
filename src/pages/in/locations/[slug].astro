@@ -21,6 +21,18 @@ const loc = entry.data;
 
 const POINT_ICONS = ["check", "shield", "cloud", "users", "spark", "chart"];
 
+// Internal linking: state pages link to their city pages; city pages link back
+// to their state/region page.
+const allLocations = await getCollection("locations");
+const relatedCities =
+	loc.kind === "state"
+		? allLocations.filter((l) => l.data.region === loc.name).map((l) => l.data)
+		: [];
+const parentState =
+	loc.kind === "city"
+		? allLocations.find((l) => l.data.kind === "state" && l.data.name === loc.region)?.data
+		: null;
+
 const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
 const pageUrl = `${siteUrl}${Astro.url.pathname}`;
 // BreadcrumbList is emitted by SubHero → Crumbs; add Service + FAQPage here.
@@ -105,6 +117,28 @@ const faqLd =
 					loc.citiesServed.length > 0 && (
 						<p>
 							<strong>Serving clinics and hospitals across:</strong> {loc.citiesServed.join(", ")}.
+						</p>
+					)
+				}
+				{
+					relatedCities.length > 0 && (
+						<p>
+							<strong>City pages:</strong>{" "}
+							{relatedCities.map((c, i) => (
+								<>
+									{i > 0 && ", "}
+									<a href={`/in/locations/${c.slug}/`}>{c.name}</a>
+								</>
+							))}
+						</p>
+					)
+				}
+				{
+					parentState && (
+						<p>
+							<a href={`/in/locations/${parentState.slug}/`}>
+								← Clinic software across {parentState.name}
+							</a>
 						</p>
 					)
 				}
