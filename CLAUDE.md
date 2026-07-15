@@ -33,8 +33,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - App nginx listens on **`:80` only** — TLS terminates upstream at **Dokploy/Traefik**.
 - **Prod runs on a Dokploy *remote server*; public DNS (GoDaddy) for `lucoze.com` + `www` points *directly* at that server** — not the manager VPS (which only hosts `manager.lucoze.com` + UAT routing). Don't route the prod domain through the manager.
 - Release flow: `develop → uat → main`; production builds from **`main`**.
-- **HSTS, www→apex, HTTP→HTTPS are edge config, not in `nginx.conf`** — see **`deploy/dokploy-seo.md`**. (Dokploy auto-generates the Traefik router from the Domain UI entry — don't hand-write file-provider config.)
-- Apex `/` → `/in/` 301 *is* in `nginx.conf` (`location = /`). Known nit: it emits an absolute `http` Location because Traefik forwards plain HTTP — fix with `absolute_redirect off;` when touching the edge config.
+- **Only HTTP→HTTPS + TLS/domain provisioning are at the Dokploy/Traefik edge.** **www→apex 301, HSTS, apex `/`→`/in/` 301, and `absolute_redirect off` all live in `nginx.conf`** (ship with the image). Traefik-middleware labels for www/HSTS proved unreliable in Dokploy (router-name mismatch) — don't use them; see `deploy/dokploy-seo.md`.
+- HSTS is host-only for now; upgrade to `includeSubDomains` then `preload` only once every `*.lucoze.com` is confirmed HTTPS.
 
 ## Growth
 - Strategy (the *why*): **`docs/growth-plan.md`**. Update; don't duplicate.
