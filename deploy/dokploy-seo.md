@@ -1,13 +1,10 @@
 # Edge SEO config (Dokploy / Traefik)
 
-Three SEO fixes live at the TLS edge, **not** in this repo's `nginx.conf` (which
-only listens on `:80` behind Dokploy's Traefik proxy):
-
-1. **HTTP → HTTPS** redirect
-2. **`www.lucoze.com` → `lucoze.com`** 301 (canonical host consolidation)
-3. **HSTS** (`Strict-Transport-Security`) header
-
-The apex `/` → `/in/` 301 is already handled in-app (`nginx.conf`, `location = /`).
+Only **HTTP → HTTPS** + TLS/domain provisioning live at the Dokploy/Traefik edge.
+**www→apex 301, HSTS, and the apex `/`→`/in/` 301 are all handled in the app's
+`nginx.conf`** — Traefik forwards the real `Host` header and relays response headers
+to the browser over HTTPS, so nginx does these reliably, without the Traefik-middleware
+router-name guessing that proved fragile in Dokploy.
 
 Dokploy runs [Traefik](https://doc.traefik.io/traefik/) as its reverse proxy and
 provisions Let's Encrypt certs. Apply the below once per environment.
@@ -26,32 +23,22 @@ In the app's **Domains** tab:
    If not, it's covered by the entrypoint redirect Dokploy sets by default —
    verify with `curl -I http://lucoze.com` returns `301` → `https://`.
 
-## 2. www → apex + HSTS (Traefik middlewares)
+## 2. www → apex + HSTS — handled in `nginx.conf` (NOT Traefik labels)
 
-Add these labels to the `website` service. In Dokploy: **Advanced → Docker /
-Compose labels** (or edit `deploy/lucoze-website.yaml` under the service and
-redeploy). Note the doubled `$$` — Docker Compose interpolates a single `$`.
+Originally documented as Traefik middlewares, but **Dokploy names the domain
+routers itself**, so label-attached middlewares silently don't apply (the router
+name never matches, and `www` is a *separate* router from the apex). Both now
+live in `nginx.conf` and ship with the image:
 
-```yaml
-labels:
-  # --- www.lucoze.com -> lucoze.com (301) ---
-  - "traefik.http.middlewares.lucoze-www.redirectregex.regex=^https?://www\\.lucoze\\.com/(.*)"
-  - "traefik.http.middlewares.lucoze-www.redirectregex.replacement=https://lucoze.com/$${1}"
-  - "traefik.http.middlewares.lucoze-www.redirectregex.permanent=true"
+- **www → apex:** `if ($host = www.lucoze.com) { return 301 https://lucoze.com$request_uri; }`
+- **HSTS:** `add_header Strict-Transport-Security "max-age=31536000" always;`
+  — host-only for now. Add `; includeSubDomains`, then later `; preload` (and submit
+  to hstspreload.org), **only** once every `*.lucoze.com` (app, manager, analytics,
+  status, uat…) is confirmed HTTPS-only. Both are hard to reverse.
 
-  # --- HSTS (1 year, subdomains, preload) ---
-  - "traefik.http.middlewares.lucoze-hsts.headers.stsSeconds=31536000"
-  - "traefik.http.middlewares.lucoze-hsts.headers.stsIncludeSubdomains=true"
-  - "traefik.http.middlewares.lucoze-hsts.headers.stsPreload=true"
-
-  # --- attach both middlewares to this app's router ---
-  # Replace <router> with the router name Dokploy generated for this service
-  # (find it in the Traefik dashboard, usually the app/service name).
-  - "traefik.http.routers.<router>.middlewares=lucoze-www,lucoze-hsts"
-```
-
-> If Dokploy manages the router name for you, prefer adding the two middlewares
-> through the UI's middleware field rather than hard-coding `<router>`.
+**Action:** if you added `lucoze-www` / `lucoze-hsts` middleware labels to the Dokploy
+compose, **remove them** (they don't attach — pure confusion), then rebuild + redeploy
+so the new `nginx.conf` takes effect.
 
 ## 3. Verify after deploy
 
