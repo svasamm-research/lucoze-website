@@ -1143,12 +1143,37 @@
 .footer__col a:hover {
 	color: var(--primary);
 }
+/* Locations row + legal bottom bar share ONE divider (the border sits on
+   .footer__locations); .footer__bottom stays borderless so there's a single
+   clean line, not two mismatched rules. */
+.footer__locations {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--s-2) var(--s-3);
+	padding-top: var(--s-6);
+	margin-bottom: var(--s-4);
+	border-top: 1px solid var(--border-light);
+	font-size: var(--t-xs);
+}
+.footer__locations-label {
+	color: var(--muted);
+	font-weight: 600;
+}
+.footer__locations-sep {
+	color: var(--border);
+}
+.footer__locations a {
+	color: var(--muted);
+	transition: color var(--tr-fast);
+}
+.footer__locations a:hover {
+	color: var(--primary);
+}
 .footer__bottom {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-top: var(--s-6);
-	border-top: 1px solid var(--border-light);
 	font-size: var(--t-xs);
 	color: var(--muted);
 	flex-wrap: wrap;

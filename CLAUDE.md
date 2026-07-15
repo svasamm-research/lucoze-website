@@ -8,6 +8,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
   - `blog/*.mdx` — posts (frontmatter: title, dek, category, **author**, date, readMins, composite, draft).
   - `features/*.json` — product feature pages (stats, rows, faqs).
   - `specialties/*.json` — specialty pages (why, plan, price, **dashSpecialty**, **detail**, **faqs**).
+  - `locations/*.json` — local/regional landing pages at `/in/locations/[slug]/` (kind state|city, intro, points, localContext, citiesServed, faqs). Keep 60%+ unique per page (quality gate); footer "Locations" nav links them.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
 
 ## Git workflow (enforced by husky)
