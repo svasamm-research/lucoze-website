@@ -60,4 +60,24 @@ const specialties = defineCollection({
 	}),
 });
 
-export const collections = { blog, features, specialties };
+const locations = defineCollection({
+	loader: glob({ pattern: "**/*.json", base: "./src/content/locations" }),
+	schema: z.object({
+		slug: z.string(),
+		kind: z.enum(["state", "city"]),
+		name: z.string(), // "West Bengal", "Kolkata"
+		region: z.string().default(""), // for a city: its state
+		metaTitle: z.string(),
+		metaDescription: z.string(),
+		eyebrow: z.string(),
+		h1Parts: z.array(z.string()),
+		lead: z.string(),
+		intro: z.string(), // unique local framing paragraph
+		points: z.array(z.tuple([z.string(), z.string()])), // why Lucoze here
+		localContext: z.string(), // genuinely local paragraph (languages, schemes, cities)
+		citiesServed: z.array(z.string()).default([]),
+		faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+	}),
+});
+
+export const collections = { blog, features, specialties, locations };

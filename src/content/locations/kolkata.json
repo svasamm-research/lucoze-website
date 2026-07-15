@@ -1,0 +1,46 @@
+{
+	"slug": "kolkata",
+	"kind": "city",
+	"name": "Kolkata",
+	"region": "West Bengal",
+	"metaTitle": "Clinic & Hospital Management Software in Kolkata | Lucoze",
+	"metaDescription": "Clinic and hospital management software for Kolkata — Salt Lake, Park Street, EM Bypass, Howrah. Bengali-ready front desk, ABDM/DPDP compliant, on-site setup. Data hosted in India.",
+	"eyebrow": "For clinics & hospitals in Kolkata",
+	"h1Parts": ["Clinic management software for ", "Kolkata", "."],
+	"lead": "From a Salt Lake polyclinic to a Park Street dental group to a nursing home off EM Bypass — Lucoze runs the whole clinic on one platform: appointments, patient records, GST billing, lab and pharmacy. Bengali-ready front desk, data hosted in India, and a team you can actually reach.",
+	"intro": "Kolkata clinics run high-volume days on tight space. Sixty patients before noon, half of them walk-ins, a front desk switching between Bengali and English, and a queue that has to keep moving. The city's healthcare is a dense mix — standalone chambers, polyclinics, diagnostic chains, dental and IVF groups, and small nursing homes — and most of them are stitched together from a booking app, a separate billing tool and a pharmacy register. Lucoze replaces that with one system built around exactly this kind of front desk.",
+	"points": [
+		[
+			"Holds a 9:30am rush",
+			"Walk-ins slot into the live queue by priority alongside booked tokens, so the doctor always sees who's next — and when one doctor runs late, the queue rebalances without an argument at the counter."
+		],
+		[
+			"Bengali + English front desk",
+			"Your receptionist works the way she already does. Patient search matches Bengali, Devanagari and Latin spellings, and printable Bengali cheat-sheets get new staff productive in an afternoon."
+		],
+		[
+			"On-site setup, in the city",
+			"Our team is an hour up the river in Konnagar. We come to your front desk for training and migration — not a remote call from another state — and support runs over WhatsApp during business hours."
+		],
+		[
+			"Data in India, cash-first billing",
+			"Cash, UPI and partial payments on one screen with a clean end-of-day reconciliation, GST-compliant invoicing, and every record hosted in Indian data centres (DPDP 2023)."
+		]
+	],
+	"localContext": "We work with clinics across the city — Salt Lake and Sector V, Park Street and Camac Street, the hospital belt along EM Bypass, Gariahat, Behala, and across the river in Howrah. The mix is what makes Kolkata distinctive: high-footfall polyclinics, specialty groups (dental, dermatology, IVF), diagnostic centres, and small nursing homes, all running Bengali-first counters on a cash-and-UPI economy. Because Lucoze is built just outside the city, our modules are designed after sitting through real shifts at clinics here — the front-desk module especially. Kolkata and the wider East-India region are prioritised in our design-partner programme.",
+	"citiesServed": [],
+	"faqs": [
+		{
+			"q": "Do you offer on-site setup and training in Kolkata?",
+			"a": "Yes. Our team is based in Konnagar, Hooghly, so we do on-site front-desk training and data migration in and around Kolkata, plus 14 days of dedicated support on every plan."
+		},
+		{
+			"q": "Can the front desk work in Bengali?",
+			"a": "Patient search already matches Bengali, Devanagari and Latin spellings, and we provide printable Bengali cheat-sheets. The interface is rolling out in Hindi first (Q3 2026), with Bengali next."
+		},
+		{
+			"q": "Where is our clinic's data stored?",
+			"a": "In Indian data centres, DPDP 2023 compliant, with full CSV/PDF export and no lock-in. Nothing leaves the country."
+		}
+	]
+}
