@@ -1,0 +1,34 @@
+{
+	"slug": "mocdoc",
+	"competitor": "MocDoc",
+	"metaTitle": "MocDoc Alternative — Lucoze vs MocDoc | Lucoze",
+	"metaDescription": "Comparing Lucoze and MocDoc for Indian clinics? See how the two clinic and hospital management systems line up on data residency, ABDM, pricing and support.",
+	"eyebrow": "MocDoc alternative",
+	"h1Parts": ["Lucoze vs ", "MocDoc", " for Indian clinics"],
+	"lead": "MocDoc is a well-known India-based hospital and clinic management system. If you are weighing it against Lucoze, here is an honest side-by-side.",
+	"intro": "This is Lucoze's own comparison page, so treat it as our point of view, not an impartial review. MocDoc is a Chennai-based cloud hospital and clinic management platform with modules for patient management, billing, pharmacy and lab, and it is often chosen by small hospitals and clinics looking for a budget-friendly system. Lucoze is built by Svasamm Research for Indian clinics, with a specific emphasis on keeping patient data in India, native ABDM and ABHA support, flat per-clinic pricing, and a Hindi-ready front desk. Where we cannot verify a MocDoc detail from public information, we mark it as \"not documented\" rather than guess. Please confirm anything that matters to you directly with MocDoc.",
+	"tableRows": [
+		{ "label": "Patient data hosted in India", "sub": "Records stored on infrastructure inside the country", "cells": ["check", "na"] },
+		{ "label": "DPDP 2023 compliant on launch", "sub": "Aligned with India's Digital Personal Data Protection Act", "cells": ["check", "na"] },
+		{ "label": "One platform, all departments", "sub": "OPD, billing, pharmacy, lab and records together", "cells": ["check", "check"] },
+		{ "label": "Live in about 14 days", "sub": "Typical onboarding to going live", "cells": ["check", "na"] },
+		{ "label": "ABDM, ABHA & HPR built in", "sub": "Native ABHA creation and health-registry linkage", "cells": ["check", "partial"] },
+		{ "label": "Flat per-clinic pricing", "sub": "One predictable price, not per-seat or per-module", "cells": ["check", "na"] },
+		{ "label": "Hindi / regional UI built in", "sub": "Front-desk interface in Hindi and regional languages", "cells": ["check", "na"] },
+		{ "label": "Full data export on demand", "sub": "Export your complete records whenever you ask", "cells": ["check", "na"] }
+	],
+	"points": [
+		["Your patient data stays in India", "Lucoze hosts patient records on infrastructure inside India and is built to align with the DPDP Act 2023 from day one. If data residency matters to your clinic, confirm where MocDoc stores yours."],
+		["One platform for every department", "OPD, billing, pharmacy, lab and patient records live in a single Lucoze system, so your front desk isn't switching between tools or reconciling separate modules."],
+		["ABDM and ABHA are native, not bolted on", "Lucoze creates ABHA numbers and links to ABDM and HPR as part of the core workflow, so government health-ID compliance is built into everyday use rather than a separate step."],
+		["Flat per-clinic pricing from ₹1,499", "Lucoze charges one predictable price per clinic starting at ₹1,499, not per seat or per module. You can plan your costs without worrying about which staff member logs in."],
+		["Hindi-ready and multilingual search", "The Lucoze front desk works in Hindi and regional languages, and patient search handles multilingual names, so your reception staff aren't forced to work only in English."],
+		["Local East-India support, honest about remote", "Lucoze offers on-the-ground support across East India from our base in Konnagar, West Bengal, and we are upfront that clinics elsewhere are supported remote-first."]
+	],
+	"faqs": [
+		{ "q": "Is Lucoze a good alternative to MocDoc?", "a": "If keeping patient data in India, native ABDM and ABHA support, flat per-clinic pricing and a Hindi-ready front desk are priorities for your clinic, Lucoze is worth a close look. MocDoc is an established platform too, so we'd suggest trialling both against your actual workflow before deciding." },
+		{ "q": "How does Lucoze pricing compare to MocDoc?", "a": "Lucoze uses flat per-clinic pricing starting at ₹1,499 — one predictable price rather than per-seat or per-module charges. MocDoc's pricing model isn't something we can state reliably from public information, so please confirm current pricing directly with MocDoc." },
+		{ "q": "Does Lucoze support ABDM and ABHA like MocDoc?", "a": "Lucoze has ABDM, ABHA and HPR support built into the core workflow, including ABHA creation and health-registry linkage. MocDoc may offer ABDM features as well; we'd recommend verifying the specifics and scope of its ABDM integration with MocDoc directly." }
+	],
+	"comparedOn": "July 2026"
+}

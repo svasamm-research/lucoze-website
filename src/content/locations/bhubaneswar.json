@@ -1,0 +1,34 @@
+{
+	"slug": "bhubaneswar",
+	"kind": "city",
+	"name": "Bhubaneswar",
+	"region": "Odisha",
+	"metaTitle": "Clinic & Hospital Software in Bhubaneswar | Lucoze",
+	"metaDescription": "Lucoze runs records, appointments, GST billing, lab & pharmacy for Bhubaneswar clinics — Saheed Nagar to Chandrasekharpur. ABDM-ready, DPDP-compliant, data in India.",
+	"eyebrow": "For clinics & hospitals in Bhubaneswar",
+	"h1Parts": ["Clinic & hospital software for ", "Bhubaneswar", ", from the front desk up."],
+	"lead": "Records, appointments, GST billing, lab and pharmacy on one platform — built for the specialty clinics and diagnostic centres filling up Bhubaneswar. ABHA and clean records from day one.",
+	"intro": "Bhubaneswar is the centre of Odisha's health boom — new hospitals along Jaydev Vihar, specialty clinics in Saheed Nagar, and diagnostic centres opening across Chandrasekharpur, all pulling patients in from across the state. Lucoze gives these practices one platform for patient records, appointments, GST-ready billing, lab reports and pharmacy stock, instead of a booking app here and a billing register there. Create an ABHA at the first visit, keep documentation clean for BSKY and insurance claims, and find any patient's full history — including referrals from other districts — in a couple of clicks.",
+	"points": [
+		["One platform, not five apps", "Patient records, appointments, GST billing, lab and pharmacy together — the whole front desk runs from one screen instead of a stack of tools and registers."],
+		["Built for referral flow", "Patients arrive in Bhubaneswar from all over Odisha. A searchable shared record means you see their history whether they registered today or a year ago."],
+		["ABHA & scheme-ready", "Link ABHA at registration and keep records tidy for BSKY, PMJAY and private insurance, so claims clear without chasing missing paperwork."],
+		["14-day trial, live in 14 days", "Start free for 14 days and get your clinic running on Lucoze within a fortnight — with migration help from your old registers or Excel."]
+	],
+	"localContext": "In Bhubaneswar the front desk usually works in Odia, with Hindi and English common in the larger Jaydev Vihar hospitals and corporate diagnostic chains. A receptionist in Saheed Nagar or Old Town shouldn't slow down because the software can't spell a patient's name — Lucoze's search matches Odia, Devanagari and Latin at once, so 'Priyanka', 'ପ୍ରିୟଙ୍କା' or a mobile number all find the same record. The interface is rolling out in Hindi first (Q3 2026), then Bengali, then Odia; the full Odia UI is on the roadmap, not live yet, so we supply printable Odia cheat-sheets. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts.",
+	"citiesServed": [],
+	"faqs": [
+		{
+			"q": "Is Lucoze available in Odia?",
+			"a": "Not yet, and we won't pretend otherwise. The interface rolls out in Hindi first (Q3 2026), then Bengali, then Odia. Available today: multilingual patient search across Odia, Devanagari and Latin, plus printable Odia cheat-sheets for your Bhubaneswar front desk until the Odia UI ships."
+		},
+		{
+			"q": "Do you offer setup support in Bhubaneswar?",
+			"a": "Yes, remote-first. Our team sits in Konnagar, Hooghly (WB), so we onboard Bhubaneswar clinics over video, migrate your data from old registers or Excel, and stay reachable on WhatsApp and chat. For a larger hospital rollout we can arrange on-site support — just tell us what you need."
+		},
+		{
+			"q": "Where is our patient data stored?",
+			"a": "On servers inside India, under the Digital Personal Data Protection Act 2023. And there's no lock-in — export everything to CSV or PDF whenever you like, so your Bhubaneswar clinic's data always stays yours."
+		}
+	]
+}

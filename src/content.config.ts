@@ -60,4 +60,51 @@ const specialties = defineCollection({
 	}),
 });
 
-export const collections = { blog, features, specialties };
+const locations = defineCollection({
+	loader: glob({ pattern: "**/*.json", base: "./src/content/locations" }),
+	schema: z.object({
+		slug: z.string(),
+		kind: z.enum(["state", "city"]),
+		name: z.string(), // "West Bengal", "Kolkata"
+		region: z.string().default(""), // for a city: its state
+		metaTitle: z.string(),
+		metaDescription: z.string(),
+		eyebrow: z.string(),
+		h1Parts: z.array(z.string()),
+		lead: z.string(),
+		intro: z.string(), // unique local framing paragraph
+		points: z.array(z.tuple([z.string(), z.string()])), // why Lucoze here
+		localContext: z.string(), // genuinely local paragraph (languages, schemes, cities)
+		citiesServed: z.array(z.string()).default([]),
+		faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+	}),
+});
+
+const compare = defineCollection({
+	loader: glob({ pattern: "**/*.json", base: "./src/content/compare" }),
+	schema: z.object({
+		slug: z.string(),
+		competitor: z.string(), // "Practo Ray"
+		metaTitle: z.string(),
+		metaDescription: z.string(),
+		eyebrow: z.string(),
+		h1Parts: z.array(z.string()),
+		lead: z.string(),
+		intro: z.string(),
+		// Lucoze-vs-competitor capability table. cells = [Lucoze, competitor].
+		tableRows: z.array(
+			z.object({
+				label: z.string(),
+				sub: z.string().optional(),
+				cells: z.array(z.enum(["check", "cross", "partial", "na"])),
+			}),
+		),
+		// Neutral, Lucoze-forward reasons to consider switching.
+		points: z.array(z.tuple([z.string(), z.string()])),
+		faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+		comparedOn: z.string(), // e.g. "July 2026" — for the dated disclaimer
+		relatedBlog: z.object({ href: z.string(), label: z.string() }).optional(),
+	}),
+});
+
+export const collections = { blog, features, specialties, locations, compare };

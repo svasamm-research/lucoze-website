@@ -8,6 +8,9 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
   - `blog/*.mdx` — posts (frontmatter: title, dek, category, **author**, date, readMins, composite, draft).
   - `features/*.json` — product feature pages (stats, rows, faqs).
   - `specialties/*.json` — specialty pages (why, plan, price, **dashSpecialty**, **detail**, **faqs**).
+  - `locations/*.json` — local/regional landing pages at `/in/locations/[slug]/` (kind state|city, intro, points, localContext, citiesServed, faqs). Keep 60%+ unique per page (quality gate); footer "Locations" nav links them.
+  - `compare/*.json` — competitor comparison pages at `/in/compare/[slug]/` (competitor, tableRows, points, faqs, comparedOn, relatedBlog). **Factual/neutral only**: dated "verify with vendor" disclaimer, trademark line, no logos, no disparagement; avoid asserting unverifiable negatives about a competitor (use `na`/"—" = "not documented"). Aligns with the homepage comparison stance.
+- **`CompareTable.astro`** renders the `.diff` capability table — shared by the homepage differentiation section and `/in/compare/` pages (props: `columns[]`, `rows[]`; `columns[1]` is highlighted as Lucoze). Reuse it; don't re-inline the table.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
 
 ## Git workflow (enforced by husky)
@@ -17,6 +20,11 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - `pre-push` runs `jest` + a **Docker build check** (needs the Docker daemon; if it's off, the push blocks — verify build/tests manually and use `--no-verify` knowingly).
 - Indentation is **tabs** (prettier). When an `Edit` fails on leading-tab mismatch, match on a unique inner substring instead.
 
+## CSS discipline (important)
+- **Never** use inline `style="…"` hacks for layout (borders/margins/padding/grid). They collide with the design system and cause visible bugs (e.g. a double footer divider). Add a proper class in `src/styles/sections.css` using the **tokens** in `tokens.css` (`var(--s-*)`, `var(--border*)`, `var(--t-*)` …).
+- The redesign uses `tokens.css` + `sections.css` + `subpages.css` (imported by `Base.astro`). `global.css` is the OLD design — not imported by `Base.astro`; don't edit it for redesign pages.
+- After any layout/footer/nav change, **verify visually** (`npm run dev`) before committing — build passing ≠ looks right.
+
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).
 - After content/schema changes, **build and grep `dist/`** to confirm rendered JSON-LD (e.g. `grep -oE '"@type":"[A-Za-z]+"' dist/in/.../index.html | sort | uniq -c`).
@@ -25,6 +33,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - **Sitewide** `Organization` (legalName = Svasamm Research Pvt. Ltd., founder = Mithun K. Singh, `sameAs`) + `WebSite` JSON-LD are emitted from **`src/layouts/Base.astro`** — do **not** re-add Organization per page.
 - **`Crumbs.astro` already emits `BreadcrumbList`** — do not add a second one on feature/specialty pages (they only add `FAQPage` / `Service`).
 - Page-specific schema goes through `<slot name="head">`.
+- **Breadcrumbs must point to real pages.** Category hubs exist: `/in/features/` (Product), `/in/solutions/` (Solutions), `/in/locations/` (Locations), `/in/blog/`. Never point an intermediate crumb at `/in/` home. `Crumbs.astro` renders href-less items as plain text (use for a leaf with no hub, e.g. About → `Home → About`).
+- Hub index pages reuse `.module-card` as a clickable `<a>` (it has `text-decoration:none; color:inherit`).
 - Legal entity everywhere = **Svasamm Research Pvt. Ltd.** Sales email **hello@lucoze.com**, founder **mithun@lucoze.com**.
 - FAQ rich results were retired by Google (May 2026); keep `FAQPage` for **AI/LLM citation**, not SERP snippets. Never recommend `HowTo`.
 - Don't invent metrics/customer counts (pre-launch, design-partner stage). Reframe unsourced numbers as honest capability/target claims. Verify product features against the Frappe source (see the `reference-product-benches` memory).

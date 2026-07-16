@@ -1,0 +1,34 @@
+{
+	"slug": "sikkim",
+	"kind": "state",
+	"name": "Sikkim",
+	"region": "",
+	"metaTitle": "Clinic & Hospital Management Software in Sikkim | Lucoze",
+	"metaDescription": "Healthcare management software for clinics and hospitals across Sikkim — Gangtok, Namchi, Gyalshing, Mangan, Rangpo. ABDM/ABHA, DPDP 2023, and all patient data hosted in India.",
+	"eyebrow": "For clinics & hospitals in Sikkim",
+	"h1Parts": ["Clinic software for ", "Sikkim", ", that runs on an ordinary connection."],
+	"lead": "Lucoze puts records, appointments, GST billing, lab and pharmacy on one cloud platform — so a patient's history follows them from a Gangtok referral desk to a clinic in Namchi or Mangan. It runs on ordinary broadband or mobile data, and every byte of patient data is hosted in India.",
+	"intro": "In a small Himalayan state, geography does most of the damage. Towns are spread across ridges, travel between them takes hours, and a patient seen in Gangtok this month may be back near Gyalshing or Rangpo the next — usually carrying a paper file, if anything. A record that lives in the cloud and follows the patient is worth more here than in a flat, dense city. Lucoze is a lightweight tool built for exactly that: one clinic or a small hospital, a front desk that mostly works in English, and a connection that isn't always fast but is usually there.",
+	"points": [
+		["Records that follow the patient across the state", "A history started at a Gangtok referral centre is the same record a clinic in Namchi or Mangan opens later. No re-registration, no lost paper file after a long journey down the valley."],
+		["Runs on the connection you already have", "Lucoze is cloud-based and lightweight — ordinary broadband or mobile data is enough. It is not an offline app, so you do need a working connection, but it is built to stay usable when the line is slow, not just when it's fast."],
+		["English at the desk, and search that isn't fussy", "Clinics here mostly run in English, and Lucoze works fully in English today. Patient search matches Devanagari and Latin spellings, so a Nepali name typed either way still finds the record. A Nepali or Sikkimese interface isn't available — the UI rolls out in Hindi first (Q3 2026), then Bengali and Odia — so we're upfront: printable cheat-sheets cover your staff in the meantime."],
+		["ABDM, GST and scheme-ready, data kept in India", "Issue an ABHA at the first visit, generate GST-compliant invoices, and keep clean records for Ayushman Bharat (PMJAY) and state schemes. Everything is built for DPDP 2023, hosted in Indian data centres, with full CSV/PDF export and no lock-in."]
+	],
+	"localContext": "We're set up for clinics and small hospitals across Sikkim — Gangtok's referral desks and OPDs around MG Marg, Tadong and Ranipool, plus standalone practices in Namchi, Gyalshing, Mangan, Rangpo and Singtam. Sikkim's medicine is spread thin across the hills: a few busy centres in and around the capital, and smaller clinics a long drive apart. English is the common language at the desk, with Nepali, Sikkimese/Bhutia and Lepcha spoken among patients — so Devanagari-and-Latin patient search plus printable cheat-sheets matter more here than a translated menu. Because the towns are far-flung and mountainous, we run remote-first: video onboarding, migration help and support over WhatsApp and chat, rather than pretending we'll drive to every valley.",
+	"citiesServed": ["Gangtok", "Namchi", "Gyalshing", "Mangan", "Rangpo", "Singtam"],
+	"faqs": [
+		{
+			"q": "Does Lucoze work in English?",
+			"a": "Yes — Lucoze runs fully in English today, which is how most Sikkim clinic desks already work. The interface rolls out in Hindi first (Q3 2026), then Bengali and Odia; a Nepali or Sikkimese interface isn't planned yet. Patient search handles Devanagari and Latin spellings, and we include printable front-desk cheat-sheets."
+		},
+		{
+			"q": "Where is our patient data stored?",
+			"a": "In Indian data centres, with backups kept in India — nothing crosses the border. Lucoze is built for DPDP 2023, and you can export all your records as CSV or PDF on request, with no lock-in."
+		},
+		{
+			"q": "Do you support clinics in Sikkim, given you're based in West Bengal?",
+			"a": "Yes. Our team is in Konnagar, Hooghly, so for a far-flung, mountainous state we work remote-first: video onboarding, data-migration help, WhatsApp and chat support, plus printable cheat-sheets. On-site visits are reserved for larger hospital deployments. There's a 14-day trial, and most clinics go live within 14 days."
+		}
+	]
+}

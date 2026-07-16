@@ -142,6 +142,17 @@ export const MEGA: MegaGroup[] = [
 				],
 			},
 			{
+				head: "Compare",
+				items: [
+					{
+						href: "/in/compare/practo-ray/",
+						label: "Practo Ray alternative",
+						blurb: "Lucoze vs Practo Ray",
+					},
+					{ href: "/in/compare/", label: "All comparisons →" },
+				],
+			},
+			{
 				head: "Reading",
 				items: [{ href: "/in/blog/", label: "All posts →" }],
 			},

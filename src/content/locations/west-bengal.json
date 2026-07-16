@@ -1,0 +1,55 @@
+{
+	"slug": "west-bengal",
+	"kind": "state",
+	"name": "West Bengal",
+	"region": "",
+	"metaTitle": "Clinic & Hospital Management Software in West Bengal | Lucoze",
+	"metaDescription": "Healthcare management software for clinics and hospitals across West Bengal — Kolkata, Howrah, Siliguri, Durgapur. Bengali-ready front desk, ABDM/DPDP compliant, data hosted in India.",
+	"eyebrow": "For clinics & hospitals in West Bengal",
+	"h1Parts": ["Clinic software built in ", "West Bengal", ", for West Bengal."],
+	"lead": "Lucoze is built in Konnagar, Hooghly — by a team that has sat at front desks in Kolkata, Salt Lake and the district towns. Patient records, appointments, billing, lab and pharmacy on one platform, with a Bengali-ready front desk and every byte of data hosted in India.",
+	"intro": "West Bengal runs on volume and on trust. A single-doctor chamber in a mofussil town, a busy polyclinic off EM Bypass, a 40-bed nursing home in Howrah — they all live and die by whether the front desk can move patients through the day without losing a record. Most clinic software sold here was designed for a different country and retrofitted for India. Lucoze was built the other way round: we started with the Bengali front desk, the cash-and-UPI counter, and the Swasthya Sathi paperwork, and built the software to fit that reality — not the reverse.",
+	"points": [
+		[
+			"A front desk that speaks your language",
+			"Staff work in Bengali. Patient search matches names in Bengali, Devanagari and Latin — 'Banerjee' or 'বন্দ্যোপাধ্যায়' both find the record. Hindi UI is rolling out (Q3 2026), Bengali next, with printable cheat-sheets in the local language."
+		],
+		[
+			"Your patients' data stays in India",
+			"Every record sits in Indian data centres — DPDP 2023 compliant, with full CSV/PDF export and no lock-in. For a Bengal clinic handling sensitive patient histories, the data never crosses the border."
+		],
+		[
+			"Built here, supported here",
+			"The team is based in Hooghly. We do on-site front-desk training in and around Kolkata, and support runs over WhatsApp during business hours — the way clinics here actually reach a vendor."
+		],
+		[
+			"ABDM, GST and state-scheme ready",
+			"Issue ABHA at first visit, generate GST-compliant invoices, and keep clean records for Swasthya Sathi and insurance claims — without three separate tools."
+		]
+	],
+	"localContext": "We work with clinics and hospitals across the state — the dense OPD belts of Kolkata (Salt Lake, Park Street, Gariahat, EM Bypass) and Howrah, the diagnostic chains of Siliguri and Durgapur, and the multi-doctor chambers of the Hooghly industrial belt. Bengal's healthcare is a mix of standalone chambers, nursing homes, polyclinics and diagnostic centres, and a Bengali-first, cash-first front desk is the common thread. Because Lucoze is built in Konnagar, we can put someone at your front desk during a real four-hour shift — which is where every module we ship actually gets designed. East-India clinics are prioritised in our design-partner programme.",
+	"citiesServed": [
+		"Kolkata",
+		"Howrah",
+		"Salt Lake",
+		"Siliguri",
+		"Durgapur",
+		"Asansol",
+		"Hooghly",
+		"Kharagpur"
+	],
+	"faqs": [
+		{
+			"q": "Is Lucoze available in Bengali?",
+			"a": "The interface is rolling out in Hindi first (Q3 2026), with Bengali next. Multilingual patient search (Bengali, Devanagari and Latin) works today, and we include printable Bengali front-desk cheat-sheets for your staff."
+		},
+		{
+			"q": "Where is our patient data stored?",
+			"a": "In Indian data centres, with backups kept in India — nothing crosses the border. Lucoze is built for DPDP 2023, and you can export all records (CSV/PDF) on request with no lock-in."
+		},
+		{
+			"q": "Do you provide on-site setup in Kolkata and West Bengal?",
+			"a": "Yes. Because our team is based in Konnagar, Hooghly, we do on-site front-desk training in and around Kolkata, plus data-migration help and 14 days of dedicated support on every plan."
+		}
+	]
+}

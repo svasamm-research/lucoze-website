@@ -1,0 +1,34 @@
+{
+	"slug": "ranchi",
+	"kind": "city",
+	"name": "Ranchi",
+	"region": "Jharkhand",
+	"metaTitle": "Clinic & Hospital Management Software in Ranchi | Lucoze",
+	"metaDescription": "Lucoze runs Ranchi clinics and nursing homes — Lalpur to Bariatu — with records, GST billing, lab and pharmacy in one place. ABDM-ready, DPDP 2023, data in India.",
+	"eyebrow": "For clinics & hospitals in Ranchi",
+	"h1Parts": ["Clinic software for ", "Ranchi", " — one screen, not five registers."],
+	"lead": "For Ranchi's nursing homes, diagnostic centres and specialty clinics — patient records, appointments, GST billing, lab and pharmacy on one platform your Hindi front desk can actually run.",
+	"intro": "Ranchi is where Jharkhand's private healthcare is growing fastest — nursing homes along Kanke Road, the Bariatu hospital belt, diagnostic centres and specialty clinics opening across Lalpur and Harmu. Most are still running a paper file, a separate billing register and a lab pad that never quite agree. Lucoze pulls records, appointments, GST billing, lab reports and pharmacy stock onto one screen. The front desk works in Hindi, patient search copes with names spelt every possible way, and ABHA numbers link at the first visit so you're ABDM-ready from day one instead of scrambling later.",
+	"points": [
+		["One platform for a growing practice", "Records, appointments, GST billing, lab and pharmacy in one place — so a busy Lalpur or Bariatu clinic isn't re-keying patients across registers."],
+		["Data stays in India, no lock-in", "Records live in Indian data centres, DPDP 2023 compliant, with full CSV/PDF export. Leave any time and take everything with you."],
+		["ABHA at registration, PMJAY-ready", "Link ABHA at the first visit and keep claims tidy for Ayushman Bharat (PMJAY) and state schemes."],
+		["A Hindi front desk, handled", "Patient search reads Hindi, Devanagari and Latin spellings today, with printable Hindi cheat-sheets for new staff."]
+	],
+	"localContext": "In a Ranchi nursing home off Kanke Road or a clinic in the Bariatu belt, the front desk runs in Hindi and the same patient gets spelt three ways — once in the register, once on the bill, once on the lab slip. Diagnostic centres in Lalpur and clinics around Harmu have the same split-record problem. Patients speak Hindi and often Santhali, Nagpuri or Khortha, so names rarely land the same twice. Lucoze's multilingual search handles that, the interface is rolling out in Hindi first, and GST billing matches how Ranchi practices actually invoice. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for hospital-scale rollouts.",
+	"citiesServed": [],
+	"faqs": [
+		{
+			"q": "Do you come to our clinic in Ranchi to set it up?",
+			"a": "Our team is based in Konnagar, Hooghly (West Bengal), so Ranchi onboarding is remote-first — video setup, we migrate your data, printable Hindi cheat-sheets, and WhatsApp plus chat support. For hospital-scale deployments we arrange on-site visits; we won't claim to visit every clinic."
+		},
+		{
+			"q": "Can our staff use it in Hindi?",
+			"a": "Patient search already handles Hindi, Devanagari and Latin spellings, and Hindi cheat-sheets come with onboarding. The full interface is rolling out in Hindi first (Q3 2026), then Bengali and Odia."
+		},
+		{
+			"q": "Where does our patient data live?",
+			"a": "In Indian data centres, DPDP 2023 compliant, with no lock-in — export to CSV or PDF whenever you want. Try it free for 14 days and you can be live in around 14 days."
+		}
+	]
+}

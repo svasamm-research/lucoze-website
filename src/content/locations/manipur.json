@@ -1,0 +1,34 @@
+{
+	"slug": "manipur",
+	"kind": "state",
+	"name": "Manipur",
+	"region": "",
+	"metaTitle": "Clinic & Hospital Management Software in Manipur | Lucoze",
+	"metaDescription": "Lucoze is cloud clinic & hospital software for Imphal, Thoubal, Bishnupur, Kakching & Churachandpur — records, billing, ABDM/ABHA, DPDP-ready, data in India.",
+	"eyebrow": "For clinics & hospitals in Manipur",
+	"h1Parts": ["Clinic & hospital software for ", "Manipur", ", from front desk to billing."],
+	"lead": "Records, appointments, billing, lab and pharmacy on one platform your Imphal front desk can actually run. Cloud-based, ABDM-ready, and honest about what we do and don't do yet.",
+	"intro": "Manipur runs on Imphal as its medical hub — patients travel in from the valley and the hill districts to see specialists, then travel back. When a patient returns three months later, their history should still be there, not in a paper file left at home. Lucoze keeps records, appointments, GST billing, lab and pharmacy on one platform so a patient's file follows them across visits. It's cloud software, works on ordinary broadband or mobile data, and your team logs in from any browser. English works throughout, which suits how most Manipur clinic front desks already operate.",
+	"points": [
+		["One platform, not five registers", "Patient records, appointments, GST-compliant billing, lab reports and pharmacy stock live together. No stitching a diary, a billing book and a WhatsApp group into a workflow."],
+		["Records that follow the patient", "When someone from Churachandpur or Kakching travels to Imphal and comes back months later, their full history is one search away — not a file that stayed behind in another district."],
+		["ABDM & ABHA from the first visit", "Create or link an ABHA number at registration and keep records ABDM-ready. Built for DPDP 2023, with all patient data held in Indian data centres."],
+		["Honest about connectivity", "Lucoze is a lightweight cloud tool, so it's usable even on the patchy connections some hill districts get. But it is not offline software — you need a working connection to log in, and we won't pretend otherwise."]
+	],
+	"localContext": "Manipur's main language is Meitei (Manipuri), and clinics also see patients who speak a range of hill-community languages — but English is common at front desks across Imphal, from Porompat to Lamphelpat and Thangmeiband, and Lucoze works fully in English. To be straight: our interface rolls out in Hindi first (Q3 2026), then Bengali, then Odia. There is no Meitei/Manipuri interface, and we're not claiming one. What helps today is multilingual patient search — type a name in Devanagari or Latin script and still find the right record — plus printable cheat-sheets your staff can keep at the desk. Imphal is where valley and hill-district patients converge, so records that stay consistent across visits matter more here than most places.",
+	"citiesServed": ["Imphal", "Thoubal", "Bishnupur", "Kakching", "Churachandpur"],
+	"faqs": [
+		{
+			"q": "Which languages does Lucoze support?",
+			"a": "The whole platform works in English, which suits most Manipur clinics. The interface is rolling out in Hindi first (Q3 2026), then Bengali and Odia — there's no Meitei/Manipuri interface yet, and we won't pretend there is. What you get today is multilingual patient search in Devanagari or Latin script, plus printable local cheat-sheets for the front desk."
+		},
+		{
+			"q": "Where is our data stored?",
+			"a": "All patient data is held in Indian data centres, and Lucoze is built for DPDP 2023 compliance with ABDM/ABHA support. There's no lock-in — you can export your records to CSV or PDF whenever you want and take them with you."
+		},
+		{
+			"q": "Do you support clinics in Manipur?",
+			"a": "Yes, remote-first. Our team is in Konnagar, Hooghly (West Bengal), so for Manipur we onboard over video, help migrate your existing records, and stay reachable on WhatsApp and chat, with printable cheat-sheets for your staff. On-site visits are reserved for larger hospital deployments. Most clinics start with a 14-day trial and are live within 14 days."
+		}
+	]
+}

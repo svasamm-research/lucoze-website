@@ -1,0 +1,147 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+import Faq from "../../../components/Faq.astro";
+import CompareTable from "../../../components/CompareTable.astro";
+
+export async function getStaticPaths() {
+	const entries = await getCollection("compare");
+	return entries.map((entry) => ({ params: { slug: entry.data.slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("compare", slug!);
+if (!entry) {
+	return Astro.redirect("/404");
+}
+const c = entry.data;
+
+const POINT_ICONS = ["check", "shield", "cloud", "spark", "users", "chart"];
+
+const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
+const pageUrl = `${siteUrl}${Astro.url.pathname}`;
+// BreadcrumbList is emitted by SubHero → Crumbs; add FAQPage.
+const faqLd =
+	c.faqs.length > 0
+		? {
+				"@context": "https://schema.org",
+				"@type": "FAQPage",
+				mainEntity: c.faqs.map((f) => ({
+					"@type": "Question",
+					name: f.q,
+					acceptedAnswer: { "@type": "Answer", text: f.a },
+				})),
+			}
+		: null;
+---
+
+<Base title={c.metaTitle} description={c.metaDescription} canonical={pageUrl}>
+	{faqLd && <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />}
+
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/compare/", label: "Compare" },
+			{ label: c.competitor },
+		]}
+		eyebrow={c.eyebrow}
+		h1={c.h1Parts.join("")}
+		highlightParts={c.h1Parts}
+		lead={c.lead}
+		primaryCta={{ href: "/in/signup/", label: "Start 14-day free trial" }}
+		secondaryCta={{ href: "/in/pricing/", label: "See pricing" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<article class="post" style="margin: 0 auto;">
+				<p>{c.intro}</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Side by side</span>
+				<h2 class="t-h2" style="margin-top: 8px; margin-bottom: var(--s-6);">
+					Lucoze vs {c.competitor}.
+				</h2>
+			</header>
+			<CompareTable columns={["Capability", "Lucoze", c.competitor]} rows={c.tableRows} />
+			<p
+				class="t-small"
+				style="text-align: center; margin-top: var(--s-5); color: var(--light); font-style: italic;"
+			>
+				Comparison based on publicly available documentation as of {c.comparedOn}. "Partial" =
+				capability exists but requires configuration, a paid add-on or an external integration; "—" =
+				not publicly documented. Verify current details with each vendor. {c.competitor} is a trademark
+				of its respective owner; Lucoze is not affiliated with or endorsed by it.
+			</p>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">Why clinics consider Lucoze</span>
+				<h2 class="t-h2" style="margin-top: 8px;">What we built differently.</h2>
+			</header>
+			<div class="module-grid">
+				{
+					c.points.map(([title, blurb], i) => (
+						<article class="module-card">
+							<div class="module-card__icon">
+								<Icon name={POINT_ICONS[i % POINT_ICONS.length]} size={20} />
+							</div>
+							<div class="module-card__title">{title}</div>
+							<div class="module-card__blurb">{blurb}</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	{
+		c.faqs.length > 0 && (
+			<section class="section section--tight">
+				<div class="container">
+					<header class="section-header">
+						<span class="t-eyebrow">Common questions</span>
+						<h2 class="t-h2" style="margin-top: 8px;">
+							Switching from {c.competitor} — what clinics ask.
+						</h2>
+					</header>
+					<Faq items={c.faqs} />
+				</div>
+			</section>
+		)
+	}
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					See Lucoze with your own clinic's data.
+				</h2>
+				<p>14-day free trial. No credit card. We help you migrate in the first week.</p>
+				<div class="cta-final__actions">
+					<a href="/in/signup/" class="btn btn--primary btn--lg">
+						Start free trial
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+					{
+						c.relatedBlog && (
+							<a href={c.relatedBlog.href} class="btn btn--ghost btn--lg">
+								{c.relatedBlog.label}
+							</a>
+						)
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

@@ -948,6 +948,11 @@
 }
 .diff__table th:first-child {
 	background: var(--paper);
+	min-width: 240px;
+}
+.diff__table th:not(:first-child) {
+	text-align: center;
+	min-width: 104px;
 }
 .diff__row-label {
 	font-weight: 600;
@@ -999,6 +1004,9 @@
 	font-size: var(--t-xs);
 	color: var(--warning);
 	font-weight: 600;
+}
+.diff__partial--na {
+	color: var(--light);
 }
 @media (max-width: 720px) {
 	.diff {
@@ -1143,12 +1151,80 @@
 .footer__col a:hover {
 	color: var(--primary);
 }
+/* Locations block: states as headings, city pages stacked beneath. Shares ONE
+   divider with the legal bottom bar (border sits here; .footer__bottom stays
+   borderless). Grid auto-fills columns so new states/cities flow cleanly. */
+.footer__locations {
+	padding-top: var(--s-6);
+	margin-bottom: var(--s-6);
+	border-top: 1px solid var(--border-light);
+}
+.footer__locations-label {
+	display: block;
+	font-size: var(--t-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 700;
+	color: var(--ink);
+	margin-bottom: var(--s-4);
+}
+/* Single row: each state is an equal column (state + city left-aligned to the
+   same edge), separated by a vertical divider. Grows to fill on desktop;
+   scrolls horizontally if states ever outgrow the width (never wraps/breaks).
+   Wraps to a 3-up grid on small screens. */
+.footer__locations-groups {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: start;
+	overflow-x: auto;
+}
+.footer__loc-group {
+	flex: 1 1 0;
+	min-width: 92px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 0 var(--s-4);
+	border-left: 1px solid var(--border);
+}
+.footer__loc-group:first-child {
+	padding-left: 0;
+	border-left: none;
+}
+.footer__loc-state {
+	font-size: var(--t-xs);
+	font-weight: 700;
+	color: var(--ink-soft);
+	transition: color var(--tr-fast);
+	white-space: nowrap;
+}
+.footer__loc-state:hover {
+	color: var(--primary);
+}
+.footer__loc-city {
+	font-size: 12px;
+	color: var(--muted);
+	transition: color var(--tr-fast);
+}
+.footer__loc-city:hover {
+	color: var(--primary);
+}
+@media (max-width: 620px) {
+	.footer__locations-groups {
+		flex-wrap: wrap;
+		overflow-x: visible;
+	}
+	.footer__loc-group {
+		flex: 0 0 33.333%;
+		border-left: none;
+		padding: 0;
+		margin-bottom: var(--s-3);
+	}
+}
 .footer__bottom {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-top: var(--s-6);
-	border-top: 1px solid var(--border-light);
 	font-size: var(--t-xs);
 	color: var(--muted);
 	flex-wrap: wrap;
