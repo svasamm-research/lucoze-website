@@ -948,6 +948,11 @@
 }
 .diff__table th:first-child {
 	background: var(--paper);
+	min-width: 240px;
+}
+.diff__table th:not(:first-child) {
+	text-align: center;
+	min-width: 104px;
 }
 .diff__row-label {
 	font-weight: 600;
@@ -999,6 +1004,9 @@
 	font-size: var(--t-xs);
 	color: var(--warning);
 	font-weight: 600;
+}
+.diff__partial--na {
+	color: var(--light);
 }
 @media (max-width: 720px) {
 	.diff {
