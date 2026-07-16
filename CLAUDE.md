@@ -9,6 +9,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
   - `features/*.json` — product feature pages (stats, rows, faqs).
   - `specialties/*.json` — specialty pages (why, plan, price, **dashSpecialty**, **detail**, **faqs**).
   - `locations/*.json` — local/regional landing pages at `/in/locations/[slug]/` (kind state|city, intro, points, localContext, citiesServed, faqs). Keep 60%+ unique per page (quality gate); footer "Locations" nav links them.
+  - `compare/*.json` — competitor comparison pages at `/in/compare/[slug]/` (competitor, tableRows, points, faqs, comparedOn, relatedBlog). **Factual/neutral only**: dated "verify with vendor" disclaimer, trademark line, no logos, no disparagement; avoid asserting unverifiable negatives about a competitor (use `na`/"—" = "not documented"). Aligns with the homepage comparison stance.
+- **`CompareTable.astro`** renders the `.diff` capability table — shared by the homepage differentiation section and `/in/compare/` pages (props: `columns[]`, `rows[]`; `columns[1]` is highlighted as Lucoze). Reuse it; don't re-inline the table.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
 
 ## Git workflow (enforced by husky)
