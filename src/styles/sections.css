@@ -1162,8 +1162,14 @@
 }
 .footer__locations-groups {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	grid-template-columns: repeat(auto-fill, 150px);
+	justify-content: start;
 	gap: var(--s-5) var(--s-6);
+}
+@media (max-width: 560px) {
+	.footer__locations-groups {
+		grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+	}
 }
 .footer__loc-group {
 	display: flex;

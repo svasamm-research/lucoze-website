@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+
+const STATE_ORDER = [
+	"west-bengal",
+	"bihar",
+	"jharkhand",
+	"odisha",
+	"uttar-pradesh",
+	"assam",
+	"tripura",
+	"manipur",
+	"mizoram",
+	"sikkim",
+];
+const orderOf = (slug: string) => {
+	const i = STATE_ORDER.indexOf(slug);
+	return i === -1 ? 999 : i;
+};
+const locations = await getCollection("locations");
+const states = locations
+	.filter((l) => l.data.kind === "state")
+	.sort((a, b) => orderOf(a.data.slug) - orderOf(b.data.slug));
+const citiesFor = (stateName: string) =>
+	locations.filter((l) => l.data.kind === "city" && l.data.region === stateName).map((l) => l.data);
+
+const h1Parts = ["Clinic software for India, ", "state by state", "."];
+---
+
+<Base
+	title="Clinic & Hospital Software by State & City in India | Lucoze"
+	description="Lucoze serves clinics and hospitals across East and Northeast India — West Bengal, Bihar, Jharkhand, Odisha, UP, Assam and more. Find your state or city."
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Locations" }]}
+		eyebrow="Locations"
+		h1={h1Parts.join("")}
+		highlightParts={h1Parts}
+		lead="Built in Konnagar, West Bengal, for clinics across East and Northeast India — with a Bengali/Hindi-ready front desk and data hosted in India. Find your state or city."
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/contact/", label: "Talk to us" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<div class="module-grid">
+				{
+					states.map((s) => {
+						const cities = citiesFor(s.data.name);
+						const blurb = cities.length
+							? `Including ${cities.map((c) => c.name).join(", ")}`
+							: s.data.citiesServed.slice(0, 4).join(", ");
+						return (
+							<a class="module-card" href={`/in/locations/${s.data.slug}/`}>
+								<div class="module-card__icon">
+									<Icon name="cloud" size={20} />
+								</div>
+								<div class="module-card__title">{s.data.name}</div>
+								<div class="module-card__blurb">{blurb}</div>
+								<span class="module-card__arrow">
+									Explore <Icon name="arrow" size={13} />
+								</span>
+							</a>
+						);
+					})
+				}
+			</div>
+		</div>
+	</section>
+</Base>
