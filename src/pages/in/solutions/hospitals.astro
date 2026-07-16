@@ -4,7 +4,7 @@ import SubHero from "../../../components/SubHero.astro";
 import FRow from "../../../components/FRow.astro";
 import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
-import HospitalBedMap from "../../../components/visuals/specialty/HospitalBedMap.astro";
+import Screenshot from "../../../components/Screenshot.astro";
 
 const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 	{
@@ -69,7 +69,11 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 			{ value: "India", label: "Data residency" },
 		]}
 	>
-		<HospitalBedMap slot="visual" />
+		<Screenshot
+			slot="visual"
+			name="ipd-beds"
+			alt="Lucoze IPD bed planning and ward management for a small hospital"
+		/>
 	</SubHero>
 
 	<section class="section section--tight">
