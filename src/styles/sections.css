@@ -1143,31 +1143,49 @@
 .footer__col a:hover {
 	color: var(--primary);
 }
-/* Locations row + legal bottom bar share ONE divider (the border sits on
-   .footer__locations); .footer__bottom stays borderless so there's a single
-   clean line, not two mismatched rules. */
+/* Locations block: states as headings, city pages stacked beneath. Shares ONE
+   divider with the legal bottom bar (border sits here; .footer__bottom stays
+   borderless). Grid auto-fills columns so new states/cities flow cleanly. */
 .footer__locations {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: var(--s-2) var(--s-3);
 	padding-top: var(--s-6);
-	margin-bottom: var(--s-4);
+	margin-bottom: var(--s-6);
 	border-top: 1px solid var(--border-light);
-	font-size: var(--t-xs);
 }
 .footer__locations-label {
-	color: var(--muted);
+	display: block;
+	font-size: var(--t-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 700;
+	color: var(--ink);
+	margin-bottom: var(--s-4);
+}
+.footer__locations-groups {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	gap: var(--s-5) var(--s-6);
+}
+.footer__loc-group {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+.footer__loc-state {
+	font-size: var(--t-sm);
 	font-weight: 600;
-}
-.footer__locations-sep {
-	color: var(--border);
-}
-.footer__locations a {
-	color: var(--muted);
+	color: var(--ink-soft);
 	transition: color var(--tr-fast);
 }
-.footer__locations a:hover {
+.footer__loc-state:hover {
+	color: var(--primary);
+}
+.footer__loc-city {
+	font-size: var(--t-xs);
+	color: var(--muted);
+	padding-left: var(--s-2);
+	transition: color var(--tr-fast);
+}
+.footer__loc-city:hover {
 	color: var(--primary);
 }
 .footer__bottom {
