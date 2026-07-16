@@ -31,6 +31,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - **Sitewide** `Organization` (legalName = Svasamm Research Pvt. Ltd., founder = Mithun K. Singh, `sameAs`) + `WebSite` JSON-LD are emitted from **`src/layouts/Base.astro`** — do **not** re-add Organization per page.
 - **`Crumbs.astro` already emits `BreadcrumbList`** — do not add a second one on feature/specialty pages (they only add `FAQPage` / `Service`).
 - Page-specific schema goes through `<slot name="head">`.
+- **Breadcrumbs must point to real pages.** Category hubs exist: `/in/features/` (Product), `/in/solutions/` (Solutions), `/in/locations/` (Locations), `/in/blog/`. Never point an intermediate crumb at `/in/` home. `Crumbs.astro` renders href-less items as plain text (use for a leaf with no hub, e.g. About → `Home → About`).
+- Hub index pages reuse `.module-card` as a clickable `<a>` (it has `text-decoration:none; color:inherit`).
 - Legal entity everywhere = **Svasamm Research Pvt. Ltd.** Sales email **hello@lucoze.com**, founder **mithun@lucoze.com**.
 - FAQ rich results were retired by Google (May 2026); keep `FAQPage` for **AI/LLM citation**, not SERP snippets. Never recommend `HowTo`.
 - Don't invent metrics/customer counts (pre-launch, design-partner stage). Reframe unsourced numbers as honest capability/target claims. Verify product features against the Frappe source (see the `reference-product-benches` memory).
