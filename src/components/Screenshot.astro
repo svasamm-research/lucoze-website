@@ -1,0 +1,101 @@
+---
+/**
+ * Screenshot — a real product screenshot in a browser-window frame.
+ * Uses astro:assets so images are auto-optimised (WebP/AVIF, responsive
+ * srcset, width/height to prevent CLS, lazy by default). Source images live
+ * in src/assets/screenshots/*.png; pass `name` = the file name without ".png".
+ */
+import { Image } from "astro:assets";
+
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+	"../assets/screenshots/*.png",
+	{ eager: true },
+);
+const byName: Record<string, ImageMetadata> = {};
+for (const path in modules) {
+	const key = path.split("/").pop()!.replace(/\.png$/, "");
+	byName[key] = modules[path].default;
+}
+
+interface Props {
+	name: string;
+	alt: string;
+	caption?: string;
+	loading?: "eager" | "lazy";
+}
+const { name, alt, caption, loading = "lazy" } = Astro.props;
+const img = byName[name];
+---
+
+{
+	img && (
+		<figure class="shot">
+			<div class="shot__chrome" aria-hidden="true">
+				<span class="shot__dot" />
+				<span class="shot__dot" />
+				<span class="shot__dot" />
+				<span class="shot__url">app.lucoze.com</span>
+			</div>
+			<Image
+				src={img}
+				alt={alt}
+				widths={[480, 800, 1200, 1600]}
+				sizes="(max-width: 900px) 100vw, 760px"
+				loading={loading}
+				class="shot__img"
+			/>
+			{caption && <figcaption class="shot__caption">{caption}</figcaption>}
+		</figure>
+	)
+}
+
+<style>
+	.shot {
+		margin: 0;
+		border-radius: var(--r-lg);
+		overflow: hidden;
+		border: 1px solid var(--border);
+		box-shadow: var(--shadow-lg);
+		background: var(--white);
+	}
+	.shot__chrome {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		padding: 10px 14px;
+		background: var(--cream);
+		border-bottom: 1px solid var(--border);
+	}
+	.shot__dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--border);
+	}
+	.shot__dot:first-child {
+		background: #e5735b;
+	}
+	.shot__dot:nth-child(2) {
+		background: #e6b84f;
+	}
+	.shot__dot:nth-child(3) {
+		background: #6bbf7b;
+	}
+	.shot__url {
+		margin-left: 10px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--muted);
+	}
+	.shot__img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.shot__caption {
+		padding: 10px 14px;
+		font-size: var(--t-xs);
+		color: var(--muted);
+		border-top: 1px solid var(--border-light);
+	}
+</style>

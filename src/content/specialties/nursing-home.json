@@ -1,0 +1,53 @@
+{
+	"slug": "nursing-home",
+	"label": "Nursing homes",
+	"icon": "activity",
+	"eyebrow": "For 10–50 bed nursing homes",
+	"h1Parts": ["A nursing home lives on ", "admissions and beds", ", not just OPD."],
+	"lead": "The Bengal nursing home is a small hospital in everything but name — an OPD out front, ten to forty beds behind it, a minor OT, a pharmacy, and a doctor-owner signing off on all of it. Lucoze runs the whole thing: admissions to discharge, IPD billing, pharmacy and records on one platform, with a Bengali-ready front desk and data in India.",
+	"why": [
+		[
+			"Admissions and a live bed board",
+			"See every bed at a glance — occupied, reserved, cleaning — and move a patient from OPD to admission to discharge on one record, not three registers."
+		],
+		[
+			"IPD billing that adds itself up",
+			"Bed charges, pharmacy, lab, OT and doctor fees roll into one running IPD bill, so the final settlement at discharge isn't a spreadsheet exercise."
+		],
+		[
+			"Minor OT and pharmacy, built in",
+			"Schedule a procedure with its consumables and post-op bed; dispense from the in-house pharmacy against the patient's chart. No separate tools."
+		],
+		[
+			"A Bengali front desk, data in India",
+			"Staff work in Bengali; patient search matches Bengali, Devanagari and Latin. Every record sits in Indian data centres under DPDP 2023."
+		]
+	],
+	"plan": "Hospital",
+	"price": "₹7,999 / mo",
+	"dashSpecialty": "nursing",
+	"detail": [
+		{
+			"title": "Built around the bed, not just the chair",
+			"body": "A clinic tool tracks appointments; a nursing home also has to track who is in which bed, for how long, and on whose orders. Lucoze runs an admissions pipeline and a live bed board — planned, emergency and referral admissions in one queue, each bed's status visible — and keeps the admission, its orders, the vitals and the discharge summary on a single patient record. When a large share of your revenue is IPD, that is exactly where the software has to be strong."
+		},
+		{
+			"title": "One bill from admission to discharge",
+			"body": "In most nursing homes the discharge bill is assembled by hand from a bed register, a pharmacy pad and a stack of order slips — which is where money quietly leaks. Lucoze rolls bed charges, pharmacy, lab, OT and doctor fees into one running IPD bill that's ready at discharge, GST-compliant, and clean enough for a Swasthya Sathi or insurance claim."
+		}
+	],
+	"faqs": [
+		{
+			"q": "Does Lucoze handle inpatient (IPD) and bed management for a nursing home?",
+			"a": "Yes. A live bed board plus an admissions pipeline (planned, emergency and referral) track a patient from admission through to discharge as one record, and pharmacy, lab and OPD charges roll up into a single IPD bill."
+		},
+		{
+			"q": "Is Lucoze a good fit for a small Bengal nursing home?",
+			"a": "It's built for exactly this — 10–50 bed facilities running OPD, IPD, a minor OT and a pharmacy under a doctor-owner, with a Bengali-ready front desk and East-India support. Nursing homes across West Bengal are a core focus of our design-partner programme."
+		},
+		{
+			"q": "Where is our patient data stored?",
+			"a": "In Indian data centres, DPDP 2023 compliant, with full CSV/PDF export and no lock-in. Nothing leaves the country."
+		}
+	]
+}

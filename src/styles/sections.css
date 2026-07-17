@@ -1079,6 +1079,19 @@
 }
 
 /* ════════ FOOTER ════════════════════════════════ */
+/* Product-tour gallery — 2-up grid of Screenshot frames. */
+.tour-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--s-6);
+	margin-top: var(--s-8);
+}
+@media (max-width: 760px) {
+	.tour-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
 .footer {
 	background: var(--paper);
 	border-top: 1px solid var(--border);

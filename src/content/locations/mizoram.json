@@ -6,14 +6,30 @@
 	"metaTitle": "Clinic & Hospital Management Software in Mizoram | Lucoze",
 	"metaDescription": "Cloud clinic and hospital software for Mizoram — Aizawl, Lunglei, Champhai, Serchhip. Works in English on ordinary broadband, ABDM/DPDP-ready, all data hosted in India.",
 	"eyebrow": "For clinics & hospitals in Mizoram",
-	"h1Parts": ["A cloud clinic system for ", "Mizoram", ", that runs on the connection you already have."],
+	"h1Parts": [
+		"A cloud clinic system for ",
+		"Mizoram",
+		", that runs on the connection you already have."
+	],
 	"lead": "Lucoze puts records, appointments, GST billing, lab and pharmacy on one cloud platform that works over ordinary broadband or mobile data — and works entirely in English, the way most Mizoram front desks already run.",
 	"intro": "In Mizoram, the patient in front of you has often travelled a long way. Someone from Champhai or a far village comes down the hill roads to Aizawl for a referral, then goes home — and the record needs to travel with them, not sit in a register in one clinic. Lucoze is cloud-based, so a doctor at the referral hospital and a chamber in Lunglei can see the same history. It runs on the connection you have, not a server you have to maintain. And because clinics here work comfortably in English, there's no waiting on a translation to get started.",
 	"points": [
-		["Runs on the connection you already have", "Lucoze is a lightweight cloud tool — ordinary broadband or a mobile-data connection is enough, which suits Aizawl and the remote districts alike. Be clear-eyed: it needs to be online. It is not an offline system and we don't claim offline sync."],
-		["English front desk, working today", "The whole system works in English, which is how most Mizoram clinics already run — nothing to wait for. The interface rolls out in Hindi first (Q3 2026), then Bengali and Odia; a Mizo interface is not available. Patient search matches Latin-script names, and we ship printable English cheat-sheets for staff."],
-		["Records that follow the patient", "Because everything is on one cloud platform, a referral from Lunglei or Champhai to Aizawl carries the history with it. One record for appointments, notes, lab results, pharmacy and GST billing — not a separate tool for each."],
-		["ABDM-ready, and your data stays in India", "Issue an ABHA at the first visit, stay aligned with DPDP 2023, and keep clean records for Ayushman Bharat (PMJAY) and state schemes. Every byte sits in Indian data centres, with full CSV/PDF export and no lock-in."]
+		[
+			"Runs on the connection you already have",
+			"Lucoze is a lightweight cloud tool — ordinary broadband or a mobile-data connection is enough, which suits Aizawl and the remote districts alike. Be clear-eyed: it needs to be online. It is not an offline system and we don't claim offline sync."
+		],
+		[
+			"English front desk, working today",
+			"The whole system works in English, which is how most Mizoram clinics already run — nothing to wait for. The interface rolls out in Hindi first (Q3 2026), then Bengali and Odia; a Mizo interface is not available. Patient search matches Latin-script names, and we ship printable English cheat-sheets for staff."
+		],
+		[
+			"Records that follow the patient",
+			"Because everything is on one cloud platform, a referral from Lunglei or Champhai to Aizawl carries the history with it. One record for appointments, notes, lab results, pharmacy and GST billing — not a separate tool for each."
+		],
+		[
+			"ABDM-ready, and your data stays in India",
+			"Issue an ABHA at the first visit, stay aligned with DPDP 2023, and keep clean records for Ayushman Bharat (PMJAY) and state schemes. Every byte sits in Indian data centres, with full CSV/PDF export and no lock-in."
+		]
 	],
 	"localContext": "Aizawl is the state's medical and referral hub — clinics and diagnostics cluster around areas like Dawrpui, Chanmari and Zarkawt — while patients come in from Lunglei, Champhai, Serchhip and Kolasib along long, hilly road routes. That geography is the reason a cloud record matters: the person leaves, but the history should stay reachable at the next visit. Mizoram's language is Mizo (Lushai), and English is very widely used at the front desk and in daily clinic work, so onboarding here is straightforward — staff can use the software in English from day one. What a hilly, spread-out state needs is a light tool that works on an ordinary connection, and records that don't get stranded in one town's register.",
 	"citiesServed": ["Aizawl", "Lunglei", "Champhai", "Serchhip", "Kolasib"],

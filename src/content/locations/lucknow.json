@@ -10,10 +10,22 @@
 	"lead": "Lucknow is where UP comes for treatment — patients travel in from across the state, and the OPD queue shows it. Lucoze keeps records, appointments, GST billing, lab and pharmacy on one platform, with multilingual patient search today and a Hindi interface rolling out in Q3 2026.",
 	"intro": "As UP's medical hub, Lucknow's clinics and hospitals handle referral volume that most district practices never see — patients arriving from Sitapur, Barabanki and beyond, often as first-time records under pressure. That makes fast registration and a front desk that keeps the queue moving non-negotiable. Lucoze is built for exactly that: quick patient entry, search that finds a name on the first attempt across scripts, and billing, lab and pharmacy in one place so a busy Hazratganj or Gomti Nagar practice isn't stitching three tools together mid-shift.",
 	"points": [
-		["Made for referral-hub volume", "Patients travel to Lucknow from across UP, so first-visit registration has to be quick. Multilingual patient search matches Hindi, Devanagari and Latin — a new record is found on the first try, not searched three ways."],
-		["A Hindi front desk", "The interface is rolling out in Hindi first (Q3 2026). Patient search already works across scripts today, and every plan ships printable Hindi cheat-sheets so counter staff aren't fighting the software."],
-		["One platform, GST-ready", "Records, appointments, GST-compliant billing, lab and pharmacy in a single tool — not separate subscriptions. A 14-day trial, live in about 14 days, and full CSV/PDF export with no lock-in."],
-		["ABDM, DPDP and scheme-ready", "Issue an ABHA at the first visit, keep clean records for Ayushman Bharat (PMJAY) and state-scheme claims, and know every byte sits in Indian data centres under DPDP 2023."]
+		[
+			"Made for referral-hub volume",
+			"Patients travel to Lucknow from across UP, so first-visit registration has to be quick. Multilingual patient search matches Hindi, Devanagari and Latin — a new record is found on the first try, not searched three ways."
+		],
+		[
+			"A Hindi front desk",
+			"The interface is rolling out in Hindi first (Q3 2026). Patient search already works across scripts today, and every plan ships printable Hindi cheat-sheets so counter staff aren't fighting the software."
+		],
+		[
+			"One platform, GST-ready",
+			"Records, appointments, GST-compliant billing, lab and pharmacy in a single tool — not separate subscriptions. A 14-day trial, live in about 14 days, and full CSV/PDF export with no lock-in."
+		],
+		[
+			"ABDM, DPDP and scheme-ready",
+			"Issue an ABHA at the first visit, keep clean records for Ayushman Bharat (PMJAY) and state-scheme claims, and know every byte sits in Indian data centres under DPDP 2023."
+		]
 	],
 	"localContext": "Lucknow's healthcare spreads from the old-city practices around Chowk to the newer OPD belts of Hazratganj, Gomti Nagar, Aliganj and Indira Nagar — standalone chambers, diagnostic centres, nursing homes and multi-specialty hospitals, all working a Hindi-first, cash-and-UPI counter. Because it's a referral hub, front desks here handle a steady stream of out-of-town, first-visit patients. Our team is in Konnagar, Hooghly (West Bengal), so Lucknow support is remote-first: video onboarding, hands-on data migration, WhatsApp and chat during business hours, and Hindi cheat-sheets for the desk. For larger hospital deployments we arrange on-site setup.",
 	"citiesServed": [],

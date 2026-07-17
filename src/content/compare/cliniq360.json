@@ -8,27 +8,86 @@
 	"lead": "Cliniq360 is a capable cloud platform for clinics and hospitals. If what matters most to you is where your patient data lives, ABDM readiness and pricing you can predict, here is an honest side-by-side.",
 	"intro": "This is our page, so read it that way — we build Lucoze and we think it is a strong fit for Indian clinics. We have tried to keep the comparison fair. Cliniq360 is an India-based cloud clinic and hospital management platform covering appointments, EMR, billing, pharmacy and lab, and plenty of clinics run it happily. Where we mark a row as not documented, it simply means we could not confirm it from public sources and you should ask their team directly. Where Lucoze is different is our focus: patient data hosted in India, ABDM/ABHA built in, flat per-clinic pricing, a Hindi-ready interface, and being upfront that our support is remote-first from West Bengal.",
 	"tableRows": [
-		{ "label": "Patient data hosted in India", "sub": "Records stored on infrastructure inside India", "cells": ["check", "na"] },
-		{ "label": "DPDP 2023 compliant on launch", "sub": "Built around India's data-protection law from day one", "cells": ["check", "na"] },
-		{ "label": "One platform, all departments", "sub": "OPD, billing, pharmacy, lab and records together", "cells": ["check", "check"] },
-		{ "label": "Live in about 14 days", "sub": "Guided onboarding and data setup", "cells": ["check", "na"] },
-		{ "label": "ABDM, ABHA & HPR built in", "sub": "Native health-ID and registry integration", "cells": ["check", "na"] },
-		{ "label": "Flat per-clinic pricing", "sub": "One predictable price, not per-seat or per-feature", "cells": ["check", "na"] },
-		{ "label": "Hindi / regional UI built in", "sub": "Interface and search beyond English", "cells": ["check", "na"] },
-		{ "label": "Full data export on demand", "sub": "Take your complete records out anytime", "cells": ["check", "partial"] }
+		{
+			"label": "Patient data hosted in India",
+			"sub": "Records stored on infrastructure inside India",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "DPDP 2023 compliant on launch",
+			"sub": "Built around India's data-protection law from day one",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "One platform, all departments",
+			"sub": "OPD, billing, pharmacy, lab and records together",
+			"cells": ["check", "check"]
+		},
+		{
+			"label": "Live in about 14 days",
+			"sub": "Guided onboarding and data setup",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "ABDM, ABHA & HPR built in",
+			"sub": "Native health-ID and registry integration",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Flat per-clinic pricing",
+			"sub": "One predictable price, not per-seat or per-feature",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Hindi / regional UI built in",
+			"sub": "Interface and search beyond English",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Full data export on demand",
+			"sub": "Take your complete records out anytime",
+			"cells": ["check", "partial"]
+		}
 	],
 	"points": [
-		["Your data stays in India", "Lucoze hosts patient records on infrastructure inside India and is built around the DPDP Act, 2023 from launch — so residency and consent are the default, not an afterthought."],
-		["One platform for every department", "OPD, appointments, EMR, billing, pharmacy and lab live in a single system, so your front desk, doctors and back office all work off the same records without stitched-together add-ons."],
-		["ABDM, ABHA and HPR built in", "Health-ID creation, ABHA linking and HPR registration are native to Lucoze, so aligning with India's digital-health stack does not need a separate integration project."],
-		["Flat per-clinic pricing from ₹1,499", "You pay one predictable per-clinic price starting at ₹1,499 — no per-seat maths, no surprise per-feature upgrades — so your bill does not grow every time you add a receptionist."],
-		["Hindi-ready and multilingual search", "The interface and patient search work in Hindi and regional languages, so staff who are more comfortable outside English can use the software without friction."],
-		["Local support, honestly remote-first", "Our team is based in Konnagar, West Bengal, with real strength across East India. We are upfront that support is remote-first — quick and human, without pretending to have a branch on your street."]
+		[
+			"Your data stays in India",
+			"Lucoze hosts patient records on infrastructure inside India and is built around the DPDP Act, 2023 from launch — so residency and consent are the default, not an afterthought."
+		],
+		[
+			"One platform for every department",
+			"OPD, appointments, EMR, billing, pharmacy and lab live in a single system, so your front desk, doctors and back office all work off the same records without stitched-together add-ons."
+		],
+		[
+			"ABDM, ABHA and HPR built in",
+			"Health-ID creation, ABHA linking and HPR registration are native to Lucoze, so aligning with India's digital-health stack does not need a separate integration project."
+		],
+		[
+			"Flat per-clinic pricing from ₹1,499",
+			"You pay one predictable per-clinic price starting at ₹1,499 — no per-seat maths, no surprise per-feature upgrades — so your bill does not grow every time you add a receptionist."
+		],
+		[
+			"Hindi-ready and multilingual search",
+			"The interface and patient search work in Hindi and regional languages, so staff who are more comfortable outside English can use the software without friction."
+		],
+		[
+			"Local support, honestly remote-first",
+			"Our team is based in Konnagar, West Bengal, with real strength across East India. We are upfront that support is remote-first — quick and human, without pretending to have a branch on your street."
+		]
 	],
 	"faqs": [
-		{ "q": "Is Lucoze a good alternative to Cliniq360?", "a": "It depends on your priorities. If India data residency, DPDP readiness, native ABDM/ABHA and a Hindi-ready interface sit near the top of your list, Lucoze is built specifically around those. Cliniq360 is a solid platform too — we would encourage you to trial both and confirm the details that matter to you." },
-		{ "q": "How does pricing compare?", "a": "Lucoze uses flat per-clinic pricing starting at ₹1,499, so the cost is predictable regardless of how many staff log in. We cannot speak to Cliniq360's current pricing model — please verify it directly with their team, as it may differ from ours." },
-		{ "q": "Can I move my existing data to Lucoze?", "a": "Yes. Guided onboarding typically gets a clinic live in about 14 days, including importing your existing patient records, and you can export your full data on demand at any time if you ever choose to leave." }
+		{
+			"q": "Is Lucoze a good alternative to Cliniq360?",
+			"a": "It depends on your priorities. If India data residency, DPDP readiness, native ABDM/ABHA and a Hindi-ready interface sit near the top of your list, Lucoze is built specifically around those. Cliniq360 is a solid platform too — we would encourage you to trial both and confirm the details that matter to you."
+		},
+		{
+			"q": "How does pricing compare?",
+			"a": "Lucoze uses flat per-clinic pricing starting at ₹1,499, so the cost is predictable regardless of how many staff log in. We cannot speak to Cliniq360's current pricing model — please verify it directly with their team, as it may differ from ours."
+		},
+		{
+			"q": "Can I move my existing data to Lucoze?",
+			"a": "Yes. Guided onboarding typically gets a clinic live in about 14 days, including importing your existing patient records, and you can export your full data on demand at any time if you ever choose to leave."
+		}
 	],
 	"comparedOn": "July 2026"
 }

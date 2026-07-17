@@ -10,10 +10,22 @@
 	"lead": "One platform for records, appointments, GST billing, lab and pharmacy — built for Indian clinics and honest about how we support you from a distance.",
 	"intro": "Assam runs on long distances. A patient in Tinsukia or Silchar may travel hours to reach a specialist, and Guwahati is the referral hub for the whole Northeast. Lucoze keeps records, appointments, GST billing, lab and pharmacy on a single cloud platform that opens on ordinary broadband or mobile data — no server box in the back room. Register ABHA at the first visit, keep every patient's data in Indian data centres under DPDP 2023, and export to CSV or PDF whenever you want. We're based in West Bengal, so our support is remote-first and built to actually reach you here, not a promise to drop by.",
 	"points": [
-		["One platform, not five registers", "Records, appointments, GST-compliant billing, lab reports and pharmacy stock live together — so the front desk and the doctor see the same patient without shuffling paper."],
-		["ABHA at the first visit", "Create and link a patient's ABHA number during registration and stay ABDM-ready, plus keep records for Ayushman Bharat (PMJAY) and state-scheme claims without extra software."],
-		["Cloud that runs on what you already have", "Lucoze is cloud-based and opens on regular broadband or a phone hotspot. It is not an offline system and won't sync without a connection — but it stays light so a single clinic line is enough."],
-		["Your data, in India, no lock-in", "Every record sits in Indian data centres under DPDP 2023, and you can export patients and billing to CSV or PDF any day. Leave whenever you like — we'd rather you stay because it works."]
+		[
+			"One platform, not five registers",
+			"Records, appointments, GST-compliant billing, lab reports and pharmacy stock live together — so the front desk and the doctor see the same patient without shuffling paper."
+		],
+		[
+			"ABHA at the first visit",
+			"Create and link a patient's ABHA number during registration and stay ABDM-ready, plus keep records for Ayushman Bharat (PMJAY) and state-scheme claims without extra software."
+		],
+		[
+			"Cloud that runs on what you already have",
+			"Lucoze is cloud-based and opens on regular broadband or a phone hotspot. It is not an offline system and won't sync without a connection — but it stays light so a single clinic line is enough."
+		],
+		[
+			"Your data, in India, no lock-in",
+			"Every record sits in Indian data centres under DPDP 2023, and you can export patients and billing to CSV or PDF any day. Leave whenever you like — we'd rather you stay because it works."
+		]
 	],
 	"localContext": "Assam is not one market. The tea-garden belt of Upper Assam — Dibrugarh, Jorhat, Tinsukia — mixes estate hospitals with private clinics, while the Barak Valley around Silchar is largely Bengali-speaking, and Guwahati's hospital belt along GS Road, Bhangagarh and Six Mile pulls referrals from across the Northeast. Front desks here juggle Assamese, Bengali, Bodo and English names in one afternoon. Lucoze's multilingual patient search handles Bengali, Devanagari and Latin spellings today, so a name entered two ways still finds the same person. The interface rolls out in Hindi first (Q3 2026), then Bengali — useful for Silchar — then Odia; a full Assamese UI isn't ready yet, and we won't pretend otherwise. Printable local-language cheat-sheets cover the gap at the desk.",
 	"citiesServed": ["Guwahati", "Dibrugarh", "Silchar", "Jorhat", "Tezpur", "Nagaon", "Tinsukia"],

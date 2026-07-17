@@ -10,10 +10,22 @@
 	"lead": "Bihar runs on volume — long queues, cash-tight patients, and a front desk that works entirely in Hindi. Lucoze puts patient records, appointments, GST billing, lab and pharmacy on one screen, so nobody loses a file when forty people are waiting.",
 	"intro": "A single-doctor chamber on a district main road, a diagnostic centre off the highway, a 30-bed nursing home in a divisional town — Bihar's healthcare is high-footfall and price-sensitive, and the front desk is almost always working in Hindi. When the OPD is full, paper slips get lost, a repeat patient is registered twice, and billing turns into an argument. Lucoze is built to move that queue: fast Hindi-first registration, one record per patient, and a bill that adds up the first time. We're an early-stage product taking on design partners in East India, and Bihar is squarely in that programme.",
 	"points": [
-		["A front desk that works in Hindi", "The interface rolls out in Hindi first (Q3 2026), and multilingual patient search — Hindi, Devanagari and Latin — works today, so a name typed three different ways still finds the same patient."],
-		["Built for volume, not vanity", "Register, pull the last visit, bill with GST, hand off to lab and pharmacy — all on one screen. Fewer clicks per patient is the whole point when the waiting room is packed."],
-		["Your patients' data stays in India", "Every record sits in Indian data centres, DPDP 2023 compliant. Full CSV and PDF export whenever you want it — no lock-in, no hostage data."],
-		["ABDM, GST and scheme-ready", "Issue an ABHA at the first visit, generate GST-compliant invoices, and keep the paperwork straight for Ayushman Bharat (PMJAY) and state-scheme claims."]
+		[
+			"A front desk that works in Hindi",
+			"The interface rolls out in Hindi first (Q3 2026), and multilingual patient search — Hindi, Devanagari and Latin — works today, so a name typed three different ways still finds the same patient."
+		],
+		[
+			"Built for volume, not vanity",
+			"Register, pull the last visit, bill with GST, hand off to lab and pharmacy — all on one screen. Fewer clicks per patient is the whole point when the waiting room is packed."
+		],
+		[
+			"Your patients' data stays in India",
+			"Every record sits in Indian data centres, DPDP 2023 compliant. Full CSV and PDF export whenever you want it — no lock-in, no hostage data."
+		],
+		[
+			"ABDM, GST and scheme-ready",
+			"Issue an ABHA at the first visit, generate GST-compliant invoices, and keep the paperwork straight for Ayushman Bharat (PMJAY) and state-scheme claims."
+		]
 	],
 	"localContext": "We work with clinics, nursing homes and diagnostic centres across Bihar — Patna's dense medical belt (Boring Road, Kankarbagh, Bailey Road, Kadam Kuan) where patients arrive from every district, and the busy chambers of Gaya, Muzaffarpur, Bhagalpur, Darbhanga and Purnia. The working language is Hindi, with Bhojpuri, Maithili and Magahi spoken across the front desk. Support is remote-first: video onboarding, hands-on data migration from your registers or old software, printable Hindi cheat-sheets, and WhatsApp plus in-app chat. Our team is in Konnagar, Hooghly — a different state — so on-site visits are reserved for larger hospital deployments, not every clinic.",
 	"citiesServed": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga", "Purnia"],

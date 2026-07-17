@@ -50,12 +50,30 @@
 		}
 	],
 	"points": [
-		["Every record in Indian data centres", "Lucoze hosts all patient data in India under DPDP 2023, with full CSV/PDF export on request and no lock-in — the data is always yours to take."],
-		["One platform, not modules stitched together", "Appointments, patient records, GST billing, lab and pharmacy run on a single system, so the front desk isn't switching between tools mid-shift."],
-		["ABDM and ABHA, built in", "Create and verify ABHA-linked records at the first visit using the published NHA APIs — HPR and HFR included, not a future roadmap item."],
-		["Pricing that doesn't move with your team", "Flat per-clinic monthly plans from ₹1,499, so adding a doctor or a receptionist doesn't change the bill."],
-		["A Hindi-ready front desk", "Multilingual patient search (Hindi, Bengali, Devanagari and Latin) works today, and the interface is rolling out in Hindi first (Q3 2026), then Bengali and Odia."],
-		["Built for India, honest about support", "Our team is in Konnagar, West Bengal. On-site setup in and around Kolkata; remote-first onboarding, migration help and WhatsApp support everywhere else — we won't over-promise on distance."]
+		[
+			"Every record in Indian data centres",
+			"Lucoze hosts all patient data in India under DPDP 2023, with full CSV/PDF export on request and no lock-in — the data is always yours to take."
+		],
+		[
+			"One platform, not modules stitched together",
+			"Appointments, patient records, GST billing, lab and pharmacy run on a single system, so the front desk isn't switching between tools mid-shift."
+		],
+		[
+			"ABDM and ABHA, built in",
+			"Create and verify ABHA-linked records at the first visit using the published NHA APIs — HPR and HFR included, not a future roadmap item."
+		],
+		[
+			"Pricing that doesn't move with your team",
+			"Flat per-clinic monthly plans from ₹1,499, so adding a doctor or a receptionist doesn't change the bill."
+		],
+		[
+			"A Hindi-ready front desk",
+			"Multilingual patient search (Hindi, Bengali, Devanagari and Latin) works today, and the interface is rolling out in Hindi first (Q3 2026), then Bengali and Odia."
+		],
+		[
+			"Built for India, honest about support",
+			"Our team is in Konnagar, West Bengal. On-site setup in and around Kolkata; remote-first onboarding, migration help and WhatsApp support everywhere else — we won't over-promise on distance."
+		]
 	],
 	"faqs": [
 		{

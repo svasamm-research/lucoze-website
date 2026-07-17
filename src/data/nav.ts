@@ -108,6 +108,7 @@ export const MEGA: MegaGroup[] = [
 						label: "Multi-specialty",
 					},
 					{ href: "/in/specialties/polyclinic/", label: "Polyclinic" },
+					{ href: "/in/specialties/nursing-home/", label: "Nursing homes" },
 					{ href: "/in/specialties/dental/", label: "Dental groups" },
 					{ href: "/in/specialties/ivf/", label: "IVF clinics" },
 					{ href: "/in/specialties/dermatology/", label: "Dermatology" },
