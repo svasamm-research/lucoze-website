@@ -9,6 +9,7 @@ import "../styles/sections.css";
 import "../styles/subpages.css";
 import Nav from "../components/redesign/Nav.astro";
 import Footer from "../components/redesign/Footer.astro";
+import { OG_PAGES } from "../lib/og-pages";
 
 interface Props {
 	title: string;
@@ -28,6 +29,21 @@ const {
 
 const siteUrl = "https://lucoze.com";
 const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | Lucoze`;
+
+// OG image resolution: an explicit `ogImage` prop wins (e.g. a page that wants
+// a specific screenshot); otherwise the branded auto-generated card for this
+// route (/open-graph/<route>.png); otherwise the static default.
+// Set USE_GENERATED_OG = false to revert the whole site to the static default.
+const USE_GENERATED_OG = true;
+const OG_DEFAULT = "/og-default.png";
+const ogRoute = Astro.url.pathname.replace(/^\/+|\/+$/g, "");
+const ogPath =
+	ogImage !== OG_DEFAULT
+		? ogImage
+		: USE_GENERATED_OG && OG_PAGES[ogRoute]
+			? `/open-graph/${ogRoute}.png`
+			: ogImage;
+const ogSrc = ogPath.startsWith("http") ? ogPath : `${siteUrl}${ogPath}`;
 
 // Site-wide entity graph. Emitted on every page so Google/LLMs can resolve
 // "Lucoze" (brand) → Svasamm Research Pvt. Ltd. (legal entity) with a founder
@@ -95,20 +111,14 @@ const siteLd = {
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />
-		<meta
-			property="og:image"
-			content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
-		/>
+		<meta property="og:image" content={ogSrc} />
 		<meta property="og:locale" content="en_IN" />
 		<meta property="og:site_name" content="Lucoze" />
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
-		<meta
-			name="twitter:image"
-			content={ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`}
-		/>
+		<meta name="twitter:image" content={ogSrc} />
 
 		<meta name="theme-color" content="#c15f3c" />
 		{
