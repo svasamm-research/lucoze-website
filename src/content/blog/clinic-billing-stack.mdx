@@ -1,0 +1,121 @@
+---
+title: "The clinic billing stack, tied together."
+dek: "A clinic's 'billing' is really four or five different kinds of billing that have to reconcile into one day's collection. When they don't talk, money leaks."
+category: "Billing & GST"
+author: "Mithun K. Singh"
+date: "2026-07-17"
+readMins: 5
+cluster: "billing"
+---
+
+<p>
+	Ask a clinic owner "how does billing work here" and you'll get a simple answer: patient pays, we
+	give a receipt. Sit at the front desk for an afternoon and you'll see something else entirely —
+	four or five different billing motions, each with its own rules, all of which have to add up to one
+	number at the end of the day. When they live in separate books, that number never quite matches,
+	and nobody can say where the gap went.
+</p>
+
+<h2 id="not-one-thing">Billing isn't one thing</h2>
+<p>
+	Here's what's actually happening under the word "billing" at a working clinic:
+</p>
+<ul>
+	<li>
+		<strong>Consultation / OPD billing.</strong> The doctor's fee for a visit. Simple on its own —
+		flat or per-specialty — but it's the line most likely to be given away informally ("tell them no
+		charge for the follow-up") and never recorded.
+	</li>
+	<li>
+		<strong>Pharmacy point-of-sale.</strong> Selling medicine is retail, not consultation. Each sale
+		has to decrement stock, pick the right batch, respect expiry, and warn when something's running
+		low. A receipt that doesn't move inventory is just a number — the shelf and the system drift
+		apart within a week.
+	</li>
+	<li>
+		<strong>Procedure and package billing.</strong> A dressing, a minor procedure, a physiotherapy
+		package, an antenatal bundle. These carry a bundled price, often collected across visits as
+		advances and staged payments. "Paid ₹5,000 of a ₹12,000 package" is a state your books have to
+		hold, not a receipt you file once.
+	</li>
+	<li>
+		<strong>Discounts.</strong> Every clinic gives them — camp rates, staff family, the doctor's own
+		call. The question isn't whether to allow discounts, it's who's authorised to give them and up to
+		what limit. Unlogged, uncapped discounts are the quietest leak in the building.
+	</li>
+</ul>
+
+<h2 id="reconcile">It all has to reconcile to one day</h2>
+<p>
+	At close, none of these matter individually. What matters is the day-sheet: what did we collect
+	today, and does it match what's in the drawer and the accounts? Cash counted, card settlements, UPI
+	receipts — added up, they should equal the system's total for the day. When they don't, the honest
+	answer is usually not theft. It's an OPD fee waived and never entered, a pharmacy sale rung up
+	outside the system, a package advance sitting in someone's memory, a discount nobody recorded.
+</p>
+<blockquote>
+	Fragmented billing doesn't leak money in one dramatic hole. It leaks in ten small ones you can't
+	see, because no single book ever shows the whole day at once.
+</blockquote>
+<p>
+	The fix isn't stricter people. It's a stack where every one of those motions writes to the same
+	ledger, so end-of-day reconciliation is a report you read, not an investigation you run.
+</p>
+
+<h2 id="pharmacy">Why pharmacy is the hard one</h2>
+<p>
+	Consultation and procedure billing are mostly about recording. Pharmacy is about state. Every sale
+	touches live inventory — the right batch has to come off the shelf in the system exactly as it does
+	in real life, expiry has to block a bad pack, and a low-stock line has to raise its hand before you
+	run out mid-week. A pharmacy counter billing on a separate app, or on a notebook, guarantees two
+	things drift: your stock count and your revenue count. By month-end neither can be trusted, and the
+	reorder list is a guess.
+</p>
+<p>
+	Lucoze links pharmacy billing to live stock, so a sale decrements the batch, respects expiry, and
+	surfaces low-stock lines as it happens — one action, not a sale plus a separate stock adjustment
+	somebody has to remember. That's the design intent behind our{" "}
+	<a href="/in/features/pharmacy/">pharmacy module</a>, and it's the piece that keeps the day-sheet
+	honest.
+</p>
+
+<h2 id="gst">The GST wrinkle, briefly</h2>
+<p>
+	Here's where the two halves collide on one piece of paper. A single visit can produce one invoice
+	that mixes an <strong>exempt</strong> line (the consultation — healthcare services are GST-exempt)
+	and <strong>taxable</strong> lines (the medicines sold at the pharmacy counter). The invoice has to
+	carry both correctly: exempt shown as exempt, taxable at the right rate, totals that a tax filing
+	can stand behind. Get the split wrong on every mixed invoice and it compounds quietly into a
+	reconciliation and compliance problem at return time.
+</p>
+<p>
+	That's a whole topic on its own — HSN codes, rates, exempt-vs-taxable classification, what the
+	invoice must show. We cover it properly in the pillar:{" "}
+	<a href="/in/blog/gst-for-clinics/">GST for clinics</a>. For here, the point is narrower: a
+	connected billing stack can put exempt and taxable lines on the same invoice and still keep the
+	books clean, because it knows which line is which as it's created.
+</p>
+
+<h2 id="connected">What "tied together" actually buys you</h2>
+<p>
+	When consultation, pharmacy, packages, and discounts all write to one system, a few things stop
+	being problems. Discounts run against a rule — who can give them, up to what — instead of against
+	trust. Package advances carry their balance forward on their own. The pharmacy shelf and the
+	pharmacy revenue stay in step. And the day-sheet is a single reconciliation of cash plus card plus
+	UPI against one system total, produced in a minute at close, not pieced together the next morning
+	from three books.
+</p>
+<p>
+	That's the shape of the <a href="/in/features/billing/">billing module</a> we're building — not
+	billing as a receipt printer, but billing as the layer that ties the day's money into one honest
+	number.
+</p>
+
+<h2 id="closing">Closing</h2>
+<p>
+	Lucoze is early — we're building this with design-partner clinics, not claiming a finished product.
+	If your clinic's collection never quite reconciles, and you can't say whether it's discounts,
+	pharmacy, or waived fees doing it, that's exactly the problem this stack is meant to close. If
+	you'd like to walk through where your billing leaks, <a href="/in/contact/">get in touch</a>. No
+	pitch attached.
+</p>
