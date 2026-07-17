@@ -18,6 +18,20 @@ const post = entry.data;
 
 const toc = headings.filter((h) => h.depth === 2);
 
+// Topic-cluster cross-linking: other posts in the same cluster, pillar first.
+const CLUSTER_LABELS: Record<string, string> = {
+	abdm: "ABDM & ABHA",
+	dpdp: "DPDP compliance",
+	billing: "billing & GST",
+	switching: "switching clinic software",
+};
+const clusterPosts = post.cluster
+	? (await getCollection("blog"))
+			.filter((p) => p.data.cluster === post.cluster && p.id !== entry.id && !p.data.draft)
+			.sort((a, b) => Number(b.data.pillar) - Number(a.data.pillar))
+	: [];
+const clusterLabel = post.cluster ? (CLUSTER_LABELS[post.cluster] ?? post.cluster) : "";
+
 const fmtDate = post.date.toLocaleDateString("en-IN", {
 	day: "numeric",
 	month: "short",
@@ -122,6 +136,35 @@ const blogPostingLd = {
 			</div>
 		</div>
 	</section>
+
+	{
+		clusterPosts.length > 0 && (
+			<section class="section section--tight">
+				<div class="container">
+					<header class="section-header section-header--left">
+						<span class="t-eyebrow">More in this series</span>
+						<h2 class="t-h2" style="margin-top: 8px;">
+							Keep reading on {clusterLabel}.
+						</h2>
+					</header>
+					<div class="module-grid">
+						{clusterPosts.map((p) => (
+							<a class="module-card" href={`/in/blog/${p.id}/`}>
+								<div class="module-card__title">
+									{p.data.title}
+									{p.data.pillar && " ·  the guide"}
+								</div>
+								<div class="module-card__blurb">{p.data.dek}</div>
+								<span class="module-card__arrow">
+									Read <Icon name="arrow" size={13} />
+								</span>
+							</a>
+						))}
+					</div>
+				</div>
+			</section>
+		)
+	}
 
 	<section class="section">
 		<div class="container">
