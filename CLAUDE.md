@@ -57,6 +57,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Release flow: `develop → uat → main`; production builds from **`main`**.
 - **Only HTTP→HTTPS + TLS/domain provisioning are at the Dokploy/Traefik edge.** **www→apex 301, HSTS, apex `/`→`/in/` 301, and `absolute_redirect off` all live in `nginx.conf`** (ship with the image). Traefik-middleware labels for www/HSTS proved unreliable in Dokploy (router-name mismatch) — don't use them; see `deploy/dokploy-seo.md`.
 - HSTS is host-only for now; upgrade to `includeSubDomains` then `preload` only once every `*.lucoze.com` is confirmed HTTPS.
+- **UAT protection is edge-level, not code** (one static image serves prod + UAT): use Traefik **basic-auth** (htpasswd) on the UAT domain to block crawlers + keep it private, optionally `X-Robots-Tag: noindex`. See **`deploy/uat-protection.md`**. Don't bake noindex into the app.
 
 ## Growth
 - Strategy (the *why*): **`docs/growth-plan.md`**. Update; don't duplicate.
