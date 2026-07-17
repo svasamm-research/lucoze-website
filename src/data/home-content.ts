@@ -15,7 +15,7 @@ export const DIFF_ROWS: DiffRow[] = [
 	{
 		label: "Patient data hosted in India",
 		sub: "Indian data centres — never crosses border",
-		cells: ["check", "cross", "cross", "cross"],
+		cells: ["check", "na", "cross", "cross"],
 	},
 	{
 		label: "DPDP 2023 compliant on launch",

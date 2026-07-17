@@ -4,7 +4,7 @@ import SubHero from "../../../components/SubHero.astro";
 import FRow from "../../../components/FRow.astro";
 import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
-import MultispecGrid from "../../../components/visuals/specialty/MultispecGrid.astro";
+import Screenshot from "../../../components/Screenshot.astro";
 import { SPECIALTIES } from "../../../data/specialties-list.ts";
 
 const MODULES: { icon: string; title: string; blurb: string; href: string }[] = [
@@ -54,7 +54,7 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 	<SubHero
 		crumbs={[
 			{ href: "/in/", label: "Home" },
-			{ href: "/in/", label: "Solutions" },
+			{ href: "/in/solutions/", label: "Solutions" },
 			{ label: "Clinics" },
 		]}
 		eyebrow="For clinics · 1-15 doctors"
@@ -70,7 +70,11 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 			{ value: "0%", label: "Per-user pricing tricks" },
 		]}
 	>
-		<MultispecGrid slot="visual" />
+		<Screenshot
+			slot="visual"
+			name="front-office"
+			alt="Lucoze front office and OPD queue for an Indian clinic"
+		/>
 	</SubHero>
 
 	<section class="section section--tight">

@@ -1,0 +1,65 @@
+---
+/**
+ * CompareTable — the `.diff` capability table, shared by the homepage
+ * differentiation section and the /in/compare/ competitor pages.
+ * `columns[0]` is the row-label header; the remaining columns are the
+ * things being compared, and `columns[1]` (first data column) is highlighted
+ * as Lucoze. Each row's `cells` align to columns[1..].
+ */
+import Icon from "./Icon.astro";
+
+type Cell = "check" | "cross" | "partial" | "na";
+
+interface Props {
+	columns: string[];
+	rows: { label: string; sub?: string; cells: Cell[] }[];
+}
+
+const { columns, rows } = Astro.props;
+---
+
+<div class="diff" role="region" aria-label="Feature comparison table">
+	<table class="diff__table">
+		<thead>
+			<tr>
+				{columns.map((col) => <th scope="col">{col}</th>)}
+			</tr>
+		</thead>
+		<tbody>
+			{
+				rows.map((row) => (
+					<tr>
+						<th scope="row" class="diff__row-label">
+							{row.label}
+							{row.sub && <span class="diff__row-sub">{row.sub}</span>}
+						</th>
+						{row.cells.map((c, j) => (
+							<td class:list={["diff__cell", j === 0 && "diff__cell--lucoze"]}>
+								{c === "check" && (
+									<span class="diff__check" aria-label="Yes">
+										<Icon name="check" size={13} />
+									</span>
+								)}
+								{c === "cross" && (
+									<span class="diff__cross" aria-label="No">
+										<Icon name="x" size={13} />
+									</span>
+								)}
+								{c === "partial" && (
+									<span class="diff__partial" aria-label="Partial">
+										Partial
+									</span>
+								)}
+								{c === "na" && (
+									<span class="diff__partial diff__partial--na" aria-label="Not documented">
+										—
+									</span>
+								)}
+							</td>
+						))}
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</div>

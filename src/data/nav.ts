@@ -108,6 +108,7 @@ export const MEGA: MegaGroup[] = [
 						label: "Multi-specialty",
 					},
 					{ href: "/in/specialties/polyclinic/", label: "Polyclinic" },
+					{ href: "/in/specialties/nursing-home/", label: "Nursing homes" },
 					{ href: "/in/specialties/dental/", label: "Dental groups" },
 					{ href: "/in/specialties/ivf/", label: "IVF clinics" },
 					{ href: "/in/specialties/dermatology/", label: "Dermatology" },
@@ -139,6 +140,17 @@ export const MEGA: MegaGroup[] = [
 						label: "Security & data",
 						blurb: "Where your data lives",
 					},
+				],
+			},
+			{
+				head: "Compare",
+				items: [
+					{
+						href: "/in/compare/practo-ray/",
+						label: "Practo Ray alternative",
+						blurb: "Lucoze vs Practo Ray",
+					},
+					{ href: "/in/compare/", label: "All comparisons →" },
 				],
 			},
 			{

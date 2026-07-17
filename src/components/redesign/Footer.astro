@@ -1,8 +1,34 @@
 ---
+import { getCollection } from "astro:content";
 import Logo from "../Logo.astro";
 import Icon from "../Icon.astro";
 
 const year = new Date().getFullYear();
+
+// Data-driven Locations footer: states as headings, their city pages stacked
+// beneath. Adding a city JSON auto-nests it under its region — no footer edit.
+const locations = await getCollection("locations");
+const STATE_ORDER = [
+	"west-bengal",
+	"bihar",
+	"jharkhand",
+	"odisha",
+	"uttar-pradesh",
+	"assam",
+	"tripura",
+	"manipur",
+	"mizoram",
+	"sikkim",
+];
+const orderOf = (slug: string) => {
+	const i = STATE_ORDER.indexOf(slug);
+	return i === -1 ? 999 : i;
+};
+const footerStates = locations
+	.filter((l) => l.data.kind === "state")
+	.sort((a, b) => orderOf(a.data.slug) - orderOf(b.data.slug));
+const citiesFor = (stateName: string) =>
+	locations.filter((l) => l.data.kind === "city" && l.data.region === stateName).map((l) => l.data);
 ---
 
 <footer class="footer" id="site-footer">
@@ -49,6 +75,7 @@ const year = new Date().getFullYear();
 				<h3>Solutions</h3>
 				<a href="/in/solutions/clinics/">For clinics</a>
 				<a href="/in/solutions/hospitals/">For hospitals</a>
+				<a href="/in/specialties/nursing-home/">Nursing homes</a>
 				<a href="/in/specialties/multispecialty/">Multi-specialty</a>
 				<a href="/in/specialties/dental/">Dental groups</a>
 				<a href="/in/specialties/ivf/">IVF clinics</a>
@@ -66,9 +93,30 @@ const year = new Date().getFullYear();
 				<a href="/in/blog/abdm-abha-guide/">ABDM & ABHA guide</a>
 				<a href="/in/blog/dpdp-for-clinics/">DPDP for clinics</a>
 				<a href="/in/blog/security-data/">Security & data</a>
+				<a href="/in/compare/practo-ray/">Practo Ray alternative</a>
 				<a href="/in/pricing/">Pricing</a>
 			</div>
 		</div>
+		<nav class="footer__locations" aria-label="Locations">
+			<span class="footer__locations-label">Locations</span>
+			<div class="footer__locations-groups">
+				{
+					footerStates.map((s) => (
+						<div class="footer__loc-group">
+							<a class="footer__loc-state" href={`/in/locations/${s.data.slug}/`}>
+								{s.data.name}
+							</a>
+							{citiesFor(s.data.name).map((c) => (
+								<a class="footer__loc-city" href={`/in/locations/${c.slug}/`}>
+									{c.name}
+								</a>
+							))}
+						</div>
+					))
+				}
+			</div>
+		</nav>
+
 		<div class="footer__bottom">
 			<span>© {year} Svasamm Research Pvt. Ltd. Built in India for India.</span>
 			<span style="display: flex; gap: 18px;">

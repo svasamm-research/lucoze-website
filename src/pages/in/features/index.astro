@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+
+const ORDER = ["appointments", "patient-records", "billing", "lab", "pharmacy", "hr"];
+const features = (await getCollection("features")).sort(
+	(a, b) => ORDER.indexOf(a.data.slug) - ORDER.indexOf(b.data.slug),
+);
+
+const h1Parts = ["The whole clinic, ", "on one platform", "."];
+---
+
+<Base
+	title="Product — the whole clinic on one platform | Lucoze"
+	description="Explore Lucoze's modules: appointments, patient records, billing, lab, pharmacy and HR — one platform for Indian clinics and hospitals."
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Product" }]}
+		eyebrow="Product"
+		h1={h1Parts.join("")}
+		highlightParts={h1Parts}
+		lead="Appointments, patient records, billing, lab, pharmacy and HR — built to work together on one platform, not bolted on. Explore each module."
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/pricing/", label: "See pricing" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<div class="module-grid">
+				{
+					features.map((f) => (
+						<a class="module-card" href={`/in/features/${f.data.slug}/`}>
+							<div class="module-card__icon">
+								<Icon name={f.data.icon} size={20} />
+							</div>
+							<div class="module-card__title">{f.data.label}</div>
+							<div class="module-card__blurb">{f.data.eyebrow}</div>
+							<span class="module-card__arrow">
+								Explore <Icon name="arrow" size={13} />
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,182 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+import Faq from "../../../components/Faq.astro";
+
+export async function getStaticPaths() {
+	const locations = await getCollection("locations");
+	return locations.map((entry) => ({
+		params: { slug: entry.data.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("locations", slug!);
+if (!entry) {
+	return Astro.redirect("/404");
+}
+const loc = entry.data;
+
+const POINT_ICONS = ["check", "shield", "cloud", "users", "spark", "chart"];
+
+// Internal linking: state pages link to their city pages; city pages link back
+// to their state/region page.
+const allLocations = await getCollection("locations");
+const relatedCities =
+	loc.kind === "state"
+		? allLocations.filter((l) => l.data.region === loc.name).map((l) => l.data)
+		: [];
+const parentState =
+	loc.kind === "city"
+		? allLocations.find((l) => l.data.kind === "state" && l.data.name === loc.region)?.data
+		: null;
+
+const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
+const pageUrl = `${siteUrl}${Astro.url.pathname}`;
+// BreadcrumbList is emitted by SubHero → Crumbs; add Service + FAQPage here.
+const serviceLd = {
+	"@context": "https://schema.org",
+	"@type": "Service",
+	name: `Lucoze — clinic & hospital management software in ${loc.name}`,
+	serviceType: "Healthcare management software",
+	description: loc.lead,
+	provider: { "@id": `${siteUrl}/#organization` },
+	areaServed: { "@type": loc.kind === "city" ? "City" : "AdministrativeArea", name: loc.name },
+	url: pageUrl,
+};
+const faqLd =
+	loc.faqs.length > 0
+		? {
+				"@context": "https://schema.org",
+				"@type": "FAQPage",
+				mainEntity: loc.faqs.map((f) => ({
+					"@type": "Question",
+					name: f.q,
+					acceptedAnswer: { "@type": "Answer", text: f.a },
+				})),
+			}
+		: null;
+---
+
+<Base title={loc.metaTitle} description={loc.metaDescription}>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceLd)} />
+	{faqLd && <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />}
+
+	<SubHero
+		crumbs={[
+			{ href: "/in/", label: "Home" },
+			{ href: "/in/locations/", label: "Locations" },
+			{ label: loc.name },
+		]}
+		eyebrow={loc.eyebrow}
+		h1={loc.h1Parts.join("")}
+		highlightParts={loc.h1Parts}
+		lead={loc.lead}
+		primaryCta={{ href: "/in/signup/", label: "Start 14-day free trial" }}
+		secondaryCta={{ href: "/in/contact/", label: "Talk to us" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<article class="post" style="margin: 0 auto;">
+				<p>{loc.intro}</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">Why clinics in {loc.name} choose Lucoze</span>
+				<h2 class="t-h2" style="margin-top: 8px;">Built for how you actually run.</h2>
+			</header>
+			<div class="module-grid">
+				{
+					loc.points.map(([title, blurb], i) => (
+						<article class="module-card">
+							<div class="module-card__icon">
+								<Icon name={POINT_ICONS[i % POINT_ICONS.length]} size={20} />
+							</div>
+							<div class="module-card__title">{title}</div>
+							<div class="module-card__blurb">{blurb}</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<article class="post" style="margin: 0 auto;">
+				<h2>On the ground in {loc.name}</h2>
+				<p>{loc.localContext}</p>
+				{
+					loc.citiesServed.length > 0 && (
+						<p>
+							<strong>Serving clinics and hospitals across:</strong> {loc.citiesServed.join(", ")}.
+						</p>
+					)
+				}
+				{
+					relatedCities.length > 0 && (
+						<p>
+							<strong>City pages:</strong>{" "}
+							{relatedCities.map((c, i) => (
+								<>
+									{i > 0 && ", "}
+									<a href={`/in/locations/${c.slug}/`}>{c.name}</a>
+								</>
+							))}
+						</p>
+					)
+				}
+				{
+					parentState && (
+						<p>
+							<a href={`/in/locations/${parentState.slug}/`}>
+								← Clinic software across {parentState.name}
+							</a>
+						</p>
+					)
+				}
+			</article>
+		</div>
+	</section>
+
+	{
+		loc.faqs.length > 0 && (
+			<section class="section section--tight">
+				<div class="container">
+					<header class="section-header">
+						<span class="t-eyebrow">Common questions</span>
+						<h2 class="t-h2" style="margin-top: 8px;">
+							Lucoze in {loc.name} — what clinics ask.
+						</h2>
+					</header>
+					<Faq items={loc.faqs} />
+				</div>
+			</section>
+		)
+	}
+
+	<section class="section">
+		<div class="container">
+			<div class="cta-final" style="padding: var(--s-12) var(--s-8);">
+				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
+					Run your {loc.name} clinic on Lucoze.
+				</h2>
+				<p>14-day free trial. No credit card. Data hosted in India. We help you migrate in the first week.</p>
+				<div class="cta-final__actions">
+					<a href="/in/signup/" class="btn btn--primary btn--lg">
+						Start free trial
+						<Icon name="arrow" size={16} class="btn__arrow" />
+					</a>
+					<a href="/in/pricing/" class="btn btn--ghost btn--lg">See pricing</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

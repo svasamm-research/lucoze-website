@@ -1,0 +1,55 @@
+{
+	"slug": "uttar-pradesh",
+	"kind": "state",
+	"name": "Uttar Pradesh",
+	"region": "",
+	"metaTitle": "Clinic & Hospital Management Software in Uttar Pradesh | Lucoze",
+	"metaDescription": "Healthcare software for high-volume clinics & hospitals across UP — Lucknow, Kanpur, Varanasi, Agra. Hindi front desk, ABDM/DPDP, data hosted in India.",
+	"eyebrow": "For clinics & hospitals in Uttar Pradesh",
+	"h1Parts": ["Clinic software for ", "Uttar Pradesh", "'s busiest OPDs."],
+	"lead": "Uttar Pradesh runs the highest patient volumes in the country, on price-sensitive, Hindi-speaking front desks. Lucoze puts records, appointments, GST billing, lab and pharmacy on one platform — with multilingual patient search today and a Hindi interface rolling out in Q3 2026.",
+	"intro": "The problem in UP is not features — it's the queue. A district-town clinic in Gorakhpur, a 60-bed nursing home in Kanpur, a diagnostic chain in Prayagraj: the day is won or lost at a front desk registering patients faster than the software can keep up. Most systems sold here were priced and designed for smaller volumes and an English counter. Lucoze is built for the opposite — a fast Hindi front desk, quick registration, and honest per-clinic pricing that a high-turnover, low-margin practice can actually run every single day.",
+	"points": [
+		[
+			"Built for OPD volume, not demos",
+			"Fast registration and a queue that keeps moving is the point. Multilingual patient search matches names in Hindi, Devanagari and Latin — 'Yadav' or 'यादव' both find the record on the first try, not the third."
+		],
+		[
+			"A Hindi front desk",
+			"The interface is rolling out in Hindi first (Q3 2026), which matters more in UP than anywhere else. Until then, patient search already works across scripts and every plan ships printable Hindi cheat-sheets for counter staff."
+		],
+		[
+			"Priced for a volume practice",
+			"GST-compliant billing, lab and pharmacy in one tool — not three subscriptions. A 14-day trial, live in about 14 days, full CSV/PDF export and no lock-in if you ever want to leave."
+		],
+		[
+			"ABDM, DPDP and scheme-ready",
+			"Issue an ABHA at the first visit, keep clean records for Ayushman Bharat (PMJAY) and state-scheme claims, and know every byte sits in Indian data centres under DPDP 2023 — nothing crosses the border."
+		]
+	],
+	"localContext": "UP is a very large tier-2 and tier-3 market, and Lucknow is its medical hub — patients travel in from across the state to Hazratganj, Gomti Nagar and Aliganj, while Kanpur, Varanasi, Prayagraj, Agra, Meerut and Gorakhpur each run their own dense OPD belts. The common thread is a Hindi-first, cash-and-UPI counter moving high patient numbers on thin margins. Our team is in Konnagar, Hooghly (West Bengal), so UP support is remote-first by design: video onboarding, hands-on data migration, WhatsApp and chat during business hours, and Hindi cheat-sheets for the desk. For larger hospital deployments we arrange on-site setup. UP is a market we're actively expanding into, not one we'll overpromise on.",
+	"citiesServed": [
+		"Lucknow",
+		"Kanpur",
+		"Varanasi",
+		"Prayagraj",
+		"Agra",
+		"Meerut",
+		"Ghaziabad",
+		"Gorakhpur"
+	],
+	"faqs": [
+		{
+			"q": "Do you provide setup support in UP?",
+			"a": "Yes, remote-first. Our team is in Konnagar, Hooghly (West Bengal), so UP onboarding runs over video, with hands-on data migration, WhatsApp and chat support during business hours, and printable Hindi cheat-sheets. For larger hospitals we arrange on-site setup."
+		},
+		{
+			"q": "Can the front desk work in Hindi?",
+			"a": "The interface is rolling out in Hindi first (Q3 2026). Today, multilingual patient search already matches names across Hindi, Devanagari and Latin, and every plan includes printable Hindi front-desk cheat-sheets for your staff."
+		},
+		{
+			"q": "Where is our patient data stored?",
+			"a": "In Indian data centres, with backups kept in India — nothing crosses the border. Lucoze is built for DPDP 2023, and you can export all records (CSV/PDF) on request with no lock-in."
+		}
+	]
+}

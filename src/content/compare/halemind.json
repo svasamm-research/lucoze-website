@@ -1,0 +1,97 @@
+{
+	"slug": "halemind",
+	"competitor": "Halemind",
+	"metaTitle": "Halemind Alternative — Lucoze vs Halemind | Lucoze",
+	"metaDescription": "Comparing Lucoze and Halemind for Indian clinics? See how Lucoze stacks up on India data residency, ABDM, flat per-clinic pricing, Hindi UI and fast go-live.",
+	"eyebrow": "Halemind alternative",
+	"h1Parts": ["Looking for a ", "Halemind alternative", " built for Indian clinics?"],
+	"lead": "Both Lucoze and Halemind are cloud platforms for running clinics and hospitals in India. This page lays out where Lucoze focuses, so you can decide if it fits your practice.",
+	"intro": "Let's be upfront: this is Lucoze's own comparison page, so treat it as our point of view, not a neutral review. Halemind is an established India-based cloud hospital and clinic management platform covering OPD, IPD, pharmacy, lab and ABDM-related features, and plenty of clinics run well on it. Lucoze is a newer clinic and hospital management system from Svasamm Research, built around a few specific choices: patient data hosted in India, ABDM/ABHA support built in, flat per-clinic pricing, a Hindi-ready front desk, and hands-on East-India support. The table and notes below are drawn from Lucoze's own documentation and public information about Halemind. For anything about Halemind marked as not documented, please confirm the current details directly with their team before you decide.",
+	"tableRows": [
+		{
+			"label": "Patient data hosted in India",
+			"sub": "Where your clinical records physically live",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "DPDP 2023 compliant on launch",
+			"sub": "India's Digital Personal Data Protection Act",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "One platform, all departments",
+			"sub": "Appointments, EMR, billing, pharmacy, lab in one system",
+			"cells": ["check", "check"]
+		},
+		{
+			"label": "Live in about 14 days",
+			"sub": "Typical time from sign-up to running your clinic",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "ABDM, ABHA & HPR built in",
+			"sub": "Ayushman Bharat Digital Mission integration",
+			"cells": ["check", "partial"]
+		},
+		{
+			"label": "Flat per-clinic pricing",
+			"sub": "Predictable cost, not priced per user or per feature",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Hindi / regional UI built in",
+			"sub": "Front-desk and search usable in Hindi and regional languages",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Full data export on demand",
+			"sub": "Take your complete records out whenever you want",
+			"cells": ["check", "na"]
+		}
+	],
+	"points": [
+		[
+			"Your patient data stays in India",
+			"Lucoze hosts clinical records on infrastructure in India and is built to be DPDP 2023 compliant from day one, so data residency is a documented default rather than something you have to ask about."
+		],
+		[
+			"One platform for the whole clinic",
+			"Appointments, EMR, billing, pharmacy and lab live in a single Lucoze system, so your front desk, doctors and back office work off the same records without bolt-on modules to stitch together."
+		],
+		[
+			"ABDM, ABHA and HPR are native",
+			"ABHA creation, HPR and ABDM workflows are built into Lucoze rather than added later, which keeps you aligned with India's digital health rails as they roll out."
+		],
+		[
+			"Flat per-clinic pricing from ₹1,499",
+			"Lucoze charges a flat per-clinic fee starting at ₹1,499 instead of pricing per user or per feature, so a busy front desk doesn't quietly inflate your monthly bill."
+		],
+		[
+			"Hindi-ready front desk, multilingual search",
+			"The Lucoze front desk works in Hindi and regional languages, and patient search handles multilingual names, so your reception staff aren't forced to operate entirely in English."
+		],
+		[
+			"Local East-India support, honest about remote",
+			"Lucoze is built in Konnagar, West Bengal, with hands-on support for East-India clinics. We're remote-first elsewhere and say so plainly, rather than promising an on-site team we don't have."
+		]
+	],
+	"faqs": [
+		{
+			"q": "Is Lucoze a good alternative to Halemind?",
+			"a": "It can be, depending on what matters to you. Lucoze leans on India data residency, native ABDM/ABHA support, flat per-clinic pricing, a Hindi-ready front desk and fast go-live. If those are priorities for your clinic, it's worth a look. Halemind is a capable, established platform too, so compare both against your own checklist."
+		},
+		{
+			"q": "How hard is it to migrate from Halemind to Lucoze?",
+			"a": "Most clinics move over with an export of patient records, appointments and billing history, which Lucoze imports during onboarding. Typical go-live is around 14 days. The exact effort depends on how much historical data you carry and how it's structured, so we scope it with you before you commit."
+		},
+		{
+			"q": "How does Lucoze's pricing compare to Halemind's?",
+			"a": "Lucoze uses flat per-clinic pricing starting at ₹1,499, so cost stays predictable regardless of how many users log in. We can't speak for Halemind's current pricing, so please confirm their latest plans directly with their team and compare on the total you'd actually pay."
+		}
+	],
+	"comparedOn": "July 2026",
+	"relatedBlog": {
+		"href": "/in/blog/practo-vs-halemind/",
+		"label": "Read: Practo Ray vs Halemind vs Lucoze"
+	}
+}
