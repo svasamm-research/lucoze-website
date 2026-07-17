@@ -39,8 +39,9 @@ const img = byName[name];
 			<Image
 				src={img}
 				alt={alt}
-				widths={[480, 800, 1200, 1600]}
+				widths={[480, 800, 1200, 1600, 2000]}
 				sizes="(max-width: 900px) 100vw, 760px"
+				quality={90}
 				loading={loading}
 				class="shot__img"
 			/>
@@ -54,8 +55,10 @@ const img = byName[name];
 		margin: 0;
 		border-radius: var(--r-lg);
 		overflow: hidden;
-		border: 1px solid var(--border);
-		box-shadow: var(--shadow-lg);
+		/* Stronger edge + elevation so each frame reads as a distinct window
+		   (the tour grid shows four side-by-side that otherwise blend). */
+		border: 1px solid var(--border-strong);
+		box-shadow: var(--shadow-xl);
 		background: var(--white);
 	}
 	.shot__chrome {
