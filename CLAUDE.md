@@ -24,6 +24,11 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - OG images are **crawler-only** (only in `<meta>`, never a page `<img>`) → zero page-speed impact; canvaskit is a build-only dep.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
 
+## Analytics & consent
+- **`lib/analytics.ts` `track(event, props)` is the only analytics call site** — it **dual-emits** to **Plausible** (cookieless, consent-independent, day-to-day) and **GA4 `gtag`** (Ads conversions/remarketing). GA4 event names are auto-normalised to snake_case. Don't call `plausible()`/`gtag()` directly.
+- **GA4 is env-gated on `PUBLIC_GA_ID`** (set in the **prod** build env only — property `G-8PKQ5SH09G`; leave unset on UAT/local so they stay out of the property), same pattern as `PUBLIC_PLAUSIBLE_DOMAIN`. Scripts + **Consent Mode v2** default-denied live in `Base.astro` `<head>`.
+- **`CookieConsent.astro`** governs GA only (Plausible needs no consent): Accept → `gtag('consent','update', granted)` + remembers in `localStorage` (`lucoze-consent`). Keep it DPDP-aligned — GA sets no cookies until accept.
+
 ## Git workflow (enforced by husky)
 - **`main` → `develop` → feature branches.** Branch feature work off **`develop`**.
 - `pre-commit` **blocks direct commits to `main`/`develop`** and runs `prettier --check` on **js/css/html/json** (CI checks json too — keep the hook glob in sync). Hand-written content JSON must be `prettier --write`-clean.
