@@ -34,7 +34,7 @@ export const SPECIALTY_PILLS: SpecialtyOption[] = [
 		icon: "tooth",
 		visualKind: "dental",
 		caption:
-			"Chair-level utilisation in real time. Treatment in progress, who's next, where the dead afternoon is forming.",
+			"Appointments, treatment billing and imaging on the patient's record — the platform a dental group runs its day on.",
 	},
 	{
 		id: "ivf",
@@ -42,7 +42,7 @@ export const SPECIALTY_PILLS: SpecialtyOption[] = [
 		icon: "spark",
 		visualKind: "ivf",
 		caption:
-			"Cycle timeline rather than appointment list. 21 days, all events plotted, billing tied to the cycle — not the visit.",
+			"One patient, one clinical record — encounters, orders and prescriptions in a single timeline, with billing that follows the journey.",
 	},
 	{
 		id: "derm",
@@ -50,7 +50,7 @@ export const SPECIALTY_PILLS: SpecialtyOption[] = [
 		icon: "sun",
 		visualKind: "derm",
 		caption:
-			"Package-based view with session progress and photo anchors. Cosmetic and medical revenue stay separated.",
+			"Records, appointments and billing on one platform — the day-to-day a dermatology practice runs on.",
 	},
 	{
 		id: "diag",
