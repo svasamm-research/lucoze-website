@@ -15,6 +15,13 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 ## Product screenshots
 - Real product screenshots live in `src/assets/screenshots/*.png` (synthetic demo data). Render via **`Screenshot.astro`** (`name` = filename w/o `.png`, `alt`, optional `caption`, `loading`) — it uses **`astro:assets` `<Image>`** for auto WebP/AVIF + responsive srcset + no-CLS + lazy (hero passes `loading="eager"`). Never put product images in `public/` (unoptimised) or use raw `<img>`.
 - `FeatureVisual`/`SpecialtyVisual` are thin `kind → screenshot` dispatchers. The old hand-coded synthetic mockups were deleted — don't reintroduce them.
+- Homepage specialty switcher (`SPECIALTY_PILLS` in `data/specialties.ts`) shows only settings with matching real shots (multi-specialty, polyclinic, nursing home, diagnostic centre, small hospital); dental/IVF/derm keep their pages but are off the switcher until specialty-configured screenshots exist.
+
+## OG images (social preview)
+- **Branded per-page OG cards auto-generated at build** via `astro-og-canvas` → `/open-graph/<route>.png` (logo + brand gradient + page title/description; Manrope bundled at `src/assets/fonts/`).
+- **`src/lib/og-pages.ts`** is the single source of truth (route → title/description) shared by the generator (`src/pages/open-graph/[...route].ts`) and `Base.astro`. Add new page types there.
+- `Base.astro`: explicit `ogImage` prop wins → else branded card → else `/og-default.png`. **Revert everything by flipping `USE_GENERATED_OG = false`.**
+- OG images are **crawler-only** (only in `<meta>`, never a page `<img>`) → zero page-speed impact; canvaskit is a build-only dep.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
 
 ## Git workflow (enforced by husky)
@@ -31,6 +38,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).
+- After adding/removing a dependency, run **`npm run dev:clean`** (clears `.astro` + `node_modules/.vite`) — a stale Vite optimize-deps cache otherwise throws `Cannot read properties of undefined (reading 'call')` on dev transform.
 - After content/schema changes, **build and grep `dist/`** to confirm rendered JSON-LD (e.g. `grep -oE '"@type":"[A-Za-z]+"' dist/in/.../index.html | sort | uniq -c`).
 
 ## SEO / schema conventions (non-obvious)
