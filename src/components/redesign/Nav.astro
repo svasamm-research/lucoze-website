@@ -13,9 +13,7 @@ const { activeLink = "" } = Astro.props;
 
 <header class="nav" data-nav>
 	<nav class="nav__inner" aria-label="Primary">
-		<a href="/in/" class="nav__brand" aria-label="Lucoze home">
-			<Logo size={28} />
-		</a>
+		<Logo size={28} class="nav__brand" />
 
 		<ul class="nav__links" role="list">
 			{
@@ -48,7 +46,7 @@ const { activeLink = "" } = Astro.props;
 		<div class="nav__actions">
 			<!-- Sign in link hidden pre-launch; will return once admin.lucoze.com is live.
 			     Design Partner lives in the Company mega-menu — header is demo-only. -->
-			<a href="/in/demo/" class="btn btn--primary btn--sm">
+			<a href="/in/demo/" class="btn btn--accent btn--sm">
 				Book a demo
 				<Icon name="arrow" size={14} class="btn__arrow" />
 			</a>
