@@ -8,27 +8,86 @@
 	"lead": "HealthPlix is a well-regarded doctor-focused EMR. Lucoze takes a different angle: one platform that runs your whole clinic, hosted in India and ready for ABDM.",
 	"intro": "Let's be upfront: this is our page, so we're going to make the case for Lucoze. HealthPlix is a respected, widely-used EMR, strong on AI-assisted documentation and loved by many doctors. Where we differ is scope. HealthPlix centres on the clinical record; Lucoze is a full clinic operations platform — records, appointments, GST billing, lab, pharmacy and HR in one place. We also keep patient data hosted in India, build ABDM, ABHA and HPR in from day one, price flat per clinic, and support Hindi and regional languages. If you want an EMR, HealthPlix is a solid choice. If you want to run the whole clinic, read on, then verify HealthPlix's current details with their team.",
 	"tableRows": [
-		{ "label": "Patient data hosted in India", "sub": "Records stored on infrastructure inside India", "cells": ["check", "na"] },
-		{ "label": "DPDP 2023 compliant on launch", "sub": "Built around India's Digital Personal Data Protection Act", "cells": ["check", "na"] },
-		{ "label": "One platform, all departments", "sub": "Records, appointments, billing, lab, pharmacy and HR together", "cells": ["check", "partial"] },
-		{ "label": "Live in about 14 days", "sub": "Guided onboarding to a working clinic setup", "cells": ["check", "na"] },
-		{ "label": "ABDM, ABHA & HPR built in", "sub": "Native ABHA linking and Health Professional Registry", "cells": ["check", "na"] },
-		{ "label": "Flat per-clinic pricing", "sub": "One predictable price, no per-doctor surprises", "cells": ["check", "na"] },
-		{ "label": "Hindi / regional UI built in", "sub": "Interface usable in Hindi and regional languages", "cells": ["check", "na"] },
-		{ "label": "Full data export on demand", "sub": "Export your complete data whenever you ask", "cells": ["check", "na"] }
+		{
+			"label": "Patient data hosted in India",
+			"sub": "Records stored on infrastructure inside India",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "DPDP 2023 compliant on launch",
+			"sub": "Built around India's Digital Personal Data Protection Act",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "One platform, all departments",
+			"sub": "Records, appointments, billing, lab, pharmacy and HR together",
+			"cells": ["check", "partial"]
+		},
+		{
+			"label": "Live in about 14 days",
+			"sub": "Guided onboarding to a working clinic setup",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "ABDM, ABHA & HPR built in",
+			"sub": "Native ABHA linking and Health Professional Registry",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Flat per-clinic pricing",
+			"sub": "One predictable price, no per-doctor surprises",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Hindi / regional UI built in",
+			"sub": "Interface usable in Hindi and regional languages",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Full data export on demand",
+			"sub": "Export your complete data whenever you ask",
+			"cells": ["check", "na"]
+		}
 	],
 	"points": [
-		["One platform for the whole clinic", "Lucoze brings records, appointments, GST billing, lab, pharmacy and HR into a single system, so your front desk, doctors and back office all work from the same data instead of stitching tools together."],
-		["Your patient data stays in India", "We host patient records on infrastructure inside India and build around the DPDP Act 2023, so data residency and compliance are settled from the start rather than something to chase later."],
-		["ABDM-native, not bolted on", "ABHA linking, HPR and the wider ABDM framework are built into Lucoze from day one, so joining India's digital health ecosystem is part of the product, not an extra project."],
-		["Flat per-clinic pricing", "You pay one predictable price per clinic. That makes budgeting simple as you add doctors or staff, with no per-seat maths to redo every time your team grows."],
-		["Hindi and regional languages built in", "The interface works in Hindi and regional languages, so reception staff and clinicians who prefer their own language can use Lucoze comfortably without extra training overhead."],
-		["Local support, close to you", "We're based in India with hands-on support and a strong presence in East India, so onboarding, questions and follow-ups happen with a team that understands how Indian clinics actually run."]
+		[
+			"One platform for the whole clinic",
+			"Lucoze brings records, appointments, GST billing, lab, pharmacy and HR into a single system, so your front desk, doctors and back office all work from the same data instead of stitching tools together."
+		],
+		[
+			"Your patient data stays in India",
+			"We host patient records on infrastructure inside India and build around the DPDP Act 2023, so data residency and compliance are settled from the start rather than something to chase later."
+		],
+		[
+			"ABDM-native, not bolted on",
+			"ABHA linking, HPR and the wider ABDM framework are built into Lucoze from day one, so joining India's digital health ecosystem is part of the product, not an extra project."
+		],
+		[
+			"Flat per-clinic pricing",
+			"You pay one predictable price per clinic. That makes budgeting simple as you add doctors or staff, with no per-seat maths to redo every time your team grows."
+		],
+		[
+			"Hindi and regional languages built in",
+			"The interface works in Hindi and regional languages, so reception staff and clinicians who prefer their own language can use Lucoze comfortably without extra training overhead."
+		],
+		[
+			"Local support, close to you",
+			"We're based in India with hands-on support and a strong presence in East India, so onboarding, questions and follow-ups happen with a team that understands how Indian clinics actually run."
+		]
 	],
 	"faqs": [
-		{ "q": "Is Lucoze a replacement for HealthPlix?", "a": "It depends on what you need. HealthPlix is primarily a doctor-focused EMR. Lucoze is a full clinic operations platform — records plus appointments, GST billing, lab, pharmacy and HR. If you want more than the clinical record, Lucoze covers the whole clinic; if a pure EMR is all you need, HealthPlix is a solid option." },
-		{ "q": "How does pricing compare?", "a": "Lucoze uses flat per-clinic pricing, one predictable price rather than charging per doctor or per seat. HealthPlix's pricing may work differently and can change, so we'd recommend confirming their current pricing directly with their team before you decide." },
-		{ "q": "Where is my patient data stored?", "a": "Lucoze hosts patient data on infrastructure inside India and is built around the DPDP Act 2023. For HealthPlix's data residency and compliance specifics, we'd suggest verifying directly with their team, as we don't want to state anything on their behalf." }
+		{
+			"q": "Is Lucoze a replacement for HealthPlix?",
+			"a": "It depends on what you need. HealthPlix is primarily a doctor-focused EMR. Lucoze is a full clinic operations platform — records plus appointments, GST billing, lab, pharmacy and HR. If you want more than the clinical record, Lucoze covers the whole clinic; if a pure EMR is all you need, HealthPlix is a solid option."
+		},
+		{
+			"q": "How does pricing compare?",
+			"a": "Lucoze uses flat per-clinic pricing, one predictable price rather than charging per doctor or per seat. HealthPlix's pricing may work differently and can change, so we'd recommend confirming their current pricing directly with their team before you decide."
+		},
+		{
+			"q": "Where is my patient data stored?",
+			"a": "Lucoze hosts patient data on infrastructure inside India and is built around the DPDP Act 2023. For HealthPlix's data residency and compliance specifics, we'd suggest verifying directly with their team, as we don't want to state anything on their behalf."
+		}
 	],
 	"comparedOn": "July 2026"
 }

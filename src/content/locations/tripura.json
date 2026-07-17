@@ -10,10 +10,22 @@
 	"lead": "Lucoze puts patient records, appointments, GST billing, lab and pharmacy on one platform — with multilingual patient search that already matches Bengali names, and every byte of data hosted in India. We're built in Konnagar, West Bengal, so Tripura runs on remote-first onboarding, not a promise to drive to Agartala.",
 	"intro": "Tripura's front desks look a lot like Bengal's — staff take names, notes and payments in Bengali, and Agartala is where patients from Udaipur, Belonia and the north travel to for the bigger diagnostics and specialists. Most clinic software here was written for an English-first, metro-first clinic and then bent to fit. Lucoze starts from the counter: a Bengali-speaking receptionist, a cash-and-UPI drawer, and paperwork for Ayushman Bharat and state schemes. Records, billing, lab and pharmacy live in one place, and you can be live in about 14 days on ordinary broadband.",
 	"points": [
-		["Patient search that handles Bengali today", "Type a name in Bengali, Devanagari or Latin and Lucoze finds the record. The full interface rolls out in Hindi first (Q3 2026), then Bengali, then Odia; printable Bengali front-desk cheat-sheets ship now so staff aren't waiting on the UI."],
-		["Remote-first support, honestly", "Our team is in Hooghly, West Bengal — a long way from Agartala. So Tripura clinics get video onboarding, hands-on data-migration help, WhatsApp and in-app chat, not a claim that we'll visit every chamber. On-site setup is on the table for larger hospital and nursing-home deployments."],
-		["Your patients' data stays in India", "Every record sits in Indian data centres, DPDP 2023 compliant, with full CSV/PDF export and no lock-in. Cloud-based, so it runs on the broadband or mobile data you already have — nothing to install on each machine."],
-		["ABDM, GST and schemes on one platform", "Issue an ABHA at the first visit, raise GST-compliant invoices, and keep clean records for Ayushman Bharat (PMJAY) and state schemes — instead of stitching together three separate tools and a register."]
+		[
+			"Patient search that handles Bengali today",
+			"Type a name in Bengali, Devanagari or Latin and Lucoze finds the record. The full interface rolls out in Hindi first (Q3 2026), then Bengali, then Odia; printable Bengali front-desk cheat-sheets ship now so staff aren't waiting on the UI."
+		],
+		[
+			"Remote-first support, honestly",
+			"Our team is in Hooghly, West Bengal — a long way from Agartala. So Tripura clinics get video onboarding, hands-on data-migration help, WhatsApp and in-app chat, not a claim that we'll visit every chamber. On-site setup is on the table for larger hospital and nursing-home deployments."
+		],
+		[
+			"Your patients' data stays in India",
+			"Every record sits in Indian data centres, DPDP 2023 compliant, with full CSV/PDF export and no lock-in. Cloud-based, so it runs on the broadband or mobile data you already have — nothing to install on each machine."
+		],
+		[
+			"ABDM, GST and schemes on one platform",
+			"Issue an ABHA at the first visit, raise GST-compliant invoices, and keep clean records for Ayushman Bharat (PMJAY) and state schemes — instead of stitching together three separate tools and a register."
+		]
 	],
 	"localContext": "We're set up for clinics, nursing homes and diagnostic centres across Tripura — the referral hub of Agartala (Krishnanagar, Melarmath, and the hospital belt around Ronaldsay Road) and the district towns of Udaipur, Dharmanagar, Kailashahar, Belonia and Ambassa. The common thread is a Bengali-speaking front desk, with Kokborok and English in the mix, handling patients who often travel in from across the state. That's exactly why the Bengali patient search matters now and the Bengali-next UI roadmap matters soon. Because Agartala is far from our base in West Bengal, we lean on video onboarding and migration help rather than pretending distance isn't real — and East-India clinics are prioritised in our design-partner programme.",
 	"citiesServed": ["Agartala", "Udaipur", "Dharmanagar", "Kailashahar", "Belonia", "Ambassa"],

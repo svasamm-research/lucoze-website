@@ -10,10 +10,22 @@
 	"lead": "For Ranchi's nursing homes, diagnostic centres and specialty clinics — patient records, appointments, GST billing, lab and pharmacy on one platform your Hindi front desk can actually run.",
 	"intro": "Ranchi is where Jharkhand's private healthcare is growing fastest — nursing homes along Kanke Road, the Bariatu hospital belt, diagnostic centres and specialty clinics opening across Lalpur and Harmu. Most are still running a paper file, a separate billing register and a lab pad that never quite agree. Lucoze pulls records, appointments, GST billing, lab reports and pharmacy stock onto one screen. The front desk works in Hindi, patient search copes with names spelt every possible way, and ABHA numbers link at the first visit so you're ABDM-ready from day one instead of scrambling later.",
 	"points": [
-		["One platform for a growing practice", "Records, appointments, GST billing, lab and pharmacy in one place — so a busy Lalpur or Bariatu clinic isn't re-keying patients across registers."],
-		["Data stays in India, no lock-in", "Records live in Indian data centres, DPDP 2023 compliant, with full CSV/PDF export. Leave any time and take everything with you."],
-		["ABHA at registration, PMJAY-ready", "Link ABHA at the first visit and keep claims tidy for Ayushman Bharat (PMJAY) and state schemes."],
-		["A Hindi front desk, handled", "Patient search reads Hindi, Devanagari and Latin spellings today, with printable Hindi cheat-sheets for new staff."]
+		[
+			"One platform for a growing practice",
+			"Records, appointments, GST billing, lab and pharmacy in one place — so a busy Lalpur or Bariatu clinic isn't re-keying patients across registers."
+		],
+		[
+			"Data stays in India, no lock-in",
+			"Records live in Indian data centres, DPDP 2023 compliant, with full CSV/PDF export. Leave any time and take everything with you."
+		],
+		[
+			"ABHA at registration, PMJAY-ready",
+			"Link ABHA at the first visit and keep claims tidy for Ayushman Bharat (PMJAY) and state schemes."
+		],
+		[
+			"A Hindi front desk, handled",
+			"Patient search reads Hindi, Devanagari and Latin spellings today, with printable Hindi cheat-sheets for new staff."
+		]
 	],
 	"localContext": "In a Ranchi nursing home off Kanke Road or a clinic in the Bariatu belt, the front desk runs in Hindi and the same patient gets spelt three ways — once in the register, once on the bill, once on the lab slip. Diagnostic centres in Lalpur and clinics around Harmu have the same split-record problem. Patients speak Hindi and often Santhali, Nagpuri or Khortha, so names rarely land the same twice. Lucoze's multilingual search handles that, the interface is rolling out in Hindi first, and GST billing matches how Ranchi practices actually invoice. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for hospital-scale rollouts.",
 	"citiesServed": [],

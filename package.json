@@ -30,7 +30,7 @@
 		"@astrojs/mdx": "^5.0.6",
 		"@astrojs/react": "^5.0.5",
 		"@astrojs/sitemap": "^3.7.2",
-		"astro": "^6.0.7",
+		"astro": "^6.4.8",
 		"astro-og-canvas": "^0.13.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
@@ -38,6 +38,7 @@
 	"overrides": {
 		"picomatch@>=4.0.0 <4.0.4": "4.0.4",
 		"picomatch@>=2.0.0 <3.0.0": "2.3.2",
-		"devalue@<5.8.1": "5.8.1"
+		"devalue@<5.8.1": "5.8.1",
+		"vite@<7.3.5": "^7.3.5"
 	}
 }

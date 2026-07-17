@@ -10,10 +10,22 @@
 	"lead": "Records, appointments, GST billing, lab and pharmacy on one platform — built for the specialty clinics and diagnostic centres filling up Bhubaneswar. ABHA and clean records from day one.",
 	"intro": "Bhubaneswar is the centre of Odisha's health boom — new hospitals along Jaydev Vihar, specialty clinics in Saheed Nagar, and diagnostic centres opening across Chandrasekharpur, all pulling patients in from across the state. Lucoze gives these practices one platform for patient records, appointments, GST-ready billing, lab reports and pharmacy stock, instead of a booking app here and a billing register there. Create an ABHA at the first visit, keep documentation clean for BSKY and insurance claims, and find any patient's full history — including referrals from other districts — in a couple of clicks.",
 	"points": [
-		["One platform, not five apps", "Patient records, appointments, GST billing, lab and pharmacy together — the whole front desk runs from one screen instead of a stack of tools and registers."],
-		["Built for referral flow", "Patients arrive in Bhubaneswar from all over Odisha. A searchable shared record means you see their history whether they registered today or a year ago."],
-		["ABHA & scheme-ready", "Link ABHA at registration and keep records tidy for BSKY, PMJAY and private insurance, so claims clear without chasing missing paperwork."],
-		["14-day trial, live in 14 days", "Start free for 14 days and get your clinic running on Lucoze within a fortnight — with migration help from your old registers or Excel."]
+		[
+			"One platform, not five apps",
+			"Patient records, appointments, GST billing, lab and pharmacy together — the whole front desk runs from one screen instead of a stack of tools and registers."
+		],
+		[
+			"Built for referral flow",
+			"Patients arrive in Bhubaneswar from all over Odisha. A searchable shared record means you see their history whether they registered today or a year ago."
+		],
+		[
+			"ABHA & scheme-ready",
+			"Link ABHA at registration and keep records tidy for BSKY, PMJAY and private insurance, so claims clear without chasing missing paperwork."
+		],
+		[
+			"14-day trial, live in 14 days",
+			"Start free for 14 days and get your clinic running on Lucoze within a fortnight — with migration help from your old registers or Excel."
+		]
 	],
 	"localContext": "In Bhubaneswar the front desk usually works in Odia, with Hindi and English common in the larger Jaydev Vihar hospitals and corporate diagnostic chains. A receptionist in Saheed Nagar or Old Town shouldn't slow down because the software can't spell a patient's name — Lucoze's search matches Odia, Devanagari and Latin at once, so 'Priyanka', 'ପ୍ରିୟଙ୍କା' or a mobile number all find the same record. The interface is rolling out in Hindi first (Q3 2026), then Bengali, then Odia; the full Odia UI is on the roadmap, not live yet, so we supply printable Odia cheat-sheets. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts.",
 	"citiesServed": [],

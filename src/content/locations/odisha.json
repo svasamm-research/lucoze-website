@@ -10,13 +10,33 @@
 	"lead": "One platform for patient records, appointments, GST billing, lab and pharmacy — made for the way clinics in Odisha actually work. Records, ABHA and billing from the first visit.",
 	"intro": "Odisha's health scene is growing fast — the Bhubaneswar–Cuttack corridor keeps adding new hospitals, specialty clinics and diagnostic centres, and patients travel in from Berhampur, Sambalpur, Puri and beyond. Lucoze puts patient records, appointments, GST-ready billing, lab reports and pharmacy stock on one platform, so the front desk stops juggling registers, Excel sheets and three apps. You can create an ABHA at the first visit, keep records clean for BSKY and insurance claims, and pull a patient's history in seconds — whether they came in last week or last year from another district.",
 	"points": [
-		["Everything on one platform", "Records, appointments, GST billing, lab and pharmacy in one place — no more stitching together a booking app, a billing tool and a pile of registers."],
-		["ABHA at the first visit", "Create or link a patient's ABHA number during registration and keep your practice ABDM-ready as Odisha's digital health push rolls out."],
-		["Clean records for BSKY & PMJAY", "Keep documentation tidy for Biju Swasthya Kalyan Yojana (BSKY), Ayushman Bharat (PMJAY) and private insurance so claims don't bounce back over missing paperwork."],
-		["Your data stays in India", "All patient data sits in Indian data centres under DPDP 2023, and there's no lock-in — export to CSV or PDF whenever you want."]
+		[
+			"Everything on one platform",
+			"Records, appointments, GST billing, lab and pharmacy in one place — no more stitching together a booking app, a billing tool and a pile of registers."
+		],
+		[
+			"ABHA at the first visit",
+			"Create or link a patient's ABHA number during registration and keep your practice ABDM-ready as Odisha's digital health push rolls out."
+		],
+		[
+			"Clean records for BSKY & PMJAY",
+			"Keep documentation tidy for Biju Swasthya Kalyan Yojana (BSKY), Ayushman Bharat (PMJAY) and private insurance so claims don't bounce back over missing paperwork."
+		],
+		[
+			"Your data stays in India",
+			"All patient data sits in Indian data centres under DPDP 2023, and there's no lock-in — export to CSV or PDF whenever you want."
+		]
 	],
 	"localContext": "Front desks across Odisha run in Odia first, with Hindi and English in the bigger city hospitals — a receptionist in Saheed Nagar or a diagnostic centre in Cuttack's Buxi Bazaar shouldn't have to fight the software to register a walk-in. Lucoze's patient search already handles Odia, Devanagari and Latin spellings, so 'Subrata', 'ସୁବ୍ରତ' or a phone number all pull up the same file. The interface itself is rolling out in Hindi first (Q3 2026), then Bengali, then Odia — Odia UI is on the roadmap, not shipped yet — so for now we hand your team printable Odia cheat-sheets. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital deployments.",
-	"citiesServed": ["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Puri", "Balasore"],
+	"citiesServed": [
+		"Bhubaneswar",
+		"Cuttack",
+		"Rourkela",
+		"Berhampur",
+		"Sambalpur",
+		"Puri",
+		"Balasore"
+	],
 	"faqs": [
 		{
 			"q": "Is Lucoze available in Odia?",
