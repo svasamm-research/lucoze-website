@@ -9,7 +9,9 @@ import "../styles/sections.css";
 import "../styles/subpages.css";
 import Nav from "../components/redesign/Nav.astro";
 import Footer from "../components/redesign/Footer.astro";
+import WhatsAppFab from "../components/WhatsAppFab.astro";
 import { OG_PAGES } from "../lib/og-pages";
+import { PHONE, SALES_EMAIL } from "../data/contact";
 
 interface Props {
 	title: string;
@@ -62,7 +64,7 @@ const orgLd = {
 		"https://www.crunchbase.com/organization/lucoze",
 		"https://x.com/lucozehq",
 	],
-	telephone: "+91 9147144638",
+	telephone: PHONE,
 	address: {
 		"@type": "PostalAddress",
 		addressLocality: "Konnagar",
@@ -78,8 +80,8 @@ const orgLd = {
 	},
 	contactPoint: {
 		"@type": "ContactPoint",
-		telephone: "+91 9147144638",
-		email: "hello@lucoze.com",
+		telephone: PHONE,
+		email: SALES_EMAIL,
 		contactType: "sales",
 		areaServed: "IN",
 		availableLanguage: ["en", "hi", "bn"],
@@ -139,9 +141,9 @@ const siteLd = {
 		/>
 
 		<script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
-			<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
 
-			<slot name="head" />
+		<slot name="head" />
 	</head>
 	<body>
 		<a href="#main" class="skip-link">Skip to main content</a>
@@ -153,6 +155,8 @@ const siteLd = {
 		</main>
 
 		<Footer />
+
+		<WhatsAppFab />
 
 		{
 			import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (

@@ -1,0 +1,22 @@
+/**
+ * Single source of truth for public contact details.
+ *
+ * Update the number/email HERE only — everything (schema, footer, contact +
+ * demo pages, the WhatsApp button) imports from this module. We previously had
+ * three different numbers scattered across the site; this prevents that drift.
+ *
+ * Note: the public line below is the human-answered WhatsApp Business number.
+ * The product's Meta WhatsApp *API* number (automated patient messages) is a
+ * different number and lives in the backend, not here.
+ */
+
+export const PHONE = "+91 90077 93575"; // display form
+export const PHONE_TEL = "+919007793575"; // tel: href + schema (E.164)
+export const WHATSAPP = "919007793575"; // wa.me number (Business App)
+export const SALES_EMAIL = "sales@lucoze.com";
+
+const DEFAULT_WA_MSG = "Hi Lucoze, I'd like to know more about your clinic software.";
+
+/** Build a click-to-chat link. Pure deep link — no WhatsApp API involved. */
+export const waLink = (message: string = DEFAULT_WA_MSG): string =>
+	`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;

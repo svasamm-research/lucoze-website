@@ -23,11 +23,13 @@ const [blog, features, specialties, locations, compare] = await Promise.all([
 const staticPages: Record<string, OgPage> = {
 	in: {
 		title: "Healthcare management software for Indian clinics & hospitals",
-		description: "Patient records, appointments, billing, lab and pharmacy on one platform. Data in India.",
+		description:
+			"Patient records, appointments, billing, lab and pharmacy on one platform. Data in India.",
 	},
 	"in/pricing": {
 		title: "Pricing — from ₹1,499/month",
-		description: "Three plans for Indian clinics and hospitals. 14-day free trial. GST-compliant invoicing.",
+		description:
+			"Three plans for Indian clinics and hospitals. 14-day free trial. GST-compliant invoicing.",
 	},
 	"in/about": {
 		title: "About Lucoze",
@@ -36,6 +38,10 @@ const staticPages: Record<string, OgPage> = {
 	"in/contact": {
 		title: "Contact Lucoze",
 		description: "Sales, partnerships, or a 15-minute call with the founder.",
+	},
+	"in/demo": {
+		title: "Book a demo of Lucoze",
+		description: "A 30-minute product tour tuned to your clinic. Then a 14-day trial if it fits.",
 	},
 	"in/careers": { title: "Careers at Lucoze", description: "Building clinic software for India." },
 	"in/design-partner": {
@@ -46,15 +52,20 @@ const staticPages: Record<string, OgPage> = {
 		title: "Start your 14-day free trial",
 		description: "No credit card. Full feature access. Data hosted in India.",
 	},
-	"in/privacy": { title: "Privacy Policy", description: "How Lucoze handles patient and clinic data." },
+	"in/privacy": {
+		title: "Privacy Policy",
+		description: "How Lucoze handles patient and clinic data.",
+	},
 	"in/terms": { title: "Terms of Service", description: "The terms for using Lucoze." },
 	"in/blog": {
 		title: "Lucoze blog",
-		description: "Indian healthcare compliance, EMR and clinic operations — from the team building Lucoze.",
+		description:
+			"Indian healthcare compliance, EMR and clinic operations — from the team building Lucoze.",
 	},
 	"in/features": {
 		title: "The whole clinic, on one platform",
-		description: "Appointments, patient records, billing, lab, pharmacy and HR — built to work together.",
+		description:
+			"Appointments, patient records, billing, lab, pharmacy and HR — built to work together.",
 	},
 	"in/solutions": {
 		title: "Solutions for clinics, hospitals & specialties",
@@ -66,7 +77,8 @@ const staticPages: Record<string, OgPage> = {
 	},
 	"in/compare": {
 		title: "Lucoze, compared",
-		description: "Honest, side-by-side comparisons against other Indian clinic and hospital software.",
+		description:
+			"Honest, side-by-side comparisons against other Indian clinic and hospital software.",
 	},
 	"in/solutions/clinics": {
 		title: "Lucoze for clinics",
@@ -80,9 +92,13 @@ const staticPages: Record<string, OgPage> = {
 
 export const OG_PAGES: Record<string, OgPage> = { ...staticPages };
 
-for (const p of blog) OG_PAGES[`in/blog/${p.id}`] = { title: p.data.title, description: p.data.dek };
+for (const p of blog)
+	OG_PAGES[`in/blog/${p.id}`] = { title: p.data.title, description: p.data.dek };
 for (const f of features)
-	OG_PAGES[`in/features/${f.data.slug}`] = { title: f.data.label, description: f.data.lead.slice(0, 130) };
+	OG_PAGES[`in/features/${f.data.slug}`] = {
+		title: f.data.label,
+		description: f.data.lead.slice(0, 130),
+	};
 for (const s of specialties)
 	OG_PAGES[`in/specialties/${s.data.slug}`] = {
 		title: `${s.data.label} — clinic software`,

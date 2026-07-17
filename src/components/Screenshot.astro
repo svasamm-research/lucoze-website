@@ -7,13 +7,15 @@
  */
 import { Image } from "astro:assets";
 
-const modules = import.meta.glob<{ default: ImageMetadata }>(
-	"../assets/screenshots/*.png",
-	{ eager: true },
-);
+const modules = import.meta.glob<{ default: ImageMetadata }>("../assets/screenshots/*.png", {
+	eager: true,
+});
 const byName: Record<string, ImageMetadata> = {};
 for (const path in modules) {
-	const key = path.split("/").pop()!.replace(/\.png$/, "");
+	const key = path
+		.split("/")
+		.pop()!
+		.replace(/\.png$/, "");
 	byName[key] = modules[path].default;
 }
 

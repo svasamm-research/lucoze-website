@@ -10,13 +10,34 @@ interface Props {
 const { kind } = Astro.props;
 
 const MAP: Record<string, { name: string; alt: string }> = {
-	multispec: { name: "front-office", alt: "Lucoze front office and OPD queue for a multi-specialty clinic" },
-	poly: { name: "clinical-emr", alt: "Clinical / EMR encounters dashboard and doctor queue for a polyclinic in Lucoze" },
-	nursing: { name: "inpatient-admissions", alt: "Inpatient admissions pipeline for a nursing home in Lucoze" },
-	hospital: { name: "ipd-beds", alt: "IPD bed planning and ward management for a small hospital in Lucoze" },
-	dental: { name: "director-cockpit", alt: "Director cockpit — revenue and operations overview for a dental group in Lucoze" },
-	ivf: { name: "patient-encounter", alt: "Patient encounter and cycle records for an IVF clinic in Lucoze" },
-	derm: { name: "patient-encounters", alt: "Patient encounters and records for a dermatology practice in Lucoze" },
+	multispec: {
+		name: "front-office",
+		alt: "Lucoze front office and OPD queue for a multi-specialty clinic",
+	},
+	poly: {
+		name: "clinical-emr",
+		alt: "Clinical / EMR encounters dashboard and doctor queue for a polyclinic in Lucoze",
+	},
+	nursing: {
+		name: "inpatient-admissions",
+		alt: "Inpatient admissions pipeline for a nursing home in Lucoze",
+	},
+	hospital: {
+		name: "ipd-beds",
+		alt: "IPD bed planning and ward management for a small hospital in Lucoze",
+	},
+	dental: {
+		name: "director-cockpit",
+		alt: "Director cockpit — revenue and operations overview for a dental group in Lucoze",
+	},
+	ivf: {
+		name: "patient-encounter",
+		alt: "Patient encounter and cycle records for an IVF clinic in Lucoze",
+	},
+	derm: {
+		name: "patient-encounters",
+		alt: "Patient encounters and records for a dermatology practice in Lucoze",
+	},
 	diag: { name: "lab-lims", alt: "Lab information management for a diagnostic centre in Lucoze" },
 };
 const v = MAP[kind];

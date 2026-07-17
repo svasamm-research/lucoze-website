@@ -1,0 +1,68 @@
+---
+// Floating "chat on WhatsApp" button, sitewide (rendered once in Base.astro).
+// Plain click-to-chat deep link — no WhatsApp API, no third-party widget, no
+// external script, so zero page-speed cost. A human answers on the Business App.
+import { waLink } from "../data/contact";
+---
+
+<a
+	class="wa-fab"
+	href={waLink()}
+	target="_blank"
+	rel="noopener"
+	aria-label="Chat with us on WhatsApp"
+	data-wa-fab
+>
+	<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false">
+		<path
+			fill="currentColor"
+			d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.746 3.048 9.38L1.05 31.31l6.136-1.962A15.9 15.9 0 0 0 16.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0Zm9.316 22.594c-.386 1.09-1.918 1.994-3.14 2.258-.836.178-1.928.32-5.604-1.204-4.702-1.948-7.73-6.726-7.966-7.036-.226-.31-1.9-2.53-1.9-4.826s1.166-3.424 1.636-3.904c.386-.394.844-.574 1.324-.574.156 0 .296.008.422.014.386.016.58.038.834.646.316.762 1.086 2.658 1.178 2.852.094.194.188.456.056.766-.124.32-.234.44-.428.664-.194.224-.378.396-.572.636-.178.21-.378.436-.154.826.224.382 1 1.646 2.146 2.666 1.478 1.316 2.708 1.724 3.138 1.904.32.132.702.1.936-.148.296-.32.662-.85 1.034-1.372.264-.374.598-.42.95-.288.358.124 2.246 1.058 2.636 1.252.39.194.648.288.742.45.094.164.094.94-.292 2.03Z"
+		></path>
+	</svg>
+</a>
+
+<style>
+	.wa-fab {
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		z-index: 40;
+		display: grid;
+		place-items: center;
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		background: #25d366;
+		color: #fff;
+		box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease;
+	}
+	.wa-fab:hover,
+	.wa-fab:focus-visible {
+		transform: scale(1.06);
+		box-shadow: 0 8px 26px rgba(37, 211, 102, 0.5);
+		color: #fff;
+	}
+	@media (max-width: 640px) {
+		.wa-fab {
+			right: 16px;
+			bottom: 16px;
+			width: 52px;
+			height: 52px;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.wa-fab {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	import { track } from "../lib/analytics";
+	document
+		.querySelector("[data-wa-fab]")
+		?.addEventListener("click", () => track("WhatsApp Click", { source: "fab" }));
+</script>

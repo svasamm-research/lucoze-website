@@ -1,0 +1,106 @@
+---
+// Shared lead-capture form used by /in/contact and /in/demo.
+// Controller lives in lib/lead-form.ts (initLeadForm) — this is just the
+// markup, keyed by the data-* hooks that controller queries. No OTP: the
+// lead is POSTed to lucoze_admin on submit and sales follows up.
+import Icon from "./Icon.astro";
+import { waLink } from "../data/contact";
+
+interface Props {
+	heading: string;
+	submitLabel: string;
+	successHeading: string;
+	successBody: string;
+}
+
+const { heading, submitLabel, successHeading, successBody } = Astro.props;
+---
+
+<aside class="reach-card reach-card--hero" data-contact-card>
+	<form class="contact-form" data-contact-form novalidate>
+		<div class="reach-card__head">
+			<span class="reach-step"><Icon name="play" size={14} /></span>
+			<h2>{heading}</h2>
+		</div>
+
+		<div class="reach-fields reach-fields--mini">
+			<div class="reach-field reach-field--full">
+				<label for="c-name">Name <em>*</em></label>
+				<div class="reach-name" data-name-wrap>
+					<select class="reach-name__title" name="title" aria-label="Title">
+						<option value="Dr." selected>Dr.</option>
+						<option value="Mr.">Mr.</option>
+						<option value="Mrs.">Mrs.</option>
+						<option value="Ms.">Ms.</option>
+					</select>
+					<input id="c-name" name="name" placeholder="Soumya Sen" required />
+				</div>
+			</div>
+
+			<div class="reach-field reach-field--full">
+				<label for="c-phone">Desk phone number</label>
+				<div class="reach-phone" data-phone-wrap>
+					<span class="reach-phone__cc">+91</span>
+					<input
+						id="c-phone"
+						name="phone"
+						inputmode="numeric"
+						maxlength="10"
+						placeholder="10-digit desk line"
+					/>
+				</div>
+				<span class="reach-err" data-phone-err hidden> Enter a valid 10-digit Indian number. </span>
+			</div>
+
+			<div class="reach-or reach-field--full"><span>or</span></div>
+
+			<div class="reach-field reach-field--full">
+				<label for="c-email">Official email</label>
+				<input id="c-email" name="email" inputmode="email" placeholder="clinic@hospital.in" />
+				<span class="reach-err" data-email-err hidden> Enter a valid email address. </span>
+			</div>
+
+			<button
+				type="submit"
+				class="btn btn--accent btn--lg reach-field--full"
+				data-contact-submit
+				style="justify-content: center; opacity: 0.5;"
+				disabled
+			>
+				<Icon name="inbox" size={17} />
+				<span data-contact-submit-label>{submitLabel}</span>
+			</button>
+
+			<p class="reach-promise reach-field--full">
+				<Icon name="lock" size={15} /> Whatever you share stays with us — we reach out once, and never
+				sell it to agencies.
+			</p>
+
+			<p
+				class="reach-err reach-field--full"
+				data-contact-error
+				hidden
+				role="alert"
+				style="text-align: center;"
+			>
+			</p>
+		</div>
+	</form>
+</aside>
+
+<aside class="reach-card reach-card--hero" data-contact-success hidden>
+	<div class="reach-success reach-success--inline">
+		<span class="reach-success__badge"><Icon name="check" size={26} /></span>
+		<h3>{successHeading}</h3>
+		<p>{successBody}</p>
+		<div class="reach-success__row">
+			<a class="btn btn--ghost" href={waLink()} target="_blank" rel="noopener">
+				Prefer WhatsApp? Message us
+			</a>
+			<a class="btn btn--primary" href="/in/">
+				Back to home <Icon name="arrow" size={15} class="btn__arrow" />
+			</a>
+		</div>
+		<button type="button" class="reach-success__again" data-contact-reset>Send another →</button>
+	</div>
+</aside>
