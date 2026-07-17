@@ -9,7 +9,13 @@ import "../styles/sections.css";
 import "../styles/subpages.css";
 import Nav from "../components/redesign/Nav.astro";
 import Footer from "../components/redesign/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import { OG_PAGES } from "../lib/og-pages";
+
+// GA4 loads only when PUBLIC_GA_ID is set (prod build env) — keeps UAT/local
+// out of the analytics property. Consent Mode defaults to denied; the cookie
+// banner flips it to granted on accept. Plausible stays independent (cookieless).
+const GA_ID = import.meta.env.PUBLIC_GA_ID as string | undefined;
 
 interface Props {
 	title: string;
@@ -139,9 +145,26 @@ const siteLd = {
 		/>
 
 		<script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
-			<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+		<script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
 
-			<slot name="head" />
+		{
+			GA_ID && (
+				<>
+					<script define:vars={{ GA_ID }}>
+						{`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+try{if(localStorage.getItem('lucoze-consent')==='granted')gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}catch(e){}
+gtag('js', new Date());
+gtag('config', GA_ID);`}
+					</script>
+					<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+				</>
+			)
+		}
+
+		<slot name="head" />
 	</head>
 	<body>
 		<a href="#main" class="skip-link">Skip to main content</a>
@@ -153,6 +176,8 @@ const siteLd = {
 		</main>
 
 		<Footer />
+
+		{GA_ID && <CookieConsent />}
 
 		{
 			import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
