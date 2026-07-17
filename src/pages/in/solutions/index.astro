@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+
+const ORDER = [
+	"multispecialty",
+	"polyclinic",
+	"nursing-home",
+	"dental",
+	"ivf",
+	"dermatology",
+	"diagnostics",
+	"small-hospital",
+];
+const specialties = (await getCollection("specialties")).sort(
+	(a, b) => ORDER.indexOf(a.data.slug) - ORDER.indexOf(b.data.slug),
+);
+
+const h1Parts = ["Solutions for ", "every kind of practice", "."];
+---
+
+<Base
+	title="Solutions for clinics, hospitals & specialties | Lucoze"
+	description="Lucoze for clinics and hospitals, and for multi-specialty, polyclinic, dental, IVF, dermatology and diagnostic practices. One platform, tuned to how you run."
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Solutions" }]}
+		eyebrow="Solutions"
+		h1={h1Parts.join("")}
+		highlightParts={h1Parts}
+		lead="Lucoze fits the setting and the specialty — from a single clinic to a small hospital, from dental groups to IVF and diagnostics. Pick your path."
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/contact/", label: "Talk to us" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">By setting</span>
+				<h2 class="t-h2" style="margin-top: 8px;">Clinic or hospital.</h2>
+			</header>
+			<div class="module-grid">
+				<a class="module-card" href="/in/solutions/clinics/">
+					<div class="module-card__icon"><Icon name="users" size={20} /></div>
+					<div class="module-card__title">For clinics</div>
+					<div class="module-card__blurb">Single and multi-doctor clinics, run on one platform.</div>
+					<span class="module-card__arrow">Explore <Icon name="arrow" size={13} /></span>
+				</a>
+				<a class="module-card" href="/in/solutions/hospitals/">
+					<div class="module-card__icon"><Icon name="home" size={20} /></div>
+					<div class="module-card__title">For hospitals</div>
+					<div class="module-card__blurb">IPD, OT, wards and pharmacy for small hospitals.</div>
+					<span class="module-card__arrow">Explore <Icon name="arrow" size={13} /></span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">By specialty</span>
+				<h2 class="t-h2" style="margin-top: 8px;">Built around your workflow.</h2>
+			</header>
+			<div class="module-grid">
+				{
+					specialties.map((s) => (
+						<a class="module-card" href={`/in/specialties/${s.data.slug}/`}>
+							<div class="module-card__icon">
+								<Icon name={s.data.icon} size={20} />
+							</div>
+							<div class="module-card__title">{s.data.label}</div>
+							<div class="module-card__blurb">{s.data.eyebrow}</div>
+							<span class="module-card__arrow">
+								Explore <Icon name="arrow" size={13} />
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Base>

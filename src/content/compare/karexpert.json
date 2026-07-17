@@ -1,0 +1,93 @@
+{
+	"slug": "karexpert",
+	"competitor": "KareXpert",
+	"metaTitle": "KareXpert Alternative — Lucoze vs KareXpert | Lucoze",
+	"metaDescription": "Comparing Lucoze and KareXpert for Indian clinics and small hospitals? See how Lucoze's fast setup, flat per-clinic pricing, India data residency and ABDM stack up.",
+	"eyebrow": "KareXpert alternative",
+	"h1Parts": ["Lucoze vs ", "KareXpert", " for Indian clinics"],
+	"lead": "KareXpert is a capable, enterprise-grade cloud HMS built for hospitals. If you run a clinic or small hospital, this page shows where Lucoze fits differently.",
+	"intro": "This is our own comparison page, so read it with that in mind — we build Lucoze. KareXpert is an established India-based cloud healthcare platform with a broad module set aimed largely at hospitals and larger healthcare organisations. Lucoze is built for Indian clinics and small hospitals that want to be live quickly on flat, predictable pricing without a long enterprise rollout. Both are cloud platforms and cover the everyday work of running a practice — appointments, records, billing and IPD. The differences below are mostly about scale, setup time, pricing model and how India-specific compliance is handled. Where we could not verify a KareXpert detail from public information, we have marked it for you to confirm with the vendor.",
+	"tableRows": [
+		{
+			"label": "Patient data hosted in India",
+			"sub": "Records stored on infrastructure inside India",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "DPDP 2023 compliant on launch",
+			"sub": "Aligned to India's Digital Personal Data Protection Act",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "One platform, all departments",
+			"sub": "OPD, IPD, billing, pharmacy, labs in one system",
+			"cells": ["check", "check"]
+		},
+		{
+			"label": "Live in about 14 days",
+			"sub": "From sign-up to running your clinic",
+			"cells": ["check", "partial"]
+		},
+		{
+			"label": "ABDM, ABHA & HPR built in",
+			"sub": "Native Ayushman Bharat Digital Mission support",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Flat per-clinic pricing",
+			"sub": "Predictable price, not per-seat or quote-based",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Hindi / regional UI built in",
+			"sub": "Interface in Hindi and regional languages",
+			"cells": ["check", "na"]
+		},
+		{
+			"label": "Full data export on demand",
+			"sub": "Export your complete data whenever you ask",
+			"cells": ["check", "na"]
+		}
+	],
+	"points": [
+		[
+			"Live in about 14 days",
+			"Lucoze is designed to get a clinic or small hospital running in roughly two weeks. Enterprise hospital platforms are typically rolled out over longer, staged implementations — great for large organisations, heavier than a clinic usually needs."
+		],
+		[
+			"Flat per-clinic pricing",
+			"You pay one predictable price per clinic, so you can budget without per-seat maths or a custom quote. That suits clinics and small hospitals watching every rupee."
+		],
+		[
+			"Your data stays in India",
+			"Patient records are hosted on infrastructure inside India, and you can export your full data on demand. If India data residency matters to you, it is built in rather than something to confirm."
+		],
+		[
+			"ABDM-native from day one",
+			"ABHA creation, HPR linkage and ABDM workflows are built into Lucoze, so joining India's digital health network is part of the product, not a separate integration project."
+		],
+		[
+			"Hindi and regional-ready",
+			"Front-desk and clinical staff can work in Hindi and regional languages out of the box, which shortens training and reduces errors at busy clinics."
+		],
+		[
+			"Local East-India support",
+			"We are based in India and support clinics directly, including across East India, so help comes from people who understand how Indian clinics actually run."
+		]
+	],
+	"faqs": [
+		{
+			"q": "Is Lucoze a good alternative to KareXpert?",
+			"a": "It depends on your size. KareXpert is a strong enterprise platform for hospitals and larger healthcare groups. Lucoze is built for clinics and small hospitals that want a fast setup, flat pricing and India-specific compliance without a long implementation. If that describes you, Lucoze is worth a look."
+		},
+		{
+			"q": "How does pricing compare?",
+			"a": "Lucoze uses flat per-clinic pricing — one predictable price, not per-seat or quote-based. KareXpert's pricing is not something we can state reliably from public information, so please confirm current pricing and terms directly with their vendor."
+		},
+		{
+			"q": "How long does it take to get started with Lucoze?",
+			"a": "Most clinics are live on Lucoze in about 14 days, including data setup and staff onboarding. Enterprise hospital platforms are usually implemented over a longer, phased timeline, which makes sense at hospital scale but is more than a typical clinic needs."
+		}
+	],
+	"comparedOn": "July 2026"
+}

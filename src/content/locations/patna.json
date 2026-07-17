@@ -1,0 +1,46 @@
+{
+	"slug": "patna",
+	"kind": "city",
+	"name": "Patna",
+	"region": "Bihar",
+	"metaTitle": "Clinic & Hospital Management Software in Patna | Lucoze",
+	"metaDescription": "Clinic and hospital software for Patna — Boring Road, Kankarbagh, Bailey Road, Kadam Kuan. Hindi front desk, ABDM/ABHA, DPDP-compliant, all patient data hosted in India.",
+	"eyebrow": "For clinics & hospitals in Patna",
+	"h1Parts": ["Software for ", "Patna's referral rush", ", in Hindi."],
+	"lead": "Patna is where the whole state comes when a case gets serious. Lucoze keeps registration, records, GST billing, lab and pharmacy on one Hindi-first screen — so a patient who travelled 200 km doesn't lose a day to a misplaced file.",
+	"intro": "As Bihar's medical hub, Patna absorbs patients from every district — which means high OPD volume, a lot of first-time and repeat visits mixed together, and a front desk under constant pressure, working in Hindi. Chambers on Boring Road, nursing homes in Kankarbagh, diagnostic centres along Bailey Road: the common failure is the same, a record that can't be found fast enough. Lucoze is built to keep one record per patient, register quickly, and bill correctly the first time. We're an early-stage product taking design partners in East India, and Patna clinics fit that programme well.",
+	"points": [
+		[
+			"Find the returning patient fast",
+			"Multilingual search matches names in Hindi, Devanagari and Latin — so a repeat patient from a district town isn't registered twice or lost because their name was spelled differently last time."
+		],
+		[
+			"Hindi-first, built for the queue",
+			"The interface ships in Hindi first (Q3 2026), with printable Hindi cheat-sheets for the desk. One screen for registration, records, GST billing, lab and pharmacy — fewer clicks when the corridor is full."
+		],
+		[
+			"Data in India, yours to take",
+			"Records live in Indian data centres, DPDP 2023 compliant, with CSV and PDF export any time. No lock-in — if you leave, your data leaves with you."
+		],
+		[
+			"ABHA and scheme paperwork sorted",
+			"Issue an ABHA at the first visit and keep GST invoices and Ayushman Bharat (PMJAY) and state-scheme claim records clean, so referrals and reimbursements aren't held up by missing paper."
+		]
+	],
+	"localContext": "We work with clinics, nursing homes and diagnostic centres across Patna — the doctors' chambers around Boring Road, the dense residential OPD load in Kankarbagh, the clinics and labs along Bailey Road, and the older practices around Kadam Kuan. The desk runs in Hindi, with Bhojpuri and Magahi common in conversation, and many patients are arriving from Gaya, Nalanda, Vaishali and further out. Support is remote-first: video onboarding, hands-on migration from your registers or current software, Hindi cheat-sheets, and WhatsApp plus in-app chat. Our team sits in Konnagar, Hooghly, so on-site setup is reserved for larger hospital deployments rather than every chamber.",
+	"citiesServed": [],
+	"faqs": [
+		{
+			"q": "Will the front desk work in Hindi?",
+			"a": "Yes. Hindi is the first interface language we're shipping (Q3 2026), and search already matches patient names across Hindi, Devanagari and Latin today. We also give your desk printable Hindi cheat-sheets so new staff pick it up quickly."
+		},
+		{
+			"q": "Our patients come from all over Bihar with different spellings — can Lucoze cope?",
+			"a": "That's exactly the case it's built for. Multilingual patient search finds the same person whether the name was entered in Hindi or Latin, so a referral arriving from a district doesn't become a duplicate record."
+		},
+		{
+			"q": "How fast can a Patna clinic get started, and do you visit?",
+			"a": "There's a 14-day free trial and most clinics are live within 14 days. Onboarding and data migration are done remotely over video, with WhatsApp and in-app support after — on-site help is reserved for larger hospital rollouts."
+		}
+	]
+}

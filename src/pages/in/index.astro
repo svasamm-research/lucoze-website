@@ -4,6 +4,8 @@ import HeroDemo from "../../components/HeroDemo.astro";
 import TrustStrip from "../../components/TrustStrip.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
+import CompareTable from "../../components/CompareTable.astro";
+import Screenshot from "../../components/Screenshot.astro";
 import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
 import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
@@ -86,63 +88,10 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 					</p>
 				</header>
 
-				<div class="diff" role="region" aria-label="Feature comparison table">
-					<table class="diff__table">
-						<thead>
-							<tr>
-								<th scope="col" style="min-width: 280px;">Capability</th>
-								<th scope="col" style="text-align: center; min-width: 110px;">Lucoze</th>
-								<th scope="col" style="text-align: center; min-width: 110px;">Practo Ray</th>
-								<th scope="col" style="text-align: center; min-width: 110px;">Legacy HIS</th>
-								<th scope="col" style="text-align: center; min-width: 110px;">Excel + paper</th>
-							</tr>
-						</thead>
-						<tbody>
-							{
-								DIFF_ROWS.map((row) => (
-									<tr>
-										<th
-											scope="row"
-											class="diff__row-label"
-											style="text-align: left; background: var(--paper);"
-										>
-											{row.label}
-											<span class="diff__row-sub">{row.sub}</span>
-										</th>
-										{row.cells.map((c, j) => (
-											<td class:list={["diff__cell", j === 0 && "diff__cell--lucoze"]}>
-												{c === "check" && (
-													<span class="diff__check" aria-label="Yes">
-														<Icon name="check" size={13} />
-													</span>
-												)}
-												{c === "cross" && (
-													<span class="diff__cross" aria-label="No">
-														<Icon name="x" size={13} />
-													</span>
-												)}
-												{c === "partial" && (
-													<span class="diff__partial" aria-label="Partial">
-														Partial
-													</span>
-												)}
-												{c === "na" && (
-													<span
-														class="diff__partial"
-														style="color: var(--light);"
-														aria-label="Not applicable"
-													>
-														—
-													</span>
-												)}
-											</td>
-										))}
-									</tr>
-								))
-							}
-						</tbody>
-					</table>
-				</div>
+				<CompareTable
+					columns={["Capability", "Lucoze", "Practo Ray", "Legacy HIS", "Excel + paper"]}
+					rows={DIFF_ROWS}
+				/>
 
 				<p
 					class="t-small"
@@ -151,6 +100,43 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 					Comparison based on public documentation as of May 2026. "Partial" = capability exists but
 					requires configuration / paid add-on / external integration.
 				</p>
+			</div>
+		</section>
+
+		<!-- Product tour — real screenshots via the reusable Screenshot component. -->
+		<section class="section" id="tour" aria-labelledby="tour-heading">
+			<div class="container">
+				<header class="section-header">
+					<span class="t-eyebrow">A look inside</span>
+					<h2 id="tour-heading" class="t-h1" style="margin-top: 8px; margin-bottom: 12px;">
+						See the platform, not a promise.
+					</h2>
+					<p class="t-lead">
+						Real screens from Lucoze — the front desk, the finance office, the lab and the wards.
+					</p>
+				</header>
+				<div class="tour-grid">
+					<Screenshot
+						name="finance"
+						alt="Finance and GST dashboard in Lucoze — P&L, GST returns and the compliance calendar"
+						caption="Finance & GST — P&L, GST returns, TDS and the compliance calendar in one console."
+					/>
+					<Screenshot
+						name="lab-lims"
+						alt="Lab information management in Lucoze — sample-to-report tracking"
+						caption="Lab — sample-to-report tracking with reference-range flagging and a signing trail."
+					/>
+					<Screenshot
+						name="pharmacy"
+						alt="Pharmacy dispensing and inventory in Lucoze"
+						caption="Pharmacy — dispensing from prescriptions, batch/expiry and multi-store stock."
+					/>
+					<Screenshot
+						name="ipd-beds"
+						alt="IPD bed planning and ward management in Lucoze"
+						caption="Hospital — IPD bed planning, admissions and ward management."
+					/>
+				</div>
 			</div>
 		</section>
 

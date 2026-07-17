@@ -1,6 +1,9 @@
 /** Specialty selector pills — used on the home page Product Preview section.
  *  Each pill maps to a SpecialtyVisual `kind` so the static visual block
- *  can swap on click via the vanilla-JS switcher in /in/index.astro. */
+ *  can swap on click via the vanilla-JS switcher in /in/index.astro.
+ *  Only settings we have relevant real screenshots for are shown here;
+ *  dental/IVF/derm keep their /in/specialties/ pages but are omitted from
+ *  the switcher until we have specialty-configured screenshots. */
 
 export interface SpecialtyOption {
 	id: string;
@@ -8,7 +11,7 @@ export interface SpecialtyOption {
 	icon: string;
 	caption: string;
 	/** Maps to the kind dispatched by src/components/visuals/SpecialtyVisual.astro. */
-	visualKind: "multispec" | "poly" | "dental" | "ivf" | "derm" | "diag";
+	visualKind: "multispec" | "poly" | "nursing" | "diag" | "hospital";
 }
 
 export const SPECIALTY_PILLS: SpecialtyOption[] = [
@@ -29,28 +32,12 @@ export const SPECIALTY_PILLS: SpecialtyOption[] = [
 			"Live token queue with priority insertion for walk-ins. The desk sees who's next; the doctor sees who's coming.",
 	},
 	{
-		id: "dental",
-		label: "Dental",
-		icon: "tooth",
-		visualKind: "dental",
+		id: "nursing",
+		label: "Nursing home",
+		icon: "activity",
+		visualKind: "nursing",
 		caption:
-			"Chair-level utilisation in real time. Treatment in progress, who's next, where the dead afternoon is forming.",
-	},
-	{
-		id: "ivf",
-		label: "IVF",
-		icon: "spark",
-		visualKind: "ivf",
-		caption:
-			"Cycle timeline rather than appointment list. 21 days, all events plotted, billing tied to the cycle — not the visit.",
-	},
-	{
-		id: "derm",
-		label: "Dermatology",
-		icon: "sun",
-		visualKind: "derm",
-		caption:
-			"Package-based view with session progress and photo anchors. Cosmetic and medical revenue stay separated.",
+			"Twenty beds, a busy front desk, admissions that become discharge summaries. Vitals, IPD billing and records on one platform.",
 	},
 	{
 		id: "diag",
@@ -59,5 +46,13 @@ export const SPECIALTY_PILLS: SpecialtyOption[] = [
 		visualKind: "diag",
 		caption:
 			"Sample-to-report lifecycle as a Kanban. The phlebotomist, the lab, the pathologist, and the courier — all on one board.",
+	},
+	{
+		id: "hospital",
+		label: "Small hospital",
+		icon: "home",
+		visualKind: "hospital",
+		caption:
+			"IPD, OT, wards and pharmacy under one roof. Bed planning, admission-to-discharge, and the metrics NABH asks for.",
 	},
 ];

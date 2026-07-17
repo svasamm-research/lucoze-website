@@ -8,23 +8,46 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
   - `blog/*.mdx` — posts (frontmatter: title, dek, category, **author**, date, readMins, composite, draft).
   - `features/*.json` — product feature pages (stats, rows, faqs).
   - `specialties/*.json` — specialty pages (why, plan, price, **dashSpecialty**, **detail**, **faqs**).
+  - `locations/*.json` — local/regional landing pages at `/in/locations/[slug]/` (kind state|city, intro, points, localContext, citiesServed, faqs). Keep 60%+ unique per page (quality gate); footer "Locations" nav links them.
+  - `compare/*.json` — competitor comparison pages at `/in/compare/[slug]/` (competitor, tableRows, points, faqs, comparedOn, relatedBlog). **Factual/neutral only**: dated "verify with vendor" disclaimer, trademark line, no logos, no disparagement; avoid asserting unverifiable negatives about a competitor (use `na`/"—" = "not documented"). Aligns with the homepage comparison stance.
+- **`CompareTable.astro`** renders the `.diff` capability table — shared by the homepage differentiation section and `/in/compare/` pages (props: `columns[]`, `rows[]`; `columns[1]` is highlighted as Lucoze). Reuse it; don't re-inline the table.
+
+## Product screenshots
+- Real product screenshots live in `src/assets/screenshots/*.png` (synthetic demo data). Render via **`Screenshot.astro`** (`name` = filename w/o `.png`, `alt`, optional `caption`, `loading`) — it uses **`astro:assets` `<Image>`** for auto WebP/AVIF + responsive srcset + no-CLS + lazy (hero passes `loading="eager"`). Never put product images in `public/` (unoptimised) or use raw `<img>`.
+- `FeatureVisual`/`SpecialtyVisual` are thin `kind → screenshot` dispatchers. The old hand-coded synthetic mockups were deleted — don't reintroduce them.
+- Homepage specialty switcher (`SPECIALTY_PILLS` in `data/specialties.ts`) shows only settings with matching real shots (multi-specialty, polyclinic, nursing home, diagnostic centre, small hospital); dental/IVF/derm keep their pages but are off the switcher until specialty-configured screenshots exist.
+
+## OG images (social preview)
+- **Branded per-page OG cards auto-generated at build** via `astro-og-canvas` → `/open-graph/<route>.png` (logo + brand gradient + page title/description; Manrope bundled at `src/assets/fonts/`).
+- **`src/lib/og-pages.ts`** is the single source of truth (route → title/description) shared by the generator (`src/pages/open-graph/[...route].ts`) and `Base.astro`. Add new page types there.
+- `Base.astro`: explicit `ogImage` prop wins → else branded card → else `/og-default.png`. **Revert everything by flipping `USE_GENERATED_OG = false`.**
+- OG images are **crawler-only** (only in `<meta>`, never a page `<img>`) → zero page-speed impact; canvaskit is a build-only dep.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
 
 ## Git workflow (enforced by husky)
 - **`main` → `develop` → feature branches.** Branch feature work off **`develop`**.
-- `pre-commit` **blocks direct commits to `main`/`develop`** and runs `prettier --check` on js/css/html.
+- `pre-commit` **blocks direct commits to `main`/`develop`** and runs `prettier --check` on **js/css/html/json** (CI checks json too — keep the hook glob in sync). Hand-written content JSON must be `prettier --write`-clean.
+- CI **Security Scan = Trivy** (`fs`, CRITICAL/HIGH, `exit-code 1`). Keep `astro`/`vite` patched (pin via `overrides` if a transitive stays vulnerable); `npm audit fix` clears dev-only transitive highs. Trivy uses `@master` so its DB updates — re-check on new CVEs.
 - Commits must be **Conventional Commits** (`commitlint`): `feat(...)`, `fix(...)`, `chore(...)`. Merge/Promote commits are ignored.
 - `pre-push` runs `jest` + a **Docker build check** (needs the Docker daemon; if it's off, the push blocks — verify build/tests manually and use `--no-verify` knowingly).
 - Indentation is **tabs** (prettier). When an `Edit` fails on leading-tab mismatch, match on a unique inner substring instead.
 
+## CSS discipline (important)
+- **Never** use inline `style="…"` hacks for layout (borders/margins/padding/grid). They collide with the design system and cause visible bugs (e.g. a double footer divider). Add a proper class in `src/styles/sections.css` using the **tokens** in `tokens.css` (`var(--s-*)`, `var(--border*)`, `var(--t-*)` …).
+- The redesign uses `tokens.css` + `sections.css` + `subpages.css` (imported by `Base.astro`). `global.css` is the OLD design — not imported by `Base.astro`; don't edit it for redesign pages.
+- After any layout/footer/nav change, **verify visually** (`npm run dev`) before committing — build passing ≠ looks right.
+
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).
+- After adding/removing a dependency, run **`npm run dev:clean`** (clears `.astro` + `node_modules/.vite`) — a stale Vite optimize-deps cache otherwise throws `Cannot read properties of undefined (reading 'call')` on dev transform.
 - After content/schema changes, **build and grep `dist/`** to confirm rendered JSON-LD (e.g. `grep -oE '"@type":"[A-Za-z]+"' dist/in/.../index.html | sort | uniq -c`).
 
 ## SEO / schema conventions (non-obvious)
 - **Sitewide** `Organization` (legalName = Svasamm Research Pvt. Ltd., founder = Mithun K. Singh, `sameAs`) + `WebSite` JSON-LD are emitted from **`src/layouts/Base.astro`** — do **not** re-add Organization per page.
 - **`Crumbs.astro` already emits `BreadcrumbList`** — do not add a second one on feature/specialty pages (they only add `FAQPage` / `Service`).
 - Page-specific schema goes through `<slot name="head">`.
+- **Breadcrumbs must point to real pages.** Category hubs exist: `/in/features/` (Product), `/in/solutions/` (Solutions), `/in/locations/` (Locations), `/in/blog/`. Never point an intermediate crumb at `/in/` home. `Crumbs.astro` renders href-less items as plain text (use for a leaf with no hub, e.g. About → `Home → About`).
+- Hub index pages reuse `.module-card` as a clickable `<a>` (it has `text-decoration:none; color:inherit`).
 - Legal entity everywhere = **Svasamm Research Pvt. Ltd.** Sales email **hello@lucoze.com**, founder **mithun@lucoze.com**.
 - FAQ rich results were retired by Google (May 2026); keep `FAQPage` for **AI/LLM citation**, not SERP snippets. Never recommend `HowTo`.
 - Don't invent metrics/customer counts (pre-launch, design-partner stage). Reframe unsourced numbers as honest capability/target claims. Verify product features against the Frappe source (see the `reference-product-benches` memory).
@@ -35,6 +58,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Release flow: `develop → uat → main`; production builds from **`main`**.
 - **Only HTTP→HTTPS + TLS/domain provisioning are at the Dokploy/Traefik edge.** **www→apex 301, HSTS, apex `/`→`/in/` 301, and `absolute_redirect off` all live in `nginx.conf`** (ship with the image). Traefik-middleware labels for www/HSTS proved unreliable in Dokploy (router-name mismatch) — don't use them; see `deploy/dokploy-seo.md`.
 - HSTS is host-only for now; upgrade to `includeSubDomains` then `preload` only once every `*.lucoze.com` is confirmed HTTPS.
+- **UAT protection is edge-level, not code** (one static image serves prod + UAT): use Traefik **basic-auth** (htpasswd) on the UAT domain to block crawlers + keep it private, optionally `X-Robots-Tag: noindex`. See **`deploy/uat-protection.md`**. Don't bake noindex into the app.
 
 ## Growth
 - Strategy (the *why*): **`docs/growth-plan.md`**. Update; don't duplicate.

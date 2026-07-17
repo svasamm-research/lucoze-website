@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+
+const comparisons = (await getCollection("compare")).sort((a, b) =>
+	a.data.competitor.localeCompare(b.data.competitor),
+);
+
+const h1Parts = ["Lucoze, ", "compared", "."];
+---
+
+<Base
+	title="Compare Lucoze — clinic management software alternatives | Lucoze"
+	description="Honest, side-by-side comparisons of Lucoze against other Indian clinic and hospital management software. See how the platforms differ."
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Compare" }]}
+		eyebrow="Compare"
+		h1={h1Parts.join("")}
+		highlightParts={h1Parts}
+		lead="Side-by-side, factual comparisons against other clinic and hospital management software — so you can see exactly where the platforms differ before you switch."
+		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
+		secondaryCta={{ href: "/in/pricing/", label: "See pricing" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<div class="module-grid">
+				{
+					comparisons.map((c) => (
+						<a class="module-card" href={`/in/compare/${c.data.slug}/`}>
+							<div class="module-card__icon">
+								<Icon name="chart" size={20} />
+							</div>
+							<div class="module-card__title">Lucoze vs {c.data.competitor}</div>
+							<div class="module-card__blurb">{c.data.eyebrow}</div>
+							<span class="module-card__arrow">
+								Compare <Icon name="arrow" size={13} />
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Base>
