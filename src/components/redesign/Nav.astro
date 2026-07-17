@@ -46,8 +46,8 @@ const { activeLink = "" } = Astro.props;
 		</ul>
 
 		<div class="nav__actions">
-			<!-- Sign in link hidden pre-launch; will return once admin.lucoze.com is live. -->
-			<a href="/in/design-partner/" class="btn btn--ghost btn--sm nav__dp">Design Partner</a>
+			<!-- Sign in link hidden pre-launch; will return once admin.lucoze.com is live.
+			     Design Partner lives in the Company mega-menu — header is demo-only. -->
 			<a href="/in/demo/" class="btn btn--primary btn--sm">
 				Book a demo
 				<Icon name="arrow" size={14} class="btn__arrow" />
@@ -87,7 +87,6 @@ const { activeLink = "" } = Astro.props;
 		))
 	}
 	<a href="/in/pricing/" class="nav__link">Pricing</a>
-	<a href="/in/design-partner/" class="nav__link">Design Partner</a>
 	<a href="/in/demo/" class="btn btn--accent" style="margin-top: 12px; width: 100%;">
 		Book a demo
 	</a>

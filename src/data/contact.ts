@@ -17,6 +17,13 @@ export const SALES_EMAIL = "sales@lucoze.com";
 
 const DEFAULT_WA_MSG = "Hi Lucoze, I'd like to know more about your clinic software.";
 
-/** Build a click-to-chat link. Pure deep link — no WhatsApp API involved. */
+/** Click-to-chat deep link. Best on mobile — opens the app straight to the chat. */
 export const waLink = (message: string = DEFAULT_WA_MSG): string =>
 	`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
+
+/**
+ * WhatsApp Web link. On desktop this shows the QR-login → chat, whereas `wa.me`
+ * shows a "download the app" landing. The FAB swaps to this on desktop.
+ */
+export const webWaLink = (message: string = DEFAULT_WA_MSG): string =>
+	`https://web.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(message)}`;
