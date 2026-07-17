@@ -26,7 +26,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 
 ## Git workflow (enforced by husky)
 - **`main` → `develop` → feature branches.** Branch feature work off **`develop`**.
-- `pre-commit` **blocks direct commits to `main`/`develop`** and runs `prettier --check` on js/css/html.
+- `pre-commit` **blocks direct commits to `main`/`develop`** and runs `prettier --check` on **js/css/html/json** (CI checks json too — keep the hook glob in sync). Hand-written content JSON must be `prettier --write`-clean.
+- CI **Security Scan = Trivy** (`fs`, CRITICAL/HIGH, `exit-code 1`). Keep `astro`/`vite` patched (pin via `overrides` if a transitive stays vulnerable); `npm audit fix` clears dev-only transitive highs. Trivy uses `@master` so its DB updates — re-check on new CVEs.
 - Commits must be **Conventional Commits** (`commitlint`): `feat(...)`, `fix(...)`, `chore(...)`. Merge/Promote commits are ignored.
 - `pre-push` runs `jest` + a **Docker build check** (needs the Docker daemon; if it's off, the push blocks — verify build/tests manually and use `--no-verify` knowingly).
 - Indentation is **tabs** (prettier). When an `Edit` fails on leading-tab mismatch, match on a unique inner substring instead.
