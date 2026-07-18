@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import Icon from "../../components/Icon.astro";
+import { waLink } from "../../data/contact";
 import "../../styles/contact-partner.css";
 
 const SLOTS_TOTAL = 10;
@@ -20,7 +21,7 @@ const PARTNER_PERKS: { icon: string; t: string; s: string }[] = [
 	{
 		icon: "spark",
 		t: "Shape the roadmap",
-		s: "Weekly 30-min call with Mithun. Features you ask for ship before features we'd planned.",
+		s: "Weekly 30-min call with the founder. Features you ask for ship before features we'd planned.",
 	},
 	{
 		icon: "map",
@@ -31,11 +32,8 @@ const PARTNER_PERKS: { icon: string; t: string; s: string }[] = [
 
 const PARTNER_STEPS: [string, string][] = [
 	["Apply", "30 seconds. Just your name and clinic line below."],
-	["Founder call", "A 30-min call with Mithun within 48 hours. No pitch deck."],
-	[
-		"Go live in 14 days",
-		"We migrate your data and train your staff. You keep working throughout.",
-	],
+	["Founder call", "A 30-min call with the founder within 48 hours. No pitch deck."],
+	["Go live in 14 days", "We migrate your data and train your staff. You keep working throughout."],
 	["Build together", "Weekly calls. Your feedback steers what we ship next."],
 ];
 
@@ -80,8 +78,8 @@ const TRUST: [string, string, string][] = [
 					</h1>
 					<p class="dp-hero__lead">
 						Our first ten design-partner clinics get <strong>six months free</strong>,{" "}
-						<strong>lifetime founding pricing</strong>, and a direct line to me. In return:
-						your honest feedback, weekly. That's the whole deal.
+						<strong>lifetime founding pricing</strong>, and a direct line to me. In return: your
+						honest feedback, weekly. That's the whole deal.
 					</p>
 				</div>
 
@@ -96,11 +94,7 @@ const TRUST: [string, string, string][] = [
 							<div class="reach-field reach-field--full">
 								<label for="d-name">Name <em>*</em></label>
 								<div class="reach-name" data-name-wrap>
-									<select
-										class="reach-name__title"
-										name="title"
-										aria-label="Title"
-									>
+									<select class="reach-name__title" name="title" aria-label="Title">
 										<option value="Dr." selected>Dr.</option>
 										<option value="Mr.">Mr.</option>
 										<option value="Mrs.">Mrs.</option>
@@ -137,9 +131,7 @@ const TRUST: [string, string, string][] = [
 									inputmode="email"
 									placeholder="clinic@hospital.in"
 								/>
-								<span class="reach-err" data-email-err hidden>
-									Enter a valid email address.
-								</span>
+								<span class="reach-err" data-email-err hidden> Enter a valid email address. </span>
 							</div>
 
 							<button
@@ -154,8 +146,8 @@ const TRUST: [string, string, string][] = [
 							</button>
 
 							<p class="reach-promise reach-field--full">
-								<Icon name="lock" size={15} /> Whatever you share stays with us — we reach out
-								once, and never sell it to agencies.
+								<Icon name="lock" size={15} /> Whatever you share stays with us — we reach out once, and
+								never sell it to agencies.
 							</p>
 
 							<p
@@ -175,21 +167,18 @@ const TRUST: [string, string, string][] = [
 						<span class="reach-success__badge"><Icon name="check" size={24} /></span>
 						<h3>Application received.</h3>
 						<p>
-							Mithun got your application. Expect a reply within a day to set up your founder
-							call.
+							We got your application. Expect a reply within a day to set up your founder call.
 						</p>
 						<div class="reach-success__row">
 							<a
 								class="btn btn--ghost"
-								href="https://wa.me/918217820249"
+								href={waLink("Hi Lucoze, I've applied to the design-partner program.")}
 								target="_blank"
 								rel="noopener"
 							>
 								Nudge on WhatsApp
 							</a>
-							<button type="button" class="reach-success__again" data-contact-reset
-								>Edit →</button
-							>
+							<button type="button" class="reach-success__again" data-contact-reset>Edit →</button>
 						</div>
 					</div>
 				</aside>
@@ -236,8 +225,8 @@ const TRUST: [string, string, string][] = [
 					<div class="dp-fit__note">
 						<Icon name="spark" size={15} />
 						<span>
-							Not in East India? Still apply — we read every one, we just prioritise the
-							region we're building for first.
+							Not in East India? Still apply — we read every one, we just prioritise the region
+							we're building for first.
 						</span>
 					</div>
 				</aside>
@@ -259,8 +248,7 @@ const TRUST: [string, string, string][] = [
 							))
 						}
 						<div class="dp-stack__foot">
-							<Icon name="check-circle" size={15} /> No catch. Cancel anytime — you keep your
-							data.
+							<Icon name="check-circle" size={15} /> No catch. Cancel anytime — you keep your data.
 						</div>
 					</aside>
 				</div>

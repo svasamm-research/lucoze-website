@@ -1,0 +1,222 @@
+---
+title: "How to register your clinic on HFR (Health Facility Registry)."
+dek: "HFR is ABDM's public registry of verified health facilities — if you want to issue and verify ABHA-linked records, this is the row that makes your clinic real."
+category: "Compliance"
+author: "Mithun K. Singh"
+date: "2026-07-17"
+readMins: 6
+cluster: "abdm"
+---
+
+<p>
+	<em>
+		This is a practical guide, not official NHA guidance. The portal is the source of truth — verify
+		current requirements, fields, and any fees at{" "}
+		<a href="https://facility.abdm.gov.in/" target="_blank" rel="noopener">
+			facility.abdm.gov.in
+		</a>{" "}
+		before you file.
+	</em>
+</p>
+
+<h2 id="what-it-is">What HFR is (and isn't)</h2>
+<p>
+	The <strong>Health Facility Registry (HFR)</strong> is the public list of verified health
+	facilities under the{" "}
+	<a href="/in/blog/abdm-abha-guide/">Ayushman Bharat Digital Mission (ABDM)</a>, run by the
+	National Health Authority (NHA). Hospitals, clinics, diagnostic centres, pharmacies, labs — if it
+	delivers care, it can have an HFR entry with a unique facility ID.
+</p>
+<p>
+	Think of it as the facility-side twin of ABHA. ABHA identifies the patient; HFR identifies the
+	place. Once your clinic is registered and verified, it becomes discoverable within ABDM and can
+	issue and verify ABHA-linked records on the standard rails.
+</p>
+<p>Here is what it is not:</p>
+<ul>
+	<li>
+		It's not a clinical licence. HFR does not replace your local registration, NABH, or state health
+		authority approvals — it sits alongside them.
+	</li>
+	<li>
+		It's not a data upload. Registering a facility doesn't hand your patient records to anyone.
+		Records stay where they're created.
+	</li>
+	<li>
+		It's not the same as HPR. HFR is the <em>facility</em>; the Healthcare Professional Registry
+		(HPR) is the <em>doctor</em>. You typically want both.
+	</li>
+</ul>
+
+<h2 id="why">Why register</h2>
+<p>
+	Being on HFR is the difference between saying you're "ABDM-ready" and actually being on the map. A
+	verified facility ID is what lets your clinic issue records patients can pull into their ABHA,
+	verify other providers, and participate in consent-based exchange. Without it, you're outside the
+	network looking in.
+</p>
+<p>Concretely, it matters when:</p>
+<ul>
+	<li>
+		A patient asks you to link a visit or a report to their ABHA — you can only do that from a
+		registered facility.
+	</li>
+	<li>
+		State insurance and scheme workflows increasingly key off ABDM identifiers. Being registered
+		keeps you inside the digital lane instead of the paper one.
+	</li>
+	<li>
+		Referrals and cross-clinic exchange under ABDM need a verified sender and receiver. HFR is your
+		identity on that network.
+	</li>
+</ul>
+<blockquote>
+	If your software vendor says you're "ABDM-ready" but your facility isn't in HFR, that readiness is
+	theoretical. HFR is the row that makes it real.
+</blockquote>
+
+<h2 id="what-you-need">What you need before you start</h2>
+<p>
+	The exact document list can change, so treat this as the general shape and confirm the current
+	requirements on the portal. Broadly, have ready:
+</p>
+<ul>
+	<li>
+		A <strong>mobile number</strong> you control (OTP-based sign-in), and ideally the owner's or an
+		authorised person's details.
+	</li>
+	<li>
+		Your <strong>facility's legal and operational details</strong> — name, type (clinic, polyclinic,
+		nursing home, diagnostic centre), ownership (private/public), and specialties offered.
+	</li>
+	<li>
+		The <strong>full address</strong> with pincode, and location that matches your signboard reality
+		— this is what gets verified.
+	</li>
+	<li>
+		Any <strong>registration or licence numbers</strong> your facility already holds (local
+		registration, GST if applicable, and similar) — the portal will tell you which are mandatory for
+		your facility type.
+	</li>
+	<li>
+		Basic <strong>infrastructure details</strong> — beds if any, key services, operating hours.
+	</li>
+</ul>
+<p>
+	If you're unsure which documents apply to your facility type, don't guess — the portal branches
+	the form by facility category and tells you what's required. Check there.
+</p>
+
+<h2 id="flow">The registration flow (high level)</h2>
+<p>
+	The process lives entirely on the official portal, and the exact screens do change over time, so
+	we won't invent field names or step counts here. At a documented level, expect roughly this arc:
+</p>
+<ul>
+	<li>
+		Go to{" "}
+		<a href="https://facility.abdm.gov.in/" target="_blank" rel="noopener">
+			facility.abdm.gov.in
+		</a>{" "}
+		and start registration for a new facility, signing in with your mobile via OTP.
+	</li>
+	<li>
+		Enter facility details — type, ownership, specialties, address, and the identifiers the form
+		asks for.
+	</li>
+	<li>
+		Submit for <strong>verification</strong>. HFR entries are verified, not self-asserted — that's
+		the whole point of the registry — so there's a review step before your facility is fully live.
+	</li>
+	<li>Once verified, your facility gets its HFR ID and appears in the registry.</li>
+</ul>
+<p>
+	For the precise, current steps — button labels, mandatory fields, what triggers verification, and
+	any fees — follow the portal itself. It's the only source that stays up to date, and it's the one
+	that counts.
+</p>
+
+<h2 id="after">After you're registered</h2>
+<p>
+	Registration is the start, not the finish. A live HFR ID is only useful if your systems actually
+	use it:
+</p>
+<ul>
+	<li>
+		<strong>Record it.</strong> Keep the HFR facility ID somewhere your team and your software can
+		reach — it's your identity on the network.
+	</li>
+	<li>
+		<strong>Wire it into your EMR.</strong> The ID needs to flow into whatever issues ABHA-linked
+		records. Registration alone doesn't make records appear in a patient's ABHA — your software has
+		to do the linking.
+	</li>
+	<li>
+		<strong>Register your doctors on HPR.</strong> HFR covers the facility; HPR covers the
+		professionals. For full ABDM participation you generally want both.
+	</li>
+	<li>
+		<strong>Keep it accurate.</strong> If you move, add specialties, or change ownership, update the
+		entry. A stale registry row misdirects patients and referrals.
+	</li>
+</ul>
+
+<h2 id="snags">Common snags</h2>
+<ul>
+	<li>
+		<strong>Picking the wrong facility type.</strong> The form branches on this, and it drives which
+		documents you need. Get it right the first time or you'll redo fields.
+	</li>
+	<li>
+		<strong>Address that doesn't match reality.</strong> Verification checks that the facility
+		exists where you say it does. A sloppy or mismatched address is the most common reason things
+		stall.
+	</li>
+	<li>
+		<strong>Confusing HFR with HPR.</strong> Registering the facility does not register your
+		doctors, and vice versa. Two registries, two jobs.
+	</li>
+	<li>
+		<strong>Assuming registration = integration.</strong> Being in HFR doesn't automatically issue
+		ABHA-linked records. Your EMR has to support ABDM and use the facility ID. If your vendor can't
+		tell you how, that's your answer.
+	</li>
+	<li>
+		<strong>Trusting a screenshot from 2023.</strong> The portal evolves. Anything you read about
+		exact steps — including this post — is a map, not the territory. Confirm on the portal.
+	</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ul>
+	<li>
+		<a href="https://facility.abdm.gov.in/" target="_blank" rel="noopener">
+			Health Facility Registry (HFR) portal
+		</a>{" "}
+		— where you actually register and the source of truth for current steps.
+	</li>
+	<li>
+		<a href="https://abdm.gov.in/" target="_blank" rel="noopener">
+			Ayushman Bharat Digital Mission (ABDM)
+		</a>{" "}
+		— the framework HFR is part of.
+	</li>
+	<li>
+		<a href="https://nha.gov.in/" target="_blank" rel="noopener">
+			National Health Authority (NHA)
+		</a>{" "}
+		— the body that runs ABDM and publishes the registry standards.
+	</li>
+</ul>
+
+<h2 id="closing">Closing</h2>
+<p>
+	HFR registration isn't hard — it's an afternoon of accurate paperwork on one portal, plus a
+	verification wait. The part people underestimate is what comes after: making the facility ID
+	actually do something inside your clinic's software.
+</p>
+<p>
+	Lucoze is built to use that ID — issuing and verifying ABHA-linked records once your facility is
+	registered — so the HFR entry isn't just a certificate in a drawer. If you want to talk through
+	where your clinic sits, <a href="/in/contact/">reach out</a>. No pitch attached.
+</p>

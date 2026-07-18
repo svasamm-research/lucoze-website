@@ -1,0 +1,137 @@
+---
+title: "Creating an ABHA at the first visit: a front-desk guide."
+dek: "The flow takes a couple of minutes at registration, needs the patient's consent, and saves everyone the scramble later — here is how the front desk actually does it."
+category: "Compliance"
+author: "Mithun K. Singh"
+date: "2026-07-17"
+readMins: 6
+cluster: "abdm"
+---
+
+<p>
+	<em>
+		This is a practical guide for a clinic front desk, not official NHA instructions. Field names
+		and screens change — verify the current steps on the ABHA and ABDM portals before you rely on
+		them.
+	</em>
+</p>
+
+<h2 id="what">What an ABHA is, in one line</h2>
+<p>
+	An <strong>ABHA</strong> — Ayushman Bharat Health Account — is a 14-digit health ID issued under
+	ABDM, the National Health Authority's digital-health framework. It belongs to the patient. It is
+	usually created with just a mobile number and an OTP; Aadhaar is optional. Think of it as the
+	patient's health-record index, not a folder of records.
+</p>
+<blockquote>
+	The ABHA doesn't hold the patient's history. It's the key that lets records move between providers
+	— with the patient's consent, one visit at a time. The records stay where they were created.
+</blockquote>
+<p>
+	That distinction matters at the desk. You are not uploading anyone's file to a government server.
+	You are helping the patient get an ID so their records can be linked later, if and when they say
+	yes. Nothing about creating an ABHA moves data on its own.
+</p>
+
+<h2 id="why-first-visit">Why do it at the first visit</h2>
+<p>
+	Registration is the one moment you already have the patient's attention, their phone in hand, and
+	a minute of dead time while the details go in. Bolt the ABHA step onto that and it costs almost
+	nothing. Chase it later — over the phone, at discharge, at the next visit — and it becomes a task
+	nobody owns.
+</p>
+<p>
+	There's a practical payoff too. Once a patient has an ABHA and consents to link, their record at
+	your clinic can connect to it, and future visits stop starting from a blank page. For a clinic
+	that's HPR- and HFR-registered, doing this at the front desk is the cleanest point in the whole
+	journey to offer it.
+</p>
+
+<h2 id="what-you-need">What you need from the patient — and consent first</h2>
+<p>Very little, and none of it before you've asked. The usual ingredients:</p>
+<ul>
+	<li>A working mobile number that can receive an OTP — this is the minimum.</li>
+	<li>The patient's name and basic details as they'd like them recorded.</li>
+	<li>
+		Aadhaar, <em>only if</em> the patient chooses to use it. It's optional — never insist.
+	</li>
+</ul>
+<p>
+	Before any of that, the front desk asks. Something plain works best: "Would you like me to create
+	a free health ID for you? It lets your records connect across clinics, only when you allow it.
+	Takes about two minutes, and it's completely optional." Then wait for a yes. The consent isn't a
+	formality you get around — it's the reason the whole thing is allowed to happen.
+</p>
+
+<h2 id="the-flow">The flow, step by step (high level)</h2>
+<p>
+	Screens differ between the ABHA app and the ABDM portal and they get updated, so treat this as the
+	shape of it, not a script:
+</p>
+<ul>
+	<li>Ask, and get a clear yes. If it's a no, you stop here — no friction, no follow-up.</li>
+	<li>Enter the patient's mobile number and send the OTP to their phone.</li>
+	<li>The patient reads out the OTP; you enter it to verify the number is really theirs.</li>
+	<li>
+		Fill in the basic details. If the patient opted to use Aadhaar, complete that step with them; if
+		not, skip it.
+	</li>
+	<li>The ABHA is generated. Note the number against their record and let them know it's done.</li>
+	<li>
+		If they consent to link this visit's record, do that as part of registration in your software.
+	</li>
+</ul>
+<p>
+	Start to finish it's usually under a couple of minutes once the desk has done it a few times. It
+	feels slower on day one and quick by day three. Don't promise a stopwatch time to the patient —
+	just say "a minute or two" and move on.
+</p>
+
+<h2 id="says-no">When the patient says no</h2>
+<p>
+	Then it's no, and that's a perfectly normal outcome. ABHA is optional for the patient. Some will
+	decline because they're in a hurry, some because they'd rather not, some because they already have
+	one. You register them exactly as you would have anyway and carry on. A patient who declines an
+	ABHA gets the same care and the same record at your clinic — nothing about their visit changes.
+</p>
+<p>
+	If they already have an ABHA, you don't create a second one — you can link the existing one with
+	their consent. And "not now" is a valid answer too; you can always offer again on a later visit.
+</p>
+
+<h2 id="lucoze">How Lucoze fits</h2>
+<p>
+	Lucoze can create or link an ABHA right inside registration, so the front desk doesn't juggle a
+	separate app and a paper form. The consent step and the linking live in the same flow as the rest
+	of the patient's details, which is the point — one screen, one conversation, done. From there the
+	patient's <a href="/in/features/patient-records/">patient records</a> at your clinic sit ready to
+	connect when they consent.
+</p>
+<p>
+	If you want the full background on the rails underneath all this — ABHA, HPR, HFR, and how consent
+	actually works — read our <a href="/in/blog/abdm-abha-guide/">ABDM &amp; ABHA guide</a>. And if
+	you'd like to see the registration flow on your own front desk, Lucoze has a{" "}
+	<a href="/in/signup/">14-day trial</a> — no card, no pitch.
+</p>
+
+<h2 id="sources">Sources</h2>
+<ul>
+	<li>
+		<a href="https://abha.abdm.gov.in/" target="_blank" rel="noopener">
+			ABHA — create and manage a health ID
+		</a>{" "}
+		— the official ABHA portal.
+	</li>
+	<li>
+		<a href="https://abdm.gov.in/" target="_blank" rel="noopener">
+			Ayushman Bharat Digital Mission (ABDM)
+		</a>{" "}
+		— the National Health Authority's official portal.
+	</li>
+	<li>
+		<a href="https://nha.gov.in/" target="_blank" rel="noopener">
+			National Health Authority (NHA)
+		</a>{" "}
+		— the body that publishes the ABDM/ABHA standards.
+	</li>
+</ul>

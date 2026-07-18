@@ -1,0 +1,153 @@
+---
+title: "TPA and insurance claims: getting paid without the chase."
+dek: "Cashless and reimbursement claims are where clinic revenue quietly leaks. Here's the workflow that keeps money moving instead of ageing on a spreadsheet."
+category: "Billing & GST"
+author: "Mithun K. Singh"
+date: "2026-07-17"
+readMins: 5
+cluster: "billing"
+---
+
+<p>
+	For most clinics and small hospitals, the hardest part of insurance isn't the medicine — it's
+	getting paid for it. A claim that should settle in weeks sits unpaid for months because a document
+	was missing, an approval never came, or nobody was tracking it. This is a practical walk through
+	the workflow, vendor-neutral, so you can see where the leaks are before they cost you.
+</p>
+
+<h2 id="two-paths">Two ways a claim happens</h2>
+<p>
+	Every insured patient reaches you on one of two tracks, and the paperwork differs:
+</p>
+<ul>
+	<li>
+		<strong>Cashless.</strong> The patient doesn't pay for covered treatment; the insurer (usually
+		through a <strong>Third Party Administrator</strong>, the TPA that processes claims on the
+		insurer's behalf) settles directly with you. This is smoother for the patient but puts the
+		documentation and follow-up burden on the clinic.
+	</li>
+	<li>
+		<strong>Reimbursement.</strong> The patient pays you up front, then claims the amount back from
+		their insurer themselves. Your job is to hand them a clean, complete set of documents. If your
+		bill or discharge summary is sloppy, the patient's claim gets queried — and you get the angry
+		phone call.
+	</li>
+</ul>
+<p>
+	Either way, the money only flows if the paperwork is right. The difference is who chases it.
+</p>
+
+<h2 id="pre-auth">Pre-authorisation: get the yes first</h2>
+<p>
+	For cashless treatment, the single most important step happens before or at admission:{" "}
+	<strong>pre-authorisation</strong>. You send the TPA the patient's details, the proposed treatment,
+	and an estimate, and they approve a covered amount before care proceeds (for planned procedures) or
+	shortly after (for emergencies).
+</p>
+<p>
+	Skip or fumble this and the whole claim is at risk. The common failures are predictable: the
+	estimate doesn't match what actually gets done, the diagnosis on the request doesn't match the
+	final one, or the approval amount is treated as a guarantee when it's really a ceiling. Get the
+	pre-auth right and clean, and you've removed most of the reasons a claim gets rejected later.
+</p>
+
+<h2 id="documentation">The documents that must be right</h2>
+<p>
+	Claims live or die on documentation. The exact list varies by insurer and TPA, but the spine of it
+	is consistent — and every item has to be internally consistent with the others:
+</p>
+<ul>
+	<li>
+		<strong>Patient identity and policy details</strong> — name, policy number, and the ID the
+		insurer needs, all matching what's on the card.
+	</li>
+	<li>
+		<strong>Diagnosis</strong> — clearly stated and consistent from pre-auth through discharge. A
+		diagnosis that shifts between documents is a query waiting to happen.
+	</li>
+	<li>
+		<strong>Itemised bill</strong> — line-by-line charges, not a lump sum. Insurers pay against the
+		itemisation, and anything they can't map to their tariff, they'll question.
+	</li>
+	<li>
+		<strong>Discharge summary</strong> — the clinical narrative that ties the diagnosis, treatment,
+		and stay together. This is the document TPAs scrutinise most.
+	</li>
+</ul>
+<p>
+	None of this is exotic. The failures are almost always mundane — a mismatch, a missing signature,
+	a number that doesn't add up — caught late, when the patient has left and the file is cold. Getting
+	the billing itemisation clean at the point of care is where a proper{" "}
+	<a href="/in/features/billing/">billing system</a> earns its keep; it's also where{" "}
+	<a href="/in/blog/gst-for-clinics/">GST on your invoices</a> and claim documentation have to line
+	up rather than fight each other.
+</p>
+
+<h2 id="submission">Submission and why claims come back</h2>
+<p>
+	Once care is done, the claim goes to the TPA or insurer with the full document set. Then you wait —
+	and often, it comes back queried or rejected. The recurring reasons are worth knowing because most
+	are preventable:
+</p>
+<ul>
+	<li>
+		<strong>Missing or incomplete documents.</strong> The most common and the most fixable — a
+		report, a signature, or a page nobody attached.
+	</li>
+	<li>
+		<strong>Non-disclosure.</strong> A pre-existing condition or history the insurer says wasn't
+		declared. This is between patient and insurer, but it stalls your payment.
+	</li>
+	<li>
+		<strong>Tariff mismatch.</strong> A charge above the agreed rate for that procedure or room
+		category. The insurer pays their tariff, not yours, and disputes the gap.
+	</li>
+	<li>
+		<strong>Delayed submission.</strong> Claims and documents have submission windows. Miss them and
+		an otherwise valid claim can be rejected outright on timing alone.
+	</li>
+</ul>
+<blockquote>
+	A rejected claim isn't always a lost one — most are queries you can answer. But only if someone is
+	watching the file. An unwatched query becomes a write-off by default.
+</blockquote>
+
+<h2 id="ageing">Reconciliation and the ageing problem</h2>
+<p>
+	Here's where the real money leaks. You submit a claim, and then... nothing. It's not rejected, not
+	paid — it's just sitting there. Multiply that by every insured patient and you have a growing pile
+	of receivables ageing on the books, weeks turning into months, cash you've earned but can't spend.
+</p>
+<p>
+	The problem is rarely any single claim. It's that no one has a running view of <em>all</em> the
+	claims: which are approved, which are queried and awaiting a response, which were paid short and
+	need reconciling against what you billed, and which have simply gone quiet and need a follow-up
+	call. Without that view, claims don't get chased until a cash crunch forces a panicked audit — and
+	by then some are past their window.
+</p>
+<p>
+	This is a tracking discipline, not a heroics problem. A claim needs a status the day it's
+	submitted, a follow-up when it goes quiet, and a reconciliation when payment lands so you catch the
+	short-paid ones. Do that consistently and the ageing pile stops growing. Lucoze is built to track
+	each claim's status through this lifecycle — submitted, queried, paid, reconciled — so a stuck
+	claim surfaces as a task instead of hiding in a folder until quarter-end.
+</p>
+
+<h2 id="schemes">A note on government schemes</h2>
+<p>
+	Alongside private insurance, government schemes cover a large share of patients — most prominently{" "}
+	<strong>PMJAY</strong> (Pradhan Mantri Jan Arogya Yojana, the health assurance arm of Ayushman
+	Bharat) and various state schemes. These run their own empanelment, pre-authorisation, and claim
+	rails, and increasingly key off ABDM/ABHA identifiers to link patients and records. If you treat
+	scheme patients, being set up on those digital rails is part of getting paid — see our{" "}
+	<a href="/in/blog/abdm-abha-guide/">ABDM and ABHA guide</a> for how those identifiers fit in.
+</p>
+
+<h2 id="closing">Getting paid is a process, not luck</h2>
+<p>
+	Insurance revenue leaks in small, boring ways: a pre-auth that didn't match, a document that was
+	missing, a claim that aged out because no one was tracking it. None of it is dramatic, and all of
+	it is preventable with a consistent workflow and a running view of where every claim stands. If you
+	want to talk through where your clinic's claims are getting stuck,{" "}
+	<a href="/in/contact/">reach out</a> — no pitch attached.
+</p>
