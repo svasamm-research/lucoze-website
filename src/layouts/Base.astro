@@ -223,6 +223,22 @@ gtag('config', GA_ID);`}
 					return;
 				}
 
+				// Demo CTA click — the primary CTA. `placement` (derived from the
+				// enclosing section, no per-link markup) + `from` (page) show which
+				// buttons/pages drive demo intent.
+				if (href.includes("/in/demo/")) {
+					const placement = a.closest(".nav")
+						? "nav"
+						: a.closest(".hero")
+							? "hero"
+							: a.closest(".cta-final")
+								? "bottom-cta"
+								: a.closest(".subhero")
+									? "page-hero"
+									: "inline";
+					track("Demo CTA Click", { placement, from: window.location.pathname });
+				}
+
 				// Signup CTA click → fire LucozeTracker.trackCTAClick so the
 				// admin pipeline flips the visitor's `clicked_free_trial` flag.
 				if (href.includes("/signup")) {
