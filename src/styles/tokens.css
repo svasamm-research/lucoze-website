@@ -16,8 +16,10 @@
 	/* Neutrals */
 	--ink: #1f1d1a;
 	--ink-soft: #3a3733;
-	--muted: #6b6660;
-	--light: #8a857e;
+	/* Darkened for readability + WCAG AA: muted 5.1→6.5:1, light 3.6→5.1:1 on
+	   the light backgrounds (light previously failed AA for normal text). */
+	--muted: #625c54;
+	--light: #726d65;
 	--cream: #f4f3ee;
 	--paper: #fffdf7;
 	--white: #ffffff;

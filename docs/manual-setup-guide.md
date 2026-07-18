@@ -52,6 +52,13 @@ For each: create/claim the listing → use the **exact same NAP + description + 
 ## 5. Confirm analytics  ⏱️ ~5 min
 You run **Plausible** (`analytics.lucoze.com`). Confirm it's recording, and that you can segment **organic vs paid vs direct** traffic. If it's not live, tell me — it's wired via `PUBLIC_PLAUSIBLE_DOMAIN` env.
 
+### 5b. Google Analytics 4  ⏱️ ~1 min (one env var)
+GA4 is built and ready (property **Lucoze**, `G-8PKQ5SH09G`, under the "Svasamm Research" account). To switch it on:
+- In **Dokploy → the production app → Environment**, add **`PUBLIC_GA_ID=G-8PKQ5SH09G`** and redeploy.
+- **Do NOT set it on UAT** — leaving it unset keeps UAT traffic out of the property (clean data).
+- Cookie-consent banner + Consent Mode ship automatically with it (GA sets no cookies until a visitor accepts). Plausible keeps running alongside (cookieless).
+- Later, in GA4 → **Admin → Events → mark as key event**: `lead_submitted`, `signup_submitted`, `signup_verified`, `whatsapp_click`. Those become the **conversions** Google Ads imports in Phase 4.
+
 ## 6. Ad accounts — DEFERRED (do NOT set up yet)
 Google Ads / Meta Business accounts come **after** Phase 0–3 and after we run `/ads math`. Listed here only so you know they're coming. Skip for now.
 

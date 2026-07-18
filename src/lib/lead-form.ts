@@ -167,6 +167,8 @@ export function initLeadForm({ source }: InitOptions): void {
 	// reached the success state. Same pattern as the signup page.
 	let formInteracted = false;
 	form.addEventListener("input", () => {
+		// Funnel entry — fire once on first interaction (pairs with "Lead Submitted").
+		if (!formInteracted) track("Lead Form Started", { source });
 		formInteracted = true;
 	});
 	window.addEventListener("beforeunload", () => {
