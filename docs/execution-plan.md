@@ -38,9 +38,9 @@ Companion to [`growth-plan.md`](growth-plan.md) (the *why*) and
 ## Phase 2 — Content clusters + authority
 | # | Task | Owner | Notes |
 |---|---|---|---|
-| 2.1 | Topic clusters: ABDM, DPDP, Switching, Billing (pillar + spokes) | 🧑‍💻 | `/seo cluster`; I draft, you review facts |
-| 2.2 | Internal-linking pass | 🧑‍💻 | pillars ↔ spokes ↔ product pages |
-| 2.3 | Backlink outreach (digital PR, guest posts, partnerships) | ✋🤝 | I prep pitch assets + target list; you send |
+| 2.1 | Topic clusters: ABDM, DPDP, Switching, Billing (pillar + spokes) | 🧑‍💻 | `/seo cluster`; I draft, you review facts. **All 4 clusters DONE** (PR #78): ABDM (pillar `abdm-abha-guide`), DPDP (`dpdp-for-clinics`), Switching (`switch-clinic-software-without-downtime`), Billing/GST (`gst-for-clinics`). 7 new posts + 6 existing tagged. |
+| 2.2 | Internal-linking pass | 🧑‍💻 | pillars ↔ spokes ↔ product pages. **Auto** via `cluster:`/`pillar:` + "More in this series" (PR #78) — set the slug, links generate. |
+| 2.3 | Backlink outreach (digital PR, guest posts, partnerships) | ✋🤝 | I prep pitch assets + target list; you send. **Kit ready:** [`backlink-kit.md`](backlink-kit.md) (PR #78). |
 | 2.4 | Collect design-partner reviews | 🤝 | feeds directories + local proof |
 
 **Exit:** 2 clusters live w/ internal linking · directory reviews flowing · ≥3 outreach pitches sent.

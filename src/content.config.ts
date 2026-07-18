@@ -13,6 +13,10 @@ const blog = defineCollection({
 		composite: z.boolean().default(false),
 		draft: z.boolean().default(false),
 		ogImage: z.string().optional(),
+		// Topic-cluster grouping (hub & spoke). Posts sharing a `cluster` cross-link
+		// automatically; `pillar: true` marks the cluster's hub post.
+		cluster: z.string().optional(),
+		pillar: z.boolean().default(false),
 	}),
 });
 

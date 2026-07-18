@@ -5,7 +5,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 ## Stack
 - **Astro** (`output: static`), React islands, MDX. Build → `dist/`, served by **nginx** (`nginx.conf`) in Docker.
 - Content lives in **content collections** (`src/content.config.ts`):
-  - `blog/*.mdx` — posts (frontmatter: title, dek, category, **author**, date, readMins, composite, draft).
+  - `blog/*.mdx` — posts (frontmatter: title, dek, category, **author**, date, readMins, composite, draft, **cluster**, **pillar**). Topic clusters (hub & spoke): set the same `cluster:` slug on related posts and they auto-cross-link via a "More in this series" section (`blog/[...slug].astro`), pillar first; mark the hub `pillar: true`. Label a cluster in `CLUSTER_LABELS` in that template. Existing: `abdm` (pillar `abdm-abha-guide`). Don't hand-wire related links.
   - `features/*.json` — product feature pages (stats, rows, faqs).
   - `specialties/*.json` — specialty pages (why, plan, price, **dashSpecialty**, **detail**, **faqs**).
   - `locations/*.json` — local/regional landing pages at `/in/locations/[slug]/` (kind state|city, intro, points, localContext, citiesServed, faqs). Keep 60%+ unique per page (quality gate); footer "Locations" nav links them.
