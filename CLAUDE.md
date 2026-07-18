@@ -34,6 +34,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - **`lib/analytics.ts` `track(event, props)` is the only analytics call site** — it **dual-emits** to **Plausible** (cookieless, consent-independent, day-to-day) and **GA4 `gtag`** (Ads conversions/remarketing). GA4 event names are auto-normalised to snake_case. Don't call `plausible()`/`gtag()` directly.
 - **GA4 is env-gated on `PUBLIC_GA_ID`** (set in the **prod** build env only — property `G-8PKQ5SH09G`; leave unset on UAT/local so they stay out of the property), same pattern as `PUBLIC_PLAUSIBLE_DOMAIN`. Scripts + **Consent Mode v2** default-denied live in `Base.astro` `<head>`.
 - **`CookieConsent.astro`** governs GA only (Plausible needs no consent): Accept → `gtag('consent','update', granted)` + remembers in `localStorage` (`lucoze-consent`). Keep it DPDP-aligned — GA sets no cookies until accept.
+- **Demo funnel events**: `Demo CTA Click` (fires from the global click handler in `Base.astro` for any `/in/demo/` link — `placement` derived from the enclosing section, `from` = page) → `Lead Form Started` (first interaction, in `lib/lead-form.ts`) → `Lead Submitted`. Add new CTA/funnel events at those two shared choke-points, not per-button.
 
 ## Git workflow (enforced by husky)
 - **`main` → `develop` → feature branches.** Branch feature work off **`develop`**.
@@ -47,6 +48,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - **Never** use inline `style="…"` hacks for layout (borders/margins/padding/grid). They collide with the design system and cause visible bugs (e.g. a double footer divider). Add a proper class in `src/styles/sections.css` using the **tokens** in `tokens.css` (`var(--s-*)`, `var(--border*)`, `var(--t-*)` …).
 - The redesign uses `tokens.css` + `sections.css` + `subpages.css` (imported by `Base.astro`). `global.css` is the OLD design — not imported by `Base.astro`; don't edit it for redesign pages.
 - After any layout/footer/nav change, **verify visually** (`npm run dev`) before committing — build passing ≠ looks right.
+- **Text-grey tokens are WCAG-AA tuned**: `--ink` (headings/body, ~16:1), `--muted` (`#625c54`, ~6.5:1, secondary text), `--light` (`#726d65`, ~5:1, captions). Don't lighten either grey below **4.5:1** on the light backgrounds (`--paper`/`--cream`/`--white`) — that's the AA floor for normal text.
 
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).
