@@ -1,0 +1,172 @@
+---
+title: "Patient consent under DPDP, for a clinic front desk."
+dek: "Notice, consent, and the rights your patients now have over their own data — the version your receptionist can actually use, not the legal one."
+category: "Compliance"
+author: "Mithun K. Singh"
+date: "2026-07-17"
+readMins: 5
+cluster: "dpdp"
+---
+
+<p>
+	<em>
+		This is practical guidance for running a clinic, not legal advice. The Digital Personal Data
+		Protection Act and its rules are the source of truth, and specifics can change — verify the
+		current text and any notified rules against the official sources at the end, and check with a
+		lawyer before you rely on any of this.
+	</em>
+</p>
+
+<p>
+	The <a href="/in/blog/dpdp-for-clinics/">DPDP Act 2023</a> gave your patients rights over the data
+	you hold, and gave you duties in return. Most writing about it is aimed at lawyers and platforms.
+	This is the front-desk version: what changes at the counter, and what your team has to say and do.
+</p>
+
+<h2 id="notice">Notice and consent, at the counter</h2>
+<p>
+	The core mechanism is simple. When you collect a patient's data, you have to tell them — in plain
+	language — what you're collecting and why, and get their consent for it. Under DPDP, consent has to
+	be free, specific, informed, and unambiguous. "The patient handed over their Aadhaar, so they must
+	be fine with everything" is not consent. Silence is not consent.
+</p>
+<p>Concretely, the floor for a clinic looks like this:</p>
+<ul>
+	<li>
+		A <strong>plain-language notice</strong> — on the intake form or a printed card at the desk —
+		saying what you collect (name, contact, history, reports) and the purposes you'll use it for.
+	</li>
+	<li>
+		A <strong>consent line the patient actively agrees to</strong>, not a pre-ticked box. Consent is
+		something the person gives, so the affirmative action has to be theirs.
+	</li>
+	<li>
+		A way for the patient to <strong>withdraw consent</strong> and <strong>raise a complaint</strong>
+		— stated in the notice, not left as optional footnotes.
+	</li>
+</ul>
+<p>
+	The Act also expects notice to be available in English and the languages in the Constitution's
+	Eighth Schedule — for most clinics, that means the local language your patients actually read.
+</p>
+
+<h2 id="purpose">Only use it for what you said</h2>
+<p>
+	This is the rule clinics trip over most. Consent is tied to a <strong>purpose</strong>. A phone
+	number you collected for appointment reminders and lab results is for exactly that — not for a
+	festival discount on health check-ups, and not for a diagnostics partner who pays for leads.
+	Different purpose, new consent.
+</p>
+<blockquote>
+	The lazy test: before any new use of patient data, ask "did we tell them this when we collected
+	it?" If no, you either need fresh consent or you don't do it.
+</blockquote>
+<p>
+	Keep the data only as long as the purpose needs it, or as long as another law — like medical-record
+	retention rules — requires. Data you no longer have a reason to hold is data you should be deleting.
+</p>
+
+<h2 id="rights">The rights patients can now exercise</h2>
+<p>
+	A data principal — the patient — can exercise a set of rights. Your front desk needs to recognise
+	these requests and route them, not freeze:
+</p>
+<ul>
+	<li>
+		<strong>Access.</strong> They can ask what personal data you hold about them and how you've
+		processed and shared it.
+	</li>
+	<li>
+		<strong>Correction and completion.</strong> If a record is wrong or incomplete — a mistyped
+		allergy, an old address — they can ask you to fix it.
+	</li>
+	<li>
+		<strong>Erasure.</strong> They can ask you to delete their data, subject to what retention laws
+		require you to keep.
+	</li>
+	<li>
+		<strong>Grievance redressal.</strong> They can complain to you first, and you must have a way to
+		receive and answer that complaint before they escalate to the Data Protection Board.
+	</li>
+	<li>
+		<strong>Nomination.</strong> They can nominate another person to exercise these rights on their
+		behalf if they die or become incapacitated.
+	</li>
+</ul>
+<p>
+	None of this works if you can't find a patient's data quickly — that's a records problem before it's
+	a legal one. Being able to pull, correct, or export one patient's file on request is exactly what
+	<a href="/in/features/patient-records/">structured patient records</a> are for.
+</p>
+
+<h2 id="minors">Consent for children</h2>
+<p>
+	Paediatric and family clinics need to notice this one. For a minor, you need <strong>verifiable
+	consent from a parent or lawful guardian</strong> — not the child's own consent — so your intake
+	has to capture who that consenting adult is. The Act also restricts using children's data for
+	tracking, behavioural monitoring, or targeted advertising: for a clinic, that means don't market to
+	or profile kids off their health data. The same logic applies to any patient with a legal guardian.
+</p>
+
+<h2 id="withdraw">Withdrawing consent</h2>
+<p>
+	A patient can withdraw consent, and the Act says doing so should be as easy as giving it was. When
+	they do, you stop the processing that consent covered — going forward. It doesn't undo lawful things
+	you already did, nor override records you're legally required to retain. But you can't keep using
+	their data for the withdrawn purpose, say marketing, once they've pulled consent. Your team needs a
+	way to record and honour a withdrawal, not just nod and forget.
+</p>
+
+<h2 id="abdm">This is not the same as ABHA consent</h2>
+<p>
+	Here's the distinction that confuses everyone. DPDP consent is about <em>you collecting and using a
+	patient's data in your clinic</em>. <a href="/in/blog/abdm-abha-guide/">ABDM/ABHA consent</a> is a
+	different, narrower thing: it governs <em>sharing a patient's health records between providers</em>
+	over the ABDM network — pulling a record into their ABHA, or letting another hospital fetch it,
+	through the consent-manager flow.
+</p>
+<p>
+	They overlap but don't replace each other. ABHA linkage consent doesn't cover your DPDP obligations
+	at the front desk, and DPDP intake consent doesn't authorise record-sharing over ABDM. If a vendor
+	says "we're ABDM-ready, so you're DPDP-compliant," that's a category error. You need both, for
+	different reasons.
+</p>
+
+<h2 id="lucoze">Where the software fits</h2>
+<p>
+	Much of DPDP is process, but the parts that need software are real: capturing consent against a
+	purpose, finding and correcting a record, honouring a deletion or withdrawal, and keeping data in
+	India. Lucoze is built so consent capture is part of the intake flow rather than a form in a drawer,
+	and so a patient's record is one lookup away when they exercise a right. We're early-stage and
+	working with design-partner clinics, so this is how the product is built to work, not a compliance
+	guarantee — the obligations are yours; the software just makes them cheaper to meet.
+</p>
+
+<h2 id="sources">Sources</h2>
+<ul>
+	<li>
+		<a href="https://www.meity.gov.in/data-protection-framework" target="_blank" rel="noopener">
+			Ministry of Electronics &amp; IT — Data Protection Framework
+		</a>{" "}
+		— MeitY's official page for the Digital Personal Data Protection Act, 2023 and its rules, where
+		notice, consent, data-principal rights, and children's-data provisions are defined. Read the
+		current version; rules are still being notified, so verify before you rely on any specific.
+	</li>
+	<li>
+		<a href="https://www.meity.gov.in/" target="_blank" rel="noopener">
+			Ministry of Electronics &amp; IT (MeitY)
+		</a>{" "}
+		— the ministry that administers the Act and notifies the DPDP Rules.
+	</li>
+</ul>
+
+<h2 id="closing">Closing</h2>
+<p>
+	None of this requires a legal department. It requires a clear notice, real consent tied to a
+	purpose, and the ability to find and act on one patient's data when they ask. Get those three right
+	and you're most of the way there.
+</p>
+<p>
+	If you want to talk through how your clinic's intake and records would handle this — consent,
+	rights requests, the ABDM split — <a href="/in/contact/">reach out</a>. No pitch attached.
+</p>

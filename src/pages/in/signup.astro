@@ -21,7 +21,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 	},
 	{
 		title: "Founder line, not call centre",
-		sub: "WhatsApp Mithun directly during trial.",
+		sub: "WhatsApp us directly during trial.",
 	},
 ];
 ---
@@ -538,7 +538,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 				showError(
 					err instanceof Error
 						? err.message
-						: "Couldn't reach the signup server. Try again, or email hello@lucoze.com.",
+						: "Couldn't reach the signup server. Try again, or email sales@lucoze.com.",
 				);
 				track("Signup Error", { reason: err instanceof Error ? "server" : "network" });
 			} finally {

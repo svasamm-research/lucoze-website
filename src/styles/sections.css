@@ -1083,7 +1083,7 @@
 .tour-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: var(--s-6);
+	gap: var(--s-8);
 	margin-top: var(--s-8);
 }
 @media (max-width: 760px) {
