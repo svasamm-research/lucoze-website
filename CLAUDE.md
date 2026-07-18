@@ -49,6 +49,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - The redesign uses `tokens.css` + `sections.css` + `subpages.css` (imported by `Base.astro`). `global.css` is the OLD design — not imported by `Base.astro`; don't edit it for redesign pages.
 - After any layout/footer/nav change, **verify visually** (`npm run dev`) before committing — build passing ≠ looks right.
 - **Text-grey tokens are WCAG-AA tuned**: `--ink` (headings/body, ~16:1), `--muted` (`#625c54`, ~6.5:1, secondary text), `--light` (`#726d65`, ~5:1, captions). Don't lighten either grey below **4.5:1** on the light backgrounds (`--paper`/`--cream`/`--white`) — that's the AA floor for normal text.
+- **Toggling `hidden` on an element that also has an author `display:` rule needs a `.foo[hidden]{display:none}` guard** — an author `display` beats the UA `[hidden]{display:none}`, so `el.hidden = true` sets the attr but doesn't hide it (bit us on the cookie banner). `contact-partner.css` already does this for the lead-form/hero cards.
 
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).
