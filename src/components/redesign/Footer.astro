@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Logo from "../Logo.astro";
 import Icon from "../Icon.astro";
+import { PHONE, PHONE_TEL, SALES_EMAIL } from "../../data/contact";
 
 const year = new Date().getFullYear();
 
@@ -58,8 +59,8 @@ const citiesFor = (stateName: string) =>
 				</div>
 				<p class="footer__desc" style="margin-top: 12px; font-size: 13px;">
 					Svasamm Research Pvt. Ltd., Konnagar, Hooghly, West Bengal 712246<br />
-					<a href="tel:+919147144638" style="color: inherit;">+91 9147144638</a> ·
-					<a href="mailto:hello@lucoze.com" style="color: inherit;">hello@lucoze.com</a>
+					<a href={`tel:${PHONE_TEL}`} style="color: inherit;">{PHONE}</a> ·
+					<a href={`mailto:${SALES_EMAIL}`} style="color: inherit;">{SALES_EMAIL}</a>
 				</p>
 			</div>
 			<div class="footer__col">

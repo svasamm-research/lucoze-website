@@ -26,5 +26,5 @@ Lucoze is an India-first clinic and hospital management system (HMS/EMR). It is 
 
 ## Company
 - [About Lucoze](https://lucoze.com/in/about/)
-- [Contact](https://lucoze.com/in/contact/): hello@lucoze.com
+- [Contact](https://lucoze.com/in/contact/): sales@lucoze.com
 - [Blog](https://lucoze.com/in/blog/)

@@ -10,7 +10,9 @@ import "../styles/subpages.css";
 import Nav from "../components/redesign/Nav.astro";
 import Footer from "../components/redesign/Footer.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import WhatsAppFab from "../components/WhatsAppFab.astro";
 import { OG_PAGES } from "../lib/og-pages";
+import { PHONE, SALES_EMAIL } from "../data/contact";
 
 // GA4 loads only when PUBLIC_GA_ID is set (prod build env) — keeps UAT/local
 // out of the analytics property. Consent Mode defaults to denied; the cookie
@@ -68,7 +70,7 @@ const orgLd = {
 		"https://www.crunchbase.com/organization/lucoze",
 		"https://x.com/lucozehq",
 	],
-	telephone: "+91 9147144638",
+	telephone: PHONE,
 	address: {
 		"@type": "PostalAddress",
 		addressLocality: "Konnagar",
@@ -84,8 +86,8 @@ const orgLd = {
 	},
 	contactPoint: {
 		"@type": "ContactPoint",
-		telephone: "+91 9147144638",
-		email: "hello@lucoze.com",
+		telephone: PHONE,
+		email: SALES_EMAIL,
 		contactType: "sales",
 		areaServed: "IN",
 		availableLanguage: ["en", "hi", "bn"],
@@ -176,6 +178,8 @@ gtag('config', GA_ID);`}
 		</main>
 
 		<Footer />
+
+		<WhatsAppFab />
 
 		{GA_ID && <CookieConsent />}
 
