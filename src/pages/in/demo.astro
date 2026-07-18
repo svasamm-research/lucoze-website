@@ -1,0 +1,108 @@
+---
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import "../../styles/contact-partner.css";
+
+// What a demo actually covers — set expectations, reduce no-shows.
+const SEE: [string, string, string][] = [
+	[
+		"play",
+		"A real product tour",
+		"Appointments, records, billing, lab and pharmacy on one screen — live, not slides.",
+	],
+	[
+		"stethoscope",
+		"Tuned to your specialty",
+		"We set the walkthrough to how your clinic actually runs — polyclinic, nursing home, diagnostics.",
+	],
+	[
+		"map",
+		"Your migration, mapped",
+		"We show exactly how your patient list moves over from Practo Ray, Halemind, or Excel.",
+	],
+];
+
+const TRUST: [string, string, string][] = [
+	["clock", "30 minutes, one call", "With the team that builds Lucoze — not a call centre"],
+	["shield", "Patient data hosted in India", "ABDM-ready · DPDP-aligned"],
+	["lock", "No sales sequence", "One honest walkthrough — then a trial if it fits"],
+];
+---
+
+<Base
+	title="Book a demo of Lucoze — Indian clinic & hospital software"
+	description="Book a 30-minute walkthrough of Lucoze. A real product tour tuned to your clinic — appointments, records, billing, lab and pharmacy on one platform. Then a 14-day trial if it fits."
+>
+	<section class="reach-hero">
+		<div class="container">
+			<div class="reach-hero__grid">
+				<div>
+					<div class="reach-hero__eyebrow"><span class="reach-dot"></span> Book a demo</div>
+					<h1 class="reach-hero__h1">
+						See Lucoze run your clinic.<br />In 30 minutes.
+					</h1>
+					<p class="reach-hero__lead">
+						Book a walkthrough and we'll show you the whole platform — appointments, records,
+						billing, lab and pharmacy — tuned to how your clinic actually works. A real product
+						tour, not slides. If it fits, you start a 14-day trial.
+					</p>
+				</div>
+
+				<LeadForm
+					heading="Book your demo"
+					submitLabel="Book my demo"
+					successHeading="Got it — demo booked."
+					successBody="The team got your request and will reach out within a day to lock a time. Prefer WhatsApp? Ping us anytime."
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container" style="max-width: 1000px;">
+			<div class="reach-bottom">
+				<aside class="reach-expect">
+					<div class="reach-expect__head">What you'll see</div>
+					{
+						SEE.map(([ic, t, s]) => (
+							<div class="reach-expect__row">
+								<span class="reach-expect__ic">
+									<Icon name={ic} size={19} />
+								</span>
+								<div>
+									<div class="reach-expect__t">{t}</div>
+									<div class="reach-expect__s">{s}</div>
+								</div>
+							</div>
+						))
+					}
+					<div class="reach-expect__foot">
+						<span class="reach-expect__sig">— Mithun</span>, Founder &amp; CEO
+					</div>
+				</aside>
+
+				<div class="reach-trust">
+					{
+						TRUST.map(([ic, t, s]) => (
+							<div class="reach-trust__item">
+								<span class="reach-trust__ic">
+									<Icon name={ic} size={18} />
+								</span>
+								<div>
+									<div class="reach-trust__t">{t}</div>
+									<div class="reach-trust__s">{s}</div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>
+
+<script>
+	import { initLeadForm } from "../../lib/lead-form";
+	initLeadForm({ source: "demo", successHref: "/in/" });
+</script>

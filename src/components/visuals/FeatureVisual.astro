@@ -9,18 +9,39 @@ interface Props {
 const { kind } = Astro.props;
 
 const MAP: Record<string, { name: string; alt: string }> = {
-	booking: { name: "booked-appointment", alt: "Booking an appointment in Lucoze by department, doctor and slot" },
+	booking: {
+		name: "booked-appointment",
+		alt: "Booking an appointment in Lucoze by department, doctor and slot",
+	},
 	stage: { name: "front-office", alt: "Lucoze front office OPD queue with reminders and check-in" },
-	doctor: { name: "patient-encounter", alt: "A doctor's patient encounter and consultation screen in Lucoze" },
-	summary: { name: "patient-encounters", alt: "Patient encounter and visit-history timeline in Lucoze" },
-	search: { name: "patient-search", alt: "Multilingual patient search across a clinic's patient list in Lucoze" },
-	family: { name: "patient-encounters", alt: "Family-linked patient records and visit history in Lucoze" },
+	doctor: {
+		name: "patient-encounter",
+		alt: "A doctor's patient encounter and consultation screen in Lucoze",
+	},
+	summary: {
+		name: "patient-encounters",
+		alt: "Patient encounter and visit-history timeline in Lucoze",
+	},
+	search: {
+		name: "patient-search",
+		alt: "Multilingual patient search across a clinic's patient list in Lucoze",
+	},
+	family: {
+		name: "patient-encounters",
+		alt: "Family-linked patient records and visit history in Lucoze",
+	},
 	invoice: { name: "billing", alt: "GST-compliant billing and invoicing in Lucoze" },
 	stock: { name: "inventory", alt: "Pharmacy inventory and procurement tracking in Lucoze" },
 	finance: { name: "finance", alt: "Finance, P&L and GST dashboard in Lucoze" },
-	"lab-stages": { name: "lab-lims", alt: "Lab information management — sample-to-report tracking in Lucoze" },
+	"lab-stages": {
+		name: "lab-lims",
+		alt: "Lab information management — sample-to-report tracking in Lucoze",
+	},
 	"lab-report": { name: "lab-report", alt: "A lab test report with reference ranges in Lucoze" },
-	"rx-dispense": { name: "pharmacy", alt: "Pharmacy dispensing from a doctor's prescription in Lucoze" },
+	"rx-dispense": {
+		name: "pharmacy",
+		alt: "Pharmacy dispensing from a doctor's prescription in Lucoze",
+	},
 	"stock-grid": { name: "inventory", alt: "Multi-store pharmacy stock and inventory in Lucoze" },
 	attendance: { name: "hr-payroll", alt: "HR attendance and staff management in Lucoze" },
 	payroll: { name: "hr-payroll", alt: "Payroll with statutory PF, ESI and TDS in Lucoze" },
