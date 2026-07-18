@@ -1,4 +1,4 @@
-Contact: mailto:hello@lucoze.com
+Contact: mailto:privacy@lucoze.com
 Expires: 2027-07-13T00:00:00.000Z
 Preferred-Languages: en, hi
 Canonical: https://lucoze.com/.well-known/security.txt

@@ -12,6 +12,13 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
   - `compare/*.json` — competitor comparison pages at `/in/compare/[slug]/` (competitor, tableRows, points, faqs, comparedOn, relatedBlog). **Factual/neutral only**: dated "verify with vendor" disclaimer, trademark line, no logos, no disparagement; avoid asserting unverifiable negatives about a competitor (use `na`/"—" = "not documented"). Aligns with the homepage comparison stance.
 - **`CompareTable.astro`** renders the `.diff` capability table — shared by the homepage differentiation section and `/in/compare/` pages (props: `columns[]`, `rows[]`; `columns[1]` is highlighted as Lucoze). Reuse it; don't re-inline the table.
 
+## Contact details, CTAs & lead capture
+- **`src/data/contact.ts` is the single source of truth** for the public phone, WhatsApp number and sales email (`PHONE`/`PHONE_TEL`/`WHATSAPP`/`SALES_EMAIL`/`waLink()`). Schema, Footer, contact/demo pages, about, design-partner and the WhatsApp button all import it — **never hardcode a number/email** (we had three drift). Public line = **+91 90077 93575** (human-answered WhatsApp Business App); the product's Meta WhatsApp **API** number is different and lives in the backend. Sales email = **sales@lucoze.com**; `privacy@`/`legal@`/`support@` are kept for their purposes (`security.txt` → `privacy@`).
+- **CTA rule: primary = "Book a demo" → `/in/demo/` everywhere**; "Start free trial" → `/in/signup/` is kept only on **pricing plan cards** + the **homepage ROI-calculator** CTA (ready buyers). Body/FAQ "free trial" copy stays for SEO.
+- **`LeadForm.astro`** is the shared lead form (name + phone/email, **no OTP**); `/in/contact` and `/in/demo` both render it and call `initLeadForm({ source })` (`lib/lead-form.ts` → POSTs `submit_lead` to `lucoze_admin`, fires `track("Lead Submitted")`). `/in/signup` is the *separate* two-step **OTP + tenant-provisioning** trial flow — don't merge the two.
+- **`WhatsAppFab.astro`** is the sitewide floating WhatsApp button (own inline-SVG, no external widget/script → zero page-speed cost), rendered once in `Base.astro`.
+- **Contact/CTA voice is de-personalized** — "us / we / the team", not "Mithun" (e.g. "Talk to us", "we call you back"). Design-partner keeps "a call with **the founder**" (the actual offer). **Keep** factual founder attribution: blog bylines (`Mithun K. Singh`), About bio, Person schema, `mithun@lucoze.com`, `@mithunksingh`, and the homepage founder-commitments block (signed, with photo) — those are authorship/E-E-A-T, not contact voice.
+
 ## Product screenshots
 - Real product screenshots live in `src/assets/screenshots/*.png` (synthetic demo data). Render via **`Screenshot.astro`** (`name` = filename w/o `.png`, `alt`, optional `caption`, `loading`) — it uses **`astro:assets` `<Image>`** for auto WebP/AVIF + responsive srcset + no-CLS + lazy (hero passes `loading="eager"`). Never put product images in `public/` (unoptimised) or use raw `<img>`.
 - `FeatureVisual`/`SpecialtyVisual` are thin `kind → screenshot` dispatchers. The old hand-coded synthetic mockups were deleted — don't reintroduce them.
@@ -23,6 +30,12 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - `Base.astro`: explicit `ogImage` prop wins → else branded card → else `/og-default.png`. **Revert everything by flipping `USE_GENERATED_OG = false`.**
 - OG images are **crawler-only** (only in `<meta>`, never a page `<img>`) → zero page-speed impact; canvaskit is a build-only dep.
 - Only region shipped is **`/in/`** (`en_IN`); `/`, `/ae`, `/au`, `/sg` redirect to `/in/` via `astro.config.mjs`. Hindi/Bengali/Odia i18n is planned (add hreflang when a 2nd language ships).
+
+## Analytics & consent
+- **`lib/analytics.ts` `track(event, props)` is the only analytics call site** — it **dual-emits** to **Plausible** (cookieless, consent-independent, day-to-day) and **GA4 `gtag`** (Ads conversions/remarketing). GA4 event names are auto-normalised to snake_case. Don't call `plausible()`/`gtag()` directly.
+- **GA4 is env-gated on `PUBLIC_GA_ID`** (set in the **prod** build env only — property `G-8PKQ5SH09G`; leave unset on UAT/local so they stay out of the property), same pattern as `PUBLIC_PLAUSIBLE_DOMAIN`. Scripts + **Consent Mode v2** default-denied live in `Base.astro` `<head>`.
+- **`CookieConsent.astro`** governs GA only (Plausible needs no consent): Accept → `gtag('consent','update', granted)` + remembers in `localStorage` (`lucoze-consent`). Keep it DPDP-aligned — GA sets no cookies until accept.
+- **Demo funnel events**: `Demo CTA Click` (fires from the global click handler in `Base.astro` for any `/in/demo/` link — `placement` derived from the enclosing section, `from` = page) → `Lead Form Started` (first interaction, in `lib/lead-form.ts`) → `Lead Submitted`. Add new CTA/funnel events at those two shared choke-points, not per-button.
 
 ## Git workflow (enforced by husky)
 - **`main` → `develop` → feature branches.** Branch feature work off **`develop`**.
@@ -36,6 +49,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - **Never** use inline `style="…"` hacks for layout (borders/margins/padding/grid). They collide with the design system and cause visible bugs (e.g. a double footer divider). Add a proper class in `src/styles/sections.css` using the **tokens** in `tokens.css` (`var(--s-*)`, `var(--border*)`, `var(--t-*)` …).
 - The redesign uses `tokens.css` + `sections.css` + `subpages.css` (imported by `Base.astro`). `global.css` is the OLD design — not imported by `Base.astro`; don't edit it for redesign pages.
 - After any layout/footer/nav change, **verify visually** (`npm run dev`) before committing — build passing ≠ looks right.
+- **Text-grey tokens are WCAG-AA tuned**: `--ink` (headings/body, ~16:1), `--muted` (`#625c54`, ~6.5:1, secondary text), `--light` (`#726d65`, ~5:1, captions). Don't lighten either grey below **4.5:1** on the light backgrounds (`--paper`/`--cream`/`--white`) — that's the AA floor for normal text.
+- **Toggling `hidden` on an element that also has an author `display:` rule needs a `.foo[hidden]{display:none}` guard** — an author `display` beats the UA `[hidden]{display:none}`, so `el.hidden = true` sets the attr but doesn't hide it (bit us on the cookie banner). `contact-partner.css` already does this for the lead-form/hero cards.
 
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).

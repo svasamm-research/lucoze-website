@@ -20,14 +20,14 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 		eyebrow: "Design partner program",
 		h1: "Six months free. A direct line to the founder.",
 		highlightParts: ["Six months free. ", "A direct line", " to the founder."],
-		lead: "We're picking 10 East-India clinics to shape what Lucoze becomes. 4 of 10 slots open. Six months free on Clinic Pro or Hospital, weekly 30-minute calls with Mithun, lifetime founding-customer pricing.",
+		lead: "We're picking 10 East-India clinics to shape what Lucoze becomes. 4 of 10 slots open. Six months free on Clinic Pro or Hospital, weekly 30-minute calls with the founder, lifetime founding-customer pricing.",
 		blocks: [
 			{
 				kicker: "What you get",
 				title: "Six months. Weekly access. Founding-customer pricing for life.",
 				bullets: [
 					"Clinic Pro or Hospital plan — free for 6 months.",
-					"Weekly 30-minute calls with Mithun. Your roadmap requests skip the queue.",
+					"Weekly 30-minute calls with the founder. Your roadmap requests skip the queue.",
 					"Lifetime 20% discount once the trial ends. As long as you stay.",
 					"Direct WhatsApp line during business hours. First-name basis.",
 				],
@@ -100,18 +100,18 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				kicker: "Sales + demos",
 				title: "Book a 30-minute walkthrough.",
 				bullets: [
-					"Email: hello@lucoze.com",
-					"WhatsApp: +91 9147144638 (Mon-Sat, 9am-7pm IST)",
+					"Email: sales@lucoze.com",
+					"WhatsApp: +91 90077 93575 (Mon-Sat, 9am-7pm IST)",
 					"Calendar: lucoze.com/demo",
 				],
 			},
 			{
 				kicker: "Founder line",
-				title: "Talk to Mithun. (We mean it.)",
+				title: "Talk to us. (We mean it.)",
 				bullets: [
 					"Email: mithun@lucoze.com",
 					"LinkedIn DM: linkedin.com/in/mithunksingh",
-					"We don't outsource the founder inbox. He reads everything.",
+					"We don't outsource the founder inbox. We read everything.",
 				],
 			},
 			{
@@ -128,7 +128,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				title: "Svasamm Research Pvt. Ltd.",
 				bullets: [
 					"Registered: Konnagar, Hooghly, West Bengal 712246, India",
-					"Phone: +91 9147144638",
+					"Phone: +91 90077 93575",
 					"Serving: West Bengal, Bihar, Jharkhand, Odisha, UP & Northeast India",
 					"Patient data: Indian data centres",
 				],

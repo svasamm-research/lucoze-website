@@ -1,17 +1,12 @@
 ---
 import Base from "../../layouts/Base.astro";
 import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import "../../styles/contact-partner.css";
-
-const REACH = {
-	email: "hello@lucoze.com",
-	wa: "918217820249",
-	waPretty: "+91 82178 20249",
-};
 
 const CONTACT_STEPS: [string, string][] = [
 	["Leave your line", "Two fields — your name and clinic number. Ten seconds, no forms to fill."],
-	["We call you back", "Mithun rings your clinic line within a day. No queue, no call centre."],
+	["We call you back", "We ring your clinic line within a day. No queue, no call centre."],
 	[
 		"A real conversation",
 		"What's slow in your clinic today, what you need. No script, no pressure.",
@@ -26,18 +21,18 @@ const EXPECT: [string, string, string][] = [
 	[
 		"clock",
 		"A call back within a day",
-		"Mithun rings your clinic line himself — no call centre, no queue.",
+		"We ring your clinic line — no call centre, no queue.",
 	],
 	[
 		"users",
-		"You talk to the founder",
-		"The person who builds Lucoze, not a sales rep working a script.",
+		"You talk to the team",
+		"The people who build Lucoze, not a sales rep working a script.",
 	],
 	["lock", "Your number is safe", "We call you once. We never sell it to agencies. Full stop."],
 ];
 
 const TRUST: [string, string, string][] = [
-	["clock", "Team replies in a day", "Founder line — not a call centre"],
+	["clock", "Team replies in a day", "Direct line — not a call centre"],
 	["shield", "Patient data hosted in Mumbai", "ABDM-ready · DPDP-aligned"],
 	["lock", "No spam, no sales sequence", "One human, one honest reply"],
 ];
@@ -45,7 +40,7 @@ const TRUST: [string, string, string][] = [
 
 <Base
 	title="Contact Lucoze — Indian healthcare management software"
-	description="Leave your clinic line. Mithun, the founder, calls you back within a day. No call centre, no sales sequence — one honest reply."
+	description="Leave your clinic line. We call you back within a day. No call centre, no sales sequence — one honest reply."
 >
 	{/* Hero — heading left, form right */}
 	<section class="reach-hero">
@@ -54,127 +49,20 @@ const TRUST: [string, string, string][] = [
 				<div>
 					<div class="reach-hero__eyebrow"><span class="reach-dot"></span> Request a call back</div>
 					<h1 class="reach-hero__h1">
-						Leave your clinic line.<br />Mithun calls you back — within a day.
+						Leave your clinic line.<br />We call you back — within a day.
 					</h1>
 					<p class="reach-hero__lead">
-						Two fields, ten seconds. Leave your clinic line and the team calls you back — within
-						a day. It reaches Mithun, who runs Lucoze.
+						Two fields, ten seconds. Leave your clinic line and the team calls you back — within a
+						day. It reaches the team that builds Lucoze.
 					</p>
 				</div>
 
-				<aside class="reach-card reach-card--hero" data-contact-card>
-					<form class="contact-form" data-contact-form novalidate>
-						<div class="reach-card__head">
-							<span class="reach-step"><Icon name="play" size={14} /></span>
-							<h2>We'll call you back</h2>
-						</div>
-
-						<div class="reach-fields reach-fields--mini">
-							<div class="reach-field reach-field--full">
-								<label for="c-name">Name <em>*</em></label>
-								<div class="reach-name" data-name-wrap>
-									<select
-										class="reach-name__title"
-										name="title"
-										aria-label="Title"
-									>
-										<option value="Dr." selected>Dr.</option>
-										<option value="Mr.">Mr.</option>
-										<option value="Mrs.">Mrs.</option>
-										<option value="Ms.">Ms.</option>
-									</select>
-									<input id="c-name" name="name" placeholder="Soumya Sen" required />
-								</div>
-							</div>
-
-							<div class="reach-field reach-field--full">
-								<label for="c-phone">Desk phone number</label>
-								<div class="reach-phone" data-phone-wrap>
-									<span class="reach-phone__cc">+91</span>
-									<input
-										id="c-phone"
-										name="phone"
-										inputmode="numeric"
-										maxlength="10"
-										placeholder="10-digit desk line"
-									/>
-								</div>
-								<span class="reach-err" data-phone-err hidden>
-									Enter a valid 10-digit Indian number.
-								</span>
-							</div>
-
-							<div class="reach-or reach-field--full"><span>or</span></div>
-
-							<div class="reach-field reach-field--full">
-								<label for="c-email">Official email</label>
-								<input
-									id="c-email"
-									name="email"
-									inputmode="email"
-									placeholder="clinic@hospital.in"
-								/>
-								<span class="reach-err" data-email-err hidden>
-									Enter a valid email address.
-								</span>
-							</div>
-
-							<button
-								type="submit"
-								class="btn btn--accent btn--lg reach-field--full"
-								data-contact-submit
-								style="justify-content: center; opacity: 0.5;"
-								disabled
-							>
-								<Icon name="inbox" size={17} />
-								<span data-contact-submit-label>Request a call back</span>
-							</button>
-
-							<p class="reach-promise reach-field--full">
-								<Icon name="lock" size={15} /> Whatever you share stays with us — we reach out
-								once, and never sell it to agencies.
-							</p>
-
-							<p
-								class="reach-err reach-field--full"
-								data-contact-error
-								hidden
-								role="alert"
-								style="text-align: center;"
-							>
-							</p>
-						</div>
-					</form>
-				</aside>
-
-				<aside class="reach-card reach-card--hero" data-contact-success hidden>
-					<div class="reach-success reach-success--inline">
-						<span class="reach-success__badge"><Icon name="check" size={26} /></span>
-						<h3>Got it — we'll call you back.</h3>
-						<p>
-							Mithun got the ping. The team replies within a day. <strong
-								>Your number stays with us — we call you once, and never sell it to
-								agencies.</strong
-							>
-						</p>
-						<div class="reach-success__row">
-							<a
-								class="btn btn--ghost"
-								href={`https://wa.me/${REACH.wa}`}
-								target="_blank"
-								rel="noopener"
-							>
-								Prefer WhatsApp? Message us
-							</a>
-							<a class="btn btn--primary" href="/in/">
-								Back to home <Icon name="arrow" size={15} class="btn__arrow" />
-							</a>
-						</div>
-						<button type="button" class="reach-success__again" data-contact-reset
-							>Send another →</button
-						>
-					</div>
-				</aside>
+				<LeadForm
+					heading="We'll call you back"
+					submitLabel="Request a call back"
+					successHeading="Got it — we'll call you back."
+					successBody="We got the ping. The team replies within a day. Your number stays with us — we call you once, and never sell it to agencies."
+				/>
 			</div>
 		</div>
 	</section>
@@ -217,7 +105,7 @@ const TRUST: [string, string, string][] = [
 						))
 					}
 					<div class="reach-expect__foot">
-						<span class="reach-expect__sig">— Mithun</span>, Founder &amp; CEO
+						<span class="reach-expect__sig">— The Lucoze team</span>
 					</div>
 				</aside>
 

@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import SubHero from "../../components/SubHero.astro";
 import Icon from "../../components/Icon.astro";
+import { PHONE, PHONE_TEL, SALES_EMAIL } from "../../data/contact";
 ---
 
 <Base
@@ -108,9 +109,8 @@ import Icon from "../../components/Icon.astro";
 					>.
 				</p>
 				<p>
-					Want to get in touch? Reach us at <a href="mailto:hello@lucoze.com">hello@lucoze.com</a> or
-					<a href="tel:+919147144638">+91 9147144638</a>, or book a 30-minute call via the
-					<a href="/in/contact/">contact page</a>.
+					Want to get in touch? Reach us at <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a> or
+					<a href={`tel:${PHONE_TEL}`}>{PHONE}</a>, or <a href="/in/demo/">book a demo</a>.
 				</p>
 			</article>
 		</div>

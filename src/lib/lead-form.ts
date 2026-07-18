@@ -9,7 +9,9 @@
 //   - on pre-launch builds (no PUBLIC_ADMIN_API_URL), we skip the network
 //     and go straight to the success state so the page still feels alive.
 
-type Source = "contact" | "design-partner";
+import { track } from "./analytics";
+
+type Source = "contact" | "design-partner" | "demo";
 
 interface InitOptions {
 	source: Source;
@@ -92,6 +94,8 @@ export function initLeadForm({ source }: InitOptions): void {
 
 	const showSuccess = () => {
 		form.dataset.submitted = "true";
+		// Conversion event — dual-emitted to Plausible + GA4 via track().
+		track("Lead Submitted", { source });
 		if (card) card.hidden = true;
 		if (success) {
 			success.hidden = false;
@@ -132,8 +136,7 @@ export function initLeadForm({ source }: InitOptions): void {
 		// not when the field is empty (low-friction, matches the handoff).
 		if (phoneWrap) phoneWrap.classList.toggle("reach-phone--bad", Boolean(phone && !phoneOk));
 		if (phoneErr) phoneErr.hidden = !(phone && !phoneOk);
-		if (emailInput)
-			emailInput.style.borderColor = email && !emailOk ? "var(--error, #b1342a)" : "";
+		if (emailInput) emailInput.style.borderColor = email && !emailOk ? "var(--error, #b1342a)" : "";
 		if (emailErr) emailErr.hidden = !(email && !emailOk);
 
 		const valid = Boolean(name && (phoneOk || emailOk));
@@ -164,6 +167,8 @@ export function initLeadForm({ source }: InitOptions): void {
 	// reached the success state. Same pattern as the signup page.
 	let formInteracted = false;
 	form.addEventListener("input", () => {
+		// Funnel entry — fire once on first interaction (pairs with "Lead Submitted").
+		if (!formInteracted) track("Lead Form Started", { source });
 		formInteracted = true;
 	});
 	window.addEventListener("beforeunload", () => {
@@ -201,14 +206,11 @@ export function initLeadForm({ source }: InitOptions): void {
 				email: emailOk ? email : null,
 				visitor_id: getVisitorId(),
 			};
-			const res = await fetch(
-				`${ADMIN}/api/method/lucoze_admin.api.contact.submit_lead`,
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json", Accept: "application/json" },
-					body: JSON.stringify(body),
-				},
-			);
+			const res = await fetch(`${ADMIN}/api/method/lucoze_admin.api.contact.submit_lead`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json", Accept: "application/json" },
+				body: JSON.stringify(body),
+			});
 			let data: unknown = {};
 			try {
 				data = await res.json();
@@ -221,9 +223,7 @@ export function initLeadForm({ source }: InitOptions): void {
 			}
 			showSuccess();
 		} catch {
-			showError(
-				"Couldn't reach the server. Try again, or email hello@lucoze.com directly.",
-			);
+			showError("Couldn't reach the server. Try again, or email sales@lucoze.com directly.");
 		} finally {
 			setLoading(false);
 		}

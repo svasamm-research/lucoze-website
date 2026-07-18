@@ -1,0 +1,103 @@
+---
+// Cookie-consent banner for GA4 (Consent Mode v2). Rendered only when GA is
+// enabled (gated in Base.astro). Plausible is cookieless and needs no consent,
+// so this governs GA analytics/ad storage only.
+//
+// Starts hidden; the script reveals it only when the visitor hasn't decided.
+// Accept → gtag consent 'update' to granted + remember. Decline → remember,
+// GA stays in its default-denied (cookieless) state set in Base.astro.
+---
+
+<div class="cookie-consent" data-cookie-consent role="dialog" aria-label="Cookie consent" hidden>
+	<p class="cookie-consent__text">
+		We use cookies to understand traffic and improve Lucoze — analytics only, never sold. See our
+		<a href="/in/privacy/">Privacy Policy</a>.
+	</p>
+	<div class="cookie-consent__actions">
+		<button type="button" class="btn btn--ghost btn--sm" data-consent-decline>Decline</button>
+		<button type="button" class="btn btn--accent btn--sm" data-consent-accept>Accept</button>
+	</div>
+</div>
+
+<style>
+	/* The `display: flex` below would otherwise override the [hidden] attribute's
+	   UA `display: none`, so the banner would never hide. This guard wins. */
+	.cookie-consent[hidden] {
+		display: none;
+	}
+	.cookie-consent {
+		position: fixed;
+		left: 20px;
+		right: 20px;
+		bottom: 20px;
+		z-index: 60;
+		max-width: 560px;
+		margin-inline: auto;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--s-3) var(--s-5);
+		padding: var(--s-4) var(--s-5);
+		background: var(--paper);
+		border: 1px solid var(--border);
+		border-radius: var(--r-md);
+		box-shadow: var(--shadow-lg, 0 12px 32px rgba(0, 0, 0, 0.18));
+	}
+	.cookie-consent__text {
+		flex: 1 1 260px;
+		margin: 0;
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--ink-soft);
+	}
+	.cookie-consent__text a {
+		color: var(--primary);
+		font-weight: 600;
+	}
+	.cookie-consent__actions {
+		display: flex;
+		gap: var(--s-2);
+		flex-shrink: 0;
+	}
+	@media (max-width: 640px) {
+		.cookie-consent {
+			left: 12px;
+			right: 12px;
+			bottom: 12px;
+		}
+	}
+</style>
+
+<script>
+	const KEY = "lucoze-consent";
+	const banner = document.querySelector<HTMLElement>("[data-cookie-consent]");
+	if (banner) {
+		let choice: string | null = null;
+		try {
+			choice = localStorage.getItem(KEY);
+		} catch {
+			/* storage blocked — treat as undecided */
+		}
+		if (choice !== "granted" && choice !== "denied") banner.hidden = false;
+
+		const decide = (granted: boolean) => {
+			try {
+				localStorage.setItem(KEY, granted ? "granted" : "denied");
+			} catch {
+				/* ignore */
+			}
+			if (granted) {
+				window.gtag?.("consent", "update", {
+					analytics_storage: "granted",
+					ad_storage: "granted",
+					ad_user_data: "granted",
+					ad_personalization: "granted",
+				});
+			}
+			banner.hidden = true;
+		};
+
+		banner.querySelector("[data-consent-accept]")?.addEventListener("click", () => decide(true));
+		banner.querySelector("[data-consent-decline]")?.addEventListener("click", () => decide(false));
+	}
+</script>
