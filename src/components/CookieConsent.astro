@@ -15,11 +15,16 @@
 	</p>
 	<div class="cookie-consent__actions">
 		<button type="button" class="btn btn--ghost btn--sm" data-consent-decline>Decline</button>
-		<button type="button" class="btn btn--primary btn--sm" data-consent-accept>Accept</button>
+		<button type="button" class="btn btn--accent btn--sm" data-consent-accept>Accept</button>
 	</div>
 </div>
 
 <style>
+	/* The `display: flex` below would otherwise override the [hidden] attribute's
+	   UA `display: none`, so the banner would never hide. This guard wins. */
+	.cookie-consent[hidden] {
+		display: none;
+	}
 	.cookie-consent {
 		position: fixed;
 		left: 20px;
