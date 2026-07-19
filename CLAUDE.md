@@ -44,6 +44,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Commits must be **Conventional Commits** (`commitlint`): `feat(...)`, `fix(...)`, `chore(...)`. Merge/Promote commits are ignored.
 - `pre-push` runs `jest` + a **Docker build check** (needs the Docker daemon; if it's off, the push blocks — verify build/tests manually and use `--no-verify` knowingly).
 - Indentation is **tabs** (prettier). When an `Edit` fails on leading-tab mismatch, match on a unique inner substring instead.
+- **Deploys are tag-triggered — cut with `gh release create`, NOT `git tag` + push.** Flow: promote branch (`git merge develop` → uat, then uat → main + push), then `gh release create <tag> --target <branch> --title … --notes …`. Tags: **UAT `uat-v<ver>`, prod `v<ver>`** (uat→UAT app, `v`/main→prod). `uat → main` needs a real merge commit (branches diverge; FF impossible — and don't pipe `git merge --ff-only` to `tail`, it masks the exit code). `PUBLIC_GA_ID` is set on the **prod** env only.
 
 ## CSS discipline (important)
 - **Never** use inline `style="…"` hacks for layout (borders/margins/padding/grid). They collide with the design system and cause visible bugs (e.g. a double footer divider). Add a proper class in `src/styles/sections.css` using the **tokens** in `tokens.css` (`var(--s-*)`, `var(--border*)`, `var(--t-*)` …).
@@ -51,6 +52,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - After any layout/footer/nav change, **verify visually** (`npm run dev`) before committing — build passing ≠ looks right.
 - **Text-grey tokens are WCAG-AA tuned**: `--ink` (headings/body, ~16:1), `--muted` (`#625c54`, ~6.5:1, secondary text), `--light` (`#726d65`, ~5:1, captions). Don't lighten either grey below **4.5:1** on the light backgrounds (`--paper`/`--cream`/`--white`) — that's the AA floor for normal text.
 - **Toggling `hidden` on an element that also has an author `display:` rule needs a `.foo[hidden]{display:none}` guard** — an author `display` beats the UA `[hidden]{display:none}`, so `el.hidden = true` sets the attr but doesn't hide it (bit us on the cookie banner). `contact-partner.css` already does this for the lead-form/hero cards.
+- **`.btn` is `white-space: nowrap`** — a long-label CTA overflows narrow viewports (horizontal scroll, which also displaces the fixed WhatsApp FAB and can compress the nav-logo flexbox). Use **`.btn--wrap`** for long CTAs. To hunt overflow, render at 360px and find elements with `getBoundingClientRect().right > clientWidth` **whose ancestors have no `overflow-x` clipping** (a `.diff` table in an `overflow-x:auto` wrapper is fine, not the culprit).
 
 ## Build / test / verify
 - `npm run build` (astro) · `npm test` (jest) · `npm run dev` (localhost:4321).

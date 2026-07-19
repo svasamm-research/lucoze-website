@@ -13,6 +13,15 @@ import { track } from "./analytics";
 
 type Source = "contact" | "design-partner" | "demo";
 
+// The admin's submit_lead only whitelists these sources (else "Invalid form
+// source"). A "demo" enquiry is a contact-type lead, so we send "contact" to the
+// API — the analytics events below keep the real "demo" source for reporting.
+const API_SOURCE: Record<Source, "contact" | "design-partner"> = {
+	contact: "contact",
+	"design-partner": "design-partner",
+	demo: "contact",
+};
+
 interface InitOptions {
 	source: Source;
 	successHref: string;
@@ -201,7 +210,7 @@ export function initLeadForm({ source }: InitOptions): void {
 			const body = {
 				name,
 				title,
-				source,
+				source: API_SOURCE[source],
 				phone: phoneOk ? phone : null,
 				email: emailOk ? email : null,
 				visitor_id: getVisitorId(),
