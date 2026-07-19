@@ -947,6 +947,13 @@
 	.dp-hero__grid {
 		grid-template-columns: 1fr;
 	}
+	/* Grid items default to min-width:auto (= content min-content, ~302px from
+	   the form), which stops the stacked column shrinking below ~342px and
+	   causes a small horizontal overflow on narrow phones. Let them shrink. */
+	.reach-hero__grid > *,
+	.dp-hero__grid > * {
+		min-width: 0;
+	}
 	.reach-founder,
 	.reach-expect {
 		order: -1;
