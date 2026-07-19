@@ -395,6 +395,9 @@
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
+	/* Grid item must be able to shrink below the input's intrinsic width, or
+	   the fields overflow the card on narrow phones. */
+	min-width: 0;
 }
 .reach-field--full {
 	grid-column: 1 / -1;
@@ -420,6 +423,15 @@
 	padding: 12px 14px;
 	outline: none;
 	transition: border-color 0.15s;
+}
+/* Inputs fill the field and shrink with it (box-sizing: border-box) — without
+   width:100%+min-width:0 they keep their ~200px intrinsic width and overflow a
+   narrow card. Excludes the name-row title <select>, which is content-sized. */
+.reach-field input,
+.reach-field textarea {
+	width: 100%;
+	min-width: 0;
+	max-width: 100%;
 }
 .reach-field input:focus,
 .reach-field textarea:focus,
