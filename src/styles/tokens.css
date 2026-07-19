@@ -329,6 +329,12 @@ h4 {
 	font-size: var(--t-xs);
 	min-height: 36px;
 }
+/* Opt-in wrapping for long-label CTAs — the default .btn is `white-space:
+   nowrap`, which overflows narrow viewports when the label is long. */
+.btn--wrap {
+	white-space: normal;
+	text-align: center;
+}
 .btn__arrow {
 	width: 14px;
 	height: 14px;
