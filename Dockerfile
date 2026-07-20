@@ -19,6 +19,14 @@ ENV PUBLIC_ADMIN_API_URL=${PUBLIC_ADMIN_API_URL}
 ARG PUBLIC_PLAUSIBLE_DOMAIN=""
 ENV PUBLIC_PLAUSIBLE_DOMAIN=${PUBLIC_PLAUSIBLE_DOMAIN}
 
+# GA4 measurement ID. Like the vars above this MUST be a BUILD ARG — Astro inlines
+# PUBLIC_* into the static bundle, so setting it only as a runtime env leaves the
+# gtag block unrendered and GA reports "no data collected". Empty on UAT/local so
+# they stay out of the production property.
+# Prod: PUBLIC_GA_ID=G-8PKQ5SH09G
+ARG PUBLIC_GA_ID=""
+ENV PUBLIC_GA_ID=${PUBLIC_GA_ID}
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install

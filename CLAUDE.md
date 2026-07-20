@@ -33,7 +33,8 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 
 ## Analytics & consent
 - **`lib/analytics.ts` `track(event, props)` is the only analytics call site** — it **dual-emits** to **Plausible** (cookieless, consent-independent, day-to-day) and **GA4 `gtag`** (Ads conversions/remarketing). GA4 event names are auto-normalised to snake_case. Don't call `plausible()`/`gtag()` directly.
-- **GA4 is env-gated on `PUBLIC_GA_ID`** (set in the **prod** build env only — property `G-8PKQ5SH09G`; leave unset on UAT/local so they stay out of the property), same pattern as `PUBLIC_PLAUSIBLE_DOMAIN`. Scripts + **Consent Mode v2** default-denied live in `Base.astro` `<head>`.
+- **GA4 is env-gated on `PUBLIC_GA_ID`** (property `G-8PKQ5SH09G`), same pattern as `PUBLIC_PLAUSIBLE_DOMAIN`. Scripts + **Consent Mode v2** default-denied live in `Base.astro` `<head>`.
+- ⚠️ **`PUBLIC_*` vars are BUILD ARGS, not runtime envs.** Astro inlines them into the static bundle at build time, and the image is built in **GitHub Actions** — so setting one in Dokploy does nothing. Adding a new `PUBLIC_*` var requires **three** edits: `Base.astro`(or consumer) → `ARG`/`ENV` in **`Dockerfile`** → the `urls` step + `build-args` in **`.github/workflows/build-publish.yml`** (empty for UAT, set for prod). Miss the last two and the feature silently never renders in prod.
 - **`CookieConsent.astro`** governs GA only (Plausible needs no consent): Accept → `gtag('consent','update', granted)` + remembers in `localStorage` (`lucoze-consent`). Keep it DPDP-aligned — GA sets no cookies until accept.
 - **Demo funnel events**: `Demo CTA Click` (fires from the global click handler in `Base.astro` for any `/in/demo/` link — `placement` derived from the enclosing section, `from` = page) → `Lead Form Started` (first interaction, in `lib/lead-form.ts`) → `Lead Submitted`. Add new CTA/funnel events at those two shared choke-points, not per-button.
 
@@ -44,6 +45,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Commits must be **Conventional Commits** (`commitlint`): `feat(...)`, `fix(...)`, `chore(...)`. Merge/Promote commits are ignored.
 - `pre-push` runs `jest` + a **Docker build check** (needs the Docker daemon; if it's off, the push blocks — verify build/tests manually and use `--no-verify` knowingly).
 - Indentation is **tabs** (prettier). When an `Edit` fails on leading-tab mismatch, match on a unique inner substring instead.
+- **Sitemap is generated at build** by `@astrojs/sitemap` (never committed — a static one goes stale); `robots.txt` points at `/sitemap-index.xml`. After a **production** deploy the workflow **pings IndexNow** with the live sitemap's URLs (key in `public/<key>.txt`) — that's **Bing/Yandex only; Google ignores IndexNow** and relies on the sitemap + links. Don't use the Google Indexing API for normal pages (sanctioned only for JobPosting/BroadcastEvent).
 - **Deploys are tag-triggered — cut with `gh release create`, NOT `git tag` + push.** Flow: promote branch (`git merge develop` → uat, then uat → main + push), then `gh release create <tag> --target <branch> --title … --notes …`. Tags: **UAT `uat-v<ver>`, prod `v<ver>`** (uat→UAT app, `v`/main→prod). `uat → main` needs a real merge commit (branches diverge; FF impossible — and don't pipe `git merge --ff-only` to `tail`, it masks the exit code). `PUBLIC_GA_ID` is set on the **prod** env only.
 
 ## CSS discipline (important)
