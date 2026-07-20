@@ -191,6 +191,41 @@ jobs:
             exit 1
           fi
 
+      - name: Ping IndexNow
+        # Pushes the live sitemap's URLs to IndexNow (Bing + Yandex; Bing also
+        # backs ChatGPT search) so new/changed pages are re-crawled in minutes
+        # instead of waiting to be discovered. Google ignores IndexNow — it
+        # relies on the sitemap. Best-effort: never fails the deploy.
+        continue-on-error: true
+        env:
+          # Key file is served at https://lucoze.com/<key>.txt (public/).
+          INDEXNOW_KEY: 306b0ac5270df87304cfd553d6a44963
+          HOST: lucoze.com
+        run: |
+          # Let Dokploy pull + restart so we submit THIS release's sitemap.
+          sleep 90
+
+          if ! curl -sf --max-time 30 "https://${HOST}/sitemap-0.xml" -o sitemap.xml; then
+            echo "Could not fetch sitemap — skipping IndexNow ping."
+            exit 0
+          fi
+
+          grep -o '<loc>[^<]*</loc>' sitemap.xml \
+            | sed -e 's|<loc>||' -e 's|</loc>||' > urls.txt
+          echo "Submitting $(wc -l < urls.txt) URLs to IndexNow"
+
+          jq -n --arg host "$HOST" --arg key "$INDEXNOW_KEY" --rawfile urls urls.txt \
+            '{host: $host, key: $key,
+              keyLocation: ("https://" + $host + "/" + $key + ".txt"),
+              urlList: ($urls | split("\n") | map(select(length > 0)))}' > payload.json
+
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data @payload.json)
+          # 200 = accepted, 202 = accepted pending key validation.
+          echo "IndexNow responded HTTP $STATUS"
+
       - name: Deploy summary
         if: always()
         run: |

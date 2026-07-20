@@ -45,6 +45,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Commits must be **Conventional Commits** (`commitlint`): `feat(...)`, `fix(...)`, `chore(...)`. Merge/Promote commits are ignored.
 - `pre-push` runs `jest` + a **Docker build check** (needs the Docker daemon; if it's off, the push blocks — verify build/tests manually and use `--no-verify` knowingly).
 - Indentation is **tabs** (prettier). When an `Edit` fails on leading-tab mismatch, match on a unique inner substring instead.
+- **Sitemap is generated at build** by `@astrojs/sitemap` (never committed — a static one goes stale); `robots.txt` points at `/sitemap-index.xml`. After a **production** deploy the workflow **pings IndexNow** with the live sitemap's URLs (key in `public/<key>.txt`) — that's **Bing/Yandex only; Google ignores IndexNow** and relies on the sitemap + links. Don't use the Google Indexing API for normal pages (sanctioned only for JobPosting/BroadcastEvent).
 - **Deploys are tag-triggered — cut with `gh release create`, NOT `git tag` + push.** Flow: promote branch (`git merge develop` → uat, then uat → main + push), then `gh release create <tag> --target <branch> --title … --notes …`. Tags: **UAT `uat-v<ver>`, prod `v<ver>`** (uat→UAT app, `v`/main→prod). `uat → main` needs a real merge commit (branches diverge; FF impossible — and don't pipe `git merge --ff-only` to `tail`, it masks the exit code). `PUBLIC_GA_ID` is set on the **prod** env only.
 
 ## CSS discipline (important)

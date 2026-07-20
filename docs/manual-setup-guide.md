@@ -26,7 +26,7 @@ Feeds Bing **and** ChatGPT search (which uses Bing's index) — matters for GEO.
 1. [bing.com/webmasters](https://www.bing.com/webmasters) → sign in.
 2. **Import from GSC** (one click, easiest) — or add + verify `lucoze.com` separately.
 3. Submit `sitemap-index.xml`.
-4. Enable **IndexNow** (Settings) — instant re-crawl pings when pages change. Your stack already references it; I can wire the key if you want push-on-deploy.
+4. Enable **IndexNow** (Settings). ✅ **Push-on-deploy is now automated** — the production deploy job submits the live sitemap's URLs to IndexNow after each release (key served at `/306b0ac5270df87304cfd553d6a44963.txt`). Nothing to do per release. Note IndexNow feeds **Bing/Yandex only** — Google ignores it and relies on the sitemap.
 
 ## 3. Google Business Profile (GBP)  ⏱️ ~20 min + postcard wait
 Owns your brand SERP, can rank for "healthcare software company Kolkata/WB", collects reviews, feeds the AI entity graph.
