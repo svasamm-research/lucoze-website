@@ -1,11 +1,10 @@
-/* Self-hosted webfonts (latin + latin-ext).
- * Replaces the render-blocking fonts.googleapis.com stylesheet, which cost
- * ~1s on throttled mobile purely from the googleapis -> gstatic round trip
- * (SEO audit 2026-07-20: 2,526ms LCP element render delay on the homepage).
- * latin-ext is REQUIRED - the rupee sign U+20B9 lives in U+20AD-20C0 and is
- * used across pricing, billing and comparison content.
- * Regenerate: see docs/fonts.md
- */
+/* Self-hosted, subsetted webfonts (latin + latin-ext).
+ * Replaces the render-blocking fonts.googleapis.com stylesheet, which wasted
+ * ~1s on throttled mobile via the googleapis->gstatic round trip (SEO audit
+ * 2026-07-20). Each face is subset to the exact characters the site renders.
+ * Indic scripts absent by design - these Latin faces never had them, so
+ * Hindi/Bengali/Odia falls back to system fonts. latin-ext kept: rupee U+20B9
+ * (U+20AD-20C0) is used across pricing/billing/compare. Regen: scripts/build-fonts.py. */
 
 /* latin-ext */
 @font-face {
