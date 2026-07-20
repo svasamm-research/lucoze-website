@@ -86,10 +86,16 @@ jobs:
             # UAT: leave Plausible domain empty so the script tag is not rendered;
             # UAT visits will not be reported to Plausible.
             echo "plausible_domain=" >> "$GITHUB_OUTPUT"
+            # UAT: leave GA4 empty too — no gtag, no consent banner, and UAT
+            # traffic stays out of the production property.
+            echo "ga_id=" >> "$GITHUB_OUTPUT"
           else
             echo "billing_api_url=https://admin.lucoze.com" >> "$GITHUB_OUTPUT"
             echo "admin_api_url=https://admin.lucoze.com" >> "$GITHUB_OUTPUT"
             echo "plausible_domain=lucoze.com" >> "$GITHUB_OUTPUT"
+            # GA4 measurement ID is public (it ships in every page's HTML), so it
+            # lives here rather than in a secret — same as plausible_domain.
+            echo "ga_id=G-8PKQ5SH09G" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build and push Docker image
@@ -101,6 +107,7 @@ jobs:
             PUBLIC_BILLING_API_URL=${{ steps.urls.outputs.billing_api_url }}
             PUBLIC_ADMIN_API_URL=${{ steps.urls.outputs.admin_api_url }}
             PUBLIC_PLAUSIBLE_DOMAIN=${{ steps.urls.outputs.plausible_domain }}
+            PUBLIC_GA_ID=${{ steps.urls.outputs.ga_id }}
           tags: |
             svasamm/lucoze-website:${{ steps.meta.outputs.version }}
             svasamm/lucoze-website:${{ steps.meta.outputs.floating_tag }}
