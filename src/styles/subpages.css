@@ -881,7 +881,9 @@
 }
 .blog-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	/* auto-fill (not auto-fit): keep the column tracks so a single filtered result
+	   stays card-width instead of stretching across the whole row. */
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: var(--s-5);
 }
 .blog-card {
