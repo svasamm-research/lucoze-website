@@ -9,6 +9,11 @@ import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
 import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
 import { SPECIALTY_PILLS } from "../../data/specialties.ts";
+
+// Which specialty is selected when the page loads.
+const DEFAULT_SPECIALTY = "diag";
+const defaultCaption =
+	SPECIALTY_PILLS.find((s) => s.id === DEFAULT_SPECIALTY)?.caption ?? SPECIALTY_PILLS[0].caption;
 ---
 
 <Base
@@ -36,16 +41,19 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 
 			<div class="specialty" role="tablist" aria-label="Specialty selector">
 				{
-					SPECIALTY_PILLS.map((s, i) => (
+					SPECIALTY_PILLS.map((s) => (
 						<button
 							type="button"
 							role="tab"
-							aria-selected={i === 0}
+							aria-selected={s.id === DEFAULT_SPECIALTY}
 							aria-controls={`specialty-panel-${s.id}`}
 							id={`specialty-tab-${s.id}`}
 							data-specialty-pill={s.id}
 							data-specialty-caption-for={s.caption}
-							class:list={["specialty__btn", i === 0 && "specialty__btn--active"]}
+							class:list={[
+								"specialty__btn",
+								s.id === DEFAULT_SPECIALTY && "specialty__btn--active",
+							]}
 						>
 							<Icon name={s.icon} class="specialty__btn-icon" />
 							{s.label}
@@ -54,17 +62,17 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 				}
 			</div>
 
-			<p class="product-caption" data-specialty-caption>{SPECIALTY_PILLS[0].caption}</p>
+			<p class="product-caption" data-specialty-caption>{defaultCaption}</p>
 
 			<div class="product-preview-placeholder">
 				{
-					SPECIALTY_PILLS.map((s, i) => (
+					SPECIALTY_PILLS.map((s) => (
 						<div
 							data-specialty-visual={s.id}
 							role="tabpanel"
 							id={`specialty-panel-${s.id}`}
 							aria-labelledby={`specialty-tab-${s.id}`}
-							hidden={i !== 0}
+							hidden={s.id !== DEFAULT_SPECIALTY}
 						>
 							<SpecialtyVisual kind={s.visualKind} />
 						</div>

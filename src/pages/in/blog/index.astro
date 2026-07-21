@@ -7,13 +7,14 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
-const fmtDate = (d: Date) =>
-	d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+// Distinct categories for the filter bar, in a stable order.
+const categories = [...new Set(posts.map((p) => p.data.category))].sort();
 ---
 
 <Base
 	title="Lucoze blog — Indian healthcare compliance, EMR, and clinic operations"
 	description="Field notes, ABDM and DPDP guides, and the questions Indian clinic owners ask us. From the team building Lucoze."
+	activeLink="blog"
 >
 	<SubHero
 		crumbs={[{ href: "/in/", label: "Home" }, { label: "Blog" }]}
@@ -29,10 +30,40 @@ const fmtDate = (d: Date) =>
 
 	<section class="section section--tight">
 		<div class="container">
-			<div class="blog-grid">
+			<div class="blog-controls">
+				<div class="blog-filters" role="tablist" aria-label="Filter posts by category">
+					<button class="blog-filter blog-filter--active" type="button" data-filter="all">
+						All
+					</button>
+					{
+						categories.map((c) => (
+							<button class="blog-filter" type="button" data-filter={c}>
+								{c}
+							</button>
+						))
+					}
+				</div>
+				<label class="blog-sort">
+					<span class="blog-sort__label">Sort</span>
+					<select data-blog-sort aria-label="Sort posts">
+						<option value="newest">Newest first</option>
+						<option value="oldest">Oldest first</option>
+						<option value="short">Shortest read</option>
+						<option value="long">Longest read</option>
+					</select>
+				</label>
+			</div>
+
+			<div class="blog-grid" data-blog-grid>
 				{
 					posts.map((p) => (
-						<a href={`/in/blog/${p.id}/`} class="blog-card">
+						<a
+							href={`/in/blog/${p.id}/`}
+							class="blog-card"
+							data-category={p.data.category}
+							data-date={p.data.date.valueOf()}
+							data-readmins={p.data.readMins}
+						>
 							<span class="blog-card__category">{p.data.category}</span>
 							<h2 class="blog-card__title">{p.data.title}</h2>
 							<p class="blog-card__excerpt">{p.data.dek}</p>
@@ -45,6 +76,7 @@ const fmtDate = (d: Date) =>
 				}
 			</div>
 
+			<p class="blog-empty" data-blog-empty hidden>No posts in this category yet.</p>
 			{
 				posts.length === 0 && (
 					<p style="text-align: center; color: var(--muted);">No posts yet. Check back soon.</p>
@@ -53,3 +85,50 @@ const fmtDate = (d: Date) =>
 		</div>
 	</section>
 </Base>
+
+<script>
+	// Client-side category filter + sort over the statically-rendered cards.
+	const grid = document.querySelector<HTMLElement>("[data-blog-grid]");
+	const sortSel = document.querySelector<HTMLSelectElement>("[data-blog-sort]");
+	const filters = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+	const empty = document.querySelector<HTMLElement>("[data-blog-empty]");
+
+	if (grid && sortSel) {
+		const cards = Array.from(grid.querySelectorAll<HTMLElement>(".blog-card"));
+		let activeFilter = "all";
+
+		const num = (el: HTMLElement, key: string) => Number(el.dataset[key] ?? 0);
+
+		function apply() {
+			let visible = 0;
+			cards.forEach((c) => {
+				const show = activeFilter === "all" || c.dataset.category === activeFilter;
+				c.hidden = !show;
+				if (show) visible++;
+			});
+			if (empty) empty.hidden = visible !== 0;
+
+			const s = sortSel!.value;
+			const sorted = [...cards].sort((a, b) => {
+				if (s === "oldest") return num(a, "date") - num(b, "date");
+				if (s === "short") return num(a, "readmins") - num(b, "readmins");
+				if (s === "long") return num(b, "readmins") - num(a, "readmins");
+				return num(b, "date") - num(a, "date"); // newest (default)
+			});
+			sorted.forEach((c) => grid!.appendChild(c));
+		}
+
+		filters.forEach((f) =>
+			f.addEventListener("click", () => {
+				filters.forEach((x) => {
+					const on = x === f;
+					x.classList.toggle("blog-filter--active", on);
+					x.setAttribute("aria-selected", on ? "true" : "false");
+				});
+				activeFilter = f.dataset.filter ?? "all";
+				apply();
+			}),
+		);
+		sortSel.addEventListener("change", apply);
+	}
+</script>

@@ -92,6 +92,28 @@ test("feature page gallery: lightbox opens, navigates, closes on Esc + outside c
 	await expect(dialog).toHaveJSProperty("open", false);
 });
 
+test("blog index: category filter and sort work", async ({ page }) => {
+	await page.goto("/in/blog/");
+	const cards = page.locator(".blog-card");
+	const total = await cards.count();
+	expect(total).toBeGreaterThan(3);
+
+	// filter to Compliance → fewer visible, all in that category
+	await page.locator('[data-filter="Compliance"]').click();
+	const visible = page.locator(".blog-card:visible");
+	await expect(visible.first()).toBeVisible();
+	const visN = await visible.count();
+	expect(visN).toBeGreaterThan(0);
+	expect(visN).toBeLessThan(total);
+
+	// back to all + sort oldest → first card differs from newest order
+	await page.locator('[data-filter="all"]').click();
+	const firstNewest = await page.locator(".blog-card").first().getAttribute("data-date");
+	await page.locator("[data-blog-sort]").selectOption("oldest");
+	const firstOldest = await page.locator(".blog-card").first().getAttribute("data-date");
+	expect(Number(firstOldest)).toBeLessThan(Number(firstNewest));
+});
+
 test("homepage: hero word rotator present and fonts are self-hosted", async ({ page }) => {
 	await page.goto("/in/");
 	await expect(page.locator(".hero .rotator").first()).toBeVisible();
