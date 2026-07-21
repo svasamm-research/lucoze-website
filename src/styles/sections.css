@@ -198,6 +198,72 @@
 	font-style: normal;
 	color: var(--primary);
 }
+
+/* Hero headline word rotator.
+   Words are stacked in one grid cell and cross-faded. An invisible sizer holds
+   the width of the LONGEST word, so the rest of the headline never reflows as
+   words swap — keeps CLS at 0, which the perf audit confirmed we currently have.
+   Pure CSS: no JS, nothing added to the LCP path.
+   ponytail: sizer must stay the longest word in .rotator__list, and the
+   nth-child delays assume exactly 5 words — update both together. */
+.rotator {
+	position: relative;
+	display: inline-grid;
+}
+.rotator__sizer {
+	visibility: hidden;
+}
+.rotator__list {
+	position: absolute;
+	inset: 0;
+	display: grid;
+}
+.rotator__list > span {
+	grid-area: 1 / 1;
+	white-space: nowrap;
+	opacity: 0;
+	animation: rotator-word 15s infinite;
+}
+.rotator__list > span:nth-child(2) {
+	animation-delay: 3s;
+}
+.rotator__list > span:nth-child(3) {
+	animation-delay: 6s;
+}
+.rotator__list > span:nth-child(4) {
+	animation-delay: 9s;
+}
+.rotator__list > span:nth-child(5) {
+	animation-delay: 12s;
+}
+
+@keyframes rotator-word {
+	0%,
+	1% {
+		opacity: 0;
+		transform: translateY(0.16em);
+	}
+	3%,
+	18% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	20%,
+	100% {
+		opacity: 0;
+		transform: translateY(-0.16em);
+	}
+}
+
+/* Reduced motion: hold the first word, no cycling. */
+@media (prefers-reduced-motion: reduce) {
+	.rotator__list > span {
+		animation: none;
+	}
+	.rotator__list > span:first-child {
+		opacity: 1;
+	}
+}
 .hero__lead {
 	font-size: clamp(16px, 1.8vw, 19px);
 	color: var(--muted);

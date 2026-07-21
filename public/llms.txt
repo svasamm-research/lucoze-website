@@ -1,8 +1,10 @@
 # Lucoze
 
-> Healthcare management software for Indian clinics and hospitals. Patient records, appointments, billing, lab, and pharmacy on one platform, with all patient data hosted in India. Built by Svasamm Research Pvt. Ltd.
+> Lucoze is healthcare management software (HMS/EMR) for Indian clinics and hospitals. Patient records, appointments, billing, lab, and pharmacy on one platform, with all patient data hosted in India. Built by Svasamm Research Pvt. Ltd.
 
 Lucoze is an India-first clinic and hospital management system (HMS/EMR). It is designed around Indian workflows and compliance: ABDM/ABHA integration, DPDP 2023, GST-compliant e-invoicing, and Hindi UI. Founder-led by Mithun K. Singh. Data residency is in Indian data centres; customers can export all records (CSV/PDF) with no lock-in.
+
+Lucoze is the product; Svasamm Research Pvt. Ltd. is the company that builds it. Lucoze is business software sold to healthcare providers — it is not a consumer product, a medical device, or a healthcare provider itself.
 
 ## Product
 - [Appointments](https://lucoze.com/in/features/appointments/): Department-first booking, family-linked patient timelines, reminders.
@@ -17,14 +19,55 @@ Lucoze is an India-first clinic and hospital management system (HMS/EMR). It is 
 - [For hospitals](https://lucoze.com/in/solutions/hospitals/)
 - [Pricing](https://lucoze.com/in/pricing/): Plans from ₹1,499/month, 14-day free trial.
 
+## By type of practice
+- [Dental groups](https://lucoze.com/in/specialties/dental/): Chair-led practices — scheduling keyed to the chair rather than the doctor.
+- [Dermatology](https://lucoze.com/in/specialties/dermatology/): Dermatology and cosmetic practices.
+- [Diagnostic centres](https://lucoze.com/in/specialties/diagnostics/): Sample-to-report workflow.
+- [IVF clinics](https://lucoze.com/in/specialties/ivf/): Cycle-based workflow.
+- [Multi-specialty clinics](https://lucoze.com/in/specialties/multispecialty/): 3–15 doctors.
+- [Nursing homes](https://lucoze.com/in/specialties/nursing-home/): 10–50 beds.
+- [Polyclinics](https://lucoze.com/in/specialties/polyclinic/): High-volume OPD.
+- [Small hospitals](https://lucoze.com/in/specialties/small-hospital/): 20–100 beds.
+
+## Compare with other systems
+Factual, dated comparisons. Competitor capabilities are stated as available, partial, or not available — never as disparagement. Verify current details with the respective vendor.
+- [Lucoze vs Practo Ray](https://lucoze.com/in/compare/practo-ray/)
+- [Lucoze vs Halemind](https://lucoze.com/in/compare/halemind/)
+- [Lucoze vs MocDoc](https://lucoze.com/in/compare/mocdoc/)
+- [Lucoze vs CliniQ360](https://lucoze.com/in/compare/cliniq360/)
+- [Lucoze vs HealthPlix](https://lucoze.com/in/compare/healthplix/)
+- [Lucoze vs KareXpert](https://lucoze.com/in/compare/karexpert/)
+
 ## Guides & compliance
 - [ABDM & ABHA guide](https://lucoze.com/in/blog/abdm-abha-guide/): What ABDM, ABHA, HPR, and HFR mean for a clinic.
 - [What "ABDM-ready" actually means](https://lucoze.com/in/blog/abdm-ready-meaning/)
+- [ABHA at the front desk, first visit](https://lucoze.com/in/blog/abha-first-visit-front-desk/)
+- [Register a clinic on HFR](https://lucoze.com/in/blog/register-clinic-on-hfr/)
 - [DPDP 2023 for clinics](https://lucoze.com/in/blog/dpdp-for-clinics/): Consent, breach notification, patient data rights.
+- [DPDP patient consent for clinics](https://lucoze.com/in/blog/dpdp-patient-consent-clinics/)
 - [Security & data](https://lucoze.com/in/blog/security-data/): Encryption, India data residency, backups.
+- [GST for clinics](https://lucoze.com/in/blog/gst-for-clinics/)
+- [The clinic billing stack](https://lucoze.com/in/blog/clinic-billing-stack/)
+- [TPA & insurance claims for clinics](https://lucoze.com/in/blog/tpa-insurance-claims-clinics/)
+- [Switching clinic software without downtime](https://lucoze.com/in/blog/switch-clinic-software-without-downtime/)
 - [Switching from Practo Ray](https://lucoze.com/in/blog/switch-from-practo-ray/)
+- [Clinic data migration checklist](https://lucoze.com/in/blog/clinic-data-migration-checklist/)
+- [Practo vs Halemind](https://lucoze.com/in/blog/practo-vs-halemind/)
+- [The hidden cost of paper records](https://lucoze.com/in/blog/hidden-cost-of-paper/)
+- [Lucoze in Hindi](https://lucoze.com/in/blog/lucoze-in-hindi/)
+
+## Where we work
+Lucoze is sold across India. Sales and onboarding focus on East India; the company's only office is in West Bengal.
+- [All locations](https://lucoze.com/in/locations/)
+- [West Bengal](https://lucoze.com/in/locations/west-bengal/)
+- [Kolkata](https://lucoze.com/in/locations/kolkata/)
 
 ## Company
 - [About Lucoze](https://lucoze.com/in/about/)
-- [Contact](https://lucoze.com/in/contact/): sales@lucoze.com
+- [Contact](https://lucoze.com/in/contact/)
 - [Blog](https://lucoze.com/in/blog/)
+
+Company: Svasamm Research Pvt. Ltd.
+Email: sales@lucoze.com
+Phone: +91 90077 93575
+Address: Konnagar, Hooghly, West Bengal 712246, India

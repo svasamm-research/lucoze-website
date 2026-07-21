@@ -47,12 +47,13 @@ const blogPostingLd = {
 	description: post.dek,
 	datePublished: post.date.toISOString(),
 	dateModified: post.date.toISOString(),
-	author: { "@type": "Person", name: post.author },
-	publisher: {
-		"@type": "Organization",
-		name: "Lucoze",
-		logo: { "@type": "ImageObject", url: `${siteUrl}/favicon-vault-32.png` },
-	},
+	// Reference the sitewide Organization/Person nodes from Base.astro by @id
+	// rather than re-declaring them here — re-declaring emitted a second,
+	// unlinked Organization + Person on every post and forked the entity graph.
+	// Every post is currently founder-authored; add a name→@id map here if that
+	// ever stops being true.
+	author: { "@id": `${siteUrl}/#founder` },
+	publisher: { "@id": `${siteUrl}/#organization` },
 	mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
 	image: `${siteUrl}/og-default.png`,
 	articleSection: post.category,
@@ -126,7 +127,11 @@ const blogPostingLd = {
 					<span class="t-eyebrow">{post.category}</span>
 					<h1 style="margin-top: var(--s-3);">{post.title}</h1>
 					<div class="post__meta">
-						<span>{post.author}</span>
+						{
+							/* Byline links to the author bio — an E-E-A-T signal that
+						    matters on compliance/YMYL-adjacent posts. */
+						}
+						<span><a href="/in/about/" rel="author">{post.author}</a></span>
 						<span>{fmtDate}</span>
 						<span>{post.readMins} min read</span>
 					</div>

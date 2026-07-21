@@ -4,6 +4,7 @@
  * Wraps every page with chrome (Nav + Footer), <head> meta, fonts,
  * favicon, OG/Twitter cards, and optional Plausible analytics.
  */
+import "../styles/fonts.css";
 import "../styles/tokens.css";
 import "../styles/sections.css";
 import "../styles/subpages.css";
@@ -62,6 +63,11 @@ const orgLd = {
 	"@id": `${siteUrl}/#organization`,
 	name: "Lucoze",
 	legalName: "Svasamm Research Pvt. Ltd.",
+	// "Lucoze" is a coined name with no established web presence and is easily
+	// confused with similarly spelled consumer brands. Stating the category
+	// inline gives search engines and LLMs an unambiguous anchor for the entity.
+	description:
+		"Lucoze is healthcare management software (HMS/EMR) for clinics and hospitals in India, built by Svasamm Research Pvt. Ltd. It is business software for healthcare providers, not a consumer product or a healthcare provider itself.",
 	foundingDate: "2024",
 	url: siteUrl,
 	logo: `${siteUrl}/favicon-vault-32.png`,
@@ -78,8 +84,12 @@ const orgLd = {
 		postalCode: "712246",
 		addressCountry: "IN",
 	},
+	// @id lets other page types (notably BlogPosting.author) reference this
+	// node instead of re-declaring an anonymous Person, which would fork the
+	// entity graph on exactly the pages LLMs are most likely to quote.
 	founder: {
 		"@type": "Person",
+		"@id": `${siteUrl}/#founder`,
 		name: "Mithun K. Singh",
 		jobTitle: "Founder & CEO",
 		sameAs: ["https://www.linkedin.com/in/mithunksingh"],
@@ -139,11 +149,28 @@ const siteLd = {
 		<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-vault.png" />
 		<link rel="mask-icon" href="/favicon-vault.svg" color="#c15f3c" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		{
+			/* Fonts are self-hosted (src/styles/fonts.css, imported above). The old
+		    fonts.googleapis.com stylesheet was render-blocking and cost ~1s on
+		    throttled mobile purely from the googleapis→gstatic round trip — it was
+		    the dominant LCP bottleneck (SEO audit 2026-07-20: 2,526ms of element
+		    render delay on the homepage while the LCP image itself took ~282ms).
+		    Preload only the two faces used above the fold: the h1 (Manrope 800)
+		    and body text (Inter Tight 400). Everything else loads on demand. */
+		}
 		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap"
+			rel="preload"
+			href="/fonts/manrope-800-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/inter-tight-400-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
 		/>
 
 		<script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
