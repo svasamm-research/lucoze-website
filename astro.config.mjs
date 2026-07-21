@@ -3,12 +3,63 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 
+/**
+ * Unwrap spurious block <p> that MDX injects inside inline/tight containers.
+ *
+ * Blog posts author paragraphs and list items as HTML (`<p>…</p>`, `<li>…</li>`)
+ * containing `{" "}` spacers and inline `<a>` links. When a link's text or an
+ * item's description sits on its own source line (Prettier wraps long
+ * external-link tags — the ones with target/rel — that way), MDX markdown-parses
+ * that text run and wraps it in its own <p>. So an authored <p> ends up holding
+ * block <p> children, an <a> becomes a block link, and a Sources <li> renders
+ * its link and description on two separate lines with a gap.
+ *
+ * Rather than rewrite every post (and fight Prettier re-wrapping), we flatten
+ * the malformed tree at build: any <p> nested inside a <p>, <a>, or <li> —
+ * contexts where a block paragraph is either invalid or breaks intended inline
+ * flow — is replaced by its own children. <blockquote> is deliberately excluded
+ * (a <p> there is legitimate). Runs across the whole blog, present and future.
+ */
+function rehypeUnwrapNestedParagraphs() {
+	// Tag name whether the node is a real hast element (tagName) or an authored
+	// MDX element that stays a JSX node through rehype (name). Authored <p>/<a>/
+	// <li> are the JSX form; MDX's auto-wrapped inner <p>s are hast elements.
+	const tagOf = (n) =>
+		n.type === "element"
+			? n.tagName
+			: n.type === "mdxJsxFlowElement" || n.type === "mdxJsxTextElement"
+				? n.name
+				: null;
+	// Containers inside which a block <p> should be unwrapped back to inline.
+	const UNWRAP_INSIDE = new Set(["p", "a", "li"]);
+	// Containers where a <p> is legitimate — reset the context so we don't touch
+	// them (e.g. a founder pull-quote that happens to sit inside a list).
+	const RESET_INSIDE = new Set(["blockquote"]);
+	const walk = (node, unwrapHere) => {
+		if (!node.children) return;
+		const out = [];
+		for (const child of node.children) {
+			const tag = tagOf(child);
+			if (tag === "p" && unwrapHere) {
+				walk(child, true); // flatten any deeper nesting first
+				out.push(...child.children); // hoist inline content up
+			} else {
+				const next = RESET_INSIDE.has(tag) ? false : unwrapHere || UNWRAP_INSIDE.has(tag);
+				walk(child, next);
+				out.push(child);
+			}
+		}
+		node.children = out;
+	};
+	return (tree) => walk(tree, false);
+}
+
 export default defineConfig({
 	site: "https://lucoze.com",
 	output: "static",
 	integrations: [
 		react(),
-		mdx(),
+		mdx({ rehypePlugins: [rehypeUnwrapNestedParagraphs] }),
 		sitemap({
 			// Exclude internal preview from the sitemap. Canonical solutions
 			// URLs are /in/solutions/clinics/ and /in/solutions/hospitals/;
