@@ -25,9 +25,13 @@
 		[
 			"14-day trial, live in 14 days",
 			"Start free for 14 days and get your clinic running on Lucoze within a fortnight — with migration help from your old registers or Excel."
+		],
+		[
+			"Reminders patients actually see",
+			"Appointment and follow-up nudges go out over WhatsApp and SMS, so a busy Bhubaneswar counter loses fewer no-shows without the front desk making calls all day."
 		]
 	],
-	"localContext": "In Bhubaneswar the front desk usually works in Odia, with Hindi and English common in the larger Jaydev Vihar hospitals and corporate diagnostic chains. A receptionist in Saheed Nagar or Old Town shouldn't slow down because the software can't spell a patient's name — Lucoze's search matches Odia, Devanagari and Latin at once, so 'Priyanka', 'ପ୍ରିୟଙ୍କା' or a mobile number all find the same record. The interface is rolling out in Hindi first (Q3 2026), then Bengali, then Odia; the full Odia UI is on the roadmap, not live yet, so we supply printable Odia cheat-sheets. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts.",
+	"localContext": "In Bhubaneswar the front desk usually works in Odia, with Hindi and English common in the larger Jaydev Vihar hospitals and corporate diagnostic chains. A receptionist in Saheed Nagar or Old Town shouldn't slow down because the software can't spell a patient's name — Lucoze's search matches Odia, Devanagari and Latin at once, so 'Priyanka', 'ପ୍ରିୟଙ୍କା' or a mobile number all find the same record. The interface is rolling out in Hindi first (Q3 2026), then Bengali, then Odia; the full Odia UI is on the roadmap, not live yet, so we supply printable Odia cheat-sheets. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts. As the state capital and a fast-growing health and education hub, Bhubaneswar draws patients in from every district — many seen once and then again months later, so an ABHA linked at the first visit means a patient's history travels with them instead of starting from a blank register. Counters here run largely on cash and UPI, and appointment and follow-up nudges go out over WhatsApp, which is where most patients actually read them.",
 	"citiesServed": [],
 	"faqs": [
 		{
@@ -41,6 +45,10 @@
 		{
 			"q": "Where is our patient data stored?",
 			"a": "On servers inside India, under the Digital Personal Data Protection Act 2023. And there's no lock-in — export everything to CSV or PDF whenever you like, so your Bhubaneswar clinic's data always stays yours."
+		},
+		{
+			"q": "We see patients from across Odisha — can we pull up their history on a repeat visit?",
+			"a": "Yes. Link an ABHA at the first visit and Lucoze keeps that patient's full record — prescriptions, lab reports, past visits — in one place. When they travel back to Bhubaneswar months later, search by name or mobile number and their history is right there, whichever of your branches they first registered at."
 		}
 	]
 }

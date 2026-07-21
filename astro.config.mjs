@@ -22,8 +22,7 @@ export default defineConfig({
 			serialize(item) {
 				if (item.url === "https://lucoze.com/in/") item.priority = 1.0;
 				else if (/\/in\/(pricing|signup)\/$/.test(item.url)) item.priority = 0.9;
-				else if (/\/in\/(features|solutions|specialties)\//.test(item.url))
-					item.priority = 0.8;
+				else if (/\/in\/(features|solutions|specialties)\//.test(item.url)) item.priority = 0.8;
 				else if (item.url.includes("/in/blog/")) item.changefreq = "weekly";
 				return item;
 			},
@@ -44,9 +43,9 @@ export default defineConfig({
 		"/terms": "/in/terms/",
 		"/solutions-clinics": "/in/solutions/clinics/",
 		"/solutions-hospitals": "/in/solutions/hospitals/",
-		// Legacy hyphenated /in/* URLs (previous BaseLayout pages, now deleted).
-		"/in/solutions-clinics": "/in/solutions/clinics/",
-		"/in/solutions-hospitals": "/in/solutions/hospitals/",
+		// Legacy hyphenated /in/solutions-* URLs are handled as real 301s in
+		// nginx.conf (Astro's redirect emits a meta-refresh + noindex stub, which
+		// robots.txt then blocked Googlebot from crawling). Not defined here.
 		// /ae — UAE region (legacy)
 		"/ae": "/in/",
 		"/ae/": "/in/",

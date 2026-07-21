@@ -34,6 +34,14 @@
 		{
 			"title": "Billing and records that fit a regulated, high-cost journey",
 			"body": "IVF is expensive and usually paid over an instalment plan, with the counsellor's cost discussions on record. Lucoze keeps the plan and the running balance attached to the cycle, so there are no mid-cycle billing surprises. Cycle, donor and consent records are organised to line up with the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — the two separate statutes an ART clinic reports under."
+		},
+		{
+			"title": "One linked file for the couple, not two that never reconcile",
+			"body": "Fertility care is a couple's journey, but most records are built around one patient at a time. Lucoze links a couple's two records so the shared history, each partner's tests and the consent captured from both sit together against the same cycle. Billing runs against the couple, not split across two files that never reconcile. When a partner's result or a donor detail matters mid-cycle, it is on the record the clinician already has open — not in a second file someone has to go and find. The link is explicit, so who consented to what stays clear across every cycle the couple goes through."
+		},
+		{
+			"title": "The stimulation protocol becomes a schedule the patient can follow",
+			"body": "A stimulation protocol is a run of injectables on set days, and the patient gives most of them at home. Lucoze holds the protocol against the cycle — which drug, what dose, which day — and turns it into a schedule the patient can follow, so a missed or mistimed injection is less likely to derail a cycle. As monitoring comes back and doses are adjusted, the change sits on the same cycle record rather than on a loose note. The clinician sees the protocol as prescribed, the patient sees what to take today, and both are reading the same plan."
 		}
 	],
 	"faqs": [
@@ -48,6 +56,14 @@
 		{
 			"q": "Can it track embryology and cryopreservation?",
 			"a": "Day-3 and day-5 grades attach to the cycle, and cryopreserved embryos are tracked over time against the patient and cycle."
+		},
+		{
+			"q": "Are both partners' records linked in one file?",
+			"a": "Yes. A couple's two patient files are linked, so shared history, each partner's tests, both consents and the billing sit against the same cycle. A partner's result or donor detail is on the record already open, not in a separate file, and who consented to what stays clear across every cycle the couple goes through."
+		},
+		{
+			"q": "Where is fertility data stored, and how is consent handled?",
+			"a": "Records stay in Indian data centres, and consent is captured per procedure rather than once at sign-up — appropriate for data this sensitive. Each cycle, donor arrangement and shared decision carries its own consent on the record, so the clinic can show what was agreed and when."
 		}
 	]
 }

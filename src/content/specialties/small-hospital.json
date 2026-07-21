@@ -34,6 +34,14 @@
 		{
 			"title": "Theatre, materials and the metrics NABH asks for",
 			"body": "Booking a surgery reserves the OT slot, the staff, the consumables and the post-op room together, and a cancellation releases the whole chain. The operational metrics an accreditation review expects — average length of stay, infection rate, medication errors — are produced from the same data rather than rebuilt in spreadsheets by the admin team."
+		},
+		{
+			"title": "The cashless claim that starts at admission",
+			"body": "A large share of a hospital's revenue arrives through TPA cashless claims, and the supporting paperwork for each — pre-authorisation, approval, discharge documents — has to stay with the admission it belongs to. Lucoze keeps those documents on the same record as the patient's bed, drugs and procedures rather than in a separate claims file. When the patient is discharged the consolidated IPD bill — pharmacy, lab, OT and ward together — splits into the TPA-payable portion and the cash the family settles at the counter, so nobody reconstructs the split from a folder weeks later or discovers a shortfall after the patient has gone home."
+		},
+		{
+			"title": "Casualty registers first, paperwork catches up",
+			"body": "An emergency case cannot wait for a registration desk to finish a form. Casualty intake opens a record with the minimum a resident needs to start treatment — a name or a provisional label, time in, the complaint — and lets clinical notes, drugs and investigations attach to it at once. The full identity, address, admission category and TPA details are reconciled afterwards, once the patient is stable, without creating a duplicate file. The same record then carries into the ward if the patient is admitted, so the emergency hour and the inpatient stay stay on one timeline rather than being stitched together from two systems."
 		}
 	],
 	"faqs": [
@@ -48,6 +56,14 @@
 		{
 			"q": "Does it produce NABH-oriented dashboards?",
 			"a": "Metrics such as average length of stay, infection rate and medication errors are generated from operational data. These support an accreditation review; accreditation itself remains the hospital's responsibility."
+		},
+		{
+			"q": "Does Lucoze track TPA cashless insurance claims?",
+			"a": "The supporting paperwork for a cashless claim — pre-authorisation, approval, discharge documents — stays attached to the admission, and at discharge the consolidated IPD bill separates the TPA-payable amount from the cash the family settles, so the split isn't rebuilt from a folder later."
+		},
+		{
+			"q": "Can casualty register a patient before the paperwork is done?",
+			"a": "Yes. An emergency record opens with the minimum needed to begin treatment — a name or provisional label, time in and the complaint — so clinical notes and drugs attach at once. Identity, admission category and TPA details are reconciled once the patient is stable, and the same record carries into the ward on admission."
 		}
 	]
 }

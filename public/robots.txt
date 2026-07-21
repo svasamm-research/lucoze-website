@@ -8,10 +8,9 @@ Allow: /
 # Internal preview page, not for index
 Disallow: /in/redesign-preview/
 
-# Legacy hyphenated solution URLs are 301-redirected to /in/solutions/clinics/
-# and /in/solutions/hospitals/. Crawlers should index the new paths only.
-Disallow: /in/solutions-clinics/
-Disallow: /in/solutions-hospitals/
+# (Legacy hyphenated /in/solutions-* URLs are now real 301s in nginx, so they no
+# longer need a Disallow — a Disallow would only stop Googlebot from seeing the
+# redirect. The canonical paths are /in/solutions/clinics|hospitals/.)
 
 # Defensive blocks (no such paths today, but reserve them)
 Disallow: /api/

@@ -13,8 +13,27 @@ import DemoVideoModal from "./DemoVideoModal.astro";
 					<span class="eyebrow-row__dot eyebrow-row__dot--pulse" aria-hidden="true"></span>
 					Built for Indian clinics · Data hosted in India
 				</span>
+				{
+					/* The practice-type word cycles (clinic → hospital → …) to show the
+				    product spans more than single-doctor clinics. The animated list is
+				    aria-hidden and a stable sr-only word carries the accessible name,
+				    so assistive tech reads one fixed sentence. Pure CSS — nothing on
+				    the LCP path. */
+				}
 				<h1>
-					Run your <em>entire clinic</em> on one platform.
+					Run your <em
+						>entire <span class="rotator">
+							<span class="rotator__sizer" aria-hidden="true">multispecialty</span>
+							<span class="rotator__list" aria-hidden="true">
+								<span>clinic</span>
+								<span>hospital</span>
+								<span>nursing home</span>
+								<span>polyclinic</span>
+								<span>multispecialty</span>
+							</span>
+							<span class="sr-only">clinic</span>
+						</span></em
+					> on one platform.
 				</h1>
 				<p class="hero__lead">
 					Patient records, appointments, billing, lab, and pharmacy — together. Built for the way
@@ -32,7 +51,7 @@ import DemoVideoModal from "./DemoVideoModal.astro";
 						data-source="hero"
 					>
 						<Icon name="play" size={14} />
-						Watch 90-sec demo
+						Watch Promo
 					</button>
 				</div>
 				<div class="hero__sub-trust">
