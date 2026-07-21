@@ -31,14 +31,16 @@ pillar: true
 	Getting the split right on every invoice is the whole game.
 </p>
 
-<h2 id="exempt">What's exempt: healthcare services</h2>
+<h2 id="exempt">What healthcare services are GST-exempt?</h2>
 <p>
-	Under the GST exemption for healthcare, <strong>services by a clinical establishment, an
-	authorised medical practitioner, or paramedics</strong> are exempt. In plain terms, the
-	diagnosis, treatment or care of an illness, injury, deformity or abnormality — delivered by your
-	clinic or your doctors — does not attract GST. This is set out in the relevant CBIC exemption
-	notification (Notification No. 12/2017-Central Tax (Rate), as amended); confirm the current entry
-	and wording, because these get updated.
+	Under the GST exemption for healthcare,{" "}
+	<strong>
+		services by a clinical establishment, an authorised medical practitioner, or paramedics
+	</strong>{" "}
+	are exempt. In plain terms, the diagnosis, treatment or care of an illness, injury, deformity or
+	abnormality — delivered by your clinic or your doctors — does not attract GST. This is set out in
+	the relevant CBIC exemption notification (Notification No. 12/2017-Central Tax (Rate), as
+	amended); confirm the current entry and wording, because these get updated.
 </p>
 <p>Broadly, this covers:</p>
 <ul>
@@ -55,7 +57,7 @@ pillar: true
 	edge cases come from.
 </p>
 
-<h2 id="taxable">Where GST usually applies</h2>
+<h2 id="taxable">Where does GST usually apply in a clinic?</h2>
 <p>
 	These are the activities that sit next to healthcare but fall outside the exemption. If you do any
 	of them, GST typically enters the picture:
@@ -104,40 +106,42 @@ pillar: true
 	goods — verify the limit that applies to you, they change).
 </p>
 <p>
-	Here's the part clinics miss: <strong>exempt turnover still counts toward aggregate turnover.</strong>{" "}
-	A clinic that is 95% exempt healthcare but runs a taxable pharmacy or canteen can still be pushed
-	over the line and required to register — and then charge, collect and remit GST on its taxable
-	supplies while its core healthcare stays exempt. "We're a hospital, we don't do GST" is not a safe
-	assumption once there's a counter at the front.
+	Here's the part clinics miss:{" "}
+	<strong>exempt turnover still counts toward aggregate turnover.</strong> A clinic that is 95%
+	exempt healthcare but runs a taxable pharmacy or canteen can still be pushed over the line and
+	required to register — and then charge, collect and remit GST on its taxable supplies while its
+	core healthcare stays exempt. "We're a hospital, we don't do GST" is not a safe assumption once
+	there's a counter at the front.
 </p>
 <p>
-	This also interacts with things like <a href="/in/blog/tpa-insurance-claims-clinics/">TPA and
-	insurance claim workflows</a>, where the composition of a bill matters for what gets reimbursed and
-	how it's documented. Keep the tax treatment clean from the start and those downstream processes get
-	easier.
+	This also interacts with things like{" "}
+	<a href="/in/blog/tpa-insurance-claims-clinics/">TPA and insurance claim workflows</a>, where the
+	composition of a bill matters for what gets reimbursed and how it's documented. Keep the tax
+	treatment clean from the start and those downstream processes get easier.
 </p>
 
-<h2 id="itc">The input-tax-credit catch</h2>
+<h2 id="itc">Can a clinic claim input tax credit?</h2>
 <p>
 	One nuance worth flagging: when your output supply is exempt, the GST you pay on related inputs is
-	generally <strong>not</strong> fully available as input tax credit. The CGST Act's credit-apportionment
-	rules (Section 17) restrict ITC attributable to exempt supplies, so a mostly-exempt clinic can't
-	simply reclaim all the tax on everything it buys. Where and how much you can claim is a genuinely
-	technical question — this is exactly the kind of thing to hand to your CA rather than guess at.
+	generally <strong>not</strong> fully available as input tax credit. The CGST Act's
+	credit-apportionment rules (Section 17) restrict ITC attributable to exempt supplies, so a
+	mostly-exempt clinic can't simply reclaim all the tax on everything it buys. Where and how much
+	you can claim is a genuinely technical question — this is exactly the kind of thing to hand to
+	your CA rather than guess at.
 </p>
 
-<h2 id="billing">Why this is really a billing problem</h2>
+<h2 id="billing">Why is GST really a billing problem?</h2>
 <p>
-	Step back and the compliance question becomes an <em>invoicing</em> question. On any given visit, a
-	patient might be charged for a consultation (exempt), a strip of medicine from your pharmacy
-	(taxable), and a room night (taxable or exempt depending on the rate). That's <strong>one bill,
-	three different tax treatments.</strong>
+	Step back and the compliance question becomes an <em>invoicing</em> question. On any given visit,
+	a patient might be charged for a consultation (exempt), a strip of medicine from your pharmacy
+	(taxable), and a room night (taxable or exempt depending on the rate). That's{" "}
+	<strong>one bill, three different tax treatments.</strong>
 </p>
 <p>
 	If your billing system can't tag each line item's treatment correctly — exempt vs taxable, and at
 	the right rate where taxable — you end up either over-charging patients, under-remitting to the
-	government, or reconstructing the split by hand at return time. All three are avoidable. This is why
-	we treat it as a structural feature, not an afterthought:{" "}
+	government, or reconstructing the split by hand at return time. All three are avoidable. This is
+	why we treat it as a structural feature, not an afterthought:{" "}
 	<a href="/in/features/billing/">Lucoze's billing</a> is built to tag exempt vs taxable line items
 	on the same invoice, so a consultation and a medicine sale can co-exist on one bill without you
 	doing the tax logic in your head. (We're early-stage and working with design partners — so that's
@@ -155,9 +159,9 @@ pillar: true
 		<a href="https://cbic-gst.gov.in/" target="_blank" rel="noopener">
 			CBIC — GST portal (cbic-gst.gov.in)
 		</a>{" "}
-		— the official source for GST law, rate and exemption notifications, and circulars. The healthcare
-		exemption and the room-rent and cosmetic-surgery treatment all trace back to notifications
-		published here.
+		— the official source for GST law, rate and exemption notifications, and circulars. The
+		healthcare exemption and the room-rent and cosmetic-surgery treatment all trace back to
+		notifications published here.
 	</li>
 	<li>
 		<a href="https://www.gst.gov.in/" target="_blank" rel="noopener">
