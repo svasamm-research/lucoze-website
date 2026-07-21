@@ -5,7 +5,6 @@ import TrustStrip from "../../components/TrustStrip.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
 import CompareTable from "../../components/CompareTable.astro";
-import ProductTour from "../../components/ProductTour.astro";
 import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
 import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
@@ -103,7 +102,8 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			</div>
 		</section>
 
-		<!-- Product tour — clickable flow galleries (ProductTour + lightbox). -->
+		<!-- Explore the platform — link-out to per-module galleries on the feature
+		     and hospital pages (home stays light; galleries live in context). -->
 		<section class="section" id="tour" aria-labelledby="tour-heading">
 			<div class="container">
 				<header class="section-header">
@@ -112,10 +112,17 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 						See the platform, not a promise.
 					</h2>
 					<p class="t-lead">
-						Real screens from Lucoze — front desk to wards. Tap any flow to see more.
+						Real screens for every part of the practice. Open the module that matters to you.
 					</p>
 				</header>
-				<ProductTour />
+				<nav class="platform-explore" aria-label="Explore the platform by module">
+					<a href="/in/features/appointments/">Front office</a>
+					<a href="/in/features/patient-records/">Clinical records</a>
+					<a href="/in/features/lab/">Laboratory</a>
+					<a href="/in/features/pharmacy/">Pharmacy</a>
+					<a href="/in/features/billing/">Billing &amp; GST</a>
+					<a href="/in/solutions/hospitals/">Hospital — IPD, OT, emergency, TPA</a>
+				</nav>
 			</div>
 		</section>
 

@@ -5,6 +5,7 @@ import FRow from "../../../components/FRow.astro";
 import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
 import Screenshot from "../../../components/Screenshot.astro";
+import ProductGalleries from "../../../components/ProductGalleries.astro";
 
 const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 	{
@@ -97,6 +98,21 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 					))
 				}
 			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight" aria-labelledby="hosp-gallery-heading">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">A look inside</span>
+				<h2 id="hosp-gallery-heading" class="t-h2" style="margin-top: 8px;">
+					The hospital modules, on screen.
+				</h2>
+				<p class="t-lead">
+					IPD, OT, emergency and insurance — tap any to step through a few real screens.
+				</p>
+			</header>
+			<ProductGalleries flows={["ipd", "ot", "emergency", "insurance"]} />
 		</div>
 	</section>
 

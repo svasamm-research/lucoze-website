@@ -64,21 +64,31 @@ test("blog post renders as clean paragraphs (no fragmented <p>, inline links)", 
 	await expect(page.locator(".post p a").first()).toBeVisible();
 });
 
-test("homepage product tour: gallery lightbox opens, navigates and closes", async ({ page }) => {
-	await page.goto("/in/");
-	await expect(page.locator(".tour-tile")).toHaveCount(6);
-	const dialog = page.locator("#tourLightbox");
+test("feature page gallery: lightbox opens, navigates, closes on Esc + outside click", async ({
+	page,
+}) => {
+	// Galleries live on feature/solutions pages now, not the homepage.
+	await page.goto("/in/features/lab/");
+	const dialog = page.locator("#galleryLightbox");
 	await expect(dialog).toHaveJSProperty("open", false);
 
-	await page.locator('[data-tour-open="lab"]').click();
+	await page.locator('[data-gallery-open="lab"]').click();
 	await expect(dialog).toHaveJSProperty("open", true);
-	await expect(page.locator("[data-tour-counter]")).toHaveText("1 / 3");
-	await expect(page.locator('[data-flow="lab"] .tour-lb__slide:not([hidden]) img')).toBeVisible();
+	await expect(page.locator("[data-gallery-counter]")).toHaveText("1 / 3");
+	await expect(
+		page.locator('[data-flow="lab"] .gallery-lb__slide:not([hidden]) img'),
+	).toBeVisible();
 
-	await page.locator("[data-tour-next]").click();
-	await expect(page.locator("[data-tour-counter]")).toHaveText("2 / 3");
+	await page.locator("[data-gallery-next]").click();
+	await expect(page.locator("[data-gallery-counter]")).toHaveText("2 / 3");
 
 	await page.keyboard.press("Escape");
+	await expect(dialog).toHaveJSProperty("open", false);
+
+	// Clicking outside the image (top-left of the inner backdrop) also closes.
+	await page.locator('[data-gallery-open="lab"]').click();
+	await expect(dialog).toHaveJSProperty("open", true);
+	await page.locator("[data-gallery-inner]").click({ position: { x: 8, y: 8 } });
 	await expect(dialog).toHaveJSProperty("open", false);
 });
 

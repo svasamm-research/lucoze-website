@@ -2,8 +2,8 @@ import type { ImageMetadata } from "astro";
 
 /**
  * All product screenshots, resolved by file name (without extension). Covers are
- * PNG; gallery shots added for the flow tour are pre-resized WebP. Shared by
- * <Screenshot> and <ProductTour> so the glob lives in exactly one place.
+ * PNG; flow-gallery shots are pre-resized WebP. Shared by <Screenshot> and
+ * <ProductGalleries> so the glob lives in exactly one place.
  */
 const modules = import.meta.glob<{ default: ImageMetadata }>("../assets/screenshots/*.{png,webp}", {
 	eager: true,

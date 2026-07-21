@@ -1154,22 +1154,33 @@
 }
 
 /* ════════ FOOTER ════════════════════════════════ */
-/* Product-tour gallery — 3-up grid of clickable flow tiles (ProductTour). */
-.tour-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--s-5);
+/* Homepage "explore the platform" — module link-out (galleries live on the
+   feature/hospital pages, not here). Pill links, wrap on small screens. */
+.platform-explore {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s-3);
 	margin-top: var(--s-8);
 }
-@media (max-width: 900px) {
-	.tour-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
+.platform-explore a {
+	display: inline-flex;
+	align-items: center;
+	padding: 10px 18px;
+	border-radius: 999px;
+	border: 1px solid var(--border-strong);
+	background: var(--white);
+	color: var(--ink);
+	font-size: var(--t-sm);
+	font-weight: 500;
+	transition:
+		border-color var(--tr-fast),
+		color var(--tr-fast),
+		background var(--tr-fast);
 }
-@media (max-width: 560px) {
-	.tour-grid {
-		grid-template-columns: 1fr;
-	}
+.platform-explore a:hover {
+	border-color: var(--primary);
+	color: var(--primary);
+	background: var(--paper);
 }
 
 .footer {
