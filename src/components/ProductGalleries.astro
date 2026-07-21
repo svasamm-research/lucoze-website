@@ -15,60 +15,71 @@ import { GALLERIES } from "../data/flow-galleries";
 
 interface Props {
 	flows: string[];
+	/** Render the cover tiles. Set false to emit only the lightbox <dialog> when
+	 *  another element on the page carries the data-gallery-open triggers. */
+	tiles?: boolean;
 }
-const { flows } = Astro.props;
+const { flows, tiles = true } = Astro.props;
 const shown = flows.map((id) => GALLERIES[id]).filter(Boolean);
 ---
 
-<div class="gallery-grid">
-	{
-		shown.map((flow) => {
-			const cover = screenshotByName[flow.shots[0].name];
-			return (
-				<button
-					type="button"
-					class="gallery-tile"
-					data-gallery-open={flow.id}
-					aria-label={`Open the ${flow.label} gallery — ${flow.shots.length} screens`}
-				>
-					<span class="gallery-tile__frame">
-						{cover && (
-							<Image
-								src={cover}
-								alt={flow.shots[0].alt}
-								widths={[400, 800, 1200]}
-								sizes="(max-width: 600px) 100vw, 340px"
-								quality={80}
-								loading="lazy"
-								class="gallery-tile__img"
-							/>
-						)}
-						<span class="gallery-tile__badge">
-							<svg
-								width="13"
-								height="13"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								aria-hidden="true"
-							>
-								<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-							</svg>
-							{flow.shots.length} screens
+{
+	tiles && (
+		<div class="gallery-grid">
+			{shown.map((flow) => {
+				const cover = screenshotByName[flow.shots[0].name];
+				return (
+					<button
+						type="button"
+						class="gallery-tile"
+						data-gallery-open={flow.id}
+						aria-label={`Open the ${flow.label} gallery — ${flow.shots.length} screens`}
+					>
+						<span class="gallery-tile__frame">
+							<span class="gallery-tile__chrome" aria-hidden="true">
+								<span class="gallery-tile__dot" />
+								<span class="gallery-tile__dot" />
+								<span class="gallery-tile__dot" />
+								<span class="gallery-tile__url">app.lucoze.com</span>
+							</span>
+							{cover && (
+								<Image
+									src={cover}
+									alt={flow.shots[0].alt}
+									widths={[400, 800, 1200]}
+									sizes="(max-width: 600px) 100vw, 340px"
+									quality={80}
+									loading="lazy"
+									class="gallery-tile__img"
+								/>
+							)}
+							<span class="gallery-tile__badge">
+								<svg
+									width="13"
+									height="13"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+								>
+									<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+								</svg>
+								{flow.shots.length} screens
+							</span>
 						</span>
-					</span>
-					<span class="gallery-tile__meta">
-						<strong class="gallery-tile__label">{flow.label}</strong>
-						<span class="gallery-tile__blurb">{flow.blurb}</span>
-					</span>
-				</button>
-			);
-		})
-	}
-</div>
+						<span class="gallery-tile__meta">
+							<strong class="gallery-tile__label">{flow.label}</strong>
+							<span class="gallery-tile__blurb">{flow.blurb}</span>
+						</span>
+					</button>
+				);
+			})}
+		</div>
+	)
+}
 
 <dialog id="galleryLightbox" class="gallery-lb" aria-label="Product screenshots">
 	<div class="gallery-lb__inner" data-gallery-inner>
@@ -155,6 +166,35 @@ const shown = flows.map((id) => GALLERIES[id]).filter(Boolean);
 		transition:
 			transform 0.18s ease,
 			box-shadow 0.18s ease;
+	}
+	.gallery-tile__chrome {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		padding: 8px 12px;
+		background: var(--cream);
+		border-bottom: 1px solid var(--border);
+	}
+	.gallery-tile__dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--border-strong);
+	}
+	.gallery-tile__dot:first-child {
+		background: #e5735b;
+	}
+	.gallery-tile__dot:nth-child(2) {
+		background: #e6b84f;
+	}
+	.gallery-tile__dot:nth-child(3) {
+		background: #6bbf7b;
+	}
+	.gallery-tile__url {
+		margin-left: 8px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--muted);
 	}
 	.gallery-tile__img {
 		display: block;

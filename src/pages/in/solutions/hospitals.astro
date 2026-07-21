@@ -6,33 +6,61 @@ import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
 import Screenshot from "../../../components/Screenshot.astro";
 import ProductGalleries from "../../../components/ProductGalleries.astro";
+import { Image } from "astro:assets";
+import { screenshotByName } from "../../../lib/screenshots";
+import { GALLERIES } from "../../../data/flow-galleries";
 
-const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
+// "What you get" merged with "a look inside": a module carrying a `gallery` id
+// becomes a clickable card that opens that flow's screens. NABH + ABDM have no
+// screens, so they stay static info cards.
+const HOSP_MODULES: { icon: string; title: string; blurb: string; gallery?: string }[] = [
 	{
 		icon: "home",
 		title: "Inpatient + wards",
 		blurb: "Bed map, admission to discharge, IPD billing",
+		gallery: "ipd",
 	},
 	{
 		icon: "calendar",
 		title: "OT scheduling",
 		blurb: "Surgery slots reserve staff + consumables + post-op",
+		gallery: "ot",
 	},
 	{
 		icon: "receipt",
 		title: "Hospital billing",
 		blurb: "Department-level, consolidated, e-invoiced",
+		gallery: "billing",
 	},
 	{
 		icon: "flask",
 		title: "Lab + radiology",
 		blurb: "Sample to report, NABL-ready, outsource handling",
+		gallery: "lab",
 	},
-	{ icon: "pill", title: "Hospital pharmacy", blurb: "Schedule-H/X, multi-store, batch tracking" },
+	{
+		icon: "pill",
+		title: "Hospital pharmacy",
+		blurb: "Schedule-H/X, multi-store, batch tracking",
+		gallery: "pharmacy",
+	},
+	{
+		icon: "activity",
+		title: "Emergency & casualty",
+		blurb: "Fast intake, active cases, disposition",
+		gallery: "emergency",
+	},
+	{
+		icon: "book",
+		title: "Insurance & TPA",
+		blurb: "Cashless pre-auth, claims, settlement",
+		gallery: "insurance",
+	},
 	{
 		icon: "users",
 		title: "HR + payroll",
 		blurb: "30+ staff, doctor incentives, statutory deductions",
+		gallery: "hr",
 	},
 	{
 		icon: "chart",
@@ -45,6 +73,7 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 		blurb: "HFR registered facility, ABHA-linked records",
 	},
 ];
+const galleryIds = HOSP_MODULES.map((m) => m.gallery).filter((g): g is string => !!g);
 ---
 
 <Base
@@ -84,35 +113,55 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string }[] = [
 				<h2 class="t-h2" style="margin-top: 8px;">
 					Everything a 20-100 bed hospital actually runs on.
 				</h2>
+				<p class="t-lead">Tap any module to step through a few real screens.</p>
 			</header>
 			<div class="module-grid">
 				{
-					HOSP_MODULES.map((m) => (
-						<article class="module-card">
-							<div class="module-card__icon">
-								<Icon name={m.icon} size={20} />
-							</div>
-							<div class="module-card__title">{m.title}</div>
-							<div class="module-card__blurb">{m.blurb}</div>
-						</article>
-					))
+					HOSP_MODULES.map((m) => {
+						const g = m.gallery ? GALLERIES[m.gallery] : null;
+						const cover = g ? screenshotByName[g.shots[0].name] : null;
+						if (g && cover) {
+							return (
+								<button
+									type="button"
+									class="module-card module-card--shot"
+									data-gallery-open={m.gallery}
+									aria-label={`${m.title} — see ${g.shots.length} screens`}
+								>
+									<span class="module-card__shot">
+										<Image
+											src={cover}
+											alt={g.shots[0].alt}
+											widths={[380, 760]}
+											sizes="(max-width: 900px) 50vw, 300px"
+											quality={78}
+											loading="lazy"
+										/>
+										<span class="module-card__shot-badge">{g.shots.length} screens</span>
+									</span>
+									<span class="module-card__body">
+										<span class="module-card__icon">
+											<Icon name={m.icon} size={20} />
+										</span>
+										<span class="module-card__title">{m.title}</span>
+										<span class="module-card__blurb">{m.blurb}</span>
+									</span>
+								</button>
+							);
+						}
+						return (
+							<article class="module-card">
+								<div class="module-card__icon">
+									<Icon name={m.icon} size={20} />
+								</div>
+								<div class="module-card__title">{m.title}</div>
+								<div class="module-card__blurb">{m.blurb}</div>
+							</article>
+						);
+					})
 				}
 			</div>
-		</div>
-	</section>
-
-	<section class="section section--tight" aria-labelledby="hosp-gallery-heading">
-		<div class="container">
-			<header class="section-header">
-				<span class="t-eyebrow">A look inside</span>
-				<h2 id="hosp-gallery-heading" class="t-h2" style="margin-top: 8px;">
-					The hospital modules, on screen.
-				</h2>
-				<p class="t-lead">
-					IPD, OT, emergency and insurance — tap any to step through a few real screens.
-				</p>
-			</header>
-			<ProductGalleries flows={["ipd", "ot", "emergency", "insurance"]} />
+			<ProductGalleries flows={galleryIds} tiles={false} />
 		</div>
 	</section>
 

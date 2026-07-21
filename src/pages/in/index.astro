@@ -449,5 +449,14 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			.forEach((a) =>
 				a.addEventListener("click", () => track("Design Partner Apply", { source: "home" })),
 			);
+
+		// "Explore the platform" module link-out — track which module drew the click.
+		document
+			.querySelectorAll<HTMLAnchorElement>(".platform-explore a")
+			.forEach((a) =>
+				a.addEventListener("click", () =>
+					track("Platform Explore Click", { module: a.textContent?.trim() || "" }),
+				),
+			);
 	</script>
 </Base>

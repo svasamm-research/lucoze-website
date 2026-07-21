@@ -195,6 +195,28 @@ export const GALLERIES: Record<string, Gallery> = {
 			},
 		],
 	},
+	hr: {
+		id: "hr",
+		label: "HR & payroll",
+		blurb: "Attendance, statutory payroll and staff records.",
+		shots: [
+			{
+				name: "hr-overview",
+				alt: "HR and payroll overview in Lucoze",
+				caption: "HR overview — headcount, attendance and payroll at a glance.",
+			},
+			{
+				name: "hr-attendance",
+				alt: "Staff attendance in Lucoze",
+				caption: "Attendance captured for a 24x7 facility.",
+			},
+			{
+				name: "hr-payroll",
+				alt: "Running payroll in Lucoze",
+				caption: "Payroll run with statutory PF/ESI/TDS.",
+			},
+		],
+	},
 	insurance: {
 		id: "insurance",
 		label: "Insurance & TPA",

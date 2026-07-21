@@ -60,7 +60,9 @@ const faqLd = {
 		primaryCta={{ href: "/in/demo/", label: "Book a demo" }}
 		secondaryCta={{ href: "/in/contact/", label: "Talk to us" }}
 		statsRow={feature.stats}
-	/>
+	>
+		{galleryId && <ProductGalleries flows={[galleryId]} slot="visual" />}
+	</SubHero>
 
 	<section class="section section--tight">
 		<div class="container">
@@ -79,23 +81,6 @@ const faqLd = {
 			}
 		</div>
 	</section>
-
-	{
-		galleryId && (
-			<section class="section section--tight" aria-labelledby="gallery-heading">
-				<div class="container">
-					<header class="section-header">
-						<span class="t-eyebrow">A look inside</span>
-						<h2 id="gallery-heading" class="t-h2" style="margin-top: 8px;">
-							See {feature.label} in action.
-						</h2>
-						<p class="t-lead">A few real screens — tap to step through.</p>
-					</header>
-					<ProductGalleries flows={[galleryId]} />
-				</div>
-			</section>
-		)
-	}
 
 	<section class="section section--tight">
 		<div class="container">
