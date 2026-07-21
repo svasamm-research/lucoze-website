@@ -24,6 +24,43 @@ jobs:
       - name: Run coverage
         run: npm run test:coverage
 
+  e2e:
+    name: E2E Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm install
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E smoke tests
+        # The Playwright config's webServer builds + serves the site, so this
+        # runs against the real static output.
+        run: npm run test:e2e
+
+  infra:
+    name: nginx Infra Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm install
+
+      - run: npm run build
+
+      - name: Check redirects + security headers
+        run: bash scripts/check-nginx.sh
+
   security:
     name: Security Scan
     runs-on: ubuntu-latest
