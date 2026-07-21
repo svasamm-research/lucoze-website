@@ -18,14 +18,17 @@ interface Props {
 	/** Render the cover tiles. Set false to emit only the lightbox <dialog> when
 	 *  another element on the page carries the data-gallery-open triggers. */
 	tiles?: boolean;
+	/** Hero placement (e.g. a SubHero visual slot): right-align the cover and drop
+	 *  the top gap so it sits away from the hero text. */
+	hero?: boolean;
 }
-const { flows, tiles = true } = Astro.props;
+const { flows, tiles = true, hero = false } = Astro.props;
 const shown = flows.map((id) => GALLERIES[id]).filter(Boolean);
 ---
 
 {
 	tiles && (
-		<div class="gallery-grid">
+		<div class:list={["gallery-grid", hero && "gallery-grid--hero"]}>
 			{shown.map((flow) => {
 				const cover = screenshotByName[flow.shots[0].name];
 				return (
@@ -139,6 +142,17 @@ const shown = flows.map((id) => GALLERIES[id]).filter(Boolean);
 		flex-wrap: wrap;
 		gap: var(--s-5);
 		margin-top: var(--s-8);
+	}
+	/* Hero placement: push the cover to the right, no top gap. On narrow screens
+	   the hero stacks, so left-align there for a natural flow under the text. */
+	.gallery-grid--hero {
+		justify-content: flex-end;
+		margin-top: 0;
+	}
+	@media (max-width: 880px) {
+		.gallery-grid--hero {
+			justify-content: flex-start;
+		}
 	}
 	.gallery-tile {
 		flex: 1 1 280px;
