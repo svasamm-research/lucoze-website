@@ -25,9 +25,13 @@
 		[
 			"Built for a Hindi front desk",
 			"Multilingual patient search handles Hindi, Devanagari and Latin spellings today, with printable Hindi cheat-sheets so new staff aren't lost."
+		],
+		[
+			"Portable records across districts",
+			"Linking ABHA at the first visit keeps a travelling patient's record accessible across districts under ABDM, not stuck in one clinic's register."
 		]
 	],
-	"localContext": "Walk into a Ranchi nursing home off Kanke Road or a clinic in the Bariatu hospital belt and the front desk is working in Hindi, spelling one patient's name three ways across a register, a bill book and a lab pad. In Jamshedpur and Bokaro it's company-hospital OPDs plus a ring of private clinics; in Dhanbad and Deoghar, busy standalone practices. Patients speak Hindi and often a tribal language — Santhali, Ho, Mundari, Nagpuri or Khortha — so names never spell the same twice. Lucoze's patient search copes with that, the interface is rolling out in Hindi first, and support is remote-first from our team in Konnagar, Hooghly — with on-site help for larger hospital rollouts.",
+	"localContext": "Walk into a Ranchi nursing home off Kanke Road or a clinic in the Bariatu hospital belt and the front desk is working in Hindi, spelling one patient's name three ways across a register, a bill book and a lab pad. In Jamshedpur and Bokaro it's company-hospital OPDs plus a ring of private clinics; in Dhanbad and Deoghar, busy standalone practices. Patients speak Hindi and often a tribal language — Santhali, Ho, Mundari, Nagpuri or Khortha — so names never spell the same twice. Lucoze's patient search copes with that, the interface is rolling out in Hindi first, and support is remote-first from our team in Konnagar, Hooghly — with on-site help for larger hospital rollouts. Because so much of the state's care is concentrated in Ranchi, Jamshedpur and Dhanbad while patients travel in from rural districts, a record that only lives in one clinic's register doesn't follow them home. Linking ABHA at the first visit makes that record portable across districts under ABDM, and the system tolerates the patchy connections common outside the main towns rather than freezing when the line drops.",
 	"citiesServed": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro Steel City", "Deoghar", "Hazaribagh"],
 	"faqs": [
 		{
@@ -41,6 +45,10 @@
 		{
 			"q": "Where is our data stored, and can we leave?",
 			"a": "All records sit in Indian data centres, DPDP 2023 compliant. There's no lock-in — export everything to CSV or PDF whenever you like. Start on a 14-day trial and you can be live in about 14 days."
+		},
+		{
+			"q": "Our patients travel between districts for care — will their records follow them?",
+			"a": "Linking an ABHA number at the first visit makes the record portable under ABDM, so a patient seen in Ranchi and later in Dhanbad isn't starting from a blank file. The system also tolerates the patchy connections common outside the main towns, so a dropped line during a rural OPD doesn't stall the front desk."
 		}
 	]
 }

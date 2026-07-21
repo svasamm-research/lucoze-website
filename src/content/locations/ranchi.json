@@ -25,9 +25,13 @@
 		[
 			"A Hindi front desk, handled",
 			"Patient search reads Hindi, Devanagari and Latin spellings today, with printable Hindi cheat-sheets for new staff."
+		],
+		[
+			"Reminders for patients who travel far",
+			"WhatsApp and SMS reminders for appointments and reports cut wasted trips for patients coming in from the districts around Ranchi."
 		]
 	],
-	"localContext": "In a Ranchi nursing home off Kanke Road or a clinic in the Bariatu belt, the front desk runs in Hindi and the same patient gets spelt three ways — once in the register, once on the bill, once on the lab slip. Diagnostic centres in Lalpur and clinics around Harmu have the same split-record problem. Patients speak Hindi and often Santhali, Nagpuri or Khortha, so names rarely land the same twice. Lucoze's multilingual search handles that, the interface is rolling out in Hindi first, and GST billing matches how Ranchi practices actually invoice. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for hospital-scale rollouts.",
+	"localContext": "In a Ranchi nursing home off Kanke Road or a clinic in the Bariatu belt, the front desk runs in Hindi and the same patient gets spelt three ways — once in the register, once on the bill, once on the lab slip. Diagnostic centres in Lalpur and clinics around Harmu have the same split-record problem. Patients speak Hindi and often Santhali, Nagpuri or Khortha, so names rarely land the same twice. Lucoze's multilingual search handles that, the interface is rolling out in Hindi first, and GST billing matches how Ranchi practices actually invoice. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for hospital-scale rollouts. As the capital and a growing tier-2 hub, Ranchi is the referral point for a wide rural catchment, so many patients travel in from surrounding districts for a single appointment — WhatsApp and SMS reminders cut the wasted trips when a slot moves or a report is ready. Billing fits a cash-and-UPI counter rather than assuming cards, and running the clinic and its pharmacy on one system means a patient who came a long way isn't sent back for a second queue.",
 	"citiesServed": [],
 	"faqs": [
 		{
@@ -41,6 +45,10 @@
 		{
 			"q": "Where does our patient data live?",
 			"a": "In Indian data centres, DPDP 2023 compliant, with no lock-in — export to CSV or PDF whenever you want. Try it free for 14 days and you can be live in around 14 days."
+		},
+		{
+			"q": "Many of our patients come from outside Ranchi — can the system help them?",
+			"a": "Yes. WhatsApp and SMS reminders go out for appointments and when a report is ready, so patients travelling in from surrounding districts don't make a wasted trip. Billing works for a cash-and-UPI counter, and because the clinic and pharmacy share one system, someone who came a long way isn't sent to a second queue for their medicines."
 		}
 	]
 }

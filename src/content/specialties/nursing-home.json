@@ -34,6 +34,14 @@
 		{
 			"title": "One bill from admission to discharge",
 			"body": "In most nursing homes the discharge bill is assembled by hand from a bed register, a pharmacy pad and a stack of order slips — which is where money quietly leaks. Lucoze rolls bed charges, pharmacy, lab, OT and doctor fees into one running IPD bill that's ready at discharge, GST-compliant, and clean enough for a Swasthya Sathi or insurance claim."
+		},
+		{
+			"title": "Nursing notes and a discharge summary, not a retype job",
+			"body": "A 24x7 ward runs on nursing observations and a duty roster, and neither belongs in a paper file nobody can find at 2am. In Lucoze the nurses record vitals and observations against the admission itself, and the duty roster shows who is on for each shift. When the patient is ready to leave, the discharge summary is generated from the admission's own records — diagnosis, treatment given, medications — instead of a doctor retyping it from memory. The result is a summary the patient actually walks out with, and a ward log that stays attached to the record rather than lost in a register drawer."
+		},
+		{
+			"title": "Advances and room category, tracked against the running bill",
+			"body": "Most admissions open with an advance deposit, and the bed the patient takes decides the room rent — a general bed and a private cabin aren't billed the same. Lucoze records the advance at admission and draws it down against the running IPD bill as charges accrue, so the front desk can see what's been paid and what's still due at any point instead of guessing. Room and bed category sits on the admission and feeds room rent into the same bill automatically. At discharge the deposit is already netted off, so a top-up or refund is a clear figure, not a bedside argument."
 		}
 	],
 	"faqs": [
@@ -48,6 +56,14 @@
 		{
 			"q": "Where is our patient data stored?",
 			"a": "In Indian data centres, DPDP 2023 compliant, with full CSV/PDF export and no lock-in. Nothing leaves the country."
+		},
+		{
+			"q": "Does Lucoze generate discharge summaries?",
+			"a": "Yes. The discharge summary is built from the admission's own records — diagnosis, treatment given and medications — so a doctor edits and signs it rather than retyping from the file. Nursing observations recorded through the stay sit on the same record, so nothing has to be reconstructed at discharge."
+		},
+		{
+			"q": "Can we take an advance deposit and adjust it at discharge?",
+			"a": "Yes. An advance taken at admission is recorded against the patient and drawn down as the running IPD bill grows, so paid-versus-due stays visible through the stay. At discharge the deposit is already netted off the final bill, leaving a clear top-up or refund figure."
 		}
 	]
 }

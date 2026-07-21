@@ -21,14 +21,16 @@
 		</div>
 		<div class="demo-modal__player">
 			<!--
-			  preload="metadata" — fetches just enough to know duration + dimensions,
-			  doesn't pull the whole 4 MB until the user actually plays.
+			  preload="none" — the modal only opens on an explicit click (then JS
+			  calls .play()), so the video should cost nothing on homepage load, not
+			  even a metadata fetch. The poster covers the closed state. This keeps
+			  the ~135 KB file off the critical path entirely (SEO audit 2026-07-20).
 			  controls — browser-native bar with timer, play/pause, fullscreen, volume.
 			  playsinline — keeps inline on iOS Safari (don't auto-go-fullscreen).
 			-->
 			<video
 				class="demo-modal__video"
-				preload="metadata"
+				preload="none"
 				controls
 				playsinline
 				poster="/demo/pitch-poster.jpg"

@@ -25,9 +25,13 @@
 		[
 			"ABDM, GST and state-scheme ready",
 			"Issue ABHA at first visit, generate GST-compliant invoices, and keep clean records for Swasthya Sathi and insurance claims — without three separate tools."
+		],
+		[
+			"A say in what gets built next",
+			"We're based here and still early, so Bengal clinics in our design-partner programme get their requests built into the product — the roadmap is shaped at front desks in this state, not at a distant HQ."
 		]
 	],
-	"localContext": "We work with clinics and hospitals across the state — the dense OPD belts of Kolkata (Salt Lake, Park Street, Gariahat, EM Bypass) and Howrah, the diagnostic chains of Siliguri and Durgapur, and the multi-doctor chambers of the Hooghly industrial belt. Bengal's healthcare is a mix of standalone chambers, nursing homes, polyclinics and diagnostic centres, and a Bengali-first, cash-first front desk is the common thread. Because Lucoze is built in Konnagar, we can put someone at your front desk during a real four-hour shift — which is where every module we ship actually gets designed. East-India clinics are prioritised in our design-partner programme.",
+	"localContext": "We work with clinics and hospitals across the state — the dense OPD belts of Kolkata (Salt Lake, Park Street, Gariahat, EM Bypass) and Howrah, the diagnostic chains of Siliguri and Durgapur, and the multi-doctor chambers of the Hooghly industrial belt. Bengal's healthcare is a mix of standalone chambers, nursing homes, polyclinics and diagnostic centres, and a Bengali-first, cash-first front desk is the common thread. Because Lucoze is built in Konnagar, we can put someone at your front desk during a real four-hour shift — which is where every module we ship actually gets designed. East-India clinics are prioritised in our design-partner programme. West Bengal is the one state where 'local' isn't a marketing line for us — Lucoze is built in Konnagar, so when a Hooghly or Kolkata clinic signs on, the same people who wrote the software can sit at your front desk and set it up with you, not hand over a login and a PDF. That proximity shows up in the small things: the Bengali name spellings your search has to match, the way a cash-and-UPI counter reconciles at day's end, and the Swasthya Sathi paperwork a nursing home actually files. For clinics in the district towns beyond the metro, onboarding and support run over WhatsApp and video, with a visit arranged when a rollout needs hands on the desk.",
 	"citiesServed": [
 		"Kolkata",
 		"Howrah",
@@ -50,6 +54,10 @@
 		{
 			"q": "Do you provide on-site setup in Kolkata and West Bengal?",
 			"a": "Yes. Because our team is based in Konnagar, Hooghly, we do on-site front-desk training in and around Kolkata, plus data-migration help and 14 days of dedicated support on every plan."
+		},
+		{
+			"q": "We're in a district town, not Kolkata — does the local advantage still apply?",
+			"a": "Yes. Onboarding and support for clinics across the districts — Hooghly, Bardhaman, North Bengal — run over WhatsApp and video, with an on-site visit arranged when a rollout genuinely needs one. Being based in the state means the same time zone, the same language, and a team that understands how a mofussil counter runs."
 		}
 	]
 }

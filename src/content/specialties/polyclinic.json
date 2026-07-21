@@ -34,6 +34,10 @@
 		{
 			"title": "Cash-first billing and same-day reconciliation",
 			"body": "Tier-2 OPD is a cash-and-UPI business with plenty of partial payments. Lucoze keeps cash, UPI and partial settlements on one screen and closes the day with a clean reconciliation, so the owner isn't rebuilding the day's takings from a drawer of receipts. Reminders and confirmations go out in Hindi over WhatsApp."
+		},
+		{
+			"title": "Per-doctor collections, so month-end settlement isn't a manual job",
+			"body": "Most polyclinics run visiting doctors on a revenue-share or a per-visit fee, and the owner rarely consults full-time. At month-end that means sitting with a register and splitting each doctor's share by hand. Lucoze tags every consultation and payment to the doctor who saw the patient, so each doctor's collections add up on their own. The owner also gets a plain end-of-day view — patients seen, money collected, and the split per doctor — so a visiting consultant can be paid out against real numbers instead of a memory of who saw whom. Settlement becomes reading a total, not rebuilding it."
 		}
 	],
 	"faqs": [
@@ -48,6 +52,10 @@
 		{
 			"q": "Does it support cash and UPI with partial payments?",
 			"a": "Yes — cash, UPI and partial settlements are handled on one screen, with an end-of-day reconciliation that closes the books quickly."
+		},
+		{
+			"q": "Can it split collections per doctor for revenue-share settlement?",
+			"a": "Yes. Each consultation and payment is tagged to the doctor who saw the patient, so a visiting doctor's collections total on their own. The end-of-day view shows patients seen, money collected and the per-doctor split, so month-end settlement is read off a total rather than reconciled by hand."
 		}
 	]
 }

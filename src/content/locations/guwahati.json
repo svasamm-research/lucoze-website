@@ -25,9 +25,13 @@
 		[
 			"Data in India, no lock-in",
 			"Every record stays in Indian data centres under DPDP 2023, with CSV and PDF export any time you want out."
+		],
+		[
+			"WhatsApp reminders for travelling patients",
+			"Patients who journey in from across the Northeast get WhatsApp and SMS reminders, so a follow-up or pending report isn't lost to the trip home."
 		]
 	],
-	"localContext": "Guwahati's clinics cluster along GS Road, Zoo Road, Six Mile and the Bhangagarh hospital belt, with Paltan Bazaar busy in the centre. Because patients arrive from across the Northeast, your desk juggles Assamese, Bengali, Hindi and English in a single queue. Lucoze's UI rolls out in Hindi first (Q3 2026), then Bengali — relevant when Barak Valley patients come up from Silchar — then Odia; full Assamese screens aren't ready yet. What works today is multilingual patient search across Bengali, Devanagari and Latin, plus printable local-language cheat-sheets to pin at the front desk. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts.",
+	"localContext": "Guwahati's clinics cluster along GS Road, Zoo Road, Six Mile and the Bhangagarh hospital belt, with Paltan Bazaar busy in the centre. Because patients arrive from across the Northeast, your desk juggles Assamese, Bengali, Hindi and English in a single queue. Lucoze's UI rolls out in Hindi first (Q3 2026), then Bengali — relevant when Barak Valley patients come up from Silchar — then Odia; full Assamese screens aren't ready yet. What works today is multilingual patient search across Bengali, Devanagari and Latin, plus printable local-language cheat-sheets to pin at the front desk. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts. Because many arrivals come off long journeys from Manipur, Nagaland or the Barak Valley and won't return casually for a forgotten report, WhatsApp and SMS reminders cut the no-shows that referral footfall creates. The same record carries from the doctor's chamber to the in-house pharmacy, so a travelling patient collects medicines against the visit without re-registering, and mixed cash-and-UPI payments settle on one bill.",
 	"citiesServed": [],
 	"faqs": [
 		{
@@ -41,6 +45,10 @@
 		{
 			"q": "Can Lucoze handle patients who speak different languages?",
 			"a": "Multilingual patient search works today across Bengali, Devanagari and Latin scripts, and printable cheat-sheets help your staff. The UI itself rolls out in Hindi first (Q3 2026), then Bengali, then Odia; full Assamese screens aren't available yet."
+		},
+		{
+			"q": "Can Lucoze remind patients who've travelled from other Northeast states?",
+			"a": "Yes. Lucoze sends appointment and follow-up reminders over WhatsApp and SMS, which helps when a patient has come in from Manipur, Nagaland or the Barak Valley and won't drop by casually for a pending report. Prescriptions carry from the chamber to the in-house pharmacy on the same record, so nothing is re-entered."
 		}
 	]
 }
