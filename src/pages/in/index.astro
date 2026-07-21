@@ -5,7 +5,7 @@ import TrustStrip from "../../components/TrustStrip.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
 import CompareTable from "../../components/CompareTable.astro";
-import Screenshot from "../../components/Screenshot.astro";
+import ProductTour from "../../components/ProductTour.astro";
 import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
 import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
@@ -103,7 +103,7 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			</div>
 		</section>
 
-		<!-- Product tour — real screenshots via the reusable Screenshot component. -->
+		<!-- Product tour — clickable flow galleries (ProductTour + lightbox). -->
 		<section class="section" id="tour" aria-labelledby="tour-heading">
 			<div class="container">
 				<header class="section-header">
@@ -112,31 +112,10 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 						See the platform, not a promise.
 					</h2>
 					<p class="t-lead">
-						Real screens from Lucoze — the front desk, the finance office, the lab and the wards.
+						Real screens from Lucoze — front desk to wards. Tap any flow to see more.
 					</p>
 				</header>
-				<div class="tour-grid">
-					<Screenshot
-						name="finance"
-						alt="Finance and GST dashboard in Lucoze — P&L, GST returns and the compliance calendar"
-						caption="Finance & GST — P&L, GST returns, TDS and the compliance calendar in one console."
-					/>
-					<Screenshot
-						name="lab-lims"
-						alt="Lab information management in Lucoze — sample-to-report tracking"
-						caption="Lab — sample-to-report tracking with reference-range flagging and a signing trail."
-					/>
-					<Screenshot
-						name="pharmacy"
-						alt="Pharmacy dispensing and inventory in Lucoze"
-						caption="Pharmacy — dispensing from prescriptions, batch/expiry and multi-store stock."
-					/>
-					<Screenshot
-						name="ipd-beds"
-						alt="IPD bed planning and ward management in Lucoze"
-						caption="Hospital — IPD bed planning, admissions and ward management."
-					/>
-				</div>
+				<ProductTour />
 			</div>
 		</section>
 
