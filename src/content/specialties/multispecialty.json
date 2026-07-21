@@ -34,6 +34,14 @@
 		{
 			"title": "Grows without re-training the whole desk",
 			"body": "Adding a doctor is a template, not a project: her schedule, billing rates and referral chain are inherited, so the front desk isn't re-learning the system every time the clinic expands. The interface is available in Hindi, which is what lets a Tier-2 front desk pick it up in an afternoon rather than over weeks."
+		},
+		{
+			"title": "Referrals that don't leave the building",
+			"body": "A GP who wants a patient seen by the in-house dermatologist doesn't write a slip and hope it reaches the right desk. The referral, the GP's notes and the resulting bill stay inside one system, so the dermatologist opens the same timeline the GP was reading and sees why the patient was sent over. Each department keeps its own queue — the cardiologist's list, the derm slots, the OPD line — but one reception registers everyone. A patient moving from one doctor to the next doesn't re-register or start a second file; the front desk hands them along the same visit."
+		},
+		{
+			"title": "Owners can see which departments actually earn",
+			"body": "When a clinic runs several departments and a few visiting consultants on revenue-share, the owner needs to know what each one produced without adding up paper. Because every charge is tagged to the doctor and department that raised it, the numbers separate on their own: OPD versus cardiology, the salaried GP versus the weekend dermatologist. A single visit that touches two departments still resolves into one consolidated bill for the patient, while the revenue behind it splits cleanly across the doctors who did the work — which is what a revenue-share arrangement needs at settlement time."
 		}
 	],
 	"faqs": [
@@ -48,6 +56,14 @@
 		{
 			"q": "Is a Hindi interface available for front-desk staff?",
 			"a": "Yes. The front-desk interface is available in Hindi, which is what lets Tier-2 clinic staff get productive quickly. Bengali and Odia are on the roadmap."
+		},
+		{
+			"q": "What happens when one doctor refers a patient to another in the clinic?",
+			"a": "The referral stays inside Lucoze. The specialist you send the patient to opens the same timeline, reads the referring doctor's notes, and the visit continues without a fresh file or a second registration. Nothing is re-keyed, and no paper slip has to travel across the clinic to the right desk."
+		},
+		{
+			"q": "Can I see revenue by doctor and by department?",
+			"a": "Yes. Every charge is tagged to the doctor and department that raised it, so revenue separates by both without manual totalling. That is useful when visiting consultants work on revenue-share and you need to settle each one's share — even for a single visit that touched two departments and produced one consolidated bill."
 		}
 	]
 }

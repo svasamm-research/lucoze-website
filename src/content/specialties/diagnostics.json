@@ -34,6 +34,14 @@
 		{
 			"title": "Home collection and reference labs, in one view",
 			"body": "Home-collection routes are grouped by city zone for the phlebotomist, and tests sent to an outside reference lab sit in the same patient view as in-house work, tracked to the same turnaround. B2B referrals from hospitals and clinics are invoiced separately, with the revenue split visible per partner."
+		},
+		{
+			"title": "From registration to report, every sample has a status",
+			"body": "A test moves through fixed steps: registration, sample collection, barcoding, processing, result entry, and report delivery. Lucoze records which step each barcoded sample is on, so when a patient or a referring doctor asks where a report is, the front desk answers from the screen instead of walking to the lab bench. At result entry, values are checked against the test's reference range, so out-of-range readings are flagged for the pathologist before the report is signed. Once signed, the report goes back to the referring doctor and the patient by download or WhatsApp, without anyone re-keying it. Home-collection samples join this same chain the moment the phlebotomist marks them collected. Because each step is stamped with who did it and when, the same record answers a where-is-my-report question and forms the traceable trail a NABL-oriented lab is expected to keep."
+		},
+		{
+			"title": "Turnaround time you watch before the patient calls",
+			"body": "Every test has an expected turnaround. Lucoze records when the sample was collected and compares it against that expected time as processing runs, so a sample drifting past its window surfaces on the pending list before the patient rings to ask. The lab chases the delay instead of the front desk absorbing the complaint. The same view covers tests sent to an outside reference lab: the send-out keeps its own expected turnaround, so a slow partner is visible in the same place as in-house work rather than disappearing until the report comes back. Delays become something the lab sees, not something the patient reports."
 		}
 	],
 	"faqs": [
@@ -48,6 +56,14 @@
 		{
 			"q": "How are outsourced/reference-lab tests handled?",
 			"a": "They appear alongside in-house tests in the same patient view and are tracked to the same turnaround, so nothing falls between systems."
+		},
+		{
+			"q": "Can staff tell a patient exactly where their sample is?",
+			"a": "Yes. Each barcoded sample carries the step it is on — collected, in processing, result entered, or dispatched — so the front desk reads the current status off the screen rather than checking with the lab bench. The same status drives the patient's WhatsApp update on dispatch."
+		},
+		{
+			"q": "Does Lucoze flag results that fall outside the reference range?",
+			"a": "At result entry, each value is checked against the test's reference range and out-of-range readings are flagged, so the pathologist sees them before signing. The flag travels with the result into the report that reaches the referring doctor and the patient."
 		}
 	]
 }

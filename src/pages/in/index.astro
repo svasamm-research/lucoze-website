@@ -331,9 +331,7 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 							Book a demo
 							<Icon name="arrow" size={16} class="btn__arrow" />
 						</a>
-						<a href="/in/design-partner/" class="btn btn--ghost btn--lg">
-							Talk to us
-						</a>
+						<a href="/in/design-partner/" class="btn btn--ghost btn--lg"> Talk to us </a>
 					</div>
 				</div>
 			</div>
@@ -351,6 +349,31 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 					name: f.q,
 					acceptedAnswer: { "@type": "Answer", text: f.a },
 				})),
+			})}
+		/>
+		{
+			/* SoftwareApplication for the product itself, so the homepage (the page
+		    most likely to be the entity's canonical result) carries a Product/App
+		    node linked to the Organization. Mirrors /in/pricing/. No aggregateRating
+		    — we don't fabricate reviews. */
+		}
+		<script
+			type="application/ld+json"
+			slot="head"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"@id": "https://lucoze.com/#software",
+				name: "Lucoze Healthcare Management Software",
+				applicationCategory: "HealthApplication",
+				operatingSystem: "Web",
+				url: "https://lucoze.com/in/",
+				publisher: { "@id": "https://lucoze.com/#organization" },
+				offers: [
+					{ "@type": "Offer", name: "Clinic", price: "1499", priceCurrency: "INR" },
+					{ "@type": "Offer", name: "Clinic Pro", price: "2999", priceCurrency: "INR" },
+					{ "@type": "Offer", name: "Hospital", price: "7999", priceCurrency: "INR" },
+				],
 			})}
 		/>
 	</section>
