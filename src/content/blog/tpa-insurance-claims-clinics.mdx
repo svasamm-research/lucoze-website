@@ -15,10 +15,8 @@ cluster: "billing"
 	the workflow, vendor-neutral, so you can see where the leaks are before they cost you.
 </p>
 
-<h2 id="two-paths">Two ways a claim happens</h2>
-<p>
-	Every insured patient reaches you on one of two tracks, and the paperwork differs:
-</p>
+<h2 id="two-paths">What are the two ways a claim happens?</h2>
+<p>Every insured patient reaches you on one of two tracks, and the paperwork differs:</p>
 <ul>
 	<li>
 		<strong>Cashless.</strong> The patient doesn't pay for covered treatment; the insurer (usually
@@ -33,16 +31,14 @@ cluster: "billing"
 		phone call.
 	</li>
 </ul>
-<p>
-	Either way, the money only flows if the paperwork is right. The difference is who chases it.
-</p>
+<p>Either way, the money only flows if the paperwork is right. The difference is who chases it.</p>
 
-<h2 id="pre-auth">Pre-authorisation: get the yes first</h2>
+<h2 id="pre-auth">Why does pre-authorisation come first?</h2>
 <p>
 	For cashless treatment, the single most important step happens before or at admission:{" "}
-	<strong>pre-authorisation</strong>. You send the TPA the patient's details, the proposed treatment,
-	and an estimate, and they approve a covered amount before care proceeds (for planned procedures) or
-	shortly after (for emergencies).
+	<strong>pre-authorisation</strong>. You send the TPA the patient's details, the proposed
+	treatment, and an estimate, and they approve a covered amount before care proceeds (for planned
+	procedures) or shortly after (for emergencies).
 </p>
 <p>
 	Skip or fumble this and the whole claim is at risk. The common failures are predictable: the
@@ -51,7 +47,7 @@ cluster: "billing"
 	pre-auth right and clean, and you've removed most of the reasons a claim gets rejected later.
 </p>
 
-<h2 id="documentation">The documents that must be right</h2>
+<h2 id="documentation">Which documents must be right?</h2>
 <p>
 	Claims live or die on documentation. The exact list varies by insurer and TPA, but the spine of it
 	is consistent — and every item has to be internally consistent with the others:
@@ -76,18 +72,18 @@ cluster: "billing"
 </ul>
 <p>
 	None of this is exotic. The failures are almost always mundane — a mismatch, a missing signature,
-	a number that doesn't add up — caught late, when the patient has left and the file is cold. Getting
-	the billing itemisation clean at the point of care is where a proper{" "}
+	a number that doesn't add up — caught late, when the patient has left and the file is cold.
+	Getting the billing itemisation clean at the point of care is where a proper{" "}
 	<a href="/in/features/billing/">billing system</a> earns its keep; it's also where{" "}
 	<a href="/in/blog/gst-for-clinics/">GST on your invoices</a> and claim documentation have to line
 	up rather than fight each other.
 </p>
 
-<h2 id="submission">Submission and why claims come back</h2>
+<h2 id="submission">Why do claims come back after submission?</h2>
 <p>
-	Once care is done, the claim goes to the TPA or insurer with the full document set. Then you wait —
-	and often, it comes back queried or rejected. The recurring reasons are worth knowing because most
-	are preventable:
+	Once care is done, the claim goes to the TPA or insurer with the full document set. Then you wait
+	— and often, it comes back queried or rejected. The recurring reasons are worth knowing because
+	most are preventable:
 </p>
 <ul>
 	<li>
@@ -112,7 +108,7 @@ cluster: "billing"
 	watching the file. An unwatched query becomes a write-off by default.
 </blockquote>
 
-<h2 id="ageing">Reconciliation and the ageing problem</h2>
+<h2 id="ageing">Why do claims age on your books?</h2>
 <p>
 	Here's where the real money leaks. You submit a claim, and then... nothing. It's not rejected, not
 	paid — it's just sitting there. Multiply that by every insured patient and you have a growing pile
@@ -127,10 +123,10 @@ cluster: "billing"
 </p>
 <p>
 	This is a tracking discipline, not a heroics problem. A claim needs a status the day it's
-	submitted, a follow-up when it goes quiet, and a reconciliation when payment lands so you catch the
-	short-paid ones. Do that consistently and the ageing pile stops growing. Lucoze is built to track
-	each claim's status through this lifecycle — submitted, queried, paid, reconciled — so a stuck
-	claim surfaces as a task instead of hiding in a folder until quarter-end.
+	submitted, a follow-up when it goes quiet, and a reconciliation when payment lands so you catch
+	the short-paid ones. Do that consistently and the ageing pile stops growing. Lucoze is built to
+	track each claim's status through this lifecycle — submitted, queried, paid, reconciled — so a
+	stuck claim surfaces as a task instead of hiding in a folder until quarter-end.
 </p>
 
 <h2 id="schemes">A note on government schemes</h2>
@@ -147,7 +143,7 @@ cluster: "billing"
 <p>
 	Insurance revenue leaks in small, boring ways: a pre-auth that didn't match, a document that was
 	missing, a claim that aged out because no one was tracking it. None of it is dramatic, and all of
-	it is preventable with a consistent workflow and a running view of where every claim stands. If you
-	want to talk through where your clinic's claims are getting stuck,{" "}
+	it is preventable with a consistent workflow and a running view of where every claim stands. If
+	you want to talk through where your clinic's claims are getting stuck,{" "}
 	<a href="/in/contact/">reach out</a> — no pitch attached.
 </p>
