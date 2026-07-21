@@ -34,6 +34,10 @@
 		{
 			"title": "Treatment plans that span months, billed the way patients pay",
 			"body": "A crown, an RCT and a whitening are one clinical plan across several visits, usually paid in instalments. Lucoze keeps the plan, its visits and the running balance on a single record, so the front desk always knows what has been paid and what is due — and the patient sees one coherent bill instead of a separate charge per appointment."
+		},
+		{
+			"title": "Lab work that goes out and has to come back",
+			"body": "Crowns, bridges and dentures leave the clinic for an external dental lab and return days later. That gap is where dental scheduling goes wrong: the second appointment gets booked before the work is back, the patient turns up, and the chair sits idle. Lucoze tracks each lab case as it leaves and when it is due, and ties it to the patient's plan, so the front desk can see whether the crown has returned before it offers a fitting slot. Cases still out with the lab stay visible instead of surfacing only when a patient arrives to an empty tray."
 		}
 	],
 	"faqs": [
@@ -48,6 +52,10 @@
 		{
 			"q": "Does it support instalment (EMI) treatment plans?",
 			"a": "Yes. A multi-visit plan can carry an instalment schedule; each payment is tracked against the plan balance, and the patient receives one consolidated statement rather than per-visit invoices."
+		},
+		{
+			"q": "Can it track work sent to an external dental lab?",
+			"a": "Yes. A crown, bridge or denture sent out is logged as a lab case against the patient's plan, with a due date for its return. The fitting visit can be checked against whether the work is back, so a patient isn't booked before the lab has delivered."
 		}
 	]
 }

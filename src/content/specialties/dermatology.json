@@ -38,6 +38,14 @@
 		{
 			"title": "Packages and recalls that match how derm sells",
 			"body": "Aesthetic work is sold in courses — a laser package over several sessions, maintenance botox on a cycle. Lucoze models the package as one purchase with visits drawn against it, tracks the outstanding balance, and drives category-specific recalls (a biopsy review, a botox top-up, a laser follow-up) over WhatsApp so the calendar fills itself."
+		},
+		{
+			"title": "Photos, consent, and where they live",
+			"body": "Every cosmetic procedure carries a documentation burden — a signed consent for the treatment and dated photographs to show progress. Lucoze attaches before and after images to the visit itself, so they sit on the patient's timeline next to the note rather than in a phone gallery or a separate drive. The consent step is captured at the same point, before the procedure runs, so the record and the sign-off travel together and can be found again when a patient asks about a result a year later. The images and the record stay in Indian data centres, which keeps patient photographs — some of them intimate — inside the country rather than on a foreign photo service."
+		},
+		{
+			"title": "Retail and dispensing, not just treatment",
+			"body": "Most derm clinics sell as well as treat — cosmeceuticals over the counter, a prescribed retinoid dispensed at reception, a sunscreen the doctor recommends by name. That is retail sitting inside a clinic, and it needs real stock levels, not just a price list. Lucoze holds these products in inventory, decrements them when they are billed, and puts them on the same invoice as the consultation or procedure, so a patient who walks out with two products and a peel pays once. The front desk can see what is actually in stock before promising it, and reordering is driven by what has sold rather than a guess at the shelf."
 		}
 	],
 	"faqs": [
@@ -52,6 +60,14 @@
 		{
 			"q": "Does it support multi-session packages like laser courses?",
 			"a": "Yes. A course is one package with a set number of sessions; each visit draws down the package and the remaining balance is always visible to the front desk."
+		},
+		{
+			"q": "Can a package be paid in instalments instead of all upfront?",
+			"a": "Yes. A course can be taken as a single upfront payment or split into instalments, and either way each visit draws down the sessions used against those remaining. The front desk sees both the session balance and the payment balance together, so a half-paid package on its fourth session is never a guess."
+		},
+		{
+			"q": "Can we sell retail products alongside consultations?",
+			"a": "Yes. Cosmeceuticals and dispensed products are held in inventory with real stock levels, and they go on the same invoice as the consultation or procedure. Billing a product decrements its stock, so the front desk knows what is actually available and reordering follows real sales rather than guesswork."
 		}
 	]
 }
