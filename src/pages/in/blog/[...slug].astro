@@ -3,9 +3,10 @@ import { getCollection, render } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import Icon from "../../../components/Icon.astro";
+import { isPublished } from "../../../lib/posts";
 
 export async function getStaticPaths() {
-	const posts = await getCollection("blog");
+	const posts = await getCollection("blog", ({ data }) => isPublished(data));
 	return posts.map((entry) => ({
 		params: { slug: entry.id },
 		props: { entry },
@@ -32,7 +33,7 @@ const CLUSTER_LABELS: Record<string, string> = {
 };
 const clusterPosts = post.cluster
 	? (await getCollection("blog"))
-			.filter((p) => p.data.cluster === post.cluster && p.id !== entry.id && !p.data.draft)
+			.filter((p) => p.data.cluster === post.cluster && p.id !== entry.id && isPublished(p.data))
 			.sort((a, b) => Number(b.data.pillar) - Number(a.data.pillar))
 	: [];
 const clusterLabel = post.cluster ? (CLUSTER_LABELS[post.cluster] ?? post.cluster) : "";
