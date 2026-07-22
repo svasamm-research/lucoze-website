@@ -1127,3 +1127,46 @@
 .content-section + .content-section {
 	border-top: none;
 }
+
+/* ─── Newsletter subscribe form ──────────────────── */
+.subscribe__row {
+	display: flex;
+	gap: var(--s-2);
+	flex-wrap: wrap;
+}
+.subscribe__input {
+	flex: 1;
+	min-width: 0;
+	width: 100%;
+	padding: var(--s-3) var(--s-4);
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
+	font: inherit;
+	background: var(--white);
+}
+.subscribe__btn {
+	white-space: nowrap;
+}
+.subscribe__hp {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+.subscribe__note {
+	font-size: 13px;
+	color: var(--muted);
+	margin-top: var(--s-2);
+}
+.subscribe--band {
+	max-width: 520px;
+}
+.subscribe--footer .subscribe__input {
+	min-width: 180px;
+}
+@media (max-width: 480px) {
+	.subscribe__btn {
+		width: 100%;
+	}
+}
