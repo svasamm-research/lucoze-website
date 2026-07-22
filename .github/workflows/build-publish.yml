@@ -4,7 +4,9 @@
 #   uat-vX.Y.Z  →  UAT build   → svasamm/lucoze-website:uat-vX.Y.Z + :uat-latest  → UAT deploy
 #   vX.Y.Z      →  Prod build  → svasamm/lucoze-website:vX.Y.Z + :latest           → Production deploy (approval gate)
 #
-# Can also be triggered manually via workflow_dispatch for infra rebuilds.
+# Can also be triggered manually via workflow_dispatch for infra rebuilds, and
+# runs weekly (schedule) to rebuild+redeploy prod so drip-published (future-dated)
+# blog posts go live on/after their date — see src/lib/posts.ts.
 #
 # Flow:
 #   Create GitHub Release tagged uat-v1.0.0
@@ -32,6 +34,13 @@ on:
         required: false
         default: "uat-latest"
         type: string
+  schedule:
+    # Weekly PROD rebuild (Mondays 02:00 UTC). Blog posts are drip-published:
+    # a future-dated post only builds once its date <= build time (see
+    # src/lib/posts.ts). This rebuild re-evaluates that at the current date and
+    # redeploys :latest from main, so scheduled posts go live on/after their date
+    # without a manual release. No-op when nothing new is due (same image content).
+    - cron: "0 2 * * 1"
 
 jobs:
   build:
@@ -53,6 +62,9 @@ jobs:
           INPUT_VERSION: ${{ inputs.version }}
         run: |
           VERSION="${RELEASE_TAG:-$INPUT_VERSION}"
+          # schedule event carries no release tag or input → rebuild the prod
+          # floating tag (releases any drip-published posts now past their date).
+          VERSION="${VERSION:-latest}"
 
           if echo "$VERSION" | grep -q "^uat-"; then
             FLOATING_TAG="uat-latest"

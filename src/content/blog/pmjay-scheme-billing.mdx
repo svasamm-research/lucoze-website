@@ -1,0 +1,126 @@
+---
+title: "Getting paid under PMJAY and state health schemes."
+dek: "Government schemes cover a large share of patients in East India — and they run on their own rails. Package rates, pre-auth, and ABHA linkage decide whether the money arrives or ages."
+category: "Billing & GST"
+author: "Mithun K. Singh"
+date: "2026-07-27"
+readMins: 6
+cluster: "billing"
+---
+
+<p>
+	For a lot of small hospitals and nursing homes in eastern India, government schemes aren't a side
+	stream — they're a large part of the patient book. PMJAY and the various state schemes bring volume,
+	but they pay on their own terms: fixed package rates, their own pre-authorisation, their own portal,
+	and increasingly their own dependence on digital identifiers. Treat them like private insurance and
+	you'll be surprised at what lands in the account. This is a practical, vendor-neutral walk through
+	how scheme money actually moves. Rates and rules differ by scheme and state — your State Health
+	Agency's guidelines govern the specifics.
+</p>
+
+<h2 id="empanel">What does empanelment actually get you?</h2>
+<p>
+	You can only bill a scheme if your facility is <strong>empanelled</strong> for it — approved by the
+	State Health Agency (SHA) that runs PMJAY in your state, plus separate empanelment for any state
+	scheme. Empanelment defines which <em>package categories</em> you're allowed to treat and claim (a
+	facility approved for general surgery isn't automatically approved for cardiology), and it's tied to
+	your infrastructure and, often, your accreditation status. It is not a one-time badge: renewals,
+	inspections, and category changes all touch what you can bill, so the empanelment status is
+	operational data, not a certificate in a drawer.
+</p>
+
+<h2 id="packages">Why is package pricing so different from private billing?</h2>
+<p>
+	Private insurance largely pays against an itemised bill. Schemes mostly pay a{" "}
+	<strong>fixed package rate</strong> — a defined amount for a defined procedure under the Health
+	Benefit Package (HBP) master, regardless of what your itemised cost came to. That flips the
+	economics:
+</p>
+<ul>
+	<li>
+		<strong>The package is the ceiling.</strong> If your actual cost runs over, the gap is yours, not
+		the scheme's. Case selection and length-of-stay discipline matter more than they do on a
+		fee-for-service claim.
+	</li>
+	<li>
+		<strong>Picking the right package is the claim.</strong> Choose too low and you under-recover;
+		choose wrong and it's queried or rejected. The package master is large and periodically revised.
+	</li>
+	<li>
+		<strong>Accreditation lifts the rate — measurably.</strong> Under NHA norms, a PM-JAY hospital
+		with <strong>entry-level NABH</strong> is paid <strong>10% above</strong> the base package rate,
+		and one with <strong>full NABH</strong> <strong>15% above</strong>. These stack with other
+		incentives (aspirational-district, teaching-hospital), so accreditation is one of the most
+		concrete reasons a small hospital pursues{" "}
+		<a href="/in/solutions/hospitals/">NABH readiness</a> — it pays for itself in the package rate.
+	</li>
+</ul>
+
+<h2 id="preauth">How does pre-authorisation work on the scheme portal?</h2>
+<p>
+	Like cashless private claims, PM-JAY treatment runs through a <strong>pre-authorisation</strong>,
+	raised on the National Health Authority's <strong>Transaction Management System (TMS)</strong>. The
+	hospital's <strong>Arogya Mitra</strong> verifies the beneficiary, then raises the case with the
+	chosen package, diagnosis, and supporting documents; the State Health Agency reviews it and, for
+	planned admissions, is expected to respond within a defined window (emergencies proceed and are
+	authorised around care). The failure modes echo private insurance — a diagnosis that doesn't match
+	the package, documents that don't support the procedure, an approval treated as a formality — but the
+	portal and the rules are the scheme's own. The discipline that keeps private claims clean, covered in
+	our{" "}
+	<a href="/in/blog/tpa-insurance-claims-clinics/">TPA and insurance claims</a> guide, transfers
+	directly; only the counter changes.
+</p>
+
+<h2 id="abha">Where do ABHA and ABDM fit into scheme billing?</h2>
+<p>
+	Beneficiary verification increasingly leans on digital identifiers, and scheme records tie into the
+	broader ABDM plumbing. If your facility can create and link an{" "}
+	<strong>ABHA</strong> cleanly at the front desk, verification and record-linking are one less place a
+	case stalls. This is where scheme readiness and ABDM readiness stop being separate projects: the
+	same registration hygiene that makes you "ABDM-ready" removes friction from scheme intake. If that
+	plumbing is new to you, start with the{" "}
+	<a href="/in/blog/abdm-abha-guide/">ABDM and ABHA guide</a> and the{" "}
+	<a href="/in/blog/abha-first-visit-front-desk/">front-desk ABHA workflow</a>.
+</p>
+
+<h2 id="ageing">Why does scheme money age, and what stops it?</h2>
+<blockquote>
+	Scheme claims rarely fail loudly. They go quiet — approved, treated, submitted, and then sitting in
+	a queue no one is watching until a cash crunch forces a look.
+</blockquote>
+<p>
+	The receivable problem is the same shape as private insurance, just at scheme scale. A pre-auth
+	raised but not converted to a claim, a claim submitted but short-settled against the package, a
+	query that expired unanswered — each is a small leak, and volume multiplies it. What stops it is a
+	running view of every scheme case by status: pre-auth raised, approved, patient discharged, claim
+	submitted, paid, reconciled. Lucoze is built to carry a case through that lifecycle so a stuck
+	scheme claim surfaces as a task, not as a surprise at quarter-end. The technology doesn't replace
+	the person who follows up — it makes sure they're following up on the right ten cases instead of
+	auditing three hundred.
+</p>
+
+<h2 id="sources">Sources</h2>
+<ul>
+	<li>
+		<a href="https://nha.gov.in/" target="_blank" rel="noopener">National Health Authority (NHA)</a>{" "}
+		— the apex body for AB PM-JAY; publishes the operation manual, the Health Benefit Package master,
+		and the NABH-linked package incentives (entry-level +10%, full +15%).
+	</li>
+	<li>
+		<a href="https://pmjay.gov.in/" target="_blank" rel="noopener">Ayushman Bharat PM-JAY</a>{" "}
+		— the scheme portal for beneficiary verification, empanelment, and the Transaction Management
+		System (TMS) where pre-auth and claims are raised.
+	</li>
+	<li>
+		Your <strong>State Health Agency (SHA)</strong> — runs empanelment, package approvals, and payment
+		in your state; scheme specifics (rates, TAT, state schemes) are set here.
+	</li>
+</ul>
+
+<h2 id="closing">Volume only helps if it gets paid</h2>
+<p>
+	Government schemes can fill a small hospital's beds, but the margin lives in the details: the right
+	empanelled packages, a clean pre-auth, ABHA-smoothed intake, and someone watching the receivables.
+	None of it is dramatic; all of it is trackable. If you want to walk through where your scheme claims
+	are getting stuck, <a href="/in/contact/">get in touch</a> — no pitch attached.
+</p>

@@ -6,6 +6,7 @@
  * Keeping one map guarantees the generator and the <meta> never drift.
  */
 import { getCollection } from "astro:content";
+import { isPublished } from "./posts";
 
 export interface OgPage {
 	title: string;
@@ -93,7 +94,8 @@ const staticPages: Record<string, OgPage> = {
 export const OG_PAGES: Record<string, OgPage> = { ...staticPages };
 
 for (const p of blog)
-	OG_PAGES[`in/blog/${p.id}`] = { title: p.data.title, description: p.data.dek };
+	if (isPublished(p.data))
+		OG_PAGES[`in/blog/${p.id}`] = { title: p.data.title, description: p.data.dek };
 for (const f of features)
 	OG_PAGES[`in/features/${f.data.slug}`] = {
 		title: f.data.label,

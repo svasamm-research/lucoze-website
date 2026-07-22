@@ -45,6 +45,24 @@ Companion to [`growth-plan.md`](growth-plan.md) (the *why*) and
 
 **Exit:** 2 clusters live w/ internal linking · directory reviews flowing · ≥3 outreach pitches sent.
 
+## Phase 2.5 — Cluster depth (breadth gap) `← IN PROGRESS`
+The 4 base clusters shipped at pillar + 2 spokes. abdm was later deepened to 5. This phase brings
+the rest to comparable depth and adds 2 net-new clusters for zero-coverage high-intent themes.
+Voice = existing posts (HTML-authored, question-form H2s, vendor-neutral, YMYL-hedged, capability
+framing on product claims, gov-source citations). **I draft → founder reviews facts locally → UAT.**
+Auto-cross-link via `cluster:`/`pillar:` — add new cluster labels to `CLUSTER_LABELS` in `blog/[...slug].astro`.
+
+| # | Cluster | State | New spokes | Owner |
+|---|---|---|---|---|
+| 2.5a | **billing** (deepen) | ✍️ drafted | pharmacy billing + GST (Schedule H/HSN/e-invoice), PMJAY & state schemes, room-rent sub-limits / short-payment, corporate-camp-credit billing. Dedup'd vs existing TPA + billing-stack posts. → 6 spokes | 🧑‍💻 |
+| 2.5b | **nabh** (new) | ⬜ next | NABH entry-level for small hospitals (pillar), the metrics that matter (ALOS/infection/med-errors), audit-ready dashboards. Ties to hospitals page + PMJAY package-rate lever. Add `nabh` label. | 🧑‍💻 |
+| 2.5c | **dpdp + switching** (deepen) | ⬜ queued | dpdp: retention/deletion, 72-hr breach runbook, WhatsApp-reminder consent. switching: from Tally/Marg pharmacy, competitor-specific migration (tie to /compare). → ~5 each | 🧑‍💻 |
+| 2.5d | **engagement** (new) | ⬜ queued | no-shows & reminders (pillar, ties to ROI calc no-show value), waitlists/overbooking, recall for chronic patients. Add `engagement` label. | 🧑‍💻 |
+
+**Order:** billing (done) → nabh → dpdp+switching → engagement. Each cluster is one review batch on its
+own `content/*` branch; founder reviews locally before UAT. **Exit:** all 4 clusters ≥5 posts, new
+clusters labelled + auto-linking, no fabricated product/metric claims.
+
 ## Phase 3 — Language + regional depth
 | # | Task | Owner | Notes |
 |---|---|---|---|
