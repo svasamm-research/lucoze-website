@@ -3,21 +3,10 @@
  * Screenshot — a real product screenshot in a browser-window frame.
  * Uses astro:assets so images are auto-optimised (WebP/AVIF, responsive
  * srcset, width/height to prevent CLS, lazy by default). Source images live
- * in src/assets/screenshots/*.png; pass `name` = the file name without ".png".
+ * in src/assets/screenshots/; pass `name` = the file name without extension.
  */
 import { Image } from "astro:assets";
-
-const modules = import.meta.glob<{ default: ImageMetadata }>("../assets/screenshots/*.png", {
-	eager: true,
-});
-const byName: Record<string, ImageMetadata> = {};
-for (const path in modules) {
-	const key = path
-		.split("/")
-		.pop()!
-		.replace(/\.png$/, "");
-	byName[key] = modules[path].default;
-}
+import { screenshotByName } from "../lib/screenshots";
 
 interface Props {
 	name: string;
@@ -26,7 +15,7 @@ interface Props {
 	loading?: "eager" | "lazy";
 }
 const { name, alt, caption, loading = "lazy" } = Astro.props;
-const img = byName[name];
+const img = screenshotByName[name];
 ---
 
 {

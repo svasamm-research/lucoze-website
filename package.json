@@ -13,11 +13,14 @@
 		"dev:clean": "rm -rf .astro node_modules/.vite && astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"test:e2e": "playwright test",
+		"test:infra": "bash scripts/check-nginx.sh"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.0.0",
 		"@commitlint/config-conventional": "^19.0.0",
+		"@playwright/test": "^1.61.1",
 		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
 		"husky": "^9.0.0",

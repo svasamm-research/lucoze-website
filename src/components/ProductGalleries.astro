@@ -1,0 +1,463 @@
+---
+/**
+ * ProductGalleries — a row of clickable flow tiles that open a lightbox gallery
+ * of that flow's screens. Reusable per page: pass `flows` = the gallery ids to
+ * show (one on a feature page, several on a solutions page). One native <dialog>
+ * holds every requested flow's slides; only the active flow + slide are shown.
+ * Gallery images are loading="lazy" inside the hidden dialog, so they cost
+ * nothing until a gallery is opened.
+ *
+ * Use once per page (renders a single #galleryLightbox).
+ */
+import { Image } from "astro:assets";
+import { screenshotByName } from "../lib/screenshots";
+import { GALLERIES } from "../data/flow-galleries";
+
+interface Props {
+	flows: string[];
+	/** Render the cover tiles. Set false to emit only the lightbox <dialog> when
+	 *  another element on the page carries the data-gallery-open triggers. */
+	tiles?: boolean;
+	/** Hero placement (e.g. a SubHero visual slot): right-align the cover and drop
+	 *  the top gap so it sits away from the hero text. */
+	hero?: boolean;
+}
+const { flows, tiles = true, hero = false } = Astro.props;
+const shown = flows.map((id) => GALLERIES[id]).filter(Boolean);
+---
+
+{
+	tiles && (
+		<div class:list={["gallery-grid", hero && "gallery-grid--hero"]}>
+			{shown.map((flow) => {
+				const cover = screenshotByName[flow.shots[0].name];
+				return (
+					<button
+						type="button"
+						class="gallery-tile"
+						data-gallery-open={flow.id}
+						aria-label={`Open the ${flow.label} gallery — ${flow.shots.length} screens`}
+					>
+						<span class="gallery-tile__frame">
+							<span class="gallery-tile__chrome" aria-hidden="true">
+								<span class="gallery-tile__dot" />
+								<span class="gallery-tile__dot" />
+								<span class="gallery-tile__dot" />
+								<span class="gallery-tile__url">app.lucoze.com</span>
+							</span>
+							{cover && (
+								<Image
+									src={cover}
+									alt={flow.shots[0].alt}
+									widths={[400, 800, 1200]}
+									sizes="(max-width: 600px) 100vw, 340px"
+									quality={80}
+									loading="lazy"
+									class="gallery-tile__img"
+								/>
+							)}
+							<span class="gallery-tile__badge">
+								<svg
+									width="13"
+									height="13"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+								>
+									<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+								</svg>
+								{flow.shots.length} screens
+							</span>
+						</span>
+						<span class="gallery-tile__meta">
+							<strong class="gallery-tile__label">{flow.label}</strong>
+							<span class="gallery-tile__blurb">{flow.blurb}</span>
+						</span>
+					</button>
+				);
+			})}
+		</div>
+	)
+}
+
+<dialog id="galleryLightbox" class="gallery-lb" aria-label="Product screenshots">
+	<div class="gallery-lb__inner" data-gallery-inner>
+		<button class="gallery-lb__close" type="button" data-gallery-close aria-label="Close gallery">
+			&times;
+		</button>
+		<button
+			class="gallery-lb__nav gallery-lb__nav--prev"
+			type="button"
+			data-gallery-prev
+			aria-label="Previous screen"
+		>
+			&#8249;
+		</button>
+		<div class="gallery-lb__stage" data-gallery-stage>
+			{
+				shown.map((flow) => (
+					<div class="gallery-lb__group" data-flow={flow.id} hidden>
+						{flow.shots.map((shot, i) => {
+							const img = screenshotByName[shot.name];
+							return (
+								img && (
+									<figure class="gallery-lb__slide" data-idx={i} hidden={i !== 0}>
+										<Image
+											src={img}
+											alt={shot.alt}
+											widths={[600, 900, 1400, 1800]}
+											sizes="(max-width: 900px) 92vw, 900px"
+											quality={82}
+											loading="lazy"
+											class="gallery-lb__img"
+										/>
+										<figcaption class="gallery-lb__caption">{shot.caption}</figcaption>
+									</figure>
+								)
+							);
+						})}
+					</div>
+				))
+			}
+		</div>
+		<button
+			class="gallery-lb__nav gallery-lb__nav--next"
+			type="button"
+			data-gallery-next
+			aria-label="Next screen"
+		>
+			&#8250;
+		</button>
+		<div class="gallery-lb__counter" data-gallery-counter aria-live="polite"></div>
+	</div>
+</dialog>
+
+<style>
+	.gallery-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-5);
+		margin-top: var(--s-8);
+	}
+	/* Hero placement: push the cover to the right, no top gap. On narrow screens
+	   the hero stacks, so left-align there for a natural flow under the text. */
+	.gallery-grid--hero {
+		justify-content: flex-end;
+		margin-top: 0;
+	}
+	@media (max-width: 880px) {
+		.gallery-grid--hero {
+			justify-content: flex-start;
+		}
+	}
+	.gallery-tile {
+		flex: 1 1 280px;
+		max-width: 360px;
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-3);
+		padding: 0;
+		border: 0;
+		background: none;
+		text-align: left;
+		cursor: pointer;
+		min-width: 0;
+		font: inherit;
+		color: inherit;
+	}
+	.gallery-tile__frame {
+		position: relative;
+		display: block;
+		border-radius: var(--r-lg);
+		overflow: hidden;
+		border: 1px solid var(--border-strong);
+		box-shadow: var(--shadow-lg);
+		background: var(--white);
+		transition:
+			transform 0.18s ease,
+			box-shadow 0.18s ease;
+	}
+	.gallery-tile__chrome {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		padding: 8px 12px;
+		background: var(--cream);
+		border-bottom: 1px solid var(--border);
+	}
+	.gallery-tile__dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--border-strong);
+	}
+	.gallery-tile__dot:first-child {
+		background: #e5735b;
+	}
+	.gallery-tile__dot:nth-child(2) {
+		background: #e6b84f;
+	}
+	.gallery-tile__dot:nth-child(3) {
+		background: #6bbf7b;
+	}
+	.gallery-tile__url {
+		margin-left: 8px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--muted);
+	}
+	.gallery-tile__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 11;
+		object-fit: cover;
+		object-position: top;
+	}
+	.gallery-tile__badge {
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 5px 10px;
+		border-radius: 999px;
+		background: rgba(31, 29, 26, 0.82);
+		color: #fff;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.02em;
+		backdrop-filter: blur(4px);
+	}
+	.gallery-tile__meta {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding: 0 2px;
+	}
+	.gallery-tile__label {
+		color: var(--ink);
+		font-family: var(--font-display);
+		font-size: 16px;
+	}
+	.gallery-tile__blurb {
+		color: var(--muted);
+		font-size: var(--t-sm);
+		line-height: 1.4;
+	}
+	.gallery-tile:hover .gallery-tile__frame,
+	.gallery-tile:focus-visible .gallery-tile__frame {
+		transform: translateY(-3px);
+		box-shadow: var(--shadow-xl);
+	}
+	.gallery-tile:focus-visible .gallery-tile__frame {
+		outline: 2px solid var(--primary);
+		outline-offset: 2px;
+	}
+
+	/* ---- lightbox ---- */
+	.gallery-lb {
+		border: 0;
+		padding: 0;
+		background: transparent;
+		max-width: 100vw;
+		max-height: 100vh;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.gallery-lb::backdrop {
+		background: rgba(20, 18, 16, 0.86);
+	}
+	/* The inner grid centres the image; clicking anywhere on it (outside the
+	   image/caption/controls) closes — the JS keys off .gallery-lb__slide. */
+	.gallery-lb__inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: grid;
+		place-items: center;
+		padding: clamp(12px, 4vw, 48px);
+		box-sizing: border-box;
+		cursor: zoom-out;
+	}
+	.gallery-lb__stage {
+		max-width: 960px;
+		width: 100%;
+	}
+	.gallery-lb__slide {
+		margin: 0;
+		cursor: default;
+	}
+	.gallery-lb__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 78vh;
+		object-fit: contain;
+		border-radius: var(--r-md);
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+		background: var(--white);
+	}
+	.gallery-lb__caption {
+		margin-top: var(--s-3);
+		text-align: center;
+		color: rgba(255, 255, 255, 0.86);
+		font-size: var(--t-sm);
+		line-height: 1.45;
+	}
+	.gallery-lb__close,
+	.gallery-lb__nav {
+		position: absolute;
+		z-index: 2;
+		display: grid;
+		place-items: center;
+		border: 0;
+		cursor: pointer;
+		color: #fff;
+		background: rgba(255, 255, 255, 0.12);
+		border-radius: 999px;
+		transition: background 0.15s ease;
+	}
+	.gallery-lb__close:hover,
+	.gallery-lb__nav:hover {
+		background: rgba(255, 255, 255, 0.24);
+	}
+	.gallery-lb__close {
+		top: clamp(10px, 3vw, 20px);
+		right: clamp(10px, 3vw, 20px);
+		width: 40px;
+		height: 40px;
+		font-size: 26px;
+		line-height: 1;
+	}
+	.gallery-lb__nav {
+		top: 50%;
+		transform: translateY(-50%);
+		width: 44px;
+		height: 44px;
+		font-size: 30px;
+		line-height: 1;
+	}
+	.gallery-lb__nav--prev {
+		left: clamp(6px, 2vw, 24px);
+	}
+	.gallery-lb__nav--next {
+		right: clamp(6px, 2vw, 24px);
+	}
+	.gallery-lb__counter {
+		position: absolute;
+		bottom: clamp(10px, 3vw, 20px);
+		left: 50%;
+		transform: translateX(-50%);
+		color: rgba(255, 255, 255, 0.7);
+		font-family: var(--font-mono);
+		font-size: 12px;
+	}
+	.gallery-lb[data-single] .gallery-lb__nav,
+	.gallery-lb[data-single] .gallery-lb__counter {
+		display: none;
+	}
+	@media (max-width: 560px) {
+		.gallery-lb__nav {
+			width: 38px;
+			height: 38px;
+			font-size: 24px;
+		}
+		.gallery-lb__img {
+			max-height: 68vh;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.gallery-tile__frame,
+		.gallery-lb__close,
+		.gallery-lb__nav {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	import { track } from "../lib/analytics";
+
+	const dialog = document.getElementById("galleryLightbox") as HTMLDialogElement | null;
+
+	if (dialog) {
+		const groups = new Map<string, HTMLElement>();
+		dialog
+			.querySelectorAll<HTMLElement>("[data-flow]")
+			.forEach((g) => groups.set(g.dataset.flow!, g));
+		const counter = dialog.querySelector<HTMLElement>("[data-gallery-counter]");
+
+		let flowId = "";
+		let idx = 0;
+
+		const slidesOf = (id: string) =>
+			Array.from(groups.get(id)?.querySelectorAll<HTMLElement>(".gallery-lb__slide") ?? []);
+
+		function render() {
+			const slides = slidesOf(flowId);
+			if (!slides.length) return;
+			idx = (idx + slides.length) % slides.length; // wrap
+			slides.forEach((s, i) => (s.hidden = i !== idx));
+			if (counter) counter.textContent = `${idx + 1} / ${slides.length}`;
+			dialog!.toggleAttribute("data-single", slides.length < 2);
+		}
+
+		function open(id: string) {
+			const group = groups.get(id);
+			if (!group) return;
+			groups.forEach((g) => (g.hidden = g !== group));
+			flowId = id;
+			idx = 0;
+			render();
+			dialog!.showModal();
+			track("Gallery Opened", { flow: id });
+		}
+
+		function step(delta: number) {
+			idx += delta;
+			render();
+		}
+
+		document.querySelectorAll<HTMLElement>("[data-gallery-open]").forEach((btn) => {
+			btn.addEventListener("click", () => open(btn.dataset.galleryOpen!));
+		});
+		dialog.querySelector("[data-gallery-prev]")?.addEventListener("click", () => step(-1));
+		dialog.querySelector("[data-gallery-next]")?.addEventListener("click", () => step(1));
+
+		// Close on the × button, or on any click that isn't the image/caption or a
+		// nav arrow (i.e. clicking outside the image closes). Native <dialog> also
+		// closes on Esc.
+		dialog.addEventListener("click", (e) => {
+			const t = e.target as HTMLElement;
+			if (t.closest("[data-gallery-close]")) return dialog.close();
+			if (!t.closest(".gallery-lb__slide") && !t.closest(".gallery-lb__nav")) dialog.close();
+		});
+
+		dialog.addEventListener("keydown", (e) => {
+			if (e.key === "ArrowLeft") step(-1);
+			else if (e.key === "ArrowRight") step(1);
+		});
+
+		// Touch swipe.
+		const stage = dialog.querySelector<HTMLElement>("[data-gallery-stage]");
+		let startX = 0;
+		stage?.addEventListener("touchstart", (e) => (startX = e.changedTouches[0].clientX), {
+			passive: true,
+		});
+		stage?.addEventListener(
+			"touchend",
+			(e) => {
+				const dx = e.changedTouches[0].clientX - startX;
+				if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+			},
+			{ passive: true },
+		);
+	}
+</script>
