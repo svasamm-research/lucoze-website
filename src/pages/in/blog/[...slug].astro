@@ -13,10 +13,15 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await render(entry);
+const { Content } = await render(entry);
 const post = entry.data;
 
-const toc = headings.filter((h) => h.depth === 2);
+// Posts author section headings as HTML `<h2 id="…">` (not Markdown `##`), so
+// Astro's `headings` export is empty. Build the "In this post" TOC from the raw
+// MDX body instead — every H2 carries a stable id we anchor to.
+const toc = [...(entry.body ?? "").matchAll(/<h2[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/g)].map(
+	(m) => ({ slug: m[1], text: m[2].replace(/<[^>]+>/g, "").trim() }),
+);
 
 // Topic-cluster cross-linking: other posts in the same cluster, pillar first.
 const CLUSTER_LABELS: Record<string, string> = {
