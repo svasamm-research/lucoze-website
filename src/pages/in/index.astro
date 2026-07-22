@@ -5,11 +5,15 @@ import TrustStrip from "../../components/TrustStrip.astro";
 import Icon from "../../components/Icon.astro";
 import Faq from "../../components/Faq.astro";
 import CompareTable from "../../components/CompareTable.astro";
-import Screenshot from "../../components/Screenshot.astro";
 import SpecialtyVisual from "../../components/visuals/SpecialtyVisual.astro";
 import RoiCalculator from "../../components/islands/RoiCalculator.tsx";
 import { DIFF_ROWS, HOME_FAQS } from "../../data/home-content.ts";
 import { SPECIALTY_PILLS } from "../../data/specialties.ts";
+
+// Which specialty is selected when the page loads.
+const DEFAULT_SPECIALTY = "diag";
+const defaultCaption =
+	SPECIALTY_PILLS.find((s) => s.id === DEFAULT_SPECIALTY)?.caption ?? SPECIALTY_PILLS[0].caption;
 ---
 
 <Base
@@ -37,16 +41,19 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 
 			<div class="specialty" role="tablist" aria-label="Specialty selector">
 				{
-					SPECIALTY_PILLS.map((s, i) => (
+					SPECIALTY_PILLS.map((s) => (
 						<button
 							type="button"
 							role="tab"
-							aria-selected={i === 0}
+							aria-selected={s.id === DEFAULT_SPECIALTY}
 							aria-controls={`specialty-panel-${s.id}`}
 							id={`specialty-tab-${s.id}`}
 							data-specialty-pill={s.id}
 							data-specialty-caption-for={s.caption}
-							class:list={["specialty__btn", i === 0 && "specialty__btn--active"]}
+							class:list={[
+								"specialty__btn",
+								s.id === DEFAULT_SPECIALTY && "specialty__btn--active",
+							]}
 						>
 							<Icon name={s.icon} class="specialty__btn-icon" />
 							{s.label}
@@ -55,17 +62,17 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 				}
 			</div>
 
-			<p class="product-caption" data-specialty-caption>{SPECIALTY_PILLS[0].caption}</p>
+			<p class="product-caption" data-specialty-caption>{defaultCaption}</p>
 
 			<div class="product-preview-placeholder">
 				{
-					SPECIALTY_PILLS.map((s, i) => (
+					SPECIALTY_PILLS.map((s) => (
 						<div
 							data-specialty-visual={s.id}
 							role="tabpanel"
 							id={`specialty-panel-${s.id}`}
 							aria-labelledby={`specialty-tab-${s.id}`}
-							hidden={i !== 0}
+							hidden={s.id !== DEFAULT_SPECIALTY}
 						>
 							<SpecialtyVisual kind={s.visualKind} />
 						</div>
@@ -103,7 +110,8 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			</div>
 		</section>
 
-		<!-- Product tour — real screenshots via the reusable Screenshot component. -->
+		<!-- Explore the platform — link-out to per-module galleries on the feature
+		     and hospital pages (home stays light; galleries live in context). -->
 		<section class="section" id="tour" aria-labelledby="tour-heading">
 			<div class="container">
 				<header class="section-header">
@@ -112,31 +120,17 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 						See the platform, not a promise.
 					</h2>
 					<p class="t-lead">
-						Real screens from Lucoze — the front desk, the finance office, the lab and the wards.
+						Real screens for every part of the practice. Open the module that matters to you.
 					</p>
 				</header>
-				<div class="tour-grid">
-					<Screenshot
-						name="finance"
-						alt="Finance and GST dashboard in Lucoze — P&L, GST returns and the compliance calendar"
-						caption="Finance & GST — P&L, GST returns, TDS and the compliance calendar in one console."
-					/>
-					<Screenshot
-						name="lab-lims"
-						alt="Lab information management in Lucoze — sample-to-report tracking"
-						caption="Lab — sample-to-report tracking with reference-range flagging and a signing trail."
-					/>
-					<Screenshot
-						name="pharmacy"
-						alt="Pharmacy dispensing and inventory in Lucoze"
-						caption="Pharmacy — dispensing from prescriptions, batch/expiry and multi-store stock."
-					/>
-					<Screenshot
-						name="ipd-beds"
-						alt="IPD bed planning and ward management in Lucoze"
-						caption="Hospital — IPD bed planning, admissions and ward management."
-					/>
-				</div>
+				<nav class="platform-explore" aria-label="Explore the platform by module">
+					<a href="/in/features/appointments/">Front office</a>
+					<a href="/in/features/patient-records/">Clinical records</a>
+					<a href="/in/features/lab/">Laboratory</a>
+					<a href="/in/features/pharmacy/">Pharmacy</a>
+					<a href="/in/features/billing/">Billing &amp; GST</a>
+					<a href="/in/solutions/hospitals/">Hospital — IPD, OT, emergency, TPA</a>
+				</nav>
 			</div>
 		</section>
 
@@ -155,8 +149,8 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 				</header>
 				<RoiCalculator client:visible />
 				<div style="text-align: center; margin-top: var(--s-8);">
-					<a href="/in/signup/" class="btn btn--accent btn--lg btn--wrap">
-						Apply these savings to my clinic — start trial
+					<a href="/in/demo/" class="btn btn--accent btn--lg btn--wrap">
+						Apply these savings to my clinic — Book a demo
 						<Icon name="arrow" size={16} class="btn__arrow" />
 					</a>
 				</div>
@@ -462,6 +456,15 @@ import { SPECIALTY_PILLS } from "../../data/specialties.ts";
 			.querySelectorAll<HTMLAnchorElement>('a[href="/in/design-partner/"]')
 			.forEach((a) =>
 				a.addEventListener("click", () => track("Design Partner Apply", { source: "home" })),
+			);
+
+		// "Explore the platform" module link-out — track which module drew the click.
+		document
+			.querySelectorAll<HTMLAnchorElement>(".platform-explore a")
+			.forEach((a) =>
+				a.addEventListener("click", () =>
+					track("Platform Explore Click", { module: a.textContent?.trim() || "" }),
+				),
 			);
 	</script>
 </Base>

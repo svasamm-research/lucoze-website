@@ -1154,17 +1154,50 @@
 }
 
 /* ════════ FOOTER ════════════════════════════════ */
-/* Product-tour gallery — 2-up grid of Screenshot frames. */
-.tour-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: var(--s-8);
+/* Homepage "explore the platform" — module link-out (galleries live on the
+   feature/hospital pages, not here). Pill links, wrap on small screens. */
+.platform-explore {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--s-3);
 	margin-top: var(--s-8);
 }
-@media (max-width: 760px) {
-	.tour-grid {
-		grid-template-columns: 1fr;
-	}
+.platform-explore a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 18px;
+	border-radius: 999px;
+	border: 1px solid var(--border-strong);
+	background: var(--white);
+	color: var(--ink);
+	font-size: var(--t-sm);
+	font-weight: 600;
+	box-shadow: var(--shadow-sm);
+	transition:
+		border-color var(--tr-fast),
+		color var(--tr-fast),
+		background var(--tr-fast),
+		transform var(--tr-fast),
+		box-shadow var(--tr-fast);
+}
+/* Arrow affordance so the pills read as "open this". */
+.platform-explore a::after {
+	content: "→";
+	font-family: var(--font-mono);
+	color: var(--primary);
+	transition: transform var(--tr-fast);
+}
+.platform-explore a:hover {
+	border-color: var(--primary);
+	color: var(--primary);
+	background: var(--paper);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
+}
+.platform-explore a:hover::after {
+	transform: translateX(3px);
 }
 
 .footer {

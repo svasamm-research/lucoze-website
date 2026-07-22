@@ -598,6 +598,14 @@
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	gap: var(--s-4);
 }
+/* Related-posts ("More in this series"): auto-fill (not auto-fit) keeps the
+   column tracks, so 1-2 related posts stay card-width instead of stretching to
+   half/full row. auto-fit stays the default elsewhere where a 2-card grid is
+   meant to span (e.g. solutions "Clinic or hospital"). */
+.module-grid--series {
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	justify-content: start;
+}
 .module-card {
 	display: flex;
 	flex-direction: column;
@@ -614,6 +622,52 @@
 	border-color: var(--ink);
 	transform: translateY(-2px);
 	box-shadow: var(--shadow-md);
+}
+/* Clickable module card whose cover screenshot opens the flow gallery. Image
+   sits edge-to-edge on top; icon/title/blurb move into a padded body. */
+.module-card--shot {
+	padding: 0;
+	overflow: hidden;
+	cursor: pointer;
+	text-align: left;
+	font: inherit;
+}
+.module-card__shot {
+	position: relative;
+	display: block;
+	aspect-ratio: 16 / 10;
+	background: var(--cream);
+	border-bottom: 1px solid var(--border);
+}
+.module-card__shot img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+	display: block;
+}
+.module-card__shot-badge {
+	position: absolute;
+	right: 8px;
+	bottom: 8px;
+	padding: 4px 9px;
+	border-radius: 999px;
+	background: rgba(31, 29, 26, 0.82);
+	color: #fff;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	letter-spacing: 0.02em;
+	backdrop-filter: blur(4px);
+}
+.module-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--s-2);
+	padding: var(--s-5);
+}
+.module-card--shot:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
 }
 .module-card__icon {
 	width: 40px;
@@ -765,9 +819,79 @@
 }
 
 /* ─── Blog index cards ───────────────────────── */
+/* Blog filter + sort bar. */
+.blog-controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--s-4);
+	margin-bottom: var(--s-8);
+	padding-bottom: var(--s-5);
+	border-bottom: 1px solid var(--border);
+}
+.blog-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s-2);
+}
+.blog-filter {
+	padding: 7px 15px;
+	border-radius: 999px;
+	border: 1px solid var(--border-strong);
+	background: var(--white);
+	color: var(--ink-soft);
+	font: inherit;
+	font-size: var(--t-sm);
+	font-weight: 500;
+	cursor: pointer;
+	transition:
+		border-color var(--tr-fast),
+		color var(--tr-fast),
+		background var(--tr-fast);
+}
+.blog-filter:hover {
+	border-color: var(--primary);
+	color: var(--primary);
+}
+.blog-filter--active {
+	background: var(--ink);
+	border-color: var(--ink);
+	color: var(--white);
+}
+.blog-sort {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--s-2);
+	flex-shrink: 0;
+}
+.blog-sort__label {
+	font-size: var(--t-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--muted);
+	font-family: var(--font-mono);
+}
+.blog-sort select {
+	padding: 8px 12px;
+	border-radius: var(--r-md);
+	border: 1px solid var(--border-strong);
+	background: var(--white);
+	color: var(--ink);
+	font: inherit;
+	font-size: var(--t-sm);
+	cursor: pointer;
+}
+.blog-empty {
+	text-align: center;
+	color: var(--muted);
+	padding: var(--s-8) 0;
+}
 .blog-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	/* auto-fill (not auto-fit): keep the column tracks so a single filtered result
+	   stays card-width instead of stretching across the whole row. */
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: var(--s-5);
 }
 .blog-card {
@@ -779,6 +903,11 @@
 	padding: var(--s-6);
 	transition: all var(--tr-fast);
 	height: 100%;
+}
+/* The filter sets [hidden]; author display:flex would otherwise beat the UA
+   [hidden]{display:none}, so a card stays visible. Guard it. */
+.blog-card[hidden] {
+	display: none;
 }
 .blog-card:hover {
 	border-color: var(--ink);

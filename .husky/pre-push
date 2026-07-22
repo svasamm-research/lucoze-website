@@ -1,9 +1,21 @@
 #!/usr/bin/env sh
 
-npx jest
+npx jest || exit 1
 
-# Verify the Docker image builds successfully before pushing.
-# Catches issues (e.g. missing files in COPY) that only surface at build time.
+# E2E smoke tests (Playwright, against the built site). Skips gracefully if the
+# browser isn't installed yet, so a fresh clone can push after running once:
+#   npx playwright install chromium
+PW_CACHE="$HOME/.cache/ms-playwright"
+[ -d "$HOME/Library/Caches/ms-playwright" ] && PW_CACHE="$HOME/Library/Caches/ms-playwright"
+if [ -d "$PW_CACHE" ] && ls "$PW_CACHE" 2>/dev/null | grep -q chromium; then
+	echo "Running E2E smoke tests..."
+	npx playwright test || exit 1
+else
+	echo "⚠  Playwright browser not installed — skipping E2E (run: npx playwright install chromium)"
+fi
+
+# Verify the Docker image builds, then run the nginx infra check (redirects +
+# security headers) against the real image.
 if command -v docker >/dev/null 2>&1; then
 	echo "Running Docker build check..."
 	if ! docker build -t lucoze-website:pre-push-check . --quiet; then
@@ -13,6 +25,10 @@ if command -v docker >/dev/null 2>&1; then
 	fi
 	docker rmi lucoze-website:pre-push-check >/dev/null 2>&1 || true
 	echo "✓  Docker build passed."
+
+	echo "Running nginx infra check..."
+	npm run build >/dev/null 2>&1 || { echo "✗  build failed"; exit 1; }
+	sh scripts/check-nginx.sh || exit 1
 else
-	echo "⚠  Docker not found — skipping build check."
+	echo "⚠  Docker not found — skipping build + nginx checks."
 fi

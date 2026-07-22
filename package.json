@@ -13,11 +13,14 @@
 		"dev:clean": "rm -rf .astro node_modules/.vite && astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"test:e2e": "playwright test",
+		"test:infra": "bash scripts/check-nginx.sh"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.0.0",
 		"@commitlint/config-conventional": "^19.0.0",
+		"@playwright/test": "^1.61.1",
 		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
 		"husky": "^9.0.0",
@@ -39,6 +42,9 @@
 		"picomatch@>=4.0.0 <4.0.4": "4.0.4",
 		"picomatch@>=2.0.0 <3.0.0": "2.3.2",
 		"devalue@<5.8.1": "5.8.1",
-		"vite@<7.3.5": "^7.3.5"
+		"vite@<7.3.5": "^7.3.5",
+		"sharp@<0.35.0": "^0.35.0",
+		"svgo@<4.0.2": "4.0.2",
+		"fast-uri@<3.1.4": "3.1.4"
 	}
 }
