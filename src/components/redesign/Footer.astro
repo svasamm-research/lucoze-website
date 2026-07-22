@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Logo from "../Logo.astro";
 import Icon from "../Icon.astro";
+import SubscribeForm from "../SubscribeForm.astro";
 import { PHONE, PHONE_TEL, SALES_EMAIL } from "../../data/contact";
 
 const year = new Date().getFullYear();
@@ -88,6 +89,10 @@ const citiesFor = (stateName: string) =>
 				<a href="/in/blog/">Blog</a>
 				<a href="/in/careers/">Careers</a>
 				<a href="/in/contact/">Contact</a>
+				<div class="footer__newsletter">
+					<span class="footer__newsletter-label">Follow the blog</span>
+					<SubscribeForm variant="footer" placement="footer" />
+				</div>
 			</div>
 			<div class="footer__col">
 				<h3>Resources</h3>

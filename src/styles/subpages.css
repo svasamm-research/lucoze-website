@@ -1165,8 +1165,57 @@
 .subscribe--footer .subscribe__input {
 	min-width: 180px;
 }
+@media (max-width: 880px) {
+	/* Footer collapses to a 2-col grid below 880px — the fixed min-width
+	   above no longer fits its column, so drop back to the flexible default. */
+	.subscribe--footer .subscribe__input {
+		min-width: 0;
+	}
+}
 @media (max-width: 480px) {
 	.subscribe__btn {
 		width: 100%;
 	}
+}
+
+/* ─── Footer "Follow the blog" ───────────────────── */
+.footer__newsletter {
+	margin-top: var(--s-5);
+}
+.footer__newsletter-label {
+	display: block;
+	font-size: var(--t-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 700;
+	color: var(--ink);
+	margin-bottom: var(--s-3);
+	font-family: var(--font-body);
+}
+
+/* ─── Blog index subscribe band ──────────────────── */
+.subscribe-band {
+	background: var(--paper);
+	border-top: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+	padding: var(--s-8) 0;
+}
+.subscribe-band__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--s-6);
+	flex-wrap: wrap;
+}
+.subscribe-band__inner h2 {
+	margin: 0;
+}
+.subscribe-band__inner .subscribe {
+	flex: 1 1 320px;
+}
+
+/* ─── Blog post CTA subscribe fold-in ────────────── */
+.cta-final__subscribe {
+	max-width: 480px;
+	margin: var(--s-8) auto 0;
 }
