@@ -4,6 +4,7 @@ import Base from "../../../layouts/Base.astro";
 import SubHero from "../../../components/SubHero.astro";
 import FRow from "../../../components/FRow.astro";
 import FeatureVisual from "../../../components/visuals/FeatureVisual.astro";
+import ProductGalleries from "../../../components/ProductGalleries.astro";
 import Icon from "../../../components/Icon.astro";
 import Faq from "../../../components/Faq.astro";
 
@@ -20,6 +21,17 @@ if (!entry) {
 	return Astro.redirect("/404");
 }
 const feature = entry.data;
+
+// Which flow gallery (if any) belongs on this feature page. Galleries live in
+// context here rather than crowding the homepage.
+const FEATURE_GALLERY: Record<string, string> = {
+	appointments: "front-office",
+	"patient-records": "clinical",
+	lab: "lab",
+	pharmacy: "pharmacy",
+	billing: "billing",
+};
+const galleryId = FEATURE_GALLERY[slug!];
 
 // BreadcrumbList is already emitted by SubHero → Crumbs; only add the FAQPage.
 const faqLd = {
@@ -48,7 +60,9 @@ const faqLd = {
 		primaryCta={{ href: "/in/demo/", label: "Book a demo" }}
 		secondaryCta={{ href: "/in/contact/", label: "Talk to us" }}
 		statsRow={feature.stats}
-	/>
+	>
+		{galleryId && <ProductGalleries flows={[galleryId]} hero slot="visual" />}
+	</SubHero>
 
 	<section class="section section--tight">
 		<div class="container">

@@ -23,12 +23,12 @@ cluster: "dpdp"
 	This is the front-desk version: what changes at the counter, and what your team has to say and do.
 </p>
 
-<h2 id="notice">Notice and consent, at the counter</h2>
+<h2 id="notice">What do notice and consent look like at the counter?</h2>
 <p>
 	The core mechanism is simple. When you collect a patient's data, you have to tell them — in plain
-	language — what you're collecting and why, and get their consent for it. Under DPDP, consent has to
-	be free, specific, informed, and unambiguous. "The patient handed over their Aadhaar, so they must
-	be fine with everything" is not consent. Silence is not consent.
+	language — what you're collecting and why, and get their consent for it. Under DPDP, consent has
+	to be free, specific, informed, and unambiguous. "The patient handed over their Aadhaar, so they
+	must be fine with everything" is not consent. Silence is not consent.
 </p>
 <p>Concretely, the floor for a clinic looks like this:</p>
 <ul>
@@ -41,8 +41,8 @@ cluster: "dpdp"
 		something the person gives, so the affirmative action has to be theirs.
 	</li>
 	<li>
-		A way for the patient to <strong>withdraw consent</strong> and <strong>raise a complaint</strong>
-		— stated in the notice, not left as optional footnotes.
+		A way for the patient to <strong>withdraw consent</strong> and{" "}
+		<strong>raise a complaint</strong>— stated in the notice, not left as optional footnotes.
 	</li>
 </ul>
 <p>
@@ -50,7 +50,7 @@ cluster: "dpdp"
 	Eighth Schedule — for most clinics, that means the local language your patients actually read.
 </p>
 
-<h2 id="purpose">Only use it for what you said</h2>
+<h2 id="purpose">Can you use patient data for a new purpose?</h2>
 <p>
 	This is the rule clinics trip over most. Consent is tied to a <strong>purpose</strong>. A phone
 	number you collected for appointment reminders and lab results is for exactly that — not for a
@@ -62,11 +62,12 @@ cluster: "dpdp"
 	it?" If no, you either need fresh consent or you don't do it.
 </blockquote>
 <p>
-	Keep the data only as long as the purpose needs it, or as long as another law — like medical-record
-	retention rules — requires. Data you no longer have a reason to hold is data you should be deleting.
+	Keep the data only as long as the purpose needs it, or as long as another law — like
+	medical-record retention rules — requires. Data you no longer have a reason to hold is data you
+	should be deleting.
 </p>
 
-<h2 id="rights">The rights patients can now exercise</h2>
+<h2 id="rights">What rights can patients now exercise?</h2>
 <p>
 	A data principal — the patient — can exercise a set of rights. Your front desk needs to recognise
 	these requests and route them, not freeze:
@@ -94,52 +95,55 @@ cluster: "dpdp"
 	</li>
 </ul>
 <p>
-	None of this works if you can't find a patient's data quickly — that's a records problem before it's
-	a legal one. Being able to pull, correct, or export one patient's file on request is exactly what
+	None of this works if you can't find a patient's data quickly — that's a records problem before
+	it's a legal one. Being able to pull, correct, or export one patient's file on request is exactly
+	what
 	<a href="/in/features/patient-records/">structured patient records</a> are for.
 </p>
 
-<h2 id="minors">Consent for children</h2>
+<h2 id="minors">How does consent work for children?</h2>
 <p>
-	Paediatric and family clinics need to notice this one. For a minor, you need <strong>verifiable
-	consent from a parent or lawful guardian</strong> — not the child's own consent — so your intake
-	has to capture who that consenting adult is. The Act also restricts using children's data for
-	tracking, behavioural monitoring, or targeted advertising: for a clinic, that means don't market to
-	or profile kids off their health data. The same logic applies to any patient with a legal guardian.
+	Paediatric and family clinics need to notice this one. For a minor, you need{" "}
+	<strong>verifiable consent from a parent or lawful guardian</strong> — not the child's own consent
+	— so your intake has to capture who that consenting adult is. The Act also restricts using
+	children's data for tracking, behavioural monitoring, or targeted advertising: for a clinic, that
+	means don't market to or profile kids off their health data. The same logic applies to any patient
+	with a legal guardian.
 </p>
 
-<h2 id="withdraw">Withdrawing consent</h2>
+<h2 id="withdraw">What happens when a patient withdraws consent?</h2>
 <p>
 	A patient can withdraw consent, and the Act says doing so should be as easy as giving it was. When
-	they do, you stop the processing that consent covered — going forward. It doesn't undo lawful things
-	you already did, nor override records you're legally required to retain. But you can't keep using
-	their data for the withdrawn purpose, say marketing, once they've pulled consent. Your team needs a
-	way to record and honour a withdrawal, not just nod and forget.
+	they do, you stop the processing that consent covered — going forward. It doesn't undo lawful
+	things you already did, nor override records you're legally required to retain. But you can't keep
+	using their data for the withdrawn purpose, say marketing, once they've pulled consent. Your team
+	needs a way to record and honour a withdrawal, not just nod and forget.
 </p>
 
-<h2 id="abdm">This is not the same as ABHA consent</h2>
+<h2 id="abdm">Is DPDP consent the same as ABHA consent?</h2>
 <p>
-	Here's the distinction that confuses everyone. DPDP consent is about <em>you collecting and using a
-	patient's data in your clinic</em>. <a href="/in/blog/abdm-abha-guide/">ABDM/ABHA consent</a> is a
-	different, narrower thing: it governs <em>sharing a patient's health records between providers</em>
+	Here's the distinction that confuses everyone. DPDP consent is about{" "}
+	<em>you collecting and using a patient's data in your clinic</em>.{" "}
+	<a href="/in/blog/abdm-abha-guide/">ABDM/ABHA consent</a> is a different, narrower thing: it
+	governs <em>sharing a patient's health records between providers</em>
 	over the ABDM network — pulling a record into their ABHA, or letting another hospital fetch it,
 	through the consent-manager flow.
 </p>
 <p>
-	They overlap but don't replace each other. ABHA linkage consent doesn't cover your DPDP obligations
-	at the front desk, and DPDP intake consent doesn't authorise record-sharing over ABDM. If a vendor
-	says "we're ABDM-ready, so you're DPDP-compliant," that's a category error. You need both, for
-	different reasons.
+	They overlap but don't replace each other. ABHA linkage consent doesn't cover your DPDP
+	obligations at the front desk, and DPDP intake consent doesn't authorise record-sharing over ABDM.
+	If a vendor says "we're ABDM-ready, so you're DPDP-compliant," that's a category error. You need
+	both, for different reasons.
 </p>
 
-<h2 id="lucoze">Where the software fits</h2>
+<h2 id="lucoze">Where does the software fit?</h2>
 <p>
 	Much of DPDP is process, but the parts that need software are real: capturing consent against a
 	purpose, finding and correcting a record, honouring a deletion or withdrawal, and keeping data in
-	India. Lucoze is built so consent capture is part of the intake flow rather than a form in a drawer,
-	and so a patient's record is one lookup away when they exercise a right. We're early-stage and
-	working with design-partner clinics, so this is how the product is built to work, not a compliance
-	guarantee — the obligations are yours; the software just makes them cheaper to meet.
+	India. Lucoze is built so consent capture is part of the intake flow rather than a form in a
+	drawer, and so a patient's record is one lookup away when they exercise a right. We're early-stage
+	and working with design-partner clinics, so this is how the product is built to work, not a
+	compliance guarantee — the obligations are yours; the software just makes them cheaper to meet.
 </p>
 
 <h2 id="sources">Sources</h2>
@@ -163,8 +167,8 @@ cluster: "dpdp"
 <h2 id="closing">Closing</h2>
 <p>
 	None of this requires a legal department. It requires a clear notice, real consent tied to a
-	purpose, and the ability to find and act on one patient's data when they ask. Get those three right
-	and you're most of the way there.
+	purpose, and the ability to find and act on one patient's data when they ask. Get those three
+	right and you're most of the way there.
 </p>
 <p>
 	If you want to talk through how your clinic's intake and records would handle this — consent,

@@ -47,6 +47,23 @@ it's the step that catches "the fix moved the overflow into the card".
 Screenshot/measure each consumer from step 1 (contact **and** demo **and**
 design-partner, not just the one in the bug report).
 
+## Interactive components (modals, lightboxes, carousels)
+For JS-driven UI (a `<dialog>` lightbox, a switcher, a carousel), auditing the
+markup isn't enough — **drive it**: open it, navigate (next/prev + arrow keys),
+and close it (button, backdrop click, Esc), asserting state each step (a counter,
+which slide is `:not([hidden])`, `dialog.open`). Two gotchas:
+- **Native behaviour needs REAL key events.** A synthetic
+  `dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}))` will NOT close a
+  native `<dialog>` (Esc close is browser-level, not a JS listener) — it reads as
+  a false failure. Use Playwright's `browser_press_key` / `page.keyboard.press`
+  for anything relying on native handling; synthetic events only test your own
+  listeners (e.g. custom arrow-key nav).
+- **Lazy media in a hidden container**: `loading="lazy"` images inside a closed
+  dialog shouldn't load until it opens — verify the intended one actually renders
+  (`img.complete && img.naturalWidth > 0`) once open, and fits the viewport.
+Back it with an **e2e smoke** (open → navigate → close) so the interaction can't
+silently break in a later change.
+
 ## Common root cause (form/flex/grid overflow)
 Grid/flex items default to `min-width: auto` (= content min-content), so they
 **won't shrink below their content**. Inputs keep their ~200px intrinsic width.

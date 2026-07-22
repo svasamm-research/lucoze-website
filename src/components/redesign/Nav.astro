@@ -34,6 +34,15 @@ const { activeLink = "" } = Astro.props;
 			}
 			<li>
 				<a
+					href="/in/blog/"
+					class="nav__link"
+					aria-current={activeLink === "blog" ? "page" : undefined}
+				>
+					Blog
+				</a>
+			</li>
+			<li>
+				<a
 					href="/in/pricing/"
 					class="nav__link"
 					aria-current={activeLink === "pricing" ? "page" : undefined}
@@ -84,6 +93,7 @@ const { activeLink = "" } = Astro.props;
 			</div>
 		))
 	}
+	<a href="/in/blog/" class="nav__link">Blog</a>
 	<a href="/in/pricing/" class="nav__link">Pricing</a>
 	<a href="/in/demo/" class="btn btn--accent" style="margin-top: 12px; width: 100%;">
 		Book a demo
