@@ -36,7 +36,7 @@ cluster: "billing"
 	taxable line for the clinic as a whole; this post is about the counter.
 </p>
 
-<h2 id="hsn">What is HSN, and why does every line need one?</h2>
+<h2 id="hsn">What is HSN, and what rate do medicines carry now?</h2>
 <p>
 	<strong>HSN</strong> (Harmonised System of Nomenclature) is the code that tells the tax system what
 	a product is. Most pharmaceuticals fall under HSN Chapter 30, but the exact code — and the GST rate
@@ -44,13 +44,20 @@ cluster: "billing"
 	to show HSN on the invoice, and the number of digits required scales with turnover.
 </p>
 <p>
-	This matters because <strong>the rate is HSN-specific, not "pharmacy-specific."</strong> Medicines
-	span more than one slab: many formulations sit in the lower slabs, a defined list of life-saving
-	drugs is nil-rated, and some items attached to the counter (cosmetics, certain devices, general
-	goods) sit higher. If your billing treats "the pharmacy" as one flat rate, you are either
-	over-charging patients or under-collecting tax on part of the shelf — both of which surface at
-	return time. The rates and lists change by notification, so treat any specific percentage you read
-	as something to confirm, not memorise.
+	The rates changed materially under <strong>GST 2.0</strong>. On the 56th GST Council's
+	recommendation, from <strong>22 September 2025</strong> most drugs and medicines moved from the 12%
+	slab to <strong>5%</strong>, while a specified set of life-saving drugs was cut to <strong>Nil</strong>
+	(33 drugs from 12% to nil, plus three cancer/rare-disease drugs from 5% to nil). So the working
+	picture today: <strong>5% on the great majority of formulations, nil on the notified life-saving
+	list</strong>, with non-medicine counter items (cosmetics, some devices, general goods) sitting
+	higher on their own HSN.
+</p>
+<p>
+	The practical point survives the rate change: <strong>the rate is HSN-specific, not
+	"pharmacy-specific."</strong> If your billing treats "the pharmacy" as one flat rate you'll mis-tax
+	part of the shelf — the nil-rated life-savers or the higher-rated non-medicines — and it surfaces at
+	return time. Lists and rates move by notification, so confirm the current rate for a given HSN
+	against CBIC rather than hard-coding it.
 </p>
 
 <h2 id="schedule-h">Where does Schedule H come in — isn't that drug law, not tax?</h2>
@@ -96,13 +103,39 @@ cluster: "billing"
 <h2 id="e-invoice">Do we need e-invoicing for the pharmacy?</h2>
 <p>
 	<strong>E-invoicing</strong> — reporting B2B invoices to the government portal to get an IRN before
-	issuing them — is mandatory once a business crosses the aggregate-turnover threshold. That threshold
-	has been lowered in stages over the years, so whether it applies to you depends on <em>this year's</em>
-	notification and your total turnover across the whole entity, not just the pharmacy. If you are
-	near the line, that is a question for your CA now, not at the next audit. B2C counter sales are a
-	separate matter (dynamic QR requirements have their own thresholds). The point for billing is that
-	your system should be able to switch e-invoicing on when you cross the line without re-platforming.
+	issuing them — is mandatory once a business crosses the aggregate-turnover threshold. Since{" "}
+	<strong>1 August 2023</strong> (CBIC Notification 10/2023-Central Tax) that threshold is{" "}
+	<strong>₹5 crore</strong>: if your aggregate turnover crossed ₹5 crore in <em>any</em> financial
+	year from 2017-18 onward, e-invoicing applies to your B2B supplies and exports. Note "aggregate" —
+	it's your total turnover across the whole GSTIN/entity, not the pharmacy in isolation, so a hospital
+	with pharmacy, lab, and OPD revenue can cross the line without any single counter looking large.
 </p>
+<p>
+	Two more things worth knowing: businesses with turnover of <strong>₹10 crore or more</strong> must
+	report invoices to the IRP within <strong>30 days</strong> of the invoice date (effective 1 April
+	2025) — miss the window and the IRN can't be generated. And B2C counter sales are a separate regime
+	(dynamic-QR rules) with their own thresholds. If you're near ₹5 crore, that's a question for your CA
+	now, not at the next audit — and your billing should be able to switch e-invoicing on when you cross
+	the line without re-platforming.
+</p>
+
+<h2 id="sources">Sources</h2>
+<ul>
+	<li>
+		<a href="https://gstcouncil.gov.in/" target="_blank" rel="noopener">GST Council</a>{" "}
+		— recommendations of the 56th meeting (3-4 Sep 2025): drugs/medicines 12% → 5%, a notified
+		life-saving list to nil, effective 22 Sep 2025.
+	</li>
+	<li>
+		<a href="https://cbic-gst.gov.in/" target="_blank" rel="noopener">CBIC (GST)</a>{" "}
+		— the rate finder and notifications (incl. Notification 10/2023-Central Tax setting the ₹5 crore
+		e-invoicing threshold from 1 Aug 2023); confirm the current rate for a specific HSN here.
+	</li>
+	<li>
+		<a href="https://cdsco.gov.in/" target="_blank" rel="noopener">CDSCO</a>{" "}
+		— the Drugs and Cosmetics Act/Rules, which define Schedule H, H1, and X and their record-keeping.
+	</li>
+</ul>
 
 <h2 id="closing">One entry, two rulebooks satisfied</h2>
 <p>
