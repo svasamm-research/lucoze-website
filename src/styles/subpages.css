@@ -598,6 +598,14 @@
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	gap: var(--s-4);
 }
+/* Related-posts ("More in this series"): auto-fill (not auto-fit) keeps the
+   column tracks, so 1-2 related posts stay card-width instead of stretching to
+   half/full row. auto-fit stays the default elsewhere where a 2-card grid is
+   meant to span (e.g. solutions "Clinic or hospital"). */
+.module-grid--series {
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	justify-content: start;
+}
 .module-card {
 	display: flex;
 	flex-direction: column;
