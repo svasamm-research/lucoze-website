@@ -1,0 +1,77 @@
+---
+// Newsletter subscribe form. One component, three placement variants. Submits
+// via lib/subscribe.ts (inline AJAX → Listmonk). Renders nothing if the
+// marketing engine URL isn't wired (UAT), like the GA gating pattern.
+import { newsletterEnabled } from "../lib/env";
+
+interface Props {
+	variant?: "footer" | "inline" | "band";
+	placement: string;
+}
+const { variant = "footer", placement } = Astro.props;
+---
+
+{
+	newsletterEnabled && (
+		<form
+			class:list={["subscribe", `subscribe--${variant}`]}
+			data-subscribe
+			data-placement={placement}
+		>
+			<div class="subscribe__row">
+				<label class="sr-only" for={`sub-${placement}`}>
+					Email address
+				</label>
+				<input
+					id={`sub-${placement}`}
+					name="email"
+					type="email"
+					required
+					autocomplete="email"
+					placeholder="you@clinic.com"
+					class="subscribe__input"
+				/>
+				{/* honeypot: hidden from humans, bots fill it */}
+				<input
+					type="text"
+					name="company"
+					tabindex="-1"
+					autocomplete="off"
+					class="subscribe__hp"
+					aria-hidden="true"
+				/>
+				<button type="submit" class="btn btn--primary subscribe__btn">
+					Subscribe
+				</button>
+			</div>
+			<p class="subscribe__note" aria-live="polite">
+				New posts in your inbox. Unsubscribe anytime. <a href="/in/privacy/">Privacy</a>.
+			</p>
+		</form>
+	)
+}
+<script>
+	import { subscribe } from "../lib/subscribe";
+	document.querySelectorAll<HTMLFormElement>("form[data-subscribe]").forEach((form) => {
+		const note = form.querySelector<HTMLElement>(".subscribe__note");
+		const btn = form.querySelector<HTMLButtonElement>(".subscribe__btn");
+		const defaultNote = note?.innerHTML ?? "";
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+			const hp = (form.elements.namedItem("company") as HTMLInputElement).value;
+			const placement = form.getAttribute("data-placement") || "unknown";
+			if (btn) btn.disabled = true;
+			const r = await subscribe(email, placement, hp);
+			if (note) {
+				if (r.ok) note.textContent = "Check your inbox to confirm your subscription.";
+				else if (r.reason === "invalid") note.textContent = "Please enter a valid email address.";
+				else if (r.reason === "bot")
+					note.innerHTML = defaultNote; // silent
+				else note.textContent = "Something went wrong — please try again.";
+			}
+			if (btn) btn.disabled = false;
+			if (r.ok) form.reset();
+		});
+	});
+</script>
