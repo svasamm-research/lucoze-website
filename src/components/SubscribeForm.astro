@@ -5,7 +5,7 @@
 import { newsletterEnabled } from "../lib/env";
 
 interface Props {
-	variant?: "footer" | "inline" | "band";
+	variant?: "footer" | "sidebar";
 	placement: string;
 }
 const { variant = "footer", placement } = Astro.props;
@@ -28,7 +28,7 @@ const { variant = "footer", placement } = Astro.props;
 					type="email"
 					required
 					autocomplete="email"
-					placeholder="you@clinic.com"
+					placeholder="you@gmail.com"
 					class="subscribe__input"
 				/>
 				{/* honeypot: hidden from humans, bots fill it */}

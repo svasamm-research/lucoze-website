@@ -39,15 +39,17 @@ const citiesFor = (stateName: string) =>
 		{
 			newsletterEnabled && (
 				<div class="footer__signup">
-					<div class="footer__signup-text">
-						<span class="t-eyebrow">The Lucoze dispatch</span>
-						<h2>Field notes for Indian clinics, by email.</h2>
-						<p>
-							Compliance changes, billing playbooks, and what we're learning — a few times a month.
-							No spam; unsubscribe anytime.
-						</p>
+					<div class="newsletter-card">
+						<div class="newsletter-card__text">
+							<span class="t-eyebrow">Newsletter</span>
+							<h2>Get new posts in your inbox.</h2>
+							<p>
+								Compliance changes, billing playbooks, and field notes from building Lucoze — a few
+								times a month, not a firehose.
+							</p>
+						</div>
+						<SubscribeForm variant="footer" placement="footer" />
 					</div>
-					<SubscribeForm variant="footer" placement="footer" />
 				</div>
 			)
 		}

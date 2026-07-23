@@ -1,9 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import SubHero from "../../../components/SubHero.astro";
-import SubscribeForm from "../../../components/SubscribeForm.astro";
 import { getPublishedPosts } from "../../../lib/posts";
-import { newsletterEnabled } from "../../../lib/env";
 
 const posts = await getPublishedPosts();
 
@@ -27,26 +25,6 @@ const categories = [...new Set(posts.map((p) => p.data.category))].sort();
 		]}
 		lead="No content marketing. Just things we've learned, and things we want every clinic in India to know about the systems they're being asked to comply with."
 	/>
-
-	{
-		newsletterEnabled && (
-			<section class="section section--tight">
-				<div class="container">
-					<div class="newsletter-card">
-						<div class="newsletter-card__text">
-							<span class="t-eyebrow">Newsletter</span>
-							<h2>Get new posts in your inbox.</h2>
-							<p>
-								Compliance changes, billing playbooks, and field notes from building Lucoze — a few
-								times a month, not a firehose.
-							</p>
-						</div>
-						<SubscribeForm variant="band" placement="blog-index" />
-					</div>
-				</div>
-			</section>
-		)
-	}
 
 	<section class="section section--tight">
 		<div class="container">

@@ -1203,71 +1203,69 @@
 	}
 }
 
-/* Dark context (blog-post .cta-final card): field goes translucent-on-dark and
-   the button stays brand orange so the primary action pops against the ink card
-   (overriding .cta-final's cream .btn--primary). */
-.subscribe--inline .subscribe__field {
-	background: rgba(244, 243, 238, 0.06);
-	border-color: rgba(244, 243, 238, 0.22);
+/* ─── Sidebar variant (blog-post rail, above "Try Lucoze") ──
+   The rail is ~250px, so the pill always stacks here regardless of viewport
+   and the copy stays compact. */
+.post-sidebar-sub {
+	margin-top: var(--s-6);
+	padding: var(--s-4);
+	background: var(--primary-light);
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
 }
-.subscribe--inline .subscribe__field:focus-within {
-	border-color: rgba(244, 243, 238, 0.7);
-	box-shadow: 0 0 0 4px rgba(244, 243, 238, 0.08);
+.post-sidebar-sub__label {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ink);
+	margin-bottom: 6px;
 }
-.subscribe--inline .subscribe__input {
-	color: var(--cream);
+/* .post-toc a {display:block; padding; border-left} (above) also matches the
+   Privacy link inside .subscribe__note here — undo it so the note reads as one
+   sentence instead of breaking onto its own bordered line. */
+.post-sidebar-sub .subscribe__note a {
+	display: inline;
+	padding: 0;
+	border-left: 0;
+	font-size: inherit;
+	color: var(--muted);
 }
-.subscribe--inline .subscribe__input::placeholder {
-	color: rgba(244, 243, 238, 0.5);
+.subscribe--sidebar .subscribe__field {
+	flex-direction: column;
+	align-items: stretch;
+	gap: var(--s-2);
+	border-radius: var(--r-sm);
+	padding: var(--s-2);
 }
-.subscribe--inline .subscribe__note,
-.subscribe--inline .subscribe__note a {
-	color: rgba(244, 243, 238, 0.72);
+.subscribe--sidebar .subscribe__input {
+	padding: 6px var(--s-2);
+	font-size: 13px;
+}
+.subscribe--sidebar .subscribe__btn {
+	width: 100%;
+	border-radius: var(--r-xs);
+	padding: 9px 14px;
+	font-size: 13px;
+}
+.subscribe--sidebar .subscribe__note {
+	font-size: 11px;
+	margin-top: var(--s-2);
 }
 
-/* ─── Footer newsletter strip ────────────────────────
-   A dedicated top row in the footer so the signup reads as an intentional
-   invitation, not an afterthought crammed into a link column. */
+/* ─── Footer newsletter ──────────────────────────────
+   Wrapper that gives the card room and divides it from the link columns. */
 .footer__signup {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: var(--s-8);
-	flex-wrap: wrap;
 	padding-bottom: var(--s-10);
 	margin-bottom: var(--s-10);
 	border-bottom: 1px solid var(--border);
 }
-.footer__signup-text {
-	max-width: 46ch;
-}
-.footer__signup-text h2 {
-	font-family: var(--font-display);
-	font-size: clamp(20px, 2.4vw, 26px);
-	font-weight: 700;
-	letter-spacing: -0.02em;
-	line-height: 1.15;
-	margin: var(--s-2) 0 6px;
-	color: var(--ink);
-}
-.footer__signup-text p {
-	color: var(--muted);
-	font-size: var(--t-sm);
-	line-height: 1.5;
-	margin: 0;
-}
-.footer__signup .subscribe {
-	flex: 0 1 400px;
-}
-@media (max-width: 760px) {
-	.footer__signup .subscribe {
-		flex-basis: 100%;
-	}
-}
 
-/* ─── Blog-index newsletter card ─────────────────────
-   A warm, contained panel (not a full-bleed strip) so it reads as an
-   intentional feature between the hero and the post grid. */
+/* ─── Newsletter card ────────────────────────────────
+   A warm, contained panel so the signup reads as an intentional invitation
+   rather than a strip bolted onto the page. Used in the footer sitewide. */
 .newsletter-card {
 	position: relative;
 	overflow: hidden;
@@ -1320,24 +1318,4 @@
 		gap: var(--s-6);
 		padding: var(--s-8);
 	}
-}
-
-/* ─── Blog-post CTA subscribe fold-in ────────────────
-   A divider + mono label separate this from .cta-final__actions above, so it
-   reads as a deliberate "or by email" ask, not a third stacked button. */
-.cta-final__subscribe {
-	max-width: 460px;
-	margin: var(--s-8) auto 0;
-	padding-top: var(--s-7);
-	border-top: 1px solid rgba(244, 243, 238, 0.15);
-}
-.cta-final__subscribe-label {
-	display: block;
-	font-family: var(--font-mono);
-	font-size: var(--t-xs);
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.12em;
-	color: rgba(244, 243, 238, 0.6);
-	margin-bottom: var(--s-4);
 }
