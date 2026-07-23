@@ -36,6 +36,23 @@ const citiesFor = (stateName: string) =>
 
 <footer class="footer" id="site-footer">
 	<div class="container">
+		{
+			newsletterEnabled && (
+				<div class="footer__signup">
+					<div class="newsletter-card">
+						<div class="newsletter-card__text">
+							<span class="t-eyebrow">Newsletter</span>
+							<h2>Get new posts in your inbox.</h2>
+							<p>
+								Compliance changes, billing playbooks, and field notes from building Lucoze — a few
+								times a month, not a firehose.
+							</p>
+						</div>
+						<SubscribeForm variant="footer" placement="footer" />
+					</div>
+				</div>
+			)
+		}
 		<div class="footer__grid">
 			<div class="footer__brand">
 				<div class="footer__brand-line">
@@ -90,14 +107,6 @@ const citiesFor = (stateName: string) =>
 				<a href="/in/blog/">Blog</a>
 				<a href="/in/careers/">Careers</a>
 				<a href="/in/contact/">Contact</a>
-				{
-					newsletterEnabled && (
-						<div class="footer__newsletter">
-							<span class="footer__newsletter-label">Follow the blog</span>
-							<SubscribeForm variant="footer" placement="footer" />
-						</div>
-					)
-				}
 			</div>
 			<div class="footer__col">
 				<h3>Resources</h3>
