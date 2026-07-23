@@ -27,6 +27,17 @@ ENV PUBLIC_PLAUSIBLE_DOMAIN=${PUBLIC_PLAUSIBLE_DOMAIN}
 ARG PUBLIC_GA_ID=""
 ENV PUBLIC_GA_ID=${PUBLIC_GA_ID}
 
+# Listmonk base URL for the newsletter subscribe form. Empty = SubscribeForm
+# renders nothing (gated off) until Listmonk is deployed and this is deliberately set.
+# Prod: PUBLIC_MARKETING_URL=https://marketing.lucoze.com
+ARG PUBLIC_MARKETING_URL=""
+ENV PUBLIC_MARKETING_URL=${PUBLIC_MARKETING_URL}
+
+# Listmonk list UUID the subscribe form posts to. Empty = same gated-off behaviour
+# as PUBLIC_MARKETING_URL above (both are required together).
+ARG PUBLIC_NEWSLETTER_LIST_UUID=""
+ENV PUBLIC_NEWSLETTER_LIST_UUID=${PUBLIC_NEWSLETTER_LIST_UUID}
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install

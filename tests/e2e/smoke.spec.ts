@@ -33,7 +33,10 @@ test("demo page: lead form renders with its fields and a submit button", async (
 	await expect(page.locator("#c-name")).toBeVisible();
 	await expect(page.locator("#c-phone")).toBeVisible();
 	await expect(page.locator("#c-email")).toBeVisible();
-	await expect(page.locator('form button[type="submit"], form [type="submit"]')).toBeVisible();
+	// Scoped to the lead form (has #c-name) — the footer's newsletter subscribe
+	// form on this page has its own submit button and would otherwise match too.
+	const leadForm = page.locator("form", { has: page.locator("#c-name") });
+	await expect(leadForm.locator('button[type="submit"], [type="submit"]')).toBeVisible();
 });
 
 test("key routes return 200 and have an <h1>", async ({ page }) => {
@@ -119,4 +122,27 @@ test("homepage: hero word rotator present and fonts are self-hosted", async ({ p
 	await expect(page.locator(".hero .rotator").first()).toBeVisible();
 	// The render-blocking Google Fonts stylesheet must be gone (self-hosted now).
 	await expect(page.locator('link[href*="fonts.googleapis.com"]')).toHaveCount(0);
+});
+
+test("newsletter: subscribe form renders and submits (mocked)", async ({ page }) => {
+	// SubscribeForm renders only when PUBLIC_MARKETING_URL is set at build —
+	// playwright.config.ts webServer.command sets fake build envs for this.
+	// Stub the Listmonk call so no real network/opt-in happens.
+	await page.route("**/api/public/subscription", (route) =>
+		route.fulfill({ status: 200, contentType: "application/json", body: "{}" }),
+	);
+	await page.goto("/in/blog/");
+	const form = page.locator("form[data-subscribe]").first();
+	await expect(form).toBeVisible();
+	await form.locator('input[type="email"]').fill("reader@clinic.com");
+	await form.locator("button[type=submit]").click();
+	await expect(form.locator(".subscribe__note")).toContainText("Check your inbox");
+
+	// Mobile: no horizontal overflow after the form is present in the page.
+	await page.setViewportSize({ width: 360, height: 800 });
+	await page.reload();
+	const overflow = await page.evaluate(
+		() => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+	);
+	expect(overflow).toBeLessThanOrEqual(1);
 });

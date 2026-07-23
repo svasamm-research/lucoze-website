@@ -1127,3 +1127,129 @@
 .content-section + .content-section {
 	border-top: none;
 }
+
+/* ─── Newsletter subscribe form ──────────────────── */
+.subscribe__row {
+	display: flex;
+	gap: var(--s-2);
+	flex-wrap: wrap;
+}
+.subscribe__input {
+	flex: 1;
+	min-width: 0;
+	width: 100%;
+	padding: var(--s-3) var(--s-4);
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
+	font: inherit;
+	background: var(--white);
+}
+.subscribe__btn {
+	white-space: nowrap;
+}
+.subscribe__hp {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+.subscribe__note {
+	font-size: 13px;
+	color: var(--muted);
+	margin-top: var(--s-2);
+}
+/* Inline variant sits on .cta-final's dark --ink background (blog-post CTA).
+   The default .subscribe__input is a solid white field — high-contrast but
+   visually bolted-on next to the card's ghost-styled buttons. Restyle it
+   with the same translucent-on-dark treatment .cta-final .btn--ghost already
+   uses, so the field reads as part of the card instead of a stray white box.
+   Text stays --cream (inherited from .cta-final), now readable because the
+   field itself is dark. .subscribe__note reuses the same rgba .cta-final p
+   already uses on this background (~9.6:1 contrast on --ink). */
+.subscribe--inline .subscribe__input {
+	background: rgba(244, 243, 238, 0.08);
+	border-color: rgba(244, 243, 238, 0.3);
+	color: var(--cream);
+}
+.subscribe--inline .subscribe__input::placeholder {
+	color: rgba(244, 243, 238, 0.55);
+}
+.subscribe--inline .subscribe__input:focus-visible {
+	border-color: var(--cream);
+}
+.subscribe--inline .subscribe__note,
+.subscribe--inline .subscribe__note a {
+	color: rgba(244, 243, 238, 0.78);
+}
+.subscribe--band {
+	max-width: 520px;
+}
+.subscribe--footer .subscribe__input {
+	min-width: 180px;
+}
+@media (max-width: 880px) {
+	/* Footer collapses to a 2-col grid below 880px — the fixed min-width
+	   above no longer fits its column, so drop back to the flexible default. */
+	.subscribe--footer .subscribe__input {
+		min-width: 0;
+	}
+}
+@media (max-width: 480px) {
+	.subscribe__btn {
+		width: 100%;
+	}
+}
+
+/* ─── Footer "Follow the blog" ───────────────────── */
+.footer__newsletter {
+	margin-top: var(--s-5);
+}
+.footer__newsletter-label {
+	display: block;
+	font-size: var(--t-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 700;
+	color: var(--ink);
+	margin-bottom: var(--s-3);
+	font-family: var(--font-body);
+}
+/* .footer__col a{display:block} (sections.css) matches the Privacy link
+   inside .subscribe__note here — undo it so the note reads as one sentence. */
+.footer__newsletter .subscribe__note a {
+	display: inline;
+	padding: 0;
+}
+
+/* ─── Blog index subscribe band ──────────────────── */
+.subscribe-band {
+	background: var(--paper);
+	border-top: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+	padding: var(--s-8) 0;
+}
+.subscribe-band__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--s-6);
+	flex-wrap: wrap;
+}
+.subscribe-band__inner h2 {
+	margin: 0;
+}
+.subscribe-band__inner .subscribe {
+	flex: 1 1 320px;
+}
+
+/* ─── Blog post CTA subscribe fold-in ────────────── */
+/* A divider + top padding separates this from .cta-final__actions above it,
+   so it reads as a distinct secondary "or get posts by email" ask instead of
+   a third button stacked directly under the other two. */
+.cta-final__subscribe {
+	max-width: 480px;
+	margin: var(--s-8) auto 0;
+	padding-top: var(--s-6);
+	border-top: 1px solid rgba(244, 243, 238, 0.15);
+}

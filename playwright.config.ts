@@ -26,7 +26,12 @@ export default defineConfig({
 	// Build (if needed) and serve the static output. `astro preview` serves the
 	// real dist, so tests hit the same HTML/JS that ships.
 	webServer: {
-		command: "npm run build && npm run preview",
+		// PUBLIC_MARKETING_URL / PUBLIC_NEWSLETTER_LIST_UUID are build-time envs —
+		// SubscribeForm renders nothing without them (see src/components/SubscribeForm.astro).
+		// Set fake values so the newsletter smoke test has a form to find; the
+		// actual Listmonk call is stubbed in the test via page.route().
+		command:
+			"PUBLIC_MARKETING_URL=https://marketing.lucoze.com PUBLIC_NEWSLETTER_LIST_UUID=test-uuid npm run build && npm run preview",
 		url: "http://localhost:4321/in/",
 		timeout: 120_000,
 		reuseExistingServer: !process.env.CI,
