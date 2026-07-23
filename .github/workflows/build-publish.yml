@@ -111,9 +111,12 @@ jobs:
             # GA4 measurement ID is public (it ships in every page's HTML), so it
             # lives here rather than in a secret — same as plausible_domain.
             echo "ga_id=G-8PKQ5SH09G" >> "$GITHUB_OUTPUT"
-            # set once Listmonk (marketing.lucoze.com) + list UUID exist; empty keeps the subscribe form gated off
-            echo "marketing_url=" >> "$GITHUB_OUTPUT"
-            echo "newsletter_list_uuid=" >> "$GITHUB_OUTPUT"
+            # Listmonk is live at marketing.lucoze.com; the UUID is the "Lucoze Blog"
+            # list (public, double opt-in). Both are required together — the subscribe
+            # form only renders when BOTH are set (lib/env.ts). The list UUID is not a
+            # secret: it ships in the page HTML for the public subscription API.
+            echo "marketing_url=https://marketing.lucoze.com" >> "$GITHUB_OUTPUT"
+            echo "newsletter_list_uuid=70c93cbb-2164-45cc-96e6-04ae63c30b98" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build and push Docker image
