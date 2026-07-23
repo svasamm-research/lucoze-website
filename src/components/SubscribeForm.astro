@@ -64,7 +64,9 @@ const { variant = "footer", placement } = Astro.props;
 			if (btn) btn.disabled = true;
 			const r = await subscribe(email, placement, hp);
 			if (note) {
-				if (r.ok) note.textContent = "Check your inbox to confirm your subscription.";
+				if (r.ok)
+					note.textContent =
+						"Almost there — check your inbox and click the link to confirm your subscription.";
 				else if (r.reason === "invalid") note.textContent = "Please enter a valid email address.";
 				else if (r.reason === "bot")
 					note.innerHTML = defaultNote; // silent

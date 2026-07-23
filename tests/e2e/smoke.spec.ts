@@ -136,7 +136,7 @@ test("newsletter: subscribe form renders and submits (mocked)", async ({ page })
 	await expect(form).toBeVisible();
 	await form.locator('input[type="email"]').fill("reader@clinic.com");
 	await form.locator("button[type=submit]").click();
-	await expect(form.locator(".subscribe__note")).toContainText("Check your inbox");
+	await expect(form.locator(".subscribe__note")).toContainText("confirm your subscription");
 
 	// Mobile: no horizontal overflow after the form is present in the page.
 	await page.setViewportSize({ width: 360, height: 800 });
