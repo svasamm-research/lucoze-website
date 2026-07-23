@@ -2,7 +2,9 @@
 import { getCollection } from "astro:content";
 import Logo from "../Logo.astro";
 import Icon from "../Icon.astro";
+import SubscribeForm from "../SubscribeForm.astro";
 import { PHONE, PHONE_TEL, SALES_EMAIL } from "../../data/contact";
+import { newsletterEnabled } from "../../lib/env";
 
 const year = new Date().getFullYear();
 
@@ -34,6 +36,23 @@ const citiesFor = (stateName: string) =>
 
 <footer class="footer" id="site-footer">
 	<div class="container">
+		{
+			newsletterEnabled && (
+				<div class="footer__signup">
+					<div class="newsletter-card">
+						<div class="newsletter-card__text">
+							<span class="t-eyebrow">Newsletter</span>
+							<h2>Get new posts in your inbox.</h2>
+							<p>
+								Compliance changes, billing playbooks, and field notes from building Lucoze — a few
+								times a month, not a firehose.
+							</p>
+						</div>
+						<SubscribeForm variant="footer" placement="footer" />
+					</div>
+				</div>
+			)
+		}
 		<div class="footer__grid">
 			<div class="footer__brand">
 				<div class="footer__brand-line">

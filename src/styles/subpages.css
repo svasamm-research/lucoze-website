@@ -1127,3 +1127,195 @@
 .content-section + .content-section {
 	border-top: none;
 }
+
+/* ─── Newsletter subscribe form ─────────────────────
+   One component, three contexts (footer strip, blog-index card, dark blog-post
+   CTA). The form is a joined "pill": input + button in one rounded field with
+   an orange focus glow, so it reads as a designed unit, not two loose controls. */
+.subscribe__field {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	background: var(--white);
+	border: 1px solid var(--border-strong);
+	border-radius: var(--r-full);
+	padding: 5px 5px 5px var(--s-4);
+	transition:
+		border-color var(--tr-fast),
+		box-shadow var(--tr-fast);
+}
+.subscribe__field:focus-within {
+	border-color: var(--primary);
+	box-shadow: var(--shadow-glow);
+}
+.subscribe__input {
+	flex: 1;
+	min-width: 0;
+	border: none;
+	background: transparent;
+	padding: 9px 0;
+	font: inherit;
+	color: var(--ink);
+}
+.subscribe__input:focus {
+	outline: none;
+}
+.subscribe__input::placeholder {
+	color: var(--light);
+}
+.subscribe__btn {
+	flex-shrink: 0;
+	white-space: nowrap;
+	border-radius: var(--r-full);
+}
+.subscribe__hp {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+.subscribe__note {
+	font-size: 13px;
+	color: var(--muted);
+	margin-top: var(--s-3);
+}
+.subscribe__note a {
+	color: var(--muted);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+/* Small screens: stack the pill (input over full-width button). */
+@media (max-width: 520px) {
+	.subscribe__field {
+		flex-direction: column;
+		align-items: stretch;
+		gap: var(--s-2);
+		border-radius: var(--r-lg);
+		padding: var(--s-2);
+	}
+	.subscribe__input {
+		padding: var(--s-2) var(--s-3);
+	}
+	.subscribe__btn {
+		width: 100%;
+		border-radius: var(--r-md);
+	}
+}
+
+/* ─── Sidebar variant (blog-post rail, above "Try Lucoze") ──
+   The rail is ~250px, so the pill always stacks here regardless of viewport
+   and the copy stays compact. */
+.post-sidebar-sub {
+	margin-top: var(--s-6);
+	padding: var(--s-4);
+	background: var(--primary-light);
+	border: 1px solid var(--border);
+	border-radius: var(--r-md);
+}
+.post-sidebar-sub__label {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ink);
+	margin-bottom: 6px;
+}
+/* .post-toc a {display:block; padding; border-left} (above) also matches the
+   Privacy link inside .subscribe__note here — undo it so the note reads as one
+   sentence instead of breaking onto its own bordered line. */
+.post-sidebar-sub .subscribe__note a {
+	display: inline;
+	padding: 0;
+	border-left: 0;
+	font-size: inherit;
+	color: var(--muted);
+}
+.subscribe--sidebar .subscribe__field {
+	flex-direction: column;
+	align-items: stretch;
+	gap: var(--s-2);
+	border-radius: var(--r-sm);
+	padding: var(--s-2);
+}
+.subscribe--sidebar .subscribe__input {
+	padding: 6px var(--s-2);
+	font-size: 13px;
+}
+.subscribe--sidebar .subscribe__btn {
+	width: 100%;
+	border-radius: var(--r-xs);
+	padding: 9px 14px;
+	font-size: 13px;
+}
+.subscribe--sidebar .subscribe__note {
+	font-size: 11px;
+	margin-top: var(--s-2);
+}
+
+/* ─── Footer newsletter ──────────────────────────────
+   Wrapper that gives the card room and divides it from the link columns. */
+.footer__signup {
+	padding-bottom: var(--s-10);
+	margin-bottom: var(--s-10);
+	border-bottom: 1px solid var(--border);
+}
+
+/* ─── Newsletter card ────────────────────────────────
+   A warm, contained panel so the signup reads as an intentional invitation
+   rather than a strip bolted onto the page. Used in the footer sitewide. */
+.newsletter-card {
+	position: relative;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 1.05fr 0.95fr;
+	gap: var(--s-10);
+	align-items: center;
+	background: var(--primary-light);
+	border: 1px solid var(--border);
+	border-radius: var(--r-2xl);
+	padding: var(--s-10);
+}
+.newsletter-card::before {
+	content: "";
+	position: absolute;
+	top: -150px;
+	right: -110px;
+	width: 400px;
+	height: 400px;
+	background: radial-gradient(circle, var(--primary-glow) 0%, transparent 65%);
+	pointer-events: none;
+}
+.newsletter-card__text {
+	position: relative;
+	z-index: 1;
+}
+.newsletter-card__text h2 {
+	font-family: var(--font-display);
+	font-size: clamp(24px, 3vw, 32px);
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	line-height: 1.1;
+	margin: var(--s-3) 0;
+	color: var(--ink);
+}
+.newsletter-card__text p {
+	color: var(--muted);
+	font-size: var(--t-base);
+	line-height: 1.55;
+	max-width: 42ch;
+	margin: 0;
+}
+.newsletter-card .subscribe {
+	position: relative;
+	z-index: 1;
+}
+@media (max-width: 760px) {
+	.newsletter-card {
+		grid-template-columns: 1fr;
+		gap: var(--s-6);
+		padding: var(--s-8);
+	}
+}

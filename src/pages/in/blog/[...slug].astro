@@ -3,7 +3,9 @@ import { getCollection, render } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Crumbs from "../../../components/Crumbs.astro";
 import Icon from "../../../components/Icon.astro";
+import SubscribeForm from "../../../components/SubscribeForm.astro";
 import { isPublished } from "../../../lib/posts";
+import { newsletterEnabled } from "../../../lib/env";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog", ({ data }) => isPublished(data));
@@ -117,6 +119,14 @@ const blogPostingLd = {
 					<div class="post-toc__list">
 						{toc.map((t) => <a href={`#${t.slug}`}>{t.text}</a>)}
 					</div>
+					{
+						newsletterEnabled && (
+							<div class="post-sidebar-sub">
+								<span class="post-sidebar-sub__label">Newsletter</span>
+								<SubscribeForm variant="sidebar" placement="blog-post-sidebar" />
+							</div>
+						)
+					}
 					<div
 						style="margin-top: var(--s-6); padding: var(--s-4); background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-md); font-size: 12px; line-height: 1.5; color: var(--muted);"
 					>
@@ -188,7 +198,7 @@ const blogPostingLd = {
 					we should write about, tell us.
 				</p>
 				<div class="cta-final__actions">
-					<a href="/in/blog/" class="btn btn--primary btn--lg">
+					<a href="/in/blog/" class="btn btn--accent btn--lg">
 						Read more posts
 						<Icon name="arrow" size={16} class="btn__arrow" />
 					</a>
