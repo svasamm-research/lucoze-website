@@ -18,7 +18,7 @@ const { variant = "footer", placement } = Astro.props;
 			data-subscribe
 			data-placement={placement}
 		>
-			<div class="subscribe__row">
+			<div class="subscribe__field">
 				<label class="sr-only" for={`sub-${placement}`}>
 					Email address
 				</label>
@@ -40,7 +40,7 @@ const { variant = "footer", placement } = Astro.props;
 					class="subscribe__hp"
 					aria-hidden="true"
 				/>
-				<button type="submit" class="btn btn--primary subscribe__btn">
+				<button type="submit" class="btn btn--accent subscribe__btn">
 					Subscribe
 				</button>
 			</div>

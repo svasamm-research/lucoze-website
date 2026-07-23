@@ -30,10 +30,19 @@ const categories = [...new Set(posts.map((p) => p.data.category))].sort();
 
 	{
 		newsletterEnabled && (
-			<section class="subscribe-band">
-				<div class="container subscribe-band__inner">
-					<h2 class="t-h3">Get new posts in your inbox</h2>
-					<SubscribeForm variant="band" placement="blog-index" />
+			<section class="section section--tight">
+				<div class="container">
+					<div class="newsletter-card">
+						<div class="newsletter-card__text">
+							<span class="t-eyebrow">Newsletter</span>
+							<h2>Get new posts in your inbox.</h2>
+							<p>
+								Compliance changes, billing playbooks, and field notes from building Lucoze — a few
+								times a month, not a firehose.
+							</p>
+						</div>
+						<SubscribeForm variant="band" placement="blog-index" />
+					</div>
 				</div>
 			</section>
 		)

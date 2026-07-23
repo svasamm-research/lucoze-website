@@ -1128,24 +1128,45 @@
 	border-top: none;
 }
 
-/* ─── Newsletter subscribe form ──────────────────── */
-.subscribe__row {
+/* ─── Newsletter subscribe form ─────────────────────
+   One component, three contexts (footer strip, blog-index card, dark blog-post
+   CTA). The form is a joined "pill": input + button in one rounded field with
+   an orange focus glow, so it reads as a designed unit, not two loose controls. */
+.subscribe__field {
 	display: flex;
-	gap: var(--s-2);
-	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px;
+	background: var(--white);
+	border: 1px solid var(--border-strong);
+	border-radius: var(--r-full);
+	padding: 5px 5px 5px var(--s-4);
+	transition:
+		border-color var(--tr-fast),
+		box-shadow var(--tr-fast);
+}
+.subscribe__field:focus-within {
+	border-color: var(--primary);
+	box-shadow: var(--shadow-glow);
 }
 .subscribe__input {
 	flex: 1;
 	min-width: 0;
-	width: 100%;
-	padding: var(--s-3) var(--s-4);
-	border: 1px solid var(--border);
-	border-radius: var(--r-md);
+	border: none;
+	background: transparent;
+	padding: 9px 0;
 	font: inherit;
-	background: var(--white);
+	color: var(--ink);
+}
+.subscribe__input:focus {
+	outline: none;
+}
+.subscribe__input::placeholder {
+	color: var(--light);
 }
 .subscribe__btn {
+	flex-shrink: 0;
 	white-space: nowrap;
+	border-radius: var(--r-full);
 }
 .subscribe__hp {
 	position: absolute;
@@ -1157,99 +1178,166 @@
 .subscribe__note {
 	font-size: 13px;
 	color: var(--muted);
-	margin-top: var(--s-2);
+	margin-top: var(--s-3);
 }
-/* Inline variant sits on .cta-final's dark --ink background (blog-post CTA).
-   The default .subscribe__input is a solid white field — high-contrast but
-   visually bolted-on next to the card's ghost-styled buttons. Restyle it
-   with the same translucent-on-dark treatment .cta-final .btn--ghost already
-   uses, so the field reads as part of the card instead of a stray white box.
-   Text stays --cream (inherited from .cta-final), now readable because the
-   field itself is dark. .subscribe__note reuses the same rgba .cta-final p
-   already uses on this background (~9.6:1 contrast on --ink). */
+.subscribe__note a {
+	color: var(--muted);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+/* Small screens: stack the pill (input over full-width button). */
+@media (max-width: 520px) {
+	.subscribe__field {
+		flex-direction: column;
+		align-items: stretch;
+		gap: var(--s-2);
+		border-radius: var(--r-lg);
+		padding: var(--s-2);
+	}
+	.subscribe__input {
+		padding: var(--s-2) var(--s-3);
+	}
+	.subscribe__btn {
+		width: 100%;
+		border-radius: var(--r-md);
+	}
+}
+
+/* Dark context (blog-post .cta-final card): field goes translucent-on-dark and
+   the button stays brand orange so the primary action pops against the ink card
+   (overriding .cta-final's cream .btn--primary). */
+.subscribe--inline .subscribe__field {
+	background: rgba(244, 243, 238, 0.06);
+	border-color: rgba(244, 243, 238, 0.22);
+}
+.subscribe--inline .subscribe__field:focus-within {
+	border-color: rgba(244, 243, 238, 0.7);
+	box-shadow: 0 0 0 4px rgba(244, 243, 238, 0.08);
+}
 .subscribe--inline .subscribe__input {
-	background: rgba(244, 243, 238, 0.08);
-	border-color: rgba(244, 243, 238, 0.3);
 	color: var(--cream);
 }
 .subscribe--inline .subscribe__input::placeholder {
-	color: rgba(244, 243, 238, 0.55);
-}
-.subscribe--inline .subscribe__input:focus-visible {
-	border-color: var(--cream);
+	color: rgba(244, 243, 238, 0.5);
 }
 .subscribe--inline .subscribe__note,
 .subscribe--inline .subscribe__note a {
-	color: rgba(244, 243, 238, 0.78);
-}
-.subscribe--band {
-	max-width: 520px;
-}
-.subscribe--footer .subscribe__input {
-	min-width: 180px;
-}
-@media (max-width: 880px) {
-	/* Footer collapses to a 2-col grid below 880px — the fixed min-width
-	   above no longer fits its column, so drop back to the flexible default. */
-	.subscribe--footer .subscribe__input {
-		min-width: 0;
-	}
-}
-@media (max-width: 480px) {
-	.subscribe__btn {
-		width: 100%;
-	}
+	color: rgba(244, 243, 238, 0.72);
 }
 
-/* ─── Footer "Follow the blog" ───────────────────── */
-.footer__newsletter {
-	margin-top: var(--s-5);
-}
-.footer__newsletter-label {
-	display: block;
-	font-size: var(--t-xs);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	font-weight: 700;
-	color: var(--ink);
-	margin-bottom: var(--s-3);
-	font-family: var(--font-body);
-}
-/* .footer__col a{display:block} (sections.css) matches the Privacy link
-   inside .subscribe__note here — undo it so the note reads as one sentence. */
-.footer__newsletter .subscribe__note a {
-	display: inline;
-	padding: 0;
-}
-
-/* ─── Blog index subscribe band ──────────────────── */
-.subscribe-band {
-	background: var(--paper);
-	border-top: 1px solid var(--border);
-	border-bottom: 1px solid var(--border);
-	padding: var(--s-8) 0;
-}
-.subscribe-band__inner {
+/* ─── Footer newsletter strip ────────────────────────
+   A dedicated top row in the footer so the signup reads as an intentional
+   invitation, not an afterthought crammed into a link column. */
+.footer__signup {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: var(--s-6);
+	gap: var(--s-8);
 	flex-wrap: wrap;
+	padding-bottom: var(--s-10);
+	margin-bottom: var(--s-10);
+	border-bottom: 1px solid var(--border);
 }
-.subscribe-band__inner h2 {
+.footer__signup-text {
+	max-width: 46ch;
+}
+.footer__signup-text h2 {
+	font-family: var(--font-display);
+	font-size: clamp(20px, 2.4vw, 26px);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.15;
+	margin: var(--s-2) 0 6px;
+	color: var(--ink);
+}
+.footer__signup-text p {
+	color: var(--muted);
+	font-size: var(--t-sm);
+	line-height: 1.5;
 	margin: 0;
 }
-.subscribe-band__inner .subscribe {
-	flex: 1 1 320px;
+.footer__signup .subscribe {
+	flex: 0 1 400px;
+}
+@media (max-width: 760px) {
+	.footer__signup .subscribe {
+		flex-basis: 100%;
+	}
 }
 
-/* ─── Blog post CTA subscribe fold-in ────────────── */
-/* A divider + top padding separates this from .cta-final__actions above it,
-   so it reads as a distinct secondary "or get posts by email" ask instead of
-   a third button stacked directly under the other two. */
+/* ─── Blog-index newsletter card ─────────────────────
+   A warm, contained panel (not a full-bleed strip) so it reads as an
+   intentional feature between the hero and the post grid. */
+.newsletter-card {
+	position: relative;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 1.05fr 0.95fr;
+	gap: var(--s-10);
+	align-items: center;
+	background: var(--primary-light);
+	border: 1px solid var(--border);
+	border-radius: var(--r-2xl);
+	padding: var(--s-10);
+}
+.newsletter-card::before {
+	content: "";
+	position: absolute;
+	top: -150px;
+	right: -110px;
+	width: 400px;
+	height: 400px;
+	background: radial-gradient(circle, var(--primary-glow) 0%, transparent 65%);
+	pointer-events: none;
+}
+.newsletter-card__text {
+	position: relative;
+	z-index: 1;
+}
+.newsletter-card__text h2 {
+	font-family: var(--font-display);
+	font-size: clamp(24px, 3vw, 32px);
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	line-height: 1.1;
+	margin: var(--s-3) 0;
+	color: var(--ink);
+}
+.newsletter-card__text p {
+	color: var(--muted);
+	font-size: var(--t-base);
+	line-height: 1.55;
+	max-width: 42ch;
+	margin: 0;
+}
+.newsletter-card .subscribe {
+	position: relative;
+	z-index: 1;
+}
+@media (max-width: 760px) {
+	.newsletter-card {
+		grid-template-columns: 1fr;
+		gap: var(--s-6);
+		padding: var(--s-8);
+	}
+}
+
+/* ─── Blog-post CTA subscribe fold-in ────────────────
+   A divider + mono label separate this from .cta-final__actions above, so it
+   reads as a deliberate "or by email" ask, not a third stacked button. */
 .cta-final__subscribe {
-	max-width: 480px;
+	max-width: 460px;
 	margin: var(--s-8) auto 0;
-	padding-top: var(--s-6);
+	padding-top: var(--s-7);
 	border-top: 1px solid rgba(244, 243, 238, 0.15);
+}
+.cta-final__subscribe-label {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: var(--t-xs);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: rgba(244, 243, 238, 0.6);
+	margin-bottom: var(--s-4);
 }
