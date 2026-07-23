@@ -2,16 +2,17 @@
 // Newsletter subscribe form. One component, three placement variants. Submits
 // via lib/subscribe.ts (inline AJAX → Listmonk). Renders nothing if the
 // marketing engine URL isn't wired (UAT), like the GA gating pattern.
+import { newsletterEnabled } from "../lib/env";
+
 interface Props {
 	variant?: "footer" | "inline" | "band";
 	placement: string;
 }
 const { variant = "footer", placement } = Astro.props;
-const enabled = !!import.meta.env.PUBLIC_MARKETING_URL;
 ---
 
 {
-	enabled && (
+	newsletterEnabled && (
 		<form
 			class:list={["subscribe", `subscribe--${variant}`]}
 			data-subscribe

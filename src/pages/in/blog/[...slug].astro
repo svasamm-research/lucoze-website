@@ -5,6 +5,7 @@ import Crumbs from "../../../components/Crumbs.astro";
 import Icon from "../../../components/Icon.astro";
 import SubscribeForm from "../../../components/SubscribeForm.astro";
 import { isPublished } from "../../../lib/posts";
+import { newsletterEnabled } from "../../../lib/env";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog", ({ data }) => isPublished(data));
@@ -195,9 +196,13 @@ const blogPostingLd = {
 					</a>
 					<a href="/in/contact/" class="btn btn--ghost btn--lg">Get in touch</a>
 				</div>
-				<div class="cta-final__subscribe">
-					<SubscribeForm variant="inline" placement="blog-post" />
-				</div>
+				{
+					newsletterEnabled && (
+						<div class="cta-final__subscribe">
+							<SubscribeForm variant="inline" placement="blog-post" />
+						</div>
+					)
+				}
 			</div>
 		</div>
 	</section>

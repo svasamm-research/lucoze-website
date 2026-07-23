@@ -11,3 +11,13 @@ export function getPublicEnv() {
 		newsletterListUuid: import.meta.env.PUBLIC_NEWSLETTER_LIST_UUID as string | undefined,
 	};
 }
+
+// Single source of truth for whether the newsletter feature renders at all.
+// Gates on BOTH vars — URL-set-but-UUID-empty would still render a form
+// whose every submit fails. SubscribeForm and its three call sites (Footer,
+// blog index, blog post CTA) must all import this instead of re-deriving it,
+// so gated-off builds never leave orphaned wrapper chrome around a form that
+// didn't render.
+export const newsletterEnabled = !!(
+	import.meta.env.PUBLIC_MARKETING_URL && import.meta.env.PUBLIC_NEWSLETTER_LIST_UUID
+);
