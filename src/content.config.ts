@@ -9,6 +9,11 @@ const blog = defineCollection({
 		category: z.string(),
 		author: z.string(),
 		date: z.coerce.date(),
+		// Content-refresh signal. Set when a post is materially updated (facts
+		// re-verified, images/sections added) so `dateModified` and the byline
+		// reflect the refresh — fresh content is markedly more likely to be cited
+		// in AI answers. Leave unset for never-revised posts (dateModified = date).
+		updated: z.coerce.date().optional(),
 		readMins: z.number().int().positive(),
 		composite: z.boolean().default(false),
 		draft: z.boolean().default(false),
