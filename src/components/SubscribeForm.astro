@@ -55,24 +55,50 @@ const { variant = "footer", placement } = Astro.props;
 	document.querySelectorAll<HTMLFormElement>("form[data-subscribe]").forEach((form) => {
 		const note = form.querySelector<HTMLElement>(".subscribe__note");
 		const btn = form.querySelector<HTMLButtonElement>(".subscribe__btn");
+		const input = form.querySelector<HTMLInputElement>('input[type="email"]');
 		const defaultNote = note?.innerHTML ?? "";
+		const btnLabel = btn?.textContent?.trim() ?? "Subscribe";
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
-			const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+			const email = input?.value ?? "";
 			const hp = (form.elements.namedItem("company") as HTMLInputElement).value;
 			const placement = form.getAttribute("data-placement") || "unknown";
-			if (btn) btn.disabled = true;
+
+			// In-flight state: disable both controls, label the button, clear any
+			// previous success/error styling so the note doesn't flash stale colour.
+			note?.classList.remove("subscribe__note--success", "subscribe__note--error");
+			form.setAttribute("aria-busy", "true");
+			if (btn) {
+				btn.disabled = true;
+				btn.textContent = "Subscribing…";
+			}
+			if (input) input.disabled = true;
+
 			const r = await subscribe(email, placement, hp);
+
+			// Restore controls before showing the result.
+			form.removeAttribute("aria-busy");
+			if (btn) {
+				btn.disabled = false;
+				btn.textContent = btnLabel;
+			}
+			if (input) input.disabled = false;
+
 			if (note) {
-				if (r.ok)
+				if (r.ok) {
 					note.textContent =
 						"Almost there — check your inbox and click the link to confirm your subscription.";
-				else if (r.reason === "invalid") note.textContent = "Please enter a valid email address.";
-				else if (r.reason === "bot")
+					note.classList.add("subscribe__note--success");
+				} else if (r.reason === "invalid") {
+					note.textContent = "Please enter a valid email address.";
+					note.classList.add("subscribe__note--error");
+				} else if (r.reason === "bot") {
 					note.innerHTML = defaultNote; // silent
-				else note.textContent = "Something went wrong — please try again.";
+				} else {
+					note.textContent = "Something went wrong — please try again.";
+					note.classList.add("subscribe__note--error");
+				}
 			}
-			if (btn) btn.disabled = false;
 			if (r.ok) form.reset();
 		});
 	});
