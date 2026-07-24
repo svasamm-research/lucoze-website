@@ -1025,6 +1025,16 @@
 	font-family: var(--font-serif);
 	font-style: italic;
 }
+.post__hero {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 2 / 1;
+	margin: 0 0 var(--s-10);
+	border: 1px solid var(--border);
+	border-radius: var(--r-lg, 14px);
+	background: var(--paper);
+}
 .post h2 {
 	font-size: var(--t-2xl);
 	font-weight: 700;

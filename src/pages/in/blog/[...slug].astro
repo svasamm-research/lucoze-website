@@ -155,6 +155,19 @@ const blogPostingLd = {
 						<span>{post.readMins} min read</span>
 					</div>
 					<p class="post__lead">{post.dek}</p>
+					{
+						post.heroImage && (
+							<img
+								class="post__hero"
+								src={post.heroImage}
+								alt={post.heroAlt ?? post.title}
+								width="1200"
+								height="600"
+								loading="eager"
+								decoding="async"
+							/>
+						)
+					}
 					<Content />
 				</article>
 			</div>

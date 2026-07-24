@@ -18,6 +18,11 @@ const blog = defineCollection({
 		composite: z.boolean().default(false),
 		draft: z.boolean().default(false),
 		ogImage: z.string().optional(),
+		// Optional in-article hero. `heroImage` is a site-absolute path (e.g.
+		// "/blog/slug.svg"); `heroAlt` is required-when-present descriptive alt
+		// text (falls back to the title). Rendered at the top of the post body.
+		heroImage: z.string().optional(),
+		heroAlt: z.string().optional(),
 		// Topic-cluster grouping (hub & spoke). Posts sharing a `cluster` cross-link
 		// automatically; `pillar: true` marks the cluster's hub post.
 		cluster: z.string().optional(),
