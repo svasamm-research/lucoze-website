@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="Three kinds of deferred billing a clinic must track separately: corporate panels, health camps, and credit patients — each billed to someone other than the person treated.">
+  <rect width="1200" height="600" fill="#f4f3ee"/>
+  <rect x="0" y="0" width="14" height="600" fill="#c15f3c"/>
+  <g transform="translate(72 56)">
+    <rect x="0" y="0" width="50" height="50" rx="11" fill="#c15f3c"/>
+    <circle cx="15" cy="15" r="3.9" fill="#f4f3ee"/><circle cx="15" cy="25" r="3.9" fill="#f4f3ee"/>
+    <circle cx="15" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="25" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="35" cy="35" r="3.9" fill="#f4f3ee"/>
+    <text x="66" y="21" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" letter-spacing="2.2" fill="#c15f3c">LUCOZE</text>
+    <text x="66" y="42" font-family="'JetBrains Mono',monospace" font-size="12.5" letter-spacing="1.3" fill="#726d65">BILLING · PANELS, CAMPS &amp; CREDIT</text>
+  </g>
+  <g transform="translate(72 168)" font-family="'Manrope','Inter Tight',sans-serif">
+    <text x="0" y="0" font-size="50" font-weight="800" letter-spacing="-1.6" fill="#1f1d1a">Billed to someone else.</text>
+    <text x="0" y="40" font-size="20" fill="#625c54">Three revenue streams where the patient isn't the payer — track each on its own ledger.</text>
+  </g>
+  <g transform="translate(72 288)" font-family="'Manrope',sans-serif">
+    <g transform="translate(0 0)">
+      <rect width="316" height="180" rx="16" fill="#fffdf7" stroke="#e2e0d8" stroke-width="1.5"/>
+      <text x="28" y="52" font-size="22" font-weight="800" fill="#1f1d1a">Corporate panels</text>
+      <text x="28" y="90" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">Employer pays on a</text>
+      <text x="28" y="112" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">monthly invoice, at</text>
+      <text x="28" y="134" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">agreed rates.</text>
+    </g>
+    <g transform="translate(360 0)">
+      <rect width="316" height="180" rx="16" fill="#fffdf7" stroke="#e2e0d8" stroke-width="1.5"/>
+      <text x="28" y="52" font-size="22" font-weight="800" fill="#1f1d1a">Health camps</text>
+      <text x="28" y="90" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">Sponsor-funded, high</text>
+      <text x="28" y="112" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">volume, reconciled as</text>
+      <text x="28" y="134" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">one settlement.</text>
+    </g>
+    <g transform="translate(720 0)">
+      <rect width="316" height="180" rx="16" fill="#c15f3c"/>
+      <text x="28" y="52" font-size="22" font-weight="800" fill="#fff">Credit patients</text>
+      <text x="28" y="90" font-family="'Inter Tight',sans-serif" font-size="15" fill="#f6ded3">Pay later — a running</text>
+      <text x="28" y="112" font-family="'Inter Tight',sans-serif" font-size="15" fill="#f6ded3">balance that has to be</text>
+      <text x="28" y="134" font-family="'Inter Tight',sans-serif" font-size="15" fill="#f6ded3">chased and closed.</text>
+    </g>
+  </g>
+</svg>
