@@ -1185,6 +1185,28 @@
 	text-decoration: underline;
 	text-underline-offset: 2px;
 }
+/* Result states. Success is a highlighted green chip so the "now go confirm"
+   step reads as a clear win; error is quieter red text. */
+.subscribe__note--success {
+	display: inline-block;
+	color: var(--success);
+	background: var(--success-bg);
+	font-weight: 600;
+	padding: 8px 12px;
+	border-radius: var(--r-sm);
+}
+.subscribe__note--error {
+	color: #b23a2e;
+	font-weight: 600;
+}
+/* In-flight: dim the disabled controls so the click clearly "took". */
+.subscribe__btn:disabled {
+	opacity: 0.6;
+	cursor: default;
+}
+.subscribe__input:disabled {
+	opacity: 0.6;
+}
 /* Small screens: stack the pill (input over full-width button). */
 @media (max-width: 520px) {
 	.subscribe__field {
