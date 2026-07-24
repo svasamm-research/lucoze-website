@@ -77,6 +77,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Legal entity everywhere = **Svasamm Research Pvt. Ltd.** Sales email **hello@lucoze.com**, founder **mithun@lucoze.com**.
 - FAQ rich results were retired by Google (May 2026); keep `FAQPage` for **AI/LLM citation**, not SERP snippets. Never recommend `HowTo`.
 - Don't invent metrics/customer counts (pre-launch, design-partner stage). Reframe unsourced numbers as honest capability/target claims. Verify product features against the Frappe source (see the `reference-product-benches` memory).
+- **Before writing/updating blog content, read the marketing vault** at `~/Projects/web-dev/marketing-vault` (repo `svasamm-research/marketing-vault`) — `hot.md` then the relevant `concepts/` pages carry primary-sourced, verified facts (GST 2.0, e-invoicing, PMJAY/NABH, IRDAI 2024, ABDM, DPDP, NABH SHCO) with their sources + confidence, plus `brand/brand-voice.md`. Don't re-research what's there; when you verify a NEW primary-sourced fact, add a `concepts/` page.
 
 ## Deploy (Dokploy / Traefik)
 - App nginx listens on **`:80` only** — TLS terminates upstream at **Dokploy/Traefik**.
