@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="The ABDM onboarding process for a provider in three stages: register the facility on HFR and clinicians on HPR, integrate through the ABDM sandbox to production, then go live issuing ABHA-linked records.">
+  <rect width="1200" height="600" fill="#f4f3ee"/>
+  <rect x="0" y="0" width="14" height="600" fill="#c15f3c"/>
+  <g transform="translate(72 56)">
+    <rect x="0" y="0" width="50" height="50" rx="11" fill="#c15f3c"/>
+    <circle cx="15" cy="15" r="3.9" fill="#f4f3ee"/><circle cx="15" cy="25" r="3.9" fill="#f4f3ee"/>
+    <circle cx="15" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="25" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="35" cy="35" r="3.9" fill="#f4f3ee"/>
+    <text x="66" y="21" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" letter-spacing="2.2" fill="#c15f3c">LUCOZE</text>
+    <text x="66" y="42" font-family="'JetBrains Mono',monospace" font-size="12.5" letter-spacing="1.3" fill="#726d65">ABDM · PROVIDER ONBOARDING</text>
+  </g>
+  <g transform="translate(72 168)" font-family="'Manrope','Inter Tight',sans-serif">
+    <text x="0" y="0" font-size="50" font-weight="800" letter-spacing="-1.6" fill="#1f1d1a">ABDM onboarding, end to end.</text>
+    <text x="0" y="40" font-size="20" fill="#625c54">Three stages from a paper clinic to issuing ABHA-linked records.</text>
+  </g>
+  <!-- three stages with arrows -->
+  <g transform="translate(72 296)" font-family="'Manrope',sans-serif">
+    <g transform="translate(0 0)">
+      <rect width="316" height="164" rx="16" fill="#fffdf7" stroke="#e2e0d8" stroke-width="1.5"/>
+      <text x="28" y="46" font-family="'JetBrains Mono',monospace" font-size="13" letter-spacing="1" fill="#c15f3c">STAGE 1</text>
+      <text x="28" y="82" font-size="22" font-weight="800" fill="#1f1d1a">Register</text>
+      <text x="28" y="116" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">Facility on HFR,</text>
+      <text x="28" y="138" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">clinicians on HPR</text>
+    </g>
+    <text transform="translate(340 92)" font-size="32" fill="#c9a68f">→</text>
+    <g transform="translate(388 0)">
+      <rect width="316" height="164" rx="16" fill="#fffdf7" stroke="#e2e0d8" stroke-width="1.5"/>
+      <text x="28" y="46" font-family="'JetBrains Mono',monospace" font-size="13" letter-spacing="1" fill="#c15f3c">STAGE 2</text>
+      <text x="28" y="82" font-size="22" font-weight="800" fill="#1f1d1a">Integrate</text>
+      <text x="28" y="116" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">ABDM sandbox,</text>
+      <text x="28" y="138" font-family="'Inter Tight',sans-serif" font-size="15" fill="#625c54">then production keys</text>
+    </g>
+    <text transform="translate(728 92)" font-size="32" fill="#c9a68f">→</text>
+    <g transform="translate(776 0)">
+      <rect width="316" height="164" rx="16" fill="#c15f3c"/>
+      <text x="28" y="46" font-family="'JetBrains Mono',monospace" font-size="13" letter-spacing="1" fill="#f6ded3">STAGE 3</text>
+      <text x="28" y="82" font-size="22" font-weight="800" fill="#fff">Go live</text>
+      <text x="28" y="116" font-family="'Inter Tight',sans-serif" font-size="15" fill="#f6ded3">Issue &amp; link ABHA</text>
+      <text x="28" y="138" font-family="'Inter Tight',sans-serif" font-size="15" fill="#f6ded3">records to patients</text>
+    </g>
+  </g>
+</svg>

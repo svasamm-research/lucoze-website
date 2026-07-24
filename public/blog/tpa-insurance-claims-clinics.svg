@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="The TPA insurance-claim pipeline — submit, query, approve, pay — with the query step marked as where most claims get stuck.">
+  <rect width="1200" height="600" fill="#f4f3ee"/>
+  <rect x="0" y="0" width="14" height="600" fill="#c15f3c"/>
+  <g transform="translate(72 56)">
+    <rect x="0" y="0" width="50" height="50" rx="11" fill="#c15f3c"/>
+    <circle cx="15" cy="15" r="3.9" fill="#f4f3ee"/><circle cx="15" cy="25" r="3.9" fill="#f4f3ee"/>
+    <circle cx="15" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="25" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="35" cy="35" r="3.9" fill="#f4f3ee"/>
+    <text x="66" y="21" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" letter-spacing="2.2" fill="#c15f3c">LUCOZE</text>
+    <text x="66" y="42" font-family="'JetBrains Mono',monospace" font-size="12.5" letter-spacing="1.3" fill="#726d65">BILLING · TPA &amp; INSURANCE</text>
+  </g>
+  <g transform="translate(72 168)" font-family="'Manrope','Inter Tight',sans-serif">
+    <text x="0" y="0" font-size="50" font-weight="800" letter-spacing="-1.6" fill="#1f1d1a">Where the claim gets stuck.</text>
+    <text x="0" y="40" font-size="20" fill="#625c54">Four stages from claim to cash — and the one that quietly eats your margin.</text>
+  </g>
+  <g transform="translate(72 316)" font-family="'Manrope',sans-serif">
+    <!-- pipeline arrows -->
+    <g font-size="30" fill="#c9a68f">
+      <text x="242" y="66">→</text><text x="530" y="66">→</text><text x="818" y="66">→</text>
+    </g>
+    <g transform="translate(0 0)">
+      <rect width="220" height="96" rx="14" fill="#fffdf7" stroke="#e2e0d8" stroke-width="1.5"/>
+      <text x="24" y="42" font-size="18" font-weight="800" fill="#1f1d1a">Submit</text>
+      <text x="24" y="70" font-family="'Inter Tight',sans-serif" font-size="14" fill="#625c54">Docs + pre-auth</text>
+    </g>
+    <g transform="translate(288 0)">
+      <rect width="220" height="96" rx="14" fill="#fbeee7" stroke="#c15f3c" stroke-width="2"/>
+      <text x="24" y="42" font-size="18" font-weight="800" fill="#9a4526">Query</text>
+      <text x="24" y="70" font-family="'Inter Tight',sans-serif" font-size="14" fill="#9a6a52">Missing doc = delay</text>
+      <text x="188" y="30" font-size="22">⚠</text>
+    </g>
+    <g transform="translate(576 0)">
+      <rect width="220" height="96" rx="14" fill="#fffdf7" stroke="#e2e0d8" stroke-width="1.5"/>
+      <text x="24" y="42" font-size="18" font-weight="800" fill="#1f1d1a">Approve</text>
+      <text x="24" y="70" font-family="'Inter Tight',sans-serif" font-size="14" fill="#625c54">Sanctioned amount</text>
+    </g>
+    <g transform="translate(864 0)">
+      <rect width="220" height="96" rx="14" fill="#c15f3c"/>
+      <text x="24" y="42" font-size="18" font-weight="800" fill="#fff">Pay</text>
+      <text x="24" y="70" font-family="'Inter Tight',sans-serif" font-size="14" fill="#f6ded3">Settled to clinic</text>
+    </g>
+    <text x="288" y="150" font-family="'JetBrains Mono',monospace" font-size="12.5" fill="#9a6a52">most claims stall here — one missing document at a time</text>
+  </g>
+</svg>
