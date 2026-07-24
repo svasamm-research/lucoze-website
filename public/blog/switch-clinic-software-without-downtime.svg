@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="Switching clinic software without downtime: the old system and Lucoze run in parallel through a migration and a rehearsed cutover, so the clinic never goes dark.">
+  <rect width="1200" height="600" fill="#f4f3ee"/>
+  <rect x="0" y="0" width="14" height="600" fill="#c15f3c"/>
+
+  <g transform="translate(72 56)">
+    <rect x="0" y="0" width="50" height="50" rx="11" fill="#c15f3c"/>
+    <circle cx="15" cy="15" r="3.9" fill="#f4f3ee"/><circle cx="15" cy="25" r="3.9" fill="#f4f3ee"/>
+    <circle cx="15" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="25" cy="35" r="3.9" fill="#f4f3ee"/><circle cx="35" cy="35" r="3.9" fill="#f4f3ee"/>
+    <text x="66" y="21" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" letter-spacing="2.2" fill="#c15f3c">LUCOZE</text>
+    <text x="66" y="42" font-family="'JetBrains Mono',monospace" font-size="12.5" letter-spacing="1.3" fill="#726d65">SWITCHING &amp; MIGRATION</text>
+  </g>
+
+  <g transform="translate(72 168)" font-family="'Manrope','Inter Tight',sans-serif">
+    <text x="0" y="0" font-size="50" font-weight="800" letter-spacing="-1.6" fill="#1f1d1a">Switch without going dark.</text>
+    <text x="0" y="40" font-size="20" fill="#625c54">The old system and Lucoze run in parallel until the cutover is proven. No downtime.</text>
+  </g>
+
+  <!-- timeline -->
+  <g transform="translate(72 300)" font-family="'Inter Tight',sans-serif">
+    <!-- phase labels -->
+    <g font-family="'JetBrains Mono',monospace" font-size="12" letter-spacing="0.6" fill="#8a8073">
+      <text x="0" y="0">PREP</text>
+      <text x="300" y="0">PARALLEL RUN</text>
+      <text x="720" y="0">CUTOVER</text>
+      <text x="980" y="0">LIVE ON LUCOZE</text>
+    </g>
+
+    <!-- old system bar: runs, then tapers off after cutover -->
+    <g transform="translate(0 24)">
+      <rect x="0" y="0" width="820" height="46" rx="10" fill="#e5ddd0"/>
+      <text x="20" y="29" font-size="16" font-weight="700" fill="#7a6f62">Old system — still running</text>
+      <path d="M820 0 l60 23 l-60 23 z" fill="#e5ddd0"/>
+    </g>
+
+    <!-- lucoze bar: starts during parallel run, continues live -->
+    <g transform="translate(300 86)">
+      <rect x="0" y="0" width="760" height="46" rx="10" fill="#c15f3c"/>
+      <text x="20" y="29" font-size="16" font-weight="700" fill="#fff">Lucoze — data migrated, running alongside</text>
+    </g>
+
+    <!-- overlap highlight -->
+    <rect x="300" y="18" width="520" height="126" rx="12" fill="none" stroke="#c9a68f" stroke-width="2" stroke-dasharray="3 7"/>
+    <text x="560" y="164" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="12.5" letter-spacing="0.5" fill="#9a6a52">both live — verify, then switch</text>
+
+    <!-- cutover marker -->
+    <line x1="820" y1="10" x2="820" y2="150" stroke="#1f1d1a" stroke-width="2"/>
+    <circle cx="820" cy="10" r="6" fill="#1f1d1a"/>
+  </g>
+</svg>

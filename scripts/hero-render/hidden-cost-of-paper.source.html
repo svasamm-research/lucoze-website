@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			#stage {
+				width: 1200px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="stage">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 1200 600"
+				width="1200"
+				height="600"
+				role="img"
+				aria-label="A clinic desk at dusk: a precarious stack of paper OPD registers and cash books with loose records slipping out, a rubber stamp on an ink pad, and a glass of chai — the hidden cost of running a clinic on paper."
+			>
+				<defs>
+					<linearGradient id="bg" x1="0" y1="0" x2="0.35" y2="1">
+						<stop offset="0" stop-color="#f7f2e8" />
+						<stop offset="1" stop-color="#e7dcc8" />
+					</linearGradient>
+					<radialGradient id="glow" cx="0.78" cy="0.12" r="0.85">
+						<stop offset="0" stop-color="#fcefd8" stop-opacity="0.9" />
+						<stop offset="0.55" stop-color="#f7ecd7" stop-opacity="0" />
+					</radialGradient>
+					<linearGradient id="desk" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#d8c4a2" />
+						<stop offset="1" stop-color="#c2a980" />
+					</linearGradient>
+					<linearGradient id="chai" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0" stop-color="#c8763f" />
+						<stop offset="1" stop-color="#9a4f24" />
+					</linearGradient>
+					<filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+						<feGaussianBlur stdDeviation="7" />
+					</filter>
+				</defs>
+
+				<!-- ground + warm window light -->
+				<rect width="1200" height="600" fill="url(#bg)" />
+				<rect width="1200" height="600" fill="url(#glow)" />
+				<rect x="0" y="0" width="14" height="600" fill="#c15f3c" />
+
+				<!-- eyebrow: vault mark + label -->
+				<g transform="translate(72 58)">
+					<rect x="0" y="0" width="50" height="50" rx="11" ry="11" fill="#c15f3c" />
+					<circle cx="15" cy="15" r="3.9" fill="#f7f2e8" />
+					<circle cx="15" cy="25" r="3.9" fill="#f7f2e8" />
+					<circle cx="15" cy="35" r="3.9" fill="#f7f2e8" />
+					<circle cx="25" cy="35" r="3.9" fill="#f7f2e8" />
+					<circle cx="35" cy="35" r="3.9" fill="#f7f2e8" />
+					<text
+						x="66"
+						y="22"
+						font-family="'JetBrains Mono', monospace"
+						font-size="14"
+						font-weight="700"
+						letter-spacing="2.2"
+						fill="#c15f3c"
+					>
+						LUCOZE
+					</text>
+					<text
+						x="66"
+						y="43"
+						font-family="'JetBrains Mono', monospace"
+						font-size="12.5"
+						letter-spacing="1.3"
+						fill="#8a7d68"
+					>
+						FIELD NOTES · THE COST OF PAPER
+					</text>
+				</g>
+
+				<!-- desk surface -->
+				<rect x="0" y="452" width="1200" height="148" fill="url(#desk)" />
+				<rect x="0" y="452" width="1200" height="4" fill="#e3d3b3" opacity="0.7" />
+
+				<!-- soft contact shadows -->
+				<ellipse
+					cx="360"
+					cy="458"
+					rx="215"
+					ry="20"
+					fill="#5a3b22"
+					opacity="0.16"
+					filter="url(#soft)"
+				/>
+				<ellipse
+					cx="712"
+					cy="474"
+					rx="115"
+					ry="14"
+					fill="#5a3b22"
+					opacity="0.15"
+					filter="url(#soft)"
+				/>
+				<ellipse
+					cx="872"
+					cy="476"
+					rx="70"
+					ry="12"
+					fill="#5a3b22"
+					opacity="0.14"
+					filter="url(#soft)"
+				/>
+
+				<!-- tall register stack (askew, precarious) -->
+				<g transform="translate(230 196)">
+					<g transform="translate(6 250) rotate(-2)">
+						<rect x="0" y="0" width="240" height="34" rx="3" fill="#fbf6ea" stroke="#e4d8c2" />
+						<rect x="0" y="0" width="13" height="34" fill="#a8865f" />
+						<line x1="26" y1="9" x2="216" y2="9" stroke="#e9dcc4" stroke-width="1.5" />
+						<line x1="26" y1="17" x2="216" y2="17" stroke="#e9dcc4" stroke-width="1.5" />
+						<line x1="26" y1="25" x2="186" y2="25" stroke="#e9dcc4" stroke-width="1.5" />
+					</g>
+					<g transform="translate(-4 214) rotate(1.5)">
+						<rect x="0" y="0" width="248" height="38" rx="3" fill="#c15f3c" />
+						<rect x="0" y="0" width="15" height="38" fill="#9c4526" />
+						<text
+							x="135"
+							y="24"
+							font-family="'JetBrains Mono', monospace"
+							font-size="12"
+							fill="#f6e6dd"
+							text-anchor="middle"
+							letter-spacing="1"
+						>
+							OPD REGISTER '24
+						</text>
+					</g>
+					<g transform="translate(10 180) rotate(-1)">
+						<rect x="0" y="0" width="232" height="36" rx="3" fill="#fbf6ea" stroke="#e4d8c2" />
+						<rect x="0" y="0" width="13" height="36" fill="#b9542f" />
+						<line x1="26" y1="10" x2="212" y2="10" stroke="#e9dcc4" stroke-width="1.5" />
+						<line x1="26" y1="19" x2="212" y2="19" stroke="#e9dcc4" stroke-width="1.5" />
+						<line x1="26" y1="28" x2="176" y2="28" stroke="#e9dcc4" stroke-width="1.5" />
+					</g>
+					<g transform="translate(2 146) rotate(2)">
+						<rect x="0" y="0" width="240" height="36" rx="3" fill="#ecdfc7" stroke="#d9c8a7" />
+						<rect x="0" y="0" width="13" height="36" fill="#a8865f" />
+					</g>
+					<g transform="translate(-2 112) rotate(-2.5)">
+						<rect x="0" y="0" width="244" height="36" rx="3" fill="#c15f3c" />
+						<rect x="0" y="0" width="15" height="36" fill="#9c4526" />
+						<text
+							x="135"
+							y="23"
+							font-family="'JetBrains Mono', monospace"
+							font-size="12"
+							fill="#f6e6dd"
+							text-anchor="middle"
+							letter-spacing="1"
+						>
+							BILLING · CASH BOOK
+						</text>
+					</g>
+					<g transform="translate(16 80) rotate(3.5)">
+						<rect x="0" y="0" width="226" height="34" rx="3" fill="#fbf6ea" stroke="#e4d8c2" />
+						<rect x="0" y="0" width="13" height="34" fill="#b9542f" />
+						<line x1="26" y1="10" x2="204" y2="10" stroke="#e9dcc4" stroke-width="1.5" />
+						<line x1="26" y1="19" x2="166" y2="19" stroke="#e9dcc4" stroke-width="1.5" />
+					</g>
+				</g>
+
+				<!-- loose sheets slipping out: the leak -->
+				<g>
+					<g transform="translate(452 236) rotate(19)">
+						<rect x="0" y="0" width="122" height="152" rx="4" fill="#fffdf7" stroke="#e6ddc9" />
+						<line x1="16" y1="24" x2="106" y2="24" stroke="#e9dfc9" stroke-width="2" />
+						<line x1="16" y1="40" x2="106" y2="40" stroke="#e9dfc9" stroke-width="2" />
+						<line x1="16" y1="56" x2="86" y2="56" stroke="#e9dfc9" stroke-width="2" />
+						<line x1="16" y1="88" x2="106" y2="88" stroke="#efe7d5" stroke-width="2" />
+						<line x1="16" y1="104" x2="72" y2="104" stroke="#efe7d5" stroke-width="2" />
+					</g>
+					<g transform="translate(410 350) rotate(-13)">
+						<rect x="0" y="0" width="112" height="142" rx="4" fill="#fdfaf2" stroke="#e6ddc9" />
+						<line x1="15" y1="22" x2="97" y2="22" stroke="#ece2cd" stroke-width="2" />
+						<line x1="15" y1="37" x2="97" y2="37" stroke="#ece2cd" stroke-width="2" />
+						<line x1="15" y1="52" x2="74" y2="52" stroke="#ece2cd" stroke-width="2" />
+					</g>
+					<g transform="translate(534 292) rotate(33)">
+						<rect x="0" y="0" width="98" height="124" rx="4" fill="#fffdf7" stroke="#e9e0cc" />
+						<line x1="13" y1="20" x2="85" y2="20" stroke="#efe6d2" stroke-width="2" />
+						<line x1="13" y1="34" x2="68" y2="34" stroke="#efe6d2" stroke-width="2" />
+					</g>
+				</g>
+
+				<!-- ink pad + rubber stamp (clinic paperwork ritual) -->
+				<g transform="translate(636 408)">
+					<!-- ink pad -->
+					<rect x="0" y="46" width="132" height="40" rx="6" fill="#7d4a2c" />
+					<rect x="8" y="52" width="116" height="28" rx="4" fill="#a35b34" />
+					<rect x="8" y="52" width="116" height="14" rx="4" fill="#b06a41" opacity="0.6" />
+					<!-- stamp: handle + base, leaning -->
+					<g transform="translate(70 -6) rotate(9)">
+						<rect x="-9" y="40" width="52" height="18" rx="4" fill="#6f4326" />
+						<rect x="-4" y="16" width="42" height="26" rx="8" fill="#8a5230" />
+						<rect x="6" y="-10" width="22" height="30" rx="10" fill="#a8865f" />
+						<ellipse cx="17" cy="-10" rx="11" ry="5" fill="#c0a074" />
+					</g>
+				</g>
+
+				<!-- cutting-chai glass + steam (the version we'd give over chai) -->
+				<g transform="translate(820 384)">
+					<!-- saucer -->
+					<ellipse cx="34" cy="98" rx="58" ry="12" fill="#e7d7b6" />
+					<ellipse cx="34" cy="96" rx="58" ry="12" fill="#f0e3c8" />
+					<!-- glass -->
+					<path d="M8 30 L60 30 L54 96 L14 96 Z" fill="#f3ead6" opacity="0.55" />
+					<path d="M11 46 L57 46 L52 94 L16 94 Z" fill="url(#chai)" />
+					<path d="M11 46 L57 46 L55.5 62 L12.5 62 Z" fill="#d98a4e" opacity="0.55" />
+					<path d="M8 30 L60 30 L54 96 L14 96 Z" fill="none" stroke="#e6d6b6" stroke-width="2.5" />
+					<!-- steam -->
+					<g stroke="#c9b48f" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6">
+						<path d="M26 22 q8 -12 0 -22 q-8 -10 0 -20" />
+						<path d="M42 22 q8 -12 0 -22 q-8 -10 0 -20" />
+					</g>
+				</g>
+			</svg>
+		</div>
+	</body>
+</html>

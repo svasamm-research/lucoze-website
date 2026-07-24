@@ -40,11 +40,13 @@ const clusterPosts = post.cluster
 	: [];
 const clusterLabel = post.cluster ? (CLUSTER_LABELS[post.cluster] ?? post.cluster) : "";
 
-const fmtDate = post.date.toLocaleDateString("en-IN", {
-	day: "numeric",
-	month: "short",
-	year: "numeric",
-});
+const fmtDateOpts = { day: "numeric", month: "short", year: "numeric" } as const;
+const fmtDate = post.date.toLocaleDateString("en-IN", fmtDateOpts);
+// Show an "Updated" line only when a post was materially revised after publish.
+const fmtUpdated =
+	post.updated && post.updated.getTime() !== post.date.getTime()
+		? post.updated.toLocaleDateString("en-IN", fmtDateOpts)
+		: null;
 
 const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
 const postUrl = `${siteUrl}${Astro.url.pathname}`;
@@ -54,7 +56,7 @@ const blogPostingLd = {
 	headline: post.title,
 	description: post.dek,
 	datePublished: post.date.toISOString(),
-	dateModified: post.date.toISOString(),
+	dateModified: (post.updated ?? post.date).toISOString(),
 	// Reference the sitewide Organization/Person nodes from Base.astro by @id
 	// rather than re-declaring them here — re-declaring emitted a second,
 	// unlinked Organization + Person on every post and forked the entity graph.
@@ -149,9 +151,23 @@ const blogPostingLd = {
 						}
 						<span><a href="/in/about/" rel="author">{post.author}</a></span>
 						<span>{fmtDate}</span>
+						{fmtUpdated && <span>Updated {fmtUpdated}</span>}
 						<span>{post.readMins} min read</span>
 					</div>
 					<p class="post__lead">{post.dek}</p>
+					{
+						post.heroImage && (
+							<img
+								class="post__hero"
+								src={post.heroImage}
+								alt={post.heroAlt ?? post.title}
+								width="1200"
+								height="600"
+								loading="eager"
+								decoding="async"
+							/>
+						)
+					}
 					<Content />
 				</article>
 			</div>
