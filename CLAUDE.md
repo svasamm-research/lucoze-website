@@ -77,6 +77,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - Legal entity everywhere = **Svasamm Research Pvt. Ltd.** Sales email **hello@lucoze.com**, founder **mithun@lucoze.com**.
 - FAQ rich results were retired by Google (May 2026); keep `FAQPage` for **AI/LLM citation**, not SERP snippets. Never recommend `HowTo`.
 - Don't invent metrics/customer counts (pre-launch, design-partner stage). Reframe unsourced numbers as honest capability/target claims. Verify product features against the Frappe source (see the `reference-product-benches` memory).
+- **Positioning is HOSPITAL-FORWARD (founder decision 2026-07-25).** Primary buyer = **small-to-mid multispecialty hospitals & nursing homes, ~20–100 beds** (owner / medical superintendent / admin); clinics are **secondary** — present them, don't lead with them. Copy sells the **switching play** (forcing function → safe switch → partner), not feature lists. **Read `~/Projects/web-dev/marketing-vault/brand/positioning.md` before writing site/blog copy.** Honesty guardrail: 20–100 beds, not 500-bed tertiary. **Pricing:** clinics transparent (₹1,499/₹2,999); **hospitals = "Custom, priced by bed count" + book-a-demo** (never a fixed hospital number).
 
 ## Deploy (Dokploy / Traefik)
 - App nginx listens on **`:80` only** — TLS terminates upstream at **Dokploy/Traefik**.
