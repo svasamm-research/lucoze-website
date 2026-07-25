@@ -3,8 +3,8 @@
 	"label": "Pharmacy module",
 	"icon": "pill",
 	"eyebrow": "Dispensing + inventory + procurement",
-	"h1Parts": ["Pharmacy that ", "talks to the clinic", " — not a separate world."],
-	"lead": "Most clinics run their attached pharmacy on a stand-alone billing software that doesn’t know what the doctor prescribed. Stock-outs surprise everyone. Dispensing errors compound. Lucoze’s pharmacy is part of the same record — prescription, dispense, stock, batch, all in one chain.",
+	"h1Parts": ["Pharmacy that ", "talks to the hospital", " — not a separate world."],
+	"lead": "Most hospitals run their attached pharmacy on a stand-alone billing software that doesn’t know what the doctor prescribed. Stock-outs surprise everyone. Dispensing errors compound. Lucoze’s pharmacy is part of the same record — prescription, dispense, stock, batch, all in one chain.",
 	"stats": [
 		{ "value": "1 click", "label": "Dispense from a doctor's prescription" },
 		{ "value": "Real-time", "label": "Stock levels across all stores" },
