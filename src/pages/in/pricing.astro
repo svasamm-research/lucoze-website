@@ -43,18 +43,21 @@ const PLANS = [
 	},
 	{
 		name: "Hospital",
-		for: "20-100 beds · small hospital",
-		price: "7,999",
-		period: "/ month",
+		for: "20-100 beds · multispecialty / nursing home",
+		price: "Custom",
+		period: "priced by bed count",
+		custom: true,
 		cta: "Book a hospital demo",
 		href: "/in/contact/",
 		featured: false,
 		features: [
 			"Everything in Clinic Pro, plus",
-			"Ward management at scale",
+			"Ward + IPD management at scale",
 			"Operation theatre scheduling",
+			"TPA / insurance claims at department scale",
 			"NABH-ready dashboards",
-			"Dedicated implementation manager",
+			"Dedicated implementation manager (60-day rollout)",
+			"Founding-hospital pricing for early design partners",
 		],
 	},
 ];
@@ -103,7 +106,7 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 
 <Base
 	title="Pricing — Healthcare Management Software | Lucoze"
-	description="Three plans for Indian clinics and hospitals. From ₹1,499/month. 14-day free trial. GST-compliant invoicing. No per-user gotchas."
+	description="Transparent monthly plans for clinics from ₹1,499. Hospitals are priced by bed count — book a demo for a quote. 14-day free trial. GST-compliant invoicing. No per-user gotchas."
 	activeLink="pricing"
 >
 	<SubHero
@@ -111,7 +114,7 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 		eyebrow="Pricing"
 		h1="Predictable monthly pricing."
 		highlightParts={["Predictable monthly pricing. ", "No per-user gotchas", "."]}
-		lead="Three plans. Every module included in each plan. 14-day free trial — no credit card, full feature access. Design-partner slots get 6 months free."
+		lead="Clinics get transparent, all-inclusive monthly plans. Hospitals are priced by bed count — book a demo for a quote. Every module included; 14-day free trial for clinics; design-partner slots get 6 months free."
 		primaryCta={{ href: "/in/signup/", label: "Start free trial" }}
 		secondaryCta={{ href: "/in/design-partner/", label: "Apply for design partner" }}
 	/>
@@ -126,10 +129,10 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 							<h3 class="plan__name">{p.name}</h3>
 							<div class="plan__for">{p.for}</div>
 							<div class="plan__price">
-								<span class="plan__currency">₹</span>
+								{!p.custom && <span class="plan__currency">₹</span>}
 								<span class="plan__amount">{p.price}</span>
 								<span class="plan__period">{p.period}</span>
-								<span class="plan__gst-note">+ GST (18%)</span>
+								{!p.custom && <span class="plan__gst-note">+ GST (18%)</span>}
 							</div>
 							<div class="plan__features" role="list">
 								{p.features.map((f) => (
@@ -261,7 +264,12 @@ const comparisonRows: { label: string; clinic: string; pro: string; hospital: st
 			offers: [
 				{ "@type": "Offer", name: "Clinic", price: "1499", priceCurrency: "INR" },
 				{ "@type": "Offer", name: "Clinic Pro", price: "2999", priceCurrency: "INR" },
-				{ "@type": "Offer", name: "Hospital", price: "7999", priceCurrency: "INR" },
+				{
+					"@type": "Offer",
+					name: "Hospital",
+					priceCurrency: "INR",
+					description: "Custom pricing, by bed count",
+				},
 			],
 		})}
 		slot="head"
