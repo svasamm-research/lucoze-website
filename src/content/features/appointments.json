@@ -4,7 +4,7 @@
 	"icon": "calendar",
 	"eyebrow": "Booking engine",
 	"h1Parts": ["Booking that starts with ", "the question", " — not the form."],
-	"lead": "Most clinic software opens a booking with “name and phone number.” That’s the wrong question. The patient already knows what they need: a department, a doctor, a slot that fits their day. We ask in that order.",
+	"lead": "Most hospital software opens a booking with “name and phone number.” That’s the wrong question. The patient already knows what they need: a department, a doctor, a slot that fits their day. We ask in that order.",
 	"stats": [
 		{ "value": "< 60s", "label": "To book and confirm a patient" },
 		{ "value": "WhatsApp", "label": "Reminders that cut no-shows" },

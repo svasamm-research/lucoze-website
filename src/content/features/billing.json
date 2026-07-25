@@ -4,7 +4,7 @@
 	"icon": "receipt",
 	"eyebrow": "GST + accounting + inventory",
 	"h1Parts": ["Billing, accounting and inventory — ", "one ledger", ", across departments."],
-	"lead": "Most clinics run billing in one tool, GST returns in another, and pharmacy inventory in a third spreadsheet. Lucoze’s ledger is shared across all of them. Bill a tube of ointment in OPD; pharmacy stock drops by one. Issue a GST-compliant invoice; the accounting line is posted automatically.",
+	"lead": "Most hospitals run billing in one tool, GST returns in another, and pharmacy inventory in a third spreadsheet. Lucoze’s ledger is shared across all of them. Bill a tube of ointment in OPD; pharmacy stock drops by one. Issue a GST-compliant invoice; the accounting line is posted automatically.",
 	"stats": [
 		{ "value": "0 hrs", "label": "Spent reconciling pharmacy vs OPD" },
 		{ "value": "2 clicks", "label": "Generate GSTR-1 for the month" },
