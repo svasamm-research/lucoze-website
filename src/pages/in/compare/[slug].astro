@@ -18,6 +18,12 @@ if (!entry) {
 }
 const c = entry.data;
 
+// Sibling comparisons — internal-link mesh so every /in/compare/ page links to the others.
+const otherCompares = (await getCollection("compare"))
+	.filter((e) => e.data.slug !== slug)
+	.map((e) => ({ slug: e.data.slug, competitor: e.data.competitor }))
+	.sort((a, b) => a.competitor.localeCompare(b.competitor));
+
 const POINT_ICONS = ["check", "shield", "cloud", "spark", "users", "chart"];
 
 const siteUrl = (Astro.site?.toString() ?? "https://lucoze.com/").replace(/\/$/, "");
@@ -116,6 +122,31 @@ const faqLd =
 						</h2>
 					</header>
 					<Faq items={c.faqs} />
+				</div>
+			</section>
+		)
+	}
+
+	{
+		otherCompares.length > 0 && (
+			<section class="section section--tight">
+				<div class="container">
+					<header class="section-header section-header--left">
+						<span class="t-eyebrow">More comparisons</span>
+						<h2 class="t-h2" style="margin-top: 8px;">
+							See how Lucoze compares to other systems.
+						</h2>
+					</header>
+					<div class="module-grid">
+						{otherCompares.map((o) => (
+							<a class="module-card" href={`/in/compare/${o.slug}/`}>
+								<div class="module-card__title">Lucoze vs {o.competitor}</div>
+								<div class="module-card__blurb">
+									Side-by-side on India data residency, ABDM, pricing and switching.
+								</div>
+							</a>
+						))}
+					</div>
 				</div>
 			</section>
 		)
