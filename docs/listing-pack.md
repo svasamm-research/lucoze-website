@@ -10,7 +10,7 @@ per platform.
 - **Legal entity:** Svasamm Research Pvt. Ltd.
 - **Address:** `[street line — TODO from you]`, Hooghly, West Bengal, India `[PIN]`
   - *Decision:* if you don't want a public street address, set GBP as a **service-area business** (hide address, list service areas: West Bengal, Bihar, Jharkhand, Odisha, Uttar Pradesh). Directories can take city+state only.
-- **Phone:** +91 9147144638
+- **Phone:** +91 8217820249
 - **Email:** hello@lucoze.com
 - **Website:** https://lucoze.com/in/
 - **Founder:** Mithun K. Singh
