@@ -10,9 +10,9 @@
  * different number and lives in the backend, not here.
  */
 
-export const PHONE = "+91 90077 93575"; // display form
-export const PHONE_TEL = "+919007793575"; // tel: href + schema (E.164)
-export const WHATSAPP = "919007793575"; // wa.me number (Business App)
+export const PHONE = "+91 82178 20249"; // display form
+export const PHONE_TEL = "+918217820249"; // tel: href + schema (E.164)
+export const WHATSAPP = "918217820249"; // wa.me number (Business App)
 export const SALES_EMAIL = "sales@lucoze.com";
 
 const DEFAULT_WA_MSG = "Hi Lucoze, I'd like to know more about your clinic software.";
