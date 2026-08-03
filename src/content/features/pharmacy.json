@@ -24,7 +24,7 @@
 		},
 		{
 			"eyebrow": "Stock + procurement",
-			"title": "Batches, expiry, reorder — all in one place.",
+			"title": "Batches, expiry, reorder: all in one place.",
 			"lead": "Stock movements are atomic. Receive a batch, expiry and supplier are captured. Dispense, the system picks the closest-expiring batch. End of month, you have a Schedule-H register that’s ready for inspection.",
 			"bullets": [
 				"FEFO dispensing prevents expired stock reaching the patient.",
