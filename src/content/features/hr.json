@@ -24,7 +24,7 @@
 		},
 		{
 			"eyebrow": "Payroll + statutory",
-			"title": "ESI, PF, TDS — calculated. Not estimated.",
+			"title": "ESI, PF, TDS: calculated. Not estimated.",
 			"lead": "Each pay cycle the system computes deductions, generates payslips, exports the bank file, and prepares the statutory challan. You approve; we do the math.",
 			"bullets": [
 				"Salary structure templates per role — OPD doctor, surgeon, technician, admin.",
