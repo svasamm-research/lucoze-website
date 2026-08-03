@@ -70,7 +70,7 @@ const blogPostingLd = {
 };
 ---
 
-<Base title={`${post.title} — Lucoze blog`} description={post.dek}>
+<Base title={post.title} description={post.dek}>
 	<script type="application/ld+json" set:html={JSON.stringify(blogPostingLd)} />
 
 	<article data-blog-slug={entry.id} hidden></article>
