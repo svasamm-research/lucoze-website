@@ -69,6 +69,7 @@ Marketing site for **Lucoze** (healthcare management software for Indian clinics
 - After content/schema changes, **build and grep `dist/`** to confirm rendered JSON-LD (e.g. `grep -oE '"@type":"[A-Za-z]+"' dist/in/.../index.html | sort | uniq -c`).
 
 ## SEO / schema conventions (non-obvious)
+- **🐛 NEVER use an em-dash `—` in a `<title>`/`dek`/`metaTitle` (any `<head>` metadata).** It mojibakes to the Unicode replacement char at build time — head-only, body is fine — and shipped **broken SERP titles on every blog + compare page** (fixed v4.18.5). Use `:` / `|` / `-` instead. The blog template passes `post.title`; `Base.astro` appends `| Lucoze` (line ~40) — don't re-add a `—`-joined suffix. Guard when adding any title/dek.
 - **Sitewide** `Organization` (legalName = Svasamm Research Pvt. Ltd., founder = Mithun K. Singh, `sameAs`) + `WebSite` JSON-LD are emitted from **`src/layouts/Base.astro`** — do **not** re-add Organization per page.
 - **`Crumbs.astro` already emits `BreadcrumbList`** — do not add a second one on feature/specialty pages (they only add `FAQPage` / `Service`).
 - Page-specific schema goes through `<slot name="head">`.
