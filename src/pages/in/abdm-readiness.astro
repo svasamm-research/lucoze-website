@@ -1,0 +1,110 @@
+---
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import "../../styles/contact-partner.css";
+
+// What the free check actually covers — set expectations, keep it honest.
+const SEE: [string, string, string][] = [
+	[
+		"shield",
+		"Where your facility stands on ABDM",
+		"HFR (facility), HPR (your doctors) and ABHA at the front desk — what's done, what's missing.",
+	],
+	[
+		"map",
+		"A plain, prioritised gap list",
+		"The exact steps to get registered and issuing ABHA-linked records — no jargon, no upsell.",
+	],
+	[
+		"play",
+		"How software fits (only if you ask)",
+		"If it helps, we show how Lucoze issues ABHA-linked records inside the normal workflow. No obligation.",
+	],
+];
+
+const TRUST: [string, string, string][] = [
+	["clock", "15 minutes, one call", "With the team that builds Lucoze — not a call centre"],
+	["shield", "No cost, no sales sequence", "An honest read on where you stand"],
+	["lock", "Data hosted in India", "ABDM-ready · DPDP-aligned"],
+];
+---
+
+<Base
+	title="Free ABDM readiness check for your hospital or clinic"
+	description="Not sure if your facility is ABDM-ready? Get a free readiness check — we tell you exactly where you stand on HFR, HPR and ABHA, and the steps to get there. No cost, no obligation."
+>
+	<section class="reach-hero">
+		<div class="container">
+			<div class="reach-hero__grid">
+				<div>
+					<div class="reach-hero__eyebrow">
+						<span class="reach-dot"></span> Free ABDM readiness check
+					</div>
+					<h1 class="reach-hero__h1">
+						Is your hospital ABDM-ready?<br />Find out in 15 minutes.
+					</h1>
+					<p class="reach-hero__lead">
+						ABDM is fast becoming the price of entry — HFR for your facility, HPR for your doctors,
+						ABHA at the front desk. Tell us about your facility and we'll give you a plain,
+						prioritised read on where you stand and what's left to do. No cost, no obligation.
+					</p>
+				</div>
+
+				<LeadForm
+					heading="Get your free ABDM check"
+					submitLabel="Request my check"
+					successHeading="Got it — check requested."
+					successBody="The team will reach out within a day with your ABDM readiness read. Prefer WhatsApp? Ping us anytime."
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container" style="max-width: 1000px;">
+			<div class="reach-bottom">
+				<aside class="reach-expect">
+					<div class="reach-expect__head">What the check covers</div>
+					{
+						SEE.map(([ic, t, s]) => (
+							<div class="reach-expect__row">
+								<span class="reach-expect__ic">
+									<Icon name={ic} size={19} />
+								</span>
+								<div>
+									<div class="reach-expect__t">{t}</div>
+									<div class="reach-expect__s">{s}</div>
+								</div>
+							</div>
+						))
+					}
+					<div class="reach-expect__foot">
+						<span class="reach-expect__sig">— The Lucoze team</span>
+					</div>
+				</aside>
+
+				<div class="reach-trust">
+					{
+						TRUST.map(([ic, t, s]) => (
+							<div class="reach-trust__item">
+								<span class="reach-trust__ic">
+									<Icon name={ic} size={18} />
+								</span>
+								<div>
+									<div class="reach-trust__t">{t}</div>
+									<div class="reach-trust__s">{s}</div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>
+
+<script>
+	import { initLeadForm } from "../../lib/lead-form";
+	initLeadForm({ source: "abdm-check", successHref: "/in/" });
+</script>

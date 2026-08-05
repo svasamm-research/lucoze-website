@@ -40,6 +40,10 @@ const clusterPosts = post.cluster
 	: [];
 const clusterLabel = post.cluster ? (CLUSTER_LABELS[post.cluster] ?? post.cluster) : "";
 
+// ABDM posts pull the site's warmest traffic (hospitals researching compliance),
+// so they carry a targeted "free ABDM readiness check" lead offer.
+const isAbdm = post.cluster === "abdm";
+
 const fmtDateOpts = { day: "numeric", month: "short", year: "numeric" } as const;
 const fmtDate = post.date.toLocaleDateString("en-IN", fmtDateOpts);
 // Show an "Updated" line only when a post was materially revised after publish.
@@ -135,10 +139,27 @@ const blogPostingLd = {
 						<div
 							style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px;"
 						>
-							Try Lucoze
+							{isAbdm ? "Free ABDM check" : "Try Lucoze"}
 						</div>
-						14-day free trial. No credit card.<br />
-						<a href="/in/demo/" style="color: var(--primary); font-weight: 600;">Book a demo →</a>
+						{
+							isAbdm ? (
+								<>
+									See where your facility stands on HFR, HPR & ABHA.
+									<br />
+									<a href="/in/abdm-readiness/" style="color: var(--primary); font-weight: 600;">
+										Get my free check →
+									</a>
+								</>
+							) : (
+								<>
+									14-day free trial. No credit card.
+									<br />
+									<a href="/in/demo/" style="color: var(--primary); font-weight: 600;">
+										Book a demo →
+									</a>
+								</>
+							)
+						}
 					</div>
 				</aside>
 				<article class="post">
@@ -173,6 +194,33 @@ const blogPostingLd = {
 			</div>
 		</div>
 	</section>
+
+	{
+		isAbdm && (
+			<section class="section section--tight">
+				<div class="container">
+					<div class="cta-final" style="padding: var(--s-10) var(--s-8);">
+						<span class="t-eyebrow" style="color: var(--accent);">
+							Free ABDM readiness check
+						</span>
+						<h2 style="font-size: clamp(22px, 3vw, 32px); margin: var(--s-2) 0 var(--s-3);">
+							Not sure if your facility is ABDM-ready?
+						</h2>
+						<p>
+							Get a plain, prioritised read on where you stand — HFR, HPR and ABHA — and exactly
+							what's left to do. No cost, no obligation.
+						</p>
+						<div class="cta-final__actions">
+							<a href="/in/abdm-readiness/" class="btn btn--accent btn--lg">
+								Get my free ABDM check
+								<Icon name="arrow" size={16} class="btn__arrow" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		)
+	}
 
 	{
 		clusterPosts.length > 0 && (

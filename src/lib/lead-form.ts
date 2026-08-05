@@ -11,15 +11,16 @@
 
 import { track } from "./analytics";
 
-type Source = "contact" | "design-partner" | "demo";
+type Source = "contact" | "design-partner" | "demo" | "abdm-check";
 
 // The admin's submit_lead only whitelists these sources (else "Invalid form
-// source"). A "demo" enquiry is a contact-type lead, so we send "contact" to the
-// API — the analytics events below keep the real "demo" source for reporting.
+// source"). A "demo" or "abdm-check" enquiry is a contact-type lead, so we send
+// "contact" to the API — the analytics events below keep the real source for reporting.
 const API_SOURCE: Record<Source, "contact" | "design-partner"> = {
 	contact: "contact",
 	"design-partner": "design-partner",
 	demo: "contact",
+	"abdm-check": "contact",
 };
 
 interface InitOptions {
