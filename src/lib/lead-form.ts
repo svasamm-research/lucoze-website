@@ -3,10 +3,9 @@
 // Contract:
 //   - name is required
 //   - phone (^[6-9]\d{9}$) OR email satisfies the gate — either one enables submit
-//   - submit POSTs to lucoze_admin.api.contact.submit_lead with source="contact"
-//     or source="design-partner". Admin de-dupes against CRM Lead by
-//     email/mobile_no and pings support_email.
-//   - on pre-launch builds (no PUBLIC_ADMIN_API_URL), we skip the network
+//   - submit POSTs to the lucoze-lead-form Lambda (PUBLIC_LEAD_URL), which emails
+//     sales@lucoze.com. It replaced Frappe's admin.lucoze.com on 27 Sep 2026.
+//   - on builds with no PUBLIC_LEAD_URL, we skip the network
 //     and go straight to the success state so the page still feels alive.
 
 import { track } from "./analytics";
@@ -52,6 +51,8 @@ const getVisitorId = (): string | null => {
 
 const extractError = (data: unknown, status: number): string => {
 	const payload = (data || {}) as Record<string, unknown>;
+	// The Lambda answers { ok: false, error: "<a sentence for a person>" }.
+	if (typeof payload["error"] === "string" && payload["error"]) return payload["error"] as string;
 	const serverMessages = payload["_server_messages"];
 	if (typeof serverMessages === "string") {
 		try {
@@ -86,7 +87,7 @@ export function initLeadForm({ source }: InitOptions): void {
 	const nameInput = form.querySelector<HTMLInputElement>('input[name="name"]');
 	const resetBtn = document.querySelector<HTMLButtonElement>("[data-contact-reset");
 
-	const ADMIN = import.meta.env.PUBLIC_ADMIN_API_URL as string | undefined;
+	const LEAD_URL = import.meta.env.PUBLIC_LEAD_URL as string | undefined;
 
 	const originalSubmitText = submitLabel?.textContent ?? "Submit";
 
@@ -203,8 +204,8 @@ export function initLeadForm({ source }: InitOptions): void {
 		const titleSel = form.querySelector<HTMLSelectElement>('select[name="title"]');
 		const title = (titleSel?.value || "").trim();
 
-		// Pre-launch (no admin URL): skip network, fall straight through.
-		if (!ADMIN) {
+		// No lead endpoint configured: skip network, fall straight through.
+		if (!LEAD_URL) {
 			showSuccess();
 			return;
 		}
@@ -219,7 +220,7 @@ export function initLeadForm({ source }: InitOptions): void {
 				email: emailOk ? email : null,
 				visitor_id: getVisitorId(),
 			};
-			const res = await fetch(`${ADMIN}/api/method/lucoze_admin.api.contact.submit_lead`, {
+			const res = await fetch(LEAD_URL, {
 				method: "POST",
 				headers: { "Content-Type": "application/json", Accept: "application/json" },
 				body: JSON.stringify(body),
