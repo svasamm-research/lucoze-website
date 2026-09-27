@@ -28,7 +28,17 @@ const ALLOW_ORIGIN = (process.env.ALLOW_ORIGIN || "https://lucoze.com,https://ww
 
 const ses = new SESv2Client({ region: REGION });
 
-const MAX = { name: 120, title: 20, email: 160, phone: 40, source: 60, visitor: 80 };
+const MAX = {
+	name: 120,
+	title: 20,
+	email: 160,
+	phone: 40,
+	source: 60,
+	visitor: 80,
+	clinic: 160,
+	plan: 40,
+	specialty: 80,
+};
 const validEmail = (v) =>
 	typeof v === "string" &&
 	v.length <= MAX.email &&
@@ -79,6 +89,10 @@ export const handler = async (event) => {
 	const phoneOk = phone.replace(/\D/g, "").length >= 8;
 	const source = clip(data.source, MAX.source) || "Website Contact";
 	const visitor = clip(data.visitor_id, MAX.visitor);
+	// The signup page adds these three; the lead form sends none of them.
+	const clinic = clip(data.clinic, MAX.clinic);
+	const plan = clip(data.plan, MAX.plan);
+	const specialty = clip(data.specialty, MAX.specialty);
 
 	if (!name) return reply(422, { ok: false, error: "Please give your name." }, origin);
 	if (!email && !phoneOk) {
@@ -95,6 +109,9 @@ export const handler = async (event) => {
 		["Name", who],
 		email ? ["Email", email] : null,
 		phoneOk ? ["Phone", phone] : null,
+		clinic ? ["Clinic", clinic] : null,
+		plan ? ["Plan", plan] : null,
+		specialty ? ["Specialty", specialty] : null,
 		["Source", source],
 		visitor ? ["Visitor", visitor] : null,
 	].filter(Boolean);

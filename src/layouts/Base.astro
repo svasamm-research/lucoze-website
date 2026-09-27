@@ -244,15 +244,12 @@ const siteLd = {
 			)
 		}
 
-		<script is:inline defer src="/js/tracker.js"></script>
-
 		<script>
 			// Global click tracking. Two parallel streams:
 			//   - track() → Plausible custom events (Outbound, Mailto)
-			//   - LucozeTracker.trackCTAClick → admin.lucoze.com visitor pipeline
-			//     (loaded as a classic deferred script above; runs before this
-			//     module script, so the global is available by the time the
-			//     listener fires).
+			//   - LucozeTracker.trackCTAClick → RETIRED 27 Sep 2026 with admin.lucoze.com.
+			//     tracker.js is no longer loaded, so the global is absent and every
+			//     call below is optional-chained into a no-op. Plausible counts visits.
 			import { track } from "../lib/analytics";
 
 			type LucozeTrackerGlobal = {

@@ -318,6 +318,11 @@ const BENEFITS: { title: string; sub: string }[] = [
 	// site for the target environment). If unset (pre-launch), the form skips
 	// the network and shows the thanks panel directly.
 	const ADMIN = import.meta.env.PUBLIC_ADMIN_API_URL as string | undefined;
+	// ⛔ SINCE 27 SEP 2026 SIGNUP IS A LEAD. Lucoze is merging into Svasamm One and
+	// provisions nobody itself, so the form emails sales@lucoze.com through the
+	// lucoze-lead-form Lambda and shows the thanks panel. The OTP steps below are
+	// unreachable while ADMIN is unset, which it now is in every build.
+	const LEAD_URL = import.meta.env.PUBLIC_LEAD_URL as string | undefined;
 
 	// Form plan ids → admin plan names (admin VALID_PLANS).
 	const PLAN_MAP: Record<string, string> = {
@@ -522,8 +527,42 @@ const BENEFITS: { title: string; sub: string }[] = [
 				customer_phone: ((fd.get("phone") as string | null) || "").trim() || null,
 			};
 
-			// Pre-launch (no admin URL configured): skip network, show thanks.
+			// Signup is a lead now: one POST to the Lambda, then thanks.
 			if (!ADMIN) {
+				if (LEAD_URL) {
+					setLoading(true);
+					try {
+						const res = await fetch(LEAD_URL, {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify({
+								name: ((fd.get("name") as string | null) || "").trim(),
+								email: pendingEmail || null,
+								phone: payload.customer_phone,
+								clinic: payload.customer_name,
+								plan: payload.plan,
+								specialty,
+								source: "Signup",
+							}),
+						});
+						if (!res.ok) {
+							const data = await res.json().catch(() => ({}));
+							throw new Error(
+								(data as { error?: string }).error || `Request failed (${res.status}).`,
+							);
+						}
+					} catch (err) {
+						showError(
+							err instanceof Error
+								? err.message
+								: "Couldn't reach the server. Try again, or email sales@lucoze.com.",
+						);
+						track("Signup Error", { reason: "server" });
+						setLoading(false);
+						return;
+					}
+					setLoading(false);
+				}
 				track("Signup Submitted", { plan: planId, specialty });
 				showThanks(pendingFirstName);
 				return;
