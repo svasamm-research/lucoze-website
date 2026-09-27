@@ -14,6 +14,11 @@ ENV PUBLIC_BILLING_API_URL=${PUBLIC_BILLING_API_URL}
 ARG PUBLIC_ADMIN_API_URL=""
 ENV PUBLIC_ADMIN_API_URL=${PUBLIC_ADMIN_API_URL}
 
+# The lucoze-lead-form Lambda's Function URL — where the lead form and signup
+# post since 27 Sep 2026, when Frappe's admin.lucoze.com was retired.
+ARG PUBLIC_LEAD_URL=""
+ENV PUBLIC_LEAD_URL=${PUBLIC_LEAD_URL}
+
 # Plausible domain. Empty on UAT (skips Plausible loading entirely) so UAT traffic
 # does not pollute production analytics. Set to "lucoze.com" for production builds.
 ARG PUBLIC_PLAUSIBLE_DOMAIN=""
