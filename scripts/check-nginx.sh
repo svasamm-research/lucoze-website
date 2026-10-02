@@ -5,31 +5,39 @@
 # the legacy /in/solutions-* 301s, and the Content-Security-Policy header.
 #
 # Usage: npm run build && scripts/check-nginx.sh
+#        IMAGE=<built image> bash scripts/check-nginx.sh   (the release image — CI)
 set -euo pipefail
 
 PORT="${PORT:-8899}"
 NAME="lz-nginx-check-$$"
 DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
+# A missing docker FAILS: a gate that skips is a gate that is off (2 Oct 2026).
 if ! command -v docker >/dev/null 2>&1; then
-	echo "⚠  docker not found — skipping nginx infra check."
-	exit 0
-fi
-if [ ! -f "$DIR/dist/in/index.html" ]; then
-	echo "✗  dist/ not built. Run 'npm run build' first."
+	echo "✗  docker not found — this check cannot run."
 	exit 1
 fi
 
 cleanup() { docker rm -f "$NAME" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
-docker run -d --name "$NAME" -p "$PORT:80" \
-	-v "$DIR/nginx.conf:/etc/nginx/conf.d/default.conf:ro" \
-	-v "$DIR/dist:/usr/share/nginx/html:ro" nginx:alpine >/dev/null
+if [ -n "${IMAGE:-}" ]; then
+	# The release image itself (CI, before push): its nginx.conf and its dist.
+	docker run -d --name "$NAME" -p "$PORT:80" "$IMAGE" >/dev/null
+else
+	if [ ! -f "$DIR/dist/in/index.html" ]; then
+		echo "✗  dist/ not built. Run 'npm run build' first."
+		exit 1
+	fi
+	docker run -d --name "$NAME" -p "$PORT:80" \
+		-v "$DIR/nginx.conf:/etc/nginx/conf.d/default.conf:ro" \
+		-v "$DIR/dist:/usr/share/nginx/html:ro" nginx:1.27-alpine >/dev/null
+fi
 # wait for nginx to answer
 for _ in $(seq 1 20); do
 	curl -sf -o /dev/null "http://localhost:$PORT/in/" && break || sleep 0.5
 done
+curl -s -o /dev/null "http://localhost:$PORT/in/" || { echo "✗  nginx did not start — nginx.conf is broken:"; docker logs "$NAME" 2>&1 | tail -5; exit 1; }
 
 fail=0
 # $1 = path, $2 = expected HTTP code, $3 = expected Location (empty = none)

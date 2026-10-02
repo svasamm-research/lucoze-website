@@ -15,7 +15,9 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"test:e2e": "playwright test",
-		"test:infra": "bash scripts/check-nginx.sh"
+		"test:infra": "bash scripts/check-nginx.sh",
+		"test:visual": "docker run --rm --ipc=host -v \"$PWD:/w\" -v /w/node_modules -w /w mcr.microsoft.com/playwright:v1.61.1-noble sh -c 'npm ci --ignore-scripts >/dev/null && npx playwright test '",
+		"test:visual:update": "docker run --rm --ipc=host -v \"$PWD:/w\" -v /w/node_modules -w /w mcr.microsoft.com/playwright:v1.61.1-noble sh -c 'npm ci --ignore-scripts >/dev/null && npx playwright test visual --update-snapshots'"
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.29.7",
