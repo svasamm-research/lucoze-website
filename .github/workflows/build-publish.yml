@@ -43,8 +43,30 @@ on:
     - cron: "0 2 * * 1"
 
 jobs:
+  # THE GATE. Lucoze's smoke tests, then every page from the sitemap (status, one h1,
+  # canonical, no errors, no sideways scroll on a phone), every internal link, and the
+  # approved screenshots. Red here = nothing is built, pushed or deployed — including
+  # the Monday rebuild. Runs in Playwright's own Linux image because the approved
+  # screenshots were taken in it.
+  e2e:
+    name: Browser tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # the Monday rebuild deploys main; test what it deploys
+          ref: ${{ github.event_name == 'schedule' && 'main' || '' }}
+      - run: npm ci --ignore-scripts
+      - run: npx playwright test
+        env:
+          CI: "true"
+
   build:
     name: Build & push Docker image
+    needs: e2e
     runs-on: ubuntu-latest
 
     outputs:
@@ -120,6 +142,27 @@ jobs:
             echo "marketing_url=https://marketing.lucoze.com" >> "$GITHUB_OUTPUT"
             echo "newsletter_list_uuid=70c93cbb-2164-45cc-96e6-04ae63c30b98" >> "$GITHUB_OUTPUT"
           fi
+
+      # The second half of the gate: nginx's redirects and headers, checked on the
+      # image that is about to ship — before it is pushed.
+      - name: Build image for the nginx check
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          build-args: |
+            PUBLIC_BILLING_API_URL=${{ steps.urls.outputs.billing_api_url }}
+            PUBLIC_ADMIN_API_URL=${{ steps.urls.outputs.admin_api_url }}
+            PUBLIC_LEAD_URL=${{ steps.urls.outputs.lead_url }}
+            PUBLIC_PLAUSIBLE_DOMAIN=${{ steps.urls.outputs.plausible_domain }}
+            PUBLIC_GA_ID=${{ steps.urls.outputs.ga_id }}
+            PUBLIC_MARKETING_URL=${{ steps.urls.outputs.marketing_url }}
+            PUBLIC_NEWSLETTER_LIST_UUID=${{ steps.urls.outputs.newsletter_list_uuid }}
+          tags: lucoze-website:check
+          cache-from: type=gha,key=lucoze-website-${{ steps.meta.outputs.floating_tag }}
+
+      - name: Check nginx on the release image
+        run: IMAGE=lucoze-website:check bash scripts/check-nginx.sh
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
