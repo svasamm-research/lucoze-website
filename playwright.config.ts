@@ -18,6 +18,10 @@ export default defineConfig({
 	retries: process.env.CI ? 1 : 0,
 	workers: process.env.CI ? 2 : undefined,
 	reporter: process.env.CI ? "github" : "list",
+	// Approved screenshots (visual.spec.ts) compare ONLY on Linux — Playwright's image in
+	// CI and in `npm run test:visual:update`. A Mac renders fonts differently.
+	ignoreSnapshots: process.platform !== "linux",
+	snapshotPathTemplate: "{testDir}/__screenshots__/{arg}{ext}",
 	use: {
 		baseURL: "http://localhost:4321",
 		trace: "on-first-retry",

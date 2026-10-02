@@ -1352,3 +1352,47 @@
 		padding: var(--s-8);
 	}
 }
+
+/* ── Hospitals: the worked switching example ────────────────────── */
+.switch-heading {
+	margin-top: var(--s-2);
+}
+.switch-steps {
+	list-style: none;
+	margin: var(--s-6) 0 0;
+	padding: 0;
+	display: grid;
+	gap: var(--s-4);
+	max-width: 780px;
+}
+.switch-step {
+	display: grid;
+	grid-template-columns: 40px 1fr;
+	gap: var(--s-4);
+	align-items: start;
+	padding: var(--s-5);
+	background: var(--paper);
+	border: 1px solid var(--border);
+	border-radius: var(--r-lg);
+}
+.switch-step__n {
+	width: 40px;
+	height: 40px;
+	border-radius: var(--r-full);
+	border: 2px solid var(--primary);
+	color: var(--primary);
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.switch-step__title {
+	font-size: 18px;
+	color: var(--ink);
+	margin: 0 0 var(--s-2);
+}
+.switch-step__body {
+	color: var(--ink-soft);
+	margin: 0;
+	line-height: 1.6;
+}
