@@ -27,17 +27,15 @@ jobs:
   e2e:
     name: E2E Smoke
     runs-on: ubuntu-latest
+    # Playwright's own image: the approved screenshots were taken in it, and a plain
+    # ubuntu runner's fonts would fail them for no real reason.
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
+      options: --ipc=host
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - run: npm install
-
-      - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+      - run: npm ci --ignore-scripts
 
       - name: Run E2E smoke tests
         # The Playwright config's webServer builds + serves the site, so this

@@ -74,11 +74,38 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string; gallery?: stri
 	},
 ];
 const galleryIds = HOSP_MODULES.map((m) => m.gallery).filter((g): g is string => !!g);
+
+// The worked example. Google left this page "crawled, not indexed" (1 Oct 2026) while it
+// read as a feature list every HMS publishes; this is the part nobody else can write.
+// Every figure is from the marketing vault (concepts/*, verified 24 Jul 2026) — change it
+// there first. It is an EXAMPLE, labelled as one: no customer, no invented result.
+const SWITCH_STEPS: { title: string; body: string }[] = [
+	{
+		title: "Nothing goes dark.",
+		body: "The current system stays live. We import the patient master, rate cards, formulary and current stock, with no migration fee.",
+	},
+	{
+		title: "Start where it hurts most.",
+		body: "Often the pharmacy. Since 22 September 2025 most medicines are taxed at 5% instead of 12%, and some at nil. The rate follows each medicine's HSN code, so a counter billing one flat rate is wrong on part of the shelf. Fix that first, prove it, then expand.",
+	},
+	{
+		title: "Run both side by side.",
+		body: "Around days 15 to 30, OPD goes live on Lucoze while IPD shadows it. Compare the two systems' daily totals until they agree, and move on only when they do.",
+	},
+	{
+		title: "Register for ABDM properly.",
+		body: "Three separate registrations: the facility on HFR, each doctor on HPR, and an ABHA created or linked at the front desk for each patient. We walk your team through all three, because software alone does not register you.",
+	},
+	{
+		title: "Cut over when you trust it.",
+		body: "IPD, OT, pharmacy and lab move one at a time, and the old system becomes read-only around day 45. HR, payroll and the NABH reports close the 60 days. You can export all your data at any time: being free to leave is what makes it safe to join.",
+	},
+];
 ---
 
 <Base
 	title="Hospital Management Software for 20-100 bed hospitals in India"
-	description="Lucoze for small hospitals. IPD, OT scheduling, lab, pharmacy, HR, NABH dashboards. ABDM-ready. Data hosted in India."
+	description="Hospital management software for 20-100 bed hospitals in India: ABDM (HFR, HPR, ABHA), GST-correct pharmacy billing, a parallel-run switch with no migration fee, and data hosted in India."
 >
 	<SubHero
 		crumbs={[
@@ -168,33 +195,71 @@ const galleryIds = HOSP_MODULES.map((m) => m.gallery).filter((g): g is string =>
 	<section class="section section--tight">
 		<div class="container">
 			<FRow
-				eyebrow="Implementation"
-				title="60 days. Phased. With a named implementation manager."
-				lead="Hospital implementations are not clinic implementations. There are more stakeholders, more workflows, and more legacy data. We don't pretend otherwise. Here's the phased plan."
+				eyebrow="Why hospitals move now"
+				title="Your current system was built before these rules."
+				lead="Hospitals rarely switch for a nicer screen. They switch because the rules changed and the old system did not keep up. These are the ones a 20-100 bed hospital meets this year."
 				bullets={[
-					"Days 1-14: configuration + master data setup. Departments, doctors, rate cards, formulary.",
-					"Days 15-30: parallel run. OPD goes live. IPD shadows for 2 weeks.",
-					"Days 31-45: IPD + OT live. Pharmacy + lab integrated. Old system read-only.",
-					"Days 46-60: HR + payroll + NABH reports. Cutover complete. Implementation manager hands off to CSM.",
+					"ABDM: 'ABDM-ready' is a claim. The proof is three registrations: the facility on HFR, each doctor on HPR, and ABHA at the front desk. Lucoze carries all three.",
+					"GST on medicines: since 22 September 2025 most medicines are 5% (down from 12%) and some are nil. The rate follows the HSN code, so one flat pharmacy rate is wrong.",
+					"E-invoicing: mandatory once a GSTIN's aggregate turnover crosses ₹5 crore. Pharmacy, lab and OPD together often cross it, even when no single counter looks large.",
+					"NABH and PM-JAY: accredited hospitals earn 10% (entry-level NABH) or 15% (full NABH) above the PM-JAY package rate, on every scheme case.",
+					"DPDP Act 2023: consent, retention and a breach process for patient data. All Lucoze data stays in Indian data centres.",
 				]}
 			>
 				<VisualPlaceholder slot="visual">
-					<Icon name="calendar" size={56} style="color: var(--primary); opacity: 0.5;" />
+					<Icon name="shield" size={56} style="color: var(--primary); opacity: 0.5;" />
 					<strong style="color: var(--ink); font-size: 14px; margin-top: 12px;">
-						60-day phased rollout
+						The reasons to move now
 					</strong>
+					<a
+						href="/in/blog/abdm-abha-guide/"
+						style="font-size: 12px; color: var(--primary); font-weight: 600;"
+					>
+						ABDM readiness guide →
+					</a>
 				</VisualPlaceholder>
 			</FRow>
+		</div>
+	</section>
 
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header section-header--left">
+				<span class="t-eyebrow">A worked example</span>
+				<h2 class="t-h2 switch-heading">What switching looks like for a 50-bed hospital.</h2>
+				<p class="t-lead">
+					An example, not a customer story: a 50-bed multispecialty hospital with OPD, IPD, an OT,
+					an in-house pharmacy and a lab, already running an older hospital system.
+				</p>
+			</header>
+			<ol class="switch-steps" role="list">
+				{
+					SWITCH_STEPS.map((step, i) => (
+						<li class="switch-step">
+							<span class="switch-step__n" aria-hidden="true">{i + 1}</span>
+							<div>
+								<h3 class="switch-step__title">{step.title}</h3>
+								<p class="switch-step__body">{step.body}</p>
+							</div>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<section class="section section--tight">
+		<div class="container">
 			<FRow
-				eyebrow="What you replace"
-				title="From a fragmented stack to one ledger."
-				lead="Most small hospitals run on 3-7 separate tools. Lucoze replaces the lot with one. Migration includes consolidating those tools — your administrator stops being the integration layer between them."
+				eyebrow="What moves, what stays"
+				title="What moves, what stays, and what you can take with you."
+				lead="Most small hospitals run on 3-7 separate tools. Lucoze brings the hospital side into one place, so your administrator stops being the link between them, and leaves your accounts where they are."
 				bullets={[
-					"Replaces: legacy HIS (Birlamedisoft, eHospital, custom), Tally / Marg for pharmacy, Excel for HR, separate billing software.",
-					"Keeps: Tally / Zoho Books for accounting (export integration), your bank, your insurance partners.",
-					"Migrates: 5 years of patient master, last 18 months of appointments + billing, current inventory and HR.",
-					"Doesn't migrate: 10-year-old physical case sheets (those stay archived; we index them).",
+					"Moves: the hospital system, the separate pharmacy and billing software, and the HR spreadsheets.",
+					"Stays: Tally or Zoho Books for accounting (we export to them), your bank, your insurance partners.",
+					"Migrates, with no migration fee: 5 years of patient master, the last 18 months of appointments and billing, current inventory and HR.",
+					"Doesn't migrate: old physical case sheets stay archived; we index them.",
+					"Free to leave: export all your data at any time. No lock-in.",
 				]}
 				flip
 			>
@@ -206,30 +271,6 @@ const galleryIds = HOSP_MODULES.map((m) => m.gallery).filter((g): g is string =>
 				</VisualPlaceholder>
 			</FRow>
 
-			<FRow
-				eyebrow="Compliance"
-				title="ABDM, NABH, DPDP — built in, not bolted on."
-				lead="Your medical director and your administrator will both ask. The answer is: yes, ready on day one. Documentation available for inspection."
-				bullets={[
-					"ABDM — HFR-registered facility, HPR-onboarded doctors, ABHA-linked records, consent-managed sharing.",
-					"NABH — dashboards for the metrics that matter (ALOS, infection rate, medication errors).",
-					"DPDP — consent flows, audit log retention, 72-hour breach notification process.",
-					"All data hosted in Indian data centres. Nothing crosses borders.",
-				]}
-			>
-				<VisualPlaceholder slot="visual">
-					<Icon name="shield" size={56} style="color: var(--primary); opacity: 0.5;" />
-					<strong style="color: var(--ink); font-size: 14px; margin-top: 12px;">
-						Compliance day one
-					</strong>
-					<a
-						href="/in/blog/dpdp-for-clinics/"
-						style="font-size: 12px; color: var(--primary); font-weight: 600;"
-					>
-						Read the guides →
-					</a>
-				</VisualPlaceholder>
-			</FRow>
 		</div>
 	</section>
 
