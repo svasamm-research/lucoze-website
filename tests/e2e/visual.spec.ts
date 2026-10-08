@@ -28,12 +28,17 @@ for (const path of SITE.keyPages) {
 			await page.setViewportSize({ width: w, height: h });
 			await page.goto(path);
 			await settle(page);
+			// Things that MOVE by design (a cycling word, a button that floats in) are hidden:
+			// a mask box follows its element, so a moving element moves its mask too.
+			const hide = (SITE as { hide?: string[] }).hide ?? [];
+			if (hide.length)
+				await page.addStyleTag({ content: `${hide.join(",")}{visibility:hidden !important}` });
 			const name = `${path === "/" ? "home" : path.replace(/^\/|\/$/g, "").replace(/\//g, "-")}-${tag}.png`;
 			await expect(page).toHaveScreenshot(name, {
 				fullPage: true,
 				animations: "disabled",
 				mask: SITE.mask.map((s) => page.locator(s)),
-				maxDiffPixelRatio: 0.01,
+				maxDiffPixels: 100,
 			});
 		});
 	}

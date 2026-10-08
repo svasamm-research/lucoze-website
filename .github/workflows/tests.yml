@@ -42,6 +42,16 @@ jobs:
         # runs against the real static output.
         run: npm run test:e2e
 
+      # A red screenshot test is read from its picture, not guessed at: keep the
+      # expected / actual / diff images of every failure for a week.
+      - name: Keep the failure pictures
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-failures
+          path: test-results/
+          retention-days: 7
+
   infra:
     name: nginx Infra Check
     runs-on: ubuntu-latest
