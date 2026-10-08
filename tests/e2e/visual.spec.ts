@@ -33,7 +33,7 @@ for (const path of SITE.keyPages) {
 				fullPage: true,
 				animations: "disabled",
 				mask: SITE.mask.map((s) => page.locator(s)),
-				maxDiffPixelRatio: 0.01,
+				maxDiffPixels: 100,
 			});
 		});
 	}
