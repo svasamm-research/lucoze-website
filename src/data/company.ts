@@ -100,7 +100,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				kicker: "Sales + demos",
 				title: "Book a 30-minute walkthrough.",
 				bullets: [
-					"Email: sales@lucoze.com",
+					"Email: sales@svasamm.com",
 					"WhatsApp: +91 82178 20249 (Mon-Sat, 9am-7pm IST)",
 					"Calendar: lucoze.com/demo",
 				],

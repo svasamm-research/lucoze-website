@@ -319,7 +319,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 	// the network and shows the thanks panel directly.
 	const ADMIN = import.meta.env.PUBLIC_ADMIN_API_URL as string | undefined;
 	// ⛔ SINCE 27 SEP 2026 SIGNUP IS A LEAD. Lucoze is merging into Svasamm One and
-	// provisions nobody itself, so the form emails sales@lucoze.com through the
+	// provisions nobody itself, so the form emails sales@svasamm.com through the
 	// lucoze-lead-form Lambda and shows the thanks panel. The OTP steps below are
 	// unreachable while ADMIN is unset, which it now is in every build.
 	const LEAD_URL = import.meta.env.PUBLIC_LEAD_URL as string | undefined;
@@ -555,7 +555,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 						showError(
 							err instanceof Error
 								? err.message
-								: "Couldn't reach the server. Try again, or email sales@lucoze.com.",
+								: "Couldn't reach the server. Try again, or email sales@svasamm.com.",
 						);
 						track("Signup Error", { reason: "server" });
 						setLoading(false);
@@ -577,7 +577,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 				showError(
 					err instanceof Error
 						? err.message
-						: "Couldn't reach the signup server. Try again, or email sales@lucoze.com.",
+						: "Couldn't reach the signup server. Try again, or email sales@svasamm.com.",
 				);
 				track("Signup Error", { reason: err instanceof Error ? "server" : "network" });
 			} finally {
