@@ -14,7 +14,8 @@ test("sales mail is sales@svasamm.com on every page and in llms.txt", async ({ p
 	expect(SALES_EMAIL).toBe("sales@svasamm.com");
 	const bad: string[] = [];
 	for (const u of urls) {
-		const html = await (await page.request.get(u)).text();
+		// the PATH, so it hits the local build — an absolute sitemap URL would fetch production
+		const html = await (await page.request.get(new URL(u).pathname)).text();
 		if (/sales@lucoze\.com/i.test(html)) bad.push(u);
 	}
 	expect(bad).toEqual([]);
