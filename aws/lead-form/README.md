@@ -6,7 +6,7 @@ no clients, so a lead needs only to reach an inbox — the same as svasamm.com a
 t4suite.com.
 
 **Flow:** lead form or signup (browser) → `POST` Function URL → Lambda → SES →
-**sales@lucoze.com** (Reply-To = the lead's email, when they gave one).
+**sales@svasamm.com** (Reply-To = the lead's email, when they gave one).
 
 ⚠️ **Unlike the other two sites, a lead gives a phone OR an email.** Either may be
 missing, so neither is required on its own. The handler refuses only a lead with
@@ -14,9 +14,10 @@ no name, or one with no way to reach them.
 
 ## 1 · SES
 
-`lucoze.com` must be a verified identity in **us-east-1** (Listmonk already sends
-through it, so it most likely is). Check: SES console → Verified identities →
-`lucoze.com` → _Verified_, DKIM _Successful_.
+`svasamm.com` must be a verified identity in **us-east-1** (the svasamm.com and
+T4Suite forms already send through it). Check: SES console → Verified identities →
+`svasamm.com` → _Verified_, DKIM _Successful_. (Until 30 Oct 2026 the sender and
+recipient were on lucoze.com; both moved to svasamm.com when sales mail moved.)
 
 ## 2 · IAM role — `lucoze-lead-form-role`
 
@@ -38,8 +39,8 @@ runtime bundles `@aws-sdk/client-sesv2`). Timeout 10 s.
 | env var        | value                                                              |
 | -------------- | ------------------------------------------------------------------ |
 | `SES_REGION`   | `us-east-1`                                                        |
-| `MAIL_FROM`    | `no-reply@lucoze.com`                                              |
-| `MAIL_TO`      | `sales@lucoze.com`                                                 |
+| `MAIL_FROM`    | `no-reply@svasamm.com`                                             |
+| `MAIL_TO`      | `sales@svasamm.com`                                                |
 | `ALLOW_ORIGIN` | `https://lucoze.com,https://www.lucoze.com,https://uat.lucoze.com` |
 
 ## 4 · Function URL
@@ -55,7 +56,7 @@ methods `POST`, headers `content-type`. Copy the URL
 URL='https://<id>.lambda-url.us-east-1.on.aws/'
 curl -s -X POST "$URL" -H 'content-type: application/json' -H 'origin: https://lucoze.com' \
   -d '{"name":"Test lead","phone":"+91 98300 12345","source":"curl test"}'
-# → {"ok":true}, and an email in sales@lucoze.com
+# → {"ok":true}, and an email in sales@svasamm.com
 curl -s -X POST "$URL" -H 'content-type: application/json' -d '{"name":"No contact"}'
 # → 422 {"ok":false,"error":"Please give a phone number or an email so we can reach you."}
 ```

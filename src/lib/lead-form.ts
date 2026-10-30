@@ -4,11 +4,12 @@
 //   - name is required
 //   - phone (^[6-9]\d{9}$) OR email satisfies the gate — either one enables submit
 //   - submit POSTs to the lucoze-lead-form Lambda (PUBLIC_LEAD_URL), which emails
-//     sales@lucoze.com. It replaced Frappe's admin.lucoze.com on 27 Sep 2026.
+//     sales@svasamm.com. It replaced Frappe's admin.lucoze.com on 27 Sep 2026.
 //   - on builds with no PUBLIC_LEAD_URL, we skip the network
 //     and go straight to the success state so the page still feels alive.
 
 import { track } from "./analytics";
+import { SALES_EMAIL } from "../data/contact";
 
 type Source = "contact" | "design-partner" | "demo" | "abdm-check" | "abdm-setup-help";
 
@@ -237,7 +238,7 @@ export function initLeadForm({ source }: InitOptions): void {
 			}
 			showSuccess();
 		} catch {
-			showError("Couldn't reach the server. Try again, or email sales@lucoze.com directly.");
+			showError(`Couldn't reach the server. Try again, or email ${SALES_EMAIL} directly.`);
 		} finally {
 			setLoading(false);
 		}

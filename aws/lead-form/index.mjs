@@ -12,16 +12,16 @@
 //
 // Env vars (set on the Lambda):
 //   SES_REGION   "us-east-1"               (the region lucoze.com is verified in)
-//   MAIL_FROM    "no-reply@lucoze.com"     (MUST be a verified SES identity)
-//   MAIL_TO      "sales@lucoze.com"        (where leads land)
+//   MAIL_FROM    "no-reply@svasamm.com"    (MUST be a verified SES identity)
+//   MAIL_TO      "sales@svasamm.com"       (where leads land)
 //   ALLOW_ORIGIN "https://lucoze.com,https://www.lucoze.com"
 //
 // IAM: the role needs ses:SendEmail (+ the default CloudWatch Logs policy).
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 
 const REGION = process.env.SES_REGION || "us-east-1";
-const MAIL_FROM = process.env.MAIL_FROM || "no-reply@lucoze.com";
-const MAIL_TO = process.env.MAIL_TO || "sales@lucoze.com";
+const MAIL_FROM = process.env.MAIL_FROM || "no-reply@svasamm.com";
+const MAIL_TO = process.env.MAIL_TO || "sales@svasamm.com";
 const ALLOW_ORIGIN = (process.env.ALLOW_ORIGIN || "https://lucoze.com,https://www.lucoze.com")
 	.split(",")
 	.map((s) => s.trim());
@@ -154,7 +154,7 @@ export const handler = async (event) => {
 		console.error("SES send failed:", err);
 		return reply(
 			502,
-			{ ok: false, error: "Could not send. Please email sales@lucoze.com." },
+			{ ok: false, error: "Could not send. Please email sales@svasamm.com." },
 			origin,
 		);
 	}
