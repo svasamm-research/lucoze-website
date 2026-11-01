@@ -3,23 +3,33 @@
 // These keep the site, the Lambda's defaults and the footer on ONE address.
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
-import { SALES_EMAIL } from "../../src/data/contact";
+import { FOUNDER_EMAIL, SALES_EMAIL, SUPPORT_EMAIL } from "../../src/data/contact";
 import { SITE } from "./site.config";
 
 const urls = SITE.sitemaps
 	.flatMap((f) => [...readFileSync(f, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]))
 	.filter((u) => !u.endsWith(".xml"));
 
-test("sales mail is sales@svasamm.com on every page and in llms.txt", async ({ page }) => {
-	expect(SALES_EMAIL).toBe("sales@svasamm.com");
+test("sales, help and founder mail are on svasamm.com on every page and in llms.txt", async ({ page }) => {
+	expect([SALES_EMAIL, SUPPORT_EMAIL, FOUNDER_EMAIL]).toEqual([
+		"sales@svasamm.com",
+		"query@svasamm.com",
+		"mithun@svasamm.com",
+	]);
 	const bad: string[] = [];
 	for (const u of urls) {
 		// the PATH, so it hits the local build — an absolute sitemap URL would fetch production
 		const html = await (await page.request.get(new URL(u).pathname)).text();
-		if (/sales@lucoze\.com/i.test(html)) bad.push(u);
+		if (/(sales|support|mithun)@lucoze\.com/i.test(html)) bad.push(u);
 	}
 	expect(bad).toEqual([]);
-	expect(readFileSync("public/llms.txt", "utf8")).not.toMatch(/sales@lucoze\.com/i);
+	expect(readFileSync("public/llms.txt", "utf8")).not.toMatch(/(sales|support|mithun)@lucoze\.com/i);
+});
+
+test("the plain-JS error text names the help address", () => {
+	const js = readFileSync("public/js/main.js", "utf8");
+	expect(js).toContain(SUPPORT_EMAIL);
+	expect(js).not.toMatch(/support@lucoze\.com/i);
 });
 
 test("the lead-form Lambda mails the same address the site shows", () => {
