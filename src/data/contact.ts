@@ -16,6 +16,10 @@ export const WHATSAPP = "918217820249"; // wa.me number (Business App)
 // svasamm.com, not lucoze.com: sales mail moved to Svasamm's domain (Mithun, 30 Oct 2026) — the
 // lead-form Lambda's MAIL_TO (aws/lead-form) must be the same address.
 export const SALES_EMAIL = "sales@svasamm.com";
+// Same move for the help and founder inboxes (Mithun, 1 Nov 2026). public/js/main.js is plain
+// static JS and cannot import this, so its error text repeats SUPPORT_EMAIL; lucoze.spec.ts checks it.
+export const SUPPORT_EMAIL = "query@svasamm.com";
+export const FOUNDER_EMAIL = "mithun@svasamm.com";
 
 const DEFAULT_WA_MSG = "Hi Lucoze, I'd like to know more about your clinic software.";
 
