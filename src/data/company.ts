@@ -1,6 +1,8 @@
 /** Company-page content blocks (design-partner, careers, contact).
  *  Ported verbatim from prototype `website/data-blog.js` `window.COMPANY`. */
 
+import { FOUNDER_EMAIL } from "./contact";
+
 export interface CompanyBlock {
 	kicker: string;
 	title: string;
@@ -100,7 +102,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				kicker: "Sales + demos",
 				title: "Book a 30-minute walkthrough.",
 				bullets: [
-					"Email: sales@lucoze.com",
+					"Email: sales@svasamm.com",
 					"WhatsApp: +91 82178 20249 (Mon-Sat, 9am-7pm IST)",
 					"Calendar: lucoze.com/demo",
 				],
@@ -109,7 +111,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 				kicker: "Founder line",
 				title: "Talk to us. (We mean it.)",
 				bullets: [
-					"Email: mithun@lucoze.com",
+					`Email: ${FOUNDER_EMAIL}`,
 					"LinkedIn DM: linkedin.com/in/mithunksingh",
 					"We don't outsource the founder inbox. We read everything.",
 				],
