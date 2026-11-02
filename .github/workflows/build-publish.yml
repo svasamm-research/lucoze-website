@@ -2,7 +2,7 @@
 #
 # TRIGGER: GitHub Release published in this repo.
 #   uat-vX.Y.Z  →  UAT build   → svasamm/lucoze-website:uat-vX.Y.Z + :uat-latest  → UAT deploy
-#   vX.Y.Z      →  Prod build  → svasamm/lucoze-website:vX.Y.Z + :latest           → Production deploy (approval gate)
+#   vX.Y.Z      →  Prod build  → svasamm/lucoze-website:vX.Y.Z + :latest           → Production deploy (no approval step: publishing the release deploys)
 #
 # Can also be triggered manually via workflow_dispatch for infra rebuilds, and
 # runs weekly (schedule) to rebuild+redeploy prod so drip-published (future-dated)
