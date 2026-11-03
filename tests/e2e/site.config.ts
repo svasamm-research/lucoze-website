@@ -14,4 +14,10 @@ export const SITE = {
 	// Native <select>s can render a pixel up or down between identical runs (svasamm-site,
 	// 8 Oct 2026, 401 px on its contact form); masked so the 100-px allowance stays honest.
 	mask: ["select"] as string[],
+	// A blur is not repeatable on GitHub's runners: the sticky header's translucent, blurred
+	// background (backdrop-filter) came out up to 1/255 different between attempts of the SAME page,
+	// over ~93,000 pixels in the top 73 px. The v4.21.0 production release stopped on it
+	// (3 Nov 2026) though uat-v4.21.0, the identical code, passed. The picture is taken with the
+	// blur off; the page itself is unchanged.
+	css: "*{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}",
 };
