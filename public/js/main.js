@@ -581,7 +581,7 @@
 					showAlert(
 						alert,
 						"error",
-						"Unable to connect to the server. Please check your internet connection or try again later. If the issue persists, contact support@lucoze.com.",
+						"Unable to connect to the server. Please check your internet connection or try again later. If the issue persists, contact query@svasamm.com.",
 					);
 				})
 				.finally(function () {
@@ -724,7 +724,7 @@
 					showAlert(
 						alert,
 						"error",
-						"Unable to connect to the server. Please try again or contact support@lucoze.com.",
+						"Unable to connect to the server. Please try again or contact query@svasamm.com.",
 					);
 					otpBtn.removeAttribute("disabled");
 					otpBtn.textContent = "Verify & Create Workspace";
@@ -947,7 +947,7 @@
 					showAlert(
 						alert,
 						"error",
-						"Unable to connect to the server. Please check your internet connection or try again later. If the issue persists, contact support@lucoze.com.",
+						"Unable to connect to the server. Please check your internet connection or try again later. If the issue persists, contact query@svasamm.com.",
 					);
 				})
 				.finally(function () {
