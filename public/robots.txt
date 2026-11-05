@@ -6,7 +6,6 @@ User-agent: *
 Allow: /
 
 # Internal preview page, not for index
-Disallow: /in/redesign-preview/
 
 # (Legacy hyphenated /in/solutions-* URLs are now real 301s in nginx, so they no
 # longer need a Disallow — a Disallow would only stop Googlebot from seeing the

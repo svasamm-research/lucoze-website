@@ -34,8 +34,10 @@ export default defineConfig({
 		// SubscribeForm renders nothing without them (see src/components/SubscribeForm.astro).
 		// Set fake values so the newsletter smoke test has a form to find; the
 		// actual Listmonk call is stubbed in the test via page.route().
+		// PUBLIC_LEAD_URL is fake for the same reason: without one the form skips the network and
+		// shows success, so the path that broke on 30 Oct 2026 was never run by any test.
 		command:
-			"PUBLIC_MARKETING_URL=https://marketing.lucoze.com PUBLIC_NEWSLETTER_LIST_UUID=test-uuid npm run build && npm run preview",
+			"PUBLIC_LEAD_URL=https://lead.test/ PUBLIC_MARKETING_URL=https://marketing.lucoze.com PUBLIC_NEWSLETTER_LIST_UUID=test-uuid npm run build && npm run preview",
 		url: "http://localhost:4321/in/",
 		timeout: 120_000,
 		reuseExistingServer: !process.env.CI,
