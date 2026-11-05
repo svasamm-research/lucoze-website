@@ -61,10 +61,6 @@ export default defineConfig({
 		react(),
 		mdx({ rehypePlugins: [rehypeUnwrapNestedParagraphs] }),
 		sitemap({
-			// Exclude internal preview from the sitemap. Canonical solutions
-			// URLs are /in/solutions/clinics/ and /in/solutions/hospitals/;
-			// the legacy hyphenated paths now only exist as 301 redirects.
-			filter: (page) => !page.includes("/in/redesign-preview/"),
 			// lastmod = build/publish time (whole static site ships together on
 			// each deploy). priority nudges the homepage above deep pages.
 			// ponytail: uniform lastmod is a weak signal — swap to per-page git

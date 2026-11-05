@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import SubHero from "../../../components/SubHero.astro";
+import Icon from "../../../components/Icon.astro";
+
+const specialties = (await getCollection("specialties")).sort((a, b) =>
+	a.data.label.localeCompare(b.data.label),
+);
+
+const h1Parts = ["Lucoze, ", "by specialty", "."];
+---
+
+<Base
+	title="Software by specialty: clinics, labs and small hospitals | Lucoze"
+	description="How Lucoze fits each kind of practice in India: multi-specialty and dental clinics, IVF centres, diagnostic labs, nursing homes and small hospitals."
+>
+	<SubHero
+		crumbs={[{ href: "/in/", label: "Home" }, { label: "Specialties" }]}
+		eyebrow="Specialties"
+		h1={h1Parts.join("")}
+		highlightParts={h1Parts}
+		lead="Each kind of practice runs differently. Pick yours to see what Lucoze does for it."
+		primaryCta={{ href: "/in/demo/", label: "Book a demo" }}
+		secondaryCta={{ href: "/in/pricing/", label: "See pricing" }}
+	/>
+
+	<section class="section section--tight">
+		<div class="container">
+			<div class="module-grid">
+				{
+					specialties.map((s) => (
+						<a class="module-card" href={`/in/specialties/${s.data.slug}/`}>
+							<div class="module-card__icon">
+								<Icon name={s.data.icon} size={20} />
+							</div>
+							<div class="module-card__title">{s.data.label}</div>
+							<div class="module-card__blurb">{s.data.eyebrow}</div>
+							<span class="module-card__arrow">
+								See how <Icon name="arrow" size={13} />
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Base>
