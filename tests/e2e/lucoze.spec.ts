@@ -71,7 +71,8 @@ test("Book a demo posts the lead and shows success when the answer names this pa
 		"access-control-allow-origin": new URL(baseURL!).origin,
 	});
 	await expect(page.locator("[data-contact-success]")).toBeVisible();
-	expect(posted()).toMatchObject({ name: "Testing", phone: "9830012345", source: "contact" });
+	// Sent with its country code since the country picker (10 Nov 2026).
+	expect(posted()).toMatchObject({ name: "Testing", phone: "+91 9830012345", source: "contact" });
 });
 
 test("Book a demo says it could not reach the server when the answer names another address", async ({
@@ -122,4 +123,37 @@ test("robots.txt lets every AI crawler read the site", async ({ request }) => {
     expect(g!.rules, bot).toContain("allow:/");
     expect(g!.rules, bot).not.toContain("disallow:/");
   }
+});
+
+// The phone's country picker (Mithun, 10 Nov 2026): India first; another country's number is checked
+// against that country's lengths and sent with its own code.
+test("Book a demo: a number from another country is checked and sent with its code", async ({ page, baseURL }) => {
+	let posted: Record<string, unknown> | null = null;
+	await page.route("https://lead.test/**", async (r) => {
+		posted = r.request().postDataJSON();
+		await r.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": new URL(baseURL!).origin }, body: '{"ok":true}' });
+	});
+	await page.goto("/in/demo/");
+	const cc = page.locator("[data-cc]");
+	await expect(cc).toHaveValue("IN");
+	await page.fill("#c-name", "Testing");
+	await page.fill("#c-phone", "98300");
+	await expect(page.locator("[data-phone-err]")).toBeVisible();
+	await expect(page.locator("[data-contact-submit]")).toBeDisabled();
+	await cc.selectOption("AE");
+	await expect(page.locator("[data-cc-show]")).toHaveText("🇦🇪 +971");
+	await page.fill("#c-phone", "501234567");
+	await expect(page.locator("[data-phone-err]")).toBeHidden();
+	await page.locator("[data-contact-submit]").click();
+	await expect(page.locator("[data-contact-success]")).toBeVisible();
+	expect(posted).toMatchObject({ name: "Testing", phone: "+971 501234567" });
+});
+
+// A 404 with ways forward (10 Nov 2026): a real 404 status, and every door on it opens.
+test("the 404 page answers 404 and every door on it opens", async ({ page, request }) => {
+	const r = await page.goto("/in/no-such-page/");
+	expect(r?.status()).toBe(404);
+	const hrefs = await page.locator(".section-404 a[href]").evaluateAll((as) => as.map((a) => a.getAttribute("href")!));
+	expect(hrefs.length).toBeGreaterThanOrEqual(7);
+	for (const h of hrefs) expect((await request.get(h)).status(), h).toBe(200);
 });

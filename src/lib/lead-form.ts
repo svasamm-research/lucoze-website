@@ -36,7 +36,23 @@ interface LucozeTrackerGlobal {
 	trackFormAbandon?: () => void;
 }
 
-const PHONE_RE = /^[6-9]\d{9}$/;
+// The phone's country comes from the picker before it (CountryCode.astro, 10 Nov 2026): the number
+// must have that country's length, and is sent as "+<code> <number>". India: 10 digits, never
+// starting with 0 (a desk line may be a landline, so not only 6–9).
+export function phoneCheck(sel: HTMLSelectElement | null, raw: string) {
+	const o = sel?.selectedOptions[0];
+	const d = o?.dataset.d ?? "91";
+	const min = Number(o?.dataset.min ?? 10);
+	const max = Number(o?.dataset.max ?? 10);
+	const typed = raw.trim().replace(new RegExp(`^\\+\\s*${d}[\\s-]*`), ""); // "+91 …" typed too
+	const digits = typed.replace(/\D/g, "").replace(/^0/, "");
+	return {
+		ok: digits.length >= min && digits.length <= max,
+		full: `+${d} ${digits}`,
+		max,
+		name: o?.dataset.n ?? "India",
+	};
+}
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const getTracker = (): LucozeTrackerGlobal | undefined =>
@@ -81,6 +97,7 @@ export function initLeadForm({ source }: InitOptions): void {
 	const submitLabel = form.querySelector<HTMLElement>("[data-contact-submit-label]");
 	const errorEl = form.querySelector<HTMLElement>("[data-contact-error]");
 	const phoneInput = form.querySelector<HTMLInputElement>('input[name="phone"]');
+	const ccSel = form.querySelector<HTMLSelectElement>("[data-cc]");
 	const phoneWrap = form.querySelector<HTMLElement>("[data-phone-wrap]");
 	const phoneErr = form.querySelector<HTMLElement>("[data-phone-err]");
 	const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]');
@@ -128,11 +145,12 @@ export function initLeadForm({ source }: InitOptions): void {
 	// Strip non-digits, cap at 10. Mirrors the handoff's `setPhone`.
 	if (phoneInput) {
 		phoneInput.addEventListener("input", () => {
-			const cleaned = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+			const cleaned = phoneInput.value.replace(/\D/g, "").slice(0, phoneCheck(ccSel, "").max + 1);
 			if (cleaned !== phoneInput.value) phoneInput.value = cleaned;
 			updateValidity();
 		});
 	}
+	ccSel?.addEventListener("change", () => updateValidity());
 	if (emailInput) {
 		emailInput.addEventListener("input", () => updateValidity());
 	}
@@ -144,7 +162,9 @@ export function initLeadForm({ source }: InitOptions): void {
 		const name = (nameInput?.value || "").trim();
 		const phone = (phoneInput?.value || "").trim();
 		const email = (emailInput?.value || "").trim();
-		const phoneOk = PHONE_RE.test(phone);
+		const pc = phoneCheck(ccSel, phone);
+		const phoneOk = pc.ok;
+		if (phoneErr) phoneErr.textContent = ` Enter a valid phone number for ${pc.name}. `;
 		const emailOk = EMAIL_RE.test(email);
 
 		// Show field-level errors only when the user has typed something invalid,
@@ -159,7 +179,7 @@ export function initLeadForm({ source }: InitOptions): void {
 			submitBtn.disabled = !valid;
 			submitBtn.style.opacity = valid ? "1" : "0.5";
 		}
-		return { name, phone, email, phoneOk, emailOk, valid };
+		return { name, phone: pc.full, email, phoneOk, emailOk, valid };
 	};
 
 	// Wire LucozeTracker form-field hooks. The admin's FORM_FIELD_MAP

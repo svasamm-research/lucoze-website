@@ -1,27 +1,39 @@
 ---
 import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
+
+// A 404 with ways forward (Mithun, 10 Nov 2026): say plainly the page is not here, then offer the
+// site's main doors. Every href is a real page — the 404 walk in tests/e2e/lucoze.spec.ts follows each one.
+// (It used to say pages were "shipping over the next few weeks"; they have shipped.)
+const DOORS = [
+	{ href: "/in/solutions/clinics/", title: "For clinics", body: "Appointments, records, billing and ABDM" },
+	{ href: "/in/solutions/hospitals/", title: "For hospitals", body: "Beds, wards, pharmacy and lab on one system" },
+	{ href: "/in/features/", title: "Features", body: "What Lucoze does, module by module" },
+	{ href: "/in/pricing/", title: "Pricing", body: "Plans for a clinic and for a hospital" },
+	{ href: "/in/blog/", title: "Guides", body: "HFR, ABHA, billing and running a facility" },
+	{ href: "/in/demo/", title: "Book a demo", body: "See it on your own facility's work" },
+];
 ---
 
-<Base
-	title="Page not found — Lucoze"
-	description="That page hasn't been built yet. We're shipping pages over the next few weeks. Head home or browse the blog."
->
+<Base title="Page not found — Lucoze" description="That page isn't here. Try one of Lucoze's main pages.">
 	<section class="section-404">
 		<div class="container">
 			<span class="section-404__eyebrow">404</span>
-			<h1 class="section-404__title">That page hasn't been built yet.</h1>
+			<h1 class="section-404__title">That page isn't here.</h1>
 			<p class="section-404__lead">
-				We're shipping pages over the next few weeks. Head home, browse the blog, or talk to us
-				about what you were looking for.
+				It may have moved, or the link has a typo. One of these is probably what you were after.
 			</p>
-			<div class="section-404__actions">
-				<a href="/in/" class="btn btn--accent btn--lg">Go home</a>
-				<a href="/in/blog/" class="btn btn--ghost btn--lg">
-					Read the blog
-					<Icon name="arrow" size={16} class="btn__arrow" />
-				</a>
-			</div>
+			<ul class="section-404__doors" role="list">
+				{DOORS.map((d) => (
+					<li>
+						<a href={d.href} class="section-404__door">
+							<strong>{d.title} <Icon name="arrow" size={14} /></strong>
+							<span>{d.body}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+			<p class="section-404__home"><a href="/in/">← Back to the home page</a></p>
 		</div>
 	</section>
 </Base>
@@ -69,5 +81,46 @@ import Icon from "../components/Icon.astro";
 		gap: var(--s-3);
 		justify-content: center;
 		flex-wrap: wrap;
+	}
+	.section-404 .container {
+		max-width: 880px;
+	}
+	.section-404__doors {
+		list-style: none;
+		padding: 0;
+		margin: var(--s-8, 32px) 0 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 12px;
+		text-align: left;
+	}
+	.section-404__door {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		height: 100%;
+		padding: 16px 18px;
+		border: 1.5px solid var(--line, #e2e0d8);
+		border-radius: var(--r-md, 10px);
+		background: var(--paper, #fff);
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.section-404__door:hover,
+	.section-404__door:focus-visible {
+		border-color: var(--primary);
+	}
+	.section-404__door strong {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		color: var(--primary);
+	}
+	.section-404__door span {
+		font-size: 14px;
+		opacity: 0.8;
+	}
+	.section-404__home {
+		margin-top: 24px;
 	}
 </style>
