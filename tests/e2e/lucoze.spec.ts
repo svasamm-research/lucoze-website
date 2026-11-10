@@ -71,7 +71,8 @@ test("Book a demo posts the lead and shows success when the answer names this pa
 		"access-control-allow-origin": new URL(baseURL!).origin,
 	});
 	await expect(page.locator("[data-contact-success]")).toBeVisible();
-	expect(posted()).toMatchObject({ name: "Testing", phone: "9830012345", source: "contact" });
+	// Sent with its country code since the country picker (10 Nov 2026).
+	expect(posted()).toMatchObject({ name: "Testing", phone: "+91 9830012345", source: "contact" });
 });
 
 test("Book a demo says it could not reach the server when the answer names another address", async ({
@@ -92,4 +93,67 @@ test("every specialty is listed on the specialties page", async ({ page }) => {
 	expect(slugs.length).toBeGreaterThan(0);
 	for (const slug of slugs)
 		await expect(page.locator(`main a[href="/in/specialties/${slug}/"]`)).toHaveCount(1);
+});
+
+// One AI-crawler rule on all three sites (Mithun, 9 Nov 2026): every AI bot, training as well as
+// search, may read the whole site. A named group replaces "*" for that bot, so check the bot's own group.
+const AI_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User",
+  "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "CCBot"];
+test("robots.txt lets every AI crawler read the site", async ({ request }) => {
+  const text = await (await request.get("/robots.txt")).text();
+  const groups: { agents: string[]; rules: string[] }[] = [];
+  let open = false;
+  for (const raw of text.split("\n")) {
+    const line = raw.replace(/#.*/, "").trim();
+    const m = line.match(/^([A-Za-z-]+):\s*(.*)$/);
+    if (!m) continue;
+    const [k, v] = [m[1].toLowerCase(), m[2].trim()];
+    if (k === "user-agent") {
+      if (!open) groups.push({ agents: [], rules: [] });
+      groups[groups.length - 1].agents.push(v.toLowerCase());
+      open = true;
+    } else if (k === "allow" || k === "disallow") {
+      if (groups.length) groups[groups.length - 1].rules.push(`${k}:${v}`);
+      open = false;
+    }
+  }
+  for (const bot of AI_BOTS) {
+    const g = groups.find((x) => x.agents.includes(bot.toLowerCase()));
+    expect(g, `${bot} is named`).toBeTruthy();
+    expect(g!.rules, bot).toContain("allow:/");
+    expect(g!.rules, bot).not.toContain("disallow:/");
+  }
+});
+
+// The phone's country picker (Mithun, 10 Nov 2026): India first; another country's number is checked
+// against that country's lengths and sent with its own code.
+test("Book a demo: a number from another country is checked and sent with its code", async ({ page, baseURL }) => {
+	let posted: Record<string, unknown> | null = null;
+	await page.route("https://lead.test/**", async (r) => {
+		posted = r.request().postDataJSON();
+		await r.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": new URL(baseURL!).origin }, body: '{"ok":true}' });
+	});
+	await page.goto("/in/demo/");
+	const cc = page.locator("[data-cc]");
+	await expect(cc).toHaveValue("IN");
+	await page.fill("#c-name", "Testing");
+	await page.fill("#c-phone", "98300");
+	await expect(page.locator("[data-phone-err]")).toBeVisible();
+	await expect(page.locator("[data-contact-submit]")).toBeDisabled();
+	await cc.selectOption("AE");
+	await expect(page.locator("[data-cc-show]")).toHaveText("🇦🇪 +971");
+	await page.fill("#c-phone", "501234567");
+	await expect(page.locator("[data-phone-err]")).toBeHidden();
+	await page.locator("[data-contact-submit]").click();
+	await expect(page.locator("[data-contact-success]")).toBeVisible();
+	expect(posted).toMatchObject({ name: "Testing", phone: "+971 501234567" });
+});
+
+// A 404 with ways forward (10 Nov 2026): a real 404 status, and every door on it opens.
+test("the 404 page answers 404 and every door on it opens", async ({ page, request }) => {
+	const r = await page.goto("/in/no-such-page/");
+	expect(r?.status()).toBe(404);
+	const hrefs = await page.locator(".section-404 a[href]").evaluateAll((as) => as.map((a) => a.getAttribute("href")!));
+	expect(hrefs.length).toBeGreaterThanOrEqual(7);
+	for (const h of hrefs) expect((await request.get(h)).status(), h).toBe(200);
 });

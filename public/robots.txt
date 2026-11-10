@@ -15,4 +15,24 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
+# AI crawlers: every one is welcome, training as well as search (Mithun, 9 Nov 2026).
+# These are marketing pages with nothing private on them, and a model that has read them can
+# name the product when asked. Listed by name so the policy reads as a decision; the same
+# list is on svasamm.com, t4suite.com and lucoze.com.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+# A named group replaces "*" for that bot, so it repeats the reserved blocks.
+Disallow: /api/
+Disallow: /admin/
+
 Sitemap: https://lucoze.com/sitemap-index.xml

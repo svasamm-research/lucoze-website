@@ -14,6 +14,7 @@ interface Props {
 }
 
 const { heading, submitLabel, successHeading, successBody } = Astro.props;
+import CountryCode from "./CountryCode.astro";
 ---
 
 <aside class="reach-card reach-card--hero" data-contact-card>
@@ -40,16 +41,15 @@ const { heading, submitLabel, successHeading, successBody } = Astro.props;
 			<div class="reach-field reach-field--full">
 				<label for="c-phone">Desk phone number</label>
 				<div class="reach-phone" data-phone-wrap>
-					<span class="reach-phone__cc">+91</span>
+					<CountryCode for="c-phone" />
 					<input
 						id="c-phone"
 						name="phone"
-						inputmode="numeric"
-						maxlength="10"
-						placeholder="10-digit desk line"
+						inputmode="tel"
+						placeholder="Desk line or mobile"
 					/>
 				</div>
-				<span class="reach-err" data-phone-err hidden> Enter a valid 10-digit Indian number. </span>
+				<span class="reach-err" data-phone-err hidden> Enter a valid phone number. </span>
 			</div>
 
 			<div class="reach-or reach-field--full"><span>or</span></div>
