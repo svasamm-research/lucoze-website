@@ -19,5 +19,12 @@ export const SITE = {
 	// over ~93,000 pixels in the top 73 px. The v4.21.0 production release stopped on it
 	// (3 Nov 2026) though uat-v4.21.0, the identical code, passed. The picture is taken with the
 	// blur off; the page itself is unchanged.
-	css: "*{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}",
+	// The blur was half of it. With the blur off, the header is still 85% opaque cream over the
+	// page, and that blend came out 1/255 apart on GitHub's machines over the same top 73 px
+	// (43,000-47,000 pixels): the Monday rebuild of 9 Nov and uat-v4.22.0 (10 Nov) stopped on it,
+	// while the PR runs of the same code passed. So the picture is taken with the header solid
+	// cream; nothing see-through is left to blend.
+	css:
+		"*{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}" +
+		".nav,.nav--scrolled{background:#f4f3ee !important;transition:none !important}",
 };
