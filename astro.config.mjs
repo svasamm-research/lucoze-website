@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
+import { unified } from "@astrojs/markdown-remark";
 
 /**
  * Unwrap spurious block <p> that MDX injects inside inline/tight containers.
@@ -57,9 +58,17 @@ function rehypeUnwrapNestedParagraphs() {
 export default defineConfig({
 	site: "https://lucoze.com",
 	output: "static",
+	// Astro 7 defaults to 'jsx' whitespace rules, which drop the line break between an
+	// element and the next text: "India.</strong>Not the US" showed as "India.Not the US"
+	// across the site. `true` is Astro 6's lossless compression (Astro 7 upgrade, 10 Nov 2026).
+	compressHTML: true,
+	// Astro 7's default Markdown processor (satteri) runs no rehype plugins, so the
+	// paragraph fix above would silently stop. Keep the remark/rehype processor
+	// Astro 6 used; MDX inherits it (Astro 7 upgrade, 10 Nov 2026).
+	markdown: { processor: unified({ rehypePlugins: [rehypeUnwrapNestedParagraphs] }) },
 	integrations: [
 		react(),
-		mdx({ rehypePlugins: [rehypeUnwrapNestedParagraphs] }),
+		mdx(),
 		sitemap({
 			// lastmod = build/publish time (whole static site ships together on
 			// each deploy). priority nudges the homepage above deep pages.
@@ -95,7 +104,6 @@ export default defineConfig({
 		// robots.txt then blocked Googlebot from crawling). Not defined here.
 		// /ae — UAE region (legacy)
 		"/ae": "/in/",
-		"/ae/": "/in/",
 		"/ae/signup": "/in/signup/",
 		"/ae/about": "/in/about/",
 		"/ae/contact": "/in/contact/",
@@ -105,7 +113,6 @@ export default defineConfig({
 		"/ae/solutions-hospitals": "/in/solutions/hospitals/",
 		// /au — Australia region (legacy)
 		"/au": "/in/",
-		"/au/": "/in/",
 		"/au/signup": "/in/signup/",
 		"/au/about": "/in/about/",
 		"/au/contact": "/in/contact/",
@@ -115,7 +122,6 @@ export default defineConfig({
 		"/au/solutions-hospitals": "/in/solutions/hospitals/",
 		// /sg — Singapore region (legacy)
 		"/sg": "/in/",
-		"/sg/": "/in/",
 		"/sg/signup": "/in/signup/",
 		"/sg/about": "/in/about/",
 		"/sg/contact": "/in/contact/",
