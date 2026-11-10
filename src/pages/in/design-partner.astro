@@ -50,6 +50,7 @@ const TRUST: [string, string, string][] = [
 	["shield", "Patient data hosted in Mumbai", "ABDM-ready · DPDP-aligned"],
 	["lock", "No spam, no sales sequence", "One human, one honest reply"],
 ];
+import CountryCode from "../../components/CountryCode.astro";
 ---
 
 <Base
@@ -107,17 +108,16 @@ const TRUST: [string, string, string][] = [
 							<div class="reach-field reach-field--full">
 								<label for="d-phone">Desk phone number</label>
 								<div class="reach-phone" data-phone-wrap>
-									<span class="reach-phone__cc">+91</span>
+									<CountryCode for="d-phone" />
 									<input
 										id="d-phone"
 										name="phone"
-										inputmode="numeric"
-										maxlength="10"
-										placeholder="10-digit desk line"
+										inputmode="tel"
+										placeholder="Desk line or mobile"
 									/>
 								</div>
 								<span class="reach-err" data-phone-err hidden>
-									Enter a valid 10-digit Indian number.
+									Enter a valid phone number.
 								</span>
 							</div>
 

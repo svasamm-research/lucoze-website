@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Crumbs from "../../components/Crumbs.astro";
 import Icon from "../../components/Icon.astro";
+import CountryCode from "../../components/CountryCode.astro";
 
 const PLANS = [
 	{ id: "clinic", name: "Clinic", price: "₹1,499/mo" },
@@ -120,7 +121,11 @@ const BENEFITS: { title: string; sub: string }[] = [
 							</div>
 							<div class="field">
 								<label for="su-phone">Phone <span class="req">*</span></label>
-								<input id="su-phone" name="phone" type="tel" required placeholder="+91 ·····" />
+								<div style="display: flex">
+									<CountryCode for="su-phone" />
+									<input id="su-phone" name="phone" type="tel" inputmode="tel" required placeholder="Mobile number"
+										style="flex: 1; min-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0" />
+								</div>
 							</div>
 						</div>
 
@@ -296,6 +301,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 
 <script>
 	import { track } from "../../lib/analytics";
+	import { phoneCheck } from "../../lib/lead-form";
 
 	// LucozeTracker is loaded as a classic deferred script in Base.astro
 	// (/public/js/tracker.js). Module scripts run after classic deferred
@@ -504,6 +510,10 @@ const BENEFITS: { title: string; sub: string }[] = [
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 			clearError();
+			// The number must fit the country chosen in the picker (10 Nov 2026).
+			const suPhone = form.querySelector<HTMLInputElement>("#su-phone")!;
+			const suCheck = phoneCheck(form.querySelector<HTMLSelectElement>("[data-cc]"), suPhone.value);
+			suPhone.setCustomValidity(suPhone.value && !suCheck.ok ? `Enter a valid phone number for ${suCheck.name}.` : "");
 			if (!form.reportValidity()) {
 				track("Signup Error", { reason: "validation" });
 				return;
@@ -524,7 +534,7 @@ const BENEFITS: { title: string; sub: string }[] = [
 				plan: PLAN_MAP[planId] || "Clinic Pro",
 				country: "India",
 				currency: "INR",
-				customer_phone: ((fd.get("phone") as string | null) || "").trim() || null,
+				customer_phone: suCheck.ok ? suCheck.full : null,
 			};
 
 			// Signup is a lead now: one POST to the Lambda, then thanks.

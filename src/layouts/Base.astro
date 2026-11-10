@@ -1,4 +1,5 @@
 ---
+import { fitTitle, fitDescription } from "../lib/seo-fit";
 /**
  * Base.astro — site-wide layout for the Vault redesign (2026).
  * Wraps every page with chrome (Nav + Footer), <head> meta, fonts,
@@ -37,7 +38,8 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://lucoze.com";
-const fullTitle = title.toLowerCase().includes("lucoze") ? title : `${title} | Lucoze`;
+// lib/seo-fit.ts: over 60 characters the " | Lucoze" goes; a description keeps whole sentences up to 160.
+const fullTitle = fitTitle(title.toLowerCase().includes("lucoze") ? title : `${title} | Lucoze`);
 
 // OG image resolution: an explicit `ogImage` prop wins (e.g. a page that wants
 // a specific screenshot); otherwise the branded auto-generated card for this
@@ -122,7 +124,7 @@ const siteLd = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<title>{fullTitle}</title>
-		<meta name="description" content={description} />
+		<meta name="description" content={fitDescription(description)} />
 		<link rel="canonical" href={canonical} />
 
 		<meta property="og:title" content={fullTitle} />

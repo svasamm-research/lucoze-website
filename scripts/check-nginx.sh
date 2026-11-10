@@ -57,8 +57,10 @@ expect_redirect "/in/locations"            301 "/in/locations/"
 expect_redirect "/in/locations/"           200 ""
 expect_redirect "/in/solutions-clinics"    301 "/in/solutions/clinics/"
 expect_redirect "/in/solutions-hospitals/" 301 "/in/solutions/hospitals/"
+expect_redirect "/in/redesign-preview/" 301 "/in/"
 expect_redirect "/sitemap-index.xml"       200 ""
 expect_redirect "/robots.txt"              200 ""
+expect_redirect "//in/pricing/"            301 "/in/pricing/"   # a repeated slash (10 Nov 2026)
 
 echo "== security headers on /in/ =="
 headers=$(curl -s -D - -o /dev/null "http://localhost:$PORT/in/")
