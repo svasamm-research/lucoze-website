@@ -36,8 +36,12 @@ export default defineConfig({
 		// actual Listmonk call is stubbed in the test via page.route().
 		// PUBLIC_LEAD_URL is fake for the same reason: without one the form skips the network and
 		// shows success, so the path that broke on 30 Oct 2026 was never run by any test.
+		// --ignore-lock: Astro 7 sends `astro preview` to the background when it detects an AI agent
+		// (Claude Code sets AI_AGENT), so the command returned at once, Playwright read that as
+		// "exited early", and the pre-push hook failed in every Claude session. --ignore-lock keeps
+		// it a foreground server; nothing changes in a terminal or on GitHub (10 Nov 2026).
 		command:
-			"PUBLIC_LEAD_URL=https://lead.test/ PUBLIC_MARKETING_URL=https://marketing.lucoze.com PUBLIC_NEWSLETTER_LIST_UUID=test-uuid npm run build && npm run preview",
+			"PUBLIC_LEAD_URL=https://lead.test/ PUBLIC_MARKETING_URL=https://marketing.lucoze.com PUBLIC_NEWSLETTER_LIST_UUID=test-uuid npm run build && npm run preview -- --ignore-lock",
 		url: "http://localhost:4321/in/",
 		timeout: 120_000,
 		reuseExistingServer: !process.env.CI,
