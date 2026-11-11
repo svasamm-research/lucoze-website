@@ -17,6 +17,26 @@ async function settle(page: Page) {
 	});
 	await page.evaluate(() => document.fonts.ready);
 	await page.waitForLoadState("networkidle");
+	// An Astro island (the home page's ROI calculator, client:visible) starts only once it is seen,
+	// and re-lays its section out when it does. The quick scroll above sometimes passed it unseen, so
+	// a run caught it not started, started, or starting DURING the picture: the dropdown's mask was
+	// measured 320 px from where the dropdown then stood and two pictures never matched (the 9 Nov
+	// Monday rebuild, uat-v4.22.0 and uat-v4.22.1, 10 Nov 2026). So bring each island into view and
+	// wait until Astro has removed its `ssr` attribute (it does once the island has started).
+	// (Every island, by position: a locator on [ssr] would shift as each one starts.)
+	for (const island of await page.locator("astro-island").all()) {
+		await island.scrollIntoViewIfNeeded();
+		await expect(island).not.toHaveAttribute("ssr", /.*/, { timeout: 15_000 });
+	}
+	await page.evaluate(() => window.scrollTo(0, 0));
+	// THE cause of the red releases (10 Nov 2026): the site scrolls smoothly (tokens.css), so a
+	// scrollTo is an animation, and the picture began while the page was still gliding back up:
+	// the sticky header was drawn 3,700 px down the first picture. The test asks for reduced
+	// motion (the site then scrolls at once, as it does for any visitor who asks) and waits for 0.
+	await page.waitForFunction(() => window.scrollY === 0);
+	await page.evaluate(
+		() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => r(null)))),
+	);
 }
 
 for (const path of SITE.keyPages) {
@@ -26,6 +46,7 @@ for (const path of SITE.keyPages) {
 	] as const) {
 		test(`looks as approved: ${path} (${tag})`, async ({ page }) => {
 			await page.setViewportSize({ width: w, height: h });
+			await page.emulateMedia({ reducedMotion: "reduce" });
 			await page.goto(path);
 			await settle(page);
 			// Things that MOVE by design (a cycling word, a button that floats in) are hidden:
