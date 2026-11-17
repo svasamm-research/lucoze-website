@@ -6,9 +6,9 @@
 	"h1Parts": ["Billing, accounting and inventory — ", "one ledger", ", across departments."],
 	"lead": "Most hospitals run billing in one tool, GST returns in another, and pharmacy inventory in a third spreadsheet. Lucoze’s ledger is shared across all of them. Bill a tube of ointment in OPD; pharmacy stock drops by one. Issue a GST-compliant invoice; the accounting line is posted automatically.",
 	"stats": [
-		{ "value": "0 hrs", "label": "Spent reconciling pharmacy vs OPD" },
-		{ "value": "2 clicks", "label": "Generate GSTR-1 for the month" },
-		{ "value": "All branches", "label": "P&L consolidated in real-time" }
+		{ "value": "Every bill", "label": "Posted to your accounts, never retyped" },
+		{ "value": "Every line", "label": "Carries its SAC code for the GST return" },
+		{ "value": "All branches", "label": "One set of books" }
 	],
 	"rows": [
 		{
@@ -39,8 +39,8 @@
 			"lead": "Branch-level revenue, expenses, and pending receivables on one screen. Drill down to the doctor, the department, the day. Export to Tally or any CA-friendly format.",
 			"bullets": [
 				"Day-end report at 7pm — cash position, UPI / card / cash split, pending invoices.",
-				"Monthly P&L by branch + by department — spot a leaking dental chair in 30 seconds.",
-				"GSTR-1 and GSTR-3B export in 2 clicks — your CA still does the filing, faster."
+				"Monthly P&L by branch and by department, from the same books.",
+				"GSTR-1 and GSTR-3B come from the same bills, with every exempt and taxable line in place for your CA."
 			],
 			"visual": "finance"
 		}

@@ -6,7 +6,7 @@
 	"h1Parts": ["Booking that starts with ", "the question", " — not the form."],
 	"lead": "Most hospital software opens a booking with “name and phone number.” That’s the wrong question. The patient already knows what they need: a department, a doctor, a slot that fits their day. We ask in that order.",
 	"stats": [
-		{ "value": "< 60s", "label": "To book and confirm a patient" },
+		{ "value": "One list", "label": "Phone, WhatsApp and walk-in bookings" },
 		{ "value": "WhatsApp", "label": "Reminders set up during onboarding" },
 		{ "value": "Instant", "label": "Indexed front-desk patient search" }
 	],
@@ -16,7 +16,7 @@
 			"title": "Department first. Doctor next. Patient last.",
 			"lead": "Patient details are the last step — not the first. By then, the patient is committed to a slot they’ve chosen, not abandoning a form because the front desk asked for their PAN.",
 			"bullets": [
-				"Patient self-serve booking on WhatsApp, web, or the front desk — same flow.",
+				"Booking from the front desk, department first, in one flow.",
 				"Returning patients are recognised by phone after the slot is chosen, not before.",
 				"First-time patients enter just name and phone. The rest fills in over the next visit."
 			],
@@ -47,15 +47,15 @@
 	"faqs": [
 		{
 			"q": "Does it work without internet?",
-			"a": "Yes — the front desk can take walk-ins offline. The day reconciles when the connection comes back. Tested in 6 East-India clinics with intermittent 4G."
+			"a": "Lucoze is cloud software, so it needs a working connection. It is light enough to run on ordinary broadband or mobile data."
 		},
 		{
-			"q": "What about WhatsApp Business compatibility?",
-			"a": "We use the official Cloud API — not unofficial bridges. Your number stays clean and never gets restricted."
+			"q": "How do WhatsApp reminders work?",
+			"a": "WhatsApp reminders are set up for your clinic during onboarding, with wording that suits your specialty."
 		},
 		{
-			"q": "Can patients book on Sunday?",
-			"a": "Self-serve booking is 24/7. You set the slot inventory; the patient picks within it."
+			"q": "How is the slot inventory set?",
+			"a": "You set the slot inventory for each doctor and department, and your front desk books within it."
 		}
 	]
 }

@@ -59,18 +59,18 @@ export const HOME_FAQS = [
 	},
 	{
 		q: "Can my staff actually use this? They aren't tech-savvy.",
-		a: "Lucoze is built for the way Indian clinic staff actually work. Lucoze runs in English, in short plain words a new receptionist can follow, and onboarding trains your front desk on your own patients. We include a 30-minute on-site training for the front desk on every plan. Our front-desk module was redesigned after sitting through four-hour shifts at clinics in Kolkata and Patna.",
+		a: "Lucoze is built for the way Indian clinic staff actually work. Lucoze runs in English, in short plain words a new receptionist can follow, and onboarding trains your front desk on your own patients. Every plan includes staff training on your own patients.",
 	},
 	{
 		q: "We're already on Practo Ray / Halemind / Cliniq360. Is migration painful?",
-		a: "We've built importers for the common formats. Practo Ray exports give us appointments + patient list directly; we map clinical notes manually for the first ten patients with you on a call, so the team can see the migration working before trusting it. Most clinics are fully migrated in 10-14 days, parallel-running until everyone is ready to switch.",
+		a: "We move your data for you from the common formats. A Practo Ray export gives us appointments and the patient list; we map clinical notes manually for the first ten patients with you on a call, so the team can see the migration working before trusting it. A clinic can be fully migrated in 10-14 days, parallel-running until everyone is ready to switch.",
 	},
 	{
 		q: "What does the design-partner program actually offer?",
-		a: "Six months free on Clinic Pro or Hospital plan. Weekly 30-minute calls with the founder. You influence the roadmap directly — features you ask for ship before features we'd planned. Lifetime founding-customer pricing (20% off list) for as long as you stay. East-India clinics prioritised. Only 4 slots remain of the original 10.",
+		a: "Six months free on Clinic Pro or Hospital plan. Weekly 30-minute calls with the founder. You influence the roadmap directly — features you ask for ship before features we'd planned. Lifetime founding-customer pricing (20% off list) for as long as you stay. East-India clinics prioritised. Ten founding places.",
 	},
 	{
 		q: "Do you offer onboarding support? What's included?",
-		a: "Every plan includes data migration assistance, a 30-minute staff training, and 14 days of dedicated chat support from the implementation team. Hospital plan adds a named implementation manager for 60 days. After that, support runs via in-app chat (Clinic), WhatsApp + phone (Clinic Pro), and a dedicated CSM line (Hospital).",
+		a: "Every plan includes data migration assistance, staff training on your own patients, and 14 days of dedicated support over WhatsApp, phone and email from the implementation team. Hospital plan adds a named implementation manager for 60 days. After that, support runs via email (Clinic), WhatsApp + phone (Clinic Pro), and a dedicated CSM line (Hospital).",
 	},
 ];

@@ -10,7 +10,7 @@ Lucoze is the product; Svasamm Research Pvt. Ltd. is the company that builds it.
 - [Appointments](https://lucoze.com/in/features/appointments/): Department-first booking, family-linked patient timelines, WhatsApp reminders set up during onboarding.
 - [Patient records](https://lucoze.com/in/features/patient-records/): Unified EMR, the ABHA number on every record, patient search by name, UHID, ABHA number or mobile.
 - [Billing, accounting & inventory](https://lucoze.com/in/features/billing/): GST-compliant invoicing (CGST/SGST/IGST), e-invoicing, shared pharmacy/OPD ledger.
-- [Lab](https://lucoze.com/in/features/lab/): Sample-to-report tracking, reference-range flagging, NABL-oriented audit trail.
+- [Lab](https://lucoze.com/in/features/lab/): Sample-to-report tracking, reference ranges, an audit trail that supports NABL documentation.
 - [Pharmacy](https://lucoze.com/in/features/pharmacy/): Inventory, batch/expiry, FEFO dispensing, Schedule-H/X handling.
 - [HR](https://lucoze.com/in/features/hr/): Attendance, statutory PF/ESI/TDS payroll, department incentives.
 

@@ -43,6 +43,7 @@ export const SPECIALTIES: SpecialtyEntry[] = [
 		slug: "diagnostics",
 		label: "Diagnostic centres",
 		icon: "flask",
-		blurb: "Sample-to-report tracking, NABL-ready audit trail, multi-collection-centre support.",
+		blurb:
+			"Sample-to-report tracking, audit trail that supports NABL documentation, multi-collection-centre support.",
 	},
 ];

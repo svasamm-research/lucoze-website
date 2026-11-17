@@ -24,7 +24,7 @@
 		],
 		[
 			"Honest about connectivity",
-			"Lucoze is a lightweight cloud tool, so it's usable even on the patchy connections some hill districts get. But it is not offline software — you need a working connection to log in, and we won't pretend otherwise."
+			"Lucoze is a lightweight cloud tool, so it's usable even on the patchy connections some hill districts get. You need a working connection to log in."
 		]
 	],
 	"localContext": "Manipur's main language is Meitei (Manipuri), and clinics also see patients who speak a range of hill-community languages — but English is common at front desks across Imphal, from Porompat to Lamphelpat and Thangmeiband, and Lucoze works fully in English. To be straight: the screens are in English only, in short plain labels a new receptionist can follow, and onboarding trains your desk on your own patients. Imphal is where valley and hill-district patients converge, so records that stay consistent across visits matter more here than most places.",
@@ -40,7 +40,7 @@
 		},
 		{
 			"q": "Do you support clinics in Manipur?",
-			"a": "Yes, remote-first. Our team is in Konnagar, Hooghly (West Bengal), so for Manipur we onboard over video, help migrate your existing records, and stay reachable on WhatsApp and chat. On-site visits are reserved for larger hospital deployments. Most clinics start with a 14-day trial and are live within 14 days."
+			"a": "Yes, remote-first. Our team is in Konnagar, Hooghly (West Bengal), so for Manipur we onboard over video, help migrate your existing records, and stay reachable on WhatsApp and phone. On-site visits are reserved for larger hospital deployments. Start with a 14-day trial and be live in about 14 days."
 		}
 	]
 }

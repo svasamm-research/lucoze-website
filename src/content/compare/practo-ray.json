@@ -54,7 +54,7 @@
 		],
 		[
 			"Built for India, honest about support",
-			"Our team is in Konnagar, West Bengal. On-site setup in and around Kolkata; remote-first onboarding, migration help and WhatsApp support everywhere else — we won't over-promise on distance."
+			"Our team is in Konnagar, West Bengal. On-site setup in and around Kolkata; remote-first onboarding, migration help and WhatsApp support everywhere else."
 		]
 	],
 	"faqs": [
@@ -68,7 +68,7 @@
 		},
 		{
 			"q": "How hard is it to migrate from Practo Ray to Lucoze?",
-			"a": "We've built importers for the common Practo Ray exports — appointments and patient lists come across directly, and we map clinical notes with you for the first set of patients so you can see the migration working before trusting it. Most clinics are fully migrated in 10–14 days, parallel-running until everyone is ready to switch."
+			"a": "We move your Practo Ray exports for you: appointments and patient lists come across first, and we map clinical notes with you for the first set of patients so you can see the migration working before trusting it. A clinic can be fully migrated in 10–14 days, parallel-running until everyone is ready to switch."
 		},
 		{
 			"q": "How does Lucoze's pricing compare?",

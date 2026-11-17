@@ -66,7 +66,7 @@ export const GALLERIES: Record<string, Gallery> = {
 	lab: {
 		id: "lab",
 		label: "Laboratory",
-		blurb: "Sample-to-report with an NABL-oriented trail.",
+		blurb: "Sample-to-report with an audit trail that supports NABL documentation.",
 		shots: [
 			{
 				name: "lab-overview",

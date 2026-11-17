@@ -16,7 +16,7 @@
 		],
 		[
 			"Runs on the connection you already have",
-			"Lucoze is cloud-based and lightweight — ordinary broadband or mobile data is enough. It is not an offline app, so you do need a working connection, but it is built to stay usable when the line is slow, not just when it's fast."
+			"Lucoze is cloud-based and lightweight — ordinary broadband or mobile data is enough. You need a working connection to log in, and it is built to stay usable when the line is slow, not just when it's fast."
 		],
 		[
 			"English at the desk, and a simple search",
@@ -27,7 +27,7 @@
 			"Record the ABHA number at the first visit, generate GST-compliant invoices, and keep clean records for Ayushman Bharat (PMJAY) and state schemes. Everything is built for DPDP 2023, hosted in Indian data centres, with full CSV/PDF export and no lock-in."
 		]
 	],
-	"localContext": "We're set up for clinics and small hospitals across Sikkim — Gangtok's referral desks and OPDs around MG Marg, Tadong and Ranipool, plus standalone practices in Namchi, Gyalshing, Mangan, Rangpo and Singtam. Sikkim's medicine is spread thin across the hills: a few busy centres in and around the capital, and smaller clinics a long drive apart. English is the common language at the desk, with Nepali, Sikkimese/Bhutia and Lepcha spoken among patients — so a desk that is trained on plain English labels and a search that works from the mobile number matter more here than a translated menu. Because the towns are far-flung and mountainous, we run remote-first: video onboarding, migration help and support over WhatsApp and chat, rather than pretending we'll drive to every valley.",
+	"localContext": "We're set up for clinics and small hospitals across Sikkim — Gangtok's referral desks and OPDs around MG Marg, Tadong and Ranipool, plus standalone practices in Namchi, Gyalshing, Mangan, Rangpo and Singtam. Sikkim's medicine is spread thin across the hills: a few busy centres in and around the capital, and smaller clinics a long drive apart. English is the common language at the desk, with Nepali, Sikkimese/Bhutia and Lepcha spoken among patients — so a desk that is trained on plain English labels and a search that works from the mobile number matter more here than a translated menu. Because the towns are far-flung and mountainous, we run remote-first: video onboarding, migration help and support over WhatsApp and chat,.",
 	"citiesServed": ["Gangtok", "Namchi", "Gyalshing", "Mangan", "Rangpo", "Singtam"],
 	"faqs": [
 		{
@@ -40,7 +40,7 @@
 		},
 		{
 			"q": "Do you support clinics in Sikkim, given you're based in West Bengal?",
-			"a": "Yes. Our team is in Konnagar, Hooghly, so for a far-flung, mountainous state we work remote-first: video onboarding, data-migration help, and WhatsApp and chat support. On-site visits are reserved for larger hospital deployments. There's a 14-day trial, and most clinics go live within 14 days."
+			"a": "Yes. Our team is in Konnagar, Hooghly, so for a far-flung, mountainous state we work remote-first: video onboarding, data-migration help, and WhatsApp and phone support. On-site visits are reserved for larger hospital deployments. There's a 14-day trial, and you can go live in about 14 days."
 		}
 	]
 }

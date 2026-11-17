@@ -7,7 +7,7 @@
 	"metaDescription": "Cloud HMS and EMR for Guwahati clinics and hospitals: GS Road, Bhangagarh, Six Mile and Zoo Road. ABHA number on record, DPDP 2023 ready, data in Indian data centres.",
 	"eyebrow": "For clinics & hospitals in Guwahati",
 	"h1Parts": ["Clinic & hospital software for ", "Guwahati", " practices."],
-	"lead": "Clinic and hospital software for Guwahati's practices — one cloud platform for records, billing, lab and pharmacy. Free 14-day trial, and most clinics are live within 14 days.",
+	"lead": "Clinic and hospital software for Guwahati's practices — one cloud platform for records, billing, lab and pharmacy. Free 14-day trial, and you can be live in about 14 days.",
 	"intro": "Guwahati is the Northeast's medical hub — patients travel in from Assam, Manipur, Mizoram and beyond for care they can't get at home, which means your front desk handles heavy, mixed-language footfall every day. Lucoze puts records, appointments, GST billing, lab and pharmacy on one cloud platform, so a specialist on GS Road or a hospital in Bhangagarh isn't stitching together separate registers. It runs on ordinary broadband or mobile data and records the ABHA number at the first visit. Our team works from Konnagar, West Bengal, supporting you remotely-first, with on-site help for larger hospital setups.",
 	"points": [
 		[
@@ -36,7 +36,7 @@
 	"faqs": [
 		{
 			"q": "Does Lucoze need a fast internet connection?",
-			"a": "Lucoze is cloud-based and kept lightweight, so it runs on ordinary broadband or mobile data. It isn't an offline system — a working connection is needed — but we keep the app efficient and stay reachable on WhatsApp if a busy OPD on GS Road hits a slow patch."
+			"a": "Lucoze is cloud-based and kept lightweight, so it runs on ordinary broadband or mobile data. A working connection is needed, and we stay reachable on WhatsApp if a busy OPD on GS Road hits a slow patch."
 		},
 		{
 			"q": "Where is our patient data stored?",

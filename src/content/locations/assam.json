@@ -8,7 +8,7 @@
 	"eyebrow": "For clinics & hospitals in Assam",
 	"h1Parts": ["Clinic & hospital software for ", "Assam", ", from Guwahati to the Barak Valley."],
 	"lead": "One platform for records, appointments, GST billing, lab and pharmacy — built for Indian clinics and honest about how we support you from a distance.",
-	"intro": "Assam runs on long distances. A patient in Tinsukia or Silchar may travel hours to reach a specialist, and Guwahati is the referral hub for the whole Northeast. Lucoze keeps records, appointments, GST billing, lab and pharmacy on a single cloud platform that opens on ordinary broadband or mobile data — no server box in the back room. Record the ABHA number at the first visit, keep every patient's data in Indian data centres under DPDP 2023, and export to CSV or PDF whenever you want. We're based in West Bengal, so our support is remote-first and built to actually reach you here, not a promise to drop by.",
+	"intro": "Assam runs on long distances. A patient in Tinsukia or Silchar may travel hours to reach a specialist, and Guwahati is the referral hub for the whole Northeast. Lucoze keeps records, appointments, GST billing, lab and pharmacy on a single cloud platform that opens on ordinary broadband or mobile data — no server box in the back room. Record the ABHA number at the first visit, keep every patient's data in Indian data centres under DPDP 2023, and export to CSV or PDF whenever you want. We're based in West Bengal, so our support is remote-first and built to actually reach you here.",
 	"points": [
 		[
 			"One platform, not five registers",
@@ -20,7 +20,7 @@
 		],
 		[
 			"Cloud that runs on what you already have",
-			"Lucoze is cloud-based and opens on regular broadband or a phone hotspot. It is not an offline system and won't sync without a connection — but it stays light so a single clinic line is enough."
+			"Lucoze is cloud-based and opens on regular broadband or a phone hotspot. It stays light so a single clinic line is enough."
 		],
 		[
 			"Your data, in India, no lock-in",
@@ -36,11 +36,11 @@
 		},
 		{
 			"q": "Where is our patient data stored?",
-			"a": "All of it stays in Indian data centres, handled under India's DPDP Act 2023. Lucoze is cloud-based, so it needs a connection to open — it does not run or sync offline — but it's kept lightweight to work on ordinary Assam broadband or mobile data. You can export everything to CSV or PDF whenever you want, with no lock-in."
+			"a": "All of it stays in Indian data centres, handled under India's DPDP Act 2023. Lucoze is cloud-based, so it needs a connection to open, but it's kept lightweight to work on ordinary Assam broadband or mobile data. You can export everything to CSV or PDF whenever you want, with no lock-in."
 		},
 		{
 			"q": "Do you provide setup and support in Assam?",
-			"a": "Our team is in Konnagar, Hooghly, West Bengal, so support for Assam is remote-first: video onboarding, data migration from your old registers, WhatsApp and chat help. Most clinics are live within 14 days after the 14-day trial. On-site visits are reserved for larger hospital deployments — we won't claim to visit every clinic in the state."
+			"a": "Our team is in Konnagar, Hooghly, West Bengal, so support for Assam is remote-first: video onboarding, data migration from your old registers, WhatsApp and phone help. You can be live in about 14 days. On-site visits are reserved for larger hospital deployments."
 		}
 	]
 }

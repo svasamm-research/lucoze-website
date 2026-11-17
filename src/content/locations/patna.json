@@ -27,7 +27,7 @@
 			"Record the ABHA number at the first visit and keep GST invoices and Ayushman Bharat (PMJAY) and state-scheme claim records clean, so referrals and reimbursements aren't held up by missing paper."
 		]
 	],
-	"localContext": "We work with clinics, nursing homes and diagnostic centres across Patna — the doctors' chambers around Boring Road, the dense residential OPD load in Kankarbagh, the clinics and labs along Bailey Road, and the older practices around Kadam Kuan. The desk runs in Hindi, with Bhojpuri and Magahi common in conversation, and many patients are arriving from Gaya, Nalanda, Vaishali and further out. Support is remote-first: video onboarding that trains your desk on your own patients, hands-on migration from your registers or current software, and WhatsApp plus in-app chat. Our team sits in Konnagar, Hooghly, so on-site setup is reserved for larger hospital deployments rather than every chamber.",
+	"localContext": "We set up Lucoze for clinics, nursing homes and diagnostic centres across Patna — the doctors' chambers around Boring Road, the dense residential OPD load in Kankarbagh, the clinics and labs along Bailey Road, and the older practices around Kadam Kuan. The desk runs in Hindi, with Bhojpuri and Magahi common in conversation, and many patients are arriving from Gaya, Nalanda, Vaishali and further out. Support is remote-first: video onboarding that trains your desk on your own patients, hands-on migration from your registers or current software, and WhatsApp, phone and email. Our team sits in Konnagar, Hooghly, so on-site setup is reserved for larger hospital deployments rather than every chamber.",
 	"citiesServed": [],
 	"faqs": [
 		{
@@ -40,7 +40,7 @@
 		},
 		{
 			"q": "How fast can a Patna clinic get started, and do you visit?",
-			"a": "There's a 14-day free trial and most clinics are live within 14 days. Onboarding and data migration are done remotely over video, with WhatsApp and in-app support after — on-site help is reserved for larger hospital rollouts."
+			"a": "There's a 14-day free trial and you can be live in about 14 days. Onboarding and data migration are done remotely over video, with WhatsApp and phone support after — on-site help is reserved for larger hospital rollouts."
 		}
 	]
 }

@@ -169,7 +169,7 @@ export const MEGA: MegaGroup[] = [
 					{
 						href: "/in/design-partner/",
 						label: "Design partner program",
-						blurb: "6 months free · 4 of 10 open",
+						blurb: "6 months free · 10 places",
 					},
 					{ href: "/in/careers/", label: "Careers", blurb: "Not hiring yet" },
 					{ href: "/in/blog/", label: "Blog" },

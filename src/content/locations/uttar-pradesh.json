@@ -27,7 +27,7 @@
 			"Record the ABHA number at the first visit, keep clean records for Ayushman Bharat (PMJAY) and state-scheme claims, and know every byte sits in Indian data centres under DPDP 2023 — nothing crosses the border."
 		]
 	],
-	"localContext": "UP is a very large tier-2 and tier-3 market, and Lucknow is its medical hub — patients travel in from across the state to Hazratganj, Gomti Nagar and Aliganj, while Kanpur, Varanasi, Prayagraj, Agra, Meerut and Gorakhpur each run their own dense OPD belts. The common thread is a Hindi-first, cash-and-UPI counter moving high patient numbers on thin margins. Our team is in Konnagar, Hooghly (West Bengal), so UP support is remote-first by design: video onboarding that trains your desk on your own patients, hands-on data migration, and WhatsApp and chat during business hours. For larger hospital deployments we arrange on-site setup. UP is a market we're actively expanding into, not one we'll overpromise on.",
+	"localContext": "UP is a very large tier-2 and tier-3 market, and Lucknow is its medical hub — patients travel in from across the state to Hazratganj, Gomti Nagar and Aliganj, while Kanpur, Varanasi, Prayagraj, Agra, Meerut and Gorakhpur each run their own dense OPD belts. The common thread is a Hindi-first, cash-and-UPI counter moving high patient numbers on thin margins. Our team is in Konnagar, Hooghly (West Bengal), so UP support is remote-first by design: video onboarding that trains your desk on your own patients, hands-on data migration, and WhatsApp and phone during business hours. For larger hospital deployments we arrange on-site setup.",
 	"citiesServed": [
 		"Lucknow",
 		"Kanpur",
@@ -41,7 +41,7 @@
 	"faqs": [
 		{
 			"q": "Do you provide setup support in UP?",
-			"a": "Yes, remote-first. Our team is in Konnagar, Hooghly (West Bengal), so UP onboarding runs over video, with hands-on data migration, WhatsApp and chat support during business hours. For larger hospitals we arrange on-site setup."
+			"a": "Yes, remote-first. Our team is in Konnagar, Hooghly (West Bengal), so UP onboarding runs over video, with hands-on data migration, WhatsApp and phone support during business hours. For larger hospitals we arrange on-site setup."
 		},
 		{
 			"q": "Can the front desk work in Hindi?",

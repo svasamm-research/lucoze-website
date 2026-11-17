@@ -27,7 +27,7 @@
 			"Record the ABHA number at the first visit, generate GST-compliant invoices, and keep the paperwork straight for Ayushman Bharat (PMJAY) and state-scheme claims."
 		]
 	],
-	"localContext": "We work with clinics, nursing homes and diagnostic centres across Bihar — Patna's dense medical belt (Boring Road, Kankarbagh, Bailey Road, Kadam Kuan) where patients arrive from every district, and the busy chambers of Gaya, Muzaffarpur, Bhagalpur, Darbhanga and Purnia. The working language at the desk is Hindi, with Bhojpuri, Maithili and Magahi spoken across it. Support is remote-first: video onboarding that trains your desk on your own patients, hands-on data migration from your registers or old software, and WhatsApp plus in-app chat. Our team is in Konnagar, Hooghly — a different state — so on-site visits are reserved for larger hospital deployments, not every clinic.",
+	"localContext": "We set up Lucoze for clinics, nursing homes and diagnostic centres across Bihar — Patna's dense medical belt (Boring Road, Kankarbagh, Bailey Road, Kadam Kuan) where patients arrive from every district, and the busy chambers of Gaya, Muzaffarpur, Bhagalpur, Darbhanga and Purnia. The working language at the desk is Hindi, with Bhojpuri, Maithili and Magahi spoken across it. Support is remote-first: video onboarding that trains your desk on your own patients, hands-on data migration from your registers or old software, and WhatsApp, phone and email. Our team is in Konnagar, Hooghly — a different state — so on-site visits are reserved for larger hospital deployments, not every clinic.",
 	"citiesServed": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga", "Purnia"],
 	"faqs": [
 		{
@@ -36,11 +36,11 @@
 		},
 		{
 			"q": "You're based in West Bengal — how do you support a clinic in Bihar?",
-			"a": "Honestly: remote-first. We do video onboarding, migrate your existing data for you, and stay reachable on WhatsApp and in-app chat. On-site visits are reserved for larger hospital rollouts — we won't pretend we'll drive to every chamber in the state."
+			"a": "Remote-first. We do video onboarding, migrate your existing data for you, and stay reachable on WhatsApp, phone and email. On-site visits are reserved for larger hospital rollouts."
 		},
 		{
 			"q": "Can we handle Ayushman Bharat and government-scheme patients?",
-			"a": "Lucoze keeps clean patient records, ABHA numbers and GST-compliant billing so the paperwork for Ayushman Bharat (PMJAY) and state-scheme claims is in order. There's a 14-day free trial and most clinics are live within 14 days."
+			"a": "Lucoze keeps clean patient records, ABHA numbers and GST-compliant billing so the paperwork for Ayushman Bharat (PMJAY) and state-scheme claims is in order. There's a 14-day free trial and you can be live in about 14 days."
 		}
 	]
 }
