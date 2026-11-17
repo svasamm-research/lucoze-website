@@ -211,7 +211,7 @@ export default function RoiCalculator() {
 				<div className="roi__metric">
 					<div className="roi__metric-label">No-show prevention</div>
 					<div className="roi__metric-value">{fmtINR(calc.noShowPrevention)}</div>
-					<div className="roi__metric-sub">WhatsApp + SMS reminders reduce no-shows by ~5-7%</div>
+					<div className="roi__metric-sub">Reminders reduce no-shows by ~5-7%</div>
 				</div>
 			</div>
 		</div>

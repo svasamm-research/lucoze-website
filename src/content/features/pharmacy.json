@@ -14,11 +14,10 @@
 		{
 			"eyebrow": "From prescription to dispense",
 			"title": "Doctor prescribes. Pharmacy sees it instantly.",
-			"lead": "Prescription opens automatically at the pharmacy counter when the patient arrives. Out-of-stock substitutes are suggested with the doctor’s pre-approval. The patient counsel sheet prints in the local language.",
+			"lead": "Prescription opens automatically at the pharmacy counter when the patient arrives. Out-of-stock substitutes are suggested with the doctor’s pre-approval.",
 			"bullets": [
 				"Substitution rules at the prescription level — not the pharmacist’s discretion.",
-				"Patient counsel sheets in Hindi / Bengali / Odia with dosing instructions.",
-				"Refill reminders at 80% consumption — chronic-care patients don’t run out."
+				"Refill reminders for chronic-care patients set up during onboarding."
 			],
 			"visual": "rx-dispense"
 		},

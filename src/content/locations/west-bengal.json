@@ -4,15 +4,15 @@
 	"name": "West Bengal",
 	"region": "",
 	"metaTitle": "Clinic & Hospital Management Software in West Bengal | Lucoze",
-	"metaDescription": "Healthcare management software for clinics and hospitals across West Bengal — Kolkata, Howrah, Siliguri, Durgapur. Bengali-ready front desk, ABDM/DPDP compliant, data hosted in India.",
+	"metaDescription": "Healthcare management software for clinics and hospitals across West Bengal: Kolkata, Howrah, Siliguri, Durgapur. Plain-English screens, on-site setup, DPDP-ready, data hosted in India.",
 	"eyebrow": "For clinics & hospitals in West Bengal",
 	"h1Parts": ["Clinic software built in ", "West Bengal", ", for West Bengal."],
-	"lead": "Lucoze is built in Konnagar, Hooghly — by a team that has sat at front desks in Kolkata, Salt Lake and the district towns. Patient records, appointments, billing, lab and pharmacy on one platform, with a Bengali-ready front desk and every byte of data hosted in India.",
-	"intro": "West Bengal runs on volume and on trust. A single-doctor chamber in a mofussil town, a busy polyclinic off EM Bypass, a 40-bed nursing home in Howrah — they all live and die by whether the front desk can move patients through the day without losing a record. Most clinic software sold here was designed for a different country and retrofitted for India. Lucoze was built the other way round: we started with the Bengali front desk, the cash-and-UPI counter, and the Swasthya Sathi paperwork, and built the software to fit that reality — not the reverse.",
+	"lead": "Lucoze is built in Konnagar, Hooghly — by a team that has sat at front desks in Kolkata, Salt Lake and the district towns. Patient records, appointments, billing, lab and pharmacy on one platform, with plain-English screens and every byte of data hosted in India.",
+	"intro": "West Bengal runs on volume and on trust. A single-doctor chamber in a mofussil town, a busy polyclinic off EM Bypass, a 40-bed nursing home in Howrah — they all live and die by whether the front desk can move patients through the day without losing a record. Most clinic software sold here was designed for a different country and retrofitted for India. Lucoze was built the other way round: we started with the busy Bengal front desk, the cash-and-UPI counter, and the Swasthya Sathi paperwork, and built the software to fit that reality — not the reverse.",
 	"points": [
 		[
-			"A front desk that speaks your language",
-			"Staff work in Bengali. Patient search matches names in Bengali, Devanagari and Latin — 'Banerjee' or 'বন্দ্যোপাধ্যায়' both find the record. Hindi UI is rolling out (Q3 2026), Bengali next, with printable cheat-sheets in the local language."
+			"A front desk that learns it fast",
+			"Lucoze runs in English, in short plain labels, and we train your staff on your own patients in person. Search by name, UHID, ABHA number or mobile finds the record."
 		],
 		[
 			"Your patients' data stays in India",
@@ -23,15 +23,15 @@
 			"The team is based in Hooghly. We do on-site front-desk training in and around Kolkata, and support runs over WhatsApp during business hours — the way clinics here actually reach a vendor."
 		],
 		[
-			"ABDM, GST and state-scheme ready",
-			"Issue ABHA at first visit, generate GST-compliant invoices, and keep clean records for Swasthya Sathi and insurance claims — without three separate tools."
+			"ABHA number, GST and state-scheme ready",
+			"Record the ABHA number at first visit, generate GST-compliant invoices, and keep clean records for Swasthya Sathi and insurance claims — without three separate tools."
 		],
 		[
 			"A say in what gets built next",
 			"We're based here and still early, so Bengal clinics in our design-partner programme get their requests built into the product — the roadmap is shaped at front desks in this state, not at a distant HQ."
 		]
 	],
-	"localContext": "We work with clinics and hospitals across the state — the dense OPD belts of Kolkata (Salt Lake, Park Street, Gariahat, EM Bypass) and Howrah, the diagnostic chains of Siliguri and Durgapur, and the multi-doctor chambers of the Hooghly industrial belt. Bengal's healthcare is a mix of standalone chambers, nursing homes, polyclinics and diagnostic centres, and a Bengali-first, cash-first front desk is the common thread. Because Lucoze is built in Konnagar, we can put someone at your front desk during a real four-hour shift — which is where every module we ship actually gets designed. East-India clinics are prioritised in our design-partner programme. West Bengal is the one state where 'local' isn't a marketing line for us — Lucoze is built in Konnagar, so when a Hooghly or Kolkata clinic signs on, the same people who wrote the software can sit at your front desk and set it up with you, not hand over a login and a PDF. That proximity shows up in the small things: the Bengali name spellings your search has to match, the way a cash-and-UPI counter reconciles at day's end, and the Swasthya Sathi paperwork a nursing home actually files. For clinics in the district towns beyond the metro, onboarding and support run over WhatsApp and video, with a visit arranged when a rollout needs hands on the desk.",
+	"localContext": "We work with clinics and hospitals across the state — the dense OPD belts of Kolkata (Salt Lake, Park Street, Gariahat, EM Bypass) and Howrah, the diagnostic chains of Siliguri and Durgapur, and the multi-doctor chambers of the Hooghly industrial belt. Bengal's healthcare is a mix of standalone chambers, nursing homes, polyclinics and diagnostic centres, and a Bengali-first, cash-first front desk is the common thread. Because Lucoze is built in Konnagar, we can put someone at your front desk during a real four-hour shift — which is where every module we ship actually gets designed. East-India clinics are prioritised in our design-partner programme. West Bengal is the one state where 'local' isn't a marketing line for us — Lucoze is built in Konnagar, so when a Hooghly or Kolkata clinic signs on, the same people who wrote the software can sit at your front desk and set it up with you, not hand over a login and a PDF. That proximity shows up in the small things: the name spellings a Bengal desk deals with, the way a cash-and-UPI counter reconciles at day's end, and the Swasthya Sathi paperwork a nursing home actually files. For clinics in the district towns beyond the metro, onboarding and support run over WhatsApp and video, with a visit arranged when a rollout needs hands on the desk.",
 	"citiesServed": [
 		"Kolkata",
 		"Howrah",
@@ -44,8 +44,8 @@
 	],
 	"faqs": [
 		{
-			"q": "Is Lucoze available in Bengali?",
-			"a": "The interface is rolling out in Hindi first (Q3 2026), with Bengali next. Multilingual patient search (Bengali, Devanagari and Latin) works today, and we include printable Bengali front-desk cheat-sheets for your staff."
+			"q": "Can a Bengali-speaking front desk use Lucoze?",
+			"a": "Yes. The screens are in English, with short plain labels, and we train your staff on your own patients in person. Search by name, UHID, ABHA number or mobile finds the record."
 		},
 		{
 			"q": "Where is our patient data stored?",

@@ -33,19 +33,9 @@ export const DIFF_ROWS: DiffRow[] = [
 		cells: ["check", "check", "cross", "cross"],
 	},
 	{
-		label: "ABDM + ABHA + HPR built-in",
-		sub: "Issue and verify ABHA-linked records",
-		cells: ["check", "partial", "cross", "cross"],
-	},
-	{
 		label: "Predictable monthly pricing",
 		sub: "No per-user gotchas, no surprise modules",
 		cells: ["check", "cross", "partial", "na"],
-	},
-	{
-		label: "Hindi UI (Bengali, Odia next)",
-		sub: "Built-in, not a half-translated overlay",
-		cells: ["check", "cross", "cross", "na"],
 	},
 	{
 		label: "Data export on demand",
@@ -64,12 +54,12 @@ export const HOME_FAQS = [
 		a: "Your full data exports to CSV (records, appointments, billing) and PDF (prescriptions, lab reports) within 24 hours of request. A 30-day grace period after any cancellation lets you pull everything cleanly. No lock-in, no proprietary format. We'd rather lose you to a competitor than trap you with us.",
 	},
 	{
-		q: "Is Lucoze ABDM-ready? What about ABHA?",
-		a: "Yes. Lucoze issues and verifies ABHA-linked records, supports HPR (Healthcare Professional Registry) and HFR (Health Facility Registry), and integrates with the consent manager. New patients can have an ABHA created at first visit in under 90 seconds. We use only the published NHA APIs — no shortcuts, no scraping.",
+		q: "Does Lucoze record the ABHA number?",
+		a: "Yes. Every patient record stores the patient's ABHA number, so it is on the record, searchable at the desk and printed where you need it. Registering your facility on HFR and your doctors on HPR is a separate step with the government; we walk your team through it during onboarding.",
 	},
 	{
 		q: "Can my staff actually use this? They aren't tech-savvy.",
-		a: "Lucoze is built for the way Indian clinic staff actually work. Hindi UI ships in Q3 2026; Bengali and Odia after. We include a 30-minute on-site training for the front desk on every plan, plus printable cheat-sheets in the local language. Our front-desk module was redesigned after sitting through four-hour shifts at clinics in Kolkata and Patna.",
+		a: "Lucoze is built for the way Indian clinic staff actually work. Lucoze runs in English, in short plain words a new receptionist can follow, and onboarding trains your front desk on your own patients. We include a 30-minute on-site training for the front desk on every plan. Our front-desk module was redesigned after sitting through four-hour shifts at clinics in Kolkata and Patna.",
 	},
 	{
 		q: "We're already on Practo Ray / Halemind / Cliniq360. Is migration painful?",
@@ -81,6 +71,6 @@ export const HOME_FAQS = [
 	},
 	{
 		q: "Do you offer onboarding support? What's included?",
-		a: "Every plan includes data migration assistance, a 30-minute staff training, printable cheat-sheets, and 14 days of dedicated chat support from the implementation team. Hospital plan adds a named implementation manager for 60 days. After that, support runs via in-app chat (Clinic), WhatsApp + phone (Clinic Pro), and a dedicated CSM line (Hospital).",
+		a: "Every plan includes data migration assistance, a 30-minute staff training, and 14 days of dedicated chat support from the implementation team. Hospital plan adds a named implementation manager for 60 days. After that, support runs via in-app chat (Clinic), WhatsApp + phone (Clinic Pro), and a dedicated CSM line (Hospital).",
 	},
 ];

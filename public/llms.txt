@@ -2,13 +2,13 @@
 
 > Lucoze is healthcare management software (HMS/EMR) for Indian clinics and hospitals. Patient records, appointments, billing, lab, and pharmacy on one platform, with all patient data hosted in India. Built by Svasamm Research Pvt. Ltd.
 
-Lucoze is an India-first clinic and hospital management system (HMS/EMR). It is designed around Indian workflows and compliance: ABDM/ABHA integration, DPDP 2023, GST-compliant e-invoicing, and Hindi UI. Founder-led by Mithun K. Singh. Data residency is in Indian data centres; customers can export all records (CSV/PDF) with no lock-in.
+Lucoze is an India-first clinic and hospital management system (HMS/EMR). It is designed around Indian workflows and compliance: the ABHA number on every patient record, DPDP 2023, GST-compliant e-invoicing, and plain-English screens. Founder-led by Mithun K. Singh. Data residency is in Indian data centres; customers can export all records (CSV/PDF) with no lock-in.
 
 Lucoze is the product; Svasamm Research Pvt. Ltd. is the company that builds it. Lucoze is business software sold to healthcare providers — it is not a consumer product, a medical device, or a healthcare provider itself.
 
 ## Product
-- [Appointments](https://lucoze.com/in/features/appointments/): Department-first booking, family-linked patient timelines, reminders.
-- [Patient records](https://lucoze.com/in/features/patient-records/): Unified EMR, ABHA-linked records, multilingual patient search.
+- [Appointments](https://lucoze.com/in/features/appointments/): Department-first booking, family-linked patient timelines, WhatsApp reminders set up during onboarding.
+- [Patient records](https://lucoze.com/in/features/patient-records/): Unified EMR, the ABHA number on every record, patient search by name, UHID, ABHA number or mobile.
 - [Billing, accounting & inventory](https://lucoze.com/in/features/billing/): GST-compliant invoicing (CGST/SGST/IGST), e-invoicing, shared pharmacy/OPD ledger.
 - [Lab](https://lucoze.com/in/features/lab/): Sample-to-report tracking, reference-range flagging, NABL-oriented audit trail.
 - [Pharmacy](https://lucoze.com/in/features/pharmacy/): Inventory, batch/expiry, FEFO dispensing, Schedule-H/X handling.
@@ -54,7 +54,6 @@ Factual, dated comparisons. Competitor capabilities are stated as available, par
 - [Clinic data migration checklist](https://lucoze.com/in/blog/clinic-data-migration-checklist/)
 - [Practo vs Halemind](https://lucoze.com/in/blog/practo-vs-halemind/)
 - [The hidden cost of paper records](https://lucoze.com/in/blog/hidden-cost-of-paper/)
-- [Lucoze in Hindi](https://lucoze.com/in/blog/lucoze-in-hindi/)
 
 ## Where we work
 Lucoze is sold across India. Sales and onboarding focus on East India; the company's only office is in West Bengal.

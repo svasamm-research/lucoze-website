@@ -4,11 +4,11 @@
 	"name": "Bhubaneswar",
 	"region": "Odisha",
 	"metaTitle": "Clinic & Hospital Software in Bhubaneswar | Lucoze",
-	"metaDescription": "Lucoze runs records, appointments, GST billing, lab & pharmacy for Bhubaneswar clinics — Saheed Nagar to Chandrasekharpur. ABDM-ready, DPDP-compliant, data in India.",
+	"metaDescription": "Lucoze runs records, appointments, GST billing, lab & pharmacy for Bhubaneswar clinics: Saheed Nagar to Chandrasekharpur. ABDM-ready, DPDP-compliant, data in India.",
 	"eyebrow": "For clinics & hospitals in Bhubaneswar",
 	"h1Parts": ["Clinic & hospital software for ", "Bhubaneswar", ", from the front desk up."],
-	"lead": "Records, appointments, GST billing, lab and pharmacy on one platform — built for the specialty clinics and diagnostic centres filling up Bhubaneswar. ABHA and clean records from day one.",
-	"intro": "Bhubaneswar is the centre of Odisha's health boom — new hospitals along Jaydev Vihar, specialty clinics in Saheed Nagar, and diagnostic centres opening across Chandrasekharpur, all pulling patients in from across the state. Lucoze gives these practices one platform for patient records, appointments, GST-ready billing, lab reports and pharmacy stock, instead of a booking app here and a billing register there. Create an ABHA at the first visit, keep documentation clean for BSKY and insurance claims, and find any patient's full history — including referrals from other districts — in a couple of clicks.",
+	"lead": "Records, appointments, GST billing, lab and pharmacy on one platform — built for the specialty clinics and diagnostic centres filling up Bhubaneswar. The ABHA number and clean records from day one.",
+	"intro": "Bhubaneswar is the centre of Odisha's health boom — new hospitals along Jaydev Vihar, specialty clinics in Saheed Nagar, and diagnostic centres opening across Chandrasekharpur, all pulling patients in from across the state. Lucoze gives these practices one platform for patient records, appointments, GST-ready billing, lab reports and pharmacy stock, instead of a booking app here and a billing register there. Record the ABHA number at the first visit, keep documentation clean for BSKY and insurance claims, and find any patient's full history — including referrals from other districts — in a couple of clicks.",
 	"points": [
 		[
 			"One platform, not five apps",
@@ -19,8 +19,8 @@
 			"Patients arrive in Bhubaneswar from all over Odisha. A searchable shared record means you see their history whether they registered today or a year ago."
 		],
 		[
-			"ABHA & scheme-ready",
-			"Link ABHA at registration and keep records tidy for BSKY, PMJAY and private insurance, so claims clear without chasing missing paperwork."
+			"ABHA number & scheme-ready",
+			"Record the ABHA number at registration and keep records tidy for BSKY, PMJAY and private insurance, so claims clear without chasing missing paperwork."
 		],
 		[
 			"14-day trial, live in 14 days",
@@ -28,15 +28,15 @@
 		],
 		[
 			"Reminders patients actually see",
-			"Appointment and follow-up nudges go out over WhatsApp and SMS, so a busy Bhubaneswar counter loses fewer no-shows without the front desk making calls all day."
+			"WhatsApp reminders are set up for your clinic during onboarding, so a busy Bhubaneswar counter loses fewer no-shows without the front desk making calls all day."
 		]
 	],
-	"localContext": "In Bhubaneswar the front desk usually works in Odia, with Hindi and English common in the larger Jaydev Vihar hospitals and corporate diagnostic chains. A receptionist in Saheed Nagar or Old Town shouldn't slow down because the software can't spell a patient's name — Lucoze's search matches Odia, Devanagari and Latin at once, so 'Priyanka', 'ପ୍ରିୟଙ୍କା' or a mobile number all find the same record. The interface is rolling out in Hindi first (Q3 2026), then Bengali, then Odia; the full Odia UI is on the roadmap, not live yet, so we supply printable Odia cheat-sheets. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts. As the state capital and a fast-growing health and education hub, Bhubaneswar draws patients in from every district — many seen once and then again months later, so an ABHA linked at the first visit means a patient's history travels with them instead of starting from a blank register. Counters here run largely on cash and UPI, and appointment and follow-up nudges go out over WhatsApp, which is where most patients actually read them.",
+	"localContext": "In Bhubaneswar the front desk usually works in Odia, with Hindi and English common in the larger Jaydev Vihar hospitals and corporate diagnostic chains. A receptionist in Saheed Nagar or Old Town shouldn't slow down because the software is hard to follow — Lucoze runs in English, in short plain labels, and onboarding trains your desk on your own patients, so a name, UHID or mobile number brings up the record. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts. As the state capital and a fast-growing health and education hub, Bhubaneswar draws patients in from every district — many seen once and then again months later, so an ABHA number recorded at the first visit means a patient's details are on file instead of starting from a blank register. Counters here run largely on cash and UPI, and WhatsApp reminders are set up during onboarding, which is where most patients actually read them.",
 	"citiesServed": [],
 	"faqs": [
 		{
-			"q": "Is Lucoze available in Odia?",
-			"a": "Not yet, and we won't pretend otherwise. The interface rolls out in Hindi first (Q3 2026), then Bengali, then Odia. Available today: multilingual patient search across Odia, Devanagari and Latin, plus printable Odia cheat-sheets for your Bhubaneswar front desk until the Odia UI ships."
+			"q": "Will an Odia-speaking front desk manage?",
+			"a": "Yes. Lucoze's screens are in English, in short plain words a new receptionist can follow. Onboarding trains your Bhubaneswar front desk on your own patients, so the first week runs on your real day, not a demo."
 		},
 		{
 			"q": "Do you offer setup support in Bhubaneswar?",
@@ -48,7 +48,7 @@
 		},
 		{
 			"q": "We see patients from across Odisha — can we pull up their history on a repeat visit?",
-			"a": "Yes. Link an ABHA at the first visit and Lucoze keeps that patient's full record — prescriptions, lab reports, past visits — in one place. When they travel back to Bhubaneswar months later, search by name or mobile number and their history is right there, whichever of your branches they first registered at."
+			"a": "Yes. Record the ABHA number at the first visit and Lucoze keeps that patient's full record — prescriptions, lab reports, past visits — in one place. When they travel back to Bhubaneswar months later, search by name or mobile number and their history is right there, whichever of your branches they first registered at."
 		}
 	]
 }

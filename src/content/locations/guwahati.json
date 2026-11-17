@@ -4,23 +4,23 @@
 	"name": "Guwahati",
 	"region": "Assam",
 	"metaTitle": "Clinic & Hospital Management Software in Guwahati | Lucoze",
-	"metaDescription": "Cloud HMS and EMR for Guwahati clinics and hospitals — GS Road, Bhangagarh, Six Mile and Zoo Road. ABHA at first visit, DPDP 2023 ready, data in Indian data centres.",
+	"metaDescription": "Cloud HMS and EMR for Guwahati clinics and hospitals: GS Road, Bhangagarh, Six Mile and Zoo Road. ABHA number on record, DPDP 2023 ready, data in Indian data centres.",
 	"eyebrow": "For clinics & hospitals in Guwahati",
 	"h1Parts": ["Clinic & hospital software for ", "Guwahati", " practices."],
 	"lead": "Clinic and hospital software for Guwahati's practices — one cloud platform for records, billing, lab and pharmacy. Free 14-day trial, and most clinics are live within 14 days.",
-	"intro": "Guwahati is the Northeast's medical hub — patients travel in from Assam, Manipur, Mizoram and beyond for care they can't get at home, which means your front desk handles heavy, mixed-language footfall every day. Lucoze puts records, appointments, GST billing, lab and pharmacy on one cloud platform, so a specialist on GS Road or a hospital in Bhangagarh isn't stitching together separate registers. It runs on ordinary broadband or mobile data and links ABHA at the first visit. Our team works from Konnagar, West Bengal, supporting you remotely-first, with on-site help for larger hospital setups.",
+	"intro": "Guwahati is the Northeast's medical hub — patients travel in from Assam, Manipur, Mizoram and beyond for care they can't get at home, which means your front desk handles heavy, mixed-language footfall every day. Lucoze puts records, appointments, GST billing, lab and pharmacy on one cloud platform, so a specialist on GS Road or a hospital in Bhangagarh isn't stitching together separate registers. It runs on ordinary broadband or mobile data and records the ABHA number at the first visit. Our team works from Konnagar, West Bengal, supporting you remotely-first, with on-site help for larger hospital setups.",
 	"points": [
 		[
 			"Made for referral-heavy footfall",
-			"As the region's referral hub, Guwahati clinics see patients from every corner of the Northeast — multilingual patient search finds the right record fast."
+			"As the region's referral hub, Guwahati clinics see patients from every corner of the Northeast — search by name, UHID, ABHA number or mobile finds the right record fast."
 		],
 		[
 			"One system for the hospital belt",
 			"From Bhangagarh's hospitals to Zoo Road and Six Mile clinics, keep records, appointments, GST billing, lab and pharmacy in one place instead of five."
 		],
 		[
-			"ABHA and scheme claims at registration",
-			"Create and link ABHA numbers under Ayushman Bharat (PMJAY) and state schemes at the first visit, ready for the referrals arriving from across the region."
+			"ABHA number and scheme claims at registration",
+			"Record ABHA numbers under Ayushman Bharat (PMJAY) and state schemes at the first visit, ready for the referrals arriving from across the region."
 		],
 		[
 			"Data in India, no lock-in",
@@ -28,10 +28,10 @@
 		],
 		[
 			"WhatsApp reminders for travelling patients",
-			"Patients who journey in from across the Northeast get WhatsApp and SMS reminders, so a follow-up or pending report isn't lost to the trip home."
+			"Patients who journey in from across the Northeast get WhatsApp reminders, set up for your clinic during onboarding, so a follow-up or pending report isn't lost to the trip home."
 		]
 	],
-	"localContext": "Guwahati's clinics cluster along GS Road, Zoo Road, Six Mile and the Bhangagarh hospital belt, with Paltan Bazaar busy in the centre. Because patients arrive from across the Northeast, your desk juggles Assamese, Bengali, Hindi and English in a single queue. Lucoze's UI rolls out in Hindi first (Q3 2026), then Bengali — relevant when Barak Valley patients come up from Silchar — then Odia; full Assamese screens aren't ready yet. What works today is multilingual patient search across Bengali, Devanagari and Latin, plus printable local-language cheat-sheets to pin at the front desk. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts. Because many arrivals come off long journeys from Manipur, Nagaland or the Barak Valley and won't return casually for a forgotten report, WhatsApp and SMS reminders cut the no-shows that referral footfall creates. The same record carries from the doctor's chamber to the in-house pharmacy, so a travelling patient collects medicines against the visit without re-registering, and mixed cash-and-UPI payments settle on one bill.",
+	"localContext": "Guwahati's clinics cluster along GS Road, Zoo Road, Six Mile and the Bhangagarh hospital belt, with Paltan Bazaar busy in the centre. Because patients arrive from across the Northeast, your desk juggles Assamese, Bengali, Hindi and English in a single queue. Lucoze runs in English, in short plain labels, and onboarding trains your front desk on your own patients, so a mixed queue doesn't slow the counter. Support is remote-first from our team in Konnagar, Hooghly, with on-site help for larger hospital rollouts. Because many arrivals come off long journeys from Manipur, Nagaland or the Barak Valley and won't return casually for a forgotten report, WhatsApp reminders, set up during onboarding, cut the no-shows that referral footfall creates. The same record carries from the doctor's chamber to the in-house pharmacy, so a travelling patient collects medicines against the visit without re-registering, and mixed cash-and-UPI payments settle on one bill.",
 	"citiesServed": [],
 	"faqs": [
 		{
@@ -44,11 +44,11 @@
 		},
 		{
 			"q": "Can Lucoze handle patients who speak different languages?",
-			"a": "Multilingual patient search works today across Bengali, Devanagari and Latin scripts, and printable cheat-sheets help your staff. The UI itself rolls out in Hindi first (Q3 2026), then Bengali, then Odia; full Assamese screens aren't available yet."
+			"a": "Patients can speak any language at your counter; the screens your staff use are in English, with short plain labels. Onboarding trains your front desk on your own patients, and search by name, UHID, ABHA number or mobile finds the record."
 		},
 		{
 			"q": "Can Lucoze remind patients who've travelled from other Northeast states?",
-			"a": "Yes. Lucoze sends appointment and follow-up reminders over WhatsApp and SMS, which helps when a patient has come in from Manipur, Nagaland or the Barak Valley and won't drop by casually for a pending report. Prescriptions carry from the chamber to the in-house pharmacy on the same record, so nothing is re-entered."
+			"a": "Yes. WhatsApp reminders are set up for your clinic during onboarding, which helps when a patient has come in from Manipur, Nagaland or the Barak Valley and won't drop by casually for a pending report. Prescriptions carry from the chamber to the in-house pharmacy on the same record, so nothing is re-entered."
 		}
 	]
 }

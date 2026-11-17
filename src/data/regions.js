@@ -112,8 +112,7 @@ export const REGIONS = {
 		currency: "inr",
 		currencySymbol: "₹",
 		compliance: [
-			{ label: "ABDM Integrated", desc: "Ayushman Bharat Digital Mission" },
-			{ label: "ABHA Compatible", desc: "Health ID integration" },
+			{ label: "ABHA number on record", desc: "Ayushman Bharat Digital Mission" },
 			{ label: "ICD-10", desc: "Global diagnosis coding" },
 		],
 		pricing: {

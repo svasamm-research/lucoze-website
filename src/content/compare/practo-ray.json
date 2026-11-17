@@ -2,11 +2,11 @@
 	"slug": "practo-ray",
 	"competitor": "Practo Ray",
 	"metaTitle": "Practo Ray Alternative: Lucoze vs Practo Ray | Lucoze",
-	"metaDescription": "An honest, side-by-side comparison of Lucoze and Practo Ray for Indian clinics — data residency, ABDM, one-platform coverage, pricing and migration.",
+	"metaDescription": "An honest, side-by-side comparison of Lucoze and Practo Ray for Indian clinics: data residency, one-platform coverage, pricing and migration.",
 	"eyebrow": "Practo Ray alternative",
 	"h1Parts": ["Looking for a ", "Practo Ray alternative", "?"],
 	"lead": "A side-by-side look at Lucoze and Practo Ray for Indian clinics — where the platforms overlap, where they differ, and what switching involves. Based on public documentation; verify current details with each vendor.",
-	"intro": "Practo Ray is a widely used clinic platform, and it does a lot well. Some clinics still look for an alternative — usually because they want patient data kept in India, a single system that covers appointments through pharmacy, ABDM/ABHA built in rather than bolted on, and pricing that doesn't move with the number of users. This page lays those differences out plainly, so you can decide on facts rather than a sales pitch. We're upfront that this is our page: the Lucoze column is what we build, and the Practo Ray column reflects public documentation, which you should verify.",
+	"intro": "Practo Ray is a widely used clinic platform, and it does a lot well. Some clinics still look for an alternative — usually because they want patient data kept in India, a single system that covers appointments through pharmacy, the ABHA number on every patient record, and pricing that doesn't move with the number of users. This page lays those differences out plainly, so you can decide on facts rather than a sales pitch. We're upfront that this is our page: the Lucoze column is what we build, and the Practo Ray column reflects public documentation, which you should verify.",
 	"tableRows": [
 		{
 			"label": "Patient data hosted in India",
@@ -29,18 +29,8 @@
 			"cells": ["check", "check"]
 		},
 		{
-			"label": "ABDM, ABHA & HPR built in",
-			"sub": "Issue and verify ABHA-linked records at first visit",
-			"cells": ["check", "partial"]
-		},
-		{
 			"label": "Flat per-clinic pricing",
 			"sub": "No per-user gotchas or surprise modules",
-			"cells": ["check", "cross"]
-		},
-		{
-			"label": "Hindi / regional UI built in",
-			"sub": "Rolling out Hindi, then Bengali & Odia",
 			"cells": ["check", "cross"]
 		},
 		{
@@ -59,16 +49,8 @@
 			"Appointments, patient records, GST billing, lab and pharmacy run on a single system, so the front desk isn't switching between tools mid-shift."
 		],
 		[
-			"ABDM and ABHA, built in",
-			"Create and verify ABHA-linked records at the first visit using the published NHA APIs — HPR and HFR included, not a future roadmap item."
-		],
-		[
 			"Pricing that doesn't move with your team",
 			"Flat per-clinic monthly plans from ₹1,499, so adding a doctor or a receptionist doesn't change the bill."
-		],
-		[
-			"A Hindi-ready front desk",
-			"Multilingual patient search (Hindi, Bengali, Devanagari and Latin) works today, and the interface is rolling out in Hindi first (Q3 2026), then Bengali and Odia."
 		],
 		[
 			"Built for India, honest about support",
@@ -82,7 +64,7 @@
 		},
 		{
 			"q": "Is Lucoze a good alternative to Practo Ray?",
-			"a": "It depends on what matters to your clinic. If India data residency, a single platform covering appointments through pharmacy, native ABDM/ABHA, and flat per-clinic pricing are priorities, Lucoze is built around exactly those. The best way to judge is a 14-day free trial with your own workflow — no credit card required."
+			"a": "It depends on what matters to your clinic. If India data residency, a single platform covering appointments through pharmacy, and flat per-clinic pricing are priorities, Lucoze is built around exactly those. The best way to judge is a 14-day free trial with your own workflow — no credit card required."
 		},
 		{
 			"q": "How hard is it to migrate from Practo Ray to Lucoze?",

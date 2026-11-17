@@ -47,7 +47,7 @@ const PARTNER_FIT: [string, boolean][] = [
 
 const TRUST: [string, string, string][] = [
 	["clock", "Team replies in a day", "Founder line — not a call centre"],
-	["shield", "Patient data hosted in Mumbai", "ABDM-ready · DPDP-aligned"],
+	["shield", "Patient data hosted in India", "ABDM-ready · DPDP-aligned"],
 	["lock", "No spam, no sales sequence", "One human, one honest reply"],
 ];
 import CountryCode from "../../components/CountryCode.astro";
@@ -116,9 +116,7 @@ import CountryCode from "../../components/CountryCode.astro";
 										placeholder="Desk line or mobile"
 									/>
 								</div>
-								<span class="reach-err" data-phone-err hidden>
-									Enter a valid phone number.
-								</span>
+								<span class="reach-err" data-phone-err hidden> Enter a valid phone number. </span>
 							</div>
 
 							<div class="reach-or reach-field--full"><span>or</span></div>
@@ -166,9 +164,7 @@ import CountryCode from "../../components/CountryCode.astro";
 					<div class="reach-success reach-success--inline">
 						<span class="reach-success__badge"><Icon name="check" size={24} /></span>
 						<h3>Application received.</h3>
-						<p>
-							We got your application. Expect a reply within a day to set up your founder call.
-						</p>
+						<p>We got your application. Expect a reply within a day to set up your founder call.</p>
 						<div class="reach-success__row">
 							<a
 								class="btn btn--ghost"

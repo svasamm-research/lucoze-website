@@ -19,8 +19,8 @@
 			"Add a new doctor in 10 minutes — her schedule, her billing rates, her referral chain are inherited from the template."
 		],
 		[
-			"Hindi UI for staff",
-			"Front desk in 3 Bihar / UP clinics retrained on Lucoze in 2 hours. Without yelling."
+			"Plain words for the front desk",
+			"Short English labels a new receptionist can follow, and onboarding that trains your desk on your own patients."
 		]
 	],
 	"plan": "Clinic Pro",
@@ -33,7 +33,7 @@
 		},
 		{
 			"title": "Grows without re-training the whole desk",
-			"body": "Adding a doctor is a template, not a project: her schedule, billing rates and referral chain are inherited, so the front desk isn't re-learning the system every time the clinic expands. The interface is available in Hindi, which is what lets a Tier-2 front desk pick it up in an afternoon rather than over weeks."
+			"body": "Adding a doctor is a template, not a project: her schedule, billing rates and referral chain are inherited, so the front desk isn't re-learning the system every time the clinic expands. The screens use short, plain English labels, and onboarding trains your front desk on your own patients."
 		},
 		{
 			"title": "Referrals that don't leave the building",
@@ -54,8 +54,8 @@
 			"a": "Adding a doctor is template-driven — schedule, billing rates and referral chain are inherited — so it takes minutes and doesn't require re-training the front desk."
 		},
 		{
-			"q": "Is a Hindi interface available for front-desk staff?",
-			"a": "Yes. The front-desk interface is available in Hindi, which is what lets Tier-2 clinic staff get productive quickly. Bengali and Odia are on the roadmap."
+			"q": "Can a new front-desk hire learn it quickly?",
+			"a": "Yes. The screens are in English with short, plain labels, and onboarding trains your desk on your own patients, so a new hire follows the same few steps every day."
 		},
 		{
 			"q": "What happens when one doctor refers a patient to another in the clinic?",
