@@ -20,7 +20,7 @@
 		],
 		[
 			"Recall calendar by category",
-			"Botox at 4 months, laser at 6 weeks, biopsy review at 2 weeks — automated WhatsApp."
+			"Botox at 4 months, laser at 6 weeks, biopsy review at 2 weeks — recall WhatsApp reminders set up during onboarding."
 		],
 		[
 			"Cosmetic vs medical separation",
@@ -37,7 +37,7 @@
 		},
 		{
 			"title": "Packages and recalls that match how derm sells",
-			"body": "Aesthetic work is sold in courses — a laser package over several sessions, maintenance botox on a cycle. Lucoze models the package as one purchase with visits drawn against it, tracks the outstanding balance, and drives category-specific recalls (a biopsy review, a botox top-up, a laser follow-up) over WhatsApp so the calendar fills itself."
+			"body": "Aesthetic work is sold in courses — a laser package over several sessions, maintenance botox on a cycle. Lucoze models the package as one purchase with visits drawn against it, tracks the outstanding balance, and category-specific recall reminders (a biopsy review, a botox top-up, a laser follow-up) over WhatsApp are set up for your clinic during onboarding."
 		},
 		{
 			"title": "Photos, consent, and where they live",

@@ -27,7 +27,9 @@ heroAlt: "A modern data-centre corridor lined with server racks glowing with blu
 	The DPDP Act 2023 leaves cross-border data transfer as a footnote you don't want to be reading in
 	2027 with 80 clinics on your platform and a regulator's notice on your desk. The exact rules are
 	still being clarified. The safe call — the one a clinic owner doesn't need a lawyer to verify —
-	is: data stays in India. Residency is one half of DPDP compliance; the other is <a href="/in/blog/dpdp-patient-consent-clinics/">how you take and record patient consent</a> at the front desk.
+	is: data stays in India. Residency is one half of DPDP compliance; the other is{" "}
+	<a href="/in/blog/dpdp-patient-consent-clinics/">how you take and record patient consent</a> at
+	the front desk.
 </p>
 
 <h2 id="practical">The practical reason</h2>
@@ -49,9 +51,8 @@ heroAlt: "A modern data-centre corridor lined with server racks glowing with blu
 	<li>Primary database: Indian data centre, India region only.</li>
 	<li>Object storage: Indian regions only.</li>
 	<li>Backups: Indian-region replicas. Never cross-region outside India.</li>
-	<li>Encryption: at rest (AES-256) and in transit (TLS 1.3).</li>
-	<li>Key management: customer-managed keys per tenant.</li>
-	<li>Audit log: every record access logged for 7 years.</li>
+	<li>Encryption: in transit (TLS) on every connection.</li>
+	<li>Audit log: record access is logged.</li>
 </ul>
 
 <h2 id="three-questions">What three questions should you ask any vendor?</h2>

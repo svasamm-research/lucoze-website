@@ -4,7 +4,7 @@
 	"icon": "activity",
 	"eyebrow": "For 10–50 bed nursing homes",
 	"h1Parts": ["A nursing home lives on ", "admissions and beds", ", not just OPD."],
-	"lead": "The Bengal nursing home is a small hospital in everything but name — an OPD out front, ten to forty beds behind it, a minor OT, a pharmacy, and a doctor-owner signing off on all of it. Lucoze runs the whole thing: admissions to discharge, IPD billing, pharmacy and records on one platform, with a Bengali-ready front desk and data in India.",
+	"lead": "The Bengal nursing home is a small hospital in everything but name — an OPD out front, ten to forty beds behind it, a minor OT, a pharmacy, and a doctor-owner signing off on all of it. Lucoze runs the whole thing: admissions to discharge, IPD billing, pharmacy and records on one platform, with plain-English screens for the front desk and data in India.",
 	"why": [
 		[
 			"Admissions and a live bed board",
@@ -19,8 +19,8 @@
 			"Schedule a procedure with its consumables and post-op bed; dispense from the in-house pharmacy against the patient's chart. No separate tools."
 		],
 		[
-			"A Bengali front desk, data in India",
-			"Staff work in Bengali; patient search matches Bengali, Devanagari and Latin. Every record sits in Indian data centres under DPDP 2023."
+			"A simple front desk, data in India",
+			"Short plain English labels, and onboarding that trains your desk on your own patients. Every record sits in Indian data centres under DPDP 2023."
 		]
 	],
 	"plan": "Hospital",
@@ -51,7 +51,7 @@
 		},
 		{
 			"q": "Is Lucoze a good fit for a small Bengal nursing home?",
-			"a": "It's built for exactly this — 10–50 bed facilities running OPD, IPD, a minor OT and a pharmacy under a doctor-owner, with a Bengali-ready front desk and East-India support. Nursing homes across West Bengal are a core focus of our design-partner programme."
+			"a": "It's built for exactly this — 10–50 bed facilities running OPD, IPD, a minor OT and a pharmacy under a doctor-owner, with plain-English screens for the front desk and East-India support. Nursing homes across West Bengal are a core focus of our design-partner programme."
 		},
 		{
 			"q": "Where is our patient data stored?",

@@ -2,7 +2,7 @@
 	"slug": "karexpert",
 	"competitor": "KareXpert",
 	"metaTitle": "KareXpert Alternative: Lucoze vs KareXpert | Lucoze",
-	"metaDescription": "Comparing Lucoze and KareXpert for Indian clinics and small hospitals? See how Lucoze's fast setup, flat per-clinic pricing, India data residency and ABDM stack up.",
+	"metaDescription": "Comparing Lucoze and KareXpert for Indian clinics and small hospitals? See how Lucoze's fast setup, flat per-clinic pricing and India data residency stack up.",
 	"eyebrow": "KareXpert alternative",
 	"h1Parts": ["Lucoze vs ", "KareXpert", " for Indian clinics"],
 	"lead": "KareXpert is a capable, enterprise-grade cloud HMS built for hospitals. If you run a clinic or small hospital, this page shows where Lucoze fits differently.",
@@ -29,18 +29,8 @@
 			"cells": ["check", "partial"]
 		},
 		{
-			"label": "ABDM, ABHA & HPR built in",
-			"sub": "Native Ayushman Bharat Digital Mission support",
-			"cells": ["check", "na"]
-		},
-		{
 			"label": "Flat per-clinic pricing",
 			"sub": "Predictable price, not per-seat or quote-based",
-			"cells": ["check", "na"]
-		},
-		{
-			"label": "Hindi / regional UI built in",
-			"sub": "Interface in Hindi and regional languages",
 			"cells": ["check", "na"]
 		},
 		{
@@ -61,14 +51,6 @@
 		[
 			"Your data stays in India",
 			"Patient records are hosted on infrastructure inside India, and you can export your full data on demand. If India data residency matters to you, it is built in rather than something to confirm."
-		],
-		[
-			"ABDM-native from day one",
-			"ABHA creation, HPR linkage and ABDM workflows are built into Lucoze, so joining India's digital health network is part of the product, not a separate integration project."
-		],
-		[
-			"Hindi and regional-ready",
-			"Front-desk and clinical staff can work in Hindi and regional languages out of the box, which shortens training and reduces errors at busy clinics."
 		],
 		[
 			"Local East-India support",

@@ -6,15 +6,15 @@
 	"h1Parts": ["HR your administrator ", "actually uses", " — because it lives where work happens."],
 	"lead": "Standalone HR tools force the administrator to enter the same data twice — once when the staff member joins, once at month-end for payroll. Lucoze’s HR sits in the same database as appointments and billing. Attendance, leave, payroll, statutory — all derived from work that’s already logged.",
 	"stats": [
-		{ "value": "1 day", "label": "To process a 30-staff payroll" },
-		{ "value": "ESI/PF", "label": "Statutory deductions auto-calculated" },
-		{ "value": "Mobile", "label": "Attendance via WhatsApp or NFC" }
+		{ "value": "One place", "label": "Attendance, leave and payroll" },
+		{ "value": "ESI/PF", "label": "Statutory deductions in the payroll run" },
+		{ "value": "Set up", "label": "For your staff during onboarding" }
 	],
 	"rows": [
 		{
 			"eyebrow": "Attendance",
-			"title": "Punch in three ways. We meet the staff where they are.",
-			"lead": "Biometric at the door, NFC tag for the front desk, WhatsApp for the doctor doing rounds. All three flow into the same attendance ledger. End-of-month reconciliation takes minutes, not hours.",
+			"title": "Attendance that matches how your staff work.",
+			"lead": "Attendance, leave and shifts sit in the same database as appointments and billing, and the way your staff punch in is set up for your facility during onboarding. End-of-month reconciliation takes minutes, not hours.",
 			"bullets": [
 				"Late-coming + early-leaving rules per role.",
 				"Shift planning with conflict detection — no doctor accidentally double-booked.",
@@ -25,11 +25,11 @@
 		{
 			"eyebrow": "Payroll + statutory",
 			"title": "ESI, PF, TDS: calculated. Not estimated.",
-			"lead": "Each pay cycle the system computes deductions, generates payslips, exports the bank file, and prepares the statutory challan. You approve; we do the math.",
+			"lead": "Each pay cycle the system computes deductions and generates payslips. You approve; we do the math.",
 			"bullets": [
 				"Salary structure templates per role — OPD doctor, surgeon, technician, admin.",
-				"Statutory remits (PF, ESI, TDS) reconciled and challan-ready.",
-				"Payslips PDF + WhatsApp to staff — they have a record, you have an audit trail."
+				"Statutory deductions (PF, ESI, TDS) worked out in the payroll run.",
+				"Payslips as PDF — staff have a record, you have an audit trail."
 			],
 			"visual": "payroll"
 		}
@@ -40,8 +40,8 @@
 			"a": "From ~10 staff. Below that, a spreadsheet often beats software. We’re honest about this — the HR module turns on by request, not by default."
 		},
 		{
-			"q": "Is it compliant with the new Labour Codes (2026)?",
-			"a": "The four Labour Codes change a lot of forms. We track the rollout state-by-state — statutory exports update automatically when a state notifies effective dates."
+			"q": "Does HR cover the Labour Codes?",
+			"a": "Statutory settings for your state are set up during onboarding, so payroll follows the rules that apply to your facility."
 		}
 	]
 }
