@@ -2,7 +2,8 @@
 //
 // Contract:
 //   - name is required
-//   - phone (^[6-9]\d{9}$) OR email satisfies the gate — either one enables submit
+//   - name and a valid phone are required (Mithun, 17 Nov 2026: a lead came in with an email and
+//     no number, and the team calls to scope). Email is optional; if typed it must be valid.
 //   - submit POSTs to the lucoze-lead-form Lambda (PUBLIC_LEAD_URL), which emails
 //     sales@svasamm.com. It replaced Frappe's admin.lucoze.com on 27 Sep 2026.
 //   - on builds with no PUBLIC_LEAD_URL, we skip the network
@@ -174,7 +175,7 @@ export function initLeadForm({ source }: InitOptions): void {
 		if (emailInput) emailInput.style.borderColor = email && !emailOk ? "var(--error, #b1342a)" : "";
 		if (emailErr) emailErr.hidden = !(email && !emailOk);
 
-		const valid = Boolean(name && (phoneOk || emailOk));
+		const valid = Boolean(name && phoneOk && (!email || emailOk));
 		if (submitBtn) {
 			submitBtn.disabled = !valid;
 			submitBtn.style.opacity = valid ? "1" : "0.5";
