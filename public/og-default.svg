@@ -29,7 +29,7 @@
     </text>
   </g>
 
-  <!-- Footer row: tagline + Mumbai pill -->
+  <!-- Footer row: tagline -->
   <g transform="translate(96 560)" font-family="'Inter Tight', 'Manrope', system-ui, sans-serif">
     <text x="0" y="0" font-size="22" fill="#5b5a55">
       Healthcare Management Software · Built for Indian clinics

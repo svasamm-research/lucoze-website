@@ -35,7 +35,7 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string; gallery?: stri
 	{
 		icon: "flask",
 		title: "Lab + radiology",
-		blurb: "Sample to report, NABL-ready, outsource handling",
+		blurb: "Sample to report, NABL documentation support, outsource handling",
 		gallery: "lab",
 	},
 	{
@@ -70,7 +70,7 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string; gallery?: stri
 	{
 		icon: "shield",
 		title: "ABDM integration",
-		blurb: "HFR registered facility, ABHA-linked records",
+		blurb: "ABHA number on every record; we guide your HFR and HPR registration",
 	},
 ];
 const galleryIds = HOSP_MODULES.map((m) => m.gallery).filter((g): g is string => !!g);
@@ -94,7 +94,7 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 	},
 	{
 		title: "Register for ABDM properly.",
-		body: "Three separate registrations: the facility on HFR, each doctor on HPR, and an ABHA created or linked at the front desk for each patient. We walk your team through all three, because software alone does not register you.",
+		body: "Three separate registrations: the facility on HFR, each doctor on HPR, and the ABHA number of each patient recorded at the front desk. We walk your team through all three, because software alone does not register you.",
 	},
 	{
 		title: "Cut over when you trust it.",
@@ -105,7 +105,7 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 
 <Base
 	title="Hospital Management Software for 20-100 Bed Hospitals"
-	description="Hospital management software for 20-100 bed hospitals in India: ABDM (HFR, HPR, ABHA), GST-correct pharmacy billing and parallel-run switch, no migration fee."
+	description="Hospital management software for 20-100 bed hospitals in India: ABHA numbers on record, GST-correct pharmacy billing and parallel-run switch, no migration fee."
 >
 	<SubHero
 		crumbs={[
@@ -199,7 +199,7 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 				title="Your current system was built before these rules."
 				lead="Hospitals rarely switch for a nicer screen. They switch because the rules changed and the old system did not keep up. These are the ones a 20-100 bed hospital meets this year."
 				bullets={[
-					"ABDM: 'ABDM-ready' is a claim. The proof is three registrations: the facility on HFR, each doctor on HPR, and ABHA at the front desk. Lucoze carries all three.",
+					"ABDM: 'ABDM-ready' is a claim. The proof is three registrations: the facility on HFR, each doctor on HPR, and ABHA at the front desk. Lucoze records each patient's ABHA number, and we walk your team through the registrations.",
 					"GST on medicines: since 22 September 2025 most medicines are 5% (down from 12%) and some are nil. The rate follows the HSN code, so one flat pharmacy rate is wrong.",
 					"E-invoicing: mandatory once a GSTIN's aggregate turnover crosses ₹5 crore. Pharmacy, lab and OPD together often cross it, even when no single counter looks large.",
 					"NABH and PM-JAY: accredited hospitals earn 10% (entry-level NABH) or 15% (full NABH) above the PM-JAY package rate, on every scheme case.",
@@ -236,7 +236,9 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 				{
 					SWITCH_STEPS.map((step, i) => (
 						<li class="switch-step">
-							<span class="switch-step__n" aria-hidden="true">{i + 1}</span>
+							<span class="switch-step__n" aria-hidden="true">
+								{i + 1}
+							</span>
 							<div>
 								<h3 class="switch-step__title">{step.title}</h3>
 								<p class="switch-step__body">{step.body}</p>
@@ -270,7 +272,6 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 					</strong>
 				</VisualPlaceholder>
 			</FRow>
-
 		</div>
 	</section>
 
@@ -305,7 +306,7 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
 					Walk us through your hospital. We'll show you ours.
 				</h2>
-				<p>30-minute call. We bring our medical director, you bring yours. No pitch deck.</p>
+				<p>30-minute call. You bring your questions, we bring a walkthrough. No pitch deck.</p>
 				<div class="cta-final__actions">
 					<a href="/in/contact/" class="btn btn--primary btn--lg">
 						Book a call

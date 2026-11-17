@@ -37,7 +37,7 @@ export const GALLERIES: Record<string, Gallery> = {
 			{
 				name: "fo-register",
 				alt: "Registering a patient in Lucoze",
-				caption: "Patient registration with multilingual name capture.",
+				caption: "Patient registration at the front desk.",
 			},
 		],
 	},
@@ -66,7 +66,7 @@ export const GALLERIES: Record<string, Gallery> = {
 	lab: {
 		id: "lab",
 		label: "Laboratory",
-		blurb: "Sample-to-report with an NABL-oriented trail.",
+		blurb: "Sample-to-report with an audit trail that supports NABL documentation.",
 		shots: [
 			{
 				name: "lab-overview",

@@ -4,11 +4,11 @@
 	"icon": "users",
 	"eyebrow": "EMR + family timeline",
 	"h1Parts": ["One timeline. ", "One family", ". Searchable across every visit."],
-	"lead": "Most EMRs make you click through visits one at a time. We don’t. A patient’s entire history — prescriptions, labs, vitals, allergies, family links — is on a single page the doctor scrolls. Search works across them all.",
+	"lead": "Most EMRs make you click through visits one at a time. We don’t. A patient’s entire history — prescriptions, labs, vitals, allergies, family links — is on a single page the doctor scrolls. Find any patient in seconds.",
 	"stats": [
-		{ "value": "Instant", "label": "Search across your full patient list" },
+		{ "value": "Instant", "label": "Search by name, UHID, ABHA number or mobile" },
 		{ "value": "1 tap", "label": "Family link a spouse or child" },
-		{ "value": "ABHA-ready", "label": "Issue ABHA-linked records from day one" }
+		{ "value": "ABHA number", "label": "Stored on every patient record" }
 	],
 	"rows": [
 		{
@@ -24,11 +24,9 @@
 		},
 		{
 			"eyebrow": "Search that works",
-			"title": "Find a patient by anything. Phone, partial name, last visit, doctor.",
-			"lead": "If your front desk can describe the patient, they can find the patient. Phone digits, half a name, the doctor they saw last time, the condition they came in for — the search index covers all of it.",
+			"title": "Find a patient by name, UHID, ABHA number or mobile.",
+			"lead": "If your front desk has any one of the four — a name, the UHID on the card, the ABHA number or the mobile — they can find the patient. One search box, no menus.",
 			"bullets": [
-				"Phonetic + Devanagari + Latin index — “Banerjee” or “बनर्जी” find the same patient.",
-				"Search across notes — “diabetic patient seen by Dr. Sen last March” returns 3 results.",
 				"Recent-patients list reorders by who you saw most recently — 90% of returning lookups are top-of-list."
 			],
 			"visual": "search"
@@ -47,8 +45,8 @@
 	],
 	"faqs": [
 		{
-			"q": "Is the data ABHA-linked?",
-			"a": "Yes — every patient can have an ABHA created or linked in under 90 seconds at first visit. Records stay yours; the patient controls cross-provider sharing via the consent manager."
+			"q": "Does Lucoze record the ABHA number?",
+			"a": "Yes — the patient’s ABHA number is stored on their record at registration, and you can search by it later. Records stay yours."
 		},
 		{
 			"q": "What about old paper records?",
@@ -56,7 +54,7 @@
 		},
 		{
 			"q": "Can the patient see their own records?",
-			"a": "Yes — a patient app + ABHA-linked access lets them download prescriptions, lab reports, and visit summaries on demand. You control which fields are visible."
+			"a": "Yes — prescriptions, lab reports and visit summaries can be handed over on request, and you control which fields are visible."
 		}
 	]
 }

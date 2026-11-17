@@ -6,15 +6,15 @@
 	"h1Parts": ["From sample to ", "signed report", " — every step tracked."],
 	"lead": "Lab errors are usually process errors, not technique errors. The sample got mislabelled. The doctor wasn’t notified. The report didn’t reach the patient. Lucoze’s lab module fixes the process — with barcodes, role-based hand-offs, and a status feed everyone sees.",
 	"stats": [
-		{ "value": "Same-day", "label": "Routine sample-to-report turnaround" },
-		{ "value": "Barcode", "label": "On every sample, every time" },
-		{ "value": "Zero-loss", "label": "Barcoded chain of custody, sample to report" }
+		{ "value": "Barcode", "label": "On every sample" },
+		{ "value": "Tracked", "label": "Sample status visible at every station" },
+		{ "value": "Set up", "label": "For your lab during onboarding" }
 	],
 	"rows": [
 		{
 			"eyebrow": "Sample flow",
 			"title": "Barcode at collection. Visible at every station.",
-			"lead": "Collection → receiving → processing → verification → report. Each station scans, updates, hands off. The doctor knows where the sample is without a phone call. The patient gets the WhatsApp update when it’s actually ready.",
+			"lead": "Collection → receiving → processing → verification → report. Each station scans, updates, hands off, so the doctor can see where the sample is without a phone call. Reports and patient updates are set up for your lab during onboarding.",
 			"bullets": [
 				"Pre-printed barcodes or print-on-demand at collection.",
 				"Sample rejection workflow with reason codes — quality trends are visible.",
@@ -25,23 +25,23 @@
 		{
 			"eyebrow": "Reports + QC",
 			"title": "Reports the patient actually understands.",
-			"lead": "Doctor-friendly format on one side, patient-friendly format on the other. Critical values flag automatically. The signing pathologist’s details are NABL-compliant. Patient can download the PDF without calling the lab.",
+			"lead": "Doctor-friendly format on one side, patient-friendly format on the other. Reference ranges are flagged on the report, and the signing pathologist’s details sit on it. The lab can hand the PDF to the patient.",
 			"bullets": [
-				"Reference-range flagging by sex / age — H, L, panic-high in colour.",
-				"NABL audit trail — who signed, when, on which method.",
-				"Patient downloads via WhatsApp or the patient app — no portal login."
+				"Reference-range flagging by sex / age.",
+				"Audit trail — who signed, and when.",
+				"Report PDF the lab can print or share with the patient."
 			],
 			"visual": "lab-report"
 		}
 	],
 	"faqs": [
 		{
-			"q": "NABL audit trail — is the format ready for inspection?",
-			"a": "Yes. We worked with three NABL-accredited labs in Bhubaneswar and Lucknow to verify the audit log format. Lab plans include the inspection-ready report bundle on request."
+			"q": "Does the lab module support NABL documentation?",
+			"a": "Lucoze keeps an audit trail of who signed a report and when, which supports NABL documentation. Accreditation itself remains the lab’s responsibility, and the report layout is set up for your lab during onboarding."
 		},
 		{
 			"q": "Can we use it without a pathologist on site?",
-			"a": "Yes — outsource module routes samples to a contracted lab and re-imports the report under your branding. The patient sees one report; the regulator sees the audit chain."
+			"a": "Yes — the outsource module routes samples to a contracted lab and records the report against the patient, so the front desk sees one report and one status."
 		}
 	]
 }

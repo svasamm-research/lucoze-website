@@ -122,8 +122,8 @@ heroAlt: "The clinic data-migration checklist in four steps — export from the 
 	Never let the first time you import your data be the live cutover. Run a full dry migration into a
 	test environment first, with a real copy of the export, and see what actually lands — the broken
 	date column, the unmapped status code, the 400 missing rows all surface while they still cost you
-	nothing. Our importers are built to work this way, and any vendor worth switching to should offer
-	the same. If they won't do a test run, ask why.
+	nothing. We migrate this way, and any vendor worth switching to should offer the same. If they
+	won't do a test run, ask why.
 </p>
 
 <h2 id="verify">Step 5 — Verify with counts, spot-checks, and totals</h2>
@@ -170,9 +170,9 @@ heroAlt: "The clinic data-migration checklist in four steps — export from the 
 <h2 id="closing">Where Lucoze fits</h2>
 <p>
 	Everything above is vendor-neutral on purpose — run it with whoever you choose and you'll be fine.
-	For our part, our importers are built to read standard CSV and Excel exports, keep the old patient
-	ID as a linkable field, and we run a dry migration with a count-and-reconcile sheet before
-	anything goes live. If you're moving off a specific platform, our note on{" "}
+	For our part, we read your standard CSV and Excel exports, keep the old patient ID as a linkable
+	field, and run a dry migration with a count-and-reconcile sheet before anything goes live. If
+	you're moving off a specific platform, our note on{" "}
 	<a href="/in/blog/switch-from-practo-ray/">switching from Practo Ray</a> walks through that path
 	in detail.
 </p>

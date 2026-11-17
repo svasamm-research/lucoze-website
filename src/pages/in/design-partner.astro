@@ -5,7 +5,6 @@ import { waLink } from "../../data/contact";
 import "../../styles/contact-partner.css";
 
 const SLOTS_TOTAL = 10;
-const SLOTS_OPEN = 4;
 
 const PARTNER_PERKS: { icon: string; t: string; s: string }[] = [
 	{
@@ -47,7 +46,7 @@ const PARTNER_FIT: [string, boolean][] = [
 
 const TRUST: [string, string, string][] = [
 	["clock", "Team replies in a day", "Founder line — not a call centre"],
-	["shield", "Patient data hosted in Mumbai", "ABDM-ready · DPDP-aligned"],
+	["shield", "Patient data hosted in India", "ABDM-ready · DPDP-aligned"],
 	["lock", "No spam, no sales sequence", "One human, one honest reply"],
 ];
 import CountryCode from "../../components/CountryCode.astro";
@@ -55,7 +54,7 @@ import CountryCode from "../../components/CountryCode.astro";
 
 <Base
 	title="Design partner program — 6 months free | Lucoze"
-	description="Be one of ten East-India clinics that shape Lucoze. 6 months free, lifetime founding pricing, weekly founder calls. 4 slots open."
+	description="Be one of ten East-India clinics that shape Lucoze. 6 months free, lifetime founding pricing, weekly founder calls."
 >
 	{/* Hero */}
 	<section class="dp-hero">
@@ -66,13 +65,11 @@ import CountryCode from "../../components/CountryCode.astro";
 						<span class="dp-scarce__dots">
 							{
 								Array.from({ length: SLOTS_TOTAL }).map((_, i) => (
-									<span
-										class={`dp-scarce__dot${i < SLOTS_TOTAL - SLOTS_OPEN ? " dp-scarce__dot--filled" : ""}`}
-									/>
+									<span class={`dp-scarce__dot${""}`} />
 								))
 							}
 						</span>
-						<strong>{SLOTS_OPEN} of {SLOTS_TOTAL} slots open</strong>
+						<strong>{SLOTS_TOTAL} founding places</strong>
 					</div>
 					<h1 class="dp-hero__h1">
 						Be one of the ten clinics that<br />shape Lucoze — and never pay full price.
@@ -88,7 +85,7 @@ import CountryCode from "../../components/CountryCode.astro";
 					<form class="contact-form" data-contact-form novalidate>
 						<div class="dp-form__head">
 							<h3>Apply to be a design partner</h3>
-							<span class="dp-form__open">{SLOTS_OPEN} slots open</span>
+							<span class="dp-form__open">{SLOTS_TOTAL} places</span>
 						</div>
 
 						<div class="reach-fields reach-fields--mini">
@@ -116,9 +113,7 @@ import CountryCode from "../../components/CountryCode.astro";
 										placeholder="Desk line or mobile"
 									/>
 								</div>
-								<span class="reach-err" data-phone-err hidden>
-									Enter a valid phone number.
-								</span>
+								<span class="reach-err" data-phone-err hidden> Enter a valid phone number. </span>
 							</div>
 
 							<div class="reach-or reach-field--full"><span>or</span></div>
@@ -166,9 +161,7 @@ import CountryCode from "../../components/CountryCode.astro";
 					<div class="reach-success reach-success--inline">
 						<span class="reach-success__badge"><Icon name="check" size={24} /></span>
 						<h3>Application received.</h3>
-						<p>
-							We got your application. Expect a reply within a day to set up your founder call.
-						</p>
+						<p>We got your application. Expect a reply within a day to set up your founder call.</p>
 						<div class="reach-success__row">
 							<a
 								class="btn btn--ghost"

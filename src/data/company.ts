@@ -22,7 +22,7 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 		eyebrow: "Design partner program",
 		h1: "Six months free. A direct line to the founder.",
 		highlightParts: ["Six months free. ", "A direct line", " to the founder."],
-		lead: "We're picking 10 East-India clinics to shape what Lucoze becomes. 4 of 10 slots open. Six months free on Clinic Pro or Hospital, weekly 30-minute calls with the founder, lifetime founding-customer pricing.",
+		lead: "We're picking 10 East-India clinics to shape what Lucoze becomes. Six months free on Clinic Pro or Hospital, weekly 30-minute calls with the founder, lifetime founding-customer pricing.",
 		blocks: [
 			{
 				kicker: "What you get",
@@ -118,11 +118,11 @@ export const COMPANY: Record<"design-partner" | "careers" | "contact", CompanyPa
 			},
 			{
 				kicker: "Support",
-				title: "Existing customers.",
+				title: "Talk to us.",
 				bullets: [
-					"In-app chat — fastest path. Average response under 30 minutes during business hours.",
-					"WhatsApp + phone support on Clinic Pro and Hospital plans.",
-					"Status page: status.lucoze.com",
+					"WhatsApp: +91 82178 20249 (Mon-Sat, 9am-7pm IST)",
+					"Phone and WhatsApp support on Clinic Pro and Hospital plans.",
+					"Email support on every plan.",
 				],
 			},
 			{

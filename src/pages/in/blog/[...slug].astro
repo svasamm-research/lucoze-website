@@ -156,15 +156,21 @@ const faqLd =
 						<div
 							style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px;"
 						>
-							{isAbdm ? "ABDM setup help" : "Try Lucoze"}
+							{isAbdm ? "Clinic & hospital software" : "Try Lucoze"}
 						</div>
 						{
+							/* ABDM and HFR readers (Mithun, 17 Nov 2026): the goal is clinic and hospital
+							   clients, not more HFR help requests, so their CTA names the software. */
 							isAbdm ? (
 								<>
-									Getting onto HFR, HPR & ABHA? We'll help you get set up.
+									Run a clinic or hospital? Lucoze runs appointments, OPD and billing in one place.
 									<br />
-									<a href="/in/abdm-readiness/" style="color: var(--primary); font-weight: 600;">
-										Get help →
+									<a
+										href="/in/demo/"
+										data-blog-cta="sidebar"
+										style="color: var(--primary); font-weight: 600;"
+									>
+										Book a demo →
 									</a>
 								</>
 							) : (
@@ -218,19 +224,34 @@ const faqLd =
 				<div class="container">
 					<div class="cta-final" style="padding: var(--s-10) var(--s-8);">
 						<span class="t-eyebrow" style="color: var(--accent);">
-							Free ABDM setup help
+							Clinic and hospital management software
 						</span>
 						<h2 style="font-size: clamp(22px, 3vw, 32px); margin: var(--s-2) auto var(--s-3);">
-							Setting up HFR, HPR or ABHA?
+							Your facility is on HFR. Is your front desk still on paper?
 						</h2>
 						<p>
-							We'll walk you through what's left and help you get set up — then Lucoze keeps you
-							issuing ABHA-linked records. No cost to talk.
+							Lucoze runs a clinic's or hospital's appointments, OPD queue, consultations and
+							billing in one place, set up around how your front desk already works. A walkthrough
+							costs nothing.
 						</p>
 						<div class="cta-final__actions">
-							<a href="/in/abdm-readiness/" class="btn btn--accent btn--lg">
-								Get ABDM setup help
+							<a href="/in/demo/" class="btn btn--accent btn--lg" data-blog-cta="band">
+								Book a demo
 								<Icon name="arrow" size={16} class="btn__arrow" />
+							</a>
+							<a
+								href="/in/solutions/clinics/"
+								class="btn btn--ghost btn--lg"
+								data-blog-cta="clinics"
+							>
+								For clinics
+							</a>
+							<a
+								href="/in/solutions/hospitals/"
+								class="btn btn--ghost btn--lg"
+								data-blog-cta="hospitals"
+							>
+								For hospitals
 							</a>
 						</div>
 					</div>
