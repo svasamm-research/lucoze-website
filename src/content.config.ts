@@ -34,6 +34,14 @@ const blog = defineCollection({
 	}),
 });
 
+// A long-form section on a product page: paragraphs, then an optional list, then optional links.
+export const guideSection = z.object({
+	h: z.string(),
+	p: z.array(z.string()).default([]),
+	list: z.array(z.string()).optional(),
+	links: z.array(z.object({ href: z.string(), label: z.string() })).optional(),
+});
+
 const features = defineCollection({
 	loader: glob({ pattern: "**/*.json", base: "./src/content/features" }),
 	schema: z.object({
@@ -54,6 +62,11 @@ const features = defineCollection({
 			}),
 		),
 		faqs: z.array(z.object({ q: z.string(), a: z.string() })),
+		// 17 Nov 2026 (docs/lucoze-buyer-ranking-plan.md): each feature page owns ONE buyer search.
+		// seoTitle names it; guide is the long-form part a buyer reads before a demo.
+		seoTitle: z.string().optional(),
+		metaDescription: z.string().optional(),
+		guide: z.array(guideSection).optional(),
 	}),
 });
 

@@ -1,0 +1,63 @@
+---
+// The long-form part of a product page (17 Nov 2026): the same prose style as a blog post, so a
+// buyer reads it like the guides. Text is plain; links come from `links`, never inline.
+interface Section {
+	h: string;
+	p?: string[];
+	list?: string[];
+	links?: { href: string; label: string }[];
+}
+interface Props {
+	eyebrow?: string;
+	sections: Section[];
+}
+const { eyebrow = "The buyer's guide", sections } = Astro.props;
+---
+
+<section class="section section--tight">
+	<div class="container">
+		<article class="post guide-prose">
+			<span class="t-eyebrow">{eyebrow}</span>
+			{
+				sections.map((s) => (
+					<>
+						<h2>{s.h}</h2>
+						{(s.p ?? []).map((t) => (
+							<p>{t}</p>
+						))}
+						{s.list && (
+							<ul>
+								{s.list.map((t) => (
+									<li>{t}</li>
+								))}
+							</ul>
+						)}
+						{s.links && (
+							<p class="guide-prose__links">
+								{s.links.map((l, i) => (
+									<>
+										{i > 0 && " · "}
+										<a href={l.href}>{l.label}</a>
+									</>
+								))}
+							</p>
+						)}
+					</>
+				))
+			}
+		</article>
+	</div>
+</section>
+
+<style>
+	.guide-prose {
+		margin: 0 auto;
+	}
+	.guide-prose h2:first-of-type {
+		margin-top: var(--s-4);
+	}
+	.guide-prose__links a {
+		color: var(--primary);
+		font-weight: 600;
+	}
+</style>
