@@ -103,12 +103,13 @@ import CountryCode from "../../components/CountryCode.astro";
 							</div>
 
 							<div class="reach-field reach-field--full">
-								<label for="d-phone">Desk phone number</label>
+								<label for="d-phone">Phone number <em>*</em></label>
 								<div class="reach-phone" data-phone-wrap>
 									<CountryCode for="d-phone" />
 									<input
 										id="d-phone"
 										name="phone"
+										required
 										inputmode="tel"
 										placeholder="Desk line or mobile"
 									/>
@@ -116,10 +117,8 @@ import CountryCode from "../../components/CountryCode.astro";
 								<span class="reach-err" data-phone-err hidden> Enter a valid phone number. </span>
 							</div>
 
-							<div class="reach-or reach-field--full"><span>or</span></div>
-
 							<div class="reach-field reach-field--full">
-								<label for="d-email">Official email</label>
+								<label for="d-email">Email (optional)</label>
 								<input
 									id="d-email"
 									name="email"
