@@ -17,8 +17,8 @@ const BENEFITS: { title: string; sub: string }[] = [
 		sub: "From Practo Ray, Halemind, or even Excel.",
 	},
 	{
-		title: "Hindi UI ships Q3 2026",
-		sub: "Bengali and Odia next. Already accommodating early Devanagari testing.",
+		title: "Your desk trained on your own patients",
+		sub: "Screens in plain English; onboarding walks your front desk through a real day.",
 	},
 	{
 		title: "Founder line, not call centre",
@@ -123,8 +123,15 @@ const BENEFITS: { title: string; sub: string }[] = [
 								<label for="su-phone">Phone <span class="req">*</span></label>
 								<div style="display: flex">
 									<CountryCode for="su-phone" />
-									<input id="su-phone" name="phone" type="tel" inputmode="tel" required placeholder="Mobile number"
-										style="flex: 1; min-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0" />
+									<input
+										id="su-phone"
+										name="phone"
+										type="tel"
+										inputmode="tel"
+										required
+										placeholder="Mobile number"
+										style="flex: 1; min-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0"
+									/>
 								</div>
 							</div>
 						</div>
@@ -513,7 +520,9 @@ const BENEFITS: { title: string; sub: string }[] = [
 			// The number must fit the country chosen in the picker (10 Nov 2026).
 			const suPhone = form.querySelector<HTMLInputElement>("#su-phone")!;
 			const suCheck = phoneCheck(form.querySelector<HTMLSelectElement>("[data-cc]"), suPhone.value);
-			suPhone.setCustomValidity(suPhone.value && !suCheck.ok ? `Enter a valid phone number for ${suCheck.name}.` : "");
+			suPhone.setCustomValidity(
+				suPhone.value && !suCheck.ok ? `Enter a valid phone number for ${suCheck.name}.` : "",
+			);
 			if (!form.reportValidity()) {
 				track("Signup Error", { reason: "validation" });
 				return;

@@ -39,12 +39,13 @@ import CountryCode from "./CountryCode.astro";
 			</div>
 
 			<div class="reach-field reach-field--full">
-				<label for="c-phone">Desk phone number</label>
+				<label for="c-phone">Phone number <em>*</em></label>
 				<div class="reach-phone" data-phone-wrap>
 					<CountryCode for="c-phone" />
 					<input
 						id="c-phone"
 						name="phone"
+						required
 						inputmode="tel"
 						placeholder="Desk line or mobile"
 					/>
@@ -52,10 +53,8 @@ import CountryCode from "./CountryCode.astro";
 				<span class="reach-err" data-phone-err hidden> Enter a valid phone number. </span>
 			</div>
 
-			<div class="reach-or reach-field--full"><span>or</span></div>
-
 			<div class="reach-field reach-field--full">
-				<label for="c-email">Official email</label>
+				<label for="c-email">Email (optional)</label>
 				<input id="c-email" name="email" inputmode="email" placeholder="clinic@hospital.in" />
 				<span class="reach-err" data-email-err hidden> Enter a valid email address. </span>
 			</div>
