@@ -49,7 +49,10 @@ const faqLd =
 		: null;
 ---
 
-<Base title={`${sp.label} management software | Lucoze HMS`} description={sp.lead.slice(0, 160)}>
+<Base
+	title={sp.seoTitle ?? `${sp.label} management software | Lucoze HMS`}
+	description={sp.metaDescription ?? sp.lead.slice(0, 160)}
+>
 	<script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceLd)} />
 	{faqLd && <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />}
 	<SubHero
