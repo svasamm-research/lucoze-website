@@ -6,9 +6,18 @@
 	"h1Parts": ["One timeline. ", "One family", ". Searchable across every visit."],
 	"lead": "Most EMRs make you click through visits one at a time. We don’t. A patient’s entire history — prescriptions, labs, vitals, allergies, family links — is on a single page the doctor scrolls. Find any patient in seconds.",
 	"stats": [
-		{ "value": "Instant", "label": "Search by name, UHID, ABHA number or mobile" },
-		{ "value": "1 tap", "label": "Family link a spouse or child" },
-		{ "value": "ABHA number", "label": "Stored on every patient record" }
+		{
+			"value": "Instant",
+			"label": "Search by name, UHID, ABHA number or mobile"
+		},
+		{
+			"value": "1 tap",
+			"label": "Family link a spouse or child"
+		},
+		{
+			"value": "ABHA number",
+			"label": "Stored on every patient record"
+		}
 	],
 	"rows": [
 		{
@@ -55,6 +64,87 @@
 		{
 			"q": "Can the patient see their own records?",
 			"a": "Yes — prescriptions, lab reports and visit summaries can be handed over on request, and you control which fields are visible."
+		},
+		{
+			"q": "Is the patient record shared across our branches?",
+			"a": "Yes. Each person has one record and one UHID across all your branches, so a patient seen at two branches has one history."
+		},
+		{
+			"q": "Does it use ICD-10 codes?",
+			"a": "Yes. Diagnoses are coded in ICD-10, with the main diagnosis first, and complaints are picked from a coded list with their duration."
+		},
+		{
+			"q": "Can a doctor change a note after signing it?",
+			"a": "Not in place. A signed note stays as it was signed; a correction is kept beside it as an amendment, with who made it and when."
+		}
+	],
+	"seoTitle": "EMR Software for Indian Clinics and Hospitals",
+	"metaDescription": "EMR software for Indian clinics and hospitals: one record and UHID across branches, ICD-10 diagnoses, an allergy check on prescriptions, and signed notes.",
+	"guide": [
+		{
+			"h": "What an EMR has to do for an Indian clinic",
+			"p": [
+				"An electronic medical record is the patient's history in one place: who they are, what they came with each time, what the doctor found, what was prescribed and ordered. In many Indian clinics that history is a paper file, a prescription pad and a doctor's memory, and a patient who visits two branches has two files.",
+				"Good EMR software is fast at the front desk, gives each person one record, lets the doctor write the note without typing a paragraph, codes what matters so it can be found later, and never lets a signed note be quietly rewritten."
+			]
+		},
+		{
+			"h": "One patient, one record, one UHID",
+			"p": [
+				"A name and a mobile number are enough to register a patient; the rest can be filled in later. Each patient gets a UHID made of your hospital's prefix, the year and a serial (AH26-005101), with no gaps in the numbers. A patient who visits your Salt Lake branch and your Howrah branch is one person with one UHID and one history.",
+				"When the desk registers somebody who may already be on the register, Lucoze shows the likely match before creating a second record. A shared mobile number is allowed, because families share one, but the desk is asked to confirm it. Sex, date of birth and the UHID cannot be changed by an ordinary correction, so the record cannot drift into belonging to somebody else."
+			]
+		},
+		{
+			"h": "Family members linked both ways",
+			"p": [
+				"A mother, a child, a husband: a relative can be another registered patient or somebody who is not. The link reads both ways, so opening either record shows the other. There is no family tree to maintain, only the links the desk makes."
+			]
+		},
+		{
+			"h": "The consultation note",
+			"p": [
+				"The doctor opens the visit and sees the patient's latest vitals, allergies and past visits. Complaints are picked from a coded list, each with how long it has lasted. Diagnoses are coded in ICD-10, with the main one first, so a report of every diabetic patient seen last quarter is a search, not a hunt through files.",
+				"Medicines are prescribed line by line, and each line is checked against the patient's recorded allergies before the note is signed. Tests, imaging and procedures ordered in the note are released when the doctor signs, so the lab and the billing desk see an order the doctor has stood behind."
+			]
+		},
+		{
+			"h": "A signed note is never rewritten",
+			"p": [
+				"Once the doctor signs, the note stays as it was signed. A correction is an amendment kept beside it, with who made it and when. That is what a medical record has to be if it is ever read by an insurer, a court or a medical council, and it is what lets a doctor trust the history a colleague wrote."
+			],
+			"links": [
+				{
+					"href": "/in/features/appointments/",
+					"label": "Appointments and the OPD queue"
+				},
+				{
+					"href": "/in/blog/dpdp-patient-consent-clinics/",
+					"label": "DPDP and patient consent"
+				}
+			]
+		},
+		{
+			"h": "ABHA and ABDM",
+			"p": [
+				"Each patient's ABHA number can be recorded on the registration, and one ABHA belongs to one patient only, so a mistyped number cannot attach a stranger's identity. Lucoze is ABDM-ready; linking records to ABHA is set up for your hospital during onboarding."
+			]
+		},
+		{
+			"h": "Moving your old records in",
+			"p": [
+				"Your current patient list, with numbers, contacts and history, is moved in during onboarding. We agree with you what moves (the register, recent visits, documents) and check the counts with you before the old system is switched off."
+			]
+		},
+		{
+			"h": "What to ask in an EMR software demo",
+			"list": [
+				"Register a patient who is already on the system with a slightly different spelling. Does it warn you?",
+				"Open the same patient at another branch. Is it the same record?",
+				"Prescribe a medicine the patient is allergic to. What happens?",
+				"Sign a note, then correct it. Can you still see what was signed?",
+				"Find every patient with one ICD-10 diagnosis last month."
+			]
 		}
 	]
 }

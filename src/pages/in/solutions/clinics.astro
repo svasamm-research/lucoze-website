@@ -6,6 +6,19 @@ import VisualPlaceholder from "../../../components/VisualPlaceholder.astro";
 import Icon from "../../../components/Icon.astro";
 import Screenshot from "../../../components/Screenshot.astro";
 import { SPECIALTIES } from "../../../data/specialties-list.ts";
+import GuideProse from "../../../components/GuideProse.astro";
+import Faq from "../../../components/Faq.astro";
+import { CLINIC_GUIDE, CLINIC_FAQS } from "../../../data/solutions-guides.ts";
+
+const faqLd = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: CLINIC_FAQS.map((f) => ({
+		"@type": "Question",
+		name: f.q,
+		acceptedAnswer: { "@type": "Answer", text: f.a },
+	})),
+};
 
 const MODULES: { icon: string; title: string; blurb: string; href: string }[] = [
 	{
@@ -23,13 +36,13 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 	{
 		icon: "receipt",
 		title: "Billing + GST",
-		blurb: "Multi-doctor invoicing, GSTR-1 / 3B exports",
+		blurb: "OPD bills, discounts and refunds with a trail, posted to your accounts",
 		href: "/in/features/billing/",
 	},
 	{
 		icon: "flask",
 		title: "Lab module",
-		blurb: "In-house + outsourced, audit trail supporting NABL documentation",
+		blurb: "Tests ordered in the consultation and billed on the visit",
 		href: "/in/features/lab/",
 	},
 	{
@@ -48,9 +61,10 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 ---
 
 <Base
-	title="Clinic Management Software for Indian multi-doctor practices"
-	description="Lucoze HMS for 1-15 doctor clinics. Appointments, patient records, GST billing, lab, pharmacy. English screens in plain words. Live in 14 days."
+	title="Clinic Management Software in India for Multi-Doctor Clinics"
+	description="Clinic management software for Indian clinics with 1 to 15 doctors: appointments and the OPD queue, patient records with ICD-10, GST billing, lab and pharmacy. From ₹1,499 a month."
 >
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />
 	<SubHero
 		crumbs={[
 			{ href: "/in/", label: "Home" },
@@ -58,8 +72,8 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 			{ label: "Clinics" },
 		]}
 		eyebrow="For clinics · 1-15 doctors"
-		h1="Built for the way Indian clinics actually run."
-		highlightParts={["Built for the way ", "Indian clinics actually run", "."]}
+		h1="Clinic management software built for the way Indian clinics run."
+		highlightParts={["Clinic management software built for ", "the way Indian clinics run", "."]}
 		lead="From a solo clinic in Patna to a 12-doctor multi-specialty in Kolkata — Lucoze gives you appointments, records, billing, lab, and pharmacy on one platform. Plain-English screens. India-hosted. Live in 14 days."
 		primaryCta={{ href: "/in/demo/", label: "Book a demo" }}
 		secondaryCta={{ href: "/in/contact/", label: "Book a walkthrough" }}
@@ -113,7 +127,7 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 			<FRow
 				eyebrow="The clinic owner's promise"
 				title="No lock-in. Your data exports on demand."
-				lead="Your patient records, appointment history, billing, prescriptions — all of it exports to CSV and PDF within 24 hours of a request. We'd rather lose you than trap you."
+				lead="Your patient records, appointment history, billing and prescriptions are yours. Ask, and we export them as CSV and PDF. We'd rather lose you than trap you."
 				bullets={[
 					"Patient records, prescriptions, lab reports — PDF, with timestamps and signatures preserved.",
 					"Appointment history + billing — CSV, ready for Tally or any accounting tool.",
@@ -158,13 +172,13 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 
 			<FRow
 				eyebrow="What you save"
-				title="A clinic with 6 doctors saves ₹4-6 lakhs a month."
-				lead="The savings aren't from cheaper software — they're from less staff time on reconciliation, fewer billing leaks, and no-show prevention. The full breakdown is on our calculator."
+				title="The savings are staff time and billing that stops leaking."
+				lead="Clinic software rarely pays for itself by being cheap. It pays when the front desk stops reconciling three registers, every test and dressing reaches the bill, and every discount has a name on it. Put your own figures into the calculator on the home page."
 				bullets={[
-					"100+ admin hours per month, recovered.",
-					"5-7% no-show prevention from reminders.",
-					"Billing leakage from missed items + lost discounts: typically ₹1L+/mo at 6 doctors.",
-					"Pharmacy stock-outs and expiry waste: cut by 60-80% with batch tracking.",
+					"Front-desk hours that go to retyping and reconciling, back.",
+					"Every service on the visit's bill, not on a slip that gets lost.",
+					"Every discount and refund with who allowed it and why.",
+					"Reminders, set up during onboarding, for fewer empty slots.",
 				]}
 			>
 				<VisualPlaceholder slot="visual">
@@ -203,6 +217,20 @@ const MODULES: { icon: string; title: string; blurb: string; href: string }[] = 
 					))
 				}
 			</div>
+		</div>
+	</section>
+
+	<GuideProse eyebrow="Choosing clinic management software" sections={CLINIC_GUIDE} />
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Common questions</span>
+				<h2 class="t-h2" style="margin-top: 8px;">
+					Clinic management software, the questions owners ask first.
+				</h2>
+			</header>
+			<Faq items={CLINIC_FAQS} />
 		</div>
 	</section>
 
