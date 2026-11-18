@@ -9,6 +9,19 @@ import ProductGalleries from "../../../components/ProductGalleries.astro";
 import { Image } from "astro:assets";
 import { screenshotByName } from "../../../lib/screenshots";
 import { GALLERIES } from "../../../data/flow-galleries";
+import GuideProse from "../../../components/GuideProse.astro";
+import Faq from "../../../components/Faq.astro";
+import { HOSPITAL_GUIDE, HOSPITAL_FAQS } from "../../../data/solutions-guides.ts";
+
+const faqLd = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: HOSPITAL_FAQS.map((f) => ({
+		"@type": "Question",
+		name: f.q,
+		acceptedAnswer: { "@type": "Answer", text: f.a },
+	})),
+};
 
 // "What you get" merged with "a look inside": a module carrying a `gallery` id
 // becomes a clickable card that opens that flow's screens. NABH + ABDM have no
@@ -29,13 +42,13 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string; gallery?: stri
 	{
 		icon: "receipt",
 		title: "Hospital billing",
-		blurb: "Department-level, consolidated, e-invoiced",
+		blurb: "Department-level, consolidated, posted to your accounts",
 		gallery: "billing",
 	},
 	{
 		icon: "flask",
 		title: "Lab + radiology",
-		blurb: "Sample to report, NABL documentation support, outsource handling",
+		blurb: "Sample to signed report, outsourced tests",
 		gallery: "lab",
 	},
 	{
@@ -59,13 +72,13 @@ const HOSP_MODULES: { icon: string; title: string; blurb: string; gallery?: stri
 	{
 		icon: "users",
 		title: "HR + payroll",
-		blurb: "30+ staff, doctor incentives, statutory deductions",
+		blurb: "Attendance, payroll, PF, ESI, PT and TDS",
 		gallery: "hr",
 	},
 	{
 		icon: "chart",
 		title: "NABH dashboards",
-		blurb: "ALOS, infection rates, medication errors, audit-ready",
+		blurb: "ALOS, infection rates, medication errors, set up during onboarding",
 	},
 	{
 		icon: "shield",
@@ -104,9 +117,10 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 ---
 
 <Base
-	title="Hospital Management Software for 20-100 Bed Hospitals"
-	description="Hospital management software for 20-100 bed hospitals in India: ABHA numbers on record, GST-correct pharmacy billing and parallel-run switch, no migration fee."
+	title="Hospital Management Software in India (20 to 100 Beds)"
+	description="Hospital management software for 20 to 100 bed hospitals in India: OPD, wards, theatre, lab, pharmacy and GST-correct billing, with no migration fee."
 >
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />
 	<SubHero
 		crumbs={[
 			{ href: "/in/", label: "Home" },
@@ -114,14 +128,14 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 			{ label: "Hospitals" },
 		]}
 		eyebrow="For 20-100 bed hospitals"
-		h1="The hospital stack that doesn't take 6 months to deploy."
-		highlightParts={["The hospital stack that doesn't ", "take 6 months", " to deploy."]}
+		h1="Hospital management software that doesn't take 6 months to deploy."
+		highlightParts={["Hospital management software that doesn't ", "take 6 months", " to deploy."]}
 		lead="IPD, OPD, OT, lab, pharmacy, HR, NABH-ready dashboards. A small-hospital implementation that runs in 60 days, not 12 months. Built around the way East-India hospitals procure, deploy, and report."
 		primaryCta={{ href: "/in/contact/", label: "Book a hospital demo" }}
 		secondaryCta={{ href: "/in/blog/abdm-abha-guide/", label: "ABDM readiness guide" }}
 		statsRow={[
 			{ value: "60 days", label: "Implementation timeline" },
-			{ value: "NABH", label: "Audit-ready dashboards" },
+			{ value: "NABH", label: "Indicators set up at onboarding" },
 			{ value: "Per-bed", label: "Custom pricing" },
 			{ value: "India", label: "Data residency" },
 		]}
@@ -297,6 +311,20 @@ const SWITCH_STEPS: { title: string; body: string }[] = [
 					Design-partner application
 				</a>
 			</div>
+		</div>
+	</section>
+
+	<GuideProse eyebrow="Choosing hospital management software" sections={HOSPITAL_GUIDE} />
+
+	<section class="section section--tight">
+		<div class="container">
+			<header class="section-header">
+				<span class="t-eyebrow">Common questions</span>
+				<h2 class="t-h2" style="margin-top: 8px;">
+					Hospital management software, the questions owners ask first.
+				</h2>
+			</header>
+			<Faq items={HOSPITAL_FAQS} />
 		</div>
 	</section>
 

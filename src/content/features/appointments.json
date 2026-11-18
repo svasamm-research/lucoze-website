@@ -6,9 +6,18 @@
 	"h1Parts": ["Booking that starts with ", "the question", " — not the form."],
 	"lead": "Most hospital software opens a booking with “name and phone number.” That’s the wrong question. The patient already knows what they need: a department, a doctor, a slot that fits their day. We ask in that order.",
 	"stats": [
-		{ "value": "One list", "label": "Phone, WhatsApp and walk-in bookings" },
-		{ "value": "WhatsApp", "label": "Reminders set up during onboarding" },
-		{ "value": "Instant", "label": "Indexed front-desk patient search" }
+		{
+			"value": "One list",
+			"label": "Phone, WhatsApp and walk-in bookings"
+		},
+		{
+			"value": "WhatsApp",
+			"label": "Reminders set up during onboarding"
+		},
+		{
+			"value": "Instant",
+			"label": "Indexed front-desk patient search"
+		}
 	],
 	"rows": [
 		{
@@ -56,6 +65,81 @@
 		{
 			"q": "How is the slot inventory set?",
 			"a": "You set the slot inventory for each doctor and department, and your front desk books within it."
+		},
+		{
+			"q": "Can patients walk in without an appointment?",
+			"a": "Yes. A walk-in is added for a doctor who is sitting today, gets a token and joins the same queue as the booked patients."
+		},
+		{
+			"q": "We have one doctor at two branches. Will the software stop double booking?",
+			"a": "Yes. A doctor can hold one place at a time across all your branches, so the second booking at the same hour is refused, whichever branch's desk tries it."
+		},
+		{
+			"q": "What happens to bookings when a doctor goes on leave?",
+			"a": "Leave cancels the slots it covers, so no new booking can be made there, and the desk sees the reason on that day. The desk then calls the patients already booked and moves them, and each move is kept with its reason."
+		}
+	],
+	"seoTitle": "Clinic Appointment and OPD Queue Management Software",
+	"metaDescription": "Appointment and OPD queue software for Indian clinics: doctors' sessions and leave, bookings, walk-ins and tokens, and no double booking across branches.",
+	"guide": [
+		{
+			"h": "What appointment software has to get right in an Indian OPD",
+			"p": [
+				"In most Indian clinics the appointment book is a register at the front desk and a WhatsApp chat on the receptionist's phone. It works until the clinic has three doctors, two branches and a morning when half the patients walk in without booking. Then the same doctor is promised to two patients at ten o'clock, a patient waits an hour for a doctor who is on leave, and nobody can say how long the queue is.",
+				"Good appointment software is not a calendar with names in it. It knows when each doctor sits and where, it refuses a booking the doctor cannot keep, it puts walk-ins and booked patients in one queue, and it tells the doctor who is next."
+			]
+		},
+		{
+			"h": "Doctors' sessions, leave and branches",
+			"p": [
+				"Each doctor's week is set as sessions: Monday and Thursday mornings at one branch, Tuesday evenings at another, fifteen-minute slots or twenty. Slots are cut from the sessions when somebody looks, so a change to a session shows at once and no stale timetable is left behind. Leave and one-off blocks cancel the slots they cover, and the desk sees why a day is closed: on leave, at a conference, or the doctor's registration having run out.",
+				"One doctor can be in one place at a time. If a doctor sits at two of your branches, Lucoze will not let anybody give them two bookings at the same hour, whichever branch the desk is at."
+			]
+		},
+		{
+			"h": "Booking, moving and cancelling",
+			"p": [
+				"The desk picks the patient, the doctor and a free slot. A slot holds one booking. When a patient asks to come later, the booking is moved, and the time it used to hold is kept with the reason, so a patient who says they were booked for ten can be answered. Once the patient has checked in, the booking can no longer be moved or cancelled from the desk: they are here."
+			]
+		},
+		{
+			"h": "The queue on the day",
+			"p": [
+				"When a booked patient arrives, the desk checks them in and they get a token (T-07). A walk-in is added for a doctor who is sitting today, into the same queue. The day's list shows who is booked and still to come, who is waiting, who has been seen, and who did not come. A wait past half an hour is drawn as late, so the desk notices before the patient complains.",
+				"The consultation fee is taken at the desk. A visit shows as paid once its receipt clears the fee, so the nurse and the doctor can see that without opening the bill."
+			]
+		},
+		{
+			"h": "Vitals before the doctor",
+			"p": [
+				"The OPD nurse has a list of today's visits at the branch. Each time vitals are taken they are kept as a separate reading, and the doctor sees the latest one when the consultation opens. A reading the nurse did not take is left blank, not entered as zero."
+			],
+			"links": [
+				{
+					"href": "/in/features/patient-records/",
+					"label": "The consultation and patient record"
+				},
+				{
+					"href": "/in/features/billing/",
+					"label": "OPD billing"
+				}
+			]
+		},
+		{
+			"h": "Reminders and online booking",
+			"p": [
+				"SMS or WhatsApp reminders and a booking link for your website are set up for your clinic during onboarding, with your own wording and sender, so a reminder reads as coming from you."
+			]
+		},
+		{
+			"h": "What to ask in an appointment software demo",
+			"list": [
+				"Put one doctor at two branches on the same morning. Can you double-book them?",
+				"Mark the doctor on leave next Tuesday. What happens to the bookings already made?",
+				"Move a booking. Is the old time kept anywhere?",
+				"Add three walk-ins. Are they in the same queue as the booked patients, with tokens?",
+				"Show today's no-shows and the patients waiting more than half an hour."
+			]
 		}
 	]
 }

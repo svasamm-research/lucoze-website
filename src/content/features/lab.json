@@ -6,9 +6,18 @@
 	"h1Parts": ["From sample to ", "signed report", " — every step tracked."],
 	"lead": "Lab errors are usually process errors, not technique errors. The sample got mislabelled. The doctor wasn’t notified. The report didn’t reach the patient. Lucoze’s lab module fixes the process — with barcodes, role-based hand-offs, and a status feed everyone sees.",
 	"stats": [
-		{ "value": "Barcode", "label": "On every sample" },
-		{ "value": "Tracked", "label": "Sample status visible at every station" },
-		{ "value": "Set up", "label": "For your lab during onboarding" }
+		{
+			"value": "Barcode",
+			"label": "On every sample"
+		},
+		{
+			"value": "Tracked",
+			"label": "Sample status visible at every station"
+		},
+		{
+			"value": "Set up",
+			"label": "For your lab during onboarding"
+		}
 	],
 	"rows": [
 		{
@@ -42,6 +51,85 @@
 		{
 			"q": "Can we use it without a pathologist on site?",
 			"a": "Yes — the outsource module routes samples to a contracted lab and records the report against the patient, so the front desk sees one report and one status."
+		},
+		{
+			"q": "Can doctors order lab tests from the consultation?",
+			"a": "Yes. Tests and imaging studies are in the catalogue; the doctor orders them in the note, and they are released, and added to the visit's bill, when the doctor signs."
+		},
+		{
+			"q": "Does it work for a stand-alone diagnostic centre?",
+			"a": "Yes. A diagnostic centre registers the patient, bills the tests and runs the lab on the same record, without the OPD steps it does not need."
+		},
+		{
+			"q": "Can it connect to our analysers?",
+			"a": "Connecting your analysers is set up during onboarding for the machines you have, so results arrive in the record without retyping."
+		}
+	],
+	"seoTitle": "Lab Management Software for Hospitals and Diagnostic Centres",
+	"metaDescription": "Lab management software for hospitals and diagnostic centres: tests ordered in the consultation, billed on the visit, and tracked from sample to signed report.",
+	"guide": [
+		{
+			"h": "What lab management software has to do",
+			"p": [
+				"A hospital lab runs a chain: the doctor orders a test, the patient pays, a sample is drawn and labelled, the analyser or the technician produces a result, a pathologist checks it, and the report reaches the doctor and the patient. In many Indian hospitals each link of that chain is a different slip, and the lab learns about an order when the patient walks in holding it.",
+				"Lab management software (an LIS) holds the whole chain in one record, so nothing is lost between the order and the report, and nothing is reported that was not paid for or not checked."
+			]
+		},
+		{
+			"h": "From the doctor's order to the bill",
+			"p": [
+				"In Lucoze, tests and imaging studies are part of the hospital's catalogue, each with its own rate. The doctor orders them in the consultation, and the order is released when the doctor signs the note. The test joins the visit's bill at its catalogue rate, so the billing desk charges what was ordered and the lab sees an order that a doctor has stood behind."
+			]
+		},
+		{
+			"h": "Sample to signed report",
+			"p": [
+				"The lab's own steps are set up for your lab during onboarding: sample collection with a barcode label, the work list for each section, entering or receiving results, the pathologist's verification, and the printed or emailed report on your letterhead. A report is released only after it is verified, and a corrected report keeps the original beside it."
+			]
+		},
+		{
+			"h": "Reference ranges and panels",
+			"p": [
+				"Your tests are set up with your own reference ranges, by age and sex where they differ, and your own panels (a lipid profile, a liver function test, a fever panel), so a result outside the range is flagged as it is entered. Rates are the catalogue's, so a revised rate changes the next bill and never one already given."
+			]
+		},
+		{
+			"h": "Analysers and outsourced tests",
+			"p": [
+				"Connecting your analysers, so results arrive without typing, is set up during onboarding for the machines you have. Tests you send to a reference lab are ordered and billed the same way, with the outside report attached to the patient's record when it comes back."
+			],
+			"links": [
+				{
+					"href": "/in/specialties/diagnostics/",
+					"label": "Diagnostic centres"
+				},
+				{
+					"href": "/in/features/patient-records/",
+					"label": "The patient record"
+				}
+			]
+		},
+		{
+			"h": "A hospital lab or a diagnostic centre",
+			"p": [
+				"A lab inside a hospital mostly serves the hospital's own doctors: the orders come from consultations and wards, and the bill is the visit's. A stand-alone diagnostic centre serves walk-in patients and referring doctors: the patient registers at the counter, pays for the tests, and the report goes back to whoever referred them. Lucoze handles both on the same record. A diagnostic centre simply skips the OPD steps it does not need, and can note the referring doctor on the visit."
+			]
+		},
+		{
+			"h": "How the lab is set up",
+			"p": [
+				"During onboarding we take your test list and rates, your panels and reference ranges, your sections (biochemistry, haematology, microbiology, imaging), your report format and letterhead, and the tests you send out, from your present system or a spreadsheet. We set up the sample labels and work lists with your lab in-charge, and connect the analysers you have. The lab starts on the new system on a day you choose, with your current reports available for reference."
+			]
+		},
+		{
+			"h": "What to ask in a lab software demo",
+			"list": [
+				"Order a test in the consultation. Does the lab see it before the patient walks in?",
+				"Is the test on the bill without anybody typing it?",
+				"Enter a result outside the reference range for a child. Is it flagged against the child's range?",
+				"Correct a released report. Is the original kept?",
+				"Show today's pending samples by section."
+			]
 		}
 	]
 }
