@@ -164,6 +164,19 @@ jobs:
       - name: Check nginx on the release image
         run: IMAGE=lucoze-website:check bash scripts/check-nginx.sh
 
+      # The image that ships, scanned before it is pushed (18 Nov 2026): the PR's fs scan reads only
+      # the lockfile, while nginx:alpine brings its own OS packages. ignore-unfixed: a package with no
+      # released fix cannot be acted on; the Dockerfile's apk upgrade takes every fix there is.
+      - name: Trivy scan of the release image
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: "image"
+          image-ref: "lucoze-website:check"
+          scanners: "vuln,secret"
+          severity: "CRITICAL,HIGH"
+          ignore-unfixed: true
+          exit-code: "1"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:

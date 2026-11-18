@@ -49,8 +49,10 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:1.27-alpine AS runtime
-RUN rm /etc/nginx/conf.d/default.conf
+# nginx 1.30 stable (18 Nov 2026): 1.27 was on Alpine 3.21.3, and Trivy found 70 HIGH/CRITICAL in it.
+# apk upgrade takes Alpine's security fixes the base image has not caught up with yet.
+FROM nginx:1.30-alpine AS runtime
+RUN apk upgrade --no-cache && rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
