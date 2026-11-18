@@ -6,9 +6,18 @@
 	"h1Parts": ["Billing, accounting and inventory — ", "one ledger", ", across departments."],
 	"lead": "Most hospitals run billing in one tool, GST returns in another, and pharmacy inventory in a third spreadsheet. Lucoze’s ledger is shared across all of them. Bill a tube of ointment in OPD; pharmacy stock drops by one. Issue a GST-compliant invoice; the accounting line is posted automatically.",
 	"stats": [
-		{ "value": "Every bill", "label": "Posted to your accounts, never retyped" },
-		{ "value": "Every line", "label": "Carries its SAC code for the GST return" },
-		{ "value": "All branches", "label": "One set of books" }
+		{
+			"value": "Every bill",
+			"label": "Posted to your accounts, never retyped"
+		},
+		{
+			"value": "Every line",
+			"label": "Carries its SAC code for the GST return"
+		},
+		{
+			"value": "All branches",
+			"label": "One set of books"
+		}
 	],
 	"rows": [
 		{
@@ -57,6 +66,87 @@
 		{
 			"q": "Multi-branch P&L — what's the catch?",
 			"a": "No catch. If you’re on the Hospital plan, multi-branch is included. Clinic Pro covers up to 2 locations on one license."
+		},
+		{
+			"q": "Do clinics and hospitals charge GST on their bills?",
+			"a": "Health care services by a clinical establishment or a registered medical practitioner are exempt from GST. Cosmetic and plastic surgery, and services that are not health care at all, can be taxable. Lucoze marks each service as exempt or taxable and puts the SAC code on every line, so the bill shows GST only where it applies."
+		},
+		{
+			"q": "Can we keep using Tally for our accounts?",
+			"a": "You can, but you will not need to retype anything into it. Every Lucoze bill and receipt already posts to the accounts in Svasamm One. If your accountant still wants Tally for the first months, we agree the hand-over during onboarding."
+		},
+		{
+			"q": "Can a receptionist delete a bill?",
+			"a": "No. A paid bill cannot be cancelled. A mistake is put right with a credit note, which keeps both the bill and the refund in the record, with the reason."
+		}
+	],
+	"seoTitle": "Hospital Billing Software with GST for Clinics and Hospitals",
+	"metaDescription": "Hospital and clinic billing software for India: OPD bills, discounts and refunds with a trail, GST only where it applies, and bills posted to your accounts.",
+	"guide": [
+		{
+			"h": "Why hospital billing is not shop billing",
+			"p": [
+				"A shop sells a thing at a price. A hospital charges for a visit that is still going on: the registration fee at the front desk, the consultation, a test the doctor orders halfway through, a dressing after the doctor has seen the patient, and a discount the administrator allows at the end. Most billing software in Indian clinics was built for the shop. The bill is typed at the end from slips, the discount is whatever the cashier writes, and the accountant retypes the day's total into Tally the next morning.",
+				"Hospital billing software has to do three things the shop counter does not. It has to know what was done to the patient, so nothing is billed from memory. It has to keep a trail of every change to a bill, because a discount or a refund is money leaving the hospital. And it has to hand the accountant entries, not a total to retype."
+			]
+		},
+		{
+			"h": "The OPD bill in Lucoze",
+			"p": [
+				"In Lucoze the bill is built from the visit. Registering a new patient adds the registration fee. Booking a doctor adds that doctor's consultation fee, read from the doctor's own rate. A test or a procedure the doctor orders during the consultation joins the same bill. A charge that comes after the doctor has seen the patient, such as a dressing or an injection, is added to the visit, not to a separate slip.",
+				"Each line is kept as it was charged: its name and rate are copied onto the bill. If you rename a service or revise a rate next month, the bills already given do not change. That is what lets you answer a patient who comes back with an old bill, and what an auditor checks first."
+			],
+			"list": [
+				"Bills are numbered per year (OPB/26/0001) and receipts separately (RC/26/0001), so the numbers have no gaps.",
+				"A receipt that pays the consultation fee in full marks the visit as paid. The nurse and the doctor can see that without opening the bill, so nobody reaches the doctor unpaid by accident.",
+				"A paid bill cannot be cancelled. A mistake is put right with a refund, which leaves both entries in the record."
+			]
+		},
+		{
+			"h": "GST on hospital and clinic bills",
+			"p": [
+				"Most of what a hospital charges carries no GST. Health care services by a clinical establishment, an authorised medical practitioner or paramedics are exempt (entry 74 of Notification 12/2017-Central Tax (Rate)). But the same notification takes cosmetic and plastic surgery out of that exemption, and some things a hospital charges for, such as a copy of medical records, are not health care at all.",
+				"Lucoze marks each service in the catalogue as exempt or taxable, and gives it its SAC code. A taxable service carries its GST rate; an exempt one does not. When a discount is allowed, each line's share of it is worked out once and kept, so the taxable value on the bill matches what the GST return will read."
+			]
+		},
+		{
+			"h": "Discounts and refunds that leave a trail",
+			"p": [
+				"A discount is a decision, so Lucoze treats it as one. The bill stays at its full amount and the discount is allowed against it. A small one the desk may allow as it bills; anything past that waits for somebody with the authority to allow or refuse it, and a refused or withdrawn discount is kept, not erased. A refund is never a deleted bill: it is a credit note against the bill, with its reason (the service was not done, it was charged twice, or it was an error). An owner can see every discount and refund of the month without asking anyone."
+			]
+		},
+		{
+			"h": "From the bill to the books",
+			"p": [
+				"Lucoze runs on Svasamm One, which keeps the accounts. A bill and its receipt post to the books as they happen: income to the right head, the patient's dues, cash or bank, and GST where it applies. The accountant reads entries that are already there, and all your branches sit in one set of books. There is no evening export and no retyping into a second package."
+			],
+			"links": [
+				{
+					"href": "/in/blog/gst-for-clinics/",
+					"label": "GST for clinics, explained"
+				},
+				{
+					"href": "/in/blog/clinic-billing-stack/",
+					"label": "The clinic billing stack"
+				}
+			]
+		},
+		{
+			"h": "Inpatient, package and insurance billing",
+			"p": [
+				"A hospital with beds bills differently again: a running bill for the stay, room rent by the day, packages for common procedures, deposits taken at admission, and claims to a TPA or an insurer. These are set up for your hospital during onboarding, with your own room categories, packages and payer list, and they post to the same books as the OPD bill."
+			]
+		},
+		{
+			"h": "What to ask in any billing software demo",
+			"list": [
+				"Bill one patient who registers, sees a doctor, is sent for a test, and gets a dressing afterwards. Is it one bill or four slips?",
+				"Allow a discount bigger than the front desk should give. Does it wait for somebody senior, and is the answer kept?",
+				"Refund part of it. Does the original bill stay as it was?",
+				"Change the consultation rate. Does last week's bill change too?",
+				"Show the day's entries in the accounts without exporting anything.",
+				"Add a taxable service. Does the bill show its SAC code and GST, and the exempt lines none?"
+			]
 		}
 	]
 }

@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import SubHero from "../../../components/SubHero.astro";
 import Icon from "../../../components/Icon.astro";
+import GuideProse from "../../../components/GuideProse.astro";
+import { COMPARE_GUIDE } from "../../../data/solutions-guides.ts";
 
 const comparisons = (await getCollection("compare")).sort((a, b) =>
 	a.data.competitor.localeCompare(b.data.competitor),
@@ -12,8 +14,8 @@ const h1Parts = ["Lucoze, ", "compared", "."];
 ---
 
 <Base
-	title="Compare Lucoze — hospital & clinic software alternatives | Lucoze"
-	description="Honest, side-by-side comparisons of Lucoze against other Indian hospital and clinic management software — and how to switch without a day of downtime."
+	title="Clinic and Hospital Software Alternatives Compared"
+	description="Lucoze compared with Practo Ray, HealthPlix, MocDoc, KareXpert, Halemind and CliniQ360: one record, pricing, moving in, accounts, GST and leaving, side by side."
 >
 	<SubHero
 		crumbs={[{ href: "/in/", label: "Home" }, { label: "Compare" }]}
@@ -45,4 +47,6 @@ const h1Parts = ["Lucoze, ", "compared", "."];
 			</div>
 		</div>
 	</section>
+
+	<GuideProse eyebrow="How to compare" sections={COMPARE_GUIDE} />
 </Base>

@@ -6,9 +6,18 @@
 	"h1Parts": ["Pharmacy that ", "talks to the hospital", " — not a separate world."],
 	"lead": "Most hospitals run their attached pharmacy on a stand-alone billing software that doesn’t know what the doctor prescribed. Stock-outs surprise everyone. Dispensing errors compound. Lucoze’s pharmacy is part of the same record — prescription, dispense, stock, batch, all in one chain.",
 	"stats": [
-		{ "value": "1 click", "label": "Dispense from a doctor's prescription" },
-		{ "value": "Real-time", "label": "Stock levels across your stores" },
-		{ "value": "FIFO/FEFO", "label": "Expiry-first dispensing built-in" }
+		{
+			"value": "1 click",
+			"label": "Dispense from a doctor's prescription"
+		},
+		{
+			"value": "Real-time",
+			"label": "Stock levels across your stores"
+		},
+		{
+			"value": "FIFO/FEFO",
+			"label": "Expiry-first dispensing built-in"
+		}
 	],
 	"rows": [
 		{
@@ -41,6 +50,91 @@
 		{
 			"q": "Can pharmacy run as a standalone for a separately-owned shop?",
 			"a": "Yes — the pharmacy module can be enabled standalone for an attached but separately-billed pharmacy. The data flow stays clean across both ledgers."
+		},
+		{
+			"q": "Does it charge GST on medicines correctly?",
+			"a": "Each item carries its own HSN code and GST rate, so every line on a pharmacy bill is charged at its own rate and the GST return reads the same figures."
+		},
+		{
+			"q": "Can we import our current medicines and stock?",
+			"a": "Yes. During onboarding we move your item list, HSN codes, GST rates, suppliers and opening stock by batch from your present software or a spreadsheet."
+		},
+		{
+			"q": "Is it only for big hospitals?",
+			"a": "No. It works for a single-counter pharmacy in a clinic as well as a hospital with a main store and ward stores."
+		}
+	],
+	"seoTitle": "Pharmacy Billing Software for Hospitals and Clinics",
+	"metaDescription": "Pharmacy billing software for hospital and clinic pharmacies: dispense from the prescription, batches and expiry, GST per item, sales posted to your books.",
+	"guide": [
+		{
+			"h": "Why a hospital pharmacy needs more than a billing counter",
+			"p": [
+				"Most attached pharmacies in Indian hospitals and clinics run on a stand-alone medical store package. It can bill a strip of tablets and print a GST invoice, but it does not know what the doctor prescribed, so the pharmacist reads handwriting or a printout and types it all again. Stock is counted in one system and the hospital's accounts kept in another, and the two meet only when the accountant reconciles them at month end.",
+				"Pharmacy billing software for a hospital has to start from the prescription, know every batch and its expiry, charge the right GST on each item, and post the sale to the same books as the rest of the hospital."
+			]
+		},
+		{
+			"h": "From prescription to the pharmacy bill",
+			"p": [
+				"In Lucoze the doctor prescribes in the consultation, line by line, and each line is checked against the patient's recorded allergies before the note is signed. The pharmacy sets up its dispensing from that signed prescription, so the pharmacist works from what the doctor actually wrote. Substitutions, part-dispensing and returns are set up for your pharmacy's own rules during onboarding."
+			]
+		},
+		{
+			"h": "Batches, expiry and stock",
+			"p": [
+				"Every purchase is received with its batch, expiry and supplier. Stock is kept by batch, so the batch closest to expiry can go out first and short-dated stock is visible before it becomes a write-off. A hospital with a main store and ward or counter stores moves stock between them as transfers, so each store's count is its own. Stock in Svasamm One is kept by the same Materials module the rest of the platform uses."
+			]
+		},
+		{
+			"h": "GST on medicines",
+			"p": [
+				"Unlike most hospital services, medicines sold from the counter carry GST. Each item in the pharmacy's list carries its own HSN code and GST rate, so a bill with several items charges each one correctly and the return reads the same figures. If the pharmacy is a separate business with its own GSTIN, it is set up that way and billed under its own number."
+			]
+		},
+		{
+			"h": "Schedule H, H1 and X",
+			"p": [
+				"Some drugs need more than a bill. A Schedule H1 drug must be entered in a separate register with the prescriber's and patient's names, the drug and the quantity supplied, and Schedule X drugs have stricter rules again. These registers are set up for your pharmacy during onboarding, filled from the dispensing itself rather than kept in a second notebook."
+			]
+		},
+		{
+			"h": "Attached pharmacy or a separate shop",
+			"p": [
+				"Some hospitals run the pharmacy as a department; others have it owned and licensed separately. Both work. A department's sales post to the hospital's own books. A separately-owned shop keeps its own books and its own GST number, while still seeing the hospital's prescriptions."
+			],
+			"links": [
+				{
+					"href": "/in/features/billing/",
+					"label": "Hospital billing and GST"
+				},
+				{
+					"href": "/in/specialties/small-hospital/",
+					"label": "Small hospitals"
+				}
+			]
+		},
+		{
+			"h": "Purchases, returns and reorder",
+			"p": [
+				"Stock comes in against the supplier's bill, so the purchase, the batch and the supplier's GST are recorded once. A patient's return goes back into the batch it came from, and a return to the supplier leaves the stock with its own entry, so the count and the books both move. Reorder levels for each item are set with your pharmacist, and the items running low are listed before they run out, not discovered at the counter."
+			]
+		},
+		{
+			"h": "How it is set up",
+			"p": [
+				"During onboarding we import your current item list with HSN codes, GST rates, suppliers and opening stock by batch from your present software or a spreadsheet, set up your stores, and agree the dispensing rules with your pharmacist. The counter starts on the new system on a day you choose, and the old one is kept for reference."
+			]
+		},
+		{
+			"h": "What to ask in a pharmacy software demo",
+			"list": [
+				"Dispense a prescription the doctor signed five minutes ago. Did anybody retype it?",
+				"Sell two items with different GST rates on one bill. Is each charged right?",
+				"Show stock expiring in the next 60 days, by batch.",
+				"Transfer stock from the main store to the OPD counter. Do both counts change?",
+				"Show the day's pharmacy sales in the accounts without exporting anything."
+			]
 		}
 	]
 }

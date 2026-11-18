@@ -7,6 +7,7 @@ import FeatureVisual from "../../../components/visuals/FeatureVisual.astro";
 import ProductGalleries from "../../../components/ProductGalleries.astro";
 import Icon from "../../../components/Icon.astro";
 import Faq from "../../../components/Faq.astro";
+import GuideProse from "../../../components/GuideProse.astro";
 
 export async function getStaticPaths() {
 	const features = await getCollection("features");
@@ -45,7 +46,10 @@ const faqLd = {
 };
 ---
 
-<Base title={`${feature.label} — Lucoze`} description={feature.lead.slice(0, 160)}>
+<Base
+	title={feature.seoTitle ?? `${feature.label} — Lucoze`}
+	description={feature.metaDescription ?? feature.lead.slice(0, 160)}
+>
 	<script type="application/ld+json" slot="head" set:html={JSON.stringify(faqLd)} />
 	<SubHero
 		crumbs={[
@@ -82,6 +86,8 @@ const faqLd = {
 		</div>
 	</section>
 
+	{feature.guide && <GuideProse sections={feature.guide} />}
+
 	<section class="section section--tight">
 		<div class="container">
 			<header class="section-header">
@@ -100,7 +106,9 @@ const faqLd = {
 				<h2 style="font-size: clamp(24px, 3vw, 36px); margin-bottom: var(--s-3);">
 					See {feature.label} working in your hospital.
 				</h2>
-				<p>Book a demo — we run alongside your current system, no downtime, migration help included.</p>
+				<p>
+					Book a demo — we run alongside your current system, no downtime, migration help included.
+				</p>
 				<div class="cta-final__actions">
 					<a href="/in/demo/" class="btn btn--primary btn--lg">
 						Book a demo

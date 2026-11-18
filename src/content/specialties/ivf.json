@@ -2,25 +2,27 @@
 	"slug": "ivf",
 	"label": "IVF clinics",
 	"icon": "spark",
+	"seoTitle": "IVF Software for Fertility Clinics in India",
+	"metaDescription": "IVF clinic software for India: one record per patient, booked scans, coded notes and GST-aware billing, with your cycle workflow set up during onboarding.",
 	"eyebrow": "For IVF clinics · cycle-based workflow",
 	"h1Parts": ["A cycle is not a visit. ", "Your software shouldn't treat it like one", "."],
-	"lead": "IVF runs in cycles — stimulation, OPU, fertilisation, transfer, beta. Each cycle is 14-21 days, with multiple visits, hormone tracking, embryo grading, and EMI billing that spans the whole journey. Most clinic SaaS forces you to fake this. Lucoze models it natively.",
+	"lead": "IVF runs in cycles: stimulation, egg collection, fertilisation, transfer and the pregnancy test, over two to three weeks and many visits. Lucoze keeps the patient's record, the scans, the notes and the bills, and your clinic's cycle workflow is set up during onboarding.",
 	"why": [
 		[
-			"Cycle as the unit of work",
-			"Open a cycle, see the protocol, the day count, the upcoming tests. Patient summary shows cycle progress on top."
+			"The cycle as the unit of work",
+			"Your protocol, day count and planned tests are set up as a cycle for your clinic during onboarding, on top of the patient's one record."
 		],
 		[
-			"Embryo lab integration",
-			"Day-3, day-5 grades attached to the cycle. Cryopreservation tracked over years. Audit-ready for ICMR norms."
+			"Embryology and cryopreservation",
+			"Grades, freezing and storage are recorded the way your embryology lab already works, set up for your lab during onboarding."
 		],
 		[
-			"EMI plans + counseling",
-			"12-month EMI plans with the counsellor’s notes on cost discussions. No invoice surprises mid-cycle."
+			"Package billing and instalments",
+			"Each bill is numbered, with its rates copied onto it. Discounts above the desk's limit wait for approval, and a refund is a credit note with its reason."
 		],
 		[
-			"Regulatory compliance",
-			"Records aligned to the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — the two separate statutes an ART clinic reports under. Ready for the registrar."
+			"ART Act records",
+			"The registers, consents and donor records your clinic keeps under the ART (Regulation) Act, 2021 are set up during onboarding. Legal compliance stays the clinic's responsibility."
 		]
 	],
 	"plan": "Clinic Pro",
@@ -29,41 +31,61 @@
 	"detail": [
 		{
 			"title": "The cycle is the unit of work, not the visit",
-			"body": "An IVF journey is a cycle — stimulation, OPU, fertilisation, transfer, beta — running over roughly two to three weeks with many visits, hormone readings and embryo grades along the way. Most clinic software forces this into a series of disconnected appointments. Lucoze opens a cycle as a single object: the protocol, the day count and the upcoming tests sit on one view, and the patient summary shows cycle progress on top."
+			"body": "An IVF journey is a cycle: stimulation, egg collection, fertilisation, transfer and the pregnancy test, over roughly two to three weeks with many visits, hormone readings and embryo grades along the way. Most clinic software forces this into a series of disconnected appointments. With Lucoze, your clinic's protocols are set up as cycles during onboarding, after we sit with your team and go through a real cycle, so the protocol, the day count and the planned tests sit on one view above the patient's record."
 		},
 		{
-			"title": "Billing and records that fit a regulated, high-cost journey",
-			"body": "IVF is expensive and usually paid over an instalment plan, with the counsellor's cost discussions on record. Lucoze keeps the plan and the running balance attached to the cycle, so there are no mid-cycle billing surprises. Cycle, donor and consent records are organised to line up with the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — the two separate statutes an ART clinic reports under."
+			"title": "What every IVF patient gets from day one",
+			"body": "Every patient has one record across all your branches, with a hospital number that runs without gaps. Registering needs only a name and a mobile number, and a likely duplicate is shown before a second record is made, which matters when a couple and their families call from the same phone. A shared mobile number must be confirmed rather than quietly merged. The patient's ABHA number can be stored against the record. Sex, date of birth and the hospital number cannot be edited casually, so the file the embryologist reads is the file the counsellor opened."
 		},
 		{
-			"title": "One linked file for the couple, not two that never reconcile",
-			"body": "Fertility care is a couple's journey, but most records are built around one patient at a time. Lucoze links a couple's two records so the shared history, each partner's tests and the consent captured from both sit together against the same cycle. Billing runs against the couple, not split across two files that never reconcile. When a partner's result or a donor detail matters mid-cycle, it is on the record the clinician already has open — not in a second file someone has to go and find. The link is explicit, so who consented to what stays clear across every cycle the couple goes through."
+			"title": "Scans and monitoring visits that keep to the plan",
+			"body": "Monitoring in a stimulation cycle is a run of scans and blood tests on set days, and a missed day can cost the cycle. In Lucoze each slot holds one booking, so two patients are never given the same scan time. A visit that is moved keeps its old time and the reason, and a visit cannot be moved or cancelled once the patient has checked in. A doctor's sessions, leave and blocked hours decide which slots are offered, and one doctor is never offered in two branches at once. On the day, the queue gives each patient a token, takes walk-ins, and flags anyone who has waited past thirty minutes."
 		},
 		{
-			"title": "The stimulation protocol becomes a schedule the patient can follow",
-			"body": "A stimulation protocol is a run of injectables on set days, and the patient gives most of them at home. Lucoze holds the protocol against the cycle — which drug, what dose, which day — and turns it into a schedule the patient can follow, so a missed or mistimed injection is less likely to derail a cycle. As monitoring comes back and doses are adjusted, the change sits on the same cycle record rather than on a loose note. The clinician sees the protocol as prescribed, the patient sees what to take today, and both are reading the same plan."
+			"title": "Notes the consultant can sign and stand behind",
+			"body": "Each consultation records the complaints with their duration, and diagnoses are coded in ICD-10, with the main one first. Vitals are kept every time they are taken, so the latest blood pressure is the one the doctor reads. Prescriptions are checked against the patient's recorded allergies before they are saved. Orders for tests are released when the note is signed. A signed note is never overwritten: a correction is kept beside it as an amendment, which is what an inspector or a second opinion will want to see."
+		},
+		{
+			"title": "Billing that fits a high-cost, regulated journey",
+			"body": "IVF is expensive and is often paid in stages. Every bill and receipt is numbered (OPB/26/0001, RC/26/0001), restarting each financial year, and the item names and rates are copied onto the bill so a later price change never alters it. A discount is allowed against the gross bill. Above the desk's limit it waits for approval, and it is either allowed, refused or withdrawn, with each step on record. A refund is a credit note with its reason: the service was not done, it was billed twice, or it was an error. Healthcare services by a clinical establishment are exempt from GST under entry 74 of Notification 12/2017-Central Tax (Rate), and Lucoze marks each charge as exempt or taxable with its SAC, so a taxable item such as a cosmetic procedure is never billed as exempt. Your clinic's package plans and instalment schedules are set up during onboarding."
+		},
+		{
+			"title": "One linked file for the couple",
+			"body": "Fertility care is a couple's journey, but most records are built around one patient at a time. During onboarding, the couple's two records are linked the way your clinic works, so the shared history, each partner's tests and the consent from both sit together against the same cycle. When a partner's result or a donor detail matters mid-cycle, it is on the record the clinician already has open, not in a second file someone has to find."
+		},
+		{
+			"title": "Records under the ART and Surrogacy Acts",
+			"body": "An ART clinic in India works under the Assisted Reproductive Technology (Regulation) Act, 2021, and a clinic offering surrogacy also works under the Surrogacy (Regulation) Act, 2021. They are two separate laws. Both expect the clinic to be registered, to take written informed consent, and to keep records of donors, procedures and outcomes. Lucoze's notes already keep every amendment beside the signed record. The registers, consent forms and donor records your clinic must keep are set up during onboarding, from your current forms. Legal compliance stays the clinic's responsibility."
+		},
+		{
+			"title": "How an IVF clinic moves to Lucoze",
+			"body": "Start with one recent cycle on paper or in your old software. We walk it with your counsellor, embryologist and front desk, set up your protocols, package plans and registers, and bring in your patient list. The first cycles then run in Lucoze while the old system is still open, so nothing is lost while your team learns it. A 14-day trial comes first, with no fee for moving your data."
 		}
 	],
 	"faqs": [
 		{
-			"q": "Does Lucoze model an IVF cycle rather than single appointments?",
-			"a": "Yes. A cycle is one record spanning stimulation through beta, with the protocol, day count, tests and embryo grades tracked together and progress shown on the patient summary."
+			"q": "Does Lucoze handle an IVF cycle rather than single appointments?",
+			"a": "Yes. Your clinic's protocols are set up as cycles during onboarding, so the protocol, day count and planned tests sit together above the patient's one record, with the scans and visits booked against them."
 		},
 		{
 			"q": "How does it handle the ART and Surrogacy Acts?",
-			"a": "Cycle, donor and consent records are structured to support reporting under the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 — two distinct laws — so records are ready for the registrar. Legal compliance itself remains the clinic's responsibility."
+			"a": "The registers, consents and donor records your clinic keeps under the ART (Regulation) Act, 2021 and the Surrogacy (Regulation) Act, 2021 are set up during onboarding from your current forms. Legal compliance itself remains the clinic's responsibility."
 		},
 		{
 			"q": "Can it track embryology and cryopreservation?",
-			"a": "Day-3 and day-5 grades attach to the cycle, and cryopreserved embryos are tracked over time against the patient and cycle."
+			"a": "Yes. Embryo grades, freezing and storage are set up for your lab during onboarding, the way your embryologist already records them."
 		},
 		{
-			"q": "Are both partners' records linked in one file?",
-			"a": "Yes. A couple's two patient files are linked, so shared history, each partner's tests, both consents and the billing sit against the same cycle. A partner's result or donor detail is on the record already open, not in a separate file, and who consented to what stays clear across every cycle the couple goes through."
+			"q": "Is IVF treatment billed with GST?",
+			"a": "Healthcare services by a clinical establishment are exempt under entry 74 of Notification 12/2017-Central Tax (Rate). Lucoze marks each charge exempt or taxable with its SAC, so a taxable item is never billed as exempt. Check your clinic's items with your CA."
+		},
+		{
+			"q": "Can patients pay for a cycle in instalments?",
+			"a": "Yes. Your package plans and instalment schedules are set up during onboarding, and every payment gets a numbered receipt against the patient's bill."
 		},
 		{
 			"q": "Where is fertility data stored, and how is consent handled?",
-			"a": "Records stay in Indian data centres, and consent is captured per procedure rather than once at sign-up — appropriate for data this sensitive. Each cycle, donor arrangement and shared decision carries its own consent on the record, so the clinic can show what was agreed and when."
+			"a": "Records stay in India. The consents your clinic takes for each procedure, donor arrangement and shared decision are set up during onboarding, so the clinic can show what was agreed and when."
 		}
 	]
 }

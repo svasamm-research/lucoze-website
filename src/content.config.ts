@@ -34,6 +34,14 @@ const blog = defineCollection({
 	}),
 });
 
+// A long-form section on a product page: paragraphs, then an optional list, then optional links.
+export const guideSection = z.object({
+	h: z.string(),
+	p: z.array(z.string()).default([]),
+	list: z.array(z.string()).optional(),
+	links: z.array(z.object({ href: z.string(), label: z.string() })).optional(),
+});
+
 const features = defineCollection({
 	loader: glob({ pattern: "**/*.json", base: "./src/content/features" }),
 	schema: z.object({
@@ -54,6 +62,11 @@ const features = defineCollection({
 			}),
 		),
 		faqs: z.array(z.object({ q: z.string(), a: z.string() })),
+		// 17 Nov 2026 (docs/lucoze-buyer-ranking-plan.md): each feature page owns ONE buyer search.
+		// seoTitle names it; guide is the long-form part a buyer reads before a demo.
+		seoTitle: z.string().optional(),
+		metaDescription: z.string().optional(),
+		guide: z.array(guideSection).optional(),
 	}),
 });
 
@@ -70,6 +83,10 @@ const specialties = defineCollection({
 		plan: z.string(),
 		price: z.string(),
 		dashSpecialty: z.string(),
+		// The search the page is titled for (18 Nov 2026), as on the feature pages. Without them the
+		// title is "<label> management software" and the description is the lead cut at 160.
+		seoTitle: z.string().max(60).optional(),
+		metaDescription: z.string().max(160).optional(),
 		// Longer-form, specialty-specific prose sections (added to de-thin the
 		// template family). Each renders as a titled paragraph below the visual.
 		detail: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
