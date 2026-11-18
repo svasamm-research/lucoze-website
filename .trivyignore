@@ -1,0 +1,7 @@
+# Accepted Trivy findings. Each line has a reason and an exp: date; after the date the scan
+# fails again, so an acceptance can never become permanent by being forgotten.
+
+# picomatch ReDoS (single-branch repeated extglob). Published 18 Nov 2026 with NO fixed version.
+# Only build and test tools load it (astro, vite, tinyglobby, jest); the site ships static HTML from
+# nginx, so no visitor's input ever reaches a glob. Re-check, and upgrade, when a fix is released.
+CVE-2026-112366 exp:2026-12-18
