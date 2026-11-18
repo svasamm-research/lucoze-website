@@ -83,6 +83,10 @@ const specialties = defineCollection({
 		plan: z.string(),
 		price: z.string(),
 		dashSpecialty: z.string(),
+		// The search the page is titled for (18 Nov 2026), as on the feature pages. Without them the
+		// title is "<label> management software" and the description is the lead cut at 160.
+		seoTitle: z.string().max(60).optional(),
+		metaDescription: z.string().max(160).optional(),
 		// Longer-form, specialty-specific prose sections (added to de-thin the
 		// template family). Each renders as a titled paragraph below the visual.
 		detail: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
