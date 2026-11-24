@@ -26,18 +26,20 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "fo-overview",
-				alt: "Lucoze front-office OPD queue overview",
-				caption: "The OPD queue — walk-ins and token-holders with live wait times on one board.",
+				alt: "Lucoze OPD queue by stage, from check-in to bill",
+				caption:
+					"Today's OPD queue: each visit moves on as the desk, the nurse and the doctor do their part.",
 			},
 			{
 				name: "fo-book",
-				alt: "Booking an appointment in Lucoze",
-				caption: "Booking by department, doctor and slot.",
+				alt: "Appointments for the day in Lucoze",
+				caption: "Appointments by doctor and time, with who has checked in.",
 			},
 			{
 				name: "fo-register",
-				alt: "Registering a patient in Lucoze",
-				caption: "Patient registration at the front desk.",
+				alt: "A patient's record in Lucoze, with allergies and problems pinned",
+				caption:
+					"A patient's page: allergies, problems and medicines pinned, the whole history below.",
 			},
 		],
 	},
@@ -48,18 +50,19 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "clin-overview",
-				alt: "Clinical EMR dashboard in Lucoze",
-				caption: "The clinical dashboard — encounters, diagnoses and follow-ups at a glance.",
+				alt: "The consultations list in Lucoze",
+				caption: "Consultations, signed and unsigned, and results for my patients.",
 			},
 			{
 				name: "clin-encounter",
-				alt: "A patient encounter in Lucoze",
-				caption: "A consultation: history, vitals and orders in the doctor's room.",
+				alt: "A consultation in Lucoze — note, orders and prescription",
+				caption:
+					"The consultation: vitals, the note, orders and the prescription, with the allergy check.",
 			},
 			{
 				name: "clin-rx",
-				alt: "Writing a prescription in Lucoze",
-				caption: "Prescriptions written against the encounter.",
+				alt: "The OPD nurse's vitals list in Lucoze",
+				caption: "The OPD nurse takes vitals, longest wait first.",
 			},
 		],
 	},
@@ -70,18 +73,19 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "lab-overview",
-				alt: "Laboratory overview in Lucoze",
-				caption: "Lab overview — samples in the lab, TAT breaches and revenue.",
+				alt: "The lab worklist by stage in Lucoze",
+				caption: "The lab worklist by stage, from sample to result.",
 			},
 			{
 				name: "lab-worklist",
-				alt: "Lab worklist in Lucoze",
-				caption: "The worklist, sample by sample through its stages.",
+				alt: "The pathologist's sign-off in Lucoze",
+				caption: "The pathologist signs off, critical values first.",
 			},
 			{
 				name: "lab-order",
-				alt: "A lab order's detail in Lucoze",
-				caption: "An order's detail with reference-range flagging.",
+				alt: "The radiology worklist in Lucoze",
+				caption:
+					"Radiology: the worklist and the report, release held for Form F where it applies.",
 			},
 		],
 	},
@@ -92,18 +96,18 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "pharm-overview",
-				alt: "Pharmacy overview in Lucoze",
-				caption: "Pharmacy overview — sales, stock and dispensing.",
+				alt: "Dispensing with the allergy check in Lucoze",
+				caption: "Dispensing against the prescription, with the allergy and interaction check.",
 			},
 			{
 				name: "pharm-sale",
 				alt: "A pharmacy counter sale in Lucoze",
-				caption: "A counter sale against a prescription.",
+				caption: "A counter sale at the pharmacy.",
 			},
 			{
 				name: "pharm-controlled",
-				alt: "Controlled-drug dispensing in Lucoze",
-				caption: "Controlled-drug dispensing with Schedule-H/X capture.",
+				alt: "The H1 and NDPS register in Lucoze",
+				caption: "The H1 and NDPS register, with its running balance.",
 			},
 		],
 	},
@@ -114,18 +118,18 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "bill-overview",
-				alt: "Billing and revenue overview in Lucoze",
-				caption: "Billing & revenue — collections, dues and advances.",
+				alt: "Bills in Lucoze, built from what was posted",
+				caption: "Bills built from what was posted: OPD, inpatient and referrals.",
 			},
 			{
 				name: "bill-invoice",
-				alt: "Creating a GST invoice in Lucoze",
-				caption: "A new invoice with correct CGST/SGST/IGST.",
+				alt: "Dues by payer in Lucoze",
+				caption: "What is owed, by payer and by age.",
 			},
 			{
 				name: "bill-gst",
-				alt: "GST returns in Lucoze",
-				caption: "GST returns generated from the same billing data.",
+				alt: "Payments and credit notes in Lucoze",
+				caption: "Payments and credit notes, each against its bill.",
 			},
 		],
 	},
@@ -136,18 +140,18 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "ipd-bedmap",
-				alt: "IPD bed map in Lucoze",
-				caption: "A live bed map — occupied, free and cleaning, by ward.",
+				alt: "The bed board in Lucoze",
+				caption: "The bed board, ward by ward: occupied, free, cleaning and reserved.",
 			},
 			{
 				name: "ipd-admit",
-				alt: "Admitting an inpatient in Lucoze",
-				caption: "Admitting a patient to a bed.",
+				alt: "Admissions in Lucoze",
+				caption: "Admissions: planned and emergency, with the ward wanted.",
 			},
 			{
 				name: "ipd-rounds",
-				alt: "Ward rounds and orders in Lucoze",
-				caption: "Ward rounds, orders and eMAR against the admission.",
+				alt: "An inpatient's chart in Lucoze",
+				caption: "An inpatient's chart: vitals, medicines due, orders and discharge.",
 			},
 		],
 	},
@@ -158,18 +162,13 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "ot-schedule",
-				alt: "Operation theatre schedule in Lucoze",
-				caption: "The OT schedule across rooms and surgeons.",
+				alt: "The OT list by room in Lucoze",
+				caption: "The theatres on the clock, and today's cases by room.",
 			},
 			{
 				name: "ot-book",
-				alt: "Booking a surgery in Lucoze",
-				caption: "Booking a surgery with room, staff and time.",
-			},
-			{
-				name: "ot-preop",
-				alt: "Pre-op checklist in Lucoze",
-				caption: "Pre-op checks before the case proceeds.",
+				alt: "An OT case with the WHO checklist in Lucoze",
+				caption: "An OT case: pre-op, the WHO checklist, the record and recovery.",
 			},
 		],
 	},
@@ -180,18 +179,13 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "er-overview",
-				alt: "Emergency and casualty overview in Lucoze",
-				caption: "Emergency & casualty — active cases, wait and disposition.",
+				alt: "The emergency board by stage in Lucoze",
+				caption: "The emergency board by stage, with ambulances and triage.",
 			},
 			{
 				name: "er-new",
-				alt: "A new ER visit in Lucoze",
-				caption: "A new ER visit opened with the minimum to start treatment.",
-			},
-			{
-				name: "er-case",
-				alt: "Managing an emergency case in Lucoze",
-				caption: "Managing an emergency case through to disposition.",
+				alt: "The MLC register in Lucoze",
+				caption: "The medico-legal case register, with the police told.",
 			},
 		],
 	},
@@ -224,18 +218,18 @@ export const GALLERIES: Record<string, Gallery> = {
 		shots: [
 			{
 				name: "ins-overview",
-				alt: "Insurance and TPA overview in Lucoze",
-				caption: "Insurance & TPA — claims queue, pending and settled.",
+				alt: "Insurance claims in Lucoze",
+				caption: "Claims by stage, with the payer and the sanctioned amount.",
 			},
 			{
 				name: "ins-preauth",
-				alt: "Raising a cashless pre-authorisation in Lucoze",
-				caption: "Raising a cashless pre-authorisation.",
+				alt: "Cashless pre-authorisation in Lucoze",
+				caption: "Pre-authorisation for a planned cashless admission.",
 			},
 			{
 				name: "ins-claim",
-				alt: "A claim's detail in Lucoze",
-				caption: "A claim's detail and supporting documents.",
+				alt: "TPA settlements in Lucoze",
+				caption: "Settlements: claimed, settled and deducted.",
 			},
 		],
 	},
