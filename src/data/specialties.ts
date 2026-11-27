@@ -45,7 +45,7 @@ export const SPECIALTY_PILLS: SpecialtyOption[] = [
 		icon: "flask",
 		visualKind: "diag",
 		caption:
-			"Sample-to-report lifecycle as a Kanban. The phlebotomist, the lab, the pathologist, and the courier — all on one board.",
+			"Sample to report on one worklist, by stage. The technician, the lab and the pathologist work from the same list.",
 	},
 	{
 		id: "hospital",

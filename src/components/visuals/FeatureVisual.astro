@@ -30,14 +30,17 @@ const MAP: Record<string, { name: string; alt: string }> = {
 		name: "patient-encounters",
 		alt: "Family-linked patient records and visit history in Lucoze",
 	},
-	invoice: { name: "billing", alt: "GST-compliant billing and invoicing in Lucoze" },
+	invoice: { name: "billing", alt: "Bills in Lucoze, built from what was posted" },
 	stock: { name: "inventory", alt: "Pharmacy inventory and procurement tracking in Lucoze" },
 	finance: { name: "finance", alt: "Finance, P&L and GST dashboard in Lucoze" },
 	"lab-stages": {
 		name: "lab-lims",
 		alt: "Lab information management — sample-to-report tracking in Lucoze",
 	},
-	"lab-report": { name: "lab-report", alt: "A lab test report with reference ranges in Lucoze" },
+	"lab-report": {
+		name: "lab-report",
+		alt: "The pathologist's sign-off in Lucoze, critical values first",
+	},
 	"rx-dispense": {
 		name: "pharmacy",
 		alt: "Pharmacy dispensing from a doctor's prescription in Lucoze",
