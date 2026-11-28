@@ -6,30 +6,45 @@
 	"h1Parts": ["HR your administrator ", "actually uses", " — because it lives where work happens."],
 	"lead": "Standalone HR tools force the administrator to enter the same data twice — once when the staff member joins, once at month-end for payroll. Lucoze’s HR sits in the same database as appointments and billing. Attendance, leave, payroll, statutory — all derived from work that’s already logged.",
 	"stats": [
-		{ "value": "One place", "label": "Attendance, leave and payroll" },
-		{ "value": "ESI/PF", "label": "Statutory deductions in the payroll run" },
-		{ "value": "Set up", "label": "For your staff during onboarding" }
+		{
+			"value": "One place",
+			"label": "Attendance, leave and payroll"
+		},
+		{
+			"value": "ESI/PF",
+			"label": "Statutory deductions in the payroll run"
+		},
+		{
+			"value": "Set up",
+			"label": "For your staff during onboarding"
+		}
 	],
 	"rows": [
 		{
 			"eyebrow": "Attendance",
 			"title": "Attendance that matches how your staff work.",
-			"lead": "Attendance, leave and shifts sit in the same database as appointments and billing, and the way your staff punch in is set up for your facility during onboarding. End-of-month reconciliation takes minutes, not hours.",
+			"lead": "Attendance, leave and shifts sit in the same database as appointments and billing, and the way your staff punch in is set up for your facility during onboarding. End-of-month reconciliation takes minutes, not hours. Doctors, nurses, technicians and support staff rotate across shifts, and a ward needs cover on every one, so the roster, the punches and the leave decisions are read together.",
 			"bullets": [
 				"Late-coming + early-leaving rules per role.",
 				"Shift planning with conflict detection — no doctor accidentally double-booked.",
-				"Half-day, overtime, public holiday rules built-in for Indian labour law."
+				"Half-day, overtime, public holiday rules built-in for Indian labour law.",
+				"Leave types and balances per person, with a supervisor deciding each request and seeing who else is off.",
+				"Weekly offs and holidays respected when a day is counted, so a day not worked is not cut from the pay.",
+				"Night shifts belong to the day they started, so 22:00 to 06:00 is one day's work."
 			],
 			"visual": "attendance"
 		},
 		{
 			"eyebrow": "Payroll + statutory",
 			"title": "ESI, PF, TDS: calculated. Not estimated.",
-			"lead": "Each pay cycle the system computes deductions and generates payslips. You approve; we do the math.",
+			"lead": "Each pay cycle the system computes deductions and generates payslips. You approve; we do the math. Salaried consultants, monthly staff and contract workers for housekeeping, security and the canteen are paid in the same run.",
 			"bullets": [
 				"Salary structure templates per role — OPD doctor, surgeon, technician, admin.",
 				"Statutory deductions (PF, ESI, TDS) worked out in the payroll run.",
-				"Payslips as PDF — staff have a record, you have an audit trail."
+				"Payslips as PDF — staff have a record, you have an audit trail.",
+				"Professional tax by your state's slabs, totalled per state with its due dates.",
+				"Overtime counted from the punches and paid at the multiple your facility sets; if none is set, payroll says so instead of quietly paying nothing.",
+				"Full and final settlement worked out once when somebody leaves."
 			],
 			"visual": "payroll"
 		}
@@ -42,6 +57,22 @@
 		{
 			"q": "Does HR cover the Labour Codes?",
 			"a": "Statutory settings for your state are set up during onboarding, so payroll follows the rules that apply to your facility."
+		},
+		{
+			"q": "Can contract workers be paid from the same system?",
+			"a": "Yes. A contract worker has a record, shifts and attendance without needing a login, and is paid in the same run as permanent staff."
+		},
+		{
+			"q": "How are night shifts and overtime handled for ward staff?",
+			"a": "A night shift belongs to the day it started, and overtime is counted from the punches after the shift's full day and paid at the multiple your facility sets."
+		},
+		{
+			"q": "Can doctors' pay be set differently from nurses' and technicians'?",
+			"a": "Yes. Salary structure templates are set per role, such as OPD doctor, surgeon, technician or admin, and payroll follows each person's structure."
+		},
+		{
+			"q": "Which statutory deductions does payroll cover?",
+			"a": "PF, ESI, professional tax by state and TDS on salary, worked out in the same run, with a payslip for each person."
 		}
 	]
 }
